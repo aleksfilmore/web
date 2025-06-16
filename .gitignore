@@ -1,6 +1,4 @@
-
-# .v4p backup files
-*~.xml
-
-# Dynamic plugins .dll
-bin/
+*.DS_Store
+node_modules/
+dist/
+.env
