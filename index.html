@@ -13,37 +13,13 @@
       color: #26273A;
     }
 
-    .hero {
-      padding: 10vh 5vw;
-      background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png');
-      background-size: cover;
-      background-position: center;
-      color: #FAF5EE;
-      text-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    .hero h2 {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      color: #ff5555;
-    }
-
-    .scroll-indicator {
-      margin-top: 3em;
-      font-size: 2rem;
-    }
-
     .book-section {
       display: flex;
       flex-direction: row;
       padding: 4em 5vw;
       background-color: #F9EDD9;
       position: relative;
+      overflow: hidden;
     }
 
     .book-section.reverse {
@@ -69,17 +45,6 @@
       flex: 1;
     }
 
-    .fog-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
     .btn {
       display: inline-block;
       margin-top: 1em;
@@ -95,72 +60,31 @@
       background-color: #26273A;
     }
 
-    .fade-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
+    .dacia-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/bb5b50c6370f24275b237b6f572e0de7dc1334b7/Overlay%20Dacia%20Rising.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+      animation: zoomOut 60s ease-in-out infinite alternate;
+      z-index: 0;
     }
 
-    .fade-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 768px) {
-      .book-section .book-wrapper {
-        flex-direction: column !important;
-        text-align: center;
-      }
-      .book-section .cover {
-        width: 80%;
-        max-width: 250px;
-        margin-bottom: 1em;
-      }
-      .book-section .content {
-        padding: 0 1em;
-      }
-      .hero-text h1 {
-        font-size: 2em;
-      }
-      .hero-text h2 {
-        font-size: 1.2em;
-      }
-      .hero-text p {
-        font-size: 1em;
-      }
-      .btn {
-        padding: 0.75em 1.25em;
-        font-size: 1em;
-      }
+    @keyframes zoomOut {
+      from { transform: scale(1.05); }
+      to { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-<section class="hero">
-  <div class="hero-text">
-    <h1>Queer. Cursed. Kinda Funny.</h1>
-    <h2>Not your average book club vibes.</h2>
-    <p>Step into Aleks Filmore’s world of fog-drenched gothic mystery, mythic fantasy, and hilariously awful boyfriends. Whether you crave ancient curses, bear gods, or text messages that should’ve never been sent — there’s a book here waiting to ruin your emotional stability (in a good way).</p>
-  </div>
-  <div class="scroll-indicator">▼</div>
-</section>
-
-<section class="book-section book1 fade-on-scroll">
-  <div class="fog-video">
-    <iframe src="https://streamable.com/e/2u4wy6?autoplay=1&muted=1&nocontrols=1" allowfullscreen frameborder="0" style="width:100%; height:100%; position:absolute; top:0; left:0;"></iframe>
-  </div>
-  <div class="book-wrapper">
-    <img class="cover" src="https://raw.githubusercontent.com/aleksfilmore/web/main/Fogbound%20Hearts.png" alt="Fogbound Hearts Book Cover" />
-    <div class="content">
-      <h2>Fogbound Hearts</h2>
-      <p>When Daniel inherits a crumbling mansion in the forgotten town of Eldermist, he expects dust, maybe ghosts. What he finds is a town drowning in fog and secrets. An abandoned lighthouse. A stranger with eyes like storms. A journal that bleeds memory and madness. As his bond with the mysterious Simon deepens, so does the pull of the ancient curse that haunts the cliffs.</p>
-      <p><em>Fogbound Hearts</em> is a haunting tale of queer love, psychological suspense, and a fog that never forgives.</p>
-      <a href="https://www.amazon.com/dp/B0DPQV1CK8" class="btn" target="_blank">Buy on Amazon</a>
-    </div>
-  </div>
-</section>
-
 <section class="book-section book2 fade-on-scroll">
+  <div class="dacia-overlay"></div>
   <div class="book-wrapper">
     <img class="cover" src="https://raw.githubusercontent.com/aleksfilmore/web/main/DACIA%20RISING.png" alt="Dacia Rising Book Cover" />
     <div class="content">
@@ -171,35 +95,5 @@
     </div>
   </div>
 </section>
-
-<section class="book-section book3 reverse fade-on-scroll">
-  <div class="book-wrapper">
-    <img class="cover" src="https://raw.githubusercontent.com/aleksfilmore/web/main/THE%20WORST%20BOYFRIENDSEVER.png" alt="The Worst Boyfriends Ever Book Cover" />
-    <div class="content">
-      <h2>The Worst Boyfriends Ever</h2>
-      <p>A hilarious yet heartfelt exploration of modern romance’s biggest flops. From ghosters to gaslighters, dog-obsessed divas to phone-addicted disasters, this collection of dating misadventures will make you laugh, cringe, and maybe even cry a little.</p>
-      <p><em>The Worst Boyfriends Ever</em> is your ultimate guide to loving, losing, and laughing through it all.</p>
-      <a href="https://www.amazon.com/dp/B0DSCJMS8R" class="btn" target="_blank">Buy on Amazon</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer fade-on-scroll">
-  <div class="content">
-    <p>&copy; 2025 Aleks Filmore. All rights reserved.</p>
-    <a href="#top">Back to top ↑</a>
-  </div>
-</footer>
-
-<script>
-  document.addEventListener('scroll', () => {
-    document.querySelectorAll('.fade-on-scroll').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        el.classList.add('visible');
-      }
-    });
-  });
-</script>
 </body>
 </html>
