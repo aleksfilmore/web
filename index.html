@@ -5,6 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleks Filmore | Author</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f9f4ed;
+      color: #2e2e2e;
+    }
+
+    .hero {
+      background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') no-repeat center center/cover;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #f9f4ed;
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      color: #a4442e;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #f9f4ed;
+    }
+
+    .book-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .book-section img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .book-section .content {
+      max-width: 600px;
+    }
+
+    .book-section .btn {
+      display: inline-block;
+      background-color: #a4442e;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .mailing-list {
+      background: #f9f4ed;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .styled-mailing h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #2e2e2e;
+    }
+
+    .styled-mailing p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-fields input[type="text"],
+    .form-fields input[type="email"] {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-fields button {
+      background-color: #a4442e;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-fields button:hover {
+      background-color: #7d2f20;
+    }
+
+    footer {
+      background-color: #2e2e2e;
+      color: #f9f4ed;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer a {
+      color: #f9f4ed;
+      text-decoration: underline;
+    }
+
+    @media (min-width: 600px) {
+      .book-section {
+        flex-direction: row;
+        text-align: left;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .book-section img {
+        margin-bottom: 0;
+      }
+
+      .form-fields {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .form-fields input[type="text"],
+      .form-fields input[type="email"] {
+        width: auto;
+        flex: 1;
+      }
+    }
+  </style>
 </head>
 <body>
   <section class="hero">
@@ -57,7 +205,7 @@
 
   <footer>
     <p>&copy; 2025 Aleks Filmore. All rights reserved.</p>
-    <a href="https://www.goodreads.com/author/show/53497064.Aleks_Filmore" style="color: #f9f4ed;">Goodreads</a>
+    <a href="https://www.goodreads.com/author/show/53497064.Aleks_Filmore">Goodreads</a>
   </footer>
 </body>
 </html>
