@@ -1,126 +1,18 @@
 body {
-  font-family: 'Georgia', serif;
   margin: 0;
-  padding: 0;
-  background-color: #fffdf9;
-  color: #333;
-  line-height: 1.6;
-}
-.hero {
-  padding: 5rem 1rem;
-  text-align: center;
-  background-color: #1e1e1e;
-  color: #f9f4ed;
-}
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #f9f4ed;
-}
-.hero h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #d94d3f;
-}
-section.book-section {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 1rem;
+  font-family: Georgia, serif;
   background: #f9f4ed;
-}
-.book-section img {
-  max-width: 300px;
-  height: auto;
-  margin-right: 2rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-}
-.book-section .content {
-  max-width: 600px;
-}
-.book-section h2 {
-  color: #7d1a1a;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-.book-section p {
-  margin-bottom: 1rem;
-}
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #7d1a1a;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-.btn:hover {
-  background-color: #5a1313;
-}
-.mailing-list {
-  background: #f9f4ed;
-  padding: 3rem 1rem;
-  text-align: center;
-}
-.styled-mailing h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
   color: #2e2e2e;
 }
-.styled-mailing p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: #555;
+.hero {
+  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') center/cover no-repeat;
+  text-align: center;
+  padding: 5rem 1rem;
 }
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.form-fields input[type="text"],
-.form-fields input[type="email"] {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.form-fields button {
-  background-color: #7d1a1a;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.form-fields button:hover {
-  background-color: #5a1313;
+h1 {
+  color: #721817;
 }
 footer {
   text-align: center;
-  padding: 2rem 1rem;
-  background-color: #1e1e1e;
-  color: #f9f4ed;
-}
-footer a {
-  color: #d94d3f;
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-@media (max-width: 768px) {
-  .book-section {
-    flex-direction: column;
-  }
-  .book-section img {
-    margin: 0 0 2rem 0;
-  }
+  padding: 1rem;
 }
