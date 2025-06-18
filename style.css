@@ -1,25 +1,62 @@
+
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  background: #fffaf4;
+  background-color: #f9f4ed;
   color: #2e2e2e;
 }
 .hero {
-  background: url('assets/hero.jpg') center/cover no-repeat;
-  padding: 4rem 1rem;
+  padding: 5rem 2rem;
+  color: #fff;
   text-align: center;
 }
-h1 {
+.hero h1 {
   font-size: 2.5rem;
-  color: #a21d2b;
+  color: #f9f4ed;
+}
+.hero h2 {
+  font-size: 1.5rem;
+  color: #ff9999;
+}
+.book-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4rem 2rem;
+  gap: 2rem;
+}
+.book-section.reverse {
+  flex-direction: row-reverse;
+}
+.book-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex: 1;
+}
+.book-cover {
+  max-width: 200px;
+  height: auto;
+}
+.btn {
+  background-color: #b43c2d;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  text-decoration: none;
+  border-radius: 5px;
 }
 .mailing-list {
-  background: #f9f4ed;
-  padding: 2rem;
+  padding: 4rem 2rem;
   text-align: center;
+  background: #f3ebe2;
 }
-form input, form button {
+input, button {
   padding: 0.75rem;
   margin: 0.5rem;
-  font-size: 1rem;
+}
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #eae2d8;
+  font-size: 0.9rem;
 }
