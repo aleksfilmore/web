@@ -1,22 +1,44 @@
+
 body {
-  margin: 0;
   font-family: 'Georgia', serif;
-  background: #fffaf5;
+  margin: 0;
+  padding: 0;
+  background: #fff;
   color: #333;
 }
 .hero {
+  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') center/cover no-repeat;
   text-align: center;
-  padding: 4rem 2rem;
-  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') no-repeat center center/cover;
-  color: white;
+  color: #fff;
+  padding: 6rem 2rem;
 }
 .hero h1 {
   font-size: 3rem;
   margin: 0;
 }
 .hero p {
-  font-size: 1.25rem;
-  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+.top-header {
+  background: #fff;
+  text-align: center;
+  padding: 0.6rem 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #c2463c;
+}
+.announcement-bar {
+  background: #f9f4ed;
+  color: #7b2f2a;
+  text-align: center;
+  padding: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+.book-section {
+  padding: 4rem 2rem;
+  text-align: center;
 }
 .social-cta {
   background: #f4f0ea;
@@ -32,21 +54,8 @@ body {
   border-radius: 5px;
   text-decoration: none;
 }
-.announcement-bar {
-  background: #f9f4ed;
-  color: #7b2f2a;
+footer {
+  background: #f8f8f8;
   text-align: center;
-  padding: 0.4rem 1rem;
-  font-size: 0.95rem;
-  font-weight: bold;
-}
-.top-header {
-  background: #fff;
-  text-align: center;
-  padding: 0.6rem 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #c2463c;
+  padding: 2rem 1rem;
 }
