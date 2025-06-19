@@ -1,44 +1,27 @@
-
-.book-cover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #fffaf5;
+  color: #333;
 }
-.book-cover:hover {
-  transform: scale(1.05) rotateZ(-1deg);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') no-repeat center center/cover;
+  color: white;
 }
-.fog-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.3;
-  pointer-events: none;
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
 }
-.fogbound {
-  position: relative;
-  overflow: hidden;
-}
-.fogbound .book-wrapper,
-.fogbound .book-content {
-  position: relative;
-  z-index: 1;
+.hero p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
 }
 .social-cta {
   background: #f4f0ea;
   text-align: center;
   padding: 3rem 1rem;
-}
-.social-cta h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-.social-cta p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
 }
 .cta-buttons a {
   margin: 0.5rem;
@@ -48,22 +31,6 @@
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   text-decoration: none;
-  transition: background 0.3s ease;
-}
-.cta-buttons a:hover {
-  background: #9f342d;
-}
-.social-links img {
-  height: 24px;
-  margin: 0 10px;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-.social-links img:hover {
-  filter: none;
-}
-footer .social-links {
-  margin-top: 1rem;
 }
 .announcement-bar {
   background: #f9f4ed;
@@ -75,11 +42,11 @@ footer .social-links {
 }
 .top-header {
   background: #fff;
-  color: #222;
   text-align: center;
-  padding: 0.5rem 0;
-  font-family: 'Georgia', serif;
-  font-size: 1.25rem;
+  padding: 0.6rem 0;
+  font-size: 1.4rem;
   font-weight: bold;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c2463c;
 }
