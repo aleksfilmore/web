@@ -1,50 +1,58 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  background-color: #fff;
-  color: #222;
+  background: #fff;
+  color: #333;
 }
 .hero {
-  padding: 6rem 2rem;
   text-align: center;
+  padding: 4rem 2rem;
   color: #FAF5EE;
-  background-color: #000;
+  background-color: #1f1f1f;
 }
-.hero-content h1 {
+.hero h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
-.hero-content h2 {
+.hero h2 {
   font-size: 1.5rem;
-  color: #F08080;
+  margin-bottom: 1rem;
+  color: #ff8373;
 }
-.hero-content p {
-  font-size: 1.1rem;
-  max-width: 600px;
+.hero p {
+  font-size: 1rem;
+  max-width: 700px;
   margin: 0 auto;
 }
 .book-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 4rem 2rem;
+  gap: 2rem;
 }
 .book-wrapper {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
   gap: 2rem;
   max-width: 1000px;
-  margin: 0 auto;
-  flex-wrap: wrap;
 }
 .book-wrapper.reverse {
   flex-direction: row-reverse;
 }
 .book-cover {
-  width: 200px;
-  max-width: 100%;
+  max-width: 200px;
   height: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-cover:hover {
+  transform: scale(1.05) rotateZ(-1deg);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
 }
 .book-content {
-  flex: 1;
   max-width: 500px;
 }
 .book-content h2 {
@@ -52,19 +60,19 @@ body {
   margin-bottom: 0.5rem;
 }
 .book-content p {
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 .btn {
-  background-color: #8B0000;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #a4442e;
   color: #fff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 3px;
   text-decoration: none;
-  font-weight: bold;
+  border-radius: 4px;
 }
 .btn:hover {
-  background-color: #5C0000;
+  background: #7d2f20;
 }
 .mailing-list {
   background: #f9f4ed;
@@ -72,15 +80,12 @@ body {
   text-align: center;
 }
 .styled-mailing h2 {
-  font-family: 'Georgia', serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #2e2e2e;
 }
 .styled-mailing p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 1.5rem;
-  color: #555;
 }
 .form-fields {
   display: flex;
@@ -112,12 +117,33 @@ body {
   background-color: #7d2f20;
 }
 footer {
-  background: #161F30;
-  color: #fff;
+  padding: 2rem;
   text-align: center;
-  padding: 1rem;
+  background: #1f1f1f;
+  color: #fff;
 }
 footer a {
-  color: #FAF5EE;
-  text-decoration: underline;
+  color: #ff8373;
+  display: block;
+  margin-top: 0.5rem;
+}
+.fog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.fogbound {
+  position: relative;
+  overflow: hidden;
+}
+.fogbound .book-wrapper,
+.fogbound .book-content {
+  position: relative;
+  z-index: 1;
 }
