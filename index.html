@@ -1,4 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- REPLACED: Full HTML content will be inserted here from Canvas -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aleks Filmore | The Worst Boyfriends Ever</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffc19c;
+      color: #000;
+    }
+    header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffc19c;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .tagline {
+      font-size: 0.9rem;
+    }
+    .hero {
+      background: linear-gradient(to right, #ffc19c, #f35b4e);
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    input {
+      padding: 0.75rem;
+      width: 250px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .cta-button {
+      background-color: #ffa711;
+      color: #000;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .quotes {
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .quote {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      font-style: italic;
+    }
+    .review {
+      background-color: #fff2db;
+      padding: 1.5rem;
+      margin: 2rem 1rem;
+      border-radius: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .review span {
+      font-weight: bold;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    @media (min-width: 768px) {
+      .review-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background-color:#208e92; color:#fff; text-align:center; padding:0.5rem; font-weight:bold; font-size:0.95rem;">
+    📣 Ranked #1 in LGBTQ+ Humor — Read what everyone’s laughing about!
+  </div>
+  <header>
+    <div class="logo">Aleks Filmore</div>
+    <div class="tagline">Queer Stories. Sharp Edges. Real Chaos.</div>
+  </header>
+
+  <section class="hero" style="background: url('https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/hero-brushstroke.png') no-repeat center/cover, linear-gradient(to right, #f35b4e, #f35b4e); padding: 3rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem;">
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <h1 style="text-align: left; font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: bold; color: white;">Breakups. Meltdowns. Mistakes.</h1>
+    <p style="text-align: left; font-size: 1.1rem; margin-bottom: 1.5rem;">
+      A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.
+    </p>
+    <form action="https://formspree.io/f/myzjjjjp" method="POST" style="display: flex; flex-direction: column; gap: 0.25rem; align-items: flex-start; font-size: 0.9rem;">
+      <input type="text" name="name" placeholder="Your Name" required style="padding: 0.5rem; width: 220px; font-size: 0.9rem;">
+      <input type="email" name="email" placeholder="Your Email" required style="padding: 0.5rem; width: 220px; font-size: 0.9rem;">
+      <button class="cta-button" type="submit" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">GET THE SECRET CHAPTER</button>
+    </form>
+    <div class="quotes" style="margin-top: 2rem; text-align: left;">
+      <div class="quote" style="background: #fff; padding: 1rem; border-radius: 8px; font-style: italic;">“He didn’t ghost me. He evaporated, like a tragic gay fog.”</div>
+      <div class="quote" style="background: #208e92; color: #fff; padding: 1rem; border-radius: 8px; font-style: italic; margin-top: 1rem;">“I wasn’t his boyfriend. I was his personality reboot between crises.”</div>
+    </div>
+  </div>
+  <div style="flex: 1; min-width: 280px; max-width: 360px;">
+    <img src="https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/THE%20WORST%20BOYFRIENDSEVER.png" alt="The Worst Boyfriends Ever cover" style="width: 100%; max-width: 300px; transform: rotate(-4deg); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);">
+  </div>
+</section>
+
+  
+
+  
+
+  <section class="review-carousel" style="max-width: 600px; margin: 2rem auto; position: relative;">
+  <div id="carousel" style="background-color: #fff8ec; border-radius: 8px; padding: 1.5rem; font-size: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #e6d6c3;">
+    <p id="review-content" style="margin: 0;"></p>
+    <p id="review-author" style="margin-top: 0.5rem; font-weight: bold; color: #b0884d;"></p>
+  </div>
+  <script>
+    const reviews = [
+      {
+        author: "Samantha Thatcher",
+        text: "This book had me laughing, cringing, and nodding the whole way through. It’s wild, messy, and somehow still uplifting. If you’ve ever wondered ‘was it just me?’—this proves it definitely wasn’t."
+      },
+      {
+        author: "Amazon Customer Zeus",
+        text: "Chapter 16: The Conspiracist... pigeons are surveillance drones, fries are population control, and Amazon packages smuggle info. What starts as a chuckle becomes full-on laughter."
+      },
+      {
+        author: "Jon (Australia)",
+        text: "A riotous tour through dating disasters. Ghosting gamblers, gaslighting gurus, brunches with chaos—Filmore turns cringe into comedy and somehow still gives us hope."
+      }
+    ];
+    let current = 0;
+    const content = document.getElementById("review-content");
+    const author = document.getElementById("review-author");
+    function showReview(i) {
+      content.innerText = `“${reviews[i].text}”`;
+      author.innerText = `★★★★★ ${reviews[i].author}`;
+    }
+    showReview(current);
+    setInterval(() => {
+      current = (current + 1) % reviews.length;
+      showReview(current);
+    }, 5000);
+  </script>
+</section>
+  <section style="background: url('https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/hero-brushstroke.png') no-repeat center/cover, linear-gradient(to bottom, #2e3b4e, #1b222b); color: #fff; padding: 3rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem;">
+  <div style="flex: 1; min-width: 280px; max-width: 360px;">
+    <img src="https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/Fogbound%20Hearts.png" alt="Fogbound Hearts book cover" style="width: 100%; max-width: 300px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);">
+  </div>
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <h2 style="font-size: 2rem; margin-bottom: 0.5rem; text-align: left; text-transform: uppercase; letter-spacing: 1px;">Fogbound Hearts</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1rem; text-align: left;">
+      A queer gothic mystery where the fog remembers, the lighthouse bleeds, and a forgotten curse binds two souls together. When Daniel arrives in Eldermist, he uncovers more than he bargained for: an old journal, a missing uncle, and Simon — the man who might save him or doom them both.
+    </p>
+    <p style="font-style: italic; color: #ccc; text-align: left;">“I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be.” — Elise ★★★★★</p>
+    <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+      <a href="https://www.amazon.com/dp/B0DPQV1CK8" target="_blank" style="display: inline-block; background-color: #ffa711; color: #000; font-weight: bold; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none;">Enter the Fog</a>
+      <a href="https://streamable.com/lljilc" target="_blank" style="display: inline-block; background-color: #208e92; color: #fff; font-weight: bold; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none;">Watch the Trailer</a>
+    </div>
+  </div>
+</section>
+
+<section style="background: url('https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/hero-brushstroke.png') no-repeat center/cover, linear-gradient(to bottom, #f6e3c5, #a2653e); color: #000; padding: 3rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem;">
+  <div style="flex: 1; min-width: 300px; max-width: 500px;">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem; text-align: left; text-transform: uppercase; letter-spacing: 1px;">Dacia Rising</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; text-align: left;">
+      Step into ancient Dacia — where myth, prophecy, and rebellion collide. A bear spirit stirs, a bloodline awakens, and an empire trembles. This is fantasy rooted in forgotten fire.
+    </p>
+    <p style="font-style: italic; color: #4b3b2a; text-align: left; margin-bottom: 1rem;">“Dacia Rising – The Bear’s Awakening completely surprised me, in the best way... A gritty, emotional, and myth-rich world that felt totally different from the usual elves-and-castles stuff.” — Grissel ★★★★★</p>
+    <a href="https://www.amazon.com/dp/B0DSCM5SM3" target="_blank" style="display: inline-block; background-color: #208e92; color: #fff; font-weight: bold; padding: 1rem 2rem; border-radius: 4px; text-decoration: none;">Explore the Book</a>
+  </div>
+  <div style="flex: 1; min-width: 280px; max-width: 360px;">
+    <img src="https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/DACIA%20RISING.png" alt="Dacia Rising book cover" style="width: 100%; max-width: 300px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);">
+  </div>
+</section>
+
+<section style="background: linear-gradient(to bottom, #f35b4e, #ffc19c); color: #fff; padding: 2.5rem 1rem; text-align: center;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Follow Aleks for Behind-the-Scenes Chaos</h2>
+  <p style="font-size: 1rem; margin-bottom: 1.5rem;">Reader reactions, cursed dating advice, and writing sneak peeks—served daily.</p>
+  <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+    <a href="https://www.instagram.com/aleksfilmore" target="_blank" style="background-color: #fff; color: #f35b4e; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: bold; text-decoration: none;">Instagram</a>
+    <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" style="background-color: #fff; color: #f35b4e; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: bold; text-decoration: none;">TikTok</a>
+  </div>
+</section>
+
+<footer style="background-color: #2e3b4e; color: #fff; padding: 2rem 1rem; text-align: center; font-size: 0.9rem;">
+  <p>© 2025 Aleks Filmore. All rights reserved.</p>
+  <p>
+    <a href="https://www.instagram.com/aleksfilmore" target="_blank" style="color: #ffa711; text-decoration: none; margin: 0 0.5rem;">Instagram</a>
+    | <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" style="color: #ffa711; text-decoration: none; margin: 0 0.5rem;">TikTok</a>
+    | <a href="https://www.goodreads.com/aleksfilmore" target="_blank" style="color: #ffa711; text-decoration: none; margin: 0 0.5rem;">Goodreads</a>
+  </p>
+  <p>
+    <a href="#" style="color: #bbb; text-decoration: underline;">Privacy Policy</a> |
+    <a href="mailto:contact@aleksfilmore.com" style="color: #bbb; text-decoration: underline;">Contact</a>
+  </p>
+</footer>
+</body>
 </html>
