@@ -1,61 +1,149 @@
-
 body {
-  font-family: 'Georgia', serif;
   margin: 0;
-  padding: 0;
+  font-family: 'Georgia', serif;
   background: #fff;
   color: #333;
 }
 .hero {
-  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') center/cover no-repeat;
   text-align: center;
-  color: #fff;
-  padding: 6rem 2rem;
+  padding: 4rem 2rem;
+  color: #FAF5EE;
+  background-color: #1f1f1f;
 }
 .hero h1 {
-  font-size: 3rem;
-  margin: 0;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.hero h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ff8373;
 }
 .hero p {
-  font-size: 1.2rem;
-}
-.top-header {
-  background: #fff;
-  text-align: center;
-  padding: 0.6rem 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #c2463c;
-}
-.announcement-bar {
-  background: #f9f4ed;
-  color: #7b2f2a;
-  text-align: center;
-  padding: 0.4rem;
-  font-size: 0.95rem;
-  font-weight: bold;
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
 }
 .book-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 4rem 2rem;
-  text-align: center;
+  gap: 2rem;
 }
-.social-cta {
-  background: #f4f0ea;
-  text-align: center;
-  padding: 3rem 1rem;
+.book-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+  max-width: 1000px;
 }
-.cta-buttons a {
-  margin: 0.5rem;
+.book-wrapper.reverse {
+  flex-direction: row-reverse;
+}
+.book-cover {
+  max-width: 200px;
+  height: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-cover:hover {
+  transform: scale(1.05) rotateZ(-1deg);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+.book-content {
+  max-width: 500px;
+}
+.book-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.book-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.btn {
   display: inline-block;
-  background: #c2463c;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  background: #a4442e;
+  color: #fff;
   text-decoration: none;
+  border-radius: 4px;
+}
+.btn:hover {
+  background: #7d2f20;
+}
+.mailing-list {
+  background: #f9f4ed;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.styled-mailing h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.styled-mailing p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form-fields input[type="text"],
+.form-fields input[type="email"] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-fields button {
+  background-color: #a4442e;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.form-fields button:hover {
+  background-color: #7d2f20;
 }
 footer {
-  background: #f8f8f8;
+  padding: 2rem;
   text-align: center;
-  padding: 2rem 1rem;
+  background: #1f1f1f;
+  color: #fff;
+}
+footer a {
+  color: #ff8373;
+  display: block;
+  margin-top: 0.5rem;
+}
+.fog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.fogbound {
+  position: relative;
+  overflow: hidden;
+}
+.fogbound .book-wrapper,
+.fogbound .book-content {
+  position: relative;
+  z-index: 1;
 }
