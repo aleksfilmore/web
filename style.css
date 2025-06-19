@@ -1,15 +1,15 @@
 
 body {
   font-family: 'Georgia', serif;
-  background-color: #f9f4ed;
   margin: 0;
-  padding: 0;
+  background: #fff8f1;
+  color: #2e2e2e;
 }
 .hero {
-  background: url('https://aleksfilmore.com/bg/hero.jpg') center/cover no-repeat fixed;
-  color: #fff;
+  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') center/cover no-repeat;
+  padding: 10rem 2rem;
   text-align: center;
-  padding: 8rem 1rem;
+  color: #fff;
 }
 .hero h1 {
   font-size: 3rem;
@@ -18,65 +18,47 @@ body {
 .hero p {
   font-size: 1.5rem;
 }
-.book-section {
-  padding: 4rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.book-section.reverse {
-  flex-direction: row-reverse;
-}
-.book-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  gap: 2rem;
-}
-.book-cover {
-  max-width: 300px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-.book-cover:hover {
-  transform: scale(1.05);
-}
-.book-content {
-  max-width: 600px;
-}
-.btn {
-  display: inline-block;
-  background: #c2463c;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 1rem;
-}
-.mailing-list {
-  background: #f3ebe1;
-  text-align: center;
-  padding: 3rem 1rem;
-}
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
-}
-input, button {
-  padding: 0.75rem;
-  font-size: 1rem;
-}
 .social-cta {
   background: #f4f0ea;
   text-align: center;
   padding: 3rem 1rem;
 }
+.social-cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.social-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.cta-buttons a {
+  margin: 0.5rem;
+  display: inline-block;
+  background: #c2463c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.cta-buttons a:hover {
+  background: #9f342d;
+}
 footer {
-  background: #333;
-  color: #fff;
+  background: #222;
+  color: white;
+  padding: 2rem 1rem;
   text-align: center;
-  padding: 1rem;
+}
+footer .social-links {
+  margin-top: 1rem;
+}
+footer .social-links img {
+  height: 24px;
+  margin: 0 10px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+footer .social-links img:hover {
+  filter: none;
 }
