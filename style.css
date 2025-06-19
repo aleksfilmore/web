@@ -1,73 +1,70 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  line-height: 1.6;
-  background: #fff;
-  color: #333;
+  background-color: #fff;
+  color: #222;
 }
 .hero {
-  padding: 5rem 1rem;
+  padding: 6rem 2rem;
   text-align: center;
   color: #FAF5EE;
+  background-color: #000;
 }
-.hero-content {
-  max-width: 800px;
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.hero-content h2 {
+  font-size: 1.5rem;
+  color: #F08080;
+}
+.hero-content p {
+  font-size: 1.1rem;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: rgba(0,0,0,0.5);
-  padding: 2rem;
-  border-radius: 10px;
 }
-h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-h2 { font-size: 1.75rem; margin-bottom: 1rem; }
-p { font-size: 1.125rem; }
-
 .book-section {
-  padding: 3rem 1rem;
+  padding: 4rem 2rem;
 }
 .book-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex-direction: row;
   align-items: center;
+  gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 .book-wrapper.reverse {
-  flex-direction: column-reverse;
+  flex-direction: row-reverse;
 }
 .book-cover {
-  width: 250px;
+  width: 200px;
   max-width: 100%;
   height: auto;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 .book-content {
-  text-align: center;
-  max-width: 600px;
+  flex: 1;
+  max-width: 500px;
 }
 .book-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 .book-content p {
   margin-bottom: 1rem;
 }
 .btn {
-  background-color: #a6372e;
-  color: white;
-  text-decoration: none;
+  background-color: #8B0000;
+  color: #fff;
   padding: 0.75rem 1.5rem;
-  border-radius: 5px;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
   font-weight: bold;
 }
 .btn:hover {
-  background-color: #7d2c22;
-}
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: #161F30;
-  color: #FAF5EE;
+  background-color: #5C0000;
 }
 .mailing-list {
   background: #f9f4ed;
@@ -114,16 +111,13 @@ footer {
 .form-fields button:hover {
   background-color: #7d2f20;
 }
-@media (min-width: 768px) {
-  .book-wrapper {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .book-wrapper.reverse {
-    flex-direction: row-reverse;
-  }
-  .book-content {
-    text-align: left;
-    margin-left: 2rem;
-  }
+footer {
+  background: #161F30;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+footer a {
+  color: #FAF5EE;
+  text-decoration: underline;
 }
