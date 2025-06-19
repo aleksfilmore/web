@@ -1,23 +1,26 @@
 
 body {
-  font-family: 'Georgia', serif;
   margin: 0;
-  background: #fff8f1;
-  color: #2e2e2e;
+  font-family: "Georgia", serif;
+  background-color: #fdf9f2;
+  color: #333;
 }
 .hero {
-  background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Aleks%20Filmore%20Author%20Fogbound%20Hearts%20Dacia%20Rising%20Books%20The%20Worst%20Boyfriends%20Ever.png') center/cover no-repeat;
-  padding: 10rem 2rem;
   text-align: center;
-  color: #fff;
+  padding: 4rem 1rem;
+  background: linear-gradient(to right, #111 0%, #222 100%);
+  color: #fdf9f2;
 }
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 .hero p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
+
 .social-cta {
   background: #f4f0ea;
   text-align: center;
@@ -45,13 +48,10 @@ body {
   background: #9f342d;
 }
 footer {
-  background: #222;
-  color: white;
-  padding: 2rem 1rem;
   text-align: center;
-}
-footer .social-links {
-  margin-top: 1rem;
+  padding: 2rem 1rem;
+  background: #111;
+  color: #fff;
 }
 footer .social-links img {
   height: 24px;
