@@ -1,131 +1,11 @@
-body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background: #fff;
-  color: #333;
-}
-.hero {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #FAF5EE;
-  background-color: #1f1f1f;
-}
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-.hero h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #ff8373;
-}
-.hero p {
-  font-size: 1rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.book-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 4rem 2rem;
-  gap: 2rem;
-}
-.book-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  gap: 2rem;
-  max-width: 1000px;
-}
-.book-wrapper.reverse {
-  flex-direction: row-reverse;
-}
+
 .book-cover {
-  max-width: 200px;
-  height: auto;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .book-cover:hover {
   transform: scale(1.05) rotateZ(-1deg);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-}
-.book-content {
-  max-width: 500px;
-}
-.book-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-.book-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-.btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: #a4442e;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-}
-.btn:hover {
-  background: #7d2f20;
-}
-.mailing-list {
-  background: #f9f4ed;
-  padding: 3rem 1rem;
-  text-align: center;
-}
-.styled-mailing h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-.styled-mailing p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.form-fields input[type="text"],
-.form-fields input[type="email"] {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.form-fields button {
-  background-color: #a4442e;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.form-fields button:hover {
-  background-color: #7d2f20;
-}
-footer {
-  padding: 2rem;
-  text-align: center;
-  background: #1f1f1f;
-  color: #fff;
-}
-footer a {
-  color: #ff8373;
-  display: block;
-  margin-top: 0.5rem;
 }
 .fog-overlay {
   position: absolute;
@@ -146,4 +26,60 @@ footer a {
 .fogbound .book-content {
   position: relative;
   z-index: 1;
+}
+.social-cta {
+  background: #f4f0ea;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.social-cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.social-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.cta-buttons a {
+  margin: 0.5rem;
+  display: inline-block;
+  background: #c2463c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.cta-buttons a:hover {
+  background: #9f342d;
+}
+.social-links img {
+  height: 24px;
+  margin: 0 10px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.social-links img:hover {
+  filter: none;
+}
+footer .social-links {
+  margin-top: 1rem;
+}
+.announcement-bar {
+  background: #f9f4ed;
+  color: #7b2f2a;
+  text-align: center;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+.top-header {
+  background: #fff;
+  color: #222;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-family: 'Georgia', serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
