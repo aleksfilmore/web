@@ -257,5 +257,237 @@
       <span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
     </div>
   </div>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff2db;
+      color: #000;
+    }
+    .cringe-index-header {
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 2rem auto 0.5rem;
+      font-weight: bold;
+      color: #f35b4e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .cringe-subheader {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .cringe-index {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding-top: 1rem;
+    }
+    .cringe-card {
+      background: #f35b4e;
+      border-radius: 16px;
+      color: white;
+      position: relative;
+      font-size: 0.95rem;
+      perspective: 1000px;
+    }
+    .cringe-card-inner {
+      position: relative;
+      width: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .cringe-card:hover .cringe-card-inner {
+      transform: rotateY(180deg);
+    }
+    .cringe-card-front, .cringe-card-back {
+      position: absolute;
+      width: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .cringe-card-front {
+      background: #f35b4e;
+    }
+    .cringe-card-front h3 {
+      font-size: 1.2rem;
+      color: white;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .cringe-card-front p {
+      color: #fff2db;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .cringe-card-back {
+      background: #208e92;
+      color: #fff;
+      transform: rotateY(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .thermometer {
+      background: #fff2db;
+      height: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .thermometer-fill {
+      height: 100%;
+      background: linear-gradient(to right, #ffa711, #f35b4e);
+      width: 100%;
+    }
+    .thermometer-label {
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      color: #fff2db;
+      text-align: right;
+    }
+    .cringe-info {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 1.5rem;
+    }
+    .cta-button {
+      display: block;
+      width: fit-content;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: #208e92;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #176f72;
+    }
+  </style>
+</head>
+<body>
+  <section class="inside-chaos" style="padding: 3rem 1.5rem; background: #fff2db;">
+    <div style="max-width: 1000px; margin: auto;">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative;">
+          Inside the Chaos – Weird boyfriends. Wild twists. Zero regrets.
+          <span style="display:block; width: 60px; height: 4px; background: #ffa711; margin-top: 0.5rem; border-radius: 2px;"></span>
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.6;">
+          The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:#f35b4e; font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
+          This isn’t self-help. It’s <span style="color:#f35b4e; font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:#f35b4e; font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
+          Told with zero apologies and <span style="color:#f35b4e; font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
+          You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:#f35b4e; font-weight:bold; text-decoration:underline;">a little dangerous.</span>
+        </p>
+      </div>
+      <div class="cringe-index-header">CRINGE INDEX</div>
+      <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
+      <div class="cringe-index">
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Conspiracist</h3>
+              <p>“Vaccines, chemtrails, and our third date were all a lie.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
+              <div class="thermometer-label">4/5 – Delusion Zone</div>
+            </div>
+            <div class="cringe-card-back">“Told me 5G turned frogs gay, but wouldn't get a flu shot.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Kinkster</h3>
+              <p>“Brought a rubber chicken to bed and called it foreplay.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
+              <div class="thermometer-label">5/5 – Full-Body Recoil</div>
+            </div>
+            <div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Polyamorist</h3>
+              <p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
+              <div class="thermometer-label">4/5 – Delusion Zone</div>
+            </div>
+            <div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Crier</h3>
+              <p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 40%"></div></div>
+              <div class="thermometer-label">2/5 – Mild Regret</div>
+            </div>
+            <div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Ghoster</h3>
+              <p>“Vanished for 10 days. Then texted ‘hey’ like nothing.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 60%"></div></div>
+              <div class="thermometer-label">3/5 – Cringe Spiral</div>
+            </div>
+            <div class="cringe-card-back">“Disappeared mid-convo. Came back with memes.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Party Animal</h3>
+              <p>“Said ‘I love you’ at 3 a.m. in a club. Then made out with his ex at 3:05.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
+              <div class="thermometer-label">4/5 – Delusion Zone</div>
+            </div>
+            <div class="cringe-card-back">“Offered me molly and a relationship.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Gambler</h3>
+              <p>“Burned through my savings, pawned my watch, and still said we were ‘building a future.’”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
+              <div class="thermometer-label">5/5 – Full-Body Recoil</div>
+            </div>
+            <div class="cringe-card-back">“Used my heirloom watch as a poker buy-in.”</div>
+          </div>
+        </div>
+        <div class="cringe-card">
+          <div class="cringe-card-inner">
+            <div class="cringe-card-front">
+              <h3>The Liar</h3>
+              <p>“Faked nobility, lied about his name, and said his ex was dead. Spoiler: he was on Instagram.”</p>
+              <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
+              <div class="thermometer-label">5/5 – Full-Body Recoil</div>
+            </div>
+            <div class="cringe-card-back">“Claimed to own a Dalí. Couldn’t spell ‘Dalí.’”</div>
+          </div>
+        </div>
+      </div>
+      <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
+      <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
+    </div>
+  </section>
 </body>
 </html>
