@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleks Filmore | The Worst Boyfriends Ever</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #ffc19c;
+      background-color: #fff2db;
       color: #000;
     }
     header {
@@ -26,93 +27,237 @@
     .tagline {
       font-size: 0.9rem;
     }
-    .hero {
-      background: linear-gradient(to right, #ffc19c, #f35b4e);
-      padding: 3rem 1rem;
+    .announcement-bar {
+      background-color: #208e92;
+      color: #fff;
       text-align: center;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      animation: fadeSlideDown 1s ease-in-out;
+    }
+    .announcement-bar span {
+      font-weight: normal;
+      letter-spacing: 0.5px;
+    }
+    .announcement-bar span strong {
+      color: #ffa711;
+      text-shadow: 0 0 3px #ffc19c;
+      animation: pulse 10s ease-in-out infinite;
+      display: inline-block;
+    }
+    .announcement-bar small {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: normal;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+      margin-top: 0.25rem;
+    }
+    .announcement-bar:hover small {
+      opacity: 1;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e;
+      padding: 2.5rem 1.5rem;
+      color: white;
+      animation: fadeHero 1.2s ease-in;
+    }
+    @keyframes fadeHero {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      padding: 1rem;
     }
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
     }
     .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
     }
-    form {
+    .hero-form {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 0.5rem;
+      max-width: 320px;
     }
-    input {
-      padding: 0.75rem;
-      width: 250px;
+    .hero-form input[type="email"] {
+      padding: 0.5rem 0.75rem;
       border: none;
       border-radius: 4px;
-      font-size: 1rem;
+      font-size: 0.9rem;
+      transition: box-shadow 0.3s ease-in-out;
     }
-    .cta-button {
+    .hero-form input[type="email"]:focus {
+      box-shadow: 0 0 5px rgba(255, 167, 17, 0.7);
+      outline: none;
+    }
+    .hero-form input::placeholder {
+      font-style: italic;
+      color: #999;
+    }
+    .hero-form button {
       background-color: #ffa711;
       color: #000;
       font-weight: bold;
-      padding: 1rem 2rem;
       border: none;
-      font-size: 1rem;
-      cursor: pointer;
       border-radius: 4px;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
     }
-    .quotes {
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 800px;
-      margin: auto;
+    .hero-form button:hover {
+      background-color: #ffb733;
     }
-    .quote {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      font-style: italic;
+    .hero-image {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      animation: fadeHero 1.5s ease-in;
     }
-    .review {
-      background-color: #fff2db;
-      padding: 1.5rem;
-      margin: 2rem 1rem;
-      border-radius: 10px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+    .hero-image img {
+      width: 240px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      border-radius: 6px;
+      transition: transform 0.3s ease;
     }
-    .review span {
+    .hero-image img:hover {
+      transform: rotate(-2deg) scale(1.05);
+    }
+    .buy-btn {
+      background: white;
+      color: #f35b4e;
+      padding: 0.6rem 1.1rem;
       font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     }
-    .review-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 1rem;
-      max-width: 800px;
-      margin: auto;
+    .marquee-reviews {
+      background: linear-gradient(to right, #f35b4e, #ffc19c);
+      color: #000;
+      padding: 0.75rem;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      width: 100%;
+      position: relative;
     }
-    @media (min-width: 768px) {
-      .review-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    .marquee-reviews::before,
+    .marquee-reviews::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      z-index: 1;
+    }
+    .marquee-reviews::before {
+      left: 0;
+      background: linear-gradient(to right, #f35b4e, transparent);
+    }
+    .marquee-reviews::after {
+      right: 0;
+      background: linear-gradient(to left, #ffc19c, transparent);
+    }
+    .review-track {
+      display: inline-block;
+      min-width: 300%;
+      animation: marquee 150s linear infinite;
+    }
+    .review-track span {
+      display: inline-block;
+      padding: 0 2rem;
+      font-size: 0.85rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .star {
+      color: gold;
+      font-size: 0.85rem;
+      margin-right: 0.2rem;
+      letter-spacing: -1px;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
     }
   </style>
 </head>
 <body>
-  <div style="background-color:#208e92; color:#fff; text-align:center; padding:0.5rem; font-weight:bold; font-size:0.95rem;">
-    📣 Ranked #1 in LGBTQ+ Humor — Read what everyone’s laughing about!
-  </div>
   <header>
     <div class="logo">Aleks Filmore</div>
-    <div class="tagline">Queer Stories. Sharp Edges. Real Chaos.</div>
+    <div class="tagline">Queer Stories. Real Chaos.</div>
   </header>
-
+  <div class="announcement-bar">
+    <span>Recently Ranked: <strong>#1</strong> in LGBTQ+ Humor · <strong>#2</strong> in Gay Fiction · <strong>#2</strong> in Gay Romance</span>
+    <small>*Free Kindle rankings, June 2025</small>
+  </div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1><span style="display:block; font-size:3.5rem; font-weight:bold;">Breakups.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Meltdowns.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Mistakes.</span></h1>
+      <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+      <form action="https://formspree.io/f/xwkgyyzy" method="POST" class="hero-form">
+        <input type="email" name="email" placeholder="Your email (we won’t ghost you)" required>
+        <button type="submit">Get the Secret Chapter</button>
+      </form>
+    </div>
+    <div class="hero-image">
+      <img src="https://raw.githubusercontent.com/aleksfilmore/web/da08789424a310ef39459d8e88d90fcd7e9c1895/The%20Worst%20Boyfriends%20Ever.png" alt="The Worst Boyfriends Ever cover">
+      <br>
+      <a href="https://a.co/d/j2SrpJl" class="buy-btn">Available on Amazon</a>
+    </div>
+  </section>
+  <div class="marquee-reviews">
+    <div class="review-track">
+      <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
+      <span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
+      <span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span>
+      <span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
+      <span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span>
+      <span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
+      <span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span>
+      <span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span>
+      <span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span>
+      <span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span>
+      <span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span>
+      <span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span>
+      <span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span>
+      <span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span>
+      <span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span>
+      <span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span>
+      <span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span>
+      <span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
+    </div>
+  </div>
+</body>
   <section class="hero" style="background: url('https://raw.githubusercontent.com/aleksfilmore/web/e84ceb9791f93466d62726c19662fa2c1aebd741/hero-brushstroke.png') no-repeat center/cover, linear-gradient(to right, #f35b4e, #f35b4e); padding: 3rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem;">
   <div style="flex: 1; min-width: 300px; max-width: 500px;">
     <h1 style="text-align: left; font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: bold; color: white;">Breakups. Meltdowns. Mistakes.</h1>
