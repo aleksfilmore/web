@@ -209,7 +209,7 @@
             0% { transform: translateX(0%); }
             100% { transform: translateX(-100%); }
         }
-        /* Styles for Cringe Index and CTA - Moved here */
+        /* Styles for Cringe Index and CTA */
         .cringe-index-header {
             font-size: 1.5rem;
             text-align: center;
@@ -238,14 +238,23 @@
             position: relative;
             font-size: 0.95rem;
             perspective: 1000px;
-            height: 200px; /* Added a fixed height to ensure flip works consistently */
+            height: 200px; /* Adjusted height for content fit, you can tweak this */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Added transition for hover */
         }
+
+        /* Hover effect for the card */
+        .cringe-card:hover {
+            transform: translateY(-5px); /* Lifts the card slightly */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* More pronounced shadow on hover */
+        }
+
         .cringe-card-inner {
             position: relative;
             width: 100%;
             height: 100%; /* Important for inner to take full height */
             transition: transform 0.8s;
             transform-style: preserve-3d;
+            transform-origin: center center; /* Ensures it flips from the center */
         }
         .cringe-card:hover .cringe-card-inner {
             transform: rotateY(180deg);
@@ -260,257 +269,3 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
             box-sizing: border-box; /* Include padding in height/width calculation */
         }
-        .cringe-card-front {
-            background: #f35b4e;
-        }
-        .cringe-card-front h3 {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .cringe-card-front p {
-            color: #fff2db;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .cringe-card-back {
-            background: #208e92;
-            color: #fff;
-            transform: rotateY(180deg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .thermometer {
-            background: #fff2db;
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .thermometer-fill {
-            height: 100%;
-            background: linear-gradient(to right, #ffa711, #f35b4e);
-            width: 100%;
-        }
-        .thermometer-label {
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            color: #fff2db;
-            text-align: right;
-        }
-        .cringe-info {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #444;
-            margin-top: 1.5rem;
-        }
-        .cta-button {
-            display: block;
-            width: fit-content;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: #208e92;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: background 0.3s ease;
-        }
-        .cta-button:hover {
-            background: #176f72;
-        }
-
-        /* Responsive adjustments for layout */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-content, .hero-image {
-                min-width: unset;
-                max-width: 100%;
-            }
-            .hero-form {
-                margin: 0 auto;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .cringe-index {
-                grid-template-columns: 1fr; /* Stack cards on small screens */
-            }
-            .cringe-card {
-                height: auto; /* Allow height to adjust on small screens */
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">Aleks Filmore</div>
-        <div class="tagline">Queer Stories. Real Chaos.</div>
-    </header>
-    <div class="announcement-bar">
-        <span>Recently Ranked: <strong>#1</strong> in LGBTQ+ Humor · <strong>#2</strong> in Gay Fiction · <strong>#2</strong> in Gay Romance</span>
-        <small>*Free Kindle rankings, June 2025</small>
-    </div>
-    <section class="hero">
-        <div class="hero-content">
-            <h1><span style="display:block; font-size:3.5rem; font-weight:bold;">Breakups.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Meltdowns.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Mistakes.</span></h1>
-            <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
-                <input type="email" name="email" placeholder="Your email (we won’t ghost you)" required>
-                <button type="submit">Get the Secret Chapter</button>
-            </form>
-        </div>
-        <div class="hero-image">
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/da08789424a310ef39459d8e88d90fcd7e9c1895/The%20Worst%20Boyfriends%20Ever.png" alt="The Worst Boyfriends Ever cover">
-            <br>
-            <a href="https://a.co/d/j2SrpJl" class="buy-btn">Available on Amazon</a>
-        </div>
-    </section>
-    <div class="marquee-reviews">
-        <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
-            <span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
-            <span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span>
-            <span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
-            <span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span>
-            <span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
-            <span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span>
-            <span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span>
-            <span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span>
-            <span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span>
-            <span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span>
-            <span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span>
-            <span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span>
-            <span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span>
-            <span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span>
-            <span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span>
-            <span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span>
-            <span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
-        </div>
-    </div>
-    <section class="inside-chaos" style="padding: 3rem 1.5rem; background: #fff2db;">
-        <div style="max-width: 1000px; margin: auto;">
-            <div style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative;">
-                    Inside the Chaos – Weird boyfriends. Wild twists. Zero regrets.
-                    <span style="display:block; width: 60px; height: 4px; background: #ffa711; margin-top: 0.5rem; border-radius: 2px;"></span>
-                </h2>
-                <p style="font-size: 1rem; line-height: 1.6;">
-                    The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:#f35b4e; font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
-                    This isn’t self-help. It’s <span style="color:#f35b4e; font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:#f35b4e; font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
-                    Told with zero apologies and <span style="color:#f35b4e; font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
-                    You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:#f35b4e; font-weight:bold; text-decoration:underline;">a little dangerous.</span>
-                </p>
-            </div>
-            <div class="cringe-index-header">CRINGE INDEX</div>
-            <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
-            <div class="cringe-index">
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Conspiracist</h3>
-                            <p>“Vaccines, chemtrails, and our third date were all a lie.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
-                            <div class="thermometer-label">4/5 – Delusion Zone</div>
-                        </div>
-                        <div class="cringe-card-back">“Told me 5G turned frogs gay, but wouldn't get a flu shot.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Kinkster</h3>
-                            <p>“Brought a rubber chicken to bed and called it foreplay.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
-                            <div class="thermometer-label">5/5 – Full-Body Recoil</div>
-                        </div>
-                        <div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Polyamorist</h3>
-                            <p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
-                            <div class="thermometer-label">4/5 – Delusion Zone</div>
-                        </div>
-                        <div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Crier</h3>
-                            <p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 40%"></div></div>
-                            <div class="thermometer-label">2/5 – Mild Regret</div>
-                        </div>
-                        <div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Ghoster</h3>
-                            <p>“Vanished for 10 days. Then texted ‘hey’ like nothing.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 60%"></div></div>
-                            <div class="thermometer-label">3/5 – Cringe Spiral</div>
-                        </div>
-                        <div class="cringe-card-back">“Disappeared mid-convo. Came back with memes.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Party Animal</h3>
-                            <p>“Said ‘I love you’ at 3 a.m. in a club. Then made out with his ex at 3:05.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div>
-                            <div class="thermometer-label">4/5 – Delusion Zone</div>
-                        </div>
-                        <div class="cringe-card-back">“Offered me molly and a relationship.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Gambler</h3>
-                            <p>“Burned through my savings, pawned my watch, and still said we were ‘building a future.’”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
-                            <div class="thermometer-label">5/5 – Full-Body Recoil</div>
-                        </div>
-                        <div class="cringe-card-back">“Used my heirloom watch as a poker buy-in.”</div>
-                    </div>
-                </div>
-                <div class="cringe-card">
-                    <div class="cringe-card-inner">
-                        <div class="cringe-card-front">
-                            <h3>The Liar</h3>
-                            <p>“Faked nobility, lied about his name, and said his ex was dead. Spoiler: he was on Instagram.”</p>
-                            <div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div>
-                            <div class="thermometer-label">5/5 – Full-Body Recoil</div>
-                        </div>
-                        <div class="cringe-card-back">“Claimed to own a Dalí. Couldn’t spell ‘Dalí.’”</div>
-                    </div>
-                </div>
-            </div>
-            <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
-            <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
-        </div>
-    </section>
-</body>
-</html>
