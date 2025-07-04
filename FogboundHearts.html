@@ -28,12 +28,8 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #121416; /* Base background, fog will be on top */
+            background-color: #121416;
             color: #e0e1dd;
-        }
-        /* REMOVED .page-wrapper, applying z-index directly */
-        header, main, footer {
-            position: relative; 
         }
         header {
             padding: 1rem;
@@ -42,7 +38,8 @@
             align-items: center;
             background-color: #ffc19c;
             color: #000;
-            z-index: 10; 
+            position: relative;
+            z-index: 10;
         }
         .logo {
             font-weight: bold;
@@ -52,13 +49,15 @@
             font-size: 0.9rem;
         }
         main {
-            z-index: 2; /* Main content sits above fog */
+            position: relative;
+            z-index: 2;
         }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
+            position: relative;
             z-index: 10;
         }
         .footer-social-links a {
@@ -152,7 +151,7 @@
 
         .fh-section {
             padding: 5rem 2rem;
-            background-color: rgba(18, 20, 22, 0.8); /* Semi-transparent so fog shows through */
+            background-color: rgba(18, 20, 22, 0.8);
         }
         .fh-container {
             max-width: 1000px;
@@ -239,7 +238,9 @@
             overflow: hidden;
         }
         
-        /* NEW: Explore Eldermist Section Styles */
+        .fh-explore {
+            background-color: rgba(26, 28, 30, 0.85);
+        }
         .fh-explore-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -381,7 +382,6 @@
             }
         }
         
-        /* ============== INTERACTIVE FOG STYLES (CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -389,7 +389,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1; /* Sits directly on top of the body background */
+            z-index: 1; 
             overflow: hidden;
         }
         .fog-layer {
@@ -414,7 +414,6 @@
             opacity: 0.2;
         }
         
-        /* NEW: Lightning Effect */
         #lightning-flash {
             position: fixed;
             top: 0;
@@ -422,7 +421,7 @@
             width: 100vw;
             height: 100vh;
             background: white;
-            z-index: 4; /* Sits on top of fog */
+            z-index: 4;
             pointer-events: none;
             opacity: 0;
         }
@@ -594,7 +593,7 @@
             .fh-section {
                 padding: 3rem 1.5rem;
             }
-            .fh-synopsis-text h2, .fh-trailer h2, .fh-features h2, .fh-explore-header h2, .fh-final-cta h2 {
+            .fh-synopsis-text h2, .fh-trailer h2, .fh-explore-header h2, .fh-final-cta h2 {
                 font-size: 2rem;
             }
             .fh-final-cta h2 {
@@ -665,7 +664,7 @@
                         </div>
                     </div>
                     <div class="explore-card">
-                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Fog%20Bedroom%202.jpg');"></div>
+                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/77cdc5982b8ece97f1cce8868bc2f4a86fec47d3/Fog%20Bedroom%202.png');"></div>
                         <div class="explore-card-content">
                             <h3>The Haunting</h3>
                             <p>In the dead of night, the fog seeps through the cracks like a living predator, its whispers a reminder that no wall can keep it out.</p>
@@ -763,6 +762,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
+            // --- Modal Logic ---
             const contactModal = document.getElementById('contact-modal');
             const openContactBtn = document.getElementById('open-contact-modal');
             const journalModal = document.getElementById('journal-modal');
@@ -803,6 +803,7 @@
                 if (event.target === journalModal) closeModal(journalModal);
             });
 
+            // --- Typewriter Effect Logic ---
             const journalTextElement = document.getElementById('journal-text');
             const journalText = "The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. No, he watches the windows. He's waiting for someone. I fear he's waiting for me.";
             let typewriterTimeout;
@@ -825,6 +826,7 @@
                 typeChar();
             }
 
+            // --- Interactive Fog Script ---
             const fogLayer1 = document.querySelector('.fog-layer-1');
             const fogLayer2 = document.querySelector('.fog-layer-2');
             if (fogLayer1 && fogLayer2) {
@@ -838,6 +840,7 @@
                 });
             }
             
+            // --- Audio & Lightning Script ---
             const soundBtn = document.getElementById('sound-toggle');
             const ambientAudio = document.getElementById('ambient-sound');
             const thunderAudio = document.getElementById('thunder-sound');
@@ -887,10 +890,11 @@
                         lightningFlash.classList.remove('flash');
                     }, 600);
                 }
-                setTimeout(triggerLightning, Math.random() * 12000 + 8000);
+                setTimeout(triggerLightning, Math.random() * 12000 + 8000); // New Frequency: 8-20 seconds
             }
             
-            setTimeout(triggerLightning, Math.random() * 5000 + 3000);
+            // New Frequency: 3-8 seconds for first strike
+            setTimeout(triggerLightning, Math.random() * 5000 + 3000); 
         });
     </script>
 
