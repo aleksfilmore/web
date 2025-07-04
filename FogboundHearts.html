@@ -301,7 +301,6 @@
             margin-bottom: 2rem;
             max-width: 600px;
             margin: 0 auto 2rem auto;
-            /* NEW: Flickering text animation */
             animation: text-flicker 15s linear infinite;
         }
         @keyframes text-flicker {
@@ -321,7 +320,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1; /* Sits above body background, below content */
+            z-index: 3; /* Sits ON TOP of the main content */
             overflow: hidden;
         }
         .fog-layer {
@@ -346,7 +345,7 @@
             opacity: 0.2;
         }
         
-        /* ============== THEMED MODAL STYLES ============== */
+        /* ============== THEMED CONTACT MODAL STYLES ============== */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -366,7 +365,7 @@
             border: 1px solid rgba(205, 162, 116, 0.3);
             color: #e0e1dd;
         }
-        .modal-content { /* Generic modal styles */
+        .modal-content {
             margin: auto;
             padding: 2rem;
             border-radius: 8px;
@@ -376,28 +375,27 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
         }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .modal-close {
+        .fogbound-theme .modal-close {
+            color: #888;
             position: absolute;
             top: 10px;
             right: 20px;
             font-size: 28px;
             font-weight: bold;
             transition: color 0.3s;
+        }
+        .fogbound-theme .modal-close:hover,
+        .fogbound-theme .modal-close:focus {
+            color: #cda274;
+            text-decoration: none;
             cursor: pointer;
         }
-        .fogbound-theme .modal-close {
-            color: #888;
-        }
-        .fogbound-theme .modal-close:hover {
-            color: #cda274;
-        }
-        .modal-form input[type="text"],
-        .modal-form input[type="email"],
-        .modal-form textarea {
+        .fogbound-theme .modal-form input[type="text"],
+        .fogbound-theme .modal-form input[type="email"],
+        .fogbound-theme .modal-form textarea {
+            background-color: #121416;
+            border: 1px solid #333;
+            color: #e0e1dd;
             width: 100%;
             padding: 12px;
             margin-bottom: 1rem;
@@ -405,12 +403,6 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-        }
-        .fogbound-theme .modal-form input,
-        .fogbound-theme .modal-form textarea {
-            background-color: #121416;
-            border: 1px solid #333;
-            color: #e0e1dd;
         }
         .fogbound-theme .modal-form input::placeholder,
         .fogbound-theme .modal-form textarea::placeholder {
@@ -443,6 +435,10 @@
             text-decoration: underline;
             text-decoration-style: dotted;
             cursor: pointer;
+            transition: color 0.3s;
+        }
+        #open-journal-modal:hover {
+            color: #e0e1dd;
         }
         #journal-modal .modal-content {
             background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
@@ -638,7 +634,7 @@
             </form>
         </div>
     </div>
-    
+
     <div id="journal-modal" class="modal-backdrop">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
@@ -648,7 +644,7 @@
     </div>
 
     <audio id="ambient-sound" loop muted>
-        <source src="https://raw.githubusercontent.com/aleksfilmore/web/main/eerie-ambient.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/19/audio_a7a0659639.mp3" type="audio/mpeg">
     </audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
 
