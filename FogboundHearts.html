@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
     <style>
-        /* ... (All the previous CSS for this page remains the same) ... */
-
-        /* ============== NEW: THEMATIC SWITCH STYLES ============== */
+        /* ... (All the previous Fogbound CSS remains the same) ... */
+        
+        /* CORRECTED: Ensure header is on top of the switch */
+        header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffc19c;
+            color: #000;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        /* THEMATIC SWITCH STYLES */
         #theme-switch {
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 999; /* Sits on top of fog and content */
-            background-color: #ffc19c; /* Light color for contrast */
+            z-index: 999;
+            background-color: #ffc19c;
             color: #000;
             width: 45px;
             height: 45px;
@@ -23,9 +35,9 @@
             transition: all 0.4s ease;
         }
         #theme-switch:hover {
-            width: 210px; /* Expand on hover */
+            width: 210px;
             border-radius: 30px;
-            background-color: #f35b4e; /* Chaotic red on hover */
+            background-color: #f35b4e;
             color: #fff;
         }
         #theme-switch .switch-icon {
@@ -61,7 +73,7 @@
 </head>
 <body class="fogbound-theme">
 
-    <a href="index.html" id="theme-switch" title="Return to the Chaos...">
+    <a href="/" id="theme-switch" title="Return to the Chaos...">
         <i class="fa-solid fa-heart-crack switch-icon"></i>
         <span class="switch-text">Return to the Chaos...</span>
     </a>
