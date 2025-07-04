@@ -28,12 +28,12 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #121416;
+            background-color: #121416; /* Base background, fog will be on top */
             color: #e0e1dd;
         }
-        .page-wrapper {
-            position: relative;
-            z-index: 2;
+        /* REMOVED .page-wrapper, applying z-index directly */
+        header, main, footer {
+            position: relative; 
         }
         header {
             padding: 1rem;
@@ -42,6 +42,7 @@
             align-items: center;
             background-color: #ffc19c;
             color: #000;
+            z-index: 10; 
         }
         .logo {
             font-weight: bold;
@@ -51,13 +52,14 @@
             font-size: 0.9rem;
         }
         main {
-            background-color: #121416;
+            z-index: 2; /* Main content sits above fog */
         }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
+            z-index: 10;
         }
         .footer-social-links a {
             color: #ffffff;
@@ -150,6 +152,7 @@
 
         .fh-section {
             padding: 5rem 2rem;
+            background-color: rgba(18, 20, 22, 0.8); /* Semi-transparent so fog shows through */
         }
         .fh-container {
             max-width: 1000px;
@@ -185,7 +188,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* CORRECTED: Using your uploaded Attic 1 image */
             background: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png') center/cover;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -209,7 +211,7 @@
         }
         
         .fh-trailer {
-            background-color: #0c0d0e;
+            background-color: rgba(12, 13, 14, 0.85);
             text-align: center;
         }
         .fh-trailer h2 {
@@ -236,11 +238,8 @@
             top: 0px;
             overflow: hidden;
         }
-
+        
         /* NEW: Explore Eldermist Section Styles */
-        .fh-explore {
-            background-color: #1a1c1e;
-        }
         .fh-explore-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -313,7 +312,7 @@
         }
         
         .fh-reviews {
-            background-color: #121416;
+            background-color: rgba(26, 28, 30, 0.85);
             overflow: hidden;
         }
         .review-slider-container {
@@ -382,6 +381,7 @@
             }
         }
         
+        /* ============== INTERACTIVE FOG STYLES (CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -389,7 +389,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
+            z-index: 1; /* Sits directly on top of the body background */
             overflow: hidden;
         }
         .fog-layer {
@@ -414,14 +414,15 @@
             opacity: 0.2;
         }
         
+        /* NEW: Lightning Effect */
         #lightning-flash {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: white;
-            z-index: 999;
+            z-index: 4; /* Sits on top of fog */
             pointer-events: none;
             opacity: 0;
         }
@@ -464,10 +465,6 @@
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
         .modal-close {
             position: absolute;
@@ -615,126 +612,123 @@
         <div class="fog-layer fog-layer-1"></div>
         <div class="fog-layer fog-layer-2"></div>
     </div>
-    
     <div id="lightning-flash"></div>
 
-    <div class="page-wrapper">
-        <header>
-            <div class="logo">Aleks Filmore</div>
-            <div class="tagline">Queer Stories. Real Chaos.</div>
-        </header>
+    <header>
+        <div class="logo">Aleks Filmore</div>
+        <div class="tagline">Queer Stories. Real Chaos.</div>
+    </header>
 
-        <main>
-            <section class="fh-hero">
-                <div class="fh-hero-content">
-                    <h1 class="fh-title">Fogbound Hearts</h1>
-                    <p class="fh-author">By Aleks Filmore</p>
-                    <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
-                </div>
-            </section>
-
-            <section id="about" class="fh-section">
-                <div class="fh-container fh-synopsis">
-                    <div class="cover-container">
-                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
-                        <div class="cover-overlay"></div>
-                    </div>
-                    <div class="fh-synopsis-text">
-                        <h2>Some secrets are best left buried in the fog.</h2>
-                        <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
-                        <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="fh-section fh-explore">
-                <div class="fh-container">
-                    <div class="fh-explore-header">
-                        <h2>Welcome to Eldermist</h2>
-                        <p>A Town Wrapped in Fog, Secrets, and Shadows</p>
-                    </div>
-                    <div class="explore-grid">
-                        <div class="explore-card">
-                            <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');"></div>
-                            <div class="explore-card-content">
-                                <h3>The Mansion</h3>
-                                <p>A refuge and a haunting reminder of a dark legacy. Its labyrinthine halls conceal forgotten truths as the fog closes in.</p>
-                            </div>
-                        </div>
-                        <div class="explore-card">
-                            <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png');"></div>
-                            <div class="explore-card-content">
-                                <h3>The Tunnels</h3>
-                                <p>Ancient passageways etched with symbols older than the town itself, leading closer to the blood-soaked roots of the curse.</p>
-                            </div>
-                        </div>
-                        <div class="explore-card">
-                            <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Fog%20Bedroom%202.jpg');"></div>
-                            <div class="explore-card-content">
-                                <h3>The Haunting</h3>
-                                <p>In the dead of night, the fog seeps through the cracks like a living predator, its whispers a reminder that no wall can keep it out.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="trailer" class="fh-section fh-trailer">
-                <div class="fh-container">
-                    <h2>A Town That Doesn’t Forget</h2>
-                    <div class="fh-trailer-embed">
-                        <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reviews" class="fh-section fh-reviews">
-                <div class="review-slider-container">
-                    <div class="review-slider-track">
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
-                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
-                                <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
-                                <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="fh-section fh-final-cta">
-                <div class="fh-container">
-                    <h2>Can love survive where curses were born?</h2>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <main>
+        <section class="fh-hero">
+            <div class="fh-hero-content">
+                <h1 class="fh-title">Fogbound Hearts</h1>
+                <p class="fh-author">By Aleks Filmore</p>
+                <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
             </div>
-            <div class="footer-contact-link">
-                <a href="#" id="open-contact-modal">Contact Me</a>
+        </section>
+
+        <section id="about" class="fh-section">
+            <div class="fh-container fh-synopsis">
+                <div class="cover-container">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
+                    <div class="cover-overlay"></div>
+                </div>
+                <div class="fh-synopsis-text">
+                    <h2>Some secrets are best left buried in the fog.</h2>
+                    <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
+                    <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
+                </div>
             </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </section>
+        
+        <section class="fh-section fh-explore">
+            <div class="fh-container">
+                <div class="fh-explore-header">
+                    <h2>Welcome to Eldermist</h2>
+                    <p>A Town Wrapped in Fog, Secrets, and Shadows</p>
+                </div>
+                <div class="explore-grid">
+                    <div class="explore-card">
+                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');"></div>
+                        <div class="explore-card-content">
+                            <h3>The Mansion</h3>
+                            <p>A refuge and a haunting reminder of a dark legacy. Its labyrinthine halls conceal forgotten truths as the fog closes in.</p>
+                        </div>
+                    </div>
+                    <div class="explore-card">
+                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png');"></div>
+                        <div class="explore-card-content">
+                            <h3>The Tunnels</h3>
+                            <p>Ancient passageways etched with symbols older than the town itself, leading closer to the blood-soaked roots of the curse.</p>
+                        </div>
+                    </div>
+                    <div class="explore-card">
+                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Fog%20Bedroom%202.jpg');"></div>
+                        <div class="explore-card-content">
+                            <h3>The Haunting</h3>
+                            <p>In the dead of night, the fog seeps through the cracks like a living predator, its whispers a reminder that no wall can keep it out.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
-    </div>
+        </section>
+
+        <section id="trailer" class="fh-section fh-trailer">
+            <div class="fh-container">
+                <h2>A Town That Doesn’t Forget</h2>
+                <div class="fh-trailer-embed">
+                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="fh-section fh-reviews">
+            <div class="review-slider-container">
+                <div class="review-slider-track">
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
+                            <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
+                            <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
+                            <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fh-section fh-final-cta">
+            <div class="fh-container">
+                <h2>Can love survive where curses were born?</h2>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="footer-contact-link">
+            <a href="#" id="open-contact-modal">Contact Me</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
@@ -769,7 +763,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- Modal Logic ---
             const contactModal = document.getElementById('contact-modal');
             const openContactBtn = document.getElementById('open-contact-modal');
             const journalModal = document.getElementById('journal-modal');
@@ -810,7 +803,6 @@
                 if (event.target === journalModal) closeModal(journalModal);
             });
 
-            // --- Typewriter Effect Logic ---
             const journalTextElement = document.getElementById('journal-text');
             const journalText = "The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. No, he watches the windows. He's waiting for someone. I fear he's waiting for me.";
             let typewriterTimeout;
@@ -833,7 +825,6 @@
                 typeChar();
             }
 
-            // --- Interactive Fog Script ---
             const fogLayer1 = document.querySelector('.fog-layer-1');
             const fogLayer2 = document.querySelector('.fog-layer-2');
             if (fogLayer1 && fogLayer2) {
@@ -847,7 +838,6 @@
                 });
             }
             
-            // --- Audio & Lightning Script ---
             const soundBtn = document.getElementById('sound-toggle');
             const ambientAudio = document.getElementById('ambient-sound');
             const thunderAudio = document.getElementById('thunder-sound');
@@ -856,26 +846,34 @@
 
             function initializeAudio() {
                 if (audioInitialized) return;
-                ambientAudio.play().catch(()=>{});
-                thunderAudio.play().then(() => thunderAudio.pause()).catch(()=>{});
+                
+                const ambientPromise = ambientAudio.play();
+                if (ambientPromise !== undefined) {
+                    ambientPromise.catch(e => console.log("Ambient audio requires interaction to start."));
+                }
+
+                const thunderPromise = thunderAudio.play();
+                if (thunderPromise !== undefined) {
+                    thunderPromise.then(() => thunderAudio.pause()).catch(e => console.log("Thunder audio requires interaction to start."));
+                }
                 audioInitialized = true;
             }
 
             if (soundBtn && ambientAudio && thunderAudio) {
-                // Let first click on sound button handle initialization
                 soundBtn.addEventListener('click', () => {
                     if (!audioInitialized) {
                         initializeAudio();
                     }
-                    const isMuted = ambientAudio.muted;
-                    ambientAudio.muted = !isMuted;
-                    thunderAudio.muted = !isMuted;
-                    soundBtn.innerHTML = !isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
+                    
+                    const isMuted = !ambientAudio.muted;
+                    ambientAudio.muted = isMuted;
+                    thunderAudio.muted = isMuted;
+                    soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
                 });
             }
 
             function triggerLightning() {
-                if (lightningFlash && audioInitialized) { // Only flash if audio has been permitted
+                if (lightningFlash && audioInitialized) {
                     lightningFlash.classList.add('flash');
                     
                     setTimeout(() => {
@@ -889,10 +887,10 @@
                         lightningFlash.classList.remove('flash');
                     }, 600);
                 }
-                setTimeout(triggerLightning, Math.random() * 12000 + 8000); // 8-20 seconds
+                setTimeout(triggerLightning, Math.random() * 12000 + 8000);
             }
-            // Start lightning after a shorter initial delay
-            setTimeout(triggerLightning, Math.random() * 5000 + 3000); // 3-8 seconds
+            
+            setTimeout(triggerLightning, Math.random() * 5000 + 3000);
         });
     </script>
 
