@@ -13,7 +13,6 @@
     <title>Fogbound Hearts | Aleks Filmore</title>
     
     <meta name="description" content="Fogbound Hearts: A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts. A new supernatural novel by Aleks Filmore.">
-    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌫️</text></svg>">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,15 +28,15 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #121416; /* Dark base for this page */
-            color: #e0e1dd; /* Misty off-white for text */
+            background-color: #121416;
+            color: #e0e1dd;
         }
         header {
             padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #ffc19c; /* Reused from main site */
+            background-color: #ffc19c;
             color: #000;
         }
         .logo {
@@ -48,10 +47,12 @@
             font-size: 0.9rem;
         }
         footer {
-            background-color: #f35b4e; /* Reused from main site */
+            background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
+            position: relative; /* Ensure footer is above fog */
+            z-index: 10;
         }
         .footer-social-links a {
             color: #ffffff;
@@ -94,15 +95,16 @@
             min-height: 90vh;
             color: #ffffff;
             padding: 2rem;
-            /* --- UPDATED IMAGE PATH --- */
             background-image: linear-gradient(rgba(18, 20, 22, 0.8), rgba(18, 20, 22, 0.6)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
         }
         .fh-hero-content {
             max-width: 800px;
             animation: fadeIn 2s ease-in-out;
+            position: relative; /* Ensure content is above fog */
+            z-index: 2;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -128,7 +130,7 @@
         }
         .fh-cta-button {
             display: inline-block;
-            background-color: #cda274; /* A muted gold accent */
+            background-color: #cda274;
             color: #121416;
             padding: 1rem 2.5rem;
             text-decoration: none;
@@ -145,6 +147,8 @@
 
         .fh-section {
             padding: 5rem 2rem;
+            position: relative; /* Ensure content is above fog */
+            z-index: 2;
         }
         .fh-container {
             max-width: 1000px;
@@ -195,7 +199,7 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             max-width: 900px;
             margin: 0 auto;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
@@ -264,7 +268,6 @@
 
         .fh-final-cta {
             text-align: center;
-            /* --- UPDATED IMAGE PATH --- */
             background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/Daniel%20and%20the%20Lighthouse%202.png');
             background-size: cover;
             background-position: center;
@@ -276,6 +279,122 @@
             margin-bottom: 2rem;
             max-width: 600px;
             margin: 0 auto 2rem auto;
+        }
+
+        /* ============== INTERACTIVE FOG STYLES ============== */
+        #fog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none; /* Allows clicks to go "through" the fog */
+            z-index: 5; /* Sits above background but below content */
+            overflow: hidden;
+        }
+        .fog-layer {
+            position: absolute;
+            width: 150vw;
+            height: 150vh;
+            background-repeat: repeat;
+            background-position: center;
+            will-change: transform;
+            transition: transform 0.2s linear;
+        }
+        .fog-layer-1 {
+            background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d9632053158c5383f_fog-1.png');
+            background-size: contain;
+            opacity: 0.25;
+        }
+        .fog-layer-2 {
+            background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d4281a8161514339e_fog-2.png');
+            background-size: contain;
+            opacity: 0.3;
+        }
+        
+        /* ============== THEMED CONTACT MODAL STYLES ============== */
+        .fogbound-theme .modal-backdrop {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .fogbound-theme .modal-content {
+            background-color: #1a1c1e;
+            border: 1px solid rgba(205, 162, 116, 0.3);
+            color: #e0e1dd;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .fogbound-theme .modal-close {
+            color: #888;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .fogbound-theme .modal-close:hover,
+        .fogbound-theme .modal-close:focus {
+            color: #cda274;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .fogbound-theme .modal-form input[type="text"],
+        .fogbound-theme .modal-form input[type="email"],
+        .fogbound-theme .modal-form textarea {
+            background-color: #121416;
+            border: 1px solid #333;
+            color: #e0e1dd;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .fogbound-theme .modal-form input::placeholder,
+        .fogbound-theme .modal-form textarea::placeholder {
+            color: #888;
+        }
+        .fogbound-theme .modal-form input:focus, 
+        .fogbound-theme .modal-form textarea:focus {
+            outline: 1px solid #cda274;
+            border-color: #cda274;
+        }
+        .fogbound-theme .modal-form button {
+            background-color: #cda274;
+            color: #121416;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .fogbound-theme .modal-form button:hover {
+            background-color: #e0e1dd;
         }
 
         /* Responsive Styles */
@@ -302,10 +421,14 @@
                 font-size: 2.2rem;
             }
         }
-        
     </style>
 </head>
-<body>
+<body class="fogbound-theme">
+
+    <div id="fog-container">
+        <div class="fog-layer fog-layer-1"></div>
+        <div class="fog-layer fog-layer-2"></div>
+    </div>
 
     <header>
         <div class="logo">Aleks Filmore</div>
@@ -433,6 +556,20 @@
         window.addEventListener('click', function(event) {
             if (event.target === contactModal) {
                 closeModal();
+            }
+        });
+
+        // Interactive Fog Script
+        const fogLayer1 = document.querySelector('.fog-layer-1');
+        const fogLayer2 = document.querySelector('.fog-layer-2');
+        document.addEventListener('mousemove', function(e) {
+            if (fogLayer1 && fogLayer2) { // Ensure layers exist
+                const { clientX, clientY } = e;
+                const x = (clientX / window.innerWidth) * 50 - 25;
+                const y = (clientY / window.innerHeight) * 50 - 25;
+                
+                fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
+                fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
             }
         });
     </script>
