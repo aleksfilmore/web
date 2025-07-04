@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W9B5W1241H');
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* SMOOTH SCROLLING ADDED HERE */
         html {
             scroll-behavior: smooth;
         }
@@ -455,6 +463,7 @@
             border-bottom: 1px dotted #ffffff;
             padding-bottom: 2px;
             transition: opacity 0.3s;
+            cursor: pointer;
         }
         .footer-contact-link a:hover {
             opacity: 0.8;
@@ -464,6 +473,84 @@
             margin: 0;
             color: rgba(255, 255, 255, 0.7);
         }
+
+        /* ============== CONTACT MODAL (POP-UP) STYLES ============== */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff2db;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-form input[type="text"],
+        .modal-form input[type="email"],
+        .modal-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .modal-form input:focus, .modal-form textarea:focus {
+            outline: 2px solid #208e92;
+            border-color: #208e92;
+        }
+        .modal-form button {
+            background-color: #f35b4e;
+            color: white;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .modal-form button:hover {
+            background-color: #d14a3d;
+        }
+        
+        /* Responsive adjustments for layout */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -516,7 +603,7 @@
             <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
                 <input type="email" name="email" placeholder="Your email (we won’t ghost you)" required>
-                <button type="submit">Get the Secret Chapter & Audiobook announcement</button>
+                <button type="submit">Get the Secret Chapter</button>
             </form>
         </div>
         <div class="hero-image">
@@ -570,9 +657,7 @@
         <p>
             The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
         </p>
-        
         <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
-
         <div class="platforms">
             <span>Available Soon On:</span>
             <i class="fa-brands fa-spotify" title="Spotify"></i>
@@ -584,9 +669,7 @@
 
     <section class="about-section">
         <div class="about-container">
-            
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/e90473ebc59ff4409359bd52dd37421120795e07/AF.png" alt="Author Aleks Filmore" class="about-photo">
-            
             <div class="about-text">
                 <h2>About Aleks Filmore</h2>
                 <p>
@@ -607,13 +690,57 @@
         </div>
     
         <div class="footer-contact-link">
-            <a href="contact.html">Contact Me</a>
+            <a href="#" id="open-contact-modal">Contact Me</a>
         </div>
     
         <div class="footer-copyright">
             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Contact Me</h2>
+            <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
+            
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the elements
+        const contactModal = document.getElementById('contact-modal');
+        const openBtn = document.getElementById('open-contact-modal');
+        const closeBtn = document.querySelector('.modal-close');
+
+        // Function to open the modal
+        const openModal = function(event) {
+            event.preventDefault(); // Stop the link from trying to navigate
+            contactModal.style.display = 'flex';
+        };
+
+        // Function to close the modal
+        const closeModal = function() {
+            contactModal.style.display = 'none';
+        };
+
+        // Event listeners
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // Also close modal if user clicks on the dark backdrop
+        window.addEventListener('click', function(event) {
+            if (event.target === contactModal) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
