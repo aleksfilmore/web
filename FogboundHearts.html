@@ -31,6 +31,11 @@
             background-color: #121416;
             color: #e0e1dd;
         }
+        .page-wrapper {
+            position: relative;
+            z-index: 2; /* Sits above the fog */
+            background-color: #121416; /* Fallback for content sections */
+        }
         header {
             padding: 1rem;
             display: flex;
@@ -38,8 +43,6 @@
             align-items: center;
             background-color: #ffc19c;
             color: #000;
-            position: relative; /* z-index fix */
-            z-index: 10;     /* z-index fix */
         }
         .logo {
             font-weight: bold;
@@ -48,17 +51,11 @@
         .tagline {
             font-size: 0.9rem;
         }
-        main {
-            position: relative; /* z-index fix */
-            z-index: 2;     /* z-index fix */
-        }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
-            position: relative; /* z-index fix */
-            z-index: 10;     /* z-index fix */
         }
         .footer-social-links a {
             color: #ffffff;
@@ -101,7 +98,7 @@
             min-height: 90vh;
             color: #ffffff;
             padding: 2rem;
-            background-image: linear-gradient(rgba(18, 20, 22, 0.8), rgba(18, 20, 22, 0.6)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');
+            background-image: linear-gradient(rgba(18, 20, 22, 0.7), rgba(18, 20, 22, 0.5)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -151,7 +148,6 @@
 
         .fh-section {
             padding: 5rem 2rem;
-            background-color: #121416; /* Ensure sections have a background */
         }
         .fh-container {
             max-width: 1000px;
@@ -244,19 +240,35 @@
             margin-bottom: 0.5rem;
         }
 
+        /* ============== NEW SLIDING REVIEWS STYLES ============== */
         .fh-reviews {
             background-color: #1a1c1e;
+            overflow: hidden; /* Important for slider */
         }
-        .fh-reviews blockquote {
-            border-left: 4px solid #cda274;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
+        .review-slider-container {
             max-width: 700px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .review-slider-track {
+            display: flex;
+            width: 300%; /* 100% for each of the 3 slides */
+            animation: slide-reviews 18s infinite ease-in-out;
+        }
+        .review-slide {
+            flex-shrink: 0;
+            width: calc(100% / 3);
+            box-sizing: border-box;
+            padding: 0 2rem;
+        }
+        .review-slide blockquote {
+            border-left: 4px solid #cda274;
+            margin: 0;
+            padding: 1.5rem 2rem;
             font-size: 1.2rem;
             font-style: italic;
-            position: relative;
         }
-        .fh-reviews footer {
+        .review-slide footer {
             background: none;
             padding: 0;
             margin-top: 1rem;
@@ -265,8 +277,14 @@
             font-weight: bold;
             color: #e0e1dd;
         }
-        .fh-reviews .star-rating {
+        .review-slide .star-rating {
             color: #cda274;
+        }
+        @keyframes slide-reviews {
+            0%, 28% { transform: translateX(0%); }         /* Slide 1 */
+            33%, 61% { transform: translateX(-33.333%); }  /* Slide 2 */
+            66%, 94% { transform: translateX(-66.666%); }  /* Slide 3 */
+            100% { transform: translateX(0%); }           /* Loop back */
         }
 
         .fh-final-cta {
@@ -290,15 +308,17 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             pointer-events: none;
-            z-index: 1; /* Sits on top of the base background */
+            z-index: 1; /* Sits above body, below content wrapper */
             overflow: hidden;
         }
         .fog-layer {
             position: absolute;
-            width: 150vw;
-            height: 150vh;
+            width: 200vw;
+            height: 200vh;
+            left: -50vw;
+            top: -50vh;
             background-repeat: repeat;
             background-position: center;
             will-change: transform;
@@ -306,17 +326,17 @@
         }
         .fog-layer-1 {
             background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d9632053158c5383f_fog-1.png');
-            background-size: contain;
-            opacity: 0.25;
+            background-size: cover;
+            opacity: 0.15;
         }
         .fog-layer-2 {
             background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d4281a8161514339e_fog-2.png');
-            background-size: contain;
-            opacity: 0.3;
+            background-size: cover;
+            opacity: 0.2;
         }
         
         /* ============== THEMED CONTACT MODAL STYLES ============== */
-        .fogbound-theme .modal-backdrop {
+        .modal-backdrop {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -325,7 +345,8 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(18, 20, 22, 0.8);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
         }
@@ -423,6 +444,9 @@
             .fh-final-cta h2 {
                 font-size: 2.2rem;
             }
+            .review-slide {
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
@@ -432,101 +456,116 @@
         <div class="fog-layer fog-layer-1"></div>
         <div class="fog-layer fog-layer-2"></div>
     </div>
+    
+    <div class="page-wrapper">
+        <header>
+            <div class="logo">Aleks Filmore</div>
+            <div class="tagline">Queer Stories. Real Chaos.</div>
+        </header>
 
-    <header>
-        <div class="logo">Aleks Filmore</div>
-        <div class="tagline">Queer Stories. Real Chaos.</div>
-    </header>
+        <main>
 
-    <main>
-
-        <section class="fh-hero">
-            <div class="fh-hero-content">
-                <h1 class="fh-title">Fogbound Hearts</h1>
-                <p class="fh-author">By Aleks Filmore</p>
-                <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
-                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
-            </div>
-        </section>
-
-        <section id="about" class="fh-section">
-            <div class="fh-container fh-synopsis">
-                <div class="fh-synopsis-cover">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
+            <section class="fh-hero">
+                <div class="fh-hero-content">
+                    <h1 class="fh-title">Fogbound Hearts</h1>
+                    <p class="fh-author">By Aleks Filmore</p>
+                    <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
+                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
                 </div>
-                <div class="fh-synopsis-text">
-                    <h2>Some secrets are best left buried in the fog.</h2>
-                    <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, journals filled with warnings, and a fog that seems to know his name.</p>
-                    <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="trailer" class="fh-section fh-trailer">
-            <div class="fh-container">
-                <h2>A Town That Doesn’t Forget</h2>
-                <div class="fh-trailer-embed">
-                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="fh-section fh-features">
-            <div class="fh-container">
-                <h2>For Fans Of...</h2>
-                <div class="fh-features-grid">
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-ghost"></i>
-                        <h3>Gothic Romance</h3>
-                        <p>Dark atmosphere and psychological depth.</p>
+            <section id="about" class="fh-section">
+                <div class="fh-container fh-synopsis">
+                    <div class="fh-synopsis-cover">
+                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
                     </div>
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-book-skull"></i>
-                        <h3>Supernatural Suspense</h3>
-                        <p>Haunted towns with slow-burn, eerie tension.</p>
-                    </div>
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                        <h3>Queer Mystery</h3>
-                        <p>Thrillers that blend romance with a sense of dread.</p>
+                    <div class="fh-synopsis-text">
+                        <h2>Some secrets are best left buried in the fog.</h2>
+                        <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, journals filled with warnings, and a fog that seems to know his name.</p>
+                        <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
                     </div>
                 </div>
+            </section>
+
+            <section id="trailer" class="fh-section fh-trailer">
+                <div class="fh-container">
+                    <h2>A Town That Doesn’t Forget</h2>
+                    <div class="fh-trailer-embed">
+                        <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="fh-section fh-features">
+                <div class="fh-container">
+                    <h2>For Fans Of...</h2>
+                    <div class="fh-features-grid">
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-ghost"></i>
+                            <h3>Gothic Romance</h3>
+                            <p>Dark atmosphere and psychological depth.</p>
+                        </div>
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-book-skull"></i>
+                            <h3>Supernatural Suspense</h3>
+                            <p>Haunted towns with slow-burn, eerie tension.</p>
+                        </div>
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <h3>Queer Mystery</h3>
+                            <p>Thrillers that blend romance with a sense of dread.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reviews" class="fh-section fh-reviews">
+                <div class="review-slider-container">
+                    <div class="review-slider-track">
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"This is an absolute must-read for anyone who loves a haunting, atmospheric story with a queer heart. The mystery of Eldermist will stay with you long after you've finished."</p>
+                                <footer><span class="star-rating">★★★★★</span> — The Queer Quill</footer>
+                            </blockquote>
+                        </div>
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"Aleks Filmore has crafted a masterpiece of modern gothic fiction. The slow-burn romance is both tender and fraught with danger, making it impossible to put down."</p>
+                                <footer><span class="star-rating">★★★★★</span> — Readers' Roost</footer>
+                            </blockquote>
+                        </div>
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked."</p>
+                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Review</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fh-section fh-final-cta">
+                <div class="fh-container">
+                    <h2>Can love survive where curses were born?</h2>
+                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="footer-social-links">
+                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
-        </section>
-
-        <section id="reviews" class="fh-section fh-reviews">
-            <div class="fh-container">
-                <blockquote>
-                    <p>"Good book, good writing, the plot is interesting enough to keep you hooked."</p>
-                    <footer>
-                        <span class="star-rating">★★★★★</span>
-                        — F., Amazon Review
-                    </footer>
-                </blockquote>
+            <div class="footer-contact-link">
+                <a href="#" id="open-contact-modal">Contact Me</a>
             </div>
-        </section>
-
-        <section class="fh-section fh-final-cta">
-            <div class="fh-container">
-                <h2>Can love survive where curses were born?</h2>
-                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
             </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-social-links">
-            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <div class="footer-contact-link">
-            <a href="#" id="open-contact-modal">Contact Me</a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
@@ -547,20 +586,22 @@
         const contactModal = document.getElementById('contact-modal');
         const openBtn = document.getElementById('open-contact-modal');
         const closeBtn = document.querySelector('.modal-close');
-        const openModal = function(event) {
-            event.preventDefault();
-            contactModal.style.display = 'flex';
-        };
-        const closeModal = function() {
-            contactModal.style.display = 'none';
-        };
-        openBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', function(event) {
-            if (event.target === contactModal) {
-                closeModal();
-            }
-        });
+        if(openBtn) {
+            const openModal = function(event) {
+                event.preventDefault();
+                contactModal.style.display = 'flex';
+            };
+            const closeModal = function() {
+                contactModal.style.display = 'none';
+            };
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', function(event) {
+                if (event.target === contactModal) {
+                    closeModal();
+                }
+            });
+        }
 
         // Interactive Fog Script
         const fogLayer1 = document.querySelector('.fog-layer-1');
@@ -568,8 +609,8 @@
         document.addEventListener('mousemove', function(e) {
             if (fogLayer1 && fogLayer2) {
                 const { clientX, clientY } = e;
-                const x = (clientX / window.innerWidth) * 50 - 25;
-                const y = (clientY / window.innerHeight) * 50 - 25;
+                const x = (clientX / window.innerWidth) * 40 - 20;
+                const y = (clientY / window.innerHeight) * 40 - 20;
                 
                 fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
                 fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
