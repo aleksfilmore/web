@@ -1,3 +1,14 @@
+Of course. Here is the fully updated HTML code with all sections integrated, including the new audiobook promotion.
+
+I've taken your latest code and inserted the new **Audiobook Promo** section in the correct place, along with its required CSS. I also noticed your `about-section` and `footer` were already in the code you provided, so this version is now the complete, final page you've been building.
+
+Just replace your old code with this new block.
+
+-----
+
+## Complete & Updated Website Code
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -329,7 +340,74 @@
             background: #176f72;
         }
 
-        /* ============== NEW STYLES FOR ABOUT SECTION AND FOOTER ============== */
+        /* ============== AUDIOBOOK PROMO SECTION STYLES ============== */
+        .audiobook-promo {
+            background-color: #208e92;
+            background-image: url('https://www.transparenttextures.com/patterns/wavecut.png');
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .audiobook-promo h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            margin: 0 0 1rem 0;
+        }
+        .audiobook-promo p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+            color: #fff2db;
+        }
+        .audiobook-promo .audio-icon {
+            font-size: 4rem;
+            color: #ffa711;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 167, 17, 0.5);
+        }
+        .audiobook-promo .platforms {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .audiobook-promo .platforms span {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .audiobook-promo .platforms i {
+            font-size: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+        .audiobook-promo .platforms i:hover {
+            transform: scale(1.1);
+        }
+        .audiobook-promo .audio-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #ffa711;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .audiobook-promo .audio-cta:hover {
+            background-color: #ffb733;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        /* ============== STYLES FOR ABOUT SECTION AND FOOTER ============== */
         .about-section {
             padding: 3rem 1.5rem;
             background-color: #ffc19c;
@@ -423,6 +501,9 @@
             .cringe-card {
                 height: 220px; /* Give it some space on mobile */
             }
+            .audiobook-promo h2 {
+                font-size: 2.2rem;
+            }
             .about-container {
                 flex-direction: column;
             }
@@ -492,6 +573,24 @@
         </div>
     </section>
 
+    <section class="audiobook-promo">
+        <div class="audio-icon">
+            <i class="fa-solid fa-headphones-simple"></i>
+        </div>
+        <h2>The Chaos, Now in Your Ears</h2>
+        <p>
+            The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
+        </p>
+        <a href="https://formspree.io/f/myzjjjjp" class="audio-cta">Notify Me When It Drops</a>
+        <div class="platforms">
+            <span>Available Soon On:</span>
+            <i class="fa-brands fa-spotify" title="Spotify"></i>
+            <i class="fa-brands fa-audible" title="Audible"></i>
+            <i class="fa-brands fa-apple" title="Apple Podcasts & Books"></i>
+            <span>& more</span>
+        </div>
+    </section>
+
     <section class="about-section">
         <div class="about-container">
             <img src="https://via.placeholder.com/150" alt="Author Aleks Filmore" class="about-photo">
@@ -513,11 +612,11 @@
                 <i class="fab fa-tiktok"></i>
             </a>
         </div>
-      
+    
         <div class="footer-contact-link">
             <a href="contact.html">Contact Me</a>
         </div>
-      
+    
         <div class="footer-copyright">
             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
@@ -525,3 +624,4 @@
 
 </body>
 </html>
+```
