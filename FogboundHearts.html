@@ -38,6 +38,8 @@
             align-items: center;
             background-color: #ffc19c;
             color: #000;
+            position: relative; /* z-index fix */
+            z-index: 10;     /* z-index fix */
         }
         .logo {
             font-weight: bold;
@@ -46,13 +48,17 @@
         .tagline {
             font-size: 0.9rem;
         }
+        main {
+            position: relative; /* z-index fix */
+            z-index: 2;     /* z-index fix */
+        }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
-            position: relative; /* Ensure footer is above fog */
-            z-index: 10;
+            position: relative; /* z-index fix */
+            z-index: 10;     /* z-index fix */
         }
         .footer-social-links a {
             color: #ffffff;
@@ -103,8 +109,6 @@
         .fh-hero-content {
             max-width: 800px;
             animation: fadeIn 2s ease-in-out;
-            position: relative; /* Ensure content is above fog */
-            z-index: 2;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -147,8 +151,7 @@
 
         .fh-section {
             padding: 5rem 2rem;
-            position: relative; /* Ensure content is above fog */
-            z-index: 2;
+            background-color: #121416; /* Ensure sections have a background */
         }
         .fh-container {
             max-width: 1000px;
@@ -281,15 +284,15 @@
             margin: 0 auto 2rem auto;
         }
 
-        /* ============== INTERACTIVE FOG STYLES ============== */
+        /* ============== INTERACTIVE FOG STYLES (Z-INDEX CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            pointer-events: none; /* Allows clicks to go "through" the fog */
-            z-index: 5; /* Sits above background but below content */
+            pointer-events: none;
+            z-index: 1; /* Sits on top of the base background */
             overflow: hidden;
         }
         .fog-layer {
@@ -563,7 +566,7 @@
         const fogLayer1 = document.querySelector('.fog-layer-1');
         const fogLayer2 = document.querySelector('.fog-layer-2');
         document.addEventListener('mousemove', function(e) {
-            if (fogLayer1 && fogLayer2) { // Ensure layers exist
+            if (fogLayer1 && fogLayer2) {
                 const { clientX, clientY } = e;
                 const x = (clientX / window.innerWidth) * 50 - 25;
                 const y = (clientY / window.innerHeight) * 50 - 25;
