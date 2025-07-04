@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-W9B5W1241H');
-</script>
+      gtag('config', 'G-W9B5W1241H');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
+    
+    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -447,10 +452,11 @@
             font-size: 28px;
             margin: 0 15px;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: transform 0.3s ease, opacity 0.3s; /* UPDATED */
         }
         .footer-social-links a:hover {
-            opacity: 0.8;
+            opacity: 1; /* UPDATED */
+            transform: translateY(-3px); /* UPDATED */
         }
         .footer-contact-link {
             margin: 20px 0;
@@ -472,7 +478,6 @@
             margin: 0;
             color: rgba(255, 255, 255, 0.7);
         }
-        /* ============== CONTACT MODAL (POP-UP) STYLES ============== */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -547,6 +552,17 @@
         .modal-form button:hover {
             background-color: #d14a3d;
         }
+
+        /* NEW: Styles for scroll animations */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         
         /* Responsive adjustments for layout */
         @media (max-width: 768px) {
@@ -616,7 +632,7 @@
             <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
         </div>
     </div>
-    <section class="inside-chaos" style="padding: 3rem 1.5rem; background: #fff2db;">
+    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
         <div style="max-width: 1000px; margin: auto;">
             <div style="margin-bottom: 2rem;">
                 <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative;">
@@ -647,7 +663,7 @@
         </div>
     </section>
 
-    <section class="audiobook-promo">
+    <section class="audiobook-promo animated-section">
         <div class="audio-icon">
             <i class="fa-solid fa-headphones-simple"></i>
         </div>
@@ -665,7 +681,7 @@
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section animated-section">
         <div class="about-container">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore" class="about-photo">
             <div class="about-text">
@@ -712,31 +728,39 @@
     </div>
 
     <script>
-        // Get the elements
+        // Modal script
         const contactModal = document.getElementById('contact-modal');
         const openBtn = document.getElementById('open-contact-modal');
         const closeBtn = document.querySelector('.modal-close');
-
-        // Function to open the modal
         const openModal = function(event) {
-            event.preventDefault(); // Stop the link from trying to navigate
+            event.preventDefault();
             contactModal.style.display = 'flex';
         };
-
-        // Function to close the modal
         const closeModal = function() {
             contactModal.style.display = 'none';
         };
-
-        // Event listeners
         openBtn.addEventListener('click', openModal);
         closeBtn.addEventListener('click', closeModal);
-
-        // Also close modal if user clicks on the dark backdrop
         window.addEventListener('click', function(event) {
             if (event.target === contactModal) {
                 closeModal();
             }
+        });
+
+        // Animate on Scroll script
+        const animatedSections = document.querySelectorAll('.animated-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        animatedSections.forEach(section => {
+            observer.observe(section);
         });
     </script>
 
