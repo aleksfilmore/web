@@ -166,12 +166,33 @@
             flex: 1;
             min-width: 280px;
         }
-        .fh-synopsis-cover img {
+        .cover-container { /* NEW: For keyhole effect */
+            position: relative;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .cover-container img {
             width: 100%;
             max-width: 350px;
             border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: block;
         }
+        .cover-overlay { /* NEW: For keyhole effect */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/aleksfilmore/web/main/Attic%201.jpg') center/cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .cover-container:hover .cover-overlay {
+            opacity: 1;
+        }
+
         .fh-synopsis-text {
             flex: 2;
             min-width: 300px;
@@ -344,6 +365,28 @@
             opacity: 0.2;
         }
         
+        /* NEW: Lightning Effect */
+        #lightning-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            pointer-events: none;
+            display: none;
+        }
+        #lightning-flash.flash {
+            display: block;
+            animation: flash-animation 0.5s ease-out;
+        }
+        @keyframes flash-animation {
+            0% { opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { opacity: 0; }
+        }
+
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -372,6 +415,10 @@
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .modal-close {
             position: absolute;
@@ -453,6 +500,14 @@
             font-family: 'Beth Ellen', cursive;
             font-size: 1.2rem;
             line-height: 2.2;
+            min-height: 120px; /* Reserve space for text */
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
         
         #sound-toggle {
@@ -511,113 +566,114 @@
         <div class="fog-layer fog-layer-2"></div>
     </div>
     
-    <div class="page-wrapper">
-        <header>
-            <div class="logo">Aleks Filmore</div>
-            <div class="tagline">Queer Stories. Real Chaos.</div>
-        </header>
+    <div id="lightning-flash"></div>
 
-        <main>
-            <section class="fh-hero">
-                <div class="fh-hero-content">
-                    <h1 class="fh-title">Fogbound Hearts</h1>
-                    <p class="fh-author">By Aleks Filmore</p>
-                    <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
-                </div>
-            </section>
+    <header>
+        <div class="logo">Aleks Filmore</div>
+        <div class="tagline">Queer Stories. Real Chaos.</div>
+    </header>
 
-            <section id="about" class="fh-section">
-                <div class="fh-container fh-synopsis">
-                    <div class="fh-synopsis-cover">
-                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
-                    </div>
-                    <div class="fh-synopsis-text">
-                        <h2>Some secrets are best left buried in the fog.</h2>
-                        <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
-                        <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="trailer" class="fh-section fh-trailer">
-                <div class="fh-container">
-                    <h2>A Town That Doesn’t Forget</h2>
-                    <div class="fh-trailer-embed">
-                        <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                    </div>
-                </div>
-            </section>
-
-            <section id="features" class="fh-section fh-features">
-                <div class="fh-container">
-                    <h2>For Fans Of...</h2>
-                    <div class="fh-features-grid">
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-ghost"></i>
-                            <h3>Gothic Romance</h3>
-                            <p>Dark atmosphere and psychological depth.</p>
-                        </div>
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-book-skull"></i>
-                            <h3>Supernatural Suspense</h3>
-                            <p>Haunted towns with slow-burn, eerie tension.</p>
-                        </div>
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                            <h3>Queer Mystery</h3>
-                            <p>Thrillers that blend romance with a sense of dread.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reviews" class="fh-section fh-reviews">
-                <div class="review-slider-container">
-                    <div class="review-slider-track">
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
-                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
-                                <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
-                                <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="fh-section fh-final-cta">
-                <div class="fh-container">
-                    <h2>Can love survive where curses were born?</h2>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <main>
+        <section class="fh-hero">
+            <div class="fh-hero-content">
+                <h1 class="fh-title">Fogbound Hearts</h1>
+                <p class="fh-author">By Aleks Filmore</p>
+                <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
             </div>
-            <div class="footer-contact-link">
-                <a href="#" id="open-contact-modal">Contact Me</a>
+        </section>
+
+        <section id="about" class="fh-section">
+            <div class="fh-container fh-synopsis">
+                <div class="cover-container">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
+                    <div class="cover-overlay"></div>
+                </div>
+                <div class="fh-synopsis-text">
+                    <h2>Some secrets are best left buried in the fog.</h2>
+                    <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
+                    <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
+                </div>
             </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </section>
+
+        <section id="trailer" class="fh-section fh-trailer">
+            <div class="fh-container">
+                <h2>A Town That Doesn’t Forget</h2>
+                <div class="fh-trailer-embed">
+                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
+                </div>
             </div>
-        </footer>
-    </div>
+        </section>
+
+        <section id="features" class="fh-section fh-features">
+            <div class="fh-container">
+                <h2>For Fans Of...</h2>
+                <div class="fh-features-grid">
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-ghost"></i>
+                        <h3>Gothic Romance</h3>
+                        <p>Dark atmosphere and psychological depth.</p>
+                    </div>
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-book-skull"></i>
+                        <h3>Supernatural Suspense</h3>
+                        <p>Haunted towns with slow-burn, eerie tension.</p>
+                    </div>
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <h3>Queer Mystery</h3>
+                        <p>Thrillers that blend romance with a sense of dread.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="fh-section fh-reviews">
+            <div class="review-slider-container">
+                <div class="review-slider-track">
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
+                            <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
+                            <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                    <div class="review-slide">
+                         <blockquote>
+                            <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
+                            <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fh-section fh-final-cta">
+            <div class="fh-container">
+                <h2>Can love survive where curses were born?</h2>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="footer-contact-link">
+            <a href="#" id="open-contact-modal">Contact Me</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
@@ -637,90 +693,145 @@
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2>A Found Page</h2>
-            <p>The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. No, he watches the windows. He's waiting for someone. I fear he's waiting for me.</p>
+            <p id="journal-text"></p>
         </div>
     </div>
 
     <audio id="ambient-sound" loop muted>
         <source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg">
     </audio>
+    <audio id="thunder-sound" muted>
+        <source src="https://raw.githubusercontent.com/aleksfilmore/web/bcd598aea06d603b7bcdd14c7138b852ca902d52/thunder.mp3" type="audio/mpeg">
+    </audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
 
     <script>
-        // --- Refactored Modal Script to handle multiple modals ---
-        const contactModal = document.getElementById('contact-modal');
-        const openContactBtn = document.getElementById('open-contact-modal');
-        const journalModal = document.getElementById('journal-modal');
-        const openJournalBtn = document.getElementById('open-journal-modal');
-        
-        const allCloseBtns = document.querySelectorAll('.modal-close');
+        // --- Modal & Interactive Elements Script ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Modal Logic ---
+            const contactModal = document.getElementById('contact-modal');
+            const openContactBtn = document.getElementById('open-contact-modal');
+            const journalModal = document.getElementById('journal-modal');
+            const openJournalBtn = document.getElementById('open-journal-modal');
+            const allCloseBtns = document.querySelectorAll('.modal-close');
 
-        const openModal = (modal) => {
-            if (modal) modal.style.display = 'flex';
-        }
+            const openModal = (modal) => {
+                if (modal) modal.style.display = 'flex';
+            }
+            const closeModal = (modal) => {
+                if (modal) modal.style.display = 'none';
+            }
 
-        const closeModal = (modal) => {
-            if (modal) modal.style.display = 'none';
-        }
+            if (openContactBtn && contactModal) {
+                openContactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(contactModal);
+                });
+            }
+            
+            if (openJournalBtn && journalModal) {
+                openJournalBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    typewriterEffect(); // Call typewriter when journal is opened
+                    openModal(journalModal);
+                });
+            }
 
-        if (openContactBtn && contactModal) {
-            openContactBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(contactModal);
+            allCloseBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modalToClose = btn.closest('.modal-backdrop');
+                    closeModal(modalToClose);
+                });
             });
-        }
-        if (openJournalBtn && journalModal) {
-            openJournalBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(journalModal);
-            });
-        }
 
-        allCloseBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                closeModal(contactModal);
-                closeModal(journalModal);
+            window.addEventListener('click', (event) => {
+                if (event.target === contactModal) closeModal(contactModal);
+                if (event.target === journalModal) closeModal(journalModal);
             });
-        });
 
-        window.addEventListener('click', (event) => {
-            if (event.target === contactModal) closeModal(contactModal);
-            if (event.target === journalModal) closeModal(journalModal);
-        });
+            // --- Typewriter Effect Logic ---
+            const journalTextElement = document.getElementById('journal-text');
+            const journalText = "The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. No, he watches the windows. He's waiting for someone. I fear he's waiting for me.";
+            let typewriterTimeout;
 
-        // --- Interactive Fog Script ---
-        const fogLayer1 = document.querySelector('.fog-layer-1');
-        const fogLayer2 = document.querySelector('.fog-layer-2');
-        if (fogLayer1 && fogLayer2) {
-            document.addEventListener('mousemove', function(e) {
-                const { clientX, clientY } = e;
-                const x = (clientX / window.innerWidth) * 40 - 20;
-                const y = (clientY / window.innerHeight) * 40 - 20;
-                
-                fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
-                fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
-            });
-        }
-        
-        // --- FINAL, ROBUST Ambient Audio Script ---
-        const soundBtn = document.getElementById('sound-toggle');
-        const audio = document.getElementById('ambient-sound');
-        if (soundBtn && audio) {
-            soundBtn.addEventListener('click', () => {
-                // If audio is paused, it's the first click. We need to start it.
-                if (audio.paused) {
-                    audio.play().catch(e => {
-                        console.error("Audio playback failed:", e);
-                    });
+            function typewriterEffect() {
+                if (!journalTextElement) return;
+                journalTextElement.innerHTML = ''; // Clear previous text
+                journalTextElement.classList.add('typing-cursor');
+                clearTimeout(typewriterTimeout);
+                let i = 0;
+                function typeChar() {
+                    if (i < journalText.length) {
+                        journalTextElement.innerHTML += journalText.charAt(i);
+                        i++;
+                        typewriterTimeout = setTimeout(typeChar, 50); // Adjust typing speed here
+                    } else {
+                        journalTextElement.classList.remove('typing-cursor');
+                    }
                 }
+                typeChar();
+            }
 
-                // Toggle the mute state
-                audio.muted = !audio.muted;
+            // --- Interactive Fog Script ---
+            const fogLayer1 = document.querySelector('.fog-layer-1');
+            const fogLayer2 = document.querySelector('.fog-layer-2');
+            if (fogLayer1 && fogLayer2) {
+                document.addEventListener('mousemove', function(e) {
+                    const { clientX, clientY } = e;
+                    const x = (clientX / window.innerWidth) * 40 - 20;
+                    const y = (clientY / window.innerHeight) * 40 - 20;
+                    
+                    fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
+                    fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+                });
+            }
+            
+            // --- Audio & Lightning Script ---
+            const soundBtn = document.getElementById('sound-toggle');
+            const ambientAudio = document.getElementById('ambient-sound');
+            const thunderAudio = document.getElementById('thunder-sound');
+            const lightningFlash = document.getElementById('lightning-flash');
+            let audioInitialized = false;
 
-                // Update the icon based on the new mute state
-                soundBtn.innerHTML = audio.muted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-            });
-        }
+            function initializeAudio() {
+                if (audioInitialized) return;
+                ambientAudio.play().catch(()=>{});
+                thunderAudio.play().then(() => thunderAudio.pause()).catch(()=>{});
+                audioInitialized = true;
+            }
+
+            if (soundBtn && ambientAudio && thunderAudio) {
+                document.body.addEventListener('click', initializeAudio, { once: true });
+                document.body.addEventListener('mousemove', initializeAudio, { once: true });
+
+                soundBtn.addEventListener('click', () => {
+                    const isMuted = ambientAudio.muted;
+                    ambientAudio.muted = !isMuted;
+                    thunderAudio.muted = !isMuted;
+                    soundBtn.innerHTML = !isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
+                });
+            }
+
+            function triggerLightning() {
+                if (lightningFlash) {
+                    lightningFlash.classList.add('flash');
+                    setTimeout(() => {
+                        if (!thunderAudio.muted) {
+                            thunderAudio.currentTime = 0;
+                            thunderAudio.play();
+                        }
+                    }, Math.random() * 1000 + 500); // 0.5 to 1.5 second delay for thunder
+                    setTimeout(() => {
+                        lightningFlash.classList.remove('flash');
+                    }, 600);
+                }
+                // Schedule the next lightning strike
+                setTimeout(triggerLightning, Math.random() * 20000 + 15000); // 15-35 seconds
+            }
+            // Start the lightning after an initial delay
+            setTimeout(triggerLightning, Math.random() * 10000 + 5000); // 5-15 seconds
+        });
     </script>
 
 </body>
