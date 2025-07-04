@@ -33,7 +33,8 @@
         }
         .page-wrapper {
             position: relative;
-            z-index: 2; /* Sits below the fog */
+            z-index: 2;
+            background-color: transparent;
         }
         header {
             padding: 1rem;
@@ -253,7 +254,7 @@
         }
         .review-slider-track {
             display: flex;
-            width: 300%; /* 100% for each of the 3 slides */
+            width: 300%;
             animation: slide-reviews 18s infinite ease-in-out;
         }
         .review-slide {
@@ -303,7 +304,7 @@
             margin: 0 auto 2rem auto;
         }
 
-        /* ============== INTERACTIVE FOG STYLES (Z-INDEX CORRECTED) ============== */
+        /* ============== INTERACTIVE FOG STYLES (CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -311,7 +312,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 3; /* Sits on TOP of page content */
+            z-index: 3; /* Sits ON TOP of the page wrapper */
             overflow: hidden;
         }
         .fog-layer {
@@ -326,12 +327,14 @@
             transition: transform 0.2s linear;
         }
         .fog-layer-1 {
-            background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d9632053158c5383f_fog-1.png');
+            /* Using your new GitHub link */
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-1.png');
             background-size: cover;
             opacity: 0.15;
         }
         .fog-layer-2 {
-            background-image: url('https://uploads-ssl.webflow.com/624f3e36e9533b3e23658514/6251a31d4281a8161514339e_fog-2.png');
+            /* Using your new GitHub link */
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-2.png');
             background-size: cover;
             opacity: 0.2;
         }
@@ -419,203 +422,4 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .fogbound-theme .modal-form button:hover {
-            background-color: #e0e1dd;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .fh-hero h1 {
-                font-size: 3rem;
-            }
-            .fh-hero .fh-tagline, .fh-synopsis-text p {
-                font-size: 1rem;
-            }
-            .fh-synopsis {
-                text-align: center;
-            }
-            .fh-synopsis-cover {
-                margin: 0 auto 2rem auto;
-            }
-            .fh-section {
-                padding: 3rem 1.5rem;
-            }
-            .fh-synopsis-text h2, .fh-trailer h2, .fh-features h2, .fh-final-cta h2 {
-                font-size: 2rem;
-            }
-            .fh-final-cta h2 {
-                font-size: 2.2rem;
-            }
-            .review-slide {
-                padding: 0 1rem;
-            }
-        }
-    </style>
-</head>
-<body class="fogbound-theme">
-
-    <div id="fog-container">
-        <div class="fog-layer fog-layer-1"></div>
-        <div class="fog-layer fog-layer-2"></div>
-    </div>
-    
-    <div class="page-wrapper">
-        <header>
-            <div class="logo">Aleks Filmore</div>
-            <div class="tagline">Queer Stories. Real Chaos.</div>
-        </header>
-
-        <main>
-            <section class="fh-hero">
-                <div class="fh-hero-content">
-                    <h1 class="fh-title">Fogbound Hearts</h1>
-                    <p class="fh-author">By Aleks Filmore</p>
-                    <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
-                </div>
-            </section>
-
-            <section id="about" class="fh-section">
-                <div class="fh-container fh-synopsis">
-                    <div class="fh-synopsis-cover">
-                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
-                    </div>
-                    <div class="fh-synopsis-text">
-                        <h2>Some secrets are best left buried in the fog.</h2>
-                        <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, journals filled with warnings, and a fog that seems to know his name.</p>
-                        <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="trailer" class="fh-section fh-trailer">
-                <div class="fh-container">
-                    <h2>A Town That Doesn’t Forget</h2>
-                    <div class="fh-trailer-embed">
-                        <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                    </div>
-                </div>
-            </section>
-
-            <section id="features" class="fh-section fh-features">
-                <div class="fh-container">
-                    <h2>For Fans Of...</h2>
-                    <div class="fh-features-grid">
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-ghost"></i>
-                            <h3>Gothic Romance</h3>
-                            <p>Dark atmosphere and psychological depth.</p>
-                        </div>
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-book-skull"></i>
-                            <h3>Supernatural Suspense</h3>
-                            <p>Haunted towns with slow-burn, eerie tension.</p>
-                        </div>
-                        <div class="fh-feature-item">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                            <h3>Queer Mystery</h3>
-                            <p>Thrillers that blend romance with a sense of dread.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reviews" class="fh-section fh-reviews">
-                <div class="review-slider-container">
-                    <div class="review-slider-track">
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
-                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
-                                <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                        <div class="review-slide">
-                             <blockquote>
-                                <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
-                                <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="fh-section fh-final-cta">
-                <div class="fh-container">
-                    <h2>Can love survive where curses were born?</h2>
-                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-            <div class="footer-contact-link">
-                <a href="#" id="open-contact-modal">Contact Me</a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-            </div>
-        </footer>
-    </div>
-
-    <div id="contact-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2>Contact Me</h2>
-            <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Modal script
-        const contactModal = document.getElementById('contact-modal');
-        const openBtn = document.getElementById('open-contact-modal');
-        const closeBtn = document.querySelector('.modal-close');
-        if(openBtn) {
-            const openModal = function(event) {
-                event.preventDefault();
-                contactModal.style.display = 'flex';
-            };
-            const closeModal = function() {
-                contactModal.style.display = 'none';
-            };
-            openBtn.addEventListener('click', openModal);
-            closeBtn.addEventListener('click', closeModal);
-            window.addEventListener('click', function(event) {
-                if (event.target === contactModal) {
-                    closeModal();
-                }
-            });
-        }
-
-        // Interactive Fog Script
-        const fogLayer1 = document.querySelector('.fog-layer-1');
-        const fogLayer2 = document.querySelector('.fog-layer-2');
-        document.addEventListener('mousemove', function(e) {
-            if (fogLayer1 && fogLayer2) {
-                const { clientX, clientY } = e;
-                const x = (clientX / window.innerWidth) * 40 - 20;
-                const y = (clientY / window.innerHeight) * 40 - 20;
-                
-                fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
-                fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
-            }
-        });
-    </script>
-
-</body>
-</html>
+            background-color: #e
