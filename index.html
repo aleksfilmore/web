@@ -7,6 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* SMOOTH SCROLLING ADDED HERE */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
@@ -328,8 +332,6 @@
         .cta-button:hover {
             background: #176f72;
         }
-
-        /* ============== AUDIOBOOK PROMO SECTION STYLES ============== */
         .audiobook-promo {
             background-color: #208e92;
             background-image: url('https://www.transparenttextures.com/patterns/wavecut.png');
@@ -395,8 +397,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
-
-        /* ============== STYLES FOR ABOUT SECTION AND FOOTER ============== */
         .about-section {
             padding: 3rem 1.5rem;
             background-color: #ffc19c;
@@ -464,8 +464,6 @@
             margin: 0;
             color: rgba(255, 255, 255, 0.7);
         }
-
-        /* Responsive adjustments for layout */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -488,7 +486,7 @@
                 grid-template-columns: 1fr;
             }
             .cringe-card {
-                height: 220px; /* Give it some space on mobile */
+                height: 220px;
             }
             .audiobook-promo h2 {
                 font-size: 2.2rem;
@@ -511,7 +509,8 @@
         <span>Recently Ranked: <strong>#1</strong> in LGBTQ+ Humor · <strong>#2</strong> in Gay Fiction · <strong>#2</strong> in Gay Romance</span>
         <small>*Free Kindle rankings, July 2025</small>
     </div>
-    <section class="hero">
+
+    <section class="hero" id="signup-form">
         <div class="hero-content">
             <h1><span style="display:block; font-size:3.5rem; font-weight:bold;">Breakups.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Meltdowns.</span> <span style="display:block; font-size:3.5rem; font-weight:bold;">Mistakes.</span></h1>
             <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
@@ -526,6 +525,7 @@
             <a href="https://a.co/d/j2SrpJl" class="buy-btn">Available on Amazon</a>
         </div>
     </section>
+
     <div class="marquee-reviews">
         <div class="review-track">
             <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
@@ -570,7 +570,9 @@
         <p>
             The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
         </p>
-        <a href="https://formspree.io/f/myzjjjjp" class="audio-cta">Notify Me When It Drops</a>
+        
+        <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
+
         <div class="platforms">
             <span>Available Soon On:</span>
             <i class="fa-brands fa-spotify" title="Spotify"></i>
@@ -582,7 +584,9 @@
 
     <section class="about-section">
         <div class="about-container">
-            <img src="https://github.com/aleksfilmore/web/blob/e90473ebc59ff4409359bd52dd37421120795e07/AF.png" alt="Author Aleks Filmore" class="about-photo">
+            
+            <img src="https://raw.githubusercontent.com/aleksfilmore/web/e90473ebc59ff4409359bd52dd37421120795e07/AF.png" alt="Author Aleks Filmore" class="about-photo">
+            
             <div class="about-text">
                 <h2>About Aleks Filmore</h2>
                 <p>
