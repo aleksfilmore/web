@@ -31,8 +31,9 @@
             background-color: #121416;
             color: #e0e1dd;
         }
-        header, main, footer {
-            position: relative; /* Establish stacking context for all main elements */
+        .page-wrapper {
+            position: relative;
+            z-index: 2;
         }
         header {
             padding: 1rem;
@@ -41,7 +42,6 @@
             align-items: center;
             background-color: #ffc19c;
             color: #000;
-            z-index: 10; /* Header sits above fog and content */
         }
         .logo {
             font-weight: bold;
@@ -51,14 +51,13 @@
             font-size: 0.9rem;
         }
         main {
-            z-index: 2; /* Main content sits above body background */
+            background-color: #121416;
         }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
-            z-index: 10; /* Footer sits above fog and content */
         }
         .footer-social-links a {
             color: #ffffff;
@@ -151,7 +150,6 @@
 
         .fh-section {
             padding: 5rem 2rem;
-            background-color: #121416;
         }
         .fh-container {
             max-width: 1000px;
@@ -314,7 +312,6 @@
             }
         }
         
-        /* ============== INTERACTIVE FOG STYLES (CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -322,7 +319,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5; /* Sits ON TOP of the main content but below header/footer */
+            z-index: 3;
             overflow: hidden;
         }
         .fog-layer {
@@ -347,7 +344,6 @@
             opacity: 0.2;
         }
         
-        /* ============== THEMED CONTACT MODAL STYLES ============== */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -376,10 +372,6 @@
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
         .modal-close {
             position: absolute;
@@ -484,7 +476,6 @@
             color: #000;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .fh-hero h1 {
                 font-size: 3rem;
@@ -520,111 +511,113 @@
         <div class="fog-layer fog-layer-2"></div>
     </div>
     
-    <header>
-        <div class="logo">Aleks Filmore</div>
-        <div class="tagline">Queer Stories. Real Chaos.</div>
-    </header>
+    <div class="page-wrapper">
+        <header>
+            <div class="logo">Aleks Filmore</div>
+            <div class="tagline">Queer Stories. Real Chaos.</div>
+        </header>
 
-    <main>
-        <section class="fh-hero">
-            <div class="fh-hero-content">
-                <h1 class="fh-title">Fogbound Hearts</h1>
-                <p class="fh-author">By Aleks Filmore</p>
-                <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
-                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
-            </div>
-        </section>
-
-        <section id="about" class="fh-section">
-            <div class="fh-container fh-synopsis">
-                <div class="fh-synopsis-cover">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
+        <main>
+            <section class="fh-hero">
+                <div class="fh-hero-content">
+                    <h1 class="fh-title">Fogbound Hearts</h1>
+                    <p class="fh-author">By Aleks Filmore</p>
+                    <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
+                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
                 </div>
-                <div class="fh-synopsis-text">
-                    <h2>Some secrets are best left buried in the fog.</h2>
-                    <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
-                    <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="trailer" class="fh-section fh-trailer">
-            <div class="fh-container">
-                <h2>A Town That Doesn’t Forget</h2>
-                <div class="fh-trailer-embed">
-                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="fh-section fh-features">
-            <div class="fh-container">
-                <h2>For Fans Of...</h2>
-                <div class="fh-features-grid">
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-ghost"></i>
-                        <h3>Gothic Romance</h3>
-                        <p>Dark atmosphere and psychological depth.</p>
+            <section id="about" class="fh-section">
+                <div class="fh-container fh-synopsis">
+                    <div class="fh-synopsis-cover">
+                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
                     </div>
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-book-skull"></i>
-                        <h3>Supernatural Suspense</h3>
-                        <p>Haunted towns with slow-burn, eerie tension.</p>
-                    </div>
-                    <div class="fh-feature-item">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                        <h3>Queer Mystery</h3>
-                        <p>Thrillers that blend romance with a sense of dread.</p>
+                    <div class="fh-synopsis-text">
+                        <h2>Some secrets are best left buried in the fog.</h2>
+                        <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, <a href="#" id="open-journal-modal">journals filled with warnings</a>, and a fog that seems to know his name.</p>
+                        <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="reviews" class="fh-section fh-reviews">
-            <div class="review-slider-container">
-                <div class="review-slider-track">
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
-                            <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
-                        </blockquote>
-                    </div>
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
-                            <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
-                        </blockquote>
-                    </div>
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
-                            <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
-                        </blockquote>
+            <section id="trailer" class="fh-section fh-trailer">
+                <div class="fh-container">
+                    <h2>A Town That Doesn’t Forget</h2>
+                    <div class="fh-trailer-embed">
+                        <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="fh-section fh-final-cta">
-            <div class="fh-container">
-                <h2>Can love survive where curses were born?</h2>
-                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
-            </div>
-        </section>
-    </main>
+            <section id="features" class="fh-section fh-features">
+                <div class="fh-container">
+                    <h2>For Fans Of...</h2>
+                    <div class="fh-features-grid">
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-ghost"></i>
+                            <h3>Gothic Romance</h3>
+                            <p>Dark atmosphere and psychological depth.</p>
+                        </div>
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-book-skull"></i>
+                            <h3>Supernatural Suspense</h3>
+                            <p>Haunted towns with slow-burn, eerie tension.</p>
+                        </div>
+                        <div class="fh-feature-item">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <h3>Queer Mystery</h3>
+                            <p>Thrillers that blend romance with a sense of dread.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <footer>
-        <div class="footer-social-links">
-            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <div class="footer-contact-link">
-            <a href="#" id="open-contact-modal">Contact Me</a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-        </div>
-    </footer>
+            <section id="reviews" class="fh-section fh-reviews">
+                <div class="review-slider-container">
+                    <div class="review-slider-track">
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
+                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
+                            </blockquote>
+                        </div>
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
+                                <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
+                            </blockquote>
+                        </div>
+                        <div class="review-slide">
+                             <blockquote>
+                                <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
+                                <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fh-section fh-final-cta">
+                <div class="fh-container">
+                    <h2>Can love survive where curses were born?</h2>
+                    <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-social-links">
+                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="footer-contact-link">
+                <a href="#" id="open-contact-modal">Contact Me</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
 
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
@@ -648,8 +641,8 @@
         </div>
     </div>
 
-    <audio id="ambient-sound" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/10/19/audio_a7a0659639.mp3" type="audio/mpeg">
+    <audio id="ambient-sound" loop muted>
+        <source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg">
     </audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
 
@@ -709,27 +702,23 @@
             });
         }
         
-        // --- CORRECTED Ambient Audio Script ---
+        // --- FINAL, ROBUST Ambient Audio Script ---
         const soundBtn = document.getElementById('sound-toggle');
         const audio = document.getElementById('ambient-sound');
-        if(soundBtn && audio) {
-            // Set initial state for some browsers
-            audio.muted = true;
-
+        if (soundBtn && audio) {
             soundBtn.addEventListener('click', () => {
-                // If audio is paused, it's the first click. Try to play it.
+                // If audio is paused, it's the first click. We need to start it.
                 if (audio.paused) {
-                    audio.play().catch(e => console.error("Audio play failed:", e));
+                    audio.play().catch(e => {
+                        console.error("Audio playback failed:", e);
+                    });
                 }
 
-                // Toggle mute state
-                if (audio.muted) {
-                    audio.muted = false;
-                    soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-                } else {
-                    audio.muted = true;
-                    soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-                }
+                // Toggle the mute state
+                audio.muted = !audio.muted;
+
+                // Update the icon based on the new mute state
+                soundBtn.innerHTML = audio.muted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
             });
         }
     </script>
