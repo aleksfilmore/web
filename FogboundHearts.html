@@ -28,13 +28,12 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #121416; /* Main background color is here */
+            background-color: #121416;
             color: #e0e1dd;
         }
         .page-wrapper {
             position: relative;
-            z-index: 2; /* Sits above the fog */
-            background-color: transparent; /* THIS IS THE KEY FIX: The wrapper must be transparent */
+            z-index: 2; /* Sits below the fog */
         }
         header {
             padding: 1rem;
@@ -52,7 +51,7 @@
             font-size: 0.9rem;
         }
         main {
-            background-color: #121416; /* Give main a background color */
+            background-color: #121416;
         }
         footer {
             background-color: #f35b4e;
@@ -304,7 +303,7 @@
             margin: 0 auto 2rem auto;
         }
 
-        /* ============== INTERACTIVE FOG STYLES ============== */
+        /* ============== INTERACTIVE FOG STYLES (Z-INDEX CORRECTED) ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -312,7 +311,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1; /* Sits above body, below content wrapper */
+            z-index: 3; /* Sits on TOP of page content */
             overflow: hidden;
         }
         .fog-layer {
@@ -466,7 +465,6 @@
         </header>
 
         <main>
-
             <section class="fh-hero">
                 <div class="fh-hero-content">
                     <h1 class="fh-title">Fogbound Hearts</h1>
@@ -526,20 +524,20 @@
                     <div class="review-slider-track">
                         <div class="review-slide">
                              <blockquote>
-                                <p>"This is an absolute must-read for anyone who loves a haunting, atmospheric story with a queer heart. The mystery of Eldermist will stay with you long after you've finished."</p>
-                                <footer><span class="star-rating">★★★★★</span> — The Queer Quill</footer>
+                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
+                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
                             </blockquote>
                         </div>
                         <div class="review-slide">
                              <blockquote>
-                                <p>"Aleks Filmore has crafted a masterpiece of modern gothic fiction. The slow-burn romance is both tender and fraught with danger, making it impossible to put down."</p>
-                                <footer><span class="star-rating">★★★★★</span> — Readers' Roost</footer>
+                                <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
+                                <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
                             </blockquote>
                         </div>
                         <div class="review-slide">
                              <blockquote>
-                                <p>"Good book, good writing, the plot is interesting enough to keep you hooked."</p>
-                                <footer><span class="star-rating">★★★★★</span> — F., Amazon Review</footer>
+                                <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
+                                <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
                             </blockquote>
                         </div>
                     </div>
@@ -552,7 +550,6 @@
                     <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
                 </div>
             </section>
-
         </main>
 
         <footer>
