@@ -6,7 +6,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-W9B5W1241H');
     </script>
     <meta charset="UTF-8" />
@@ -44,16 +43,16 @@
             font-size: 0.9rem;
         }
         
-        /* ============== ENHANCED ANNOUNCEMENT BAR STYLES ============== */
+        /* ============== CORRECTED ANNOUNCEMENT BAR STYLES ============== */
         .announcement-bar {
             background-color: #208e92;
             color: #fff;
-            padding: 0.75rem 1rem;
             font-size: 0.9rem;
             line-height: 1.4;
             text-align: center;
-            overflow: hidden; /* This is crucial for the sliding effect */
-            height: 45px; /* Set a fixed height for the container */
+            overflow: hidden; /* Crucial for the sliding effect */
+            height: 45px; /* Fixed height for the container */
+            padding: 0 1rem; /* Use padding for horizontal spacing only */
             box-sizing: border-box;
             display: flex;
             justify-content: center;
@@ -67,9 +66,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 45px;
+            height: 45px; /* Each item should match the container height */
             box-sizing: border-box;
-            padding-bottom: 0.75rem;
         }
         .announcement-item strong {
             color: #ffa711;
@@ -78,6 +76,7 @@
         .announcement-item small {
             font-size: 0.7rem;
             opacity: 0.85;
+            padding-top: 2px;
         }
         @keyframes slide-vertical {
             0%   { transform: translateY(0); }
