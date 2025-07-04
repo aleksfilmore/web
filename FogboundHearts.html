@@ -312,7 +312,6 @@
             }
         }
         
-        /* ============== INTERACTIVE FOG STYLES ============== */
         #fog-container {
             position: fixed;
             top: 0;
@@ -320,7 +319,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 3; /* Sits ON TOP of the main content */
+            z-index: 3;
             overflow: hidden;
         }
         .fog-layer {
@@ -345,7 +344,6 @@
             opacity: 0.2;
         }
         
-        /* ============== THEMED CONTACT MODAL STYLES ============== */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -375,27 +373,24 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
         }
-        .fogbound-theme .modal-close {
-            color: #888;
+        .modal-close {
             position: absolute;
             top: 10px;
             right: 20px;
             font-size: 28px;
             font-weight: bold;
             transition: color 0.3s;
-        }
-        .fogbound-theme .modal-close:hover,
-        .fogbound-theme .modal-close:focus {
-            color: #cda274;
-            text-decoration: none;
             cursor: pointer;
         }
-        .fogbound-theme .modal-form input[type="text"],
-        .fogbound-theme .modal-form input[type="email"],
-        .fogbound-theme .modal-form textarea {
-            background-color: #121416;
-            border: 1px solid #333;
-            color: #e0e1dd;
+        .fogbound-theme .modal-close {
+            color: #888;
+        }
+        .fogbound-theme .modal-close:hover {
+            color: #cda274;
+        }
+        .modal-form input[type="text"],
+        .modal-form input[type="email"],
+        .modal-form textarea {
             width: 100%;
             padding: 12px;
             margin-bottom: 1rem;
@@ -403,6 +398,12 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
+        }
+        .fogbound-theme .modal-form input,
+        .fogbound-theme .modal-form textarea {
+            background-color: #121416;
+            border: 1px solid #333;
+            color: #e0e1dd;
         }
         .fogbound-theme .modal-form input::placeholder,
         .fogbound-theme .modal-form textarea::placeholder {
@@ -429,7 +430,6 @@
             background-color: #e0e1dd;
         }
 
-        /* NEW: Styles for the Cursed Journal Link & Modal */
         #open-journal-modal {
             color: #cda274;
             text-decoration: underline;
@@ -455,7 +455,6 @@
             line-height: 2.2;
         }
         
-        /* NEW: Styles for the Audio Toggle */
         #sound-toggle {
             position: fixed;
             bottom: 20px;
@@ -477,7 +476,6 @@
             color: #000;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .fh-hero h1 {
                 font-size: 3rem;
@@ -634,7 +632,7 @@
             </form>
         </div>
     </div>
-
+    
     <div id="journal-modal" class="modal-backdrop">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
@@ -643,7 +641,7 @@
         </div>
     </div>
 
-    <audio id="ambient-sound" loop muted>
+    <audio id="ambient-sound" loop>
         <source src="https://cdn.pixabay.com/download/audio/2022/10/19/audio_a7a0659639.mp3" type="audio/mpeg">
     </audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
@@ -704,16 +702,17 @@
             });
         }
         
-        // --- Ambient Audio Script ---
+        // --- CORRECTED Ambient Audio Script ---
         const soundBtn = document.getElementById('sound-toggle');
         const audio = document.getElementById('ambient-sound');
         if(soundBtn && audio) {
-            // A small hack to get audio to play on user interaction
-            document.body.addEventListener('mousemove', () => {
-                audio.play().catch(()=>{});
-            }, { once: true });
-
             soundBtn.addEventListener('click', () => {
+                // If audio is paused, it's the first click. Play it.
+                if (audio.paused) {
+                    audio.play().catch(e => console.error("Audio play failed:", e));
+                }
+
+                // Toggle mute state
                 if (audio.muted) {
                     audio.muted = false;
                     soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
