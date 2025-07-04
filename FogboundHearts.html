@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W9B5W1241H');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fogbound Hearts | Aleks Filmore</title>
+    
+    <meta name="description" content="Fogbound Hearts: A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts. A new supernatural novel by Aleks Filmore.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌫️</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Base & Reused Styles --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #121416; /* Dark base for this page */
+            color: #e0e1dd; /* Misty off-white for text */
+        }
+        header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffc19c; /* Reused from main site */
+            color: #000;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .tagline {
+            font-size: 0.9rem;
+        }
+        footer {
+            background-color: #f35b4e; /* Reused from main site */
+            color: #fff2db;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-social-links a {
+            color: #ffffff;
+            font-size: 28px;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease, opacity 0.3s;
+        }
+        .footer-social-links a:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        .footer-contact-link {
+            margin: 20px 0;
+        }
+        .footer-contact-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px dotted #ffffff;
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .footer-contact-link a:hover {
+            opacity: 0.8;
+        }
+        .footer-copyright p {
+            font-size: 14px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* --- Page-Specific Styles for Fogbound Hearts --- */
+        .fh-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 90vh;
+            color: #ffffff;
+            padding: 2rem;
+            background-image: linear-gradient(rgba(18, 20, 22, 0.8), rgba(18, 20, 22, 0.6)), url('https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Mansion%201.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        .fh-hero-content {
+            max-width: 800px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fh-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+        }
+        .fh-hero .fh-tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 1rem 0 2rem 0;
+            color: #e0e1dd;
+            letter-spacing: 0.5px;
+        }
+        .fh-author {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .fh-cta-button {
+            display: inline-block;
+            background-color: #cda274; /* A muted gold accent */
+            color: #121416;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .fh-cta-button:hover {
+            background-color: #e0e1dd;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .fh-section {
+            padding: 5rem 2rem;
+        }
+        .fh-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fh-synopsis {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .fh-synopsis-cover {
+            flex: 1;
+            min-width: 280px;
+        }
+        .fh-synopsis-cover img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .fh-synopsis-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        .fh-synopsis-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+        .fh-synopsis-text p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .fh-trailer {
+            background-color: #0c0d0e;
+            text-align: center;
+        }
+        .fh-trailer h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+        .fh-trailer-embed {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .fh-trailer-embed iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+        }
+
+        .fh-features {
+            text-align: center;
+        }
+        .fh-features h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .fh-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .fh-feature-item {
+            text-align: center;
+        }
+        .fh-feature-item i {
+            font-size: 2.5rem;
+            color: #cda274;
+            margin-bottom: 1rem;
+        }
+        .fh-feature-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .fh-reviews {
+            background-color: #1a1c1e;
+        }
+        .fh-reviews blockquote {
+            border-left: 4px solid #cda274;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            max-width: 700px;
+            font-size: 1.2rem;
+            font-style: italic;
+            position: relative;
+        }
+        .fh-reviews footer {
+            background: none;
+            padding: 0;
+            margin-top: 1rem;
+            text-align: right;
+            font-style: normal;
+            font-weight: bold;
+            color: #e0e1dd;
+        }
+        .fh-reviews .star-rating {
+            color: #cda274;
+        }
+
+        .fh-final-cta {
+            text-align: center;
+            background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/main/Daniel%20and%20the%20Lighthouse%202.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .fh-final-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .fh-hero h1 {
+                font-size: 3rem;
+            }
+            .fh-hero .fh-tagline, .fh-synopsis-text p {
+                font-size: 1rem;
+            }
+            .fh-synopsis {
+                text-align: center;
+            }
+            .fh-synopsis-cover {
+                margin: 0 auto 2rem auto;
+            }
+            .fh-section {
+                padding: 3rem 1.5rem;
+            }
+            .fh-synopsis-text h2, .fh-trailer h2, .fh-features h2, .fh-final-cta h2 {
+                font-size: 2rem;
+            }
+            .fh-final-cta h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Aleks Filmore</div>
+        <div class="tagline">Queer Stories. Real Chaos.</div>
+    </header>
+
+    <main>
+
+        <section class="fh-hero">
+            <div class="fh-hero-content">
+                <h1 class="fh-title">Fogbound Hearts</h1>
+                <p class="fh-author">By Aleks Filmore</p>
+                <p class="fh-tagline">A Queer Gothic Romance of Curses, Obsession, and the Fog That Never Lifts</p>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
+            </div>
+        </section>
+
+        <section id="about" class="fh-section">
+            <div class="fh-container fh-synopsis">
+                <div class="fh-synopsis-cover">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/d7f7c3e1cac37db535e2ca4127188debea8e9e2e/Fogbound%20Hearts.png" alt="Book cover of Fogbound Hearts">
+                </div>
+                <div class="fh-synopsis-text">
+                    <h2>Some secrets are best left buried in the fog.</h2>
+                    <p>When Daniel Hartley inherits a decaying seaside mansion in the forgotten town of Eldermist, he expects answers about his estranged uncle’s mysterious death. Instead, he finds rooms that echo with ghostly whispers, journals filled with warnings, and a fog that seems to know his name.</p>
+                    <p>Drawn deeper into the unsettling legacy of Eldermist Manor, Daniel meets Simon Calloway—a reclusive bookseller whose presence feels like both a balm and a danger. But something in Eldermist is watching. Something ancient. And it has been waiting for Daniel’s return.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trailer" class="fh-section fh-trailer">
+            <div class="fh-container">
+                <h2>A Town That Doesn’t Forget</h2>
+                <div class="fh-trailer-embed">
+                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="fh-section fh-features">
+            <div class="fh-container">
+                <h2>For Fans Of...</h2>
+                <div class="fh-features-grid">
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-ghost"></i>
+                        <h3>Gothic Romance</h3>
+                        <p>Dark atmosphere and psychological depth.</p>
+                    </div>
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-book-skull"></i>
+                        <h3>Supernatural Suspense</h3>
+                        <p>Haunted towns with slow-burn, eerie tension.</p>
+                    </div>
+                    <div class="fh-feature-item">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <h3>Queer Mystery</h3>
+                        <p>Thrillers that blend romance with a sense of dread.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="fh-section fh-reviews">
+            <div class="fh-container">
+                <blockquote>
+                    <p>"Good book, good writing, the plot is interesting enough to keep you hooked."</p>
+                    <footer>
+                        <span class="star-rating">★★★★★</span>
+                        — F., Amazon Review
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="fh-section fh-final-cta">
+            <div class="fh-container">
+                <h2>Can love survive where curses were born?</h2>
+                <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Embrace the Fog. Read Today.</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="footer-contact-link">
+            <a href="#" id="open-contact-modal">Contact Me</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Contact Me</h2>
+            <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal script
+        const contactModal = document.getElementById('contact-modal');
+        const openBtn = document.getElementById('open-contact-modal');
+        const closeBtn = document.querySelector('.modal-close');
+        const openModal = function(event) {
+            event.preventDefault();
+            contactModal.style.display = 'flex';
+        };
+        const closeModal = function() {
+            contactModal.style.display = 'none';
+        };
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', function(event) {
+            if (event.target === contactModal) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
