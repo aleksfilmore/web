@@ -233,7 +233,8 @@
             0% { transform: translateX(0%); }
             100% { transform: translateX(-100%); }
         }
-        .cringe-index-header {
+        /* START New/Modified Styles for Interactive Sections */
+        .section-header {
             font-size: 1.5rem;
             text-align: center;
             margin: 2rem auto 0.5rem;
@@ -242,97 +243,233 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .cringe-subheader {
+        .section-subheader {
             text-align: center;
             font-size: 0.95rem;
             margin-bottom: 2rem;
             color: #333;
         }
-        .cringe-index {
+
+        /* Mugshot Gallery Styles */
+        .mugshot-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            padding-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 1200px; /* Adjust as needed */
+            margin: 0 auto 3rem auto;
         }
-        .cringe-card {
-            background: #f35b4e;
-            border-radius: 16px;
-            color: white;
-            position: relative;
-            font-size: 0.95rem;
-            perspective: 1000px;
-            height: 200px;
-        }
-        .cringe-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-        .cringe-card:hover .cringe-card-inner {
-            transform: rotateY(180deg);
-        }
-        .cringe-card-front, .cringe-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            padding: 1.5rem 1rem;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .cringe-card-front {
-            background: #f35b4e;
-        }
-        .cringe-card-front h3 {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .cringe-card-front p {
-            color: #fff2db;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .cringe-card-back {
-            background: #208e92;
-            color: #fff;
-            transform: rotateY(180deg);
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .thermometer {
-            background: #fff2db;
-            height: 10px;
+        .mugshot-card {
+            background-color: #ffc19c;
             border-radius: 10px;
             overflow: hidden;
-            margin-top: auto;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease-in-out;
+            height: 200px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 1rem;
+            box-sizing: border-box;
         }
-        .thermometer-fill {
-            height: 100%;
-            background: linear-gradient(to right, #ffa711, #f35b4e);
+        .mugshot-card:hover {
+            transform: translateY(-5px);
+        }
+        .mugshot-card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%) blur(2px); /* Stylized mugshot effect */
+            transition: filter 0.3s ease;
         }
-        .thermometer-label {
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            color: #fff2db;
-            text-align: right;
+        .mugshot-card:hover .mugshot-card-img {
+            filter: grayscale(0%) blur(0px); /* Clear on hover */
         }
-        .cringe-info {
+        .mugshot-card-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
             text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            z-index: 2; /* Above the image */
+            transition: opacity 0.3s ease;
+        }
+        .mugshot-card.revealed .mugshot-card-title {
+            opacity: 0; /* Hide title when charge is shown */
+        }
+        .mugshot-card-charge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(243, 91, 78, 0.9); /* Red overlay */
+            color: white;
+            padding: 0.75rem;
             font-size: 0.9rem;
-            color: #444;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100%);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            box-sizing: border-box;
+            z-index: 3;
+        }
+        .mugshot-card.revealed .mugshot-card-charge {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Red Flag Quiz Styles */
+        .quiz-container {
+            max-width: 700px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: #f35b4e;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            color: white;
+            text-align: center;
+        }
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        .quiz-options button {
+            display: block;
+            width: 90%;
+            margin: 0.75rem auto;
+            padding: 1rem 1.5rem;
+            background-color: #ffc19c;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: left;
+        }
+        .quiz-options button:hover {
+            background-color: #ffa711;
+            transform: translateY(-2px);
+        }
+        .quiz-options button:active {
+            transform: translateY(0);
+        }
+        .quiz-progress {
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            opacity: 0.8;
+        }
+        .quiz-result {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffa711;
+            background-color: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        .quiz-result p {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #fff2db;
+            margin-top: 0.5rem;
+        }
+        #quiz-start-btn, #quiz-reset-btn {
+            background-color: #ffa711;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             margin-top: 1.5rem;
         }
+        #quiz-start-btn:hover, #quiz-reset-btn:hover {
+            background-color: #ffb733;
+        }
+        
+        /* Bad Date Bingo Styles */
+        .bingo-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: #208e92;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            color: white;
+            text-align: center;
+        }
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+        .bingo-square {
+            background-color: #ffc19c;
+            color: #000;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 100px; /* Ensure squares are visible */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .bingo-square:hover:not(.checked) {
+            background-color: #ffa711;
+            transform: translateY(-2px);
+        }
+        .bingo-square.checked {
+            background-color: #f35b4e;
+            color: white;
+            text-decoration: line-through;
+            opacity: 0.8;
+            transform: scale(0.98);
+        }
+        .bingo-message {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffa711;
+        }
+        #bingo-reset-btn {
+            background-color: #ffa711;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem;
+        }
+        #bingo-reset-btn:hover {
+            background-color: #ffb733;
+        }
+
+        /* END New/Modified Styles */
         .cta-button {
             display: block;
             width: fit-content;
@@ -588,11 +725,12 @@
             .hero p {
                 font-size: 1.2rem;
             }
-            .cringe-index {
-                grid-template-columns: 1fr;
+            /* Adjust mugshot gallery for smaller screens */
+            .mugshot-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
-            .cringe-card {
-                height: 220px;
+            .mugshot-card {
+                height: 180px;
             }
             .audiobook-promo h2 {
                 font-size: 2.2rem;
@@ -614,6 +752,18 @@
             }
             .hero p {
                 font-size: 1.1rem;
+            }
+            .mugshot-gallery {
+                grid-template-columns: 1fr; /* Stack on very small screens */
+            }
+            .mugshot-card {
+                height: 160px;
+            }
+            .quiz-options button {
+                width: 100%;
+            }
+            .bingo-square {
+                min-height: 80px;
             }
         }
     </style>
@@ -660,6 +810,7 @@
             <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
         </div>
     </div>
+    
     <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
         <div style="max-width: 1000px; margin: auto;">
             <div style="margin-bottom: 2rem;">
@@ -674,20 +825,147 @@
                     You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:#f35b4e; font-weight:bold; text-decoration:underline;">a little dangerous.</span>
                 </p>
             </div>
-            <div class="cringe-index-header">CRINGE INDEX</div>
-            <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
-            <div class="cringe-index">
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Conspiracist</h3><p>“Vaccines, chemtrails, and our third date were all a lie.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Told me 5G turned frogs gay, but wouldn't get a flu shot.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Kinkster</h3><p>“Brought a rubber chicken to bed and called it foreplay.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Polyamorist</h3><p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Crier</h3><p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 40%"></div></div><div class="thermometer-label">2/5 – Mild Regret</div></div><div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Ghoster</h3><p>“Vanished for 10 days. Then texted ‘hey’ like nothing.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 60%"></div></div><div class="thermometer-label">3/5 – Cringe Spiral</div></div><div class="cringe-card-back">“Disappeared mid-convo. Came back with memes.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Party Animal</h3><p>“Said ‘I love you’ at 3 a.m. in a club. Then made out with his ex at 3:05.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Offered me molly and a relationship.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Gambler</h3><p>“Burned through my savings, pawned my watch, and still said we were ‘building a future.’”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Used my heirloom watch as a poker buy-in.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Liar</h3><p>“Faked nobility, lied about his name, and said his ex was dead. Spoiler: he was on Instagram.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Claimed to own a Dalí. Couldn’t spell ‘Dalí.’”</div></div></div>
-            </div>
+            
+            <h2 class="section-header">Ex-Boyfriend Mugshot Gallery</h2>
+            <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes!</p>
+            <div class="mugshot-gallery animated-section">
+                <div class="mugshot-card" data-charge="Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.">
+                    <img src="https://via.placeholder.com/200x200?text=Gambler" alt="The Gambler" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Gambler</h3>
+                    <p class="mugshot-card-charge">Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'">
+                    <img src="https://via.placeholder.com/200x200?text=Ghoster" alt="The Ghoster" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Ghoster</h3>
+                    <p class="mugshot-card-charge">Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.">
+                    <img src="https://via.placeholder.com/200x200?text=Party+Animal" alt="The Party Animal" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Party Animal</h3>
+                    <p class="mugshot-card-charge">Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.">
+                    <img src="https://via.placeholder.com/200x200?text=Pet-Obsessed" alt="The Pet-Obsessed" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Pet-Obsessed</h3>
+                    <p class="mugshot-card-charge">Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'">
+                    <img src="https://via.placeholder.com/200x200?text=Crier" alt="The Crier" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Crier</h3>
+                    <p class="mugshot-card-charge">Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.">
+                    <img src="https://via.placeholder.com/200x200?text=Liar" alt="The Liar" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Liar</h3>
+                    <p class="mugshot-card-charge">Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'">
+                    <img src="https://via.placeholder.com/200x200?text=Kinkster" alt="The Kinkster" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Kinkster</h3>
+                    <p class="mugshot-card-charge">Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Considered charging his phone 'too much effort,' watched static instead of fetching the remote.">
+                    <img src="https://via.placeholder.com/200x200?text=Human+Sloth" alt="The Human Sloth" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Human Sloth</h3>
+                    <p class="mugshot-card-charge">Considered charging his phone 'too much effort,' watched static instead of fetching the remote.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'">
+                    <img src="https://via.placeholder.com/200x200?text=Fitness+Fanatic" alt="The Fitness Fanatic" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Fitness Fanatic</h3>
+                    <p class="mugshot-card-charge">Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.">
+                    <img src="https://via.placeholder.com/200x200?text=Perfectionist" alt="The Perfectionist" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Perfectionist</h3>
+                    <p class="mugshot-card-charge">Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Stored newspapers in the bathtub—said showers are 'for gym people.'">
+                    <img src="https://via.placeholder.com/200x200?text=Hoarder" alt="The Hoarder" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Hoarder</h3>
+                    <p class="mugshot-card-charge">Stored newspapers in the bathtub—said showers are 'for gym people.'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Stole my moisturizer because my 'dewy glow' mattered more than my feelings.">
+                    <img src="https://via.placeholder.com/200x200?text=Narcissist" alt="The Narcissist" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Narcissist</h3>
+                    <p class="mugshot-card-charge">Stole my moisturizer because my 'dewy glow' mattered more than my feelings.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Turned up 58 minutes late, blamed 'traffic,' lived two streets away.">
+                    <img src="https://via.placeholder.com/200x200?text=Late+One" alt="The Late One" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Late One</h3>
+                    <p class="mugshot-card-charge">Turned up 58 minutes late, blamed 'traffic,' lived two streets away.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Treated mini golf like the Olympics—trash-talked children on the next lane.">
+                    <img src="https://via.placeholder.com/200x200?text=Competitive" alt="The Competitive" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Competitive</h3>
+                    <p class="mugshot-card-charge">Treated mini golf like the Olympics—trash-talked children on the next lane.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.">
+                    <img src="https://via.placeholder.com/200x200?text=Conspiracist" alt="The Conspiracist" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Conspiracist</h3>
+                    <p class="mugshot-card-charge">Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.">
+                    <img src="https://via.placeholder.com/200x200?text=Wizard" alt="The Wizard" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Wizard</h3>
+                    <p class="mugshot-card-charge">Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.">
+                    <img src="https://via.placeholder.com/200x200?text=Planner" alt="The Planner" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Planner</h3>
+                    <p class="mugshot-card-charge">Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'">
+                    <img src="https://via.placeholder.com/200x200?text=Polyamorist" alt="The Polyamorist" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Polyamorist</h3>
+                    <p class="mugshot-card-charge">Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'</p>
+                </div>
+                <div class="mugshot-card" data-charge="Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.">
+                    <img src="https://via.placeholder.com/200x200?text=Apologizer" alt="The Apologizer" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The Apologizer</h3>
+                    <p class="mugshot-card-charge">Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.</p>
+                </div>
+                <div class="mugshot-card" data-charge="Perfect, kind, emotionally available—terrified me so much I ghosted myself.">
+                    <img src="https://via.placeholder.com/200x200?text=The+One" alt="The One Who Got Away" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">The One Who Got Away</h3>
+                    <p class="mugshot-card-charge">Perfect, kind, emotionally available—terrified me so much I ghosted myself.</p>
+                </div>
+                </div>
             <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
             <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
+        </div>
+    </section>
+
+    <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+        <h2 class="section-header">Red Flag Meter – Quick-n-Dirty Quiz</h2>
+        <p class="section-subheader">How good are you at spotting trouble? Find out below!</p>
+        <div class="quiz-container">
+            <div id="quiz-intro">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #fff2db;">Think you're a red flag pro? Test your dating survival instincts with our quick quiz!</p>
+                <button id="quiz-start-btn">Start Quiz</button>
+            </div>
+            <div id="quiz-questions" style="display: none;">
+                <div class="quiz-question" id="current-question"></div>
+                <div class="quiz-options" id="quiz-options"></div>
+                <div class="quiz-progress" id="quiz-progress"></div>
+            </div>
+            <div id="quiz-results" style="display: none;">
+                <div class="quiz-result">
+                    <span id="quiz-category"></span>
+                    <p id="quiz-blurb"></p>
+                </div>
+                <button id="quiz-reset-btn">Retake Quiz</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="bad-date-bingo animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+        <h2 class="section-header">Bad Date Bingo – 12 Squares of Regret</h2>
+        <p class="section-subheader">Ever had a date so bad, it felt like Bingo? Check off your experiences!</p>
+        <div class="bingo-container">
+            <div class="bingo-grid" id="bingo-grid">
+                </div>
+            <div class="bingo-message" id="bingo-message" style="display: none;"></div>
+            <button id="bingo-reset-btn">Reset Bingo</button>
         </div>
     </section>
 
@@ -805,6 +1083,226 @@
             // Add active class to the new current item
             announcementItems[currentItemIndex].classList.add('is-active');
         }, 6000); // 6000 milliseconds = 6 seconds
+
+
+        /* New JavaScript for Interactive Sections */
+
+        // Mugshot Gallery Logic
+        document.querySelectorAll('.mugshot-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('revealed');
+            });
+        });
+
+        // Red Flag Quiz Logic
+        const quizQuestions = [
+            {
+                question: "He needs your credit card for a “sure-thing” poker tourney. You…",
+                options: [
+                    { text: "Hand it over—high-risk, high love!", score: 1 },
+                    { text: "Ask when you’ll be repaid—then screenshot the convo.", score: 2 },
+                    { text: "Laugh, change your PIN, and text your therapist.", score: 3 }
+                ]
+            },
+            {
+                question: "His dog Daisy wedges herself between you two at dinner. You…",
+                options: [
+                    { text: "Offer Daisy your chair—true love has four paws!", score: 1 },
+                    { text: "Scoot over; at least the lab’s cute.", score: 2 },
+                    { text: "Realize you’re the third wheel and order a solo Uber.", score: 3 }
+                ]
+            },
+            {
+                question: "After a flawless date he ghosts for a week, then: “Dropped my phone in a lake—missed you!” Your reply?",
+                options: [
+                    { text: "“Aww, glad you’re OK! When can I see you?”", score: 1 },
+                    { text: "“Phones swim worse than excuses—coffee?”", score: 2 },
+                    { text: "Silence followed by a swift block.", score: 3 }
+                ]
+            },
+            {
+                question: "Anniversary invite lands in your inbox: a minute-by-minute clipboard itinerary. You feel…",
+                options: [
+                    { text: "Swoony—love is logistics!", score: 1 },
+                    { text: "Slightly flattered, slightly claustrophobic.", score: 2 },
+                    { text: "Like running—spontaneously and immediately.", score: 3 }
+                ]
+            },
+            {
+                question: "Mid-kissing, he unwraps clothespins and a rubber chicken. Your instinct?",
+                options: [
+                    { text: "“New kink unlocked—let’s go!”", score: 1 },
+                    { text: "“Uhh… boundaries chat?”", score: 2 },
+                    { text: "“Hard pass, poultry boy,” and reach for your pants.", score: 3 }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+
+        const quizIntro = document.getElementById('quiz-intro');
+        const quizQuestionsContainer = document.getElementById('quiz-questions');
+        const quizResultsContainer = document.getElementById('quiz-results');
+        const currentQuestionElem = document.getElementById('current-question');
+        const quizOptionsElem = document.getElementById('quiz-options');
+        const quizProgressElem = document.getElementById('quiz-progress');
+        const quizCategoryElem = document.getElementById('quiz-category');
+        const quizBlurbElem = document.getElementById('quiz-blurb');
+        const quizStartBtn = document.getElementById('quiz-start-btn');
+        const quizResetBtn = document.getElementById('quiz-reset-btn');
+
+        function startQuiz() {
+            quizIntro.style.display = 'none';
+            quizQuestionsContainer.style.display = 'block';
+            quizResultsContainer.style.display = 'none';
+            currentQuestionIndex = 0;
+            totalScore = 0;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const questionData = quizQuestions[currentQuestionIndex];
+            currentQuestionElem.textContent = questionData.question;
+            quizOptionsElem.innerHTML = '';
+            questionData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option.text;
+                button.onclick = () => selectAnswer(option.score);
+                quizOptionsElem.appendChild(button);
+            });
+            quizProgressElem.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+        }
+
+        function selectAnswer(score) {
+            totalScore += score;
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            quizQuestionsContainer.style.display = 'none';
+            quizResultsContainer.style.display = 'block';
+
+            let category = '';
+            let blurb = '';
+
+            if (totalScore >= 13) {
+                category = "Queen/King of Green Flags!";
+                blurb = "Bow down! You're practically a black belt in spotting bad vibes. Your radar is impeccable, and your boundaries are fortress-level. Go forth and conquer the dating world (or enjoy your peace and quiet)!";
+            } else if (totalScore >= 9) {
+                category = "Seasoned Survivor!";
+                blurb = "You've seen some things, haven't you? You know a red flag when you see one, but sometimes you still get a little curious. Keep your wits about you, seasoned pro!";
+            } else {
+                category = "Red-Flag Rookie!";
+                blurb = "Bless your heart! You're an optimist, but maybe read up on those 'warning signs' before your next date. There's a reason they're called red flags, not 'adorable quirks'!";
+            }
+
+            quizCategoryElem.textContent = category;
+            quizBlurbElem.textContent = blurb;
+        }
+
+        quizStartBtn.addEventListener('click', startQuiz);
+        quizResetBtn.addEventListener('click', startQuiz); // Reset button also just starts the quiz over
+
+
+        // Bad Date Bingo Logic
+        const bingoSquaresData = [
+            "Pawned family heirloom for online slots.",
+            "Texted “hey” at 2 a.m. after ghosting all week.",
+            "Turned grocery run into a timed race—and gloated.",
+            "Showed up with a clipboard itinerary for brunch.",
+            "Cancelled plans because the dog “needed emotional support.”",
+            "Brought clothespins to bed and demanded “harder.”",
+            "Sobbed over tiramisu symbolism.",
+            "Claimed to own a Dalí he can’t produce.",
+            "Filled the bathtub with newspapers to “read later.”",
+            "Ripped his shirt off for karaoke domination.",
+            "Lied that his ex was dead—Instagram proved otherwise.",
+            "Kept six backup toasters “just in case.”"
+        ];
+
+        const bingoGrid = document.getElementById('bingo-grid');
+        const bingoMessage = document.getElementById('bingo-message');
+        const bingoResetBtn = document.getElementById('bingo-reset-btn');
+        let checkedSquares = new Array(12).fill(false); // Using 12 for 3x4 grid
+
+        // Define winning combinations for a 3x4 grid
+        // Rows (0,1,2), (3,4,5), (6,7,8), (9,10,11)
+        // Columns (0,3,6,9), (1,4,7,10), (2,5,8,11)
+        // Diagonals (0,4,8), (2,4,6) -- need to adjust for 3x4 to make sense
+        // Let's simplify to 3x3 for a clearer bingo, or stick to a 3x4 with rows/columns only for 12 items.
+        // Given 12 items, a 3x4 grid makes sense. We'll check rows and columns.
+        const winningCombinations = [
+            // Rows (3 per row)
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11],
+            // Columns (4 per column)
+            [0, 3, 6, 9], [1, 4, 7, 10], [2, 5, 8, 11]
+            // For 12 items (3 columns x 4 rows), diagonals are less straightforward unless explicitly defined or made a 4x4 with a free space.
+            // Sticking to rows and columns for simplicity.
+        ];
+
+
+        function initializeBingo() {
+            bingoGrid.innerHTML = '';
+            checkedSquares.fill(false);
+            bingoMessage.style.display = 'none';
+            
+            // Shuffle the bingo squares for variety
+            const shuffledSquares = [...bingoSquaresData].sort(() => Math.random() - 0.5);
+
+            shuffledSquares.forEach((text, index) => {
+                const square = document.createElement('div');
+                square.classList.add('bingo-square');
+                square.textContent = text;
+                square.dataset.index = index; // Store original index for checking, or use position in shuffled array
+                square.addEventListener('click', () => toggleBingoSquare(square, index));
+                bingoGrid.appendChild(square);
+            });
+        }
+
+        function toggleBingoSquare(squareElem, index) {
+            squareElem.classList.toggle('checked');
+            // Update based on the square's position in the *current* grid, not the original data index if shuffled.
+            // A better way is to manage `checkedSquares` based on the DOM element index directly.
+            const domIndex = Array.from(bingoGrid.children).indexOf(squareElem);
+            checkedSquares[domIndex] = !checkedSquares[domIndex];
+            checkBingo();
+        }
+
+        function checkBingo() {
+            let bingoFound = false;
+            for (const combo of winningCombinations) {
+                const isBingo = combo.every(index => {
+                    // Check the state of the square at this index in the DOM, not just the logical array
+                    const squareElement = bingoGrid.children[index];
+                    return squareElement && squareElement.classList.contains('checked');
+                });
+                if (isBingo) {
+                    bingoFound = true;
+                    break;
+                }
+            }
+
+            if (bingoFound) {
+                bingoMessage.textContent = "You hit the jackpot... of terrible dates! Consider yourself vindicated. May your next square be 'Got therapy and moved on.'";
+                bingoMessage.style.display = 'block';
+                // Optionally disable further clicks after bingo
+                document.querySelectorAll('.bingo-square').forEach(s => s.style.pointerEvents = 'none');
+            } else {
+                bingoMessage.style.display = 'none';
+                document.querySelectorAll('.bingo-square').forEach(s => s.style.pointerEvents = 'auto'); // Re-enable clicks
+            }
+        }
+
+        bingoResetBtn.addEventListener('click', initializeBingo);
+
+        // Initial calls when the page loads
+        initializeBingo();
 
     </script>
 
