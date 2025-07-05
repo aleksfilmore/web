@@ -23,11 +23,17 @@
     <style>
         html { scroll-behavior: smooth; }
         body { margin: 0; font-family: 'Inter', sans-serif; background-color: #121416; color: #e0e1dd; }
-        main { position: relative; z-index: 2; }
-        header, footer { position: relative; z-index: 10; }
-        header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; background-color: #ffc19c; color: #000; }
+        header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; background-color: #ffc19c; color: #000; position: relative; z-index: 100; }
         .logo { font-weight: bold; font-size: 1.2rem; }
         .tagline { font-size: 0.9rem; }
+        main { position: relative; z-index: 2; }
+        footer { background-color: #f35b4e; color: #fff2db; padding: 40px 20px; text-align: center; position: relative; z-index: 10; }
+        .footer-social-links a { color: #ffffff; font-size: 28px; margin: 0 15px; text-decoration: none; transition: transform 0.3s ease, opacity 0.3s; }
+        .footer-social-links a:hover { opacity: 1; transform: translateY(-3px); }
+        .footer-contact-link { margin: 20px 0; }
+        .footer-contact-link a { color: #ffffff; text-decoration: none; font-size: 16px; border-bottom: 1px dotted #ffffff; padding-bottom: 2px; transition: opacity 0.3s; cursor: pointer; }
+        .footer-contact-link a:hover { opacity: 0.8; }
+        .footer-copyright p { font-size: 14px; margin: 0; color: rgba(255, 255, 255, 0.7); }
         .fh-hero { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 90vh; color: #ffffff; padding: 2rem; background-image: linear-gradient(rgba(18, 20, 22, 0.7), rgba(18, 20, 22, 0.5)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png'); background-size: cover; background-position: center; background-attachment: fixed; }
         .fh-hero-content { max-width: 800px; animation: fadeIn 2s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -82,26 +88,27 @@
         #lightning-flash { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: white; z-index: 4; pointer-events: none; opacity: 0; }
         #lightning-flash.flash { animation: flash-animation 0.5s ease-out; }
         @keyframes flash-animation { 0% { opacity: 0; } 10% { opacity: 0.6; } 15% { opacity: 0.2; } 20% { opacity: 0.4; } 100% { opacity: 0; } }
-        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
         .modal-content { background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; margin: auto; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.3); animation: slideIn 0.4s ease-out; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; transition: color 0.3s; cursor: pointer; color: #888; }
         .modal-close:hover { color: #cda274; }
-        .modal-form input, .modal-form textarea { background-color: #121416; border: 1px solid #333; color: #e0e1dd; width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; }
-        .modal-form input::placeholder, .modal-form textarea::placeholder { color: #888; }
-        .modal-form input:focus, .modal-form textarea:focus { outline: 1px solid #cda274; border-color: #cda274; }
+        .modal-form input[type="text"], .modal-form input[type="email"], .modal-form textarea { background-color: #121416; border: 1px solid #333; color: #e0e1dd; width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; }
         .modal-form button { background-color: #cda274; color: #121416; font-weight: bold; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; transition: background-color 0.3s, color 0.3s; }
-        .modal-form button:hover { background-color: #e0e1dd; }
-        #open-journal-modal { color: #cda274; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; transition: color 0.3s; }
-        #open-journal-modal:hover { color: #e0e1dd; }
+        #open-journal-modal { color: #cda274; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; }
         #journal-modal .modal-content { background-image: url('https://www.transparenttextures.com/patterns/old-paper.png'); background-color: #c5b89f; color: #3a3025; }
         #journal-modal h2 { font-family: 'Playfair Display', serif; text-align: center; }
         #journal-modal p { font-family: 'Beth Ellen', cursive; font-size: 1.2rem; line-height: 2.2; min-height: 120px; }
         .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-        #sound-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 100; width: 45px; height: 45px; background-color: rgba(0,0,0,0.5); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s ease; }
-        #sound-toggle:hover { background-color: #cda274; color: #000; }
-        @media (max-width: 768px) { .fh-hero h1 { font-size: 3rem; } .fh-hero .fh-tagline, .fh-synopsis-text p { font-size: 1rem; } .fh-synopsis { text-align: center; } .fh-synopsis-cover { margin: 0 auto 2rem auto; } .fh-section { padding: 3rem 1.5rem; } .fh-synopsis-text h2, .fh-trailer h2, .fh-features h2, .fh-explore-header h2, .fh-final-cta h2 { font-size: 2rem; } .fh-final-cta h2 { font-size: 2.2rem; } .review-slide { padding: 0 1rem; } }
+        #sound-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 100; width: 45px; height: 45px; background-color: rgba(0,0,0,0.5); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        #theme-switch { position: fixed; top: 80px; right: 20px; z-index: 99; background-color: #ffc19c; color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: all 0.4s ease; }
+        #theme-switch:hover { width: 210px; border-radius: 30px; background-color: #f35b4e; color: #fff; }
+        #theme-switch .switch-icon { font-size: 1.2rem; transition: transform 0.4s ease; }
+        #theme-switch:hover .switch-icon { transform: rotate(-15deg); }
+        #theme-switch .switch-text { white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; font-size: 0.9rem; font-weight: bold; margin-left: 0; transition: max-width 0.3s ease 0.1s, opacity 0.2s ease 0.1s, margin-left 0.3s ease 0.1s; }
+        #theme-switch:hover .switch-text { opacity: 1; max-width: 200px; margin-left: 10px; }
+        @media (max-width: 768px) { #theme-switch:hover { width: 45px; border-radius: 50%; } #theme-switch .switch-text { display: none; } /* Other responsive styles */ }
     </style>
 </head>
 <body class="fogbound-theme">
@@ -131,7 +138,6 @@
                 <a href="https://a.co/d/7WHD0Jo" target="_blank" class="fh-cta-button">Read on Amazon</a>
             </div>
         </section>
-
         <section id="about" class="fh-section">
             <div class="fh-container fh-synopsis">
                 <div class="cover-container">
@@ -145,7 +151,6 @@
                 </div>
             </div>
         </section>
-        
         <section class="fh-section fh-explore">
             <div class="fh-container">
                 <div class="fh-explore-header">
@@ -153,65 +158,27 @@
                     <p>A Town Wrapped in Fog, Secrets, and Shadows</p>
                 </div>
                 <div class="explore-grid">
-                    <div class="explore-card">
-                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');"></div>
-                        <div class="explore-card-content">
-                            <h3>The Mansion</h3>
-                            <p>A refuge and a haunting reminder of a dark legacy. Its labyrinthine halls conceal forgotten truths as the fog closes in.</p>
-                        </div>
-                    </div>
-                    <div class="explore-card">
-                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png');"></div>
-                        <div class="explore-card-content">
-                            <h3>The Tunnels</h3>
-                            <p>Ancient passageways etched with symbols older than the town itself, leading closer to the blood-soaked roots of the curse.</p>
-                        </div>
-                    </div>
-                    <div class="explore-card">
-                        <div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/77cdc5982b8ece97f1cce8868bc2f4a86fec47d3/Fog%20Bedroom%202.png');"></div>
-                        <div class="explore-card-content">
-                            <h3>The Haunting</h3>
-                            <p>In the dead of night, the fog seeps through the cracks like a living predator, its whispers a reminder that no wall can keep it out.</p>
-                        </div>
-                    </div>
+                    <div class="explore-card"><div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png');"></div><div class="explore-card-content"><h3>The Mansion</h3><p>A refuge and a haunting reminder of a dark legacy. Its labyrinthine halls conceal forgotten truths as the fog closes in.</p></div></div>
+                    <div class="explore-card"><div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png');"></div><div class="explore-card-content"><h3>The Tunnels</h3><p>Ancient passageways etched with symbols older than the town itself, leading closer to the blood-soaked roots of the curse.</p></div></div>
+                    <div class="explore-card"><div class="explore-card-bg" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/77cdc5982b8ece97f1cce8868bc2f4a86fec47d3/Fog%20Bedroom%202.png');"></div><div class="explore-card-content"><h3>The Haunting</h3><p>In the dead of night, the fog seeps through the cracks like a living predator, its whispers a reminder that no wall can keep it out.</p></div></div>
                 </div>
             </div>
         </section>
-
         <section id="trailer" class="fh-section fh-trailer">
             <div class="fh-container">
                 <h2>A Town That Doesn’t Forget</h2>
-                <div class="fh-trailer-embed">
-                    <iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe>
-                </div>
+                <div class="fh-trailer-embed"><iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/lljilc?autoplay=1&muted=1" width="100%"></iframe></div>
             </div>
         </section>
-
         <section id="reviews" class="fh-section fh-reviews">
             <div class="review-slider-container">
                 <div class="review-slider-track">
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p>
-                            <footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer>
-                        </blockquote>
-                    </div>
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p>
-                            <footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer>
-                        </blockquote>
-                    </div>
-                    <div class="review-slide">
-                         <blockquote>
-                            <p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p>
-                            <footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer>
-                        </blockquote>
-                    </div>
+                    <div class="review-slide"><blockquote><p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p><footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer></blockquote></div>
+                    <div class="review-slide"><blockquote><p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p><footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer></blockquote></div>
+                    <div class="review-slide"><blockquote><p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p><footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer></blockquote></div>
                 </div>
             </div>
         </section>
-
         <section class="fh-section fh-final-cta">
             <div class="fh-container">
                 <h2>Can love survive where curses were born?</h2>
@@ -221,46 +188,15 @@
     </main>
 
     <footer>
-        <div class="footer-social-links">
-            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <div class="footer-contact-link">
-            <a href="#" id="open-contact-modal">Contact Me</a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-        </div>
+        <div class="footer-social-links"><a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a></div>
+        <div class="footer-contact-link"><a href="#" id="open-contact-modal">Contact Me</a></div>
+        <div class="footer-copyright"><p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
     </footer>
 
-    <div id="contact-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2>Contact Me</h2>
-            <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </div>
-    
-    <div id="journal-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2>A Found Page</h2>
-            <p id="journal-text"></p>
-        </div>
-    </div>
-
-    <audio id="ambient-sound" loop muted>
-        <source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="thunder-sound" muted>
-        <source src="https://raw.githubusercontent.com/aleksfilmore/web/bcd598aea06d603b7bcdd14c7138b852ca902d52/thunder.mp3" type="audio/mpeg">
-    </audio>
+    <div id="contact-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>Contact Me</h2><p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p><form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form></div></div>
+    <div id="journal-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>A Found Page</h2><p id="journal-text"></p></div></div>
+    <audio id="ambient-sound" loop muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg"></audio>
+    <audio id="thunder-sound" muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/bcd598aea06d603b7bcdd14c7138b852ca902d52/thunder.mp3" type="audio/mpeg"></audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
 
     <script>
@@ -279,65 +215,15 @@
             const journalTextElement = document.getElementById('journal-text');
             const journalText = "The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. No, he watches the windows. He's waiting for someone. I fear he's waiting for me.";
             let typewriterTimeout;
-            function typewriterEffect() {
-                if (!journalTextElement) return;
-                journalTextElement.innerHTML = '';
-                journalTextElement.classList.add('typing-cursor');
-                clearTimeout(typewriterTimeout);
-                let i = 0;
-                function typeChar() {
-                    if (i < journalText.length) {
-                        journalTextElement.innerHTML += journalText.charAt(i);
-                        i++;
-                        typewriterTimeout = setTimeout(typeChar, 50);
-                    } else {
-                        journalTextElement.classList.remove('typing-cursor');
-                    }
-                }
-                typeChar();
-            }
+            function typewriterEffect() { if (!journalTextElement) return; journalTextElement.innerHTML = ''; journalTextElement.classList.add('typing-cursor'); clearTimeout(typewriterTimeout); let i = 0; function typeChar() { if (i < journalText.length) { journalTextElement.innerHTML += journalText.charAt(i); i++; typewriterTimeout = setTimeout(typeChar, 50); } else { journalTextElement.classList.remove('typing-cursor'); } } typeChar(); }
             const fogLayer1 = document.querySelector('.fog-layer-1');
             const fogLayer2 = document.querySelector('.fog-layer-2');
-            if (fogLayer1 && fogLayer2) {
-                document.addEventListener('mousemove', (e) => {
-                    const { clientX, clientY } = e;
-                    const x = (clientX / window.innerWidth) * 40 - 20;
-                    const y = (clientY / window.innerHeight) * 40 - 20;
-                    fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
-                    fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
-                });
-            }
+            if (fogLayer1 && fogLayer2) { document.addEventListener('mousemove', (e) => { const { clientX, clientY } = e; const x = (clientX / window.innerWidth) * 40 - 20; const y = (clientY / window.innerHeight) * 40 - 20; fogLayer1.style.transform = `translate(${x}px, ${y}px)`; fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`; }); }
             const soundBtn = document.getElementById('sound-toggle');
             const ambientAudio = document.getElementById('ambient-sound');
             const thunderAudio = document.getElementById('thunder-sound');
             const lightningFlash = document.getElementById('lightning-flash');
             let audioInitialized = false;
-            function initializeAudio() {
-                if (audioInitialized) return;
-                ambientAudio.play().catch(()=>{});
-                thunderAudio.play().then(() => thunderAudio.pause()).catch(()=>{});
-                audioInitialized = true;
-            }
-            if (soundBtn && ambientAudio && thunderAudio) {
-                document.body.addEventListener('click', initializeAudio, { once: true });
-                soundBtn.addEventListener('click', () => {
-                    if (!audioInitialized) initializeAudio();
-                    const isMuted = !ambientAudio.muted;
-                    ambientAudio.muted = isMuted;
-                    thunderAudio.muted = isMuted;
-                    soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-                });
-            }
-            function triggerLightning() {
-                if (lightningFlash && audioInitialized) {
-                    lightningFlash.classList.add('flash');
-                    setTimeout(() => { if (!thunderAudio.muted) { thunderAudio.currentTime = 0; thunderAudio.play(); } }, Math.random() * 1000 + 500);
-                    setTimeout(() => { lightningFlash.classList.remove('flash'); }, 600);
-                }
-                setTimeout(triggerLightning, Math.random() * 12000 + 8000);
-            }
-            setTimeout(triggerLightning, Math.random() * 5000 + 3000);
-        });
-    </script>
-</body>
-</html>
+            function initializeAudio() { if (audioInitialized) return; const ambientPromise = ambientAudio.play(); if (ambientPromise !== undefined) { ambientPromise.catch(e => console.log("Ambient audio requires interaction to start.")); } const thunderPromise = thunderAudio.play(); if (thunderPromise !== undefined) { thunderPromise.then(() => thunderAudio.pause()).catch(e => console.log("Thunder audio requires interaction to start.")); } audioInitialized = true; }
+            if (soundBtn && ambientAudio && thunderAudio) { soundBtn.addEventListener('click', () => { if (!audioInitialized) { initializeAudio(); } const isMuted = !ambientAudio.muted; ambientAudio.muted = isMuted; thunderAudio.muted = isMuted; soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>'; }); }
+            function triggerLightning() { if (lightningFlash && audioInitialized) { lightningFlash.classList.add('flash'); setTimeout(() => { if (!thunderAudio.muted) { thunderAudio.currentTime = 0; thunderAudio.play(); } }, Math.random() * 10
