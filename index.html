@@ -12,6 +12,16 @@
         'ad_storage': 'denied',
         'wait_for_update': 500 // Wait for update if banner shown immediately
       });
+      // Additional setup: if consent preference is already stored, update it immediately
+      // This is for users returning after having made a choice previously
+      if (localStorage.getItem('cookies_accepted') === 'true') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
+        });
+        // Also configure GA immediately if consent was already given
+        gtag('config', 'G-W9B5W1241H'); // Configure GA only if consent is granted
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,6 +73,21 @@
             justify-content: center;
             align-items: center;
             font-family: 'Inter', sans-serif; /* Consistent font */
+        }
+        .announcement-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.3;
+            font-size: 0.9rem;
+            /* Fade animation setup */
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, visibility 0.5s;
         }
         .announcement-item.is-active {
             opacity: 1;
@@ -1378,6 +1403,48 @@
 
         // Initial calls when the page loads
         initializeBingo();
+
+
+        // Cookie Consent Banner Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+
+        function setCookieConsent(accepted) {
+            localStorage.setItem('cookies_accepted', accepted);
+            if (accepted) {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted'
+                });
+                // Configure Google Analytics if consent is granted
+                gtag('config', 'G-W9B5W1241H'); 
+            } else {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied'
+                });
+            }
+            cookieBanner.classList.remove('show');
+        }
+
+        // Check if consent has been given previously
+        window.addEventListener('load', () => {
+            const consentGiven = localStorage.getItem('cookies_accepted');
+            if (consentGiven === null) { // If no choice has been made
+                cookieBanner.classList.add('show');
+            } else if (consentGiven === 'false') { // If user previously denied, keep analytics denied
+                 gtag('consent', 'update', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied'
+                 });
+            }
+        });
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            setCookieConsent(true);
+        });
+        // The 'Cookie Settings' link already has its href set in the HTML to your cookies.html page.
+        // If you were to implement granular controls directly in a modal, this listener would trigger that modal.
 
     </script>
 
