@@ -13,6 +13,7 @@
     <title>Aleks Filmore | Author</title>
     <meta name="description" content="Official site for author Aleks Filmore. Explore the hilariously messy breakup memoir 'The Worst Boyfriends Ever' and the queer gothic romance 'Fogbound Hearts'.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -38,7 +39,7 @@
         .hero-image img { width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-radius: 6px; }
         .buy-btn { background: white; color: #f35b4e; padding: 0.6rem 1.1rem; font-weight: bold; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 1rem; font-size: 0.85rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
         .marquee-reviews { background: linear-gradient(to right, #f35b4e, #ffc19c); color: #000; padding: 0.75rem; overflow: hidden; white-space: nowrap; }
-        .review-track { display: inline-block; animation: marquee 150s linear infinite; min-width: 200%; }
+        .review-track { display: inline-block; animation: marquee 50s linear infinite; min-width: 200%; } /* SPEED INCREASED */
         .review-track span { display: inline-block; padding: 0 2rem; font-size: 0.85rem; font-weight: bold; }
         .star { color: gold; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
@@ -54,7 +55,7 @@
         .cringe-card-front p { color: #fff2db; margin-bottom: 1rem; line-height: 1.4; }
         .cringe-card-back { background: #208e92; color: #fff; transform: rotateY(180deg); align-items: center; text-align: center; padding: 2rem; }
         .thermometer { background: #fff2db; height: 10px; border-radius: 10px; overflow: hidden; margin-top: auto; }
-        .thermometer-fill { height: 100%; background: linear-gradient(to right, #ffa711, #f35b4e); width: 100%; }
+        .thermometer-fill { height: 100%; background: linear-gradient(to right, #ffa711, #f35b4e); }
         .thermometer-label { font-size: 0.75rem; margin-top: 0.25rem; color: #fff2db; text-align: right; }
         .cringe-info { text-align: center; font-size: 0.9rem; color: #444; margin-top: 1.5rem; }
         .cta-button { display: block; width: fit-content; margin: 2rem auto; padding: 1rem 2rem; background: #208e92; color: #fff; border: none; font-weight: bold; font-size: 1rem; border-radius: 8px; text-decoration: none; }
@@ -82,7 +83,7 @@
         #theme-switch:hover .switch-icon { transform: rotate(360deg); }
         #theme-switch .switch-text { white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; font-size: 0.9rem; font-weight: bold; margin-left: 0; transition: max-width 0.3s ease 0.1s, opacity 0.2s ease 0.1s, margin-left 0.3s ease 0.1s; }
         #theme-switch:hover .switch-text { opacity: 1; max-width: 200px; margin-left: 10px; }
-        .modal-backdrop { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .modal-backdrop { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
         .modal-content { background-color: #fff2db; margin: auto; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.3); }
         .modal-close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
         .modal-form button { background-color: #f35b4e; color: white; }
@@ -102,13 +103,15 @@
     </header>
     
     <div class="announcement-bar">
-        <div class="announcement-item is-active">
-            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
-            <small>*Free Kindle Rankings, July 2025</small>
-        </div>
-        <div class="announcement-item">
-            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
-            <small>Available on Spotify, Audible & more</small>
+        <div class="announcement-slider">
+            <div class="announcement-item is-active">
+                <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
+                <small>*Free Kindle Rankings, July 2025</small>
+            </div>
+            <div class="announcement-item">
+                <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
+                <small>Available on Spotify, Audible & more</small>
+            </div>
         </div>
     </div>
     
@@ -130,11 +133,11 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
+            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
         </div>
     </div>
-    
-    <section class="inside-chaos" style="padding: 3rem 1.5rem;">
+
+    <section class="inside-chaos">
         <div style="max-width: 1000px; margin: auto;">
             <div class="cringe-index-header">CRINGE INDEX</div>
             <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
@@ -147,14 +150,28 @@
         </div>
     </section>
 
+    <section class="audiobook-promo">
+        <div class="audio-icon">
+            <i class="fa-solid fa-headphones-simple"></i>
+        </div>
+        <h2>The Chaos, Now in Your Ears</h2>
+        <p>The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.</p>
+        <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
+        <div class="platforms">
+            <span>Available Soon On:</span>
+            <i class="fa-brands fa-spotify" title="Spotify"></i>
+            <i class="fa-brands fa-audible" title="Audible"></i>
+            <i class="fa-brands fa-apple" title="Apple Podcasts & Books"></i>
+            <span>& more</span>
+        </div>
+    </section>
+
     <section class="about-section">
         <div class="about-container">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore" class="about-photo">
             <div class="about-text">
                 <h2>About Aleks Filmore</h2>
-                <p>
-                    Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.
-                </p>
+                <p>Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
             </div>
         </div>
     </section>
@@ -206,8 +223,8 @@
             
             const announcementItems = document.querySelectorAll('.announcement-item');
             if (announcementItems.length > 1) {
-                let currentItemIndex = 0;
                 announcementItems[0].classList.add('is-active');
+                let currentItemIndex = 0;
                 setInterval(() => {
                     announcementItems[currentItemIndex].classList.remove('is-active');
                     currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
