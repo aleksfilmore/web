@@ -13,7 +13,6 @@
     <title>Aleks Filmore | Author</title>
     <meta name="description" content="Official site for author Aleks Filmore. Explore the hilariously messy breakup memoir 'The Worst Boyfriends Ever' and the queer gothic romance 'Fogbound Hearts'.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -27,7 +26,8 @@
         .announcement-item.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
         .announcement-item strong { color: #ffa711; }
         .announcement-item small { font-size: 0.7rem; opacity: 0.85; padding-top: 2px; }
-        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e; padding: 2.5rem 1.5rem; color: white; }
+        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e; padding: 2.5rem 1.5rem; color: white; animation: fadeHero 1.2s ease-in; }
+        @keyframes fadeHero { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
         .hero-content { flex: 1; min-width: 300px; max-width: 500px; padding: 1rem; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); }
         .hero h1 span { display: block; font-weight: bold; }
@@ -134,7 +134,7 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
+            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span>
         </div>
     </div>
     
@@ -148,8 +148,6 @@
                 <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Polyamorist</h3><p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p><div class="thermometer"><div style="width: 80%" class="thermometer-fill"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div></div></div>
                 <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Crier</h3><p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p><div class="thermometer"><div style="width: 40%" class="thermometer-fill"></div></div><div class="thermometer-label">2/5 – Mild Regret</div></div><div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div></div></div>
             </div>
-            <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
-            <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
         </div>
     </section>
 
