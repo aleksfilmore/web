@@ -6,7 +6,12 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-W9B5W1241H');
+      // Initial consent state (denied by default, per GDPR)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'wait_for_update': 500 // Wait for update if banner shown immediately
+      });
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -754,6 +759,76 @@
         .modal-form button:hover {
             background-color: #d14a3d;
         }
+
+        /* Cookie Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(32, 142, 146, 0.95); /* #208e92 with transparency */
+            color: #fff;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            transform: translateY(100%); /* Start off-screen */
+            transition: transform 0.5s ease-out;
+        }
+        .cookie-banner.show {
+            transform: translateY(0); /* Slide in */
+        }
+        .cookie-banner p {
+            margin: 0;
+            flex-basis: 100%; /* Full width on small screens */
+            text-align: center;
+        }
+        .cookie-banner-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .cookie-banner-buttons button {
+            background-color: #ffa711;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .cookie-banner-buttons button:hover {
+            background-color: #ffb733;
+        }
+        .cookie-banner-buttons a { /* Style for Cookie Settings link as button */
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            padding: 0.75rem 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .cookie-banner-buttons a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: #fff;
+        }
+
+        /* Animated section (already exists) */
         .animated-section {
             opacity: 0;
             transform: translateY(30px);
@@ -763,102 +838,10 @@
             opacity: 1;
             transform: translateY(0);
         }
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-content, .hero-image {
-                min-width: unset;
-                max-width: 100%;
-            }
-            .hero-form {
-                margin: 0 auto;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-                line-height: 1.1;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            /* Adjust mugshot gallery for mobile */
-            .mugshot-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Allow 2-3 columns */
-            }
-            .mugshot-card {
-                height: 160px; /* Slightly smaller height on tablet/larger phone */
-            }
-            .audiobook-promo h2 {
-                font-size: 2.2rem;
-            }
-            .about-container {
-                flex-direction: column;
-            }
-            .about-text p {
-                text-align: center; /* Ensure centered on smaller screens too */
-            }
-        }
-        @media (max-width: 480px) {
-            .hero {
-                padding: 2rem 1rem;
-            }
-            .hero h1 {
-                font-size: 2.4rem;
-                line-height: 1.2;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            .mugshot-gallery {
-                grid-template-columns: 1fr; /* Stack on very small screens for clarity */
-                gap: 0.75rem;
-            }
-            .mugshot-card {
-                height: 140px; /* Even smaller height on very small phones */
-            }
-            .mugshot-card-title {
-                font-size: 1rem;
-            }
-            .mugshot-card-charge {
-                font-size: 0.8rem;
-                padding: 0.5rem;
-            }
-
-            /* Quiz on mobile */
-            .quiz-container {
-                padding: 1.5rem;
-                margin: 2rem auto;
-            }
-            .quiz-question {
-                font-size: 1.2rem;
-            }
-            .quiz-options button {
-                width: 100%; /* Ensure full width buttons */
-                padding: 0.8rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Bingo on mobile */
-            .bingo-container {
-                padding: 1.5rem;
-                margin: 2rem auto;
-            }
-            .bingo-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns for better tap targets */
-                gap: 8px;
-            }
-            .bingo-square {
-                min-height: 85px; /* Adjust height for 2-column layout */
-                font-size: 0.8rem; /* Slightly smaller text to fit more */
-                padding: 0.75rem;
-            }
-            .bingo-message {
-                font-size: 1rem;
-            }
-            #bingo-reset-btn {
-                font-size: 0.85rem;
-                padding: 0.6rem 1rem;
+        @media (min-width: 769px) { /* Adjust flex basis for larger screens */
+            .cookie-banner p {
+                flex-basis: auto; /* Allow text to sit next to buttons */
+                margin-right: 1.5rem;
             }
         }
     </style>
@@ -1116,6 +1099,14 @@
             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <div class="cookie-banner" id="cookie-banner">
+        <p>We use cookies to improve your experience. <br class="mobile-break">By clicking "Accept" you consent to our cookies.</p>
+        <div class="cookie-banner-buttons">
+            <button id="accept-cookies">Accept</button>
+            <a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Settings</a>
+        </div>
+    </div>
 
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
