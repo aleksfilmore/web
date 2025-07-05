@@ -10,622 +10,83 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aleks Filmore | The Worst Boyfriends Ever</title>
-    
-    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
+    <title>Aleks Filmore | Author</title>
+    <meta name="description" content="Official site for author Aleks Filmore. Explore the hilariously messy breakup memoir 'The Worst Boyfriends Ever' and the queer gothic romance 'Fogbound Hearts'.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #fff2db;
-            color: #000;
-        }
-        header {
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ffc19c;
-            position: relative; /* ADDED: For z-index to work */
-            z-index: 100;    /* ADDED: To ensure it's above the switch */
-        }
-        .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .tagline {
-            font-size: 0.9rem;
-        }
-        .announcement-bar {
-            background-color: #208e92;
-            color: #fff;
-            text-align: center;
-            padding: 0.75rem 1rem;
-            position: relative;
-            height: 42px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .announcement-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            line-height: 1.3;
-            font-size: 0.9rem;
-            position: absolute;
-            width: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(5px);
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, visibility 0.5s;
-        }
-        .announcement-item.is-active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .announcement-item strong {
-            color: #ffa711;
-        }
-        .announcement-item small {
-            font-size: 0.7rem;
-            opacity: 0.85;
-            padding-top: 2px;
-        }
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e;
-            padding: 2.5rem 1.5rem;
-            color: white;
-            animation: fadeHero 1.2s ease-in;
-        }
-        @keyframes fadeHero {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .hero-content {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            padding: 1rem;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-        }
-        .hero h1 span {
-            display: block;
-            font-weight: bold;
-        }
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-        .hero-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: 320px;
-        }
-        .hero-form input[type="email"] {
-            padding: 0.5rem 0.75rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        .hero-form input[type="email"]:focus {
-            box-shadow: 0 0 5px rgba(255, 167, 17, 0.7);
-            outline: none;
-        }
-        .hero-form input::placeholder {
-            font-style: italic;
-            color: #999;
-        }
-        .hero-form button {
-            background-color: #ffa711;
-            color: #000;
-            font-weight: bold;
-            border: none;
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-        .hero-form button:hover {
-            background-color: #ffb733;
-        }
-        .hero-image {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-            animation: fadeHero 1.5s ease-in;
-        }
-        .hero-image img {
-            width: 240px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border-radius: 6px;
-            transition: transform 0.3s ease;
-        }
-        .hero-image img:hover {
-            transform: rotate(-2deg) scale(1.05);
-        }
-        .buy-btn {
-            background: white;
-            color: #f35b4e;
-            padding: 0.6rem 1.1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-        }
-        .marquee-reviews {
-            background: linear-gradient(to right, #f35b4e, #ffc19c);
-            color: #000;
-            padding: 0.75rem;
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-            width: 100%;
-            position: relative;
-        }
-        .marquee-reviews::before,
-        .marquee-reviews::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 30px;
-            height: 100%;
-            z-index: 1;
-        }
-        .marquee-reviews::before {
-            left: 0;
-            background: linear-gradient(to right, #f35b4e, transparent);
-        }
-        .marquee-reviews::after {
-            right: 0;
-            background: linear-gradient(to left, #ffc19c, transparent);
-        }
-        .review-track {
-            display: inline-block;
-            min-width: 300%;
-            animation: marquee 150s linear infinite;
-        }
-        .review-track span {
-            display: inline-block;
-            padding: 0 2rem;
-            font-size: 0.85rem;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .star {
-            color: gold;
-            font-size: 0.85rem;
-            margin-right: 0.2rem;
-            letter-spacing: -1px;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
-        }
-        .inside-chaos {
-            padding: 3rem 1.5rem;
-            background: #fff2db;
-        }
-        .cringe-index-header {
-            font-size: 1.5rem;
-            text-align: center;
-            margin: 2rem auto 0.5rem;
-            font-weight: bold;
-            color: #f35b4e;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .cringe-subheader {
-            text-align: center;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        .cringe-index {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            padding-top: 1rem;
-        }
-        .cringe-card {
-            background: #f35b4e;
-            border-radius: 16px;
-            color: white;
-            position: relative;
-            font-size: 0.95rem;
-            perspective: 1000px;
-            height: 200px;
-        }
-        .cringe-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-        .cringe-card:hover .cringe-card-inner {
-            transform: rotateY(180deg);
-        }
-        .cringe-card-front, .cringe-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            padding: 1.5rem 1rem;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .cringe-card-front h3 {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .cringe-card-front p {
-            color: #fff2db;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .cringe-card-back {
-            background: #208e92;
-            color: #fff;
-            transform: rotateY(180deg);
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .thermometer {
-            background: #fff2db;
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: auto;
-        }
-        .thermometer-fill {
-            height: 100%;
-            background: linear-gradient(to right, #ffa711, #f35b4e);
-            width: 100%;
-        }
-        .thermometer-label {
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            color: #fff2db;
-            text-align: right;
-        }
-        .cringe-info {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #444;
-            margin-top: 1.5rem;
-        }
-        .cta-button {
-            display: block;
-            width: fit-content;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: #208e92;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: background 0.3s ease;
-        }
-        .cta-button:hover {
-            background: #176f72;
-        }
-        .audiobook-promo {
-            background-color: #208e92;
-            background-image: url('https://www.transparenttextures.com/patterns/wavecut.png');
-            color: #ffffff;
-            text-align: center;
-            padding: 4rem 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .audiobook-promo h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            margin: 0 0 1rem 0;
-        }
-        .audiobook-promo p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            line-height: 1.6;
-            color: #fff2db;
-        }
-        .audiobook-promo .audio-icon {
-            font-size: 4rem;
-            color: #ffa711;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 15px rgba(255, 167, 17, 0.5);
-        }
-        .audiobook-promo .platforms {
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .audiobook-promo .platforms span {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-        .audiobook-promo .platforms i {
-            font-size: 2.5rem;
-            transition: transform 0.3s ease;
-        }
-        .audiobook-promo .platforms i:hover {
-            transform: scale(1.1);
-        }
-        .audiobook-promo .audio-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: #ffa711;
-            color: #000;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .audiobook-promo .audio-cta:hover {
-            background-color: #ffb733;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        }
-        .about-section {
-            padding: 3rem 1.5rem;
-            background-color: #ffc19c;
-            text-align: center;
-        }
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .about-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .about-text h2 {
-            font-size: 2rem;
-            color: #f35b4e;
-            margin: 0 0 1rem 0;
-        }
-        .about-text p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-            text-align: left;
-        }
-        footer {
-            background-color: #f35b4e;
-            color: #fff2db;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .footer-social-links a {
-            color: #ffffff;
-            font-size: 28px;
-            margin: 0 15px;
-            text-decoration: none;
-            transition: transform 0.3s ease, opacity 0.3s;
-        }
-        .footer-social-links a:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-        .footer-contact-link {
-            margin: 20px 0;
-        }
-        .footer-contact-link a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            border-bottom: 1px dotted #ffffff;
-            padding-bottom: 2px;
-            transition: opacity 0.3s;
-            cursor: pointer;
-        }
-        .footer-contact-link a:hover {
-            opacity: 0.8;
-        }
-        .footer-copyright p {
-            font-size: 14px;
-            margin: 0;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .modal-backdrop {
-            display: none;
-            position: fixed;
-            z-index: 1001; /* High z-index for modals */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fff2db;
-            margin: auto;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-        }
-        .modal-close {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-        .modal-close:hover,
-        .modal-close:focus {
-            color: #000;
-            text-decoration: none;
-        }
-        .modal-form input[type="text"],
-        .modal-form input[type="email"],
-        .modal-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-        }
-        .modal-form input:focus, .modal-form textarea:focus {
-            outline: 2px solid #208e92;
-            border-color: #208e92;
-        }
-        .modal-form button {
-            background-color: #f35b4e;
-            color: white;
-            font-weight: bold;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        .modal-form button:hover {
-            background-color: #d14a3d;
-        }
-        .animated-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .animated-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        #theme-switch {
-            position: fixed;
-            top: 80px; /* CORRECTED: Moved down */
-            right: 20px;
-            z-index: 99; /* Below header */
-            background-color: #121416;
-            color: #fff;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            transition: all 0.4s ease;
-        }
-        #theme-switch:hover {
-            width: 180px;
-            border-radius: 30px;
-            background-color: #3d5a80;
-        }
-        #theme-switch .switch-icon {
-            font-size: 1.2rem;
-            transition: transform 0.4s ease;
-        }
-        #theme-switch:hover .switch-icon {
-            transform: rotate(360deg);
-        }
-        #theme-switch .switch-text {
-            white-space: nowrap;
-            opacity: 0;
-            max-width: 0;
-            overflow: hidden;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-left: 0;
-            transition: max-width 0.3s ease 0.1s, opacity 0.2s ease 0.1s, margin-left 0.3s ease 0.1s;
-        }
-        #theme-switch:hover .switch-text {
-            opacity: 1;
-            max-width: 200px;
-            margin-left: 10px;
-        }
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; }
-            .hero-content, .hero-image { min-width: unset; max-width: 100%; }
-            .hero-form { margin: 0 auto; }
-            .hero h1 { font-size: 2.8rem; line-height: 1.1; }
-            .hero p { font-size: 1.2rem; }
-            .cringe-index { grid-template-columns: 1fr; }
-            .cringe-card { height: 220px; }
-            .audiobook-promo h2 { font-size: 2.2rem; }
-            .about-container { flex-direction: column; }
-            .about-text p { text-align: center; }
-            #theme-switch:hover { width: 45px; border-radius: 50%; }
-            #theme-switch .switch-text { display: none; }
-        }
-        @media (max-width: 480px) {
-            .hero { padding: 2rem 1rem; }
-            .hero h1 { font-size: 2.4rem; line-height: 1.2; }
-            .hero p { font-size: 1.1rem; }
-        }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #fff2db; color: #000; }
+        header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; background-color: #ffc19c; position: relative; z-index: 100; }
+        .logo { font-weight: bold; font-size: 1.2rem; }
+        .tagline { font-size: 0.9rem; }
+        .announcement-bar { background-color: #208e92; color: #fff; text-align: center; padding: 0.75rem 1rem; position: relative; height: 42px; box-sizing: border-box; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .announcement-item { display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 1.3; font-size: 0.9rem; position: absolute; width: 100%; opacity: 0; visibility: hidden; transform: translateY(5px); transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, visibility 0.5s; }
+        .announcement-item.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .announcement-item strong { color: #ffa711; }
+        .announcement-item small { font-size: 0.7rem; opacity: 0.85; padding-top: 2px; }
+        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e; padding: 2.5rem 1.5rem; color: white; }
+        .hero-content { flex: 1; min-width: 300px; max-width: 500px; padding: 1rem; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); }
+        .hero h1 span { display: block; font-weight: bold; }
+        .hero p { font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 500; }
+        .hero-form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 320px; }
+        .hero-form input[type="email"] { padding: 0.5rem 0.75rem; border: none; border-radius: 4px; font-size: 0.9rem; }
+        .hero-form button { background-color: #ffa711; color: #000; font-weight: bold; border: none; border-radius: 4px; padding: 0.5rem; font-size: 0.9rem; cursor: pointer; }
+        .hero-image { flex: 1; min-width: 250px; text-align: center; }
+        .hero-image img { width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-radius: 6px; }
+        .buy-btn { background: white; color: #f35b4e; padding: 0.6rem 1.1rem; font-weight: bold; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 1rem; font-size: 0.85rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
+        .marquee-reviews { background: linear-gradient(to right, #f35b4e, #ffc19c); color: #000; padding: 0.75rem; overflow: hidden; white-space: nowrap; }
+        .review-track { display: inline-block; animation: marquee 150s linear infinite; min-width: 200%; }
+        .review-track span { display: inline-block; padding: 0 2rem; font-size: 0.85rem; font-weight: bold; }
+        .star { color: gold; }
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .inside-chaos { padding: 3rem 1.5rem; background: #fff2db; }
+        .cringe-index-header { font-size: 1.5rem; text-align: center; margin: 2rem auto 0.5rem; font-weight: bold; color: #f35b4e; text-transform: uppercase; letter-spacing: 1px; }
+        .cringe-subheader { text-align: center; font-size: 0.95rem; margin-bottom: 2rem; color: #333; }
+        .cringe-index { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding-top: 1rem; }
+        .cringe-card { background: #f35b4e; border-radius: 16px; color: white; position: relative; font-size: 0.95rem; perspective: 1000px; height: 200px; }
+        .cringe-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+        .cringe-card:hover .cringe-card-inner { transform: rotateY(180deg); }
+        .cringe-card-front, .cringe-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; padding: 1.5rem 1rem; box-shadow: 0 6px 12px rgba(0,0,0,0.2); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
+        .cringe-card-front h3 { font-size: 1.2rem; color: white; margin-bottom: 0.5rem; font-weight: bold; text-transform: uppercase; }
+        .cringe-card-front p { color: #fff2db; margin-bottom: 1rem; line-height: 1.4; }
+        .cringe-card-back { background: #208e92; color: #fff; transform: rotateY(180deg); align-items: center; text-align: center; padding: 2rem; }
+        .thermometer { background: #fff2db; height: 10px; border-radius: 10px; overflow: hidden; margin-top: auto; }
+        .thermometer-fill { height: 100%; background: linear-gradient(to right, #ffa711, #f35b4e); width: 100%; }
+        .thermometer-label { font-size: 0.75rem; margin-top: 0.25rem; color: #fff2db; text-align: right; }
+        .cringe-info { text-align: center; font-size: 0.9rem; color: #444; margin-top: 1.5rem; }
+        .cta-button { display: block; width: fit-content; margin: 2rem auto; padding: 1rem 2rem; background: #208e92; color: #fff; border: none; font-weight: bold; font-size: 1rem; border-radius: 8px; text-decoration: none; }
+        .audiobook-promo { background-color: #208e92; background-image: url('https://www.transparenttextures.com/patterns/wavecut.png'); color: #ffffff; text-align: center; padding: 4rem 1.5rem; }
+        .audiobook-promo h2 { font-size: 2.8rem; font-weight: 700; text-transform: uppercase; margin: 0 0 1rem 0; }
+        .audiobook-promo p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6; color: #fff2db; }
+        .audiobook-promo .audio-icon { font-size: 4rem; color: #ffa711; margin-bottom: 1.5rem; }
+        .audiobook-promo .platforms { margin: 2rem 0; display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        .audiobook-promo .platforms span { font-size: 1rem; font-weight: bold; }
+        .audiobook-promo .platforms i { font-size: 2.5rem; }
+        .audiobook-promo .audio-cta { display: inline-block; padding: 1rem 2.5rem; background-color: #ffa711; color: #000; font-weight: bold; font-size: 1.1rem; border-radius: 8px; text-decoration: none; }
+        .about-section { padding: 3rem 1.5rem; background-color: #ffc19c; text-align: center; }
+        .about-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .about-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .about-text h2 { font-size: 2rem; color: #f35b4e; }
+        .about-text p { font-size: 1rem; line-height: 1.6; text-align: left; }
+        footer { background-color: #f35b4e; color: #fff2db; padding: 40px 20px; text-align: center; }
+        .footer-social-links a { color: #ffffff; font-size: 28px; margin: 0 15px; text-decoration: none; }
+        .footer-contact-link { margin: 20px 0; }
+        .footer-contact-link a { color: #ffffff; text-decoration: none; font-size: 16px; border-bottom: 1px dotted #ffffff; padding-bottom: 2px; cursor: pointer; }
+        .footer-copyright p { font-size: 14px; margin: 0; }
+        #theme-switch { position: fixed; top: 80px; right: 20px; z-index: 99; background-color: #121416; color: #fff; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: all 0.4s ease; }
+        #theme-switch:hover { width: 180px; border-radius: 30px; background-color: #3d5a80; }
+        #theme-switch .switch-icon { font-size: 1.2rem; transition: transform 0.4s ease; }
+        #theme-switch:hover .switch-icon { transform: rotate(360deg); }
+        #theme-switch .switch-text { white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; font-size: 0.9rem; font-weight: bold; margin-left: 0; transition: max-width 0.3s ease 0.1s, opacity 0.2s ease 0.1s, margin-left 0.3s ease 0.1s; }
+        #theme-switch:hover .switch-text { opacity: 1; max-width: 200px; margin-left: 10px; }
+        .modal-backdrop { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fff2db; margin: auto; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.3); }
+        .modal-close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .modal-form button { background-color: #f35b4e; color: white; }
+        @media (max-width: 768px) { #theme-switch:hover { width: 45px; border-radius: 50%; } #theme-switch .switch-text { display: none; } .about-text p { text-align: center; } }
     </style>
 </head>
 <body>
@@ -641,25 +102,19 @@
     </header>
     
     <div class="announcement-bar">
-        <div class="announcement-slider">
-            <div class="announcement-item is-active">
-                <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
-                <small>*Free Kindle Rankings, July 2025</small>
-            </div>
-            <div class="announcement-item">
-                <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
-                <small>Available on Spotify, Audible & more</small>
-            </div>
+        <div class="announcement-item is-active">
+            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
+            <small>*Free Kindle Rankings, July 2025</small>
+        </div>
+        <div class="announcement-item">
+            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
+            <small>Available on Spotify, Audible & more</small>
         </div>
     </div>
-
+    
     <section class="hero" id="signup-form">
         <div class="hero-content">
-            <h1>
-                <span>Breakups.</span>
-                <span>Meltdowns.</span>
-                <span>Mistakes.</span>
-            </h1>
+            <h1><span>Breakups.</span><span>Meltdowns.</span><span>Mistakes.</span></h1>
             <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
                 <input type="email" name="email" placeholder="Your email (I won’t ghost you)" required>
@@ -675,23 +130,12 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
+            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
         </div>
     </div>
-    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+    
+    <section class="inside-chaos" style="padding: 3rem 1.5rem;">
         <div style="max-width: 1000px; margin: auto;">
-            <div style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative;">
-                    Inside the Chaos – Weird boyfriends. Wild twists. Zero regrets.
-                    <span style="display:block; width: 60px; height: 4px; background: #ffa711; margin-top: 0.5rem; border-radius: 2px;"></span>
-                </h2>
-                <p style="font-size: 1rem; line-height: 1.6;">
-                    The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:#f35b4e; font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
-                    This isn’t self-help. It’s <span style="color:#f35b4e; font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:#f35b4e; font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
-                    Told with zero apologies and <span style="color:#f35b4e; font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
-                    You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:#f35b4e; font-weight:bold; text-decoration:underline;">a little dangerous.</span>
-                </p>
-            </div>
             <div class="cringe-index-header">CRINGE INDEX</div>
             <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
             <div class="cringe-index">
@@ -699,35 +143,11 @@
                 <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Kinkster</h3><p>“Brought a rubber chicken to bed and called it foreplay.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div></div></div>
                 <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Polyamorist</h3><p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div></div></div>
                 <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Crier</h3><p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 40%"></div></div><div class="thermometer-label">2/5 – Mild Regret</div></div><div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Ghoster</h3><p>“Vanished for 10 days. Then texted ‘hey’ like nothing.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 60%"></div></div><div class="thermometer-label">3/5 – Cringe Spiral</div></div><div class="cringe-card-back">“Disappeared mid-convo. Came back with memes.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Party Animal</h3><p>“Said ‘I love you’ at 3 a.m. in a club. Then made out with his ex at 3:05.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Offered me molly and a relationship.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Gambler</h3><p>“Burned through my savings, pawned my watch, and still said we were ‘building a future.’”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Used my heirloom watch as a poker buy-in.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Liar</h3><p>“Faked nobility, lied about his name, and said his ex was dead. Spoiler: he was on Instagram.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Claimed to own a Dalí. Couldn’t spell ‘Dalí.’”</div></div></div>
             </div>
-            <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
-            <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
         </div>
     </section>
 
-    <section class="audiobook-promo animated-section">
-        <div class="audio-icon">
-            <i class="fa-solid fa-headphones-simple"></i>
-        </div>
-        <h2>The Chaos, Now in Your Ears</h2>
-        <p>
-            The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
-        </p>
-        <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
-        <div class="platforms">
-            <span>Available Soon On:</span>
-            <i class="fa-brands fa-spotify" title="Spotify"></i>
-            <i class="fa-brands fa-audible" title="Audible"></i>
-            <i class="fa-brands fa-apple" title="Apple Podcasts & Books"></i>
-            <span>& more</span>
-        </div>
-    </section>
-
-    <section class="about-section animated-section">
+    <section class="about-section">
         <div class="about-container">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore" class="about-photo">
             <div class="about-text">
@@ -741,29 +161,22 @@
 
     <footer>
         <div class="footer-social-links">
-            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
+            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
-    
         <div class="footer-contact-link">
             <a href="#" id="open-contact-modal">Contact Me</a>
         </div>
-    
         <div class="footer-copyright">
             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
-
+    
     <div id="contact-modal" class="modal-backdrop">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2>Contact Me</h2>
             <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
-            
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
@@ -772,7 +185,6 @@
             </form>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const contactModal = document.getElementById('contact-modal');
@@ -792,24 +204,10 @@
                 }
             });
             
-            const animatedSections = document.querySelectorAll('.animated-section');
-            const scrollObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        scrollObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            animatedSections.forEach(section => {
-                scrollObserver.observe(section);
-            });
-            
             const announcementItems = document.querySelectorAll('.announcement-item');
-            if (announcementItems.length > 0) {
+            if (announcementItems.length > 1) {
                 let currentItemIndex = 0;
+                announcementItems[0].classList.add('is-active');
                 setInterval(() => {
                     announcementItems[currentItemIndex].classList.remove('is-active');
                     currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
