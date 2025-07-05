@@ -16,8 +16,8 @@
     <style>
         html { scroll-behavior: smooth; }
         body { margin: 0; font-family: 'Inter', sans-serif; background-color: #121416; color: #e0e1dd; overflow-x: hidden; }
-        main { position: relative; z-index: 2; }
-        header, body > footer { position: relative; z-index: 10; }
+        main { position: relative; z-index: 2; background-color: transparent; /* CORRECTED: Must be transparent for fog to be visible */ }
+        header, footer { position: relative; z-index: 10; }
         header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; background-color: #ffc19c; color: #000; }
         .logo { font-weight: bold; font-size: 1.2rem; }
         .tagline { font-size: 0.9rem; }
@@ -68,7 +68,7 @@
         .explore-card:hover .explore-card-bg { transform: scale(1.05); }
         .explore-card-content { position: absolute; bottom: 0; left: 0; padding: 1.5rem; z-index: 3; }
         .explore-card-content h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
-        .fh-reviews { background-color: rgba(18, 20, 22, 0.95); text-align: center; position: relative; }
+        .fh-reviews { background-color: rgba(26, 28, 30, 0.95); text-align: center; position: relative; }
         .fh-reviews::before { content: '\f10d'; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 15rem; color: rgba(255, 255, 255, 0.03); z-index: 1; }
         #review-display-area { max-width: 650px; margin: auto; padding: 2rem; position: relative; z-index: 2; background-color: rgba(12, 13, 14, 0.4); border-radius: 8px; box-shadow: 0 0 25px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.3); border: 1px solid rgba(205, 162, 116, 0.2); transition: opacity 0.7s ease-in-out; }
         #review-display-area .star-rating { color: #cda274; font-size: 1.2rem; margin-bottom: 1.5rem; animation: pulse-glow 5s infinite ease-in-out; }
@@ -79,7 +79,7 @@
         .fh-final-cta { text-align: center; background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/Daniel%20and%20the%20Lighthouse%202.png'); background-size: cover; background-attachment: fixed; }
         .fh-final-cta h2 { font-family: 'Playfair Display', serif; font-size: 3rem; animation: text-flicker 15s linear infinite; }
         @keyframes text-flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 5px rgba(224, 225, 221, 0.2), 0 0 20px rgba(205, 162, 116, 0.2); } 20%, 24%, 55% { text-shadow: none; } }
-        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+        .modal-backdrop { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
         .modal-content { max-width: 500px; width: 90%; position: relative; }
         .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; z-index: 2;}
         #contact-modal .modal-content { background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; padding: 2rem; border-radius: 8px; }
@@ -212,8 +212,8 @@
             let audioInitialized = false;
             function initializeAudio() { if (audioInitialized) return; audioInitialized = true; ambientAudio.play().catch(()=>{}); thunderAudio.load(); setTimeout(triggerLightning, 8000); }
             if (soundBtn && ambientAudio) { soundBtn.addEventListener('click', () => { if (!audioInitialized) initializeAudio(); const isMuted = !ambientAudio.muted; ambientAudio.muted = isMuted; if(thunderAudio) thunderAudio.muted = isMuted; soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>'; }); }
-            function triggerLightning() { if (lightningFlash && audioInitialized && !ambientAudio.muted) { lightningFlash.classList.add('flash'); setTimeout(() => { if(thunderAudio) { thunderAudio.currentTime = 0; thunderAudio.play(); } }, Math.random() * 700 + 300); setTimeout(() => { lightningFlash.classList.remove('flash'); }, 550); } setTimeout(triggerLightning, Math.random() * 12000 + 10000); }
-
+            function triggerLightning() { if (lightningFlash && audioInitialized && !ambientAudio.muted) { lightningFlash.classList.add('flash'); setTimeout(() => { if(thunderAudio) { thunderAudio.currentTime = 0; thunderAudio.play(); } }, Math.random() * 700 + 300); setTimeout(() => { lightningFlash.classList.remove('flash'); }, 550); } setTimeout(triggerLightning, Math.random() * 12000 + 8000); }
+            
             const reviews = [
                 { author: "— Dorin, Amazon Verified Purchase", headline: "Great read!", text: "Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!" },
                 { author: "— Elise, Amazon Verified Purchase", headline: "LGBTQI+ soft Romance", text: "I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be." },
@@ -225,18 +225,21 @@
                 const reviewText = document.getElementById('review-text');
                 const reviewAuthor = document.getElementById('review-author');
                 let currentReviewIndex = 0;
+                function updateReviewContent() {
+                    const review = reviews[currentReviewIndex];
+                    reviewHeadline.textContent = review.headline;
+                    reviewText.textContent = `“${review.text}”`;
+                    reviewAuthor.textContent = review.author;
+                }
                 function showNextReview() {
                     reviewArea.style.opacity = 0;
                     setTimeout(() => {
                         currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
-                        const review = reviews[currentReviewIndex];
-                        reviewHeadline.textContent = review.headline;
-                        reviewText.textContent = `“${review.text}”`;
-                        reviewAuthor.textContent = review.author;
+                        updateReviewContent();
                         reviewArea.style.opacity = 1;
                     }, 600);
                 }
-                showNextReview(); // Initial call
+                updateReviewContent(); // Initial call to populate first review
                 setInterval(showNextReview, 7000);
             }
         });
