@@ -27,7 +27,6 @@
         .footer-contact-link { margin: 20px 0; }
         .footer-contact-link a { color: #ffffff; text-decoration: none; font-size: 16px; border-bottom: 1px dotted #ffffff; padding-bottom: 2px; cursor: pointer; }
         .footer-copyright p { font-size: 14px; margin: 0; }
-
         #fog-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         .fog-layer { position: absolute; width: 200vw; height: 200vh; left: -50vw; top: -50vh; background-repeat: no-repeat; background-position: center; background-size: 100% 100%; will-change: transform; transition: transform 0.2s linear; }
         .fog-layer-1 { background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-1.png'); opacity: 0.15; }
@@ -36,7 +35,6 @@
         #lightning-flash.flash { animation: flash-animation 0.5s ease-out; }
         @keyframes flash-animation { 0% { opacity: 0; } 10% { opacity: 0.6; } 20% { opacity: 0.3; } 100% { opacity: 0; } }
         #sound-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 101; width: 45px; height: 45px; background-color: rgba(0,0,0,0.5); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-
         .fh-section { padding: 5rem 2rem; background-color: rgba(18, 20, 22, 0.9); }
         .fh-container { max-width: 1000px; margin: 0 auto; }
         .fh-hero { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 90vh; color: #ffffff; padding: 2rem; background-image: linear-gradient(rgba(18, 20, 22, 0.7), rgba(18, 20, 22, 0.5)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/The%20Mansion%201.png'); background-size: cover; background-position: center; background-attachment: fixed; }
@@ -46,23 +44,20 @@
         .fh-hero .fh-tagline { font-size: 1.2rem; font-style: italic; }
         .fh-author { font-size: 1rem; margin: 1rem 0 2rem 0; }
         .fh-cta-button { display: inline-block; background-color: #cda274; color: #121416; padding: 1rem 2.5rem; text-decoration: none; font-weight: bold; border-radius: 5px; }
-        
         .fh-synopsis { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
         .fh-synopsis-cover { flex: 1 1 300px; }
-        .fh-synopsis-text { flex: 2 1 500px; }
         .cover-container { position: relative; cursor: pointer; border-radius: 5px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 350px; margin: 0 auto; }
         .cover-container img { width: 100%; display: block; }
         .cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png') center/cover; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .cover-container:hover .cover-overlay { opacity: 1; }
+        .fh-synopsis-text { flex: 2 1 500px; }
         .fh-synopsis-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
         .fh-synopsis-text p { line-height: 1.8; font-size: 1.1rem; }
         #open-journal-modal { color: #cda274; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; }
-        
         .fh-trailer { background-color: rgba(12, 13, 14, 0.95); text-align: center; }
         .fh-trailer h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
         .fh-trailer-embed { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; max-width: 900px; margin: 0 auto; }
         .fh-trailer-embed iframe { border: none; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; }
-        
         .fh-explore { background-color: rgba(26, 28, 30, 0.95); }
         .fh-explore-header { text-align: center; margin-bottom: 3rem; }
         .fh-explore-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
@@ -74,25 +69,25 @@
         .explore-card-content { position: absolute; bottom: 0; left: 0; padding: 1.5rem; z-index: 3; }
         .explore-card-content h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
         
+        /* --- REBUILT REVIEWS SECTION --- */
         .fh-reviews { background-color: rgba(26, 28, 30, 0.95); }
-        .review-slider-container { max-width: 700px; margin: auto; overflow: hidden; }
-        .review-slider-track { display: flex; width: 300%; animation: slide-reviews 21s infinite ease-in-out; }
-        .review-slide { width: 100%; flex-shrink: 0; box-sizing: border-box; padding: 0 1rem; }
-        .review-slide blockquote { border-left: 4px solid #cda274; margin: 0; padding: 1.5rem 2rem; font-style: italic; }
-        .review-slide footer { text-align: right; font-style: normal; font-weight: bold; margin-top: 1rem; }
-        .review-slide .star-rating { color: #cda274; }
-        @keyframes slide-reviews { 0%, 28% { transform: translateX(0%); } 33.33%, 61.33% { transform: translateX(-100%); } 66.66%, 94.66% { transform: translateX(-200%); } 100% { transform: translateX(0%); } }
-        
+        #review-display-area { max-width: 700px; margin: auto; text-align: center; transition: opacity 0.5s ease-in-out; }
+        #review-display-area .star-rating { color: #cda274; font-size: 1.2rem; margin-bottom: 1rem; }
+        #review-display-area h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 0 0 1rem 0; color: #fff; }
+        #review-display-area blockquote { border-left: 4px solid #cda274; margin: 0; padding: 0 1.5rem; text-align: left; font-style: italic; }
+        #review-display-area footer { text-align: right; font-style: normal; font-weight: bold; margin-top: 1rem; }
+
         .fh-final-cta { text-align: center; background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/Daniel%20and%20the%20Lighthouse%202.png'); background-size: cover; background-attachment: fixed; }
         .fh-final-cta h2 { font-family: 'Playfair Display', serif; font-size: 3rem; animation: text-flicker 15s linear infinite; }
         @keyframes text-flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 5px rgba(224, 225, 221, 0.2), 0 0 20px rgba(205, 162, 116, 0.2); } 20%, 24%, 55% { text-shadow: none; } }
         
         .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        .modal-content { max-width: 500px; width: 90%; position: relative; background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; padding: 2rem; border-radius: 8px; }
-        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; }
+        .modal-content { max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; z-index: 2;}
+        #contact-modal .modal-content { background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; padding: 2rem; border-radius: 8px; }
         .modal-form input, .modal-form textarea { background-color: #121416; border: 1px solid #333; color: #e0e1dd; width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 4px; box-sizing: border-box; }
         .modal-form button { background-color: #cda274; color: #121416; font-weight: bold; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; }
-        #journal-modal .modal-content { background-image: url('https://www.transparenttextures.com/patterns/old-paper.png'); background-color: #c5b89f; color: #3a3025; }
+        #journal-modal .modal-content { background-image: url('https://www.transparenttextures.com/patterns/old-paper.png'); background-color: #c5b89f; color: #3a3025; padding: 2rem; border-radius: 4px;}
         #journal-modal h2 { font-family: 'Playfair Display', serif; }
         #journal-modal p { font-family: 'Beth Ellen', cursive; font-size: 1.2rem; line-height: 2.2; min-height: 120px; }
         .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; }
@@ -111,7 +106,7 @@
         <div class="logo">Aleks Filmore</div>
         <div class="tagline">Queer Stories. Real Chaos.</div>
     </header>
-    
+
     <main>
         <section class="fh-hero">
             <div class="fh-hero-content">
@@ -156,11 +151,12 @@
             </div>
         </section>
         <section id="reviews" class="fh-section fh-reviews">
-            <div class="review-slider-container">
-                <div class="review-slider-track">
-                    <div class="review-slide"><blockquote><p>"Good book, good writing, the plot is interesting enough to keep you hooked"</p><footer><span class="star-rating">★★★★★</span> — F., Amazon Verified Purchase</footer></blockquote></div>
-                    <div class="review-slide"><blockquote><p>"I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be."</p><footer><span class="star-rating">★★★★★</span> — Elise, Amazon Verified Purchase</footer></blockquote></div>
-                    <div class="review-slide"><blockquote><p>"Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!"</p><footer><span class="star-rating">★★★★★</span> — Dorin, Amazon Verified Purchase</footer></blockquote></div>
+            <div class="fh-container">
+                <div id="review-display-area">
+                    <div class="star-rating" id="review-stars">★★★★★</div>
+                    <h3 id="review-headline">Great read!</h3>
+                    <blockquote id="review-text">Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!</blockquote>
+                    <footer id="review-author">— Dorin, Amazon Verified Purchase</footer>
                 </div>
             </div>
         </section>
@@ -176,14 +172,15 @@
         <div class="footer-contact-link"><a href="#" id="open-contact-modal">Contact Me</a></div>
         <div class="footer-copyright"><p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
     </footer>
-    <div id="contact-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>Contact Me</h2><form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form></div></div>
-    <div id="journal-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>A Found Page</h2><p id="journal-text"></p></div></div>
+    <div id="contact-modal" class="modal-backdrop fogbound-theme"><div class="modal-content"><span class="modal-close">&times;</span><h2>Contact Me</h2><form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form></div></div>
+    <div id="journal-modal" class="modal-backdrop fogbound-theme"><div class="modal-content"><span class="modal-close">&times;</span><h2>A Found Page</h2><p id="journal-text"></p></div></div>
     <audio id="ambient-sound" loop muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg"></audio>
     <audio id="thunder-sound" muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/bcd598aea06d603b7bcdd14c7138b852ca902d52/thunder.mp3" type="audio/mpeg"></audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- MODAL LOGIC ---
             function initModal(openBtnId, modalId, onOpenCallback) {
                 const modal = document.getElementById(modalId);
                 const openBtn = document.getElementById(openBtnId);
@@ -193,70 +190,61 @@
                 const close = () => { modal.style.display = 'none'; };
                 openBtn.addEventListener('click', open);
                 closeBtn.addEventListener('click', close);
-                modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+                window.addEventListener('click', (event) => { if (event.target === modal) close(); });
             }
             let typewriterTimeout;
             function typewriterEffect() {
                 const el = document.getElementById('journal-text');
                 const text = "The fog has a voice tonight. It whispers my name from the cliffs. I saw him again by the lighthouse—the one who isn't there when I look twice. He watches the manor. He's waiting for someone. I fear he's waiting for me.";
                 if (!el) return;
-                el.innerHTML = '';
-                el.classList.add('typing-cursor');
+                el.innerHTML = ''; el.classList.add('typing-cursor');
                 clearTimeout(typewriterTimeout);
                 let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        el.innerHTML += text.charAt(i); i++;
-                        typewriterTimeout = setTimeout(type, 55);
-                    } else { el.classList.remove('typing-cursor'); }
-                }
+                function type() { if (i < text.length) { el.innerHTML += text.charAt(i); i++; typewriterTimeout = setTimeout(type, 55); } else { el.classList.remove('typing-cursor'); } }
                 type();
             }
             initModal('open-contact-modal', 'contact-modal');
             initModal('open-journal-modal', 'journal-modal', typewriterEffect);
+
+            // --- FOG SCRIPT ---
             const fogLayer1 = document.querySelector('.fog-layer-1');
             const fogLayer2 = document.querySelector('.fog-layer-2');
-            if (fogLayer1 && fogLayer2) {
-                document.addEventListener('mousemove', (e) => {
-                    const { clientX, clientY } = e;
-                    const x = (clientX / window.innerWidth) * 40 - 20;
-                    const y = (clientY / window.innerHeight) * 40 - 20;
-                    fogLayer1.style.transform = `translate(${x}px, ${y}px)`;
-                    fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
-                });
-            }
+            if (fogLayer1 && fogLayer2) { document.addEventListener('mousemove', (e) => { const { clientX, clientY } = e; const x = (clientX / window.innerWidth) * 40 - 20; const y = (clientY / window.innerHeight) * 40 - 20; fogLayer1.style.transform = `translate(${x}px, ${y}px)`; fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`; }); }
+            
+            // --- AUDIO & LIGHTNING SCRIPT ---
             const soundBtn = document.getElementById('sound-toggle');
             const ambientAudio = document.getElementById('ambient-sound');
             const thunderAudio = document.getElementById('thunder-sound');
             const lightningFlash = document.getElementById('lightning-flash');
             let audioInitialized = false;
-            function initializeAudio() {
-                if (audioInitialized) return;
-                audioInitialized = true;
-                ambientAudio.play().catch(()=>{});
-                thunderAudio.load();
-                setTimeout(triggerLightning, Math.random() * 5000 + 4000);
+            function initializeAudio() { if (audioInitialized) return; audioInitialized = true; ambientAudio.play().catch(()=>{}); thunderAudio.load(); setTimeout(triggerLightning, Math.random() * 5000 + 4000); }
+            if (soundBtn && ambientAudio) { soundBtn.addEventListener('click', () => { if (!audioInitialized) initializeAudio(); const isMuted = !ambientAudio.muted; ambientAudio.muted = isMuted; if(thunderAudio) thunderAudio.muted = isMuted; soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>'; }); }
+            function triggerLightning() { if (lightningFlash && audioInitialized && !ambientAudio.muted) { lightningFlash.classList.add('flash'); setTimeout(() => { if(thunderAudio) { thunderAudio.currentTime = 0; thunderAudio.play(); } }, Math.random() * 700 + 300); setTimeout(() => { lightningFlash.classList.remove('flash'); }, 550); } setTimeout(triggerLightning, Math.random() * 12000 + 8000); }
+            
+            // --- FADING REVIEWS SCRIPT ---
+            const reviews = [
+                { author: "— Dorin, Amazon Verified Purchase", headline: "Great read!", text: "Oh, I loved reading this book! The atmosphere is eerie in the best way, and the mystery unfolds perfectly. Such a great read!" },
+                { author: "— Elise, Amazon Verified Purchase", headline: "LGBTQI+ soft Romance", text: "I liked a lot that the LGBTQ+ storyline is not in your face, but gradually evolving into something that we all wanted it to be." },
+                { author: "— F., Amazon Verified Purchase", headline: "Good writing", text: "Good book, good writing, the plot is interesting enough to keep you hooked" }
+            ];
+            const reviewArea = document.getElementById('review-display-area');
+            const reviewHeadline = document.getElementById('review-headline');
+            const reviewText = document.getElementById('review-text');
+            const reviewAuthor = document.getElementById('review-author');
+            let currentReviewIndex = 0;
+
+            function showNextReview() {
+                reviewArea.style.opacity = 0;
+                setTimeout(() => {
+                    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+                    const review = reviews[currentReviewIndex];
+                    reviewHeadline.textContent = review.headline;
+                    reviewText.textContent = review.text;
+                    reviewAuthor.textContent = review.author;
+                    reviewArea.style.opacity = 1;
+                }, 500);
             }
-            if (soundBtn && ambientAudio && thunderAudio) {
-                soundBtn.addEventListener('click', () => {
-                    if (!audioInitialized) initializeAudio();
-                    const isMuted = !ambientAudio.muted;
-                    ambientAudio.muted = isMuted;
-                    thunderAudio.muted = isMuted;
-                    soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-                });
-            }
-            function triggerLightning() {
-                if (lightningFlash && audioInitialized && !ambientAudio.muted) {
-                    lightningFlash.classList.add('flash');
-                    setTimeout(() => {
-                        thunderAudio.currentTime = 0;
-                        thunderAudio.play().catch(()=>{});
-                    }, Math.random() * 700 + 300);
-                    setTimeout(() => { lightningFlash.classList.remove('flash'); }, 550);
-                }
-                setTimeout(triggerLightning, Math.random() * 12000 + 8000);
-            }
+            setInterval(showNextReview, 7000); // Change review every 7 seconds
         });
     </script>
 </body>
