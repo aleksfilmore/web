@@ -13,6 +13,7 @@
     <title>Aleks Filmore | Author</title>
     <meta name="description" content="Official site for author Aleks Filmore. Explore the hilariously messy breakup memoir 'The Worst Boyfriends Ever' and the queer gothic romance 'Fogbound Hearts'.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -133,7 +134,7 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span>
+            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span>
         </div>
     </div>
     
@@ -205,13 +206,11 @@
             const openBtn = document.getElementById('open-contact-modal');
             if (contactModal && openBtn) {
                 const closeBtn = contactModal.querySelector('.modal-close');
-                openBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    contactModal.style.display = 'flex';
-                });
+                openBtn.addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
                 closeBtn.addEventListener('click', () => { contactModal.style.display = 'none'; });
                 window.addEventListener('click', (event) => { if (event.target == contactModal) { contactModal.style.display = 'none'; } });
             }
+            
             const announcementItems = document.querySelectorAll('.announcement-item');
             if (announcementItems.length > 1) {
                 announcementItems[0].classList.add('is-active');
