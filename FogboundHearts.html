@@ -19,8 +19,6 @@
         body { margin: 0; font-family: 'Inter', sans-serif; background-color: #121416; color: #e0e1dd; overflow-x: hidden; }
         main { position: relative; z-index: 2; }
         header, footer { position: relative; z-index: 10; }
-
-        /* --- Header & Footer (Reused) --- */
         header { padding: 1rem; display: flex; justify-content: space-between; align-items: center; background-color: #ffc19c; color: #000; }
         .logo { font-weight: bold; font-size: 1.2rem; }
         .tagline { font-size: 0.9rem; }
@@ -32,10 +30,10 @@
         .footer-copyright p { font-size: 14px; margin: 0; }
 
         /* --- Atmospheric Effects --- */
-        #fog-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
-        .fog-layer { position: absolute; width: 200vw; height: 200vh; left: -50vw; top: -50vh; background-repeat: no-repeat; background-position: center; will-change: transform; transition: transform 0.2s linear; }
-        .fog-layer-1 { background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-1.png'); background-size: 100% 100%; opacity: 0.15; }
-        .fog-layer-2 { background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-2.png'); background-size: 100% 100%; opacity: 0.2; }
+        #fog-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .fog-layer { position: absolute; width: 200vw; height: 200vh; left: -50vw; top: -50vh; background-repeat: no-repeat; background-position: center; background-size: 100% 100%; will-change: transform; transition: transform 0.2s linear; }
+        .fog-layer-1 { background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-1.png'); opacity: 0.15; }
+        .fog-layer-2 { background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/cbd42bdfb90c12b9a595d81901d9d0c81398afc6/fog-2.png'); opacity: 0.2; }
         #lightning-flash { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: white; z-index: 4; pointer-events: none; opacity: 0; }
         #lightning-flash.flash { animation: flash-animation 0.5s ease-out; }
         @keyframes flash-animation { 0% { opacity: 0; } 10% { opacity: 0.6; } 20% { opacity: 0.3; } 100% { opacity: 0; } }
@@ -57,6 +55,7 @@
         .cover-container img { width: 100%; display: block; }
         .cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://raw.githubusercontent.com/aleksfilmore/web/17625b680e2765610d9ea42e0ae1cceae1a1e0fd/Attic%201.png') center/cover; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .cover-container:hover .cover-overlay { opacity: 1; }
+        .fh-synopsis-text { flex: 2; min-width: 300px; }
         .fh-synopsis-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
         .fh-synopsis-text p { line-height: 1.8; font-size: 1.1rem; }
         #open-journal-modal { color: #cda274; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; }
@@ -74,26 +73,37 @@
         .explore-card:hover .explore-card-bg { transform: scale(1.05); }
         .explore-card-content { position: absolute; bottom: 0; left: 0; padding: 1.5rem; z-index: 3; }
         .explore-card-content h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+        
+        /* --- REBUILT REVIEWS SECTION --- */
         .fh-reviews { background-color: rgba(26, 28, 30, 0.95); }
         .review-slider-container { max-width: 700px; margin: auto; overflow: hidden; }
-        .review-slider-track { display: flex; width: 300%; animation: slide-reviews 21s infinite ease-in-out; }
-        .review-slide { width: 100%; flex-shrink: 0; box-sizing: border-box; padding: 0 2rem; }
+        .review-slider-track { display: flex; width: 300%; animation: slide-reviews 18s infinite ease-in-out; }
+        .review-slide { width: 100%; flex-shrink: 0; box-sizing: border-box; padding: 0 1rem; }
         .review-slide blockquote { border-left: 4px solid #cda274; margin: 0; padding: 1.5rem 2rem; font-style: italic; }
-        .review-slide footer { text-align: right; font-style: normal; font-weight: bold; }
+        .review-slide footer { text-align: right; font-style: normal; font-weight: bold; margin-top: 1rem; }
         .review-slide .star-rating { color: #cda274; }
         @keyframes slide-reviews { 0%, 28% { transform: translateX(0%); } 33.33%, 61.33% { transform: translateX(-100%); } 66.66%, 94.66% { transform: translateX(-200%); } 100% { transform: translateX(0%); } }
-        .fh-final-cta { text-align: center; background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/Daniel%20and%20the%20Lighthouse%202.png'); background-size: cover; background-position: center; background-attachment: fixed; }
+
+        .fh-final-cta { text-align: center; background-image: linear-gradient(rgba(18, 20, 22, 0.9), rgba(18, 20, 22, 0.9)), url('https://raw.githubusercontent.com/aleksfilmore/web/6a0bd63b439aede3480d5071d1d512aa1fdbb14c/Daniel%20and%20the%20Lighthouse%202.png'); background-size: cover; background-attachment: fixed; }
         .fh-final-cta h2 { font-family: 'Playfair Display', serif; font-size: 3rem; animation: text-flicker 15s linear infinite; }
         @keyframes text-flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 5px rgba(224, 225, 221, 0.2), 0 0 20px rgba(205, 162, 116, 0.2); } 20%, 24%, 55% { text-shadow: none; } }
-        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        .modal-content { background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; margin: auto; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; }
-        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; }
-        #journal-modal .modal-content { background-image: url('https://www.transparenttextures.com/patterns/old-paper.png'); background-color: #c5b89f; color: #3a3025; }
-        #journal-modal h2 { font-family: 'Playfair Display', serif; }
+        
+        /* --- REBUILT MODAL STYLES --- */
+        .modal-backdrop { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(18, 20, 22, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+        .modal-content { max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 2; }
+        /* Contact Modal Theming */
+        #contact-modal .modal-content { background-color: #1a1c1e; border: 1px solid rgba(205, 162, 116, 0.3); color: #e0e1dd; padding: 2rem; border-radius: 8px; }
+        #contact-modal .modal-close { color: #888; }
+        #contact-modal .modal-close:hover { color: #cda274; }
+        .modal-form input, .modal-form textarea { background-color: #121416; border: 1px solid #333; color: #e0e1dd; width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        .modal-form button { background-color: #cda274; color: #121416; font-weight: bold; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; }
+        /* Journal Modal Theming */
+        #journal-modal .modal-content { background-image: url('https://www.transparenttextures.com/patterns/old-paper.png'); background-color: #c5b89f; color: #3a3025; padding: 2rem; border-radius: 4px;}
+        #journal-modal h2 { font-family: 'Playfair Display', serif; text-align: center; }
         #journal-modal p { font-family: 'Beth Ellen', cursive; font-size: 1.2rem; line-height: 2.2; min-height: 120px; }
         .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-        @media (max-width: 768px) { .fh-hero h1 { font-size: 3rem; } .review-slide { padding: 0 1rem; } }
     </style>
 </head>
 <body>
@@ -171,8 +181,8 @@
         <div class="footer-contact-link"><a href="#" id="open-contact-modal">Contact Me</a></div>
         <div class="footer-copyright"><p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
     </footer>
-    <div id="contact-modal" class="modal-backdrop fogbound-theme"><div class="modal-content"><span class="modal-close">&times;</span><h2>Contact Me</h2><form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form></div></div>
-    <div id="journal-modal" class="modal-backdrop fogbound-theme"><div class="modal-content"><span class="modal-close">&times;</span><h2>A Found Page</h2><p id="journal-text"></p></div></div>
+    <div id="contact-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>Contact Me</h2><form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form></div></div>
+    <div id="journal-modal" class="modal-backdrop"><div class="modal-content"><span class="modal-close">&times;</span><h2>A Found Page</h2><p id="journal-text"></p></div></div>
     <audio id="ambient-sound" loop muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/90d1ac0d87b7f91a92f0dbeebe775e5ae398a204/heartbeat.mp3" type="audio/mpeg"></audio>
     <audio id="thunder-sound" muted><source src="https://raw.githubusercontent.com/aleksfilmore/web/bcd598aea06d603b7bcdd14c7138b852ca902d52/thunder.mp3" type="audio/mpeg"></audio>
     <div id="sound-toggle"><i class="fa-solid fa-volume-xmark"></i></div>
@@ -184,16 +194,12 @@
                 const openBtn = document.getElementById(openBtnId);
                 if (!modal || !openBtn) return;
                 const closeBtn = modal.querySelector('.modal-close');
-                
                 const open = (e) => { e.preventDefault(); modal.style.display = 'flex'; if (onOpenCallback) onOpenCallback(); };
                 const close = () => { modal.style.display = 'none'; };
-                
                 openBtn.addEventListener('click', open);
                 closeBtn.addEventListener('click', close);
                 modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
             }
-
-            // --- TYPEWRITER ---
             let typewriterTimeout;
             function typewriterEffect() {
                 const el = document.getElementById('journal-text');
@@ -213,8 +219,10 @@
                 }
                 type();
             }
+            initModal('open-contact-modal', 'contact-modal');
+            initModal('open-journal-modal', 'journal-modal', typewriterEffect);
 
-            // --- FOG ---
+            // --- INTERACTIVE EFFECTS ---
             const fogLayer1 = document.querySelector('.fog-layer-1');
             const fogLayer2 = document.querySelector('.fog-layer-2');
             if (fogLayer1 && fogLayer2) {
@@ -226,21 +234,18 @@
                     fogLayer2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
                 });
             }
-            
-            // --- AUDIO & LIGHTNING ---
             const soundBtn = document.getElementById('sound-toggle');
             const ambientAudio = document.getElementById('ambient-sound');
             const thunderAudio = document.getElementById('thunder-sound');
             const lightningFlash = document.getElementById('lightning-flash');
             let audioInitialized = false;
-
             function initializeAudio() {
                 if (audioInitialized) return;
                 audioInitialized = true;
                 ambientAudio.play().catch(()=>{});
-                thunderAudio.load(); // Preload thunder sound
+                thunderAudio.load();
+                setTimeout(triggerLightning, Math.random() * 5000 + 4000);
             }
-
             if (soundBtn && ambientAudio && thunderAudio) {
                 soundBtn.addEventListener('click', () => {
                     if (!audioInitialized) initializeAudio();
@@ -250,23 +255,17 @@
                     soundBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
                 });
             }
-
             function triggerLightning() {
                 if (lightningFlash && audioInitialized && !ambientAudio.muted) {
                     lightningFlash.classList.add('flash');
                     setTimeout(() => {
                         thunderAudio.currentTime = 0;
-                        thunderAudio.play();
+                        thunderAudio.play().catch(()=>{});
                     }, Math.random() * 700 + 300);
                     setTimeout(() => { lightningFlash.classList.remove('flash'); }, 550);
                 }
                 setTimeout(triggerLightning, Math.random() * 12000 + 8000);
             }
-            setTimeout(triggerLightning, Math.random() * 5000 + 4000);
-
-            // --- INITIALIZE MODALS ---
-            initModal('open-contact-modal', 'contact-modal');
-            initModal('open-journal-modal', 'journal-modal', typewriterEffect);
         });
     </script>
 </body>
