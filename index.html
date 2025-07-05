@@ -257,7 +257,7 @@
             gap: 1rem;
             padding: 1rem;
             max-width: 1200px; /* Adjust as needed */
-            margin: 0 auto 3rem auto;
+            margin: 0 auto 1rem auto; /* Adjusted margin */
         }
         .mugshot-card {
             background-color: #ffc19c;
@@ -417,7 +417,7 @@
         }
         .bingo-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* Default for larger screens */
             gap: 10px;
             margin-top: 1.5rem;
         }
@@ -470,10 +470,30 @@
         }
 
         /* END New/Modified Styles */
+
+        /* START New styles for Book Purchase Section */
+        .book-purchase-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem; /* Space between text and button */
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #fff2db; /* Matches section background */
+        }
+        .book-formats-info {
+            text-align: center;
+            font-size: 1.1rem; /* Larger font */
+            font-weight: bold; /* Make it bold */
+            color: #333; /* Darker color for emphasis */
+            line-height: 1.5;
+        }
+        /* END New styles for Book Purchase Section */
+
         .cta-button {
             display: block;
             width: fit-content;
-            margin: 2rem auto;
+            margin: 0 auto; /* Removed top/bottom margin, now handled by gap in parent */
             padding: 1rem 2rem;
             background: #208e92;
             color: #fff;
@@ -725,12 +745,12 @@
             .hero p {
                 font-size: 1.2rem;
             }
-            /* Adjust mugshot gallery for smaller screens */
+            /* Adjust mugshot gallery for mobile */
             .mugshot-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Allow 2-3 columns */
             }
             .mugshot-card {
-                height: 180px;
+                height: 160px; /* Slightly smaller height on tablet/larger phone */
             }
             .audiobook-promo h2 {
                 font-size: 2.2rem;
@@ -754,16 +774,54 @@
                 font-size: 1.1rem;
             }
             .mugshot-gallery {
-                grid-template-columns: 1fr; /* Stack on very small screens */
+                grid-template-columns: 1fr; /* Stack on very small screens for clarity */
+                gap: 0.75rem;
             }
             .mugshot-card {
-                height: 160px;
+                height: 140px; /* Even smaller height on very small phones */
+            }
+            .mugshot-card-title {
+                font-size: 1rem;
+            }
+            .mugshot-card-charge {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            /* Quiz on mobile */
+            .quiz-container {
+                padding: 1.5rem;
+                margin: 2rem auto;
+            }
+            .quiz-question {
+                font-size: 1.2rem;
             }
             .quiz-options button {
-                width: 100%;
+                width: 100%; /* Ensure full width buttons */
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Bingo on mobile */
+            .bingo-container {
+                padding: 1.5rem;
+                margin: 2rem auto;
+            }
+            .bingo-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for better tap targets */
+                gap: 8px;
             }
             .bingo-square {
-                min-height: 80px;
+                min-height: 85px; /* Adjust height for 2-column layout */
+                font-size: 0.8rem; /* Slightly smaller text to fit more */
+                padding: 0.75rem;
+            }
+            .bingo-message {
+                font-size: 1rem;
+            }
+            #bingo-reset-btn {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
             }
         }
     </style>
@@ -830,109 +888,111 @@
             <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes!</p>
             <div class="mugshot-gallery animated-section">
                 <div class="mugshot-card" data-charge="Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.">
-                    <img src="https://via.placeholder.com/200x200?text=Gambler" alt="The Gambler" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/THE%20GAMBLER.png" alt="The Gambler" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Gambler</h3>
                     <p class="mugshot-card-charge">Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'">
-                    <img src="https://via.placeholder.com/200x200?text=Ghoster" alt="The Ghoster" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Ghoster.png" alt="The Ghoster" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Ghoster</h3>
                     <p class="mugshot-card-charge">Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.">
-                    <img src="https://via.placeholder.com/200x200?text=Party+Animal" alt="The Party Animal" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Party%20Animal.png" alt="The Party Animal" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Party Animal</h3>
                     <p class="mugshot-card-charge">Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.">
-                    <img src="https://via.placeholder.com/200x200?text=Pet-Obsessed" alt="The Pet-Obsessed" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Pet-Obsessed.png" alt="The Pet-Obsessed" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Pet-Obsessed</h3>
                     <p class="mugshot-card-charge">Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'">
-                    <img src="https://via.placeholder.com/200x200?text=Crier" alt="The Crier" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Crier.png" alt="The Crier" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Crier</h3>
                     <p class="mugshot-card-charge">Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.">
-                    <img src="https://via.placeholder.com/200x200?text=Liar" alt="The Liar" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Liar.png" alt="The Liar" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Liar</h3>
                     <p class="mugshot-card-charge">Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'">
-                    <img src="https://via.placeholder.com/200x200?text=Kinkster" alt="The Kinkster" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Kinkster.png" alt="The Kinkster" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Kinkster</h3>
                     <p class="mugshot-card-charge">Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Considered charging his phone 'too much effort,' watched static instead of fetching the remote.">
-                    <img src="https://via.placeholder.com/200x200?text=Human+Sloth" alt="The Human Sloth" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Human%20Sloth.png" alt="The Human Sloth" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Human Sloth</h3>
                     <p class="mugshot-card-charge">Considered charging his phone 'too much effort,' watched static instead of fetching the remote.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'">
-                    <img src="https://via.placeholder.com/200x200?text=Fitness+Fanatic" alt="The Fitness Fanatic" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Fitness%20Fanatic.png" alt="The Fitness Fanatic" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Fitness Fanatic</h3>
                     <p class="mugshot-card-charge">Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.">
-                    <img src="https://via.placeholder.com/200x200?text=Perfectionist" alt="The Perfectionist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Perfectionist.png" alt="The Perfectionist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Perfectionist</h3>
                     <p class="mugshot-card-charge">Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Stored newspapers in the bathtub—said showers are 'for gym people.'">
-                    <img src="https://via.placeholder.com/200x200?text=Hoarder" alt="The Hoarder" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Hoarder.png" alt="The Hoarder" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Hoarder</h3>
                     <p class="mugshot-card-charge">Stored newspapers in the bathtub—said showers are 'for gym people.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Stole my moisturizer because my 'dewy glow' mattered more than my feelings.">
-                    <img src="https://via.placeholder.com/200x200?text=Narcissist" alt="The Narcissist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Narcissist.png" alt="The Narcissist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Narcissist</h3>
                     <p class="mugshot-card-charge">Stole my moisturizer because my 'dewy glow' mattered more than my feelings.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Turned up 58 minutes late, blamed 'traffic,' lived two streets away.">
-                    <img src="https://via.placeholder.com/200x200?text=Late+One" alt="The Late One" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Late%20One.png" alt="The Late One" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Late One</h3>
                     <p class="mugshot-card-charge">Turned up 58 minutes late, blamed 'traffic,' lived two streets away.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Treated mini golf like the Olympics—trash-talked children on the next lane.">
-                    <img src="https://via.placeholder.com/200x200?text=Competitive" alt="The Competitive" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Competitive.png" alt="The Competitive" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Competitive</h3>
                     <p class="mugshot-card-charge">Treated mini golf like the Olympics—trash-talked children on the next lane.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.">
-                    <img src="https://via.placeholder.com/200x200?text=Conspiracist" alt="The Conspiracist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Conspiracist.png" alt="The Conspiracist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Conspiracist</h3>
                     <p class="mugshot-card-charge">Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.">
-                    <img src="https://via.placeholder.com/200x200?text=Wizard" alt="The Wizard" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Wizard.png" alt="The Wizard" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Wizard</h3>
                     <p class="mugshot-card-charge">Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.">
-                    <img src="https://via.placeholder.com/200x200?text=Planner" alt="The Planner" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Planner.png" alt="The Planner" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Planner</h3>
                     <p class="mugshot-card-charge">Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'">
-                    <img src="https://via.placeholder.com/200x200?text=Polyamorist" alt="The Polyamorist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Polyamorist.png" alt="The Polyamorist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Polyamorist</h3>
                     <p class="mugshot-card-charge">Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.">
-                    <img src="https://via.placeholder.com/200x200?text=Apologizer" alt="The Apologizer" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Apologizer.png" alt="The Apologizer" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Apologizer</h3>
                     <p class="mugshot-card-charge">Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Perfect, kind, emotionally available—terrified me so much I ghosted myself.">
-                    <img src="https://via.placeholder.com/200x200?text=The+One" alt="The One Who Got Away" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20One%20Who%20Got%20Away.png" alt="The One Who Got Away" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The One Who Got Away</h3>
                     <p class="mugshot-card-charge">Perfect, kind, emotionally available—terrified me so much I ghosted myself.</p>
                 </div>
-                </div>
-            <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
-            <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
-        </div>
+            </div>
+            <div class="book-purchase-section animated-section">
+                <div class="book-formats-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
+                <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
+            </div>
+            </div>
     </section>
 
     <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
