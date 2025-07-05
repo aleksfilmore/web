@@ -39,10 +39,10 @@
         .hero-image img:hover { transform: rotate(-2deg) scale(1.05); }
         .buy-btn { background: white; color: #f35b4e; padding: 0.6rem 1.1rem; font-weight: bold; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 1rem; font-size: 0.85rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
         .marquee-reviews { background: linear-gradient(to right, #f35b4e, #ffc19c); color: #000; padding: 0.75rem; overflow: hidden; white-space: nowrap; }
-        .review-track { display: inline-block; animation: marquee 45s linear infinite; min-width: 200%; }
+        .review-track { display: inline-block; animation: marquee 45s linear infinite; min-width: 300%; }
         .review-track span { display: inline-block; padding: 0 2rem; font-size: 0.85rem; font-weight: bold; }
         .star { color: gold; }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
         .inside-chaos { padding: 3rem 1.5rem; background: #fff2db; }
         .cringe-index-header { font-size: 1.5rem; text-align: center; margin: 2rem auto 0.5rem; font-weight: bold; color: #f35b4e; text-transform: uppercase; letter-spacing: 1px; }
         .cringe-subheader { text-align: center; font-size: 0.95rem; margin-bottom: 2rem; color: #333; }
@@ -133,7 +133,7 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
+            <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span>
         </div>
     </div>
     
@@ -142,18 +142,18 @@
             <div class="cringe-index-header">CRINGE INDEX</div>
             <div class="cringe-subheader">Certified Emotional Damage — Proceed with Caution</div>
             <div class="cringe-index">
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Conspiracist</h3><p>“Vaccines, chemtrails, and our third date were all a lie.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Told me 5G turned frogs gay, but wouldn't get a flu shot.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Kinkster</h3><p>“Brought a rubber chicken to bed and called it foreplay.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 100%"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Polyamorist</h3><p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 80%"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div></div></div>
-                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Crier</h3><p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p><div class="thermometer"><div class="thermometer-fill" style="width: 40%"></div></div><div class="thermometer-label">2/5 – Mild Regret</div></div><div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div></div></div>
+                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Conspiracist</h3><p>“Vaccines, chemtrails, and our third date were all a lie.”</p><div class="thermometer"><div style="width: 80%" class="thermometer-fill"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Told me 5G turned frogs gay, but wouldn't get a flu shot.”</div></div></div>
+                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Kinkster</h3><p>“Brought a rubber chicken to bed and called it foreplay.”</p><div class="thermometer"><div style="width: 100%" class="thermometer-fill"></div></div><div class="thermometer-label">5/5 – Full-Body Recoil</div></div><div class="cringe-card-back">“Said safewords were ‘too mainstream.’”</div></div></div>
+                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Polyamorist</h3><p>“Color-coded his calendar by partner. I was Tuesday at 4 PM.”</p><div class="thermometer"><div style="width: 80%" class="thermometer-fill"></div></div><div class="thermometer-label">4/5 – Delusion Zone</div></div><div class="cringe-card-back">“Gave me a Google Calendar link… to his rotation.”</div></div></div>
+                <div class="cringe-card"><div class="cringe-card-inner"><div class="cringe-card-front"><h3>The Crier</h3><p>“Sobbed when I said ‘pass the salt.’ Not kidding.”</p><div class="thermometer"><div style="width: 40%" class="thermometer-fill"></div></div><div class="thermometer-label">2/5 – Mild Regret</div></div><div class="cringe-card-back">“Teared up when I asked his Wi-Fi password.”</div></div></div>
             </div>
+            <div class="cringe-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
+            <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
         </div>
     </section>
 
     <section class="audiobook-promo">
-        <div class="audio-icon">
-            <i class="fa-solid fa-headphones-simple"></i>
-        </div>
+        <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
         <h2>The Chaos, Now in Your Ears</h2>
         <p>The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.</p>
         <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
@@ -195,10 +195,7 @@
             <h2>Contact Me</h2>
             <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.9rem;">Have a question or want to collaborate? Send a message below.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
+                <input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button>
             </form>
         </div>
     </div>
@@ -212,16 +209,9 @@
                     e.preventDefault();
                     contactModal.style.display = 'flex';
                 });
-                closeBtn.addEventListener('click', () => {
-                    contactModal.style.display = 'none';
-                });
-                window.addEventListener('click', (event) => {
-                    if (event.target == contactModal) {
-                        contactModal.style.display = 'none';
-                    }
-                });
+                closeBtn.addEventListener('click', () => { contactModal.style.display = 'none'; });
+                window.addEventListener('click', (event) => { if (event.target == contactModal) { contactModal.style.display = 'none'; } });
             }
-            
             const announcementItems = document.querySelectorAll('.announcement-item');
             if (announcementItems.length > 1) {
                 announcementItems[0].classList.add('is-active');
