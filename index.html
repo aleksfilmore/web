@@ -33,7 +33,7 @@
             align-items: center;
             background-color: #ffc19c;
             position: relative;
-            z-index: 1000;
+            z-index: 100;
         }
         .logo {
             font-weight: bold;
@@ -166,6 +166,7 @@
         .review-track {
             display: inline-block;
             animation: marquee 150s linear infinite;
+            min-width: 200%;
         }
         .review-track span {
             display: inline-block;
@@ -178,23 +179,10 @@
         }
         @keyframes marquee {
             0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); }
         }
         .inside-chaos {
             padding: 3rem 1.5rem;
-        }
-        .cta-button {
-            display: block;
-            width: fit-content;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: #208e92;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            font-size: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
         }
         .about-section {
             padding: 3rem 1.5rem;
@@ -204,6 +192,10 @@
         .about-container {
             max-width: 800px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
         }
         .about-photo {
             width: 150px;
@@ -217,18 +209,23 @@
             font-size: 2rem;
             color: #f35b4e;
         }
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
         footer {
             background-color: #f35b4e;
             color: #fff2db;
             padding: 40px 20px;
             text-align: center;
         }
-
+        
         #theme-switch {
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 999;
+            z-index: 99;
             background-color: #121416;
             color: #fff;
             width: 45px;
@@ -275,6 +272,7 @@
                 border-radius: 50%;
              }
              #theme-switch .switch-text { display: none; }
+             .about-text p { text-align: center; }
         }
     </style>
 </head>
@@ -326,6 +324,11 @@
             <span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span>
             <span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
             <span><span class="star">★★★★★</span> “Fun, engaging, and totally unputdownable.” – Elise</span>
+            <span><span class="star">★★★★★</span> “What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
+            <span><span class="star">★★★★★</span> “Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
+            <span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span>
+            <span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
+            <span><span class="star">★★★★★</span> “Fun, engaging, and totally unputdownable.” – Elise</span>
         </div>
     </div>
     
@@ -342,7 +345,17 @@
     </section>
 
     <footer>
-        </footer>
+        <div class="footer-social-links">
+             <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+             <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="footer-contact-link">
+             <a href="#" id="open-contact-modal">Contact Me</a>
+        </div>
+        <div class="footer-copyright">
+             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
