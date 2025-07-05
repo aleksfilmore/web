@@ -24,7 +24,7 @@
         }
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Ensure Inter is base font */
             background-color: #fff2db;
             color: #000;
         }
@@ -38,9 +38,11 @@
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
+            font-family: 'Inter', sans-serif; /* Explicitly set for logo */
         }
         .tagline {
             font-size: 0.9rem;
+            font-family: 'Inter', sans-serif; /* Explicitly set for tagline */
         }
         
         /* ============== CORRECTED ANNOUNCEMENT BAR STYLES (FADE ANIMATION) ============== */
@@ -55,6 +57,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .announcement-item {
             display: flex;
@@ -112,6 +115,7 @@
             letter-spacing: 1px;
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .hero h1 span {
             display: block;
@@ -121,6 +125,7 @@
             font-size: 1.4rem;
             margin-bottom: 1.5rem;
             font-weight: 500;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .hero-form {
             display: flex;
@@ -134,6 +139,7 @@
             border-radius: 4px;
             font-size: 0.9rem;
             transition: box-shadow 0.3s ease-in-out;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .hero-form input[type="email"]:focus {
             box-shadow: 0 0 5px rgba(255, 167, 17, 0.7);
@@ -153,6 +159,7 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .hero-form button:hover {
             background-color: #ffb733;
@@ -183,6 +190,7 @@
             margin-top: 1rem;
             font-size: 0.85rem;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .marquee-reviews {
             background: linear-gradient(to right, #f35b4e, #ffc19c);
@@ -222,6 +230,7 @@
             font-size: 0.85rem;
             font-weight: bold;
             white-space: nowrap;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .star {
             color: gold;
@@ -242,12 +251,14 @@
             color: #f35b4e;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Inter', sans-serif; /* Consistent font for titles */
         }
         .section-subheader {
             text-align: center;
             font-size: 0.95rem;
             margin-bottom: 2rem;
             color: #333;
+            font-family: 'Inter', sans-serif; /* Consistent font for subtitles */
         }
 
         /* Mugshot Gallery Styles */
@@ -303,6 +314,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             z-index: 2; /* Above the image */
             transition: opacity 0.3s ease;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .mugshot-card.revealed .mugshot-card-title {
             opacity: 0; /* Hide title when charge is shown */
@@ -323,6 +335,7 @@
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             box-sizing: border-box;
             z-index: 3;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .mugshot-card.revealed .mugshot-card-charge {
             opacity: 1;
@@ -346,6 +359,7 @@
             margin-bottom: 1.5rem;
             font-weight: bold;
             line-height: 1.3;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .quiz-options button {
             display: block;
@@ -360,6 +374,7 @@
             cursor: pointer;
             transition: background-color 0.2s ease, transform 0.1s ease;
             text-align: left;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .quiz-options button:hover {
             background-color: #ffa711;
@@ -372,6 +387,7 @@
             font-size: 0.9rem;
             margin-top: 1.5rem;
             opacity: 0.8;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .quiz-result {
             margin-top: 2rem;
@@ -381,12 +397,14 @@
             background-color: rgba(0,0,0,0.2);
             padding: 1rem;
             border-radius: 10px;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .quiz-result p {
             font-size: 1rem;
             font-weight: normal;
             color: #fff2db;
             margin-top: 0.5rem;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         #quiz-start-btn, #quiz-reset-btn {
             background-color: #ffa711;
@@ -399,6 +417,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin-top: 1.5rem;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         #quiz-start-btn:hover, #quiz-reset-btn:hover {
             background-color: #ffb733;
@@ -435,6 +454,7 @@
             cursor: pointer;
             transition: background-color 0.2s ease, transform 0.1s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .bingo-square:hover:not(.checked) {
             background-color: #ffa711;
@@ -452,6 +472,7 @@
             font-size: 1.1rem;
             font-weight: bold;
             color: #ffa711;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         #bingo-reset-btn {
             background-color: #ffa711;
@@ -464,6 +485,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin-top: 1.5rem;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         #bingo-reset-btn:hover {
             background-color: #ffb733;
@@ -487,6 +509,7 @@
             font-weight: bold; /* Make it bold */
             color: #333; /* Darker color for emphasis */
             line-height: 1.5;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         /* END New styles for Book Purchase Section */
 
@@ -505,6 +528,7 @@
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: background 0.3s ease;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .cta-button:hover {
             background: #176f72;
@@ -524,6 +548,7 @@
             text-transform: uppercase;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
             margin: 0 0 1rem 0;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .audiobook-promo p {
             font-size: 1.1rem;
@@ -531,6 +556,7 @@
             margin: 0 auto 2rem auto;
             line-height: 1.6;
             color: #fff2db;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .audiobook-promo .audio-icon {
             font-size: 4rem;
@@ -549,13 +575,11 @@
         .audiobook-promo .platforms span {
             font-size: 1rem;
             font-weight: bold;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .audiobook-promo .platforms i {
             font-size: 2.5rem;
             transition: transform 0.3s ease;
-        }
-        .audiobook-promo .platforms i:hover {
-            transform: scale(1.1);
         }
         .audiobook-promo .audio-cta {
             display: inline-block;
@@ -568,6 +592,7 @@
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .audiobook-promo .audio-cta:hover {
             background-color: #ffb733;
@@ -599,12 +624,14 @@
             font-size: 2rem;
             color: #f35b4e;
             margin: 0 0 1rem 0;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .about-text p {
             font-size: 1rem;
             line-height: 1.6;
             color: #333;
-            text-align: left;
+            text-align: center; /* Centered author bio text */
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         footer {
             background-color: #f35b4e;
@@ -623,10 +650,14 @@
             opacity: 1;
             transform: translateY(-3px);
         }
-        .footer-contact-link {
+        .footer-contact-links { /* New class for grouping contact/policy links */
             margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px; /* Space between links */
         }
-        .footer-contact-link a {
+        .footer-contact-links a {
             color: #ffffff;
             text-decoration: none;
             font-size: 16px;
@@ -634,14 +665,16 @@
             padding-bottom: 2px;
             transition: opacity 0.3s;
             cursor: pointer;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
-        .footer-contact-link a:hover {
+        .footer-contact-links a:hover {
             opacity: 0.8;
         }
         .footer-copyright p {
             font-size: 14px;
             margin: 0;
             color: rgba(255, 255, 255, 0.7);
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .modal-backdrop {
             display: none;
@@ -695,7 +728,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Consistent font */
             font-size: 1rem;
         }
         .modal-form input:focus, .modal-form textarea:focus {
@@ -713,6 +746,7 @@
             width: 100%;
             font-size: 1rem;
             transition: background-color 0.3s;
+            font-family: 'Inter', sans-serif; /* Consistent font */
         }
         .modal-form button:hover {
             background-color: #d14a3d;
@@ -759,7 +793,7 @@
                 flex-direction: column;
             }
             .about-text p {
-                text-align: center;
+                text-align: center; /* Ensure centered on smaller screens too */
             }
         }
         @media (max-width: 480px) {
@@ -859,7 +893,7 @@
         <div class="hero-image">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/da08789424a310ef39459d8e88d90fcd7e9c1895/The%20Worst%20Boyfriends%20Ever.png" alt="The Worst Boyfriends Ever cover">
             <br>
-            <a href="https://a.co/d/j2SrpJl" class="buy-btn">Available on Amazon</a>
+            <a href="https://a.co/d/j2SrpJl" class="buy-btn" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
         </div>
     </section>
 
@@ -990,7 +1024,7 @@
             </div>
             <div class="book-purchase-section animated-section">
                 <div class="book-formats-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
-                <a class="cta-button" href="https://a.co/d/j2SrpJl">Buy the Book</a>
+                <a class="cta-button" href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer">Buy the Book</a>
             </div>
             </div>
     </section>
@@ -1037,7 +1071,7 @@
         <p>
             The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
         </p>
-        <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
+        <a href="#signup-form" class="audio-cta" target="_blank" rel="noopener noreferrer">Notify Me When It Drops</a>
         <div class="platforms">
             <span>Available Soon On:</span>
             <i class="fa-brands fa-spotify" title="Spotify"></i>
@@ -1069,8 +1103,10 @@
             </a>
         </div>
     
-        <div class="footer-contact-link">
+        <div class="footer-contact-links">
             <a href="#" id="open-contact-modal">Contact Me</a>
+            <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="cookie-policy.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
         </div>
     
         <div class="footer-copyright">
