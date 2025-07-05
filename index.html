@@ -64,21 +64,6 @@
             align-items: center;
             font-family: 'Inter', sans-serif; /* Consistent font */
         }
-        .announcement-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            line-height: 1.3;
-            font-size: 0.9rem;
-            /* Fade animation setup */
-            position: absolute;
-            width: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(5px);
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, visibility 0.5s;
-        }
         .announcement-item.is-active {
             opacity: 1;
             visibility: visible;
@@ -1057,7 +1042,7 @@
         <p>
             The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
         </p>
-        <a href="#signup-form" class="audio-cta" target="_blank" rel="noopener noreferrer">Notify Me When It Drops</a>
+        <a href="#signup-form" class="audio-cta">Notify Me When It Drops</a>
         <div class="platforms">
             <span>Available Soon On:</span>
             <i class="fa-brands fa-spotify" title="Spotify"></i>
