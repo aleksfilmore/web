@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500 });
-      if (localStorage.getItem('cookies_accepted') === 'true') {
-        gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
-        gtag('config', 'G-W9B5W1241H');
-      }
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
-    
-    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
     
@@ -41,92 +28,137 @@
             line-height: 1.6;
         }
 
-        .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
-        .section { padding: 5rem 1.5rem; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 900; margin: 0 0 0.5rem 0; }
-        .section-header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
-        .rainbow-text { background: var(--rainbow-gradient); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbow-flow 4s ease-in-out infinite alternate; }
+        /* --- Global Styles --- */
+        .container {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1.5rem;
+        }
+        .section {
+            padding: 4rem 1.5rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0 0 0.5rem 0;
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        .rainbow-text {
+            background: var(--rainbow-gradient);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-flow 4s ease-in-out infinite alternate;
+        }
         @keyframes rainbow-flow { from { background-position: 0% center; } to { background-position: 100% center; } }
 
-        .button { display: inline-block; background-color: var(--wb-red); color: white; padding: 0.8rem 1.8rem; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; }
-        .button:hover { background-color: #c44a28; transform: translateY(-2px); }
-        .button:active { transform: translateY(0); }
-
-        header { padding: 1rem 1.5rem; background-color: var(--wb-dark-teal); }
-        
-        .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; padding: 4rem 1.5rem 6rem; position: relative; }
-        .hero-content { flex: 1 1 500px; text-align: center; z-index: 2; }
-        .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-        .hero p { max-width: 500px; margin: 0 auto 1.5rem; font-size: 1.25rem; }
-        .hero-image { flex: 1 1 300px; max-width: 300px; margin: 2rem auto 0; perspective: 1000px; }
-        .book-cover { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transform: rotateY(-15deg) rotateX(5deg); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .hero-image:hover .book-cover { transform: rotateY(0deg) rotateX(0deg) scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .hero-form { display: flex; max-width: 400px; margin: 1.5rem auto 0; }
-        .hero-form input { flex-grow: 1; padding: 0.8rem; border: 1px solid var(--wb-teal); border-radius: 8px 0 0 8px; background: rgba(0,0,0,0.2); color: white; font-size: 1rem; }
-        .hero-form button { border-radius: 0 8px 8px 0; }
-        @media (min-width: 900px) {
-            .hero-content { text-align: left; }
-            .hero-image { order: 2; margin-top: 0; }
-            .hero-form { margin-left: 0; }
+        /* --- STABLE BUTTON STYLE --- */
+        .button {
+            display: inline-block;
+            background-color: var(--wb-red);
+            color: white !important;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .button:hover {
+            background-color: #c44a28;
+            transform: translateY(-2px);
         }
 
-        .disaster-flicker-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; pointer-events: none; }
-        .flicker-text { position: absolute; color: var(--wb-cream); font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 8px rgba(247, 220, 170, 0.7); opacity: 0; animation: flickerEffect 8s infinite ease-in-out; }
-        @keyframes flickerEffect { 0%, 100% { opacity: 0; } 5%, 15% { opacity: 1; } 20% { opacity: 0; } }
+        /* --- Header --- */
+        header {
+            padding: 1rem 1.5rem;
+        }
 
-        .marquee { color: white; padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); animation: rainbow-bg-flow 15s linear infinite alternate; }
-        @keyframes rainbow-bg-flow { 0% { background-color: var(--rainbow-1); } 25% { background-color: var(--rainbow-4); } 50% { background-color: var(--rainbow-3); } 75% { background-color: var(--rainbow-5); } 100% { background-color: var(--rainbow-1); } }
-        .marquee-track { display: inline-block; animation: marquee 60s linear infinite; white-space: nowrap; }
-        .marquee-track span { display: inline-flex; align-items: center; padding: 0 2rem; font-weight: 700; }
-        .marquee-track img { width: 30px; height: 30px; border-radius: 50%; margin-right: 0.75rem; border: 2px solid white; }
+        /* --- Hero --- */
+        .hero {
+            padding: 2rem 1.5rem 4rem;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            gap: 2rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+        }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+        .hero p { max-width: 500px; margin: 0 auto 1.5rem; font-size: 1.25rem; }
+        @media (min-width: 768px) {
+            .hero p { margin-left: 0; }
+        }
+        .book-cover {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .book-cover:hover { transform: scale(1.05); }
+        .hero-form { display: flex; max-width: 400px; margin: 1.5rem auto 0; }
+        @media (min-width: 768px) { .hero-form { margin-left: 0; } }
+        .hero-form input { flex-grow: 1; padding: 0.8rem; border: 1px solid var(--wb-teal); border-radius: 8px 0 0 8px; background: rgba(0,0,0,0.2); color: white; font-size: 1rem; }
+        .hero-form button { border-radius: 0 8px 8px 0; }
+
+        /* --- Marquee --- */
+        .marquee { background-color: var(--wb-teal); color: white; padding: 1rem 0; overflow: hidden; white-space: nowrap; }
+        .marquee-track { display: inline-block; animation: marquee 90s linear infinite; }
+        .marquee-track span { padding: 0 2rem; font-weight: 700; }
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .light-section { background-color: var(--wb-cream); color: var(--wb-text-dark); }
-        .dark-section { background-color: var(--wb-dark-teal); }
-        .teal-section { background-color: var(--wb-teal); }
-        
-        .inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
-        .dangerous { text-decoration: underline; }
+        /* --- Sections --- */
+        .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
+        .dark { background-color: var(--wb-dark-teal); }
+        .teal { background-color: var(--wb-teal); }
 
-        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+        /* --- Mugshot Gallery --- */
+        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
         @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-        .mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .mugshot-card:hover .mugshot-card-img { filter: grayscale(0); transform: scale(1.05); }
-        .mugshot-card-img { display: block; width: 100%; height: 250px; object-fit: cover; filter: grayscale(1); transition: filter 0.3s ease, transform 0.3s ease; }
-        .mugshot-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1rem 1rem; color: white; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
-        .mugshot-overlay h3 { margin: 0; font-size: 1.2rem; }
-        .mugshot-charge { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; opacity: 0; max-height: 0; transition: opacity 0.3s ease, max-height 0.3s ease; }
-        .mugshot-card.is-revealed .mugshot-charge { opacity: 1; max-height: 100px; }
+        .mugshot-card { background-color: var(--wb-dark-teal); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; text-align: center; }
+        .mugshot-card img { display: block; width: 100%; height: 250px; object-fit: cover; filter: grayscale(1); transition: filter 0.3s ease; }
+        .mugshot-card:hover img { filter: grayscale(0); }
+        .mugshot-info { padding: 1rem; }
+        .mugshot-info h3 { margin: 0 0 0.5rem 0; }
+        .mugshot-charge { display: none; font-style: italic; opacity: 0.8; font-size: 0.9rem; }
+        .mugshot-card.is-revealed .mugshot-charge { display: block; }
         
-        .interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: center; }
-        .dark .interactive-container { background-color: var(--wb-dark-teal); }
-        .teal .interactive-container { background-color: var(--wb-teal); }
-        
+        /* --- Quiz & Bingo --- */
+        .interactive-container { max-width: 700px; margin: 0 auto; background: var(--wb-dark-teal); padding: 2rem; border-radius: 12px; text-align: center; }
         .quiz-options .button { display: block; width: 100%; margin: 0.5rem 0; background-color: var(--wb-teal); text-align: left; }
-        .quiz-options .button:hover { background-color: var(--rainbow-4); }
-
         .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-        .bingo-square { background-color: var(--wb-teal); border-radius: 8px; padding: 1rem; min-height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
-        .bingo-square:hover { transform: scale(1.05); }
+        .bingo-square { background-color: var(--wb-teal); border-radius: 8px; padding: 1rem; min-height: 100px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
         .bingo-square.is-checked { background: var(--rainbow-gradient); color: white; }
 
-        .about-author { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; text-align: center; }
+        /* --- About & Footer --- */
+        .about-author { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; justify-content: center; }
         .about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
-        .about-author-text { flex: 1; min-width: 300px; text-align: left; }
-        @media (max-width: 600px) { .about-author-text { text-align: center; } }
-
+        .about-author-text { flex: 1; min-width: 300px; }
         footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; }
         .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; text-decoration: none; }
         .footer-links { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
         .footer-links a { color: var(--wb-cream); text-decoration: underline; }
-        
-        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--wb-dark-teal); padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; }
-        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; color: var(--wb-cream); cursor: pointer; }
-
-        .cookie-banner { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--wb-dark-teal); padding: 1rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; z-index: 1001; border-top: 1px solid var(--wb-teal); }
-        .cookie-banner.show { display: flex; }
     </style>
 </head>
 <body>
@@ -153,7 +185,6 @@
                     <a href="https://a.co/d/j2SrpJl" class="button" target="_blank" rel="noopener noreferrer" style="margin-top: 1.5rem;">Available on Amazon</a>
                 </div>
             </div>
-            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="marquee">
@@ -165,8 +196,8 @@
                 <div class="section-header">
                     <h2 class="rainbow-text">Inside the Chaos</h2>
                 </div>
-                <div class="inside-chaos-text">
-                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> <b class="rainbow-text">“relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
+                <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> and <b class="rainbow-text">“relatable.”</b><br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b>, dissected with deadpan honesty and queer fury. You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
                 </div>
             </div>
         </section>
@@ -181,13 +212,13 @@
             </div>
         </section>
 
-        <section class="section teal-section">
+        <section class="section teal">
             <div class="container">
                  <div class="section-header">
                     <h2>Red Flag Meter</h2>
                     <p>Think you're a red flag pro? Test your dating survival instincts!</p>
                 </div>
-                <div class="interactive-container" style="background-color: var(--wb-dark-teal);">
+                <div class="interactive-container">
                     <div id="quiz-intro">
                         <button id="quiz-start-btn" class="button">Start Quiz</button>
                     </div>
@@ -204,13 +235,13 @@
             </div>
         </section>
 
-        <section class="section dark-section">
+        <section class="section dark">
             <div class="container">
                 <div class="section-header">
                     <h2>Bad Date Bingo</h2>
                     <p>Ever had a date so bad, it felt like a game? Check off your experiences.</p>
                 </div>
-                <div class="interactive-container" style="background-color: var(--wb-teal);">
+                <div class="interactive-container">
                     <div class="bingo-grid"></div>
                     <p id="bingo-message" style="display:none; font-weight: 700; font-size: 1.5rem;" class="rainbow-text">BINGO!</p>
                     <button id="bingo-reset-btn" class="button">Reset Bingo</button>
@@ -223,7 +254,7 @@
                 <div class="about-author">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore">
                     <div class="about-author-text">
-                        <h2 class="rainbow-text">About the Author</h2>
+                        <h2>About the Author</h2>
                         <p>Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.</p>
                     </div>
                 </div>
@@ -247,36 +278,14 @@
             </div>
         </div>
     </footer>
-
-    <div id="contact-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span id="close-modal" class="modal-close">&times;</span>
-            <h2 style="text-align: center;">Contact Me</h2>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
-                <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
-                <textarea name="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);"></textarea>
-                <button type="submit" class="button" style="width: 100%;">Send Message</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="cookie-banner" class="cookie-banner">
-        <p style="margin: 0;">This website uses cookies to improve your experience.</p>
-        <button id="accept-cookies" class="button">Accept</button>
-    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Marquee Builder
-            const reviews = [
-                { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" },
-                { name: "Gerald", text: "“If you've ever been ghosted, this helps you laugh through the heartbreak.”" },
-                { name: "J.L.G.", text: "“Mixes sharp humor with gentle lessons on self‑respect.”" }
-            ];
+            const reviews = [ { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" }, { name: "Gerald", text: "“If you've ever been ghosted, this helps you laugh through the heartbreak.”" }, { name: "J.L.G.", text: "“Mixes sharp humor with gentle lessons on self‑respect.”" } ];
             const reviewTrack = document.querySelector('.marquee-track');
             if (reviewTrack) {
-                const fullTrackContent = [...reviews, ...reviews, ...reviews, ...reviews].map((r, i) => `<span><img src="https://i.pravatar.cc/40?u=${i}" alt=""> ★★★★★ ${r.text} – ${r.name}</span>`).join('');
+                const fullTrackContent = [...reviews, ...reviews, ...reviews, ...reviews].map((r, i) => `<span><img src="https://i.pravatar.cc/40?u=${i}" alt="" style="width:30px; height:30px; border-radius:50%; margin-right: 1rem; vertical-align: middle;"> ★★★★★ ${r.text} – ${r.name}</span>`).join('');
                 reviewTrack.innerHTML = fullTrackContent;
             }
 
@@ -289,19 +298,13 @@
                 mugshotData.forEach(data => {
                     const card = document.createElement('div');
                     card.className = 'mugshot-card';
-                    card.innerHTML = `
-                        <img src="${data.img}" alt="${data.name}" loading="lazy" class="mugshot-card-img">
-                        <div class="mugshot-overlay">
-                            <h3>${data.name}</h3>
-                            <p class="mugshot-charge">${data.charge}</p>
-                        </div>
-                    `;
+                    card.innerHTML = `<img src="${data.img}" alt="${data.name}" loading="lazy" class="mugshot-card-img"><div class="mugshot-overlay"><h3>${data.name}</h3><p class="mugshot-charge">${data.charge}</p></div>`;
                     card.addEventListener('click', () => card.classList.toggle('is-revealed'));
                     gallery.appendChild(card);
                 });
             }
 
-            // Quiz Logic
+            // --- Quiz Logic ---
             const quizLogic = () => {
                 const quizQuestions = [
                     { question: "He needs your credit card for a 'sure-thing' poker tournament. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] },
@@ -345,7 +348,7 @@
             };
             quizLogic();
 
-            // Bingo Logic
+            // --- Bingo Logic ---
             const bingoLogic = () => {
                 const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers", "Shirtless karaoke", "Lied about ex being dead", "Kept six toasters" ];
                 const grid = document.querySelector('.bingo-grid'), message = document.getElementById('bingo-message'), resetBtn = document.getElementById('bingo-reset-btn');
@@ -374,19 +377,6 @@
                 initializeBingo();
             };
             bingoLogic();
-
-            // Modal and Cookie Logic
-            const contactModal = document.getElementById('contact-modal'), openBtn = document.getElementById('open-contact-modal'), closeBtn = document.getElementById('close-modal');
-            if(openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
-            if(closeBtn) closeBtn.addEventListener('click', () => { contactModal.style.display = 'none'; });
-            window.addEventListener('click', (e) => { if (e.target === contactModal) { contactModal.style.display = 'none'; } });
-
-            const cookieBanner = document.getElementById('cookie-banner'), acceptBtn = document.getElementById('accept-cookies');
-            if(cookieBanner && !localStorage.getItem('cookies_accepted')) { cookieBanner.classList.add('show'); }
-            if(acceptBtn) acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookies_accepted', 'true');
-                cookieBanner.classList.remove('show');
-            });
         });
     </script>
 </body>
