@@ -51,15 +51,27 @@
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin: 0 0 1rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
         .rainbow-text { background: var(--rainbow-gradient); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbow-flow 4s ease-in-out infinite alternate; }
         @keyframes rainbow-flow { from { background-position: 0% center; } to { background-position: 100% center; } }
-        .hero p { font-size: 1.3rem; max-width: 450px; margin: 0 auto 2rem; font-weight: 500; color: var(--wb-cream); }
+        .hero p { font-size: 1.3rem; max-width: 450px; margin: 0 auto 1rem; font-weight: 500; color: var(--wb-cream); }
+        .hero .signup-prompt { font-size: 1rem; margin: 0 auto 1.5rem; opacity: 0.9; }
         .hero-form { display: flex; max-width: 400px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .hero-form input[type="email"] { flex-grow: 1; padding: 0.8rem 1rem; border: none; font-size: 1rem; background-color: rgba(255,255,255,0.1); color: var(--wb-cream); border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .hero-form input[type="email"] { flex-grow: 1; padding: 0.8rem 1rem; border: none; font-size: 1rem; background-color: rgba(255,255,255,0.1); color: var(--wb-cream); }
         .hero-form input[type="email"]::placeholder { color: var(--wb-cream); opacity: 0.7; }
         .hero-form input[type="email"]:focus { outline: none; background-color: rgba(255,255,255,0.2); }
         .hero-form button { padding: 0.8rem 1.5rem; border: none; background-color: var(--wb-red); color: var(--wb-cream); font-weight: bold; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
         .hero-form button:hover { background-color: #c44a28; }
-        .hero-image-wrapper { flex: 1 1 300px; max-width: 300px; text-align: center; z-index: 2; }
-        .book-cover-main { width: 100%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        
+        .hero-image-wrapper { flex: 1 1 300px; max-width: 300px; text-align: center; z-index: 2; perspective: 1000px; }
+        .book-cover-main { 
+            width: 100%; border-radius: 6px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
+            transform: rotateY(-15deg) rotateX(5deg) scale(1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .hero-image-wrapper:hover .book-cover-main {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
         .buy-btn { background: var(--wb-red); color: var(--wb-cream); display: inline-block; padding: 1rem 2rem; font-weight: bold; font-size: 1.1rem; border-radius: 8px; text-decoration: none; margin-top: 1.5rem; transition: background-color 0.3s, transform 0.2s; }
         .buy-btn:hover { background-color: #c44a28; transform: translateY(-2px); }
 
@@ -80,9 +92,9 @@
         .section-subheader { font-size: 1.1rem; text-align: center; max-width: 650px; margin: 0 auto 3rem; line-height: 1.6; opacity: 0.9; }
         .title-underline { display: block; width: 80px; height: 5px; background: var(--rainbow-gradient); margin: 1rem auto 0; border-radius: 2px; }
 
-        .inside-chaos-text { max-width: 700px; margin: 2rem auto 0; text-align: center; line-height: 1.7; }
-        .inside-chaos-text span, .dangerous { color: var(--wb-red); font-weight: bold; }
-        .dangerous { text-decoration: underline; }
+        .inside-chaos-text { max-width: 700px; margin: 2rem auto 0; text-align: center; line-height: 1.7; color: var(--wb-text-dark); }
+        .inside-chaos-text .rainbow-text { font-weight: bold; }
+        .dangerous { color: var(--wb-red); font-weight: bold; text-decoration: underline; }
 
         .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
@@ -97,7 +109,7 @@
 
         .quiz-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
         .quiz-options button { display: block; width: 100%; margin: 0.75rem 0; padding: 1rem 1.5rem; background-color: transparent; border: 2px solid var(--wb-teal); color: var(--wb-cream); border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; text-align: left; transition: all 0.3s ease; }
-        .quiz-options button:hover { background-color: var(--rainbow-4); border-color: var(--rainbow-4); color: white; transform: scale(1.02) translateX(5px); }
+        .quiz-options button:hover { background-color: var(--rainbow-4); border-color: var(--rainbow-4); color: white; transform: scale(1.02); }
         .quiz-result #quiz-category { font-size: 1.5rem; display: inline-block; margin-bottom: 0.5rem; }
         
         .bingo-container { max-width: 700px; margin: 0 auto; text-align: center; }
@@ -142,6 +154,7 @@
         <div class="hero-content">
             <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
             <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+            <p class="signup-prompt">Sign up for the secret chapter & audiobook launch notification!</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
                 <input type="email" name="email" placeholder="Your email for updates..." required>
                 <button type="submit">Notify Me</button>
@@ -162,7 +175,7 @@
     <section class="light-section animated-section content-section">
         <h2 class="section-header rainbow-text">Inside the Chaos</h2>
         <div class="title-underline"></div>
-        <div class="inside-chaos-text"><p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span>“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <span>self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span>red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <span class="dangerous">a little dangerous.</span></p></div>
+        <div class="inside-chaos-text"><p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span class="rainbow-text">“hilarious,”</span> <span class="rainbow-text">“relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <span class="rainbow-text">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span class="rainbow-text">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <span class="dangerous">a little dangerous.</span></p></div>
     </section>
 
     <section class="dark-section animated-section content-section">
@@ -262,7 +275,9 @@
 
             const quizLogic = () => {
                 const quizQuestions = [
-                    { question: "He needs your credit card for a 'sure-thing' poker tourney. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] }, { question: "His dog Daisy wedges herself between you at dinner. You…", options: [{ text: "Offer Daisy your chair.", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel.", score: 3 }] }, { question: "He ghosts, then texts: 'Dropped my phone in a lake!' Your reply?", options: [{ text: "'Aww, glad you’re OK! See you soon?'", score: 1 }, { text: "'Phones swim worse than excuses.'", score: 2 }, { text: "Silence and a swift block.", score: 3 }] }
+                    { question: "He needs your credit card for a 'sure-thing' poker tournament. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] },
+                    { question: "His dog Daisy wedges herself between you at dinner. You…", options: [{ text: "Offer Daisy your chair.", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel.", score: 3 }] },
+                    { question: "He ghosts, then texts: 'Dropped my phone in a lake!' Your reply?", options: [{ text: "'Aww, glad you’re OK! See you soon?'", score: 1 }, { text: "'Phones swim worse than excuses.'", score: 2 }, { text: "Silence and a swift block.", score: 3 }] }
                 ];
                 const quizIntro = document.getElementById('quiz-intro'), quizQuestionsContainer = document.getElementById('quiz-questions'), quizResultsContainer = document.getElementById('quiz-results'), quizStartBtn = document.getElementById('quiz-start-btn'), quizResetBtn = document.getElementById('quiz-reset-btn');
                 if(!quizIntro) return;
@@ -292,22 +307,22 @@
             quizLogic();
 
             const bingoLogic = () => {
-                const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers" ];
+                const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers", "Shirtless karaoke", "Lied about ex being dead", "Kept six toasters" ];
                 const bingoGrid = document.getElementById('bingo-grid'), bingoMessage = document.getElementById('bingo-message'), bingoResetBtn = document.getElementById('bingo-reset-btn');
                 if(!bingoGrid) return;
                 const initializeBingo = () => {
                     bingoGrid.innerHTML = ''; bingoMessage.style.display = 'none';
-                    const shuffled = [...bingoSquaresData].sort(() => 0.5 - Math.random()).slice(0, 9);
-                    shuffled.forEach(text => {
+                    bingoSquaresData.forEach(text => {
                         const square = document.createElement('div'); square.className = 'bingo-square'; square.textContent = text;
                         square.addEventListener('click', () => { square.classList.toggle('checked'); checkBingo(); });
                         bingoGrid.appendChild(square);
                     });
+                    bingoGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
                 };
                 const checkBingo = () => {
                     const squares = Array.from(bingoGrid.children);
-                    const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
-                    const isBingo = winningCombos.some(combo => combo.every(index => squares[index].classList.contains('checked')));
+                    const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [9,10,11], [0,3,6,9], [1,4,7,10], [2,5,8,11], [0,4,8], [2,4,6], [3,7,11], [1,5,9] ];
+                    const isBingo = winningCombos.some(combo => combo.every(index => squares[index] && squares[index].classList.contains('checked')));
                     if (isBingo) { bingoMessage.textContent = "BINGO! You've hit the jackpot of bad dates."; bingoMessage.style.display = 'block'; }
                     else { bingoMessage.style.display = 'none'; }
                 };
