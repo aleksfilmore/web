@@ -636,7 +636,7 @@
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Cairos.png" alt="Cairos">
                     <h3>Cairos</h3>
-                    <p>Stoic and unbreakable, Cairos of the Mountain Tribe carries the weight of a people long forgotten by peace. His carved spear speaks for him.</p>
+                    <p>Stoic and unbreakable, this Mountain Tribe warrior carries the weight of a people long forgotten by peace. His carved spear speaks for him.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Eldorin.png" alt="Eldorin">
@@ -727,10 +727,10 @@
             header.style.opacity = '0';
             header.style.transition = 'opacity 1s ease-in';
 
-            // Hide all content layers initially
+            // Initially hide all content layers
             contentLayers.forEach(layer => {
-                layer.style.display = 'none'; // Keep hidden until activated
-                layer.style.opacity = '0'; // For fade-in animation
+                layer.style.display = 'none'; // Ensure they are hidden
+                layer.style.opacity = '0';    // For fade-in animation
                 layer.style.transition = 'opacity 1s ease-in-out';
             });
 
@@ -748,11 +748,12 @@
                 // Show Layer 1 after Layer 0 has started fading
                 setTimeout(() => {
                     layer0.style.display = 'none'; // Fully remove Layer 0 from flow
+                    
                     // Display Layer 1 and trigger its fade-in
                     if (contentLayers[0]) {
-                        contentLayers[0].style.display = 'flex';
+                        contentLayers[0].style.display = 'flex'; // Change display to make it visible
                         setTimeout(() => {
-                            contentLayers[0].style.opacity = '1';
+                            contentLayers[0].style.opacity = '1'; // Start fade-in
                         }, 50); // Small delay to ensure display:flex takes effect before opacity transition
                     }
                 }, 1000); // Wait for Layer 0 to start its animation
@@ -767,18 +768,18 @@
 
             const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
+                    // Check if it's intersecting AND currently hidden (opacity 0)
                     if (entry.isIntersecting && entry.target.style.opacity === '0') {
-                        // Only show if it's currently hidden and intersecting
-                        entry.target.style.display = 'flex'; // Ensure flex layout is applied
+                        entry.target.style.display = 'flex'; // Ensure flex layout is applied before fading
                         setTimeout(() => {
-                            entry.target.style.opacity = '1';
+                            entry.target.style.opacity = '1'; // Trigger fade-in
                         }, 50); // Small delay to allow 'display' change to render
                         // If you want sections to reveal only once, uncomment next line:
                         // observer.unobserve(entry.target); 
-                    } else if (!entry.isIntersecting && entry.target.style.display !== 'none' && entry.target.id !== 'layer0') {
-                        // Optional: Hide sections that scroll fully out of view to save resources
+                    } else if (!entry.isIntersecting && entry.target.style.opacity === '1' && entry.target.id !== 'layer0') {
+                        // Optional: Hide sections that scroll fully out of view to save resources or for specific effects
                         // entry.target.style.opacity = '0';
-                        // entry.target.style.display = 'none';
+                        // entry.target.style.display = 'none'; // Hide completely
                     }
                 });
             }, observerOptions);
@@ -793,8 +794,6 @@
                 const scrollY = window.scrollY;
                 const heroSection = document.querySelector('.hero');
                 if (heroSection) {
-                    // Adjust background-position-y based on scroll for subtle parallax
-                    // Divide by a larger number for slower parallax
                     heroSection.style.backgroundPositionY = `calc(50% + ${scrollY * 0.1}px)`; 
                 }
             });
