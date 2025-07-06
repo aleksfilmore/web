@@ -41,7 +41,6 @@
             color: var(--wb-cream);
         }
         
-        /* --- Sticky Nav --- */
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -104,14 +103,13 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* --- Chaos Flicker --- */
         .disaster-flicker-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 3; pointer-events: none; }
         .flicker-text { position: absolute; color: var(--wb-cream); font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 8px rgba(247, 220, 170, 0.7); opacity: 0; animation: flickerEffect 8s infinite ease-in-out; pointer-events: none; white-space: nowrap; }
         @keyframes flickerEffect { 0%, 100% { opacity: 0; } 5%, 15% { opacity: 1; } 20% { opacity: 0; } }
 
         .marquee-reviews { color: white; padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); animation: rainbow-bg-flow 10s linear infinite alternate; }
         @keyframes rainbow-bg-flow { 0% { background-color: var(--rainbow-1); } 25% { background-color: var(--rainbow-4); } 50% { background-color: var(--rainbow-3); } 75% { background-color: var(--rainbow-5); } 100% { background-color: var(--rainbow-1); } }
-        .review-track { display: inline-block; animation: marquee 60s linear infinite; white-space: nowrap; }
+        .review-track { display: inline-block; animation: marquee 90s linear infinite; white-space: nowrap; }
         .review-track span { display: inline-flex; align-items: center; padding: 0 2rem; font-size: 1rem; font-weight: bold; }
         .review-track img { width: 30px; height: 30px; border-radius: 50%; margin-right: 0.75rem; border: 2px solid white; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
@@ -134,19 +132,18 @@
 
         .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-        .mugshot-card { background-color: var(--wb-dark-teal); border-radius: 10px; position: relative; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .mugshot-card { background-color: var(--wb-dark-teal); border-radius: 10px; position: relative; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; }
         .mugshot-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .mugshot-card-content { position: relative; width: 100%; height: 100%; }
-        .mugshot-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) blur(2px) brightness(0.8); transition: filter 0.3s ease; border-radius: 10px; }
+        .mugshot-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) blur(2px) brightness(0.8); transition: filter 0.3s ease; }
         .mugshot-card:hover .mugshot-card-img, .mugshot-card.revealed .mugshot-card-img { filter: grayscale(0%) blur(0px) brightness(1); }
         .mugshot-card-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; color: var(--wb-cream); font-weight: 700; font-size: 1.2rem; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 2; transition: opacity 0.3s ease; }
         .mugshot-card.revealed .mugshot-card-title { opacity: 0; }
-        .mugshot-card-charge { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(224, 91, 56, 0.9); backdrop-filter: blur(4px); color: var(--wb-cream); padding: 0.75rem; text-align: center; opacity: 0; visibility: hidden; transform: translateY(100%); transition: all 0.3s ease; box-sizing: border-box; z-index: 3; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+        .mugshot-card-charge { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(224, 91, 56, 0.9); backdrop-filter: blur(4px); color: var(--wb-cream); padding: 0.75rem; text-align: center; opacity: 0; visibility: hidden; transform: translateY(100%); transition: all 0.3s ease; box-sizing: border-box; z-index: 3; }
         .mugshot-card.revealed .mugshot-card-charge { opacity: 1; visibility: visible; transform: translateY(0); }
         .cringe-o-meter { font-size: 1rem; margin-top: 0.5rem; color: white; }
         .cringe-o-meter .fa-heart-broken { opacity: 0.8; }
 
-        /* --- Final Quiz Answer Redesign --- */
         .quiz-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
         .quiz-options button {
             position: relative;
@@ -162,7 +159,7 @@
             cursor: pointer; text-align: left;
             transition: all 0.25s ease-out;
         }
-        .quiz-options button::before { /* The checkbox */
+        .quiz-options button::before {
             content: '';
             position: absolute; left: 1.2rem; top: 50%;
             transform: translateY(-50%);
@@ -172,9 +169,9 @@
             border-radius: 5px;
             transition: all 0.25s ease-out;
         }
-        .quiz-options button::after { /* The checkmark */
+        .quiz-options button::after {
             content: '';
-            position: absolute; left: 1.5rem; top: 48%;
+            position: absolute; left: 1.55rem; top: 48%;
             width: 4px; height: 9px;
             border: solid white;
             border-width: 0 3px 3px 0;
@@ -186,12 +183,9 @@
             opacity: 1;
             border-color: var(--rainbow-4);
             background-color: var(--wb-teal);
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             color: white; font-weight: 700;
-        }
-        .quiz-options button:hover::before {
-            border-color: var(--rainbow-4);
         }
         .quiz-options button:hover::after {
             opacity: 1;
@@ -212,7 +206,10 @@
         .about-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 20px rgba(0,0,0,0.25); }
         
         footer { background-color: #012027; padding: 40px 20px; text-align: center; }
-        /* other styles remain the same */
+        
+        .animated-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animated-section.is-visible { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) { .hero { flex-direction: column; } .hero-content { flex-basis: auto; } .hero-image-wrapper { display: none; } }
     </style>
 </head>
 <body>
@@ -295,9 +292,17 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // All JS logic from previous versions, with the following enhancements
-            
-            // --- Sticky Nav ---
+            const animatedSections = document.querySelectorAll('.animated-section');
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedSections.forEach(section => scrollObserver.observe(section));
+
             const nav = document.getElementById('sticky-nav');
             const heroSection = document.querySelector('.hero');
             window.addEventListener('scroll', () => {
@@ -308,11 +313,10 @@
                 }
             });
 
-            // --- Chaos Flicker ---
             const flickerContainer = document.getElementById('disaster-flicker');
             const flickerWords = ["Ghosted", "Red Flag", "Gaslit", "Chaos", "Meltdown"];
             setInterval(() => {
-                if(flickerContainer.children.length > 5) return; // Prevent too many elements
+                if(flickerContainer.children.length > 5) return; 
                 const word = flickerWords[Math.floor(Math.random() * flickerWords.length)];
                 const flickerSpan = document.createElement('span');
                 flickerSpan.className = 'flicker-text';
@@ -324,7 +328,6 @@
                 setTimeout(() => flickerSpan.remove(), 8000);
             }, 2000);
 
-            // --- Marquee with Avatars ---
             const reviews = [
                 { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" },
                 { name: "Gerald", text: "“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.”" },
@@ -333,15 +336,13 @@
                 { name: "Zeus", text: "“What starts as a chuckle grows into a parade of laughing and rereading.”" }
             ];
             const reviewTrack = document.querySelector('.review-track');
-            const fullTrack = [...reviews, ...reviews, ...reviews, ...reviews]; // Duplicate for smooth loop
+            const fullTrack = [...reviews, ...reviews, ...reviews, ...reviews];
             if(reviewTrack) {
                 reviewTrack.innerHTML = fullTrack.map((review, i) => `
                     <span><img src="https://i.pravatar.cc/40?u=${i}" alt="Reviewer" loading="lazy"> <span class="star">★★★★★</span> ${review.text} – ${review.name}</span>
                 `).join('');
             }
             
-
-            // --- Mugshot Gallery with Cringe-o-Meter ---
             const mugshotData = [
                 { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png", cringe: 5 }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png", cringe: 4 }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png", cringe: 3 }, { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png", cringe: 2 }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png", cringe: 3 }, { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png", cringe: 4 }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png", cringe: 2 }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png", cringe: 3 }, { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png", cringe: 4 }, { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png", cringe: 5 }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png", cringe: 4 }, { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png", cringe: 5 }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic,' lived two streets away.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png", cringe: 2 }, { name: "The Competitive", charge: "Treated mini golf like the Olympics—trash-talked children on the next lane.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png", cringe: 3 }, { name: "The Conspiracist", charge: "Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png", cringe: 4 }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png", cringe: 2 }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png", cringe: 3 }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png", cringe: 4 }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png", cringe: 2 }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png", cringe: 1 }
             ];
@@ -365,7 +366,6 @@
                 });
             }
 
-            // --- Quiz Logic with Visual Results ---
             const quizLogic = () => {
                 const quizQuestions = [
                     { question: "He needs your credit card for a 'sure-thing' poker tournament. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] },
@@ -399,8 +399,6 @@
                 quizStartBtn.addEventListener('click', startQuiz); quizResetBtn.addEventListener('click', startQuiz);
             };
             quizLogic();
-            
-            // --- All other logic (Bingo, Modal, Cookies) remains the same ---
         });
     </script>
 </body>
