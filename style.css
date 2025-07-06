@@ -70,15 +70,10 @@ body {
     background-color: #c44a28;
     transform: translateY(-2px);
 }
-.button:active {
-    transform: translateY(0);
-}
 
 header {
     padding: 1rem 1.5rem;
 }
-.logo { font-weight: bold; font-size: 1.2rem; }
-.tagline { font-size: 0.9rem; opacity: 0.8; }
 
 .hero {
     padding: 2rem 1.5rem 4rem;
@@ -92,9 +87,8 @@ header {
 }
 @media (min-width: 768px) {
     .hero-grid {
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: 1fr 1fr;
         text-align: left;
-        gap: 3rem;
     }
 }
 .hero-content {
@@ -136,42 +130,133 @@ header {
 
 .marquee { background-color: var(--wb-teal); color: white; padding: 1rem 0; overflow: hidden; white-space: nowrap; }
 .marquee-track { display: inline-block; animation: marquee 90s linear infinite; }
-.marquee-track span { display: inline-flex; align-items: center; padding: 0 2rem; font-weight: 700; }
-.marquee-track img { width: 30px; height: 30px; border-radius: 50%; margin-right: 0.75rem; }
+.marquee-track span { padding: 0 2rem; font-weight: 700; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
 .dark { background-color: var(--wb-dark-teal); }
 .teal { background-color: var(--wb-teal); }
-.inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
-.dangerous { text-decoration: underline; }
-
-.mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
-@media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-.mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-.mugshot-card-img { display: block; width: 100%; height: 250px; object-fit: cover; filter: grayscale(1); transition: filter 0.3s ease, transform 0.3s ease; }
-.mugshot-card:hover .mugshot-card-img { filter: grayscale(0); transform: scale(1.05); }
-.mugshot-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1rem 1rem; color: white; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
-.mugshot-overlay h3 { margin: 0; font-size: 1.2rem; }
-.mugshot-charge { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; opacity: 0; max-height: 0; transition: opacity 0.3s ease, max-height 0.3s ease; }
-.mugshot-card.is-revealed .mugshot-charge { opacity: 1; max-height: 100px; }
+.about-author { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; justify-content: center; }
+.about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+.about-author-text { flex: 1; min-width: 300px; }
         
-.interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: center; }
-.teal .interactive-container { background: var(--wb-dark-teal); }
-.dark .interactive-container { background: var(--wb-teal); }
-.quiz-options .button { display: block; width: 100%; margin: 0.5rem 0; background-color: var(--wb-teal); text-align: left; }
-.quiz-options .button:hover { background-color: var(--rainbow-4); }
-
-.bingo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-.bingo-square { background-color: var(--wb-teal); border-radius: 8px; padding: 1rem; min-height: 90px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.85rem; }
+/* --- RESTORED MUGSHOT GALLERY STYLE --- */
+.mugshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+@media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
+.mugshot-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    height: 250px;
+}
+.mugshot-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+.mugshot-card:hover .mugshot-card-img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+.mugshot-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1rem 1rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    transition: all 0.3s ease;
+}
+.mugshot-overlay h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+.mugshot-charge {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+.mugshot-card.is-revealed .mugshot-overlay {
+    background: rgba(2, 49, 58, 0.9);
+    backdrop-filter: blur(5px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mugshot-card.is-revealed .mugshot-charge {
+    opacity: 1;
+    max-height: 150px;
+}
+        
+/* --- RESTORED QUIZ & BINGO STYLES --- */
+.interactive-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--wb-dark-teal);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+.quiz-options button {
+    display: block;
+    width: 100%;
+    margin: 0.75rem 0;
+    padding: 1rem 1.5rem;
+    background-color: var(--wb-teal);
+    border: 2px solid var(--wb-teal);
+    color: var(--wb-cream);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease-out;
+}
+.quiz-options button:hover {
+    border-color: var(--rainbow-4);
+    background-color: var(--rainbow-4);
+    transform: scale(1.02);
+    color: white;
+}
+.bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.bingo-square {
+    background-color: var(--wb-teal);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+}
 .bingo-square.is-checked { background: var(--rainbow-gradient); color: white; }
 .bingo-square:hover { transform: scale(1.05); }
 
-.about-author { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; text-align: center; }
-.about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
-.about-author-text { flex: 1; min-width: 300px; text-align: left; }
-@media (max-width: 600px) { .about-author-text { text-align: center; } }
-
+/* --- FOOTER --- */
 footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; }
 .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; text-decoration: none; }
 .footer-links { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
