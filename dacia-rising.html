@@ -24,9 +24,9 @@
             /* New Accent Colors */
             --color-primary-accent: #346a48; /* Deep, earthy forest green (replaces red) */
             --color-primary-accent-dark: #2a5a3c; /* Darker green for hover states */
-            --color-secondary-accent: #2a5a54; /* Muted deep teal/forest green (for subtle contrast) */
-            --color-warm-accent-light: #ffc19c; /* Lighter orange/peach, for main titles (like Hero H1) */
-            --color-warm-accent-dark: #ffa711; /* Amber/gold for section titles and strong highlights */
+            --color-secondary-accent: #2a5a54; /* Muted deep teal/forest green (for subtle contrast) - Currently unused, but kept for options */
+            --color-warm-accent-light: #ffc19c; /* Lighter orange/peach, for general warmth/secondary titles */
+            --color-warm-accent-dark: #ffa711; /* Amber/gold for main titles and strong highlights */
         }
 
         html {
@@ -55,7 +55,7 @@
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--color-warm-accent-light);
+            color: var(--color-warm-accent-dark); /* Changed to gold */
         }
         .nav-links a {
             color: var(--color-text-light);
@@ -111,7 +111,7 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            color: var(--color-warm-accent-light); /* Gold for main title */
+            color: var(--color-warm-accent-dark); /* Changed to gold */
             text-transform: uppercase;
             letter-spacing: 2px;
             line-height: 1.1;
@@ -248,7 +248,7 @@
             border-radius: 8px;
             margin-bottom: 1rem;
             object-fit: cover;
-            border: 2px solid var(--color-warm-accent-light); /* Lighter orange border for images */
+            border: 2px solid var(--color-primary-accent); /* Changed to green border */
         }
         .character-card h3, .location-card h3 {
             font-size: 1.4rem;
@@ -287,7 +287,12 @@
         .review-card .reviewer {
             font-size: 0.9rem;
             font-weight: bold;
-            color: var(--color-warm-accent-light); /* Lighter orange for reviewer names */
+            color: var(--color-warm-accent-dark); /* Changed to gold */
+        }
+
+        /* Final CTA Title (overrides default section-title color for specific emphasis) */
+        .section-dark .section-title { /* More specific selector for final CTA title */
+            color: var(--color-warm-accent-dark); /* Ensures it's gold */
         }
 
         /* Footer */
@@ -299,7 +304,7 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         footer a {
-            color: var(--color-warm-accent-light);
+            color: var(--color-warm-accent-dark); /* Changed to gold */
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
@@ -466,7 +471,7 @@
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Zibeltha.png" alt="Zibeltha">
                     <h3>Zibeltha</h3>
-                    <p>High Priestess of the Lowlands, Zibeltha wields the sacred wisdom of Zalmoxis with quiet power. Her silver gaze pierces illusion, and her staff anchors prophecy in the mortal realm. She is more than a guide—she is the memory of the gods.</p>
+                    <p>High Priestess of the Lowlands, Zibeltha wields the sacred wisdom of Zalmoxis with quiet power. Her silver gaze piercing illusion, and her staff anchors prophecy in the mortal realm. She is more than a guide—she is the memory of the gods.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Cairos.png" alt="Cairos">
