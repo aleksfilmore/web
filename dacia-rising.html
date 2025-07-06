@@ -12,14 +12,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* CSS Variables for Dacia Rising Theme */
+        :root {
+            --color-dark-bg: #0d0e0f; /* Main very dark background */
+            --color-darker-bg: #1a1b1d; /* Slightly lighter dark for cards/sections */
+            --color-header-bg: #202225; /* Even lighter dark for header/alternate sections */
+            --color-text-light: #e0e0e0; /* Main light text */
+            --color-text-lighter: #f0f0f0; /* Brighter text for emphasis */
+            --color-text-muted: #b0b0b0; /* Muted text for descriptions */
+
+            --color-primary-accent: #e04a3e; /* A more subdued, deep red/orange for main accents */
+            --color-secondary-accent: #2a5a54; /* Muted deep forest green/teal */
+            --color-warm-accent-light: #ffc19c; /* Lighter orange/peach, for general warmth */
+            --color-warm-accent-dark: #ffa711; /* Amber/gold for strong highlights */
+        }
+
         html {
             scroll-behavior: smooth;
         }
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #0d0e0f; /* Dark background for epic fantasy */
-            color: #d4d4d4; /* Light text for dark background */
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
             line-height: 1.7;
         }
         .container {
@@ -32,29 +47,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #202022; /* Darker header */
-            border-bottom: 1px solid #333;
+            background-color: var(--color-header-bg);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: #ffc19c; /* Lighter color for logo */
+            color: var(--color-warm-accent-light);
         }
         .nav-links a {
-            color: #d4d4d4;
+            color: var(--color-text-light);
             text-decoration: none;
             margin-left: 20px;
             font-weight: bold;
             transition: color 0.3s ease;
         }
         .nav-links a:hover {
-            color: #f35b4e;
+            color: var(--color-primary-accent);
         }
 
         /* Hero Section */
         .hero {
             position: relative;
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/587fb8d782f6c0dd33c30a28500e9059a579c4bb/DACIA%20RISING.png'); /* Book cover as background initially */
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Dacia%204.jpg'); /* Use Dacia 4 as background */
             background-size: cover;
             background-position: center;
             color: white;
@@ -94,7 +109,7 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            color: #ffc19c; /* Matches your accent color */
+            color: var(--color-warm-accent-light);
             text-transform: uppercase;
             letter-spacing: 2px;
             line-height: 1.1;
@@ -103,16 +118,16 @@
             font-size: 1.8rem;
             margin-top: 0;
             margin-bottom: 1rem;
-            color: #ffa711; /* Another accent color */
+            color: var(--color-warm-accent-dark);
         }
         .hero .author-line {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: #d4d4d4;
+            color: var(--color-text-light);
         }
         .hero .rating {
             font-size: 1rem;
-            color: #f35b4e; /* Red for emphasis */
+            color: var(--color-primary-accent);
             margin-bottom: 1.5rem;
         }
         .hero .star {
@@ -121,11 +136,11 @@
         }
         .hero .short-hook {
             font-size: 1.2rem;
-            color: #e0e0e0;
+            color: var(--color-text-lighter);
             margin-bottom: 2rem;
         }
         .hero .cta-button {
-            background-color: #f35b4e;
+            background-color: var(--color-primary-accent);
             color: #fff;
             padding: 1rem 2.5rem;
             font-size: 1.2rem;
@@ -136,16 +151,16 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .hero .cta-button:hover {
-            background-color: #d14a3d;
+            background-color: #c03d33; /* Darker hover for primary */
             transform: translateY(-2px);
         }
         .formats-link {
             font-size: 0.9rem;
-            color: #e0e0e0;
+            color: var(--color-text-lighter);
             margin-top: 1rem;
         }
         .formats-link a {
-            color: #ffa711;
+            color: var(--color-warm-accent-dark);
             text-decoration: underline;
         }
 
@@ -155,26 +170,26 @@
             text-align: center;
         }
         .section-dark {
-            background-color: #1a1a1c;
-            color: #d4d4d4;
+            background-color: var(--color-darker-bg);
+            color: var(--color-text-light);
         }
         .section-light {
-            background-color: #202022;
-            color: #e0e0e0;
+            background-color: var(--color-header-bg);
+            color: var(--color-text-lighter);
         }
         .section-title {
             font-size: 2.5rem;
-            color: #ffc19c;
+            color: var(--color-warm-accent-light);
             margin-bottom: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 2px solid #f35b4e;
+            border-bottom: 2px solid var(--color-primary-accent);
             padding-bottom: 0.5rem;
             display: inline-block; /* To make border-bottom fit content */
         }
         .section-subtitle {
             font-size: 1.2rem;
-            color: #ffa711;
+            color: var(--color-warm-accent-dark);
             margin-bottom: 2.5rem;
         }
         .text-block {
@@ -182,10 +197,10 @@
             margin: 0 auto;
             text-align: left;
             font-size: 1.1rem;
-            color: #d4d4d4;
+            color: var(--color-text-light);
         }
         .text-block strong {
-            color: #ffa711;
+            color: var(--color-warm-accent-dark);
         }
         .text-block ul {
             list-style-type: none; /* Remove default bullets */
@@ -198,7 +213,7 @@
         }
         .text-block ul li::before {
             content: '✦'; /* Custom bullet */
-            color: #f35b4e;
+            color: var(--color-primary-accent);
             position: absolute;
             left: 0;
             font-size: 1.2em;
@@ -213,7 +228,7 @@
             margin-top: 3rem;
         }
         .character-card, .location-card {
-            background-color: #1a1a1c;
+            background-color: var(--color-darker-bg);
             border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
@@ -231,16 +246,16 @@
             border-radius: 8px;
             margin-bottom: 1rem;
             object-fit: cover;
-            border: 2px solid #ffc19c;
+            border: 2px solid var(--color-warm-accent-light);
         }
         .character-card h3, .location-card h3 {
             font-size: 1.4rem;
-            color: #ffc19c;
+            color: var(--color-warm-accent-light);
             margin-bottom: 0.5rem;
         }
         .character-card p, .location-card p {
             font-size: 0.95rem;
-            color: #b0b0b0;
+            color: var(--color-text-muted);
         }
 
         /* Reviews Section */
@@ -252,7 +267,7 @@
             text-align: left;
         }
         .review-card {
-            background-color: #1a1a1c;
+            background-color: var(--color-darker-bg);
             border-radius: 10px;
             padding: 1.5rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -264,31 +279,31 @@
         }
         .review-card p {
             font-size: 1rem;
-            color: #d4d4d4;
+            color: var(--color-text-light);
             margin-bottom: 1rem;
         }
         .review-card .reviewer {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #ffc19c;
+            color: var(--color-warm-accent-light);
         }
 
         /* Footer */
         footer {
-            background-color: #0d0e0f;
-            color: #b0b0b0;
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-muted);
             padding: 30px 20px;
             text-align: center;
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         footer a {
-            color: #ffc19c;
+            color: var(--color-warm-accent-light);
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: #f35b4e;
+            color: var(--color-primary-accent);
         }
         .footer-social-links {
             margin-bottom: 15px;
@@ -351,6 +366,9 @@
             .section-title {
                 font-size: 1.8rem;
             }
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
             .text-block {
                 font-size: 1rem;
             }
@@ -383,7 +401,7 @@
                 <span class="star">★★★★★</span> 4.7 out of 5 stars (5)
             </p>
             <p class="short-hook">Before the empire rose, a forgotten people faced extinction.</p>
-            <a href="https://a.co/d/g34g4gd" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
+            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
             <p class="formats-link">See all formats and editions</p>
         </div>
     </section>
@@ -406,7 +424,7 @@
                     Within the folds of this ancient land, magic is not a force of spells, but a spiritual reckoning. The gods whisper in dreams, the dead speak in wind, and the land itself remembers what was taken.
                 </p>
             </div>
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Dacia.jpg" alt="Panoramic view of Dacia landscape" style="width: 100%; max-width: 900px; margin-top: 3rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+            <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Dacia.jpg" alt="Panoramic view of Dacia landscape" style="width: 100%; max-width: 900px; margin-top: 3rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
         </div>
     </section>
 
@@ -431,30 +449,30 @@
         <div class="container">
             <h2 class="section-title">The Circle That Stands with Sarion</h2>
             <div class="text-block" style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid #f35b4e; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-                <h3 style="font-size: 1.8rem; color: #ffc19c; margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
-                <p style="font-size: 1rem; color: #d4d4d4; max-width: 600px; margin: 0 auto 3rem auto;">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid var(--color-primary-accent); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <h3 style="font-size: 1.8rem; color: var(--color-warm-accent-light); margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
+                <p style="font-size: 1rem; color: var(--color-text-light); max-width: 600px; margin: 0 auto 3rem auto;">
                     Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes. Guided by the old teachings of Zalmoxis and armed with little more than a hunter’s instinct, he must rise as protector, leader, and symbol. But the fog is thick, and darkness moves unseen.
                 </p>
             </div>
             <div class="character-grid">
                 <div class="character-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Amara.png" alt="Amara">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Amara.png" alt="Amara">
                     <h3>Amara</h3>
                     <p>A fierce archer of the Lowlands Tribe, Amara’s loyalty is as unshakable as her aim. Her sharp wit and fire-hearted courage steady Sarion when the world tilts, and her bow never trembles in the face of danger.</p>
                 </div>
                 <div class="character-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Zibeltha.png" alt="Zibeltha">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Zibeltha.png" alt="Zibeltha">
                     <h3>Zibeltha</h3>
                     <p>High Priestess of the Lowlands, Zibeltha wields the sacred wisdom of Zalmoxis with quiet power. Her silver gaze pierces illusion, and her staff anchors prophecy in the mortal realm. She is more than a guide—she is the memory of the gods.</p>
                 </div>
                 <div class="character-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Cairos.png" alt="Cairos">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Cairos.png" alt="Cairos">
                     <h3>Cairos</h3>
                     <p>Stoic and unbreakable, Cairos of the Mountain Tribe carries the weight of a people long forgotten by peace. His carved spear speaks for him, a legacy etched in war and endurance. In silence, he holds the line.</p>
                 </div>
                 <div class="character-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Eldorin.png" alt="Eldorin">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Eldorin.png" alt="Eldorin">
                     <h3>Eldorin</h3>
                     <p>Eldorin walks the edge between worlds—forest priest, mystic, and soul-bonded to a silver-eyed wolf. His chants stir old powers, and his visions draw maps where no roads exist. Where others falter, he listens to the trees.</p>
                 </div>
@@ -468,22 +486,22 @@
             <p class="section-subtitle">The Tribes that Rise Together</p>
             <div class="location-grid">
                 <div class="location-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Lowlands%20Village.jpg" alt="Lowlands Village">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Lowlands%20Village.jpg" alt="Lowlands Village">
                     <h3>The Lowlands Village</h3>
                     <p>Cradled by rolling hills and open skies, the Lowlands Village is the heart of prophecy and spiritual tradition. Bathed in morning mist and silence, this is where visions stir, choices echo, and the spirit of the old gods still speaks.</p>
                 </div>
                 <div class="location-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Mountain%20Tribe.jpg" alt="Mountain Village">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Mountain%20Tribe.jpg" alt="Mountain Village">
                     <h3>The Mountain Village</h3>
                     <p>Built into the raw bones of the earth, the Mountain Village is a stronghold of warriors and blacksmiths. Surrounded by cliffs and pine, it is where iron meets oath—and where ancient chants rise with the morning smoke.</p>
                 </div>
                 <div class="location-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Forest%20Tribe.jpg" alt="Forest Village">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/Forest%20Tribe.jpg" alt="Forest Village">
                     <h3>The Forest Village</h3>
                     <p>Hidden beneath towering trees, the Forest Village lives in rhythm with root and rain. Druids whisper to leaves, children learn the names of herbs, and wolves walk beside the wise.</p>
                 </div>
                 <div class="location-card">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/River%20Dava.jpg" alt="River Dava">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/ffaf8e37d4d17d091c8e8bc9140e0d98add7f44d/DaciaRising/River%20Dava.jpg" alt="River Dava">
                     <h3>The River Dava</h3>
                     <p>A crescent of commerce and celebration, the River Dava flows with stories, markets, and bloodlines. Traders and spies walk its docks, while the sacred arena bears witness to pacts sealed in water and fire.</p>
                 </div>
@@ -501,7 +519,7 @@
                 <p>
                     You’ll feel the drums of war in your chest, smell the sacred smoke, and stand shoulder to shoulder with warriors who know that to survive, one must not just fight—but remember.
                 </p>
-                <h3 style="color: #ffc19c; margin-top: 2rem;">If you crave:</h3>
+                <h3 style="color: var(--color-warm-accent-light); margin-top: 2rem;">If you crave:</h3>
                 <ul>
                     <li>Epic fantasy romance amid tribal conflict</li>
                     <li>Battle-worn heroes with ancient scars</li>
@@ -509,7 +527,7 @@
                     <li>Kindle Unlimited fantasy series with emotional grit</li>
                     <li>A new mythos that <strong>isn’t</strong> just elves and dragons</li>
                 </ul>
-                <p style="margin-top: 2rem; font-size: 1.2rem; color: #ffa711;">Then this is your next great saga.</p>
+                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--color-warm-accent-dark);">Then this is your next great saga.</p>
             </div>
         </div>
     </section>
@@ -555,9 +573,9 @@
 
     <section class="section section-dark">
         <div class="container">
-            <h2 class="section-title" style="color: #ffa711;">The Call of Dacia Awaits—Will You Answer?</h2>
+            <h2 class="section-title" style="color: var(--color-warm-accent-dark);">The Call of Dacia Awaits—Will You Answer?</h2>
             <p class="section-subtitle">Prepare to follow the Bear’s Mark. Begin the journey today.</p>
-            <a href="https://a.co/d/g34g4gd" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
+            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
         </div>
     </section>
 
