@@ -63,11 +63,12 @@
         .buy-btn { background: var(--wb-red); color: var(--wb-cream); display: inline-block; padding: 1rem 2rem; font-weight: bold; font-size: 1.1rem; border-radius: 8px; text-decoration: none; margin-top: 1.5rem; transition: background-color 0.3s, transform 0.2s; }
         .buy-btn:hover { background-color: #c44a28; transform: translateY(-2px); }
 
-        .marquee-reviews { background: var(--rainbow-4); color: var(--wb-cream); padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-        .review-track { display: inline-block; animation: marquee 50s linear infinite; white-space: nowrap; } /* Faster animation */
+        .marquee-reviews { color: white; padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); animation: rainbow-bg-flow 10s linear infinite alternate; }
+        @keyframes rainbow-bg-flow { 0% { background-color: var(--rainbow-1); } 25% { background-color: var(--rainbow-4); } 50% { background-color: var(--rainbow-3); } 75% { background-color: var(--rainbow-5); } 100% { background-color: var(--rainbow-1); } }
+        .review-track { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         .review-track span { display: inline-block; padding: 0 2rem; font-size: 1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .star { color: var(--wb-cream); }
+        .star { color: white; }
 
         .content-section { padding: 5rem 1.5rem; }
         .light-section { background-color: var(--wb-cream); color: var(--wb-text-dark); }
@@ -95,10 +96,8 @@
         .mugshot-card.revealed .mugshot-card-charge { opacity: 1; visibility: visible; transform: translateY(0); }
 
         .quiz-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
-        .quiz-options button { position: relative; display: block; width: 100%; margin: 0.75rem 0; padding: 1rem 1.5rem 1rem 3.5rem; background-color: var(--wb-teal); color: var(--wb-cream); border: 2px solid var(--wb-teal); border-radius: 8px; font-size: 1rem; cursor: pointer; text-align: left; transition: background-color 0.2s, border-color 0.2s; }
-        .quiz-options button::before { content: ''; position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: 2px solid var(--wb-cream); border-radius: 50%; transition: all 0.2s; }
-        .quiz-options button:hover { border-color: var(--rainbow-4); background-color: #055a6a; }
-        .quiz-options button:hover::before { border-color: var(--wb-cream); background-color: var(--rainbow-4); }
+        .quiz-options button { display: block; width: 100%; margin: 0.75rem 0; padding: 1rem 1.5rem; background-color: transparent; border: 2px solid var(--wb-teal); color: var(--wb-cream); border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; text-align: left; transition: all 0.3s ease; }
+        .quiz-options button:hover { background-color: var(--rainbow-4); border-color: var(--rainbow-4); color: white; transform: scale(1.02) translateX(5px); }
         .quiz-result #quiz-category { font-size: 1.5rem; display: inline-block; margin-bottom: 0.5rem; }
         
         .bingo-container { max-width: 700px; margin: 0 auto; text-align: center; }
