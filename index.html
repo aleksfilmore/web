@@ -34,33 +34,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* New CSS Variables for The Worst Boyfriends Ever - Inspired by the new cover */
+        /* The Worst Boyfriends Ever - Official Cover Palette */
         :root {
-            /* User-defined core colors */
-            --wb-teal: #074755;
+            /* Official core colors */
+            --wb-teal: #044654;
             --wb-red: #e05b38;
+            --wb-cream: #f7dcaa;
 
             /* Derived colors for the new palette */
-            --wb-dark-blue: #1C2B3F; /* Deep Petrol Blue from cover */
-            --wb-medium-blue: #2A3E5A; /* Slightly lighter blue for sections/cards */
-            --wb-light-blue: #D0E0EE; /* Very light blue-grey for main text */
-            --wb-muted-grey: #9FB2C9; /* Muted grey/blue for secondary text */
-
-            /* Rainbow accents (derived, can be fine-tuned if specific hex codes are provided) */
-            --wb-rainbow-yellow: #F0CC00; /* Muted yellow-gold for highlights */
-            --wb-rainbow-orange: #E08D43; /* Muted orange */
-            --wb-rainbow-green: #6AA84F; /* Muted green */
-            --wb-rainbow-purple: #8B5BAA; /* Muted purple */
+            --wb-dark-teal: #02313a; /* A darker shade for depth */
+            --wb-light-cream: #fff9e8; /* A lighter cream for hovers/highlights */
+            --wb-muted-cream: #e0c9a4; /* A slightly darker cream for secondary text */
 
             /* Element-specific colors */
-            --wb-header-bg: var(--wb-medium-blue);
-            --wb-button-bg: var(--wb-teal);
-            --wb-button-hover: #053640; /* Darker teal */
-            --wb-highlight-text: var(--wb-red); /* For "cringe" and strong emotional text */
-            --wb-section-bg-light: var(--wb-medium-blue);
-            --wb-section-bg-dark: var(--wb-dark-blue);
-            --wb-marquee-gradient-start: var(--wb-dark-blue);
-            --wb-marquee-gradient-end: var(--wb-medium-blue);
+            --wb-header-bg: var(--wb-dark-teal);
+            --wb-button-bg: var(--wb-red);
+            --wb-button-hover: #c44a28; /* Darker red */
+            --wb-highlight-text: var(--wb-red); /* For strong emotional text */
+            --wb-section-bg-light: var(--wb-teal);
+            --wb-section-bg-dark: var(--wb-dark-teal);
+            --wb-marquee-gradient-start: var(--wb-teal);
+            --wb-marquee-gradient-end: var(--wb-dark-teal);
         }
 
         html {
@@ -69,8 +63,8 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--wb-dark-blue); /* Main background */
-            color: var(--wb-light-blue); /* Main text color */
+            background-color: var(--wb-teal); /* Main background */
+            color: var(--wb-cream); /* Main text color */
         }
         header {
             padding: 1rem;
@@ -78,22 +72,22 @@
             justify-content: space-between;
             align-items: center;
             background-color: var(--wb-header-bg); /* Header background */
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
         }
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--wb-light-blue); /* Logo color */
+            color: var(--wb-cream); /* Logo color */
         }
         .tagline {
             font-size: 0.9rem;
-            color: var(--wb-muted-grey); /* Tagline color */
+            color: var(--wb-muted-cream); /* Tagline color */
         }
         
         /* Announcement Bar Styles */
         .announcement-bar {
-            background-color: var(--wb-teal); /* Teal from new palette */
-            color: var(--wb-light-blue);
+            background-color: var(--wb-red); /* Red for announcement */
+            color: var(--wb-light-cream);
             text-align: center;
             padding: 0.75rem 1rem;
             position: relative;
@@ -125,7 +119,8 @@
             transform: translateY(0);
         }
         .announcement-item strong {
-            color: var(--wb-rainbow-yellow); /* Highlight color */
+            color: var(--wb-light-cream); /* Highlight color */
+            font-weight: bold;
         }
         .announcement-item small {
             font-size: 0.7rem;
@@ -138,9 +133,9 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            background: var(--wb-dark-blue); /* Hero background */
+            background: var(--wb-teal); /* Hero background */
             padding: 2.5rem 1.5rem;
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
             animation: fadeHero 1.2s ease-in;
             position: relative;
             overflow: hidden;
@@ -154,6 +149,7 @@
             min-width: 300px;
             max-width: 500px;
             padding: 1rem;
+            z-index: 2;
         }
         .hero h1 {
             font-size: 3.5rem;
@@ -163,7 +159,7 @@
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
             font-family: 'Inter', sans-serif;
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         .hero h1 span {
             display: block;
@@ -174,7 +170,7 @@
             margin-bottom: 1.5rem;
             font-weight: 500;
             font-family: 'Inter', sans-serif;
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
         }
         .hero-form {
             display: flex;
@@ -184,25 +180,25 @@
         }
         .hero-form input[type="email"] {
             padding: 0.5rem 0.75rem;
-            border: none;
+            border: 1px solid var(--wb-dark-teal);
             border-radius: 4px;
             font-size: 0.9rem;
             transition: box-shadow 0.3s ease-in-out;
             font-family: 'Inter', sans-serif;
-            background-color: var(--wb-medium-blue); /* Form input background */
-            color: var(--wb-light-blue);
+            background-color: var(--wb-dark-teal); /* Form input background */
+            color: var(--wb-cream);
         }
         .hero-form input[type="email"]:focus {
-            box-shadow: 0 0 5px var(--wb-teal); /* Teal focus glow */
+            box-shadow: 0 0 5px var(--wb-red); /* Red focus glow */
             outline: none;
         }
         .hero-form input::placeholder {
             font-style: italic;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
         }
         .hero-form button {
             background-color: var(--wb-button-bg); /* Button background */
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             font-weight: bold;
             border: none;
             border-radius: 4px;
@@ -219,12 +215,28 @@
             flex: 1;
             min-width: 250px;
             text-align: center;
-            animation: none;
             position: relative;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
+            z-index: 1;
+        }
+        /* Rainbow background element */
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%; 
+            height: 150%;
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translate(-50%, -50%) rotate(-10deg);
+            opacity: 0.8;
+            z-index: 1;
         }
         .book-cover-main {
             width: 240px;
@@ -240,7 +252,7 @@
         }
         .buy-btn {
             background: var(--wb-button-bg); /* Button background */
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             padding: 0.6rem 1.1rem;
             font-weight: bold;
             border-radius: 5px;
@@ -251,6 +263,8 @@
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
         .buy-btn:hover {
             background-color: var(--wb-button-hover); /* Button hover */
@@ -258,7 +272,7 @@
 
         .marquee-reviews {
             background: linear-gradient(to right, var(--wb-marquee-gradient-start), var(--wb-marquee-gradient-end)); /* Marquee gradient */
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
             padding: 0.75rem;
             overflow: hidden;
             white-space: nowrap;
@@ -297,16 +311,16 @@
         }
 
         .inside-chaos {
-            background: var(--wb-dark-blue); /* Consistent section background */
+            background: var(--wb-teal); /* Consistent section background */
         }
         .inside-chaos h2 {
-            color: var(--wb-light-blue); /* Title color */
+            color: var(--wb-light-cream); /* Title color */
         }
         .inside-chaos h2 span {
-            background: var(--wb-rainbow-orange); /* Underline color */
+            background: var(--wb-red); /* Underline color */
         }
         .inside-chaos p {
-            color: var(--wb-muted-grey); /* Paragraph color */
+            color: var(--wb-muted-cream); /* Paragraph color */
         }
         .inside-chaos p span {
             color: var(--wb-highlight-text); /* Highlight text color (red) */
@@ -326,20 +340,20 @@
             text-align: center;
             font-size: 0.95rem;
             margin-bottom: 2rem;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             font-family: 'Inter', sans-serif;
         }
 
         /* Mugshot Gallery Styles */
         .mugshot-card {
-            background-color: var(--wb-section-bg-light); /* Card background */
+            background-color: var(--wb-section-bg-dark); /* Card background */
             border-radius: 10px;
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
             position: relative;
             font-size: 0.95rem;
             perspective: 1000px;
             height: 200px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Keep shadow */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.2s ease-in-out;
         }
         .mugshot-card:hover {
@@ -363,7 +377,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: var(--wb-light-blue); /* Title color */
+            color: var(--wb-light-cream); /* Title color */
             font-weight: bold;
             font-size: 1.1rem;
             text-align: center;
@@ -381,7 +395,7 @@
             left: 0;
             width: 100%;
             background-color: var(--wb-highlight-text); /* Red for charge overlay */
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             padding: 0.75rem;
             font-size: 0.9rem;
             text-align: center;
@@ -398,32 +412,11 @@
             visibility: visible;
             transform: translateY(0);
         }
-        .thermometer { /* No direct change, but values depend on context */
-            background: var(--wb-dark-blue);
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: auto;
-        }
-        .thermometer-fill {
-            height: 100%;
-            background: linear-gradient(to right, var(--wb-rainbow-blue), var(--wb-rainbow-green), var(--wb-rainbow-orange), var(--wb-red)); /* Rainbow gradient for fill */
-            width: 100%; /* Placeholder width, adjust in HTML for actual values */
-        }
-        .thermometer-label {
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            color: var(--wb-light-blue);
-            text-align: right;
-        }
-        .cringe-info {
-            color: var(--wb-muted-grey);
-        }
 
         /* Red Flag Quiz Styles */
         .quiz-container {
             background-color: var(--wb-section-bg-dark); /* Quiz container background */
-            color: var(--wb-light-blue);
+            color: var(--wb-cream);
             max-width: 700px;
             margin: 3rem auto;
             padding: 2rem;
@@ -436,7 +429,7 @@
             margin-bottom: 1.5rem;
             font-weight: bold;
             line-height: 1.3;
-            color: var(--wb-light-blue); /* Question color */
+            color: var(--wb-light-cream); /* Question color */
             font-family: 'Inter', sans-serif;
         }
         .quiz-options button {
@@ -444,9 +437,9 @@
             width: 90%;
             margin: 0.75rem auto;
             padding: 1rem 1.5rem;
-            background-color: var(--wb-section-bg-light); /* Quiz button background */
-            color: var(--wb-light-blue);
-            border: none;
+            background-color: var(--wb-teal); /* Quiz button background */
+            color: var(--wb-cream);
+            border: 1px solid var(--wb-dark-teal);
             border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
@@ -455,7 +448,7 @@
             font-family: 'Inter', sans-serif;
         }
         .quiz-options button:hover {
-            background-color: var(--wb-teal); /* Quiz button hover */
+            background-color: var(--wb-dark-teal); /* Quiz button hover */
         }
         .quiz-options button:active {
             transform: translateY(0);
@@ -464,15 +457,15 @@
             font-size: 0.9rem;
             margin-top: 1.5rem;
             opacity: 0.8;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             font-family: 'Inter', sans-serif;
         }
         .quiz-result {
             margin-top: 2rem;
             font-size: 1.2rem;
             font-weight: bold;
-            color: var(--wb-rainbow-yellow); /* Quiz result text */
-            background-color: var(--wb-section-bg-light); /* Result background */
+            color: var(--wb-light-cream); /* Quiz result text */
+            background-color: var(--wb-dark-teal); /* Result background */
             padding: 1rem;
             border-radius: 10px;
             font-family: 'Inter', sans-serif;
@@ -480,13 +473,13 @@
         .quiz-result p {
             font-size: 1rem;
             font-weight: normal;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             margin-top: 0.5rem;
             font-family: 'Inter', sans-serif;
         }
         #quiz-start-btn, #quiz-reset-btn {
             background-color: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             font-weight: bold;
             border: none;
             border-radius: 8px;
@@ -503,8 +496,8 @@
         
         /* Bad Date Bingo Styles */
         .bingo-container {
-            background-color: var(--wb-section-bg-dark);
-            color: var(--wb-light-blue);
+            background-color: var(--wb-dark-teal);
+            color: var(--wb-cream);
             max-width: 600px;
             margin: 3rem auto;
             padding: 2rem;
@@ -519,8 +512,8 @@
             margin-top: 1.5rem;
         }
         .bingo-square {
-            background-color: var(--wb-section-bg-light);
-            color: var(--wb-light-blue);
+            background-color: var(--wb-teal);
+            color: var(--wb-cream);
             padding: 1rem;
             border-radius: 8px;
             min-height: 100px;
@@ -535,25 +528,25 @@
             font-family: 'Inter', sans-serif;
         }
         .bingo-square:hover:not(.checked) {
-            background-color: var(--wb-teal); /* Bingo square hover */
+            background-color: var(--wb-dark-teal); /* Bingo square hover */
         }
         .bingo-square.checked {
             background-color: var(--wb-highlight-text); /* Checked bingo square */
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         .bingo-message {
-            color: var(--wb-rainbow-yellow); /* Bingo message */
+            color: var(--wb-light-cream); /* Bingo message */
         }
         #bingo-reset-btn {
             background-color: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         #bingo-reset-btn:hover {
             background-color: var(--wb-button-hover);
         }
 
         .book-purchase-section {
-            background-color: var(--wb-dark-blue); /* Book purchase background */
+            background-color: var(--wb-teal); /* Book purchase background */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -562,7 +555,7 @@
             padding: 1.5rem;
         }
         .book-formats-info {
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             text-align: center;
             font-size: 1.1rem;
             font-weight: bold;
@@ -570,7 +563,7 @@
         }
         .cta-button {
             background: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             display: block;
             width: fit-content;
             margin: 0 auto;
@@ -589,9 +582,8 @@
         }
 
         .audiobook-promo {
-            background-color: var(--wb-section-bg-light); /* Audiobook promo background */
-            background-image: none; /* Removed old texture */
-            color: var(--wb-light-blue);
+            background-color: var(--wb-section-bg-dark); /* Audiobook promo background */
+            color: var(--wb-cream);
             text-align: center;
             padding: 4rem 1.5rem;
             position: relative;
@@ -603,20 +595,20 @@
             text-transform: uppercase;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
             margin: 0 0 1rem 0;
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         .audiobook-promo p {
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 2rem auto;
             line-height: 1.6;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
         }
         .audiobook-promo .audio-icon {
             font-size: 4rem;
-            color: var(--wb-rainbow-orange); /* Audio icon color */
+            color: var(--wb-red); /* Audio icon color */
             margin-bottom: 1.5rem;
-            text-shadow: 0 0 15px rgba(var(--wb-rainbow-orange), 0.5);
+            text-shadow: 0 0 15px rgba(224, 91, 56, 0.5);
         }
         .audiobook-promo .platforms {
             margin: 2rem 0;
@@ -629,19 +621,20 @@
         .audiobook-promo .platforms span {
             font-size: 1rem;
             font-weight: bold;
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         .audiobook-promo .platforms i {
             font-size: 2.5rem;
             transition: transform 0.3s ease;
-            color: var(--wb-rainbow-blue); /* Platform icons */
+            color: var(--wb-cream); /* Platform icons */
         }
         .audiobook-promo .platforms i:hover {
             transform: scale(1.1);
+            color: var(--wb-light-cream);
         }
         .audiobook-promo .audio-cta {
             background-color: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             display: inline-block;
             padding: 1rem 2.5rem;
             font-weight: bold;
@@ -658,7 +651,7 @@
         }
 
         .about-section {
-            background-color: var(--wb-dark-blue); /* About section background */
+            background-color: var(--wb-teal); /* About section background */
             padding: 3rem 1.5rem;
             text-align: center;
         }
@@ -675,37 +668,36 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--wb-light-blue); /* White border */
+            border: 4px solid var(--wb-cream); /* Cream border */
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .about-text h2 {
             font-size: 2rem;
-            color: var(--wb-teal); /* About title */
+            color: var(--wb-light-cream); /* About title */
             margin: 0 0 1rem 0;
         }
         .about-text p {
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             text-align: center;
         }
         footer {
-            background-color: var(--wb-medium-blue); /* Footer background */
-            color: var(--wb-muted-grey);
+            background-color: var(--wb-dark-teal); /* Footer background */
+            color: var(--wb-muted-cream);
             padding: 40px 20px;
             text-align: center;
         }
         .footer-social-links a {
-            color: var(--wb-light-blue); /* Footer social links */
+            color: var(--wb-cream); /* Footer social links */
             font-size: 28px;
             margin: 0 15px;
             text-decoration: none;
-            transition: transform 0.3s ease, opacity 0.3s;
+            transition: transform 0.3s ease, color 0.3s;
         }
         .footer-social-links a:hover {
-            opacity: 1;
             transform: translateY(-3px);
-            color: var(--wb-teal); /* Footer social hover */
+            color: var(--wb-light-cream); /* Footer social hover */
         }
         .footer-contact-links {
             margin: 20px 0;
@@ -715,22 +707,20 @@
             gap: 15px;
         }
         .footer-contact-links a {
-            color: var(--wb-light-blue); /* Footer contact links */
+            color: var(--wb-cream); /* Footer contact links */
             text-decoration: none;
             font-size: 16px;
-            border-bottom: 1px dotted var(--wb-light-blue);
+            border-bottom: 1px dotted var(--wb-cream);
             padding-bottom: 2px;
-            transition: opacity 0.3s;
-            cursor: pointer;
+            transition: color 0.3s;
         }
         .footer-contact-links a:hover {
-            opacity: 0.8;
-            color: var(--wb-teal); /* Footer contact hover */
+            color: var(--wb-light-cream); /* Footer contact hover */
         }
         .footer-copyright p {
             font-size: 14px;
             margin: 0;
-            color: rgba(var(--wb-light-blue), 0.7);
+            color: rgba(247, 220, 170, 0.7);
         }
         .modal-backdrop {
             display: none;
@@ -746,7 +736,7 @@
             align-items: center;
         }
         .modal-content {
-            background-color: var(--wb-dark-blue); /* Modal background */
+            background-color: var(--wb-dark-teal); /* Modal background */
             margin: auto;
             padding: 2rem;
             border-radius: 8px;
@@ -755,14 +745,14 @@
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease-out;
-            color: var(--wb-light-blue); /* Modal text color */
+            color: var(--wb-cream); /* Modal text color */
         }
         @keyframes slideIn {
             from { transform: translateY(-50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
         .modal-close {
-            color: var(--wb-muted-grey);
+            color: var(--wb-muted-cream);
             position: absolute;
             top: 10px;
             right: 20px;
@@ -772,7 +762,7 @@
         }
         .modal-close:hover,
         .modal-close:focus {
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
         }
         .modal-form input[type="text"],
         .modal-form input[type="email"],
@@ -780,21 +770,21 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--wb-teal);
             border-radius: 4px;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            background-color: var(--wb-medium-blue); /* Modal form input background */
-            color: var(--wb-light-blue);
+            background-color: var(--wb-teal); /* Modal form input background */
+            color: var(--wb-cream);
         }
         .modal-form input:focus, .modal-form textarea:focus {
-            outline: 2px solid var(--wb-teal); /* Modal form focus */
-            border-color: var(--wb-teal);
+            outline: 2px solid var(--wb-red); /* Modal form focus */
+            border-color: var(--wb-red);
         }
         .modal-form button {
             background-color: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             font-weight: bold;
             padding: 12px 20px;
             border: none;
@@ -823,8 +813,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--wb-announcement-bar-bg);
-            color: var(--wb-light-blue);
+            background-color: var(--wb-dark-teal);
+            color: var(--wb-cream);
             padding: 1rem 1.5rem;
             display: flex;
             flex-wrap: wrap;
@@ -854,7 +844,7 @@
         }
         .cookie-banner-buttons button {
             background-color: var(--wb-button-bg);
-            color: var(--wb-light-blue);
+            color: var(--wb-light-cream);
             border: none;
             border-radius: 5px;
             padding: 0.75rem 1.2rem;
@@ -868,9 +858,9 @@
             background-color: var(--wb-button-hover);
         }
         .cookie-banner-buttons a {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--wb-light-blue);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: transparent;
+            color: var(--wb-cream);
+            border: 1px solid var(--wb-cream);
             border-radius: 5px;
             padding: 0.75rem 1.2rem;
             font-weight: bold;
@@ -881,8 +871,8 @@
             font-size: 0.9rem;
         }
         .cookie-banner-buttons a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(247, 220, 170, 0.1);
+            border-color: var(--wb-light-cream);
         }
 
         /* Hero Flicker Effect (color adjustments) */
@@ -902,7 +892,7 @@
             color: var(--wb-highlight-text); /* Flicker text color is now red */
             font-size: 1.8rem;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(var(--wb-highlight-text), 0.7);
+            text-shadow: 0 0 8px rgba(224, 91, 56, 0.7);
             opacity: 0;
             animation: flickerEffect 6s infinite ease-in-out;
             pointer-events: none;
@@ -936,21 +926,12 @@
             .hero p {
                 font-size: 1.2rem;
             }
-            /* Adjust mugshot gallery for mobile */
-            .mugshot-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            .hero-image::before {
+                width: 200%;
+                height: 200%;
             }
-            .mugshot-card {
-                height: 160px;
-            }
-            .audiobook-promo h2 {
-                font-size: 2.2rem;
-            }
-            .about-container {
-                flex-direction: column;
-            }
-            .about-text p {
-                text-align: center;
+            .bad-date-bingo {
+                background-color: var(--wb-dark-teal);
             }
         }
         @media (max-width: 480px) {
@@ -963,20 +944,6 @@
             }
             .hero p {
                 font-size: 1.1rem;
-            }
-            .mugshot-gallery {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            .mugshot-card {
-                height: 140px;
-            }
-            .mugshot-card-title {
-                font-size: 1rem;
-            }
-            .mugshot-card-charge {
-                font-size: 0.8rem;
-                padding: 0.5rem;
             }
 
             /* Quiz on mobile */
@@ -1006,13 +973,6 @@
                 min-height: 85px;
                 font-size: 0.8rem;
                 padding: 0.75rem;
-            }
-            .bingo-message {
-                font-size: 1rem;
-            }
-            #bingo-reset-btn {
-                font-size: 0.85rem;
-                padding: 0.6rem 1rem;
             }
         }
     </style>
@@ -1049,8 +1009,6 @@
         </div>
         <div class="hero-image">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover-main">
-            <div class="disaster-flicker-overlay" id="disaster-flicker">
-                </div>
             <a href="https://a.co/d/j2SrpJl" class="buy-btn" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
         </div>
     </section>
@@ -1060,14 +1018,14 @@
             <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
         </div>
     </div>
-    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: var(--wb-dark-blue);">
+    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem;">
         <div style="max-width: 1000px; margin: auto;">
             <div style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative; color: var(--wb-light-blue);">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative; color: var(--wb-light-cream);">
                     Inside the Chaos – Weird boyfriends. Wild twists. Zero regrets.
-                    <span style="display:block; width: 60px; height: 4px; background: var(--wb-rainbow-orange); margin-top: 0.5rem; border-radius: 2px;"></span>
+                    <span style="display:block; width: 60px; height: 4px; background: var(--wb-red); margin-top: 0.5rem; border-radius: 2px;"></span>
                 </h2>
-                <p style="font-size: 1rem; line-height: 1.6; color: var(--wb-muted-grey);">
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--wb-muted-cream);">
                     The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:var(--wb-highlight-text); font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
                     This isn’t self-help. It’s <span style="color:var(--wb-highlight-text); font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:var(--wb-highlight-text); font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
                     Told with zero apologies and <span style="color:var(--wb-highlight-text); font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
@@ -1077,108 +1035,8 @@
             
             <h2 class="section-header">Ex-Boyfriend Mugshot Gallery</h2>
             <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes!</p>
-            <div class="mugshot-gallery animated-section">
-                <div class="mugshot-card" data-charge="Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" alt="The Gambler" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Gambler</h3>
-                    <p class="mugshot-card-charge">Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.</p>
+            <div class="mugshot-gallery animated-section" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
                 </div>
-                <div class="mugshot-card" data-charge="Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" alt="The Ghoster" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Ghoster</h3>
-                    <p class="mugshot-card-charge">Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" alt="The Party Animal" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Party Animal</h3>
-                    <p class="mugshot-card-charge">Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" alt="The Pet-Obsessed" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Pet-Obsessed</h3>
-                    <p class="mugshot-card-charge">Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" alt="The Crier" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Crier</h3>
-                    <p class="mugshot-card-charge">Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" alt="The Liar" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Liar</h3>
-                    <p class="mugshot-card-charge">Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" alt="The Kinkster" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Kinkster</h3>
-                    <p class="mugshot-card-charge">Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Considered charging his phone 'too much effort,' watched static instead of fetching the remote.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" alt="The Human Sloth" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Human Sloth</h3>
-                    <p class="mugshot-card-charge">Considered charging his phone 'too much effort,' watched static instead of fetching the remote.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" alt="The Fitness Fanatic" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Fitness Fanatic</h3>
-                    <p class="mugshot-card-charge">Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" alt="The Perfectionist" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Perfectionist</h3>
-                    <p class="mugshot-card-charge">Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Stored newspapers in the bathtub—said showers are 'for gym people.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" alt="The Hoarder" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Hoarder</h3>
-                    <p class="mugshot-card-charge">Stored newspapers in the bathtub—said showers are 'for gym people.'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Stole my moisturizer because my 'dewy glow' mattered more than my feelings.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" alt="The Narcissist" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Narcissist</h3>
-                    <p class="mugshot-card-charge">Stole my moisturizer because my 'dewy glow' mattered more than my feelings.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Turned up 58 minutes late, blamed 'traffic,' lived two streets away.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" alt="The Late One" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Late One</h3>
-                    <p class="mugshot-card-charge">Turned up 58 minutes late, blamed 'traffic,' lived two streets away.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Treated mini golf like the Olympics—trash-talked children on the next lane.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" alt="The Competitive" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Competitive</h3>
-                    <p class="mugshot-card-charge">Treated mini golf like the Olympics—trash-talked children on the next lane.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" alt="The Conspiracist" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Conspiracist</h3>
-                    <p class="mugshot-card-charge">Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" alt="The Wizard" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Wizard</h3>
-                    <p class="mugshot-card-charge">Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" alt="The Planner" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Planner</h3>
-                    <p class="mugshot-card-charge">Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" alt="The Polyamorist" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Polyamorist</h3>
-                    <p class="mugshot-card-charge">Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'</p>
-                </div>
-                <div class="mugshot-card" data-charge="Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" alt="The Apologizer" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The Apologizer</h3>
-                    <p class="mugshot-card-charge">Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.</p>
-                </div>
-                <div class="mugshot-card" data-charge="Perfect, kind, emotionally available—terrified me so much I ghosted myself.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" alt="The One Who Got Away" class="mugshot-card-img">
-                    <h3 class="mugshot-card-title">The One Who Got Away</h3>
-                    <p class="mugshot-card-charge">Perfect, kind, emotionally available—terrified me so much I ghosted myself.</p>
-                </div>
-            </div>
             <div class="book-purchase-section animated-section">
                 <div class="book-formats-info">Available on Amazon Kindle · Kindle Unlimited · Paperback</div>
                 <a class="cta-button" href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer">Buy the Book</a>
@@ -1186,12 +1044,12 @@
             </div>
     </section>
 
-    <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: var(--wb-dark-blue);">
+    <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: var(--wb-dark-teal);">
         <h2 class="section-header">Red Flag Meter – Quick-n-Dirty Quiz</h2>
         <p class="section-subheader">How good are you at spotting trouble? Find out below!</p>
         <div class="quiz-container">
             <div id="quiz-intro">
-                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--wb-muted-grey);">Think you're a red flag pro? Test your dating survival instincts with our quick quiz!</p>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--wb-muted-cream);">Think you're a red flag pro? Test your dating survival instincts with our quick quiz!</p>
                 <button id="quiz-start-btn">Start Quiz</button>
             </div>
             <div id="quiz-questions" style="display: none;">
@@ -1209,14 +1067,14 @@
         </div>
     </section>
 
-    <section class="bad-date-bingo animated-section" style="padding: 3rem 1.5rem; background: var(--wb-section-bg-light);">
+    <section class="bad-date-bingo animated-section" style="padding: 3rem 1.5rem; background: var(--wb-teal);">
         <h2 class="section-header">Bad Date Bingo – 12 Squares of Regret</h2>
         <p class="section-subheader">Ever had a date so bad, it felt like Bingo? Check off your experiences!</p>
         <div class="bingo-container">
             <div class="bingo-grid" id="bingo-grid">
                 </div>
             <div class="bingo-message" id="bingo-message" style="display: none;"></div>
-            <button id="bingo-reset-btn">Reset Bingo</button>
+            <button id="bingo-reset-btn" class="cta-button" style="border:none; margin-top: 1rem;">Reset Bingo</button>
         </div>
     </section>
 
@@ -1335,68 +1193,53 @@
         let currentItemIndex = 0;
         
         setInterval(() => {
-            // Remove active class from current item
             announcementItems[currentItemIndex].classList.remove('is-active');
-            
-            // Move to the next item, looping back to the start if necessary
             currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
-            
-            // Add active class to the new current item
             announcementItems[currentItemIndex].classList.add('is-active');
-        }, 6000); // 6000 milliseconds = 6 seconds
+        }, 6000); // 6 seconds
 
 
-        /* New JavaScript for Interactive Sections */
+        /* Interactive Sections Logic */
+        const mugshotData = [
+            { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" },
+            { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" },
+            { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" },
+            { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" },
+            { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" },
+            { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" },
+            { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" },
+            { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" },
+            { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" },
+            { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" },
+            { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" },
+            { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }
+        ];
 
-        // Mugshot Gallery Logic
-        document.querySelectorAll('.mugshot-card').forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('revealed');
+        function initializeMugshots() {
+            const gallery = document.querySelector('.mugshot-gallery');
+            gallery.innerHTML = '';
+            mugshotData.forEach(mugshot => {
+                const card = document.createElement('div');
+                card.className = 'mugshot-card';
+                card.innerHTML = `
+                    <img src="${mugshot.img}" alt="${mugshot.name}" class="mugshot-card-img">
+                    <h3 class="mugshot-card-title">${mugshot.name}</h3>
+                    <p class="mugshot-card-charge">${mugshot.charge}</p>
+                `;
+                card.addEventListener('click', () => {
+                    card.classList.toggle('revealed');
+                });
+                gallery.appendChild(card);
             });
-        });
-
+        }
+        
         // Red Flag Quiz Logic
         const quizQuestions = [
-            {
-                question: "He needs your credit card for a “sure-thing” poker tourney. You…",
-                options: [
-                    { text: "Hand it over—high-risk, high love!", score: 1 },
-                    { text: "Ask when you’ll be repaid—then screenshot the convo.", score: 2 },
-                    { text: "Laugh, change your PIN, and text your therapist.", score: 3 }
-                ]
-            },
-            {
-                question: "His dog Daisy wedges herself between you two at dinner. You…",
-                options: [
-                    { text: "Offer Daisy your chair—true love has four paws!", score: 1 },
-                    { text: "Scoot over; at least the lab’s cute.", score: 2 },
-                    { text: "Realize you’re the third wheel and order a solo Uber.", score: 3 }
-                ]
-            },
-            {
-                question: "After a flawless date he ghosts for a week, then: “Dropped my phone in a lake—missed you!” Your reply?",
-                options: [
-                    { text: "“Aww, glad you’re OK! When can I see you?”", score: 1 },
-                    { text: "“Phones swim worse than excuses—coffee?”", score: 2 },
-                    { text: "Silence followed by a swift block.", score: 3 }
-                ]
-            },
-            {
-                question: "Anniversary invite lands in your inbox: a minute-by-minute clipboard itinerary. You feel…",
-                options: [
-                    { text: "Swoony—love is logistics!", score: 1 },
-                    { text: "Slightly flattered, slightly claustrophobic.", score: 2 },
-                    { text: "Like running—spontaneously and immediately.", score: 3 }
-                ]
-            },
-            {
-                question: "Mid-kissing, he unwraps clothespins and a rubber chicken. Your instinct?",
-                options: [
-                    { text: "“New kink unlocked—let’s go!”", score: 1 },
-                    { text: "“Uhh… boundaries chat?”", score: 2 },
-                    { text: "“Hard pass, poultry boy,” and reach for your pants.", score: 3 }
-                ]
-            }
+            { question: "He needs your credit card for a “sure-thing” poker tourney. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid—then screenshot the convo.", score: 2 }, { text: "Laugh, change your PIN, and text your therapist.", score: 3 }] },
+            { question: "His dog Daisy wedges herself between you two at dinner. You…", options: [{ text: "Offer Daisy your chair—true love has four paws!", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel and order a solo Uber.", score: 3 }] },
+            { question: "After a flawless date he ghosts for a week, then: “Dropped my phone in a lake—missed you!” Your reply?", options: [{ text: "“Aww, glad you’re OK! When can I see you?”", score: 1 }, { text: "“Phones swim worse than excuses—coffee?”", score: 2 }, { text: "Silence followed by a swift block.", score: 3 }] },
+            { question: "Anniversary invite lands in your inbox: a minute-by-minute clipboard itinerary. You feel…", options: [{ text: "Swoony—love is logistics!", score: 1 }, { text: "Slightly flattered, slightly claustrophobic.", score: 2 }, { text: "Like running—spontaneously and immediately.", score: 3 }] },
+            { question: "Mid-kissing, he unwraps clothespins and a rubber chicken. Your instinct?", options: [{ text: "“New kink unlocked—let’s go!”", score: 1 }, { text: "“Uhh… boundaries chat?”", score: 2 }, { text: "“Hard pass, poultry boy,” and reach for your pants.", score: 3 }] }
         ];
 
         let currentQuestionIndex = 0;
@@ -1448,10 +1291,8 @@
         function showQuizResult() {
             quizQuestionsContainer.style.display = 'none';
             quizResultsContainer.style.display = 'block';
-
             let category = '';
             let blurb = '';
-
             if (totalScore >= 13) {
                 category = "Queen/King of Green Flags!";
                 blurb = "Bow down! You're practically a black belt in spotting bad vibes. Your radar is impeccable, and your boundaries are fortress-level. Go forth and conquer the dating world (or enjoy your peace and quiet)!";
@@ -1462,109 +1303,57 @@
                 category = "Red-Flag Rookie!";
                 blurb = "Bless your heart! You're an optimist, but maybe read up on those 'warning signs' before your next date. There's a reason they're called red flags, not 'adorable quirks'!";
             }
-
             quizCategoryElem.textContent = category;
             quizBlurbElem.textContent = blurb;
         }
 
         quizStartBtn.addEventListener('click', startQuiz);
-        quizResetBtn.addEventListener('click', startQuiz); // Reset button also just starts the quiz over
+        quizResetBtn.addEventListener('click', startQuiz);
 
 
         // Bad Date Bingo Logic
-        const bingoSquaresData = [
-            "Pawned family heirloom for online slots.",
-            "Texted “hey” at 2 a.m. after ghosting all week.",
-            "Turned grocery run into a timed race—and gloated.",
-            "Showed up with a clipboard itinerary for brunch.",
-            "Cancelled plans because the dog “needed emotional support.”",
-            "Brought clothespins to bed and demanded “harder.”",
-            "Sobbed over tiramisu symbolism.",
-            "Claimed to own a Dalí he can’t produce.",
-            "Filled the bathtub with newspapers to “read later.”",
-            "Ripped his shirt off for karaoke domination.",
-            "Lied that his ex was dead—Instagram proved otherwise.",
-            "Kept six backup toasters “just in case.”"
-        ];
-
+        const bingoSquaresData = [ "Pawned family heirloom for online slots.", "Texted “hey” at 2 a.m. after ghosting all week.", "Turned grocery run into a timed race—and gloated.", "Showed up with a clipboard itinerary for brunch.", "Cancelled plans because the dog “needed emotional support.”", "Brought clothespins to bed and demanded “harder.”", "Sobbed over tiramisu symbolism.", "Claimed to own a Dalí he can’t produce.", "Filled the bathtub with newspapers to “read later.”", "Ripped his shirt off for karaoke domination.", "Lied that his ex was dead—Instagram proved otherwise.", "Kept six backup toasters “just in case.”" ];
         const bingoGrid = document.getElementById('bingo-grid');
         const bingoMessage = document.getElementById('bingo-message');
         const bingoResetBtn = document.getElementById('bingo-reset-btn');
-        let checkedSquares = new Array(12).fill(false); // Using 12 for 3x4 grid
-
-        // Define winning combinations for a 3x4 grid
-        // Rows (0,1,2), (3,4,5), (6,7,8), (9,10,11)
-        // Columns (0,3,6,9), (1,4,7,10), (2,5,8,11)
-        // Diagonals (0,4,8), (2,4,6) -- need to adjust for 3x4 to make sense
-        // Let's simplify to 3x3 for a clearer bingo, or stick to a 3x4 with rows/columns only for 12 items.
-        // Given 12 items, a 3x4 grid makes sense. We'll check rows and columns.
-        const winningCombinations = [
-            // Rows (3 per row)
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11],
-            // Columns (4 per column)
-            [0, 3, 6, 9], [1, 4, 7, 10], [2, 5, 8, 11]
-            // For 12 items (3 columns x 4 rows), diagonals are less straightforward unless explicitly defined or made a 4x4 with a free space.
-            // Sticking to rows and columns for simplicity.
-        ];
-
 
         function initializeBingo() {
             bingoGrid.innerHTML = '';
-            checkedSquares.fill(false);
             bingoMessage.style.display = 'none';
-            
-            // Shuffle the bingo squares for variety
             const shuffledSquares = [...bingoSquaresData].sort(() => Math.random() - 0.5);
-
-            shuffledSquares.forEach((text, index) => {
+            shuffledSquares.slice(0, 9).forEach((text, index) => { // Use 9 for a 3x3 grid
                 const square = document.createElement('div');
                 square.classList.add('bingo-square');
                 square.textContent = text;
-                square.dataset.index = index; // Store original index for checking, or use position in shuffled array
-                square.addEventListener('click', () => toggleBingoSquare(square, index));
+                square.addEventListener('click', () => {
+                    square.classList.toggle('checked');
+                    checkBingo();
+                });
                 bingoGrid.appendChild(square);
             });
-        }
-
-        function toggleBingoSquare(squareElem, index) {
-            squareElem.classList.toggle('checked');
-            // Update based on the square's position in the *current* grid, not the original data index if shuffled.
-            // A better way is to manage `checkedSquares` based on the DOM element index directly.
-            const domIndex = Array.from(bingoGrid.children).indexOf(squareElem);
-            checkedSquares[domIndex] = !checkedSquares[domIndex];
-            checkBingo();
+             // Adjust grid to be 3x3
+            bingoGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
         }
 
         function checkBingo() {
-            let bingoFound = false;
-            for (const combo of winningCombinations) {
-                const isBingo = combo.every(index => {
-                    // Check the state of the square at this index in the DOM, not just the logical array
-                    const squareElement = bingoGrid.children[index];
-                    return squareElement && squareElement.classList.contains('checked');
-                });
-                if (isBingo) {
-                    bingoFound = true;
-                    break;
-                }
-            }
-
+            const squares = bingoGrid.children;
+            const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
+            let bingoFound = winningCombos.some(combo => combo.every(index => squares[index].classList.contains('checked')));
             if (bingoFound) {
-                bingoMessage.textContent = "You hit the jackpot... of terrible dates! Consider yourself vindicated. May your next square be 'Got therapy and moved on.'";
+                bingoMessage.textContent = "BINGO! You've hit the jackpot of bad dates. Consider this your official vindication. Now go treat yourself!";
                 bingoMessage.style.display = 'block';
-                // Optionally disable further clicks after bingo
-                document.querySelectorAll('.bingo-square').forEach(s => s.style.pointerEvents = 'none');
             } else {
                 bingoMessage.style.display = 'none';
-                document.querySelectorAll('.bingo-square').forEach(s => s.style.pointerEvents = 'auto'); // Re-enable clicks
             }
         }
 
         bingoResetBtn.addEventListener('click', initializeBingo);
 
-        // Initial calls when the page loads
-        initializeBingo();
-
+        // Initial calls
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeMugshots();
+            initializeBingo();
+        });
     </script>
 
 </body>
