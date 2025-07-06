@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Chaos Flicker
-    const flickerContainer = document.getElementById('disaster-flicker');
-    if (flickerContainer) {
-        const flickerWords = ["Ghosted", "Red Flag", "Gaslit", "Chaos", "Meltdown"];
-        setInterval(() => {
-            if(flickerContainer.children.length > 5) return; 
-            const word = flickerWords[Math.floor(Math.random() * flickerWords.length)];
-            const flickerSpan = document.createElement('span');
-            flickerSpan.className = 'flicker-text';
-            flickerSpan.textContent = word;
-            flickerSpan.style.top = `${Math.random() * 80 + 10}%`;
-            flickerSpan.style.left = `${Math.random() * 80 + 10}%`;
-            flickerSpan.style.animationDuration = `${Math.random() * 4 + 4}s`;
-            flickerContainer.appendChild(flickerSpan);
-            setTimeout(() => flickerSpan.remove(), 8000);
-        }, 2500);
-    }
-
     // Marquee Builder
     const reviews = [
         { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" },
@@ -114,10 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         function checkBingo() {
-            const squares = Array.from(grid.children);
-            const winningCombos = [ [0,1,2,3], [4,5,6,7], [8,9,10,11], [0,4,8], [1,5,9], [2,6,10], [3,7,11] ];
-            const isBingo = winningCombos.some(combo => combo.every(index => squares[index] && squares[index].classList.contains('is-checked')));
-            message.style.display = isBingo ? 'block' : 'none';
+            if (grid.querySelectorAll('.is-checked').length >= 4) { // Simplified check for BINGO
+                 message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
         }
         resetBtn.addEventListener('click', initializeBingo);
         initializeBingo();
