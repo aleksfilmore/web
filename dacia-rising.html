@@ -12,21 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* CSS Variables for Dacia Rising Theme - Green/Gold/Dark Earthy Palette */
+        /* New CSS Variables for Dacia Rising Theme: Bold, Modern, Earthy Palette */
         :root {
-            --color-dark-bg: #0d0e0f; /* Main very dark background */
-            --color-darker-bg: #1a1b1d; /* Slightly lighter dark for cards/sections */
-            --color-header-bg: #202225; /* Even lighter dark for header/alternate sections */
-            --color-text-light: #e0e0e0; /* Main light text */
-            --color-text-lighter: #f0f0f0; /* Brighter text for emphasis */
-            --color-text-muted: #b0b0b0; /* Muted text for descriptions */
+            --color-dark-bg: #0C0F12; /* Very dark blue-grey for main background */
+            --color-darker-bg: #1A1E24; /* Darker secondary background, almost black-blue */
+            --color-section-bg-light: #2B323C; /* A lighter dark tone for contrast sections */
+            --color-text-light: #F0F2F5; /* Near white for main text */
+            --color-text-muted: #A0A5AE; /* Muted grey for secondary text */
 
-            /* New Accent Colors */
-            --color-primary-accent: #346a48; /* Deep, earthy forest green (replaces red) */
-            --color-primary-accent-dark: #2a5a3c; /* Darker green for hover states */
-            --color-secondary-accent: #2a5a54; /* Muted deep teal/forest green (for subtle contrast) - Currently unused, but kept for options */
-            --color-warm-accent-light: #ffc19c; /* Lighter orange/peach, for general warmth/secondary titles */
-            --color-warm-accent-dark: #ffa711; /* Amber/gold for main titles and strong highlights */
+            --color-primary-green: #34A853; /* A vibrant, strong forest green (new main accent) */
+            --color-primary-green-dark: #2A8C45; /* Darker green for hover states */
+            --color-gold-main: #FFD700; /* Pure, strong gold for titles and key highlights */
+            --color-gold-light: #FFE066; /* Lighter gold for subtle gleam */
+            --color-bronze-accent: #B87333; /* Earthy bronze/orange for accents */
+            --color-stone-grey: #6B778D; /* Muted blue-grey for subtle elements */
         }
 
         html {
@@ -38,6 +37,7 @@
             background-color: var(--color-dark-bg);
             color: var(--color-text-light);
             line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll from overlapping elements */
         }
         .container {
             max-width: 1000px;
@@ -49,13 +49,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--color-header-bg);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background-color: var(--color-darker-bg); /* Using darker bg for header */
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky; /* Make header sticky */
+            top: 0;
+            z-index: 100;
         }
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--color-warm-accent-dark); /* Changed to gold */
+            color: var(--color-gold-main); /* Gold logo */
+            text-decoration: none; /* Make logo a link */
+            transition: color 0.3s ease;
+        }
+        .logo:hover {
+            color: var(--color-gold-light);
         }
         .nav-links a {
             color: var(--color-text-light);
@@ -65,24 +74,25 @@
             transition: color 0.3s ease;
         }
         .nav-links a:hover {
-            color: var(--color-primary-accent);
+            color: var(--color-primary-green);
         }
 
         /* Hero Section */
         .hero {
             position: relative;
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%204.png'); /* Hero background image (corrected to .png) */
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%203.png'); /* Dramatic background image */
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 6rem 1.5rem;
+            padding: 8rem 1.5rem; /* More padding for height */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 70vh; /* Make it tall */
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            min-height: 85vh; /* Make it very tall */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            box-shadow: inset 0 -100px 50px -50px rgba(0,0,0,0.8); /* Fade to dark at bottom */
         }
         .hero-overlay {
             position: absolute;
@@ -90,109 +100,126 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)); /* Dark overlay */
+            background: linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 50%, var(--color-dark-bg) 100%); /* More complex overlay */
             z-index: 1;
         }
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
         }
         .hero .book-cover {
-            width: 250px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
+            width: 280px; /* Larger book cover */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--color-gold-main); /* Gold border for cover */
         }
         .hero .book-cover:hover {
-            transform: scale(1.03);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem; /* Much larger title */
             margin-bottom: 0.5rem;
-            color: var(--color-warm-accent-dark); /* Changed to gold */
+            color: var(--color-gold-main); /* Strong gold */
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             line-height: 1.1;
+            font-weight: 700;
         }
         .hero h2 { /* Tagline */
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--color-warm-accent-dark); /* Gold for tagline */
+            margin-bottom: 1.5rem;
+            color: var(--color-gold-light); /* Lighter gold for tagline */
+            font-weight: 400;
         }
         .hero .author-line {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: var(--color-text-light);
+            font-weight: 400;
         }
         .hero .rating {
-            font-size: 1rem;
-            color: var(--color-warm-accent-dark); /* Gold for rating text */
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--color-gold-main);
+            margin-bottom: 2rem;
+            font-weight: bold;
         }
         .hero .star {
             color: gold; /* Actual gold color for stars */
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         .hero .short-hook {
-            font-size: 1.2rem;
-            color: var(--color-text-lighter);
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
         .hero .cta-button {
-            background-color: var(--color-primary-accent); /* Green button */
+            background-color: var(--color-primary-green); /* Strong green button */
             color: #fff;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
             font-weight: bold;
             border-radius: 50px; /* Pill shape */
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
         .hero .cta-button:hover {
-            background-color: var(--color-primary-accent-dark); /* Darker green on hover */
-            transform: translateY(-2px);
+            background-color: var(--color-primary-green-dark); /* Darker green on hover */
+            transform: translateY(-3px);
         }
         .formats-link {
-            font-size: 0.9rem;
-            color: var(--color-text-lighter);
-            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-top: 1.5rem;
         }
         .formats-link a {
-            color: var(--color-warm-accent-dark); /* Gold for formats link */
+            color: var(--color-gold-light); /* Lighter gold for link */
             text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .formats-link a:hover {
+            color: var(--color-gold-main);
         }
 
         /* General Section Styling */
         .section {
-            padding: 4rem 1.5rem;
+            padding: 6rem 1.5rem; /* More vertical padding */
             text-align: center;
+            position: relative; /* For angled sections */
         }
         .section-dark {
             background-color: var(--color-darker-bg);
             color: var(--color-text-light);
         }
         .section-light {
-            background-color: var(--color-header-bg); /* Use header background for lighter sections */
-            color: var(--color-text-lighter);
+            background-color: var(--color-section-bg-light); /* Lighter dark tone for contrast */
+            color: var(--color-text-light);
         }
         .section-title {
-            font-size: 2.5rem;
-            color: var(--color-warm-accent-dark); /* Gold for section titles */
+            font-size: 3rem; /* Larger section titles */
+            color: var(--color-gold-main); /* Strong gold for section titles */
             margin-bottom: 2.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--color-primary-accent); /* Green border */
-            padding-bottom: 0.5rem;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--color-primary-green); /* Green border */
+            padding-bottom: 0.8rem;
             display: inline-block; /* To make border-bottom fit content */
+            font-weight: 700;
         }
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--color-text-light);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .text-block {
             max-width: 800px;
@@ -202,97 +229,127 @@
             color: var(--color-text-light);
         }
         .text-block strong {
-            color: var(--color-warm-accent-dark); /* Gold for strong text */
+            color: var(--color-gold-light); /* Lighter gold for strong text */
+            font-weight: 700;
         }
         .text-block ul {
             list-style-type: none; /* Remove default bullets */
             padding-left: 0;
+            margin-top: 2rem;
         }
         .text-block ul li {
             position: relative;
-            padding-left: 25px; /* Space for custom bullet */
-            margin-bottom: 0.8rem;
+            padding-left: 35px; /* Space for custom bullet */
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            line-height: 1.5;
         }
         .text-block ul li::before {
-            content: '✦'; /* Custom bullet */
-            color: var(--color-primary-accent); /* Green for custom bullet */
+            content: '🌿'; /* Custom nature-themed bullet */
+            color: var(--color-primary-green); /* Green for custom bullet */
             position: absolute;
             left: 0;
-            font-size: 1.2em;
+            font-size: 1.4em;
             line-height: 1;
+            top: -2px; /* Adjust vertical position */
         }
         
         /* Character & Location Showcase Grids */
         .character-grid, .location-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Larger grid items */
+            gap: 2.5rem; /* More space */
             margin-top: 3rem;
         }
         .character-card, .location-card {
             background-color: var(--color-darker-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.8rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .character-card:hover, .location-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            background-color: var(--color-section-bg-light); /* Slight background change on hover */
         }
         .character-card img, .location-card img {
             width: 100%;
-            max-width: 180px;
+            max-width: 200px; /* Max width for images */
             height: auto;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            border-radius: 50%; /* Round for characters, 8px for locations */
+            margin-bottom: 1.5rem;
             object-fit: cover;
-            border: 2px solid var(--color-primary-accent); /* Changed to green border */
+            border: 3px solid var(--color-primary-green); /* Green border for images */
+            transition: border-color 0.3s ease;
         }
+        .location-card img {
+            border-radius: 8px; /* Square images for locations */
+        }
+        .character-card img:hover, .location-card img:hover {
+             border-color: var(--color-gold-main); /* Gold border on hover */
+        }
+
         .character-card h3, .location-card h3 {
-            font-size: 1.4rem;
-            color: var(--color-warm-accent-light); /* Lighter orange for card titles */
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+            color: var(--color-gold-light); /* Lighter gold for card titles */
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .character-card p, .location-card p {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: var(--color-text-muted);
+            line-height: 1.6;
         }
 
         /* Reviews Section */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider review cards */
+            gap: 2.5rem;
             margin-top: 3rem;
             text-align: left;
         }
         .review-card {
             background-color: var(--color-darker-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         .review-card .stars {
             color: gold; /* Actual gold color for stars */
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
         }
         .review-card p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--color-text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-style: italic; /* Emphasize review text */
+        }
+        .review-card strong {
+            color: var(--color-gold-main); /* Gold for bold parts of review */
+            font-weight: 700;
         }
         .review-card .reviewer {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
-            color: var(--color-warm-accent-dark); /* Changed to gold */
+            color: var(--color-primary-green); /* Green for reviewer names */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Final CTA Title (overrides default section-title color for specific emphasis) */
-        .section-dark .section-title { /* More specific selector for final CTA title */
-            color: var(--color-warm-accent-dark); /* Ensures it's gold */
+        /* Final CTA (re-using general styles, but with specific color override) */
+        .final-cta-section .section-title {
+            color: var(--color-gold-main); /* Ensure it's gold for the final powerful statement */
+            border-bottom-color: var(--color-primary-green);
         }
 
         /* Footer */
@@ -301,16 +358,16 @@
             color: var(--color-text-muted);
             padding: 30px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
         footer a {
-            color: var(--color-warm-accent-dark); /* Changed to gold */
+            color: var(--color-gold-main); /* Gold for footer links */
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: var(--color-primary-accent); /* Green on hover */
+            color: var(--color-primary-green); /* Green on hover */
         }
         .footer-social-links {
             margin-bottom: 15px;
@@ -321,69 +378,129 @@
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 1rem;
-            }
+        @media (max-width: 900px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3.8rem;
             }
             .hero h2 {
-                font-size: 1.5rem;
-            }
-            .hero .book-cover {
-                width: 200px;
-            }
-            .hero .cta-button {
-                font-size: 1rem;
-                padding: 0.8rem 2rem;
+                font-size: 1.8rem;
             }
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1rem;
+                min-height: 75vh;
+            }
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: 2px;
+            }
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            .hero .book-cover {
+                width: 240px;
+            }
+            .hero .cta-button {
+                font-size: 1.1rem;
+                padding: 1rem 2.5rem;
+            }
+            .section {
+                padding: 4rem 1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
             }
             .section-subtitle {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             .character-grid, .location-grid, .reviews-grid {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow 2 columns on tablets */
+                gap: 1.5rem;
             }
             .character-card img, .location-card img {
-                max-width: 150px;
+                max-width: 160px;
+            }
+            .character-card h3, .location-card h3 {
+                font-size: 1.4rem;
+            }
+            .text-block ul li {
+                font-size: 1.1rem;
+                padding-left: 30px;
             }
         }
 
         @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 0.5rem;
+                min-height: 80vh;
+            }
             .hero h1 {
                 font-size: 2.2rem;
+                letter-spacing: 1px;
             }
             .hero h2 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
-            .nav-links {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
+            .hero .book-cover {
+                width: 180px;
             }
-            .nav-links a {
-                margin: 0;
+            .hero .short-hook {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            .hero .cta-button {
+                font-size: 1rem;
+                padding: 0.9rem 2rem;
             }
             .section {
-                padding: 3rem 1rem;
+                padding: 3rem 0.5rem;
             }
             .section-title {
                 font-size: 1.8rem;
+                letter-spacing: 0.5px;
             }
             .section-subtitle {
+                font-size: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 5px;
+                margin-left: 0;
+            }
+            .nav-links a {
+                margin: 0;
                 font-size: 0.9rem;
+            }
+            .character-grid, .location-grid, .reviews-grid {
+                grid-template-columns: 1fr; /* Stack on very small screens */
+                gap: 1.5rem;
+            }
+            .character-card, .location-card, .review-card {
+                padding: 1.2rem;
+            }
+            .character-card img, .location-card img {
+                max-width: 120px;
+                margin-bottom: 1rem;
+            }
+            .character-card h3, .location-card h3 {
+                font-size: 1.3rem;
+            }
+            .review-card p {
+                font-size: 0.95rem;
             }
             .text-block {
                 font-size: 1rem;
             }
-            .character-card, .location-card, .review-card {
-                padding: 1rem;
+            .text-block ul li {
+                font-size: 1rem;
+                padding-left: 25px;
             }
-            .character-card h3, .location-card h3 {
-                font-size: 1.2rem;
+            .text-block ul li::before {
+                font-size: 1.3em;
             }
         }
     </style>
@@ -457,7 +574,7 @@
             <h2 class="section-title">The Circle That Stands with Sarion</h2>
             <div class="text-block" style="text-align: center;">
                 <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid var(--color-primary-accent); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-                <h3 style="font-size: 1.8rem; color: var(--color-warm-accent-light); margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
+                <h3 style="font-size: 1.8rem; color: var(--color-gold-light); margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
                 <p style="font-size: 1rem; color: var(--color-text-light); max-width: 600px; margin: 0 auto 3rem auto;">
                     Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes. Guided by the old teachings of Zalmoxis and armed with little more than a hunter’s instinct, he must rise as protector, leader, and symbol. But the fog is thick, and darkness moves unseen.
                 </p>
@@ -580,7 +697,7 @@
 
     <section class="section section-dark">
         <div class="container">
-            <h2 class="section-title" style="color: var(--color-warm-accent-dark);">The Call of Dacia Awaits—Will You Answer?</h2>
+            <h2 class="section-title">The Call of Dacia Awaits—Will You Answer?</h2>
             <p class="section-subtitle">Prepare to follow the Bear’s Mark. Begin the journey today.</p>
             <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
         </div>
