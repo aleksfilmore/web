@@ -50,12 +50,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--color-forest-deep); /* Darker green-blue for header */
+            background-color: var(--color-forest-deep);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            position: sticky; /* Make header sticky */
+            position: sticky;
             top: 0;
-            z-index: 1000; /* Ensure header is on top */
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out; /* For JS fade-in */
         }
         .logo {
             font-weight: bold;
@@ -78,194 +79,141 @@
             color: var(--color-emerald-green);
         }
 
-        /* Hero Section - The Immersive Portal */
-        .hero {
-            position: relative;
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%203.png'); /* Full-bleed background */
-            background-size: cover;
-            background-position: center;
-            padding: 0; /* No padding on hero itself, managed by content */
-            min-height: 100vh; /* Full viewport height */
+        /* === Layer Styling === */
+        .layer {
+            min-height: 100vh; /* Each layer takes full viewport height */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            overflow: hidden; /* Crucial for overlays */
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.9); /* Subtle dark fade for depth */
+            position: relative;
+            overflow: hidden;
         }
-        .hero-overlay-top, .hero-overlay-bottom {
-            position: absolute;
+
+        /* Layer 0: The Gate */
+        .gate {
+            background-color: var(--color-obsidian-black);
+            position: fixed; /* Fixed so it covers everything initially */
+            top: 0;
             left: 0;
             width: 100%;
-            z-index: 1; /* Below content */
-            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 1001; /* Above header initially */
         }
-        .hero-overlay-top {
-            top: 0;
-            height: 50%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-        }
-        .hero-overlay-bottom {
-            bottom: 0;
-            height: 70%;
-            background: linear-gradient(to top, var(--color-deep-night) 0%, rgba(0,0,0,0) 100%);
-        }
-        
-        .hero-content {
+        .gate-content {
             position: relative;
-            z-index: 2; /* Above overlays */
-            max-width: 900px;
-            padding: 2rem; /* Inner padding for content */
-            background-color: rgba(0,0,0,0.3); /* Subtle background for readability */
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            max-width: 800px;
+            padding: 2rem;
         }
-        .hero .book-cover {
-            width: 280px; /* Larger book cover */
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 3px solid var(--color-gold-ancient); /* Gold border for cover */
+        .spiral-glyph {
+            width: 150px;
+            height: 150px;
+            border: 5px solid var(--color-gold-ancient);
+            border-radius: 50%;
+            position: relative;
+            animation: glyph-form 3s ease-out forwards, glyph-pulse 2s infinite alternate 3s;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); /* Gold glow */
         }
-        .hero .book-cover:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        .spiral-glyph::before, .spiral-glyph::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border-style: solid;
+            border-color: var(--color-gold-ancient);
         }
-        .hero h1 {
-            font-size: 4.5rem; /* Much larger title */
-            margin-bottom: 0.5rem;
-            color: var(--color-gold-ancient); /* Strong gold */
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            line-height: 1.1;
-            font-weight: 700;
+        .spiral-glyph::before {
+            width: 80px;
+            height: 80px;
+            border-width: 5px;
+            animation: spiral-in 2s ease-out forwards 0.5s;
         }
-        .hero h2 { /* Tagline */
-            font-size: 2.2rem;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            color: var(--color-gold-shine); /* Lighter gold for tagline */
-            font-weight: 400;
+        .spiral-glyph::after {
+            width: 40px;
+            height: 40px;
+            border-width: 5px;
+            animation: spiral-in 2s ease-out forwards 1s;
         }
-        .hero .author-line {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+
+        @keyframes glyph-form {
+            0% { opacity: 0; transform: scale(0); border-width: 0; }
+            100% { opacity: 1; transform: scale(1); border-width: 5px; }
+        }
+        @keyframes glyph-pulse {
+            0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+            100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8); }
+        }
+        @keyframes spiral-in {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .gate-text {
+            font-size: 1.8rem;
             color: var(--color-text-white);
-            font-weight: 400;
+            margin-top: 2rem;
+            max-width: 600px;
+            font-style: italic;
+            opacity: 0;
+            animation: text-fade-in 1.5s ease-out forwards 3.5s;
         }
-        .hero .rating {
-            font-size: 1.1rem;
-            color: var(--color-gold-ancient);
-            margin-bottom: 2rem;
-            font-weight: bold;
+        @keyframes text-fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-        .hero .star {
-            color: gold; /* Actual gold color for stars */
-            font-size: 1.2rem;
-        }
-        .hero .short-hook {
-            font-size: 1.3rem;
-            color: var(--color-text-white);
-            max-width: 700px;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-        .hero .cta-button {
-            background-color: var(--color-emerald-green); /* Strong green button */
+
+        .gate-cta-button {
+            background-color: var(--color-emerald-green);
             color: var(--color-text-white);
             padding: 1.2rem 3rem;
             font-size: 1.3rem;
             font-weight: bold;
             border: none;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
             cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            opacity: 0;
+            animation: button-fade-in 1.5s ease-out forwards 4s;
         }
-        .hero .cta-button:hover {
-            background-color: var(--color-emerald-dark); /* Darker green on hover */
+        .gate-cta-button:hover {
+            background-color: var(--color-emerald-dark);
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
-        .formats-link {
-            font-size: 1rem;
-            color: var(--color-text-light-grey);
-            margin-top: 1.5rem;
-        }
-        .formats-link a {
-            color: var(--color-gold-shine); /* Lighter gold for link */
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-        .formats-link a:hover {
-            color: var(--color-gold-ancient);
+        @keyframes button-fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll Prompt */
-        .scroll-prompt {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            color: var(--color-gold-shine);
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0.8;
-            animation: bounce 2s infinite;
-        }
-        .scroll-prompt .fa-chevron-down {
-            font-size: 1.5rem;
-            margin-top: 5px;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-5px) translateX(-50%);
-            }
-        }
-
-
-        /* General Section Styling */
-        .section {
-            padding: 6rem 1.5rem; /* More vertical padding */
-            text-align: center;
-            position: relative; /* For angled sections and internal positioning */
-        }
-        .section-dark {
-            background-color: var(--color-forest-deep);
-            color: var(--color-text-white);
-            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3); /* Subtle internal shadow */
-        }
-        .section-light {
-            background-color: var(--color-stone-dark); /* Use a lighter cool grey for contrast */
-            color: var(--color-text-white);
-            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
+        /* Subsequent Layers General Styling */
+        .layer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
         }
         .section-title {
-            font-size: 3rem; /* Larger section titles */
-            color: var(--color-gold-ancient); /* Strong gold for section titles */
+            font-size: 3rem;
+            color: var(--color-gold-ancient);
             margin-bottom: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-bottom: 3px solid var(--color-emerald-green); /* Green border */
+            border-bottom: 3px solid var(--color-emerald-green);
             padding-bottom: 0.8rem;
-            display: inline-block; /* To make border-bottom fit content */
+            display: inline-block;
             font-weight: 700;
         }
         .section-subtitle {
             font-size: 1.4rem;
-            color: var(--color-text-white);
+            color: var(--color-text-light-grey);
             margin-bottom: 3.5rem;
             max-width: 800px;
             margin-left: auto;
@@ -279,40 +227,40 @@
             color: var(--color-text-white);
         }
         .text-block strong {
-            color: var(--color-gold-shine); /* Gold for strong text */
+            color: var(--color-gold-shine);
             font-weight: 700;
         }
         .text-block ul {
-            list-style-type: none; /* Remove default bullets */
+            list-style-type: none;
             padding-left: 0;
             margin-top: 2rem;
         }
         .text-block ul li {
             position: relative;
-            padding-left: 35px; /* Space for custom bullet */
+            padding-left: 35px;
             margin-bottom: 1rem;
             font-size: 1.15rem;
             line-height: 1.5;
         }
         .text-block ul li::before {
-            content: '🌿'; /* Custom nature-themed bullet */
-            color: var(--color-emerald-green); /* Green for custom bullet */
+            content: '🌿';
+            color: var(--color-emerald-green);
             position: absolute;
             left: 0;
             font-size: 1.4em;
             line-height: 1;
-            top: -2px; /* Adjust vertical position */
+            top: -2px;
         }
         
         /* Character & Location Showcase Grids */
         .character-grid, .location-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Larger grid items */
-            gap: 2.5rem; /* More space */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
         .character-card, .location-card {
-            background-color: var(--color-forest-deep); /* Use deep forest for cards */
+            background-color: var(--color-forest-deep);
             border-radius: 12px;
             padding: 1.8rem;
             text-align: center;
@@ -322,28 +270,28 @@
         .character-card:hover, .location-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            background-color: var(--color-stone-dark); /* Slight background change on hover */
+            background-color: var(--color-stone-dark);
         }
         .character-card img, .location-card img {
             width: 100%;
-            max-width: 200px; /* Max width for images */
+            max-width: 200px;
             height: auto;
-            border-radius: 50%; /* Round for characters */
+            border-radius: 50%;
             margin-bottom: 1.5rem;
             object-fit: cover;
-            border: 3px solid var(--color-emerald-green); /* Green border for images */
+            border: 3px solid var(--color-emerald-green);
             transition: border-color 0.3s ease;
         }
         .location-card img {
-            border-radius: 8px; /* Square images for locations */
+            border-radius: 8px;
         }
         .character-card img:hover, .location-card img:hover {
-             border-color: var(--color-gold-ancient); /* Gold border on hover */
+             border-color: var(--color-gold-ancient);
         }
 
         .character-card h3, .location-card h3 {
             font-size: 1.6rem;
-            color: var(--color-gold-shine); /* Lighter gold for card titles */
+            color: var(--color-gold-shine);
             margin-bottom: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -357,7 +305,7 @@
         /* Reviews Section */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider review cards */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
             text-align: left;
@@ -374,7 +322,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         .review-card .stars {
-            color: gold; /* Actual gold color for stars */
+            color: gold;
             font-size: 1.1rem;
             margin-bottom: 0.8rem;
         }
@@ -382,23 +330,23 @@
             font-size: 1.05rem;
             color: var(--color-text-white);
             margin-bottom: 1.2rem;
-            font-style: italic; /* Emphasize review text */
+            font-style: italic;
         }
         .review-card strong {
-            color: var(--color-gold-ancient); /* Gold for bold parts of review */
+            color: var(--color-gold-ancient);
             font-weight: 700;
         }
         .review-card .reviewer {
             font-size: 1rem;
             font-weight: bold;
-            color: var(--color-emerald-green); /* Green for reviewer names */
+            color: var(--color-emerald-green);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         /* Final CTA Section */
         .final-cta-section .section-title {
-            color: var(--color-gold-ancient); /* Gold for the final powerful statement */
+            color: var(--color-gold-ancient);
             border-bottom-color: var(--color-emerald-green);
         }
 
@@ -409,6 +357,8 @@
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            z-index: 10;
         }
         footer a {
             color: var(--color-gold-ancient);
@@ -438,10 +388,10 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            .gate-text { /* Specific to Layer 0 intro */
+            .gate-text {
                 font-size: 1.5rem;
             }
-            .gate-cta-button { /* Specific to Layer 0 intro */
+            .gate-cta-button {
                 font-size: 1.1rem;
                 padding: 1rem 2.5rem;
             }
@@ -475,7 +425,7 @@
                 font-size: 1.1rem;
             }
             .character-grid, .location-grid, .reviews-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow 2 columns on tablets */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 1.5rem;
             }
             .character-card img, .location-card img {
@@ -528,10 +478,10 @@
                 font-size: 1rem;
                 padding: 0.9rem 2rem;
             }
-            .gate-text { /* Specific to Layer 0 intro */
+            .gate-text {
                 font-size: 1.2rem;
             }
-            .gate-cta-button { /* Specific to Layer 0 intro */
+            .gate-cta-button {
                 font-size: 1rem;
                 padding: 0.9rem 2rem;
             }
@@ -594,7 +544,7 @@
     </section>
 
     <section class="layer section-dark" id="layer1" style="display: none;">
-        <div class="container">
+        <div class="container layer-content">
             <h2 class="section-title">The Prophecy Awakes</h2>
             <p class="section-subtitle">
                 Before the empire rose, a forgotten people faced extinction…<br>
@@ -619,7 +569,7 @@
     </section>
 
     <section class="layer section-light" id="layer2" style="display: none;">
-        <div class="container">
+        <div class="container layer-content">
             <h2 class="section-title">Meet the Circle</h2>
             <p class="section-subtitle">The Bearer of the Mark and those who stand with him.</p>
             <div class="character-grid">
@@ -641,19 +591,19 @@
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Cairos.png" alt="Cairos">
                     <h3>Cairos</h3>
-                    <p>Stoic and unbreakable, this Mountain Tribe warrior carries the weight of a forgotten people. His carved spear speaks for him.</p>
+                    <p>Stoic and unbreakable, this Mountain Tribe warrior carries the weight of a people long forgotten by peace. His carved spear speaks for him.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Eldorin.png" alt="Eldorin">
                     <h3>Eldorin</h3>
-                    <p>Forest priest, mystic, soul-bonded to a silver-eyed wolf. His visions draw maps where no roads exist, listening to the trees.</p>
+                    <p>Eldorin walks the edge between worlds—forest priest, mystic, and soul-bonded to a silver-eyed wolf. His chants stir old powers, and his visions draw maps where no roads exist. Where others falter, he listens to the trees.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="layer section-dark" id="layer3" style="display: none;">
-        <div class="container">
+        <div class="container layer-content">
             <h2 class="section-title">The Dacian Villages</h2>
             <p class="section-subtitle">Forged by Faith, Bound by Honor – The Spirit of Dacia Lives On</p>
             <div class="location-grid">
@@ -670,12 +620,12 @@
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Forest%20Tribe.png" alt="Forest Village">
                     <h3>The Forest Village</h3>
-                    <p>Hidden beneath towering trees, where druids whisper to leaves and wolves walk beside the wise.</p>
+                    <p>Hidden beneath towering trees, where druids whisper to leaves, children learn the names of herbs, and wolves walk beside the wise.</p>
                 </div>
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/River%20Dava.png" alt="River Dava">
                     <h3>The River Dava</h3>
-                    <p>A crescent of commerce and celebration, where traders and spies walk its docks, and pacts are sealed in water and fire.</p>
+                    <p>A crescent of commerce and celebration, where traders and spies walk its docks, while the sacred arena bears witness to pacts sealed in water and fire.</p>
                 </div>
             </div>
         </div>
@@ -684,7 +634,7 @@
     <section class="layer section-dark" id="layer4" style="display: none; background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); background-size: cover; background-position: center;">
         <div class="hero-overlay-top" style="background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);"></div>
         <div class="hero-overlay-bottom" style="background: linear-gradient(to top, var(--color-forest-deep) 0%, rgba(0,0,0,0) 100%);"></div>
-        <div class="container" style="position: relative; z-index: 2; max-width: 800px;">
+        <div class="container layer-content" style="max-width: 800px;">
             <h2 class="section-title" style="color: var(--color-gold-ancient); font-size: 3.5rem;">The Tribes Must Unite, Or Be Consumed.</h2>
             <p class="section-subtitle" style="font-size: 1.8rem; color: var(--color-text-white); margin-bottom: 2rem;">
                 The Bear has been marked. The gods whisper through blood.
@@ -695,7 +645,7 @@
     </section>
 
     <section class="layer section-dark" id="layer5" style="display: none; background-color: var(--color-obsidian-black);">
-        <div class="container" style="max-width: 600px;">
+        <div class="container layer-content" style="max-width: 600px;">
             <div class="spiral-glyph" style="width: 120px; height: 120px; margin-bottom: 2rem;"></div>
             <h2 class="section-title" style="color: var(--color-gold-ancient); font-size: 2.8rem; border-bottom: none;">Claim Your Legacy</h2>
             <p class="section-subtitle" style="font-size: 1.4rem;">
@@ -726,16 +676,16 @@
             const header = document.getElementById('main-header');
             const layer0 = document.getElementById('layer0');
             const enterBtn = document.getElementById('enter-dacia-btn');
-            const layers = document.querySelectorAll('.layer:not(#layer0)'); // All content layers
+            const contentLayers = document.querySelectorAll('.layer:not(#layer0)'); // All layers after Layer 0
 
             // Hide header initially
             header.style.opacity = '0';
             header.style.transition = 'opacity 1s ease-in';
 
             // Hide all content layers initially
-            layers.forEach(layer => {
-                layer.style.display = 'none';
-                layer.style.opacity = '0'; // Prepare for fade-in
+            contentLayers.forEach(layer => {
+                layer.style.display = 'none'; // Keep hidden until activated
+                layer.style.opacity = '0'; // For fade-in animation
                 layer.style.transition = 'opacity 1s ease-in-out';
             });
 
@@ -744,60 +694,65 @@
                 layer0.style.opacity = '0'; // Fade out Layer 0
                 layer0.style.visibility = 'hidden';
                 layer0.style.pointerEvents = 'none'; /* Disable interaction */
-                layer0.style.transition = 'opacity 1.5s ease-out, visibility 1.5s, transform 1.5s'; /* Add transform for smoother effect */
-                layer0.style.transform = 'translateY(-100vh)'; /* Slide up slightly as it fades */
+                layer0.style.transition = 'opacity 1.5s ease-out, visibility 1.5s, transform 1.5s';
+                layer0.style.transform = 'translateY(-100vh)'; // Slide up slightly as it fades
 
                 document.body.style.overflowY = 'scroll'; // Enable scrolling for content
                 header.style.opacity = '1'; // Show header
 
-                // Show Layer 1 after a slight delay
+                // Show Layer 1 after Layer 0 has started fading
                 setTimeout(() => {
                     layer0.style.display = 'none'; // Fully remove Layer 0 from flow
-                    layers[0].style.display = 'flex'; // Show Layer 1 (Prophecy Awakes)
-                    setTimeout(() => {
-                        layers[0].style.opacity = '1'; // Fade in Layer 1
-                    }, 50); // Small delay to ensure display:flex takes effect
-                }, 1000); // Wait for Layer 0 to start fading/sliding out
+                    // Display Layer 1 and trigger its fade-in
+                    if (contentLayers[0]) {
+                        contentLayers[0].style.display = 'flex';
+                        setTimeout(() => {
+                            contentLayers[0].style.opacity = '1';
+                        }, 50); // Small delay to ensure display:flex takes effect before opacity transition
+                    }
+                }, 1000); // Wait for Layer 0 to start its animation
             });
 
-            // Smoothly reveal other layers on scroll
+            // Intersection Observer for revealing subsequent layers on scroll
             const observerOptions = {
-                root: null,
+                root: null, // relative to the viewport
                 rootMargin: '0px',
-                threshold: 0.1 // Adjust as needed
+                threshold: 0.1 // Percentage of element visible to trigger
             };
 
             const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && entry.target.style.opacity === '0') {
-                        entry.target.style.display = 'flex'; // Ensure flex display for visible sections
+                        // Only show if it's currently hidden and intersecting
+                        entry.target.style.display = 'flex'; // Ensure flex layout is applied
                         setTimeout(() => {
                             entry.target.style.opacity = '1';
-                        }, 50); // Small delay
-                        // If you want them to reveal only once, uncomment: observer.unobserve(entry.target);
+                        }, 50); // Small delay to allow 'display' change to render
+                        // If you want sections to reveal only once, uncomment next line:
+                        // observer.unobserve(entry.target); 
                     } else if (!entry.isIntersecting && entry.target.style.display !== 'none' && entry.target.id !== 'layer0') {
-                        // Optional: hide sections that scroll out of view to save resources
+                        // Optional: Hide sections that scroll fully out of view to save resources or for specific effects
                         // entry.target.style.opacity = '0';
                         // entry.target.style.display = 'none';
                     }
                 });
             }, observerOptions);
 
-            layers.forEach(layer => {
+            // Observe all content layers (Layer 1 to Layer 5)
+            contentLayers.forEach(layer => {
                 sectionObserver.observe(layer);
             });
             
-            // Adjust the background position of the hero section on scroll for a subtle parallax
+            // Subtle Parallax Effect for Hero background on scroll
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
                 const heroSection = document.querySelector('.hero');
                 if (heroSection) {
                     // Adjust background-position-y based on scroll for subtle parallax
-                    heroSection.style.backgroundPositionY = `calc(50% + ${scrollY * 0.2}px)`;
+                    // Divide by a larger number for slower parallax
+                    heroSection.style.backgroundPositionY = `calc(50% + ${scrollY * 0.1}px)`; 
                 }
             });
-
-
         });
     </script>
 </body>
