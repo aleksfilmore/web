@@ -6,7 +6,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500 });
       if (localStorage.getItem('cookies_accepted') === 'true') {
         gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
         gtag('config', 'G-W9B5W1241H');
@@ -41,205 +41,51 @@
             color: var(--wb-cream);
         }
         
-        header {
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 10;
-        }
+        header { padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; box-sizing: border-box; z-index: 10; }
         .logo { font-weight: bold; font-size: 1.2rem; }
         .tagline { font-size: 0.9rem; opacity: 0.8; }
         
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            background: var(--wb-dark-teal);
-            padding: 8rem 1.5rem 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -10%; left: -30%;
-            width: 150%; height: 150%;
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: left center;
-            transform: rotate(15deg);
-            opacity: 0.3;
-            z-index: 1;
-            mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
-        }
-        .hero-content {
-            flex: 1 1 500px;
-            max-width: 550px;
-            text-align: center;
-            z-index: 2;
-        }
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            margin: 0 0 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.1;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        .rainbow-text {
-            background: var(--rainbow-gradient);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow-flow 4s ease-in-out infinite alternate;
-        }
-        @keyframes rainbow-flow {
-            from { background-position: 0% center; }
-            to { background-position: 100% center; }
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 450px;
-            margin: 0 auto 2rem;
-            font-weight: 500;
-            color: var(--wb-cream);
-        }
-        /* Signup Form Redesigned */
-        .hero-form {
-            display: flex;
-            max-width: 400px;
-            margin: 0 auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .hero-form input[type="email"] {
-            flex-grow: 1;
-            padding: 0.8rem 1rem;
-            border: none;
-            font-size: 1rem;
-            background-color: rgba(255,255,255,0.1);
-            color: var(--wb-cream);
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-left: 1px solid rgba(255,255,255,0.2);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
+        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; background: var(--wb-dark-teal); padding: 8rem 1.5rem 6rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -10%; left: -30%; width: 150%; height: 150%; background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png'); background-size: contain; background-repeat: no-repeat; background-position: left center; transform: rotate(15deg); opacity: 0.3; z-index: 1; mask-image: radial-gradient(circle at center, black 0%, transparent 60%); }
+        .hero-content { flex: 1 1 500px; max-width: 550px; text-align: center; z-index: 2; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin: 0 0 1rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .rainbow-text { background: var(--rainbow-gradient); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbow-flow 4s ease-in-out infinite alternate; }
+        @keyframes rainbow-flow { from { background-position: 0% center; } to { background-position: 100% center; } }
+        .hero p { font-size: 1.3rem; max-width: 450px; margin: 0 auto 2rem; font-weight: 500; color: var(--wb-cream); }
+        .hero-form { display: flex; max-width: 400px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .hero-form input[type="email"] { flex-grow: 1; padding: 0.8rem 1rem; border: none; font-size: 1rem; background-color: rgba(255,255,255,0.1); color: var(--wb-cream); border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); }
         .hero-form input[type="email"]::placeholder { color: var(--wb-cream); opacity: 0.7; }
         .hero-form input[type="email"]:focus { outline: none; background-color: rgba(255,255,255,0.2); }
-        .hero-form button {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            background-color: var(--wb-red);
-            color: var(--wb-cream);
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+        .hero-form button { padding: 0.8rem 1.5rem; border: none; background-color: var(--wb-red); color: var(--wb-cream); font-weight: bold; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
         .hero-form button:hover { background-color: #c44a28; }
-        
-        .hero-image-wrapper {
-            flex: 1 1 300px;
-            max-width: 300px;
-            text-align: center;
-            z-index: 2;
-        }
+        .hero-image-wrapper { flex: 1 1 300px; max-width: 300px; text-align: center; z-index: 2; }
         .book-cover-main { width: 100%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .buy-btn {
-            background: var(--wb-red);
-            color: var(--wb-cream);
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 1.5rem;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+        .buy-btn { background: var(--wb-red); color: var(--wb-cream); display: inline-block; padding: 1rem 2rem; font-weight: bold; font-size: 1.1rem; border-radius: 8px; text-decoration: none; margin-top: 1.5rem; transition: background-color 0.3s, transform 0.2s; }
         .buy-btn:hover { background-color: #c44a28; transform: translateY(-2px); }
 
-        .marquee-reviews {
-            background: var(--wb-dark-teal);
-            border-top: 1px solid var(--wb-teal);
-            border-bottom: 1px solid var(--wb-teal);
-            padding: 1rem 0;
-            overflow: hidden;
-        }
-        .review-track { display: inline-block; animation: marquee 150s linear infinite; white-space: nowrap; }
+        .marquee-reviews { background: var(--rainbow-4); color: var(--wb-cream); padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .review-track { display: inline-block; animation: marquee 90s linear infinite; white-space: nowrap; } /* Faster animation */
         .review-track span { display: inline-block; padding: 0 2rem; font-size: 1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .star {
-            display: inline-block;
-            background: var(--rainbow-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .star { color: var(--wb-cream); }
 
         .content-section { padding: 5rem 1.5rem; }
         .light-section { background-color: var(--wb-cream); color: var(--wb-text-dark); }
         .dark-section { background-color: var(--wb-dark-teal); }
         .teal-section { background-color: var(--wb-teal); }
-
-        .section-header {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 900;
-            text-align: center;
-            margin: 0 auto 1rem;
-        }
+        .section-header { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 900; text-align: center; margin: 0 auto 1rem; }
         .light-section .section-header { color: var(--wb-dark-teal); }
         .dark-section .section-header, .teal-section .section-header { color: var(--wb-cream); }
-        
-        .section-subheader {
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-        .title-underline {
-            display: block;
-            width: 80px; height: 5px;
-            background: var(--rainbow-gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
+        .section-subheader { font-size: 1.1rem; text-align: center; max-width: 650px; margin: 0 auto 3rem; line-height: 1.6; opacity: 0.9; }
+        .title-underline { display: block; width: 80px; height: 5px; background: var(--rainbow-gradient); margin: 1rem auto 0; border-radius: 2px; }
 
-        .inside-chaos-text {
-            max-width: 700px; margin: 2rem auto 0;
-            text-align: center; line-height: 1.7;
-        }
+        .inside-chaos-text { max-width: 700px; margin: 2rem auto 0; text-align: center; line-height: 1.7; }
         .inside-chaos-text span, .dangerous { color: var(--wb-red); font-weight: bold; }
         .dangerous { text-decoration: underline; }
 
-        /* Mugshot Gallery - Repaired */
-        .mugshot-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .mugshot-card {
-            background-color: var(--wb-dark-teal);
-            border-radius: 10px;
-            position: relative;
-            perspective: 1000px;
-            height: 220px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
-        }
+        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } } /* 5 columns on desktop */
+        .mugshot-card { background-color: var(--wb-dark-teal); border-radius: 10px; position: relative; perspective: 1000px; height: 220px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s ease; }
         .mugshot-card:hover { transform: translateY(-5px); }
         .mugshot-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) blur(2px) brightness(0.8); transition: filter 0.3s ease; border-radius: 10px; }
         .mugshot-card:hover .mugshot-card-img, .mugshot-card.revealed .mugshot-card-img { filter: grayscale(0%) blur(0px) brightness(1); }
@@ -248,48 +94,43 @@
         .mugshot-card-charge { position: absolute; bottom: 0; left: 0; width: 100%; background-color: var(--wb-red); color: var(--wb-cream); padding: 0.75rem; font-size: 0.9rem; text-align: center; opacity: 0; visibility: hidden; transform: translateY(100%); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; box-sizing: border-box; z-index: 3; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
         .mugshot-card.revealed .mugshot-card-charge { opacity: 1; visibility: visible; transform: translateY(0); }
 
-        .quiz-container, .bingo-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
-        .quiz-options button { display: block; width: 100%; margin: 0.75rem 0; padding: 1rem 1.5rem; background-color: var(--wb-teal); color: var(--wb-cream); border: 1px solid var(--wb-dark-teal); border-radius: 8px; font-size: 1rem; cursor: pointer; text-align: left; transition: background-color 0.2s; }
-        .quiz-options button:hover { background-color: #055a6a; }
+        .quiz-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
+        .quiz-options button { position: relative; display: block; width: 100%; margin: 0.75rem 0; padding: 1rem 1.5rem 1rem 3rem; background-color: var(--wb-teal); color: var(--wb-cream); border: 1px solid var(--wb-dark-teal); border-radius: 8px; font-size: 1rem; cursor: pointer; text-align: left; transition: background-color 0.2s, border-color 0.2s; }
+        .quiz-options button::before { content: ''; position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border: 2px solid var(--wb-cream); border-radius: 50%; transition: all 0.2s; }
+        .quiz-options button:hover { background-color: #055a6a; border-color: var(--wb-teal); }
+        .quiz-options button:hover::before { border-color: white; background-color: rgba(255,255,255,0.2); }
         .quiz-result #quiz-category { font-size: 1.5rem; display: inline-block; margin-bottom: 0.5rem; }
         
+        .bingo-container { max-width: 700px; margin: 0 auto; text-align: center; } /* Centering container */
         .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
         .bingo-square { background-color: var(--wb-teal); color: var(--wb-cream); padding: 1rem; border-radius: 8px; min-height: 100px; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s; }
         .bingo-square.checked { background: var(--rainbow-gradient); color: var(--wb-cream); }
-        .bingo-message { font-size: 1.5rem; font-weight: bold; padding: 1rem; }
+        .bingo-message { font-size: 1.5rem; font-weight: bold; padding: 1rem; display: none; }
 
-        /* Author Photo - Tuned */
-        .about-photo {
-            width: 150px; height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.25); /* Removed hard border for a soft shadow */
-        }
+        .about-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 20px rgba(0,0,0,0.25); }
         
         footer { background-color: #012027; padding: 40px 20px; text-align: center; }
+        .footer-social-links a { color: var(--wb-cream); font-size: 28px; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
+        .footer-social-links a:hover { color: white; }
+        .footer-contact-links { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+        .footer-contact-links a { color: var(--wb-cream); text-decoration: none; font-size: 16px; border-bottom: 1px dotted var(--wb-cream); padding-bottom: 2px; transition: color 0.3s; }
+        .footer-contact-links a:hover { color: white; }
         
-        .cta-button {
-             display: inline-block;
-             padding: 1rem 2.5rem;
-             font-weight: bold;
-             font-size: 1.1rem;
-             border-radius: 8px;
-             text-decoration: none;
-             border: none;
-             cursor: pointer;
-             transition: background-color 0.3s, transform 0.2s;
-        }
+        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--wb-dark-teal); margin: auto; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.3); color: var(--wb-cream); }
+        .modal-close { color: var(--wb-cream); opacity: 0.8; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; transition: opacity 0.3s; }
+        .modal-close:hover { opacity: 1; }
+
+        .cookie-banner { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--wb-dark-teal); color: var(--wb-cream); padding: 1rem 1.5rem; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); z-index: 1001; font-size: 0.95rem; border-top: 1px solid var(--wb-teal); }
+        .cookie-banner.show { display: flex; }
+
+        .cta-button { display: inline-block; padding: 1rem 2.5rem; font-weight: bold; font-size: 1.1rem; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
         .cta-button.primary { background-color: var(--wb-red); color: var(--wb-cream); }
         .cta-button.primary:hover { background-color: #c44a28; transform: translateY(-2px); }
         
         .animated-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .animated-section.is-visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; }
-            .hero-content { flex-basis: auto; }
-            .hero-image-wrapper { display: none; } /* Hide on mobile to simplify hero */
-        }
+        @media (max-width: 768px) { .hero { flex-direction: column; } .hero-content { flex-basis: auto; } .hero-image-wrapper { display: none; } }
     </style>
 </head>
 <body>
@@ -300,11 +141,7 @@
 
     <section class="hero" id="signup-form">
         <div class="hero-content">
-            <h1 class="rainbow-text">
-                <span>Breakups.</span>
-                <span>Meltdowns.</span>
-                <span>Mistakes.</span>
-            </h1>
+            <h1 class="rainbow-text"><span>Breakups.</span><span>Meltdowns.</span><span>Mistakes.</span></h1>
             <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
                 <input type="email" name="email" placeholder="Your email for updates..." required>
@@ -319,56 +156,35 @@
 
     <div class="marquee-reviews">
         <div class="review-track">
-            <span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span>
-            <span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
-            <span><span class="star">★★★★★</span> “Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
-            <span><span class="star">★★★★★</span> “Fun, engaging, and totally unputdownable.” – Elise</span>
-            <span><span class="star">★★★★★</span> “What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span>
-            <span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span>
-            <span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span>
-            <span><span class="star">★★★★★</span> “Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
+            <span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span> “Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span> “Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span> “What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span> “It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span> “If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span> “Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span>
         </div>
     </div>
     
     <section class="light-section animated-section content-section">
         <h2 class="section-header rainbow-text">Inside the Chaos</h2>
         <div class="title-underline"></div>
-        <div class="inside-chaos-text">
-            <p>
-                The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span>“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
-                This isn’t self-help. It’s <span>self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span>red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>
-                You won’t just relate. You’ll feel seen. Then vindicated. Then <span class="dangerous">a little dangerous.</span>
-            </p>
-        </div>
+        <div class="inside-chaos-text"><p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span>“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <span>self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span>red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <span class="dangerous">a little dangerous.</span></p></div>
     </section>
 
     <section class="dark-section animated-section content-section">
         <h2 class="section-header">Ex-Boyfriend Mugshot Gallery</h2>
         <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes against dating.</p>
-        <div class="mugshot-gallery animated-section">
-            </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://a.co/d/j2SrpJl" class="cta-button primary" target="_blank" rel="noopener noreferrer">Buy The Book</a>
-        </div>
+        <div class="mugshot-gallery animated-section"></div>
+        <div style="text-align: center; margin-top: 3rem;"><a href="https://a.co/d/j2SrpJl" class="cta-button primary" target="_blank" rel="noopener noreferrer">Buy The Book</a></div>
     </section>
 
     <section class="teal-section animated-section content-section">
         <h2 class="section-header">Red Flag Meter</h2>
         <p class="section-subheader">Think you're a red flag pro? Test your dating survival instincts with our quick-n-dirty quiz!</p>
         <div class="quiz-container">
-            <div id="quiz-intro">
-                <button id="quiz-start-btn" class="cta-button primary">Start Quiz</button>
-            </div>
+            <div id="quiz-intro" style="text-align: center;"><button id="quiz-start-btn" class="cta-button primary">Start Quiz</button></div>
             <div id="quiz-questions" style="display: none;">
                 <div id="current-question" style="font-size: 1.4rem; font-weight: bold; line-height: 1.3; margin-bottom: 1.5rem;"></div>
                 <div id="quiz-options"></div>
-                <div id="quiz-progress" style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8;"></div>
+                <div id="quiz-progress" style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8; text-align: center;"></div>
             </div>
             <div id="quiz-results" style="display: none; text-align: center;">
-                <div class="quiz-result">
-                    <span id="quiz-category" class="rainbow-text"></span>
-                    <p id="quiz-blurb" style="margin-top: 1rem;"></p>
-                </div>
+                <div class="quiz-result"><span id="quiz-category" class="rainbow-text"></span><p id="quiz-blurb" style="margin-top: 1rem;"></p></div>
                 <button id="quiz-reset-btn" class="cta-button primary" style="margin-top: 1.5rem;">Retake Quiz</button>
             </div>
         </div>
@@ -379,7 +195,7 @@
         <p class="section-subheader">Ever had a date so bad, it felt like a game? Check off your experiences to see if you've hit the jackpot of regret.</p>
         <div class="bingo-container">
             <div class="bingo-grid" id="bingo-grid"></div>
-            <div class="bingo-message rainbow-text" id="bingo-message" style="display: none;"></div>
+            <div class="bingo-message rainbow-text" id="bingo-message"></div>
             <button id="bingo-reset-btn" class="cta-button primary">Reset Bingo</button>
         </div>
     </section>
@@ -389,24 +205,37 @@
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore" class="about-photo">
             <div class="about-text" style="margin-top: 2rem;">
                 <h2 class="section-header" style="margin-bottom: 1rem;">About Aleks Filmore</h2>
-                <p style="line-height: 1.7; max-width: 600px; margin: 0 auto;">
-                    Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.
-                </p>
+                <p style="line-height: 1.7; max-width: 600px; margin: 0 auto;">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.</p>
             </div>
         </div>
     </section>
     
-    <footer style="padding: 40px 20px; text-align: center;">
-         <div style="margin-bottom: 20px;">
-            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram" style="font-size: 28px; margin: 0 15px; text-decoration: none; color: var(--wb-cream);"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok" style="font-size: 28px; margin: 0 15px; text-decoration: none; color: var(--wb-cream);"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <div><p style="font-size: 14px; margin: 0; opacity: 0.7;">&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
+    <footer>
+        <div class="footer-social-links" style="margin-bottom: 20px;"><a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a></div>
+        <div class="footer-contact-links"><a href="https://aleksfilmore.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a><a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a><a href="#" id="open-contact-modal">Contact Me</a></div>
+        <div class="footer-copyright" style="margin-top: 20px;"><p style="font-size: 14px; margin: 0; opacity: 0.7;">&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
     </footer>
+
+    <div class="cookie-banner" id="cookie-banner">
+        <p>This website uses cookies to improve your experience. By clicking "Accept", you consent to our use of cookies.</p>
+        <div class="cookie-banner-buttons" style="display: flex; gap: 10px;"><button id="accept-cookies" class="cta-button primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Accept</button></div>
+    </div>
+
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Contact Me</h2>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
+                <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
+                <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
+                <textarea name="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);"></textarea>
+                <button type="submit" class="cta-button primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Animate on Scroll
             const animatedSections = document.querySelectorAll('.animated-section');
             const scrollObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -418,128 +247,96 @@
             }, { threshold: 0.1 });
             animatedSections.forEach(section => scrollObserver.observe(section));
 
-            // Mugshot Gallery Logic
             const mugshotData = [
-                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" },
-                { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" },
-                { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" },
-                { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" },
-                { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" },
-                { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" },
-                { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" },
-                { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" },
-                { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" },
-                { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" },
-                { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" },
-                { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" },
-                { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic,' lived two streets away.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" },
-                { name: "The Competitive", charge: "Treated mini golf like the Olympics—trash-talked children on the next lane.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" },
-                { name: "The Conspiracist", charge: "Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" },
-                { name: "The Wizard", charge: "Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" },
-                { name: "The Planner", charge: "Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" },
-                { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" },
-                { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" },
-                { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" }
+                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic,' lived two streets away.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Treated mini golf like the Olympics—trash-talked children on the next lane.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" }
             ];
-
             const gallery = document.querySelector('.mugshot-gallery');
             if (gallery) {
                 mugshotData.forEach(mugshot => {
                     const card = document.createElement('div');
                     card.className = 'mugshot-card';
-                    card.innerHTML = `
-                        <img src="${mugshot.img}" alt="${mugshot.name}" class="mugshot-card-img">
-                        <h3 class="mugshot-card-title">${mugshot.name}</h3>
-                        <p class="mugshot-card-charge">${mugshot.charge}</p>
-                    `;
+                    card.innerHTML = `<img src="${mugshot.img}" alt="${mugshot.name}" class="mugshot-card-img"><h3 class="mugshot-card-title">${mugshot.name}</h3><p class="mugshot-card-charge">${mugshot.charge}</p>`;
                     card.addEventListener('click', () => card.classList.toggle('revealed'));
                     gallery.appendChild(card);
                 });
             }
 
-            // Quiz Logic
-            const quizQuestions = [
-                { question: "He needs your credit card for a 'sure-thing' poker tourney. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] },
-                { question: "His dog Daisy wedges herself between you at dinner. You…", options: [{ text: "Offer Daisy your chair.", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel.", score: 3 }] },
-                { question: "He ghosts, then texts: 'Dropped my phone in a lake!' Your reply?", options: [{ text: "'Aww, glad you’re OK! See you soon?'", score: 1 }, { text: "'Phones swim worse than excuses.'", score: 2 }, { text: "Silence and a swift block.", score: 3 }] }
-            ];
-            const quizIntro = document.getElementById('quiz-intro');
-            const quizQuestionsContainer = document.getElementById('quiz-questions');
-            const quizResultsContainer = document.getElementById('quiz-results');
-            const quizStartBtn = document.getElementById('quiz-start-btn');
-            const quizResetBtn = document.getElementById('quiz-reset-btn');
-            let currentQuestionIndex = 0, totalScore = 0;
-            const loadQuestion = () => {
-                const q = quizQuestions[currentQuestionIndex];
-                document.getElementById('current-question').textContent = q.question;
-                const optionsElem = document.getElementById('quiz-options');
-                optionsElem.innerHTML = '';
-                q.options.forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.textContent = opt.text;
-                    btn.onclick = () => selectAnswer(opt.score);
-                    optionsElem.appendChild(btn);
-                });
-                document.getElementById('quiz-progress').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
-            };
-            const selectAnswer = (score) => {
-                totalScore += score;
-                currentQuestionIndex++;
-                (currentQuestionIndex < quizQuestions.length) ? loadQuestion() : showQuizResult();
-            };
-            const showQuizResult = () => {
-                quizQuestionsContainer.style.display = 'none';
-                quizResultsContainer.style.display = 'block';
-                let cat = '', blurb = '';
-                if (totalScore >= 8) { cat = "Queen of Green Flags!"; blurb = "Your radar is impeccable. Go forth and conquer!"; }
-                else if (totalScore >= 5) { cat = "Seasoned Survivor"; blurb = "You've seen some things. Keep your wits about you!"; }
-                else { cat = "Red-Flag Rookie"; blurb = "Bless your heart! Maybe read up on those 'warning signs.'"; }
-                document.getElementById('quiz-category').textContent = cat;
-                document.getElementById('quiz-blurb').textContent = blurb;
-            };
-            const startQuiz = () => {
-                quizIntro.style.display = 'none';
-                quizQuestionsContainer.style.display = 'block';
-                quizResultsContainer.style.display = 'none';
-                currentQuestionIndex = 0; totalScore = 0;
-                loadQuestion();
-            };
-            if(quizStartBtn) quizStartBtn.addEventListener('click', startQuiz);
-            if(quizResetBtn) quizResetBtn.addEventListener('click', startQuiz);
-
-            // Bingo Logic
-            const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers" ];
-            const bingoGrid = document.getElementById('bingo-grid');
-            const bingoMessage = document.getElementById('bingo-message');
-            const bingoResetBtn = document.getElementById('bingo-reset-btn');
-            const initializeBingo = () => {
-                if(!bingoGrid) return;
-                bingoGrid.innerHTML = '';
-                bingoMessage.style.display = 'none';
-                bingoSquaresData.forEach(text => {
-                    const square = document.createElement('div');
-                    square.className = 'bingo-square';
-                    square.textContent = text;
-                    square.addEventListener('click', () => {
-                        square.classList.toggle('checked');
-                        checkBingo();
+            const quizLogic = () => {
+                const quizQuestions = [
+                    { question: "He needs your credit card for a 'sure-thing' poker tourney. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] }, { question: "His dog Daisy wedges herself between you at dinner. You…", options: [{ text: "Offer Daisy your chair.", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel.", score: 3 }] }, { question: "He ghosts, then texts: 'Dropped my phone in a lake!' Your reply?", options: [{ text: "'Aww, glad you’re OK! See you soon?'", score: 1 }, { text: "'Phones swim worse than excuses.'", score: 2 }, { text: "Silence and a swift block.", score: 3 }] }
+                ];
+                const quizIntro = document.getElementById('quiz-intro'), quizQuestionsContainer = document.getElementById('quiz-questions'), quizResultsContainer = document.getElementById('quiz-results'), quizStartBtn = document.getElementById('quiz-start-btn'), quizResetBtn = document.getElementById('quiz-reset-btn');
+                if(!quizIntro) return;
+                let currentQuestionIndex = 0, totalScore = 0;
+                const loadQuestion = () => {
+                    const q = quizQuestions[currentQuestionIndex];
+                    document.getElementById('current-question').textContent = q.question;
+                    const optionsElem = document.getElementById('quiz-options');
+                    optionsElem.innerHTML = '';
+                    q.options.forEach(opt => {
+                        const btn = document.createElement('button'); btn.textContent = opt.text; btn.onclick = () => selectAnswer(opt.score); optionsElem.appendChild(btn);
                     });
-                    bingoGrid.appendChild(square);
+                    document.getElementById('quiz-progress').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+                };
+                const selectAnswer = (score) => { totalScore += score; currentQuestionIndex++; (currentQuestionIndex < quizQuestions.length) ? loadQuestion() : showQuizResult(); };
+                const showQuizResult = () => {
+                    quizQuestionsContainer.style.display = 'none'; quizResultsContainer.style.display = 'block';
+                    let cat = '', blurb = '';
+                    if (totalScore >= 8) { cat = "Queen of Green Flags!"; blurb = "Your radar is impeccable. Go forth and conquer!"; }
+                    else if (totalScore >= 5) { cat = "Seasoned Survivor"; blurb = "You've seen some things. Keep your wits about you!"; }
+                    else { cat = "Red-Flag Rookie"; blurb = "Bless your heart! Maybe read up on those 'warning signs.'"; }
+                    document.getElementById('quiz-category').textContent = cat; document.getElementById('quiz-blurb').textContent = blurb;
+                };
+                const startQuiz = () => { quizIntro.style.display = 'none'; quizQuestionsContainer.style.display = 'block'; quizResultsContainer.style.display = 'none'; currentQuestionIndex = 0; totalScore = 0; loadQuestion(); };
+                quizStartBtn.addEventListener('click', startQuiz); quizResetBtn.addEventListener('click', startQuiz);
+            };
+            quizLogic();
+
+            const bingoLogic = () => {
+                const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers" ];
+                const bingoGrid = document.getElementById('bingo-grid'), bingoMessage = document.getElementById('bingo-message'), bingoResetBtn = document.getElementById('bingo-reset-btn');
+                if(!bingoGrid) return;
+                const initializeBingo = () => {
+                    bingoGrid.innerHTML = ''; bingoMessage.style.display = 'none';
+                    const shuffled = [...bingoSquaresData].sort(() => 0.5 - Math.random()).slice(0, 9);
+                    shuffled.forEach(text => {
+                        const square = document.createElement('div'); square.className = 'bingo-square'; square.textContent = text;
+                        square.addEventListener('click', () => { square.classList.toggle('checked'); checkBingo(); });
+                        bingoGrid.appendChild(square);
+                    });
+                };
+                const checkBingo = () => {
+                    const squares = Array.from(bingoGrid.children);
+                    const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
+                    const isBingo = winningCombos.some(combo => combo.every(index => squares[index].classList.contains('checked')));
+                    if (isBingo) { bingoMessage.textContent = "BINGO! You've hit the jackpot of bad dates."; bingoMessage.style.display = 'block'; }
+                    else { bingoMessage.style.display = 'none'; }
+                };
+                bingoResetBtn.addEventListener('click', initializeBingo);
+                initializeBingo();
+            };
+            bingoLogic();
+
+            const modalLogic = () => {
+                const contactModal = document.getElementById('contact-modal'), openBtn = document.getElementById('open-contact-modal'), closeBtn = document.querySelector('.modal-close');
+                if(!contactModal) return;
+                openBtn.addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
+                closeBtn.addEventListener('click', () => { contactModal.style.display = 'none'; });
+                window.addEventListener('click', (e) => { if (e.target === contactModal) { contactModal.style.display = 'none'; } });
+            };
+            modalLogic();
+
+            const cookieBannerLogic = () => {
+                const banner = document.getElementById('cookie-banner'), acceptBtn = document.getElementById('accept-cookies');
+                if (!banner || !acceptBtn) return;
+                if (localStorage.getItem('cookies_accepted') !== 'true') { banner.classList.add('show'); }
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookies_accepted', 'true');
+                    banner.classList.remove('show');
+                    gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
                 });
             };
-            const checkBingo = () => {
-                const squares = Array.from(bingoGrid.children);
-                const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
-                const isBingo = winningCombos.some(combo => combo.every(index => squares[index].classList.contains('checked')));
-                if (isBingo) {
-                    bingoMessage.textContent = "BINGO! You've hit the jackpot of bad dates.";
-                    bingoMessage.style.display = 'block';
-                } else {
-                    bingoMessage.style.display = 'none';
-                }
-            };
-            if(bingoResetBtn) bingoResetBtn.addEventListener('click', initializeBingo);
-            initializeBingo();
+            cookieBannerLogic();
         });
     </script>
 </body>
