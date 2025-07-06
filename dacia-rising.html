@@ -22,10 +22,10 @@
 
             --color-primary-green: #34A853; /* Vibrant, strong forest green for CTAs & highlights */
             --color-primary-green-dark: #2A8C45; /* Darker green for hover */
-            --color-gold-main: #FFD700; /* Pure gold for main titles, strong highlights */
-            --color-gold-light: #FFE066; /* Lighter gold for subtle glows */
-            --color-bronze-accent: #B87333; /* Earthy bronze for specific accents */
-            --color-ancient-stone: #6B778D; /* Muted blue-grey for elements hinting at stone */
+            --color-gold-main: #CCAC00; /* Richer, deeper gold for main titles, strong highlights */
+            --color-gold-light: #E0B300; /* Lighter, but still rich, gold for subtle glows and secondary titles */
+            --color-bronze-accent: #B87333; /* Earthy bronze for specific accents (currently unused directly) */
+            --color-ancient-stone: #6B778D; /* Muted blue-grey for elements hinting at stone (currently unused directly) */
         }
 
         html {
@@ -59,8 +59,8 @@
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--color-gold-main);
-            text-decoration: none;
+            color: var(--color-gold-main); /* Gold logo */
+            text-decoration: none; /* Make logo a link */
             transition: color 0.3s ease;
         }
         .logo:hover {
@@ -275,7 +275,7 @@
             color: var(--color-text-light);
         }
         .text-block strong {
-            color: var(--color-gold-light); /* Lighter gold for strong text */
+            color: var(--color-gold-main); /* Gold for strong text */
             font-weight: 700;
         }
         .text-block ul {
@@ -313,7 +313,7 @@
             padding: 1.8rem;
             text-align: center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
         .character-card:hover, .location-card:hover {
             transform: translateY(-8px);
@@ -363,7 +363,7 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .review-card:hover {
             transform: translateY(-5px);
