@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500 });
-      if (localStorage.getItem('cookies_accepted') === 'true') {
-        gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
-        gtag('config', 'G-W9B5W1241H');
-      }
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
@@ -29,8 +18,7 @@
             --wb-cream: #f7dcaa;
             --wb-dark-teal: #02313a;
             --wb-text-dark: #2a2110;
-            --rainbow-1: #e05b38; --rainbow-2: #f0cc00; --rainbow-3: #6aa84f; --rainbow-4: #45818e; --rainbow-5: #8b5baa;
-            --rainbow-gradient: linear-gradient(90deg, var(--rainbow-1), var(--rainbow-2), var(--rainbow-3), var(--rainbow-4), var(--rainbow-5));
+            --rainbow-gradient: linear-gradient(90deg, #e05b38, #f0cc00, #6aa84f, #45818e, #8b5baa);
         }
 
         html { scroll-behavior: smooth; }
@@ -39,250 +27,406 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--wb-dark-teal);
             color: var(--wb-cream);
-        }
-        
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(2, 49, 58, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 999;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transform: translateY(-100%);
-            transition: transform 0.4s ease-out;
-        }
-        .sticky-nav.is-sticky {
-            transform: translateY(0);
-        }
-        .sticky-nav a {
-            color: var(--wb-cream);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .sticky-nav a:hover {
-            color: white;
+            line-height: 1.6;
         }
 
-        header { padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; box-sizing: border-box; z-index: 10; }
-        
-        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; background: var(--wb-dark-teal); padding: 8rem 1.5rem 6rem; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -10%; left: -30%; width: 150%; height: 150%; background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png'); background-size: contain; background-repeat: no-repeat; background-position: left center; transform: rotate(15deg); opacity: 0.3; z-index: 1; mask-image: radial-gradient(circle at center, black 0%, transparent 60%); }
-        .hero-content { flex: 1 1 500px; max-width: 550px; text-align: center; z-index: 2; }
-        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin: 0 0 1rem; text-transform: uppercase; line-height: 1.1; }
-        .rainbow-text { background: var(--rainbow-gradient); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbow-flow 4s ease-in-out infinite alternate; }
-        @keyframes rainbow-flow { from { background-position: 0% center; } to { background-position: 100% center; } }
-        .hero p { font-size: 1.3rem; max-width: 450px; margin: 0 auto 1rem; font-weight: 500; color: var(--wb-cream); }
-        .hero .signup-prompt { font-size: 1rem; margin: 0 auto 1.5rem; opacity: 0.9; }
-        .hero-form { display: flex; max-width: 400px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .hero-form input[type="email"] { flex-grow: 1; padding: 0.8rem 1rem; border: none; font-size: 1rem; background-color: rgba(255,255,255,0.1); color: var(--wb-cream); }
-        .hero-form input[type="email"]::placeholder { color: var(--wb-cream); opacity: 0.7; }
-        .hero-image-wrapper { flex: 1 1 300px; max-width: 300px; text-align: center; z-index: 2; perspective: 1000px; }
-        .book-cover-main { width: 100%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transform: rotateY(-15deg) rotateX(5deg); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .hero-image-wrapper:hover .book-cover-main { transform: rotateY(0deg) rotateX(0deg) scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        /* --- Global Styles --- */
+        .section {
+            padding: 4rem 1.5rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 900;
+            margin: 0 0 0.5rem 0;
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        .rainbow-text {
+            background: var(--rainbow-gradient);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-flow 4s ease-in-out infinite alternate;
+        }
+        @keyframes rainbow-flow {
+            from { background-position: 0% center; }
+            to { background-position: 100% center; }
+        }
 
-        .marquee-reviews { background-color: var(--rainbow-4); color: white; padding: 1rem 0; overflow: hidden; }
-        .review-track { display: inline-block; animation: marquee 90s linear infinite; white-space: nowrap; }
-        .review-track span { display: inline-flex; align-items: center; padding: 0 2rem; font-size: 1rem; font-weight: bold; }
-        .review-track img { width: 30px; height: 30px; border-radius: 50%; margin-right: 0.75rem; border: 2px solid white; }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        
-        .content-section { padding: 5rem 1.5rem; }
-        .light-section { background-color: var(--wb-cream); color: var(--wb-text-dark); }
-        .dark-section { background-color: var(--wb-dark-teal); }
-        .teal-section { background-color: var(--wb-teal); }
-        
-        .section-header { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 900; text-align: center; margin: 0 auto 1rem; }
-        .light-section .section-header { color: var(--wb-dark-teal); }
-        .dark-section .section-header, .teal-section .section-header { color: var(--wb-cream); }
-        .section-subheader { font-size: 1.1rem; text-align: center; max-width: 650px; margin: 0 auto 3rem; line-height: 1.6; opacity: 0.9; }
-        .title-underline { display: block; width: 80px; height: 5px; background: var(--rainbow-gradient); margin: 1rem auto 0; border-radius: 2px; }
-
-        .inside-chaos-text { max-width: 700px; margin: 2rem auto 0; text-align: center; line-height: 1.7; color: var(--wb-text-dark); }
-        .inside-chaos-text .rainbow-text { font-weight: bold; }
-        .dangerous { font-weight: bold; text-decoration: underline; }
-
-        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
-        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-        .mugshot-card { background-color: var(--wb-dark-teal); border-radius: 10px; position: relative; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; }
-        .mugshot-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        
-        .quiz-container { max-width: 700px; margin: 0 auto; padding: 2.5rem; border-radius: 15px; background: var(--wb-dark-teal); }
-        
-        .bingo-container { max-width: 700px; margin: 0 auto; text-align: center; }
-        .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
-        .bingo-square { background-color: var(--wb-teal); color: var(--wb-cream); padding: 1rem; border-radius: 8px; min-height: 100px; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
-        .bingo-square:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .bingo-square.checked { background: var(--rainbow-gradient); color: var(--wb-cream); }
-
-        .cta-button {
+        /* --- Buttons --- */
+        .button {
             display: inline-block;
             background-color: var(--wb-red);
-            color: var(--wb-cream);
-            padding: 1rem 2rem;
-            border-radius: 8px;
+            color: white;
+            padding: 0.8rem 1.8rem;
             border: none;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease-out;
+            transition: all 0.2s ease;
+            text-align: center;
         }
-        .cta-button:hover {
+        .button:hover {
             background-color: #c44a28;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .cta-button:active {
-            transform: translateY(-1px);
+
+        /* --- Header --- */
+        header {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--wb-cream);
         }
-        
-        .quiz-options .cta-button {
+
+        /* --- Hero --- */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            padding: 4rem 1.5rem 6rem;
+            text-align: center;
+        }
+        .hero-content {
+            flex: 1 1 500px;
+        }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; }
+        .hero-image {
+            flex: 1 1 300px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .book-cover {
             width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .book-cover:hover {
+            transform: scale(1.05);
+        }
+        .hero-form {
+            display: flex;
+            max-width: 400px;
+            margin: 1.5rem auto 0;
+        }
+        .hero-form input {
+            flex-grow: 1; padding: 0.8rem; border: 1px solid var(--wb-teal);
+            border-radius: 8px 0 0 8px; background: rgba(0,0,0,0.2); color: white;
+        }
+        .hero-form button {
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* --- Marquee --- */
+        .marquee {
             background-color: var(--wb-teal);
-            border: 2px solid var(--wb-teal);
+            color: white;
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 90s linear infinite;
+        }
+        .marquee-track span {
+            display: inline-block;
+            padding: 0 2rem;
+            font-weight: 700;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* --- Sections --- */
+        .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
+        .dark { background-color: var(--wb-dark-teal); }
+        .teal { background-color: var(--wb-teal); }
+
+        /* --- Mugshot Gallery --- */
+        .mugshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
+        .mugshot-card {
+            background-color: var(--wb-dark-teal);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .mugshot-card img {
+            display: block; width: 100%; height: 250px; object-fit: cover;
+            filter: grayscale(1); transition: filter 0.3s ease;
+        }
+        .mugshot-card:hover img {
+            filter: grayscale(0);
+        }
+        .mugshot-info { padding: 1rem; }
+        .mugshot-info h3 { margin: 0 0 0.5rem 0; }
+        .mugshot-charge { display: none; font-style: italic; opacity: 0.8; }
+        .mugshot-card.is-revealed .mugshot-charge { display: block; }
+        
+        /* --- Quiz & Bingo --- */
+        .interactive-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--wb-dark-teal);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .quiz-options .button {
+            display: block;
+            width: 100%;
             margin: 0.5rem 0;
-            text-align: left;
+            background-color: var(--wb-teal);
         }
-        .quiz-options .cta-button:hover {
-            background-color: var(--rainbow-4);
-            border-color: var(--rainbow-4);
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
-        footer { background-color: #012027; padding: 40px 20px; text-align: center; }
-        
-        .animated-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .animated-section.is-visible { opacity: 1; transform: translateY(0); }
-        @media (max-width: 768px) { .hero { flex-direction: column; } .hero-content { flex-basis: auto; } .hero-image-wrapper { display: none; } }
+        .bingo-square {
+            background-color: var(--wb-teal);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .bingo-square:hover { transform: scale(1.05); }
+        .bingo-square.is-checked { background: var(--rainbow-gradient); color: white; }
     </style>
 </head>
 <body>
-    <nav class="sticky-nav" id="sticky-nav">
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#quiz">Quiz</a>
-        <a href="#bingo">Bingo</a>
-        <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer">Buy Now</a>
-    </nav>
+
     <header>
         <div class="logo">Aleks Filmore</div>
         <div class="tagline">Queer Stories. Real Chaos.</div>
     </header>
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
-            <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
-            <p class="signup-prompt">Sign up for the secret chapter & audiobook launch notification!</p>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
-                <input type="email" name="email" placeholder="Your email for updates..." required>
-                <button type="submit" class="cta-button">Notify Me</button>
-            </form>
-        </div>
-        <div class="hero-image-wrapper">
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover-main">
-            <a href="https://a.co/d/j2SrpJl" class="cta-button" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
-        </div>
-    </section>
-    <div class="marquee-reviews">
-        <div class="review-track"></div>
-    </div>
-    
-    <section class="light-section animated-section content-section" id="about">
-        <h2 class="section-header rainbow-text">Inside the Chaos</h2>
-        <div class="title-underline"></div>
-        <div class="inside-chaos-text"><p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span class="rainbow-text">“hilarious,”</span> <span class="rainbow-text">“relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <span class="rainbow-text">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span class="rainbow-text">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <span class="dangerous rainbow-text">a little dangerous.</span></p></div>
-    </section>
 
-    <section class="dark-section animated-section content-section" id="gallery">
-        <h2 class="section-header">Ex-Boyfriend Mugshot Gallery</h2>
-        <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes against dating.</p>
-        <div class="mugshot-gallery animated-section"></div>
-        <div style="text-align: center; margin-top: 3rem;"><a href="https://a.co/d/j2SrpJl" class="cta-button" target="_blank" rel="noopener noreferrer">Buy The Book</a></div>
-    </section>
-
-    <section class="teal-section animated-section content-section" id="quiz">
-        <h2 class="section-header">Red Flag Meter</h2>
-        <p class="section-subheader">Think you're a red flag pro? Test your dating survival instincts with our quick-n-dirty quiz!</p>
-        <div class="quiz-container" role="radiogroup">
-            <div id="quiz-intro" style="text-align: center;"><button id="quiz-start-btn" class="cta-button">Start Quiz</button></div>
-            <div id="quiz-questions" style="display: none;">
-                <div id="current-question" style="font-size: 1.4rem; font-weight: bold; line-height: 1.3; margin-bottom: 1.5rem; text-align: center;"></div>
-                <div id="quiz-options"></div>
-                <div id="quiz-progress" style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8; text-align: center;"></div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
+                    <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
+                        <input type="email" name="email" placeholder="Your email for updates..." required>
+                        <button type="submit" class="button">Notify Me</button>
+                    </form>
+                </div>
             </div>
-            <div id="quiz-results" style="display: none; text-align: center;">
-                 <div class="quiz-result"><span id="quiz-category" class="rainbow-text"></span><p id="quiz-blurb" style="margin-top: 1rem;"></p></div>
-                <button id="quiz-reset-btn" class="cta-button" style="margin-top: 1.5rem;">Retake Quiz</button>
+        </section>
+
+        <section class="marquee">
+            <div class="marquee-track"></div>
+        </section>
+
+        <section class="section light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="rainbow-text">Inside the Chaos</h2>
+                </div>
+                <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> <b class="rainbow-text">“relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="dark-section animated-section content-section" id="bingo">
-        <h2 class="section-header">Bad Date Bingo</h2>
-        <p class="section-subheader">Ever had a date so bad, it felt like a game? Check off your experiences to see if you've hit the jackpot of regret.</p>
-        <div class="bingo-container">
-            <div class="bingo-grid" id="bingo-grid"></div>
-            <div class="bingo-message rainbow-text" id="bingo-message"></div>
-            <button id="bingo-reset-btn" class="cta-button">Reset Bingo</button>
-        </div>
-    </section>
+        <section class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ex-Boyfriend Mugshot Gallery</h2>
+                    <p>Meet the infamous lineup. Click to reveal their crimes against dating.</p>
+                </div>
+                <div class="mugshot-gallery"></div>
+            </div>
+        </section>
+
+        <section class="section teal">
+            <div class="container">
+                 <div class="section-header">
+                    <h2>Red Flag Meter</h2>
+                    <p>Think you're a red flag pro? Test your dating survival instincts!</p>
+                </div>
+                <div class="interactive-container">
+                    <div id="quiz-intro">
+                        <button id="quiz-start-btn" class="button">Start Quiz</button>
+                    </div>
+                    <div id="quiz-questions" style="display: none;">
+                        <h3 id="current-question"></h3>
+                        <div id="quiz-options" class="quiz-options"></div>
+                    </div>
+                    <div id="quiz-results" style="display: none;">
+                        <h3 id="quiz-category"></h3>
+                        <p id="quiz-blurb"></p>
+                        <button id="quiz-reset-btn" class="button">Retake Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bad Date Bingo</h2>
+                    <p>Ever had a date so bad, it felt like a game? Check off your experiences.</p>
+                </div>
+                <div class="interactive-container">
+                    <div class="bingo-grid"></div>
+                    <p id="bingo-message" style="display:none; font-weight: 700;" class="rainbow-text">BINGO!</p>
+                    <button id="bingo-reset-btn" class="button">Reset Bingo</button>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <footer style="background-color: #012027; padding: 40px 20px; text-align: center;">
-        <div class="footer-social-links" style="margin-bottom: 20px;"><a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram" style="color: var(--wb-cream); font-size: 28px; margin: 0 15px; text-decoration: none;"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok" style="color: var(--wb-cream); font-size: 28px; margin: 0 15px; text-decoration: none;"><i class="fab fa-tiktok"></i></a></div>
-        <div class="footer-contact-links" style="margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;"><a href="https://aleksfilmore.com/privacy.html" target="_blank" rel="noopener noreferrer" style="color: var(--wb-cream); text-decoration: none; font-size: 16px; border-bottom: 1px dotted var(--wb-cream); padding-bottom: 2px;">Privacy Policy</a><a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer" style="color: var(--wb-cream); text-decoration: none; font-size: 16px; border-bottom: 1px dotted var(--wb-cream); padding-bottom: 2px;">Cookie Policy</a><a href="#" id="open-contact-modal" style="color: var(--wb-cream); text-decoration: none; font-size: 16px; border-bottom: 1px dotted var(--wb-cream); padding-bottom: 2px;">Contact Me</a></div>
-        <div class="footer-copyright" style="margin-top: 20px;"><p style="font-size: 14px; margin: 0; opacity: 0.7;">&copy; 2025 Aleks Filmore. All Rights Reserved.</p></div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // All JS logic is the same, but the simplified, robust CSS will ensure it renders correctly.
+            // --- Marquee Builder ---
+            const reviews = [ { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" }, { name: "Gerald", text: "“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.”" }, { name: "J.L.G.", text: "“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.”" } ];
+            const reviewTrack = document.querySelector('.marquee-track');
+            if (reviewTrack) {
+                const fullTrackContent = [...reviews, ...reviews, ...reviews, ...reviews].map(r => `<span>★★★★★ ${r.text} – ${r.name}</span>`).join('');
+                reviewTrack.innerHTML = fullTrackContent;
+            }
+
+            // --- Mugshot Gallery Builder ---
+            const mugshotData = [
+                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic,' lived two streets away.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Treated mini golf like the Olympics—trash-talked children on the next lane.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }
+            ];
+            const gallery = document.querySelector('.mugshot-gallery');
+            if (gallery) {
+                mugshotData.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'mugshot-card';
+                    card.innerHTML = `
+                        <img src="${data.img}" alt="${data.name}" loading="lazy">
+                        <div class="mugshot-info">
+                            <h3>${data.name}</h3>
+                            <p class="mugshot-charge">${data.charge}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => {
+                        card.classList.toggle('is-revealed');
+                    });
+                    gallery.appendChild(card);
+                });
+            }
+
+            // --- Quiz Logic ---
             const quizLogic = () => {
                 const quizQuestions = [
                     { question: "He needs your credit card for a 'sure-thing' poker tournament. You…", options: [{ text: "Hand it over—high-risk, high love!", score: 1 }, { text: "Ask when you’ll be repaid.", score: 2 }, { text: "Laugh and change your PIN.", score: 3 }] },
                     { question: "His dog Daisy wedges herself between you at dinner. You…", options: [{ text: "Offer Daisy your chair.", score: 1 }, { text: "Scoot over; at least the lab’s cute.", score: 2 }, { text: "Realize you’re the third wheel.", score: 3 }] },
                     { question: "He ghosts, then texts: 'Dropped my phone in a lake!' Your reply?", options: [{ text: "'Aww, glad you’re OK! See you soon?'", score: 1 }, { text: "'Phones swim worse than excuses.'", score: 2 }, { text: "Silence and a swift block.", score: 3 }] }
                 ];
-                const quizIntro = document.getElementById('quiz-intro'), quizQuestionsContainer = document.getElementById('quiz-questions'), quizResultsContainer = document.getElementById('quiz-results'), quizStartBtn = document.getElementById('quiz-start-btn'), quizResetBtn = document.getElementById('quiz-reset-btn');
-                if(!quizIntro) return;
+                const intro = document.getElementById('quiz-intro'), questions = document.getElementById('quiz-questions'), results = document.getElementById('quiz-results');
+                const startBtn = document.getElementById('quiz-start-btn'), resetBtn = document.getElementById('quiz-reset-btn');
+                if(!intro) return;
                 let currentQuestionIndex = 0, totalScore = 0;
-                const loadQuestion = () => {
+                
+                function loadQuestion() {
                     const q = quizQuestions[currentQuestionIndex];
                     document.getElementById('current-question').textContent = q.question;
                     const optionsElem = document.getElementById('quiz-options');
                     optionsElem.innerHTML = '';
                     q.options.forEach(opt => {
                         const btn = document.createElement('button');
-                        btn.className = 'cta-button'; // Use the robust button class
+                        btn.className = 'button';
                         btn.textContent = opt.text;
                         btn.onclick = () => selectAnswer(opt.score);
                         optionsElem.appendChild(btn);
                     });
-                    document.getElementById('quiz-progress').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
-                };
-                const selectAnswer = (score) => { totalScore += score; currentQuestionIndex++; (currentQuestionIndex < quizQuestions.length) ? loadQuestion() : showQuizResult(); };
-                const showQuizResult = () => {
-                    quizQuestionsContainer.style.display = 'none'; quizResultsContainer.style.display = 'block';
-                    let cat = '', blurb = '';
-                    if (totalScore >= 8) { cat = "Queen of Green Flags!"; blurb = "Your radar is impeccable. Go forth and conquer!"; }
-                    else if (totalScore >= 5) { cat = "Seasoned Survivor"; blurb = "You've seen some things. Keep your wits about you!"; }
-                    else { cat = "Red-Flag Rookie"; blurb = "Bless your heart! Maybe read up on those 'warning signs.'"; }
-                    document.getElementById('quiz-category').textContent = cat; document.getElementById('quiz-blurb').textContent = blurb;
-                };
-                const startQuiz = () => { quizIntro.style.display = 'none'; quizQuestionsContainer.style.display = 'block'; quizResultsContainer.style.display = 'none'; currentQuestionIndex = 0; totalScore = 0; loadQuestion(); };
-                quizStartBtn.addEventListener('click', startQuiz); quizResetBtn.addEventListener('click', startQuiz);
+                }
+                function selectAnswer(score) {
+                    totalScore += score;
+                    currentQuestionIndex++;
+                    (currentQuestionIndex < quizQuestions.length) ? loadQuestion() : showResult();
+                }
+                function showResult() {
+                    questions.style.display = 'none';
+                    results.style.display = 'block';
+                    let category = '', blurb = '';
+                    if (totalScore >= 8) { category = "Queen of Green Flags!"; blurb = "Your radar is impeccable. Go forth and conquer!"; }
+                    else if (totalScore >= 5) { category = "Seasoned Survivor"; blurb = "You've seen some things. Keep your wits about you!"; }
+                    else { category = "Red-Flag Rookie"; blurb = "Bless your heart! Maybe read up on those 'warning signs.'"; }
+                    document.getElementById('quiz-category').textContent = category;
+                    document.getElementById('quiz-blurb').textContent = blurb;
+                }
+                function startQuiz() {
+                    intro.style.display = 'none';
+                    questions.style.display = 'block';
+                    results.style.display = 'none';
+                    currentQuestionIndex = 0;
+                    totalScore = 0;
+                    loadQuestion();
+                }
+                startBtn.addEventListener('click', startQuiz);
+                resetBtn.addEventListener('click', startQuiz);
             };
             quizLogic();
-            
-            // Other JS functions like mugshot gallery, bingo, etc. would go here.
-            // These have been omitted for brevity but are assumed to be the same as the last correct version.
+
+            // --- Bingo Logic ---
+            const bingoLogic = () => {
+                const bingoSquaresData = [ "Pawned family heirloom", "2 a.m. 'u up?' text", "Turned a date into a race", "Gave a date itinerary", "Dog needed 'emotional support'", "Brought weird kink items", "Sobbed over dessert", "Lied about owning a Dalí", "Bathtub full of newspapers" ];
+                const grid = document.querySelector('.bingo-grid'), message = document.getElementById('bingo-message'), resetBtn = document.getElementById('bingo-reset-btn');
+                if(!grid) return;
+
+                function initializeBingo() {
+                    grid.innerHTML = '';
+                    message.style.display = 'none';
+                    bingoSquaresData.forEach(text => {
+                        const square = document.createElement('div');
+                        square.className = 'bingo-square';
+                        square.textContent = text;
+                        square.addEventListener('click', () => {
+                            square.classList.toggle('is-checked');
+                            checkBingo();
+                        });
+                        grid.appendChild(square);
+                    });
+                }
+                function checkBingo() {
+                    const squares = Array.from(grid.children);
+                    const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
+                    const isBingo = winningCombos.some(combo => combo.every(index => squares[index].classList.contains('is-checked')));
+                    message.style.display = isBingo ? 'block' : 'none';
+                }
+                resetBtn.addEventListener('click', initializeBingo);
+                initializeBingo();
+            };
+            bingoLogic();
         });
     </script>
 </body>
