@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dacia Rising: The Bear's Awakening | Dark Epic Fantasy by Aleks Filmore</title>
+    <title>Dacia Rising: The Bear's Awakening | Enter a Mystical Ancient World</title>
     
-    <meta name="description" content="Dacia Rising: The Bear's Awakening is a dark epic fantasy novel by Aleks Filmore, merging ancient history, tribal magic, prophecy, and war.">
+    <meta name="description" content="Step into Dacia Rising: The Bear's Awakening. A dark epic fantasy by Aleks Filmore, where ancient magic, tribal prophecy, and wild nature intertwine in a world unknown.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* New CSS Variables for Dacia Rising Theme: Bold, Modern, Earthy Palette */
+        /* New CSS Variables for Dacia Rising Theme: Bold, Modern, Immersive Palette */
         :root {
-            --color-dark-bg: #0C0F12; /* Very dark blue-grey for main background */
-            --color-darker-bg: #1A1E24; /* Darker secondary background, almost black-blue */
-            --color-section-bg-light: #2B323C; /* A lighter dark tone for contrast sections */
-            --color-text-light: #F0F2F5; /* Near white for main text */
-            --color-text-muted: #A0A5AE; /* Muted grey for secondary text */
+            --color-deep-night: #0B0E11; /* Very dark, almost black-blue background */
+            --color-forest-dark: #1A2228; /* Dark, muted green-blue for sections/cards */
+            --color-stone-grey: #2F3742; /* A slightly lighter, cool grey for subtle contrast */
+            --color-text-light: #E8EDF2; /* Off-white for readability */
+            --color-text-muted: #A1AAB8; /* Softer grey for secondary text */
 
-            --color-primary-green: #34A853; /* A vibrant, strong forest green (new main accent) */
-            --color-primary-green-dark: #2A8C45; /* Darker green for hover states */
-            --color-gold-main: #FFD700; /* Pure, strong gold for titles and key highlights */
-            --color-gold-light: #FFE066; /* Lighter gold for subtle gleam */
-            --color-bronze-accent: #B87333; /* Earthy bronze/orange for accents */
-            --color-stone-grey: #6B778D; /* Muted blue-grey for subtle elements */
+            --color-primary-green: #34A853; /* Vibrant, strong forest green for CTAs & highlights */
+            --color-primary-green-dark: #2A8C45; /* Darker green for hover */
+            --color-gold-main: #FFD700; /* Pure gold for main titles, strong highlights */
+            --color-gold-light: #FFE066; /* Lighter gold for subtle glows */
+            --color-bronze-accent: #B87333; /* Earthy bronze for specific accents */
+            --color-ancient-stone: #6B778D; /* Muted blue-grey for elements hinting at stone */
         }
 
         html {
@@ -34,10 +34,10 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-dark-bg);
+            background-color: var(--color-deep-night);
             color: var(--color-text-light);
             line-height: 1.7;
-            overflow-x: hidden; /* Prevent horizontal scroll from overlapping elements */
+            overflow-x: hidden; /* Prevent horizontal scroll from any overflow */
         }
         .container {
             max-width: 1000px;
@@ -49,18 +49,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--color-darker-bg); /* Using darker bg for header */
+            background-color: var(--color-forest-dark); /* Darker green-blue for header */
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             position: sticky; /* Make header sticky */
             top: 0;
-            z-index: 100;
+            z-index: 1000; /* Ensure header is on top */
         }
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--color-gold-main); /* Gold logo */
-            text-decoration: none; /* Make logo a link */
+            color: var(--color-gold-main);
+            text-decoration: none;
             transition: color 0.3s ease;
         }
         .logo:hover {
@@ -77,36 +77,48 @@
             color: var(--color-primary-green);
         }
 
-        /* Hero Section */
+        /* Hero Section - The Immersive Portal */
         .hero {
             position: relative;
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%203.png'); /* Dramatic background image */
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%203.png'); /* Full-bleed background */
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 8rem 1.5rem; /* More padding for height */
+            padding: 0; /* No padding on hero itself, managed by content */
+            min-height: 100vh; /* Full viewport height */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 85vh; /* Make it very tall */
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            box-shadow: inset 0 -100px 50px -50px rgba(0,0,0,0.8); /* Fade to dark at bottom */
+            overflow: hidden; /* Crucial for overlays */
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.9); /* Subtle dark fade for depth */
         }
-        .hero-overlay {
+        .hero-overlay-top, .hero-overlay-bottom {
             position: absolute;
-            top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 50%, var(--color-dark-bg) 100%); /* More complex overlay */
-            z-index: 1;
+            z-index: 1; /* Below content */
+            pointer-events: none; /* Allow clicks to pass through */
         }
+        .hero-overlay-top {
+            top: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        }
+        .hero-overlay-bottom {
+            bottom: 0;
+            height: 70%;
+            background: linear-gradient(to top, var(--color-deep-night) 0%, rgba(0,0,0,0) 100%);
+        }
+        
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Above overlays */
             max-width: 900px;
+            padding: 2rem; /* Inner padding for content */
+            background-color: rgba(0,0,0,0.3); /* Subtle background for readability */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .hero .book-cover {
             width: 280px; /* Larger book cover */
@@ -188,19 +200,53 @@
             color: var(--color-gold-main);
         }
 
+        /* Scroll Prompt */
+        .scroll-prompt {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: var(--color-gold-light);
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+        .scroll-prompt .fa-chevron-down {
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+
         /* General Section Styling */
         .section {
             padding: 6rem 1.5rem; /* More vertical padding */
             text-align: center;
-            position: relative; /* For angled sections */
+            position: relative; /* For angled sections and internal positioning */
         }
         .section-dark {
-            background-color: var(--color-darker-bg);
+            background-color: var(--color-forest-dark);
             color: var(--color-text-light);
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3); /* Subtle internal shadow */
         }
         .section-light {
-            background-color: var(--color-section-bg-light); /* Lighter dark tone for contrast */
+            background-color: var(--color-stone-grey); /* Use a lighter cool grey for contrast */
             color: var(--color-text-light);
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
         }
         .section-title {
             font-size: 3rem; /* Larger section titles */
@@ -272,13 +318,13 @@
         .character-card:hover, .location-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            background-color: var(--color-section-bg-light); /* Slight background change on hover */
+            background-color: var(--color-stone-grey); /* Slight background change on hover */
         }
         .character-card img, .location-card img {
             width: 100%;
             max-width: 200px; /* Max width for images */
             height: auto;
-            border-radius: 50%; /* Round for characters, 8px for locations */
+            border-radius: 50%; /* Round for characters */
             margin-bottom: 1.5rem;
             object-fit: cover;
             border: 3px solid var(--color-primary-green); /* Green border for images */
@@ -313,7 +359,7 @@
             text-align: left;
         }
         .review-card {
-            background-color: var(--color-darker-bg);
+            background-color: var(--color-forest-dark);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
@@ -346,15 +392,15 @@
             letter-spacing: 0.5px;
         }
 
-        /* Final CTA (re-using general styles, but with specific color override) */
+        /* Final CTA Section */
         .final-cta-section .section-title {
-            color: var(--color-gold-main); /* Ensure it's gold for the final powerful statement */
+            color: var(--color-gold-main); /* Gold for the final powerful statement */
             border-bottom-color: var(--color-primary-green);
         }
 
         /* Footer */
         footer {
-            background-color: var(--color-dark-bg);
+            background-color: var(--color-deep-night);
             color: var(--color-text-muted);
             padding: 30px 20px;
             text-align: center;
@@ -464,7 +510,7 @@
                 letter-spacing: 0.5px;
             }
             .section-subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             .nav-links {
                 flex-direction: column;
@@ -507,7 +553,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Aleks Filmore</div>
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Aleks Filmore</a></div>
         <nav class="nav-links">
             <a href="index.html">Home</a>
             <a href="dacia-rising.html">Dacia Rising</a>
@@ -515,7 +561,9 @@
     </header>
 
     <section class="hero">
-        <div class="hero-overlay"></div>
+        <div class="hero-overlay-top"></div>
+        <div class="hero-overlay-bottom"></div>
+        
         <div class="hero-content">
             <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DACIA%20RISING.png" alt="Dacia Rising Book Cover" class="book-cover">
             <h1>Dacia Rising: The Bear’s Awakening</h1>
@@ -527,6 +575,11 @@
             <p class="short-hook">Before the empire rose, a forgotten people faced extinction.</p>
             <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
             <p class="formats-link">See all formats and editions</p>
+        </div>
+
+        <div class="scroll-prompt">
+            <p>Enter the World</p>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
@@ -573,7 +626,7 @@
         <div class="container">
             <h2 class="section-title">The Circle That Stands with Sarion</h2>
             <div class="text-block" style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid var(--color-primary-accent); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid var(--color-primary-green); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
                 <h3 style="font-size: 1.8rem; color: var(--color-gold-light); margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
                 <p style="font-size: 1rem; color: var(--color-text-light); max-width: 600px; margin: 0 auto 3rem auto;">
                     Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes. Guided by the old teachings of Zalmoxis and armed with little more than a hunter’s instinct, he must rise as protector, leader, and symbol. But the fog is thick, and darkness moves unseen.
@@ -643,7 +696,7 @@
                 <p>
                     You’ll feel the drums of war in your chest, smell the sacred smoke, and stand shoulder to shoulder with warriors who know that to survive, one must not just fight—but remember.
                 </p>
-                <h3 style="color: var(--color-warm-accent-light); margin-top: 2rem;">If you crave:</h3>
+                <h3 style="color: var(--color-gold-light); margin-top: 2rem;">If you crave:</h3>
                 <ul>
                     <li>Epic fantasy romance amid tribal conflict</li>
                     <li>Battle-worn heroes with ancient scars</li>
@@ -651,7 +704,7 @@
                     <li>Kindle Unlimited fantasy series with emotional grit</li>
                     <li>A new mythos that <strong>isn’t</strong> just elves and dragons</li>
                 </ul>
-                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--color-warm-accent-dark);">Then this is your next great saga.</p>
+                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--color-gold-main);">Then this is your next great saga.</p>
             </div>
         </div>
     </section>
@@ -695,7 +748,7 @@
         </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-dark final-cta-section">
         <div class="container">
             <h2 class="section-title">The Call of Dacia Awaits—Will You Answer?</h2>
             <p class="section-subtitle">Prepare to follow the Bear’s Mark. Begin the journey today.</p>
