@@ -89,16 +89,26 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            /* Start all content layers hidden by default, JS will manage display/opacity */
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 1s; 
         }
-
-        /* Layer 0: The Gate */
-        .gate {
-            background-color: var(--color-obsidian-black);
+        /* Override for Layer 0 to be visible initially */
+        #layer0 {
+            opacity: 1;
+            visibility: visible;
             position: fixed; /* Fixed so it covers everything initially */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1001; /* Above header initially */
+            transition: opacity 1.5s ease-out, visibility 1.5s, transform 1.5s;
+        }
+
+        /* Layer 0: The Gate Specifics */
+        .gate {
+            background-color: var(--color-obsidian-black);
         }
         .gate-content {
             position: relative;
@@ -214,22 +224,26 @@
             background-color: transparent; /* No background on content block here */
             box-shadow: none; /* No box-shadow on content block here */
         }
-        #layer1 .section-title, #layer1 .section-subtitle, #layer1 .text-block, #layer1 .cta-button {
-            opacity: 0; /* Hidden initially for animation */
+        /* Animations for layer1 content (triggered by JS adding 'animate' class) */
+        .layer-animate .section-title, 
+        .layer-animate .section-subtitle, 
+        .layer-animate .text-block, 
+        .layer-animate .cta-button {
+            opacity: 0; /* Hidden initially */
             transform: translateY(20px);
             animation-fill-mode: forwards;
         }
 
-        #layer1 .section-title {
+        .layer-animate .section-title {
             animation: fadeInSlideUp 1s ease-out forwards 0.5s;
         }
-        #layer1 .section-subtitle {
+        .layer-animate .section-subtitle {
             animation: fadeInSlideUp 1s ease-out forwards 1s;
         }
-        #layer1 .text-block {
+        .layer-animate .text-block {
             animation: fadeInSlideUp 1s ease-out forwards 1.5s;
         }
-        #layer1 .cta-button {
+        .layer-animate .cta-button {
             animation: fadeInSlideUp 1s ease-out forwards 2s;
         }
 
@@ -727,11 +741,10 @@
             header.style.opacity = '0';
             header.style.transition = 'opacity 1s ease-in';
 
-            // Initially hide all content layers
+            // Initially set content layers to be hidden via JS, for progressive display
             contentLayers.forEach(layer => {
-                layer.style.display = 'none'; // Ensure they are hidden
+                layer.style.display = 'none'; // Ensure they are hidden initially
                 layer.style.opacity = '0';    // For fade-in animation
-                layer.style.transition = 'opacity 1s ease-in-out';
             });
 
             // Handle Layer 0 entry
@@ -753,7 +766,8 @@
                     if (contentLayers[0]) {
                         contentLayers[0].style.display = 'flex'; // Change display to make it visible
                         setTimeout(() => {
-                            contentLayers[0].style.opacity = '1'; // Start fade-in
+                            contentLayers[0].style.opacity = '1'; // Trigger fade-in
+                            contentLayers[0].classList.add('layer-animate'); // Add class to trigger inner animations for layer1
                         }, 50); // Small delay to ensure display:flex takes effect before opacity transition
                     }
                 }, 1000); // Wait for Layer 0 to start its animation
@@ -777,9 +791,10 @@
                         // If you want sections to reveal only once, uncomment next line:
                         // observer.unobserve(entry.target); 
                     } else if (!entry.isIntersecting && entry.target.style.opacity === '1' && entry.target.id !== 'layer0') {
-                        // Optional: Hide sections that scroll fully out of view to save resources or for specific effects
+                        // Optional: Hide sections that scroll fully out of view to save resources
+                        // This makes layers disappear as you scroll past them, useful for very long pages
                         // entry.target.style.opacity = '0';
-                        // entry.target.style.display = 'none'; // Hide completely
+                        // entry.target.style.display = 'none'; 
                     }
                 });
             }, observerOptions);
