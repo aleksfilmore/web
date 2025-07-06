@@ -17,7 +17,7 @@
             /* Backgrounds & Text */
             --color-obsidian-black: #0B0E11; /* Deepest black for seamless transitions */
             --color-forest-deep: #12181D; /* Primary background for most sections */
-            --color-stone-dark: #2C343D; /* Slightly lighter dark for contrast elements */
+            --color-stone-dark: #2C343D; /* A slightly lighter, cool grey for subtle contrast */
             --color-text-white: #F8F9FA; /* Pure white for main text readability */
             --color-text-light-grey: #C7CDD4; /* Lighter grey for secondary text */
 
@@ -189,6 +189,51 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
         @keyframes button-fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Layer 1: The Prophecy Awakes Specific Styling */
+        #layer1 {
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); /* Misty mountains with light */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* For overlays */
+        }
+        #layer1::before { /* Overlay to darken and transition */
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--color-forest-deep) 70%);
+            z-index: 1;
+        }
+        #layer1 .layer-content {
+            z-index: 2; /* Content above overlay */
+            padding-top: 5rem; /* Adjust padding for visual balance */
+            padding-bottom: 5rem;
+            background-color: transparent; /* No background on content block here */
+            box-shadow: none; /* No box-shadow on content block here */
+        }
+        #layer1 .section-title, #layer1 .section-subtitle, #layer1 .text-block, #layer1 .cta-button {
+            opacity: 0; /* Hidden initially for animation */
+            transform: translateY(20px);
+            animation-fill-mode: forwards;
+        }
+
+        #layer1 .section-title {
+            animation: fadeInSlideUp 1s ease-out forwards 0.5s;
+        }
+        #layer1 .section-subtitle {
+            animation: fadeInSlideUp 1s ease-out forwards 1s;
+        }
+        #layer1 .text-block {
+            animation: fadeInSlideUp 1s ease-out forwards 1.5s;
+        }
+        #layer1 .cta-button {
+            animation: fadeInSlideUp 1s ease-out forwards 2s;
+        }
+
+        @keyframes fadeInSlideUp {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
@@ -388,10 +433,10 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            .gate-text {
+            .gate-text { /* Specific to Layer 0 intro */
                 font-size: 1.5rem;
             }
-            .gate-cta-button {
+            .gate-cta-button { /* Specific to Layer 0 intro */
                 font-size: 1.1rem;
                 padding: 1rem 2.5rem;
             }
@@ -543,7 +588,7 @@
         </div>
     </section>
 
-    <section class="layer section-dark" id="layer1" style="display: none;">
+    <section class="layer section-dark" id="layer1">
         <div class="container layer-content">
             <h2 class="section-title">The Prophecy Awakes</h2>
             <p class="section-subtitle">
@@ -568,7 +613,7 @@
         </div>
     </section>
 
-    <section class="layer section-light" id="layer2" style="display: none;">
+    <section class="layer section-light" id="layer2">
         <div class="container layer-content">
             <h2 class="section-title">Meet the Circle</h2>
             <p class="section-subtitle">The Bearer of the Mark and those who stand with him.</p>
@@ -591,7 +636,7 @@
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Cairos.png" alt="Cairos">
                     <h3>Cairos</h3>
-                    <p>Stoic and unbreakable, this Mountain Tribe warrior carries the weight of a people long forgotten by peace. His carved spear speaks for him.</p>
+                    <p>Stoic and unbreakable, Cairos of the Mountain Tribe carries the weight of a people long forgotten by peace. His carved spear speaks for him.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Eldorin.png" alt="Eldorin">
@@ -602,7 +647,7 @@
         </div>
     </section>
 
-    <section class="layer section-dark" id="layer3" style="display: none;">
+    <section class="layer section-dark" id="layer3">
         <div class="container layer-content">
             <h2 class="section-title">The Dacian Villages</h2>
             <p class="section-subtitle">Forged by Faith, Bound by Honor – The Spirit of Dacia Lives On</p>
@@ -615,7 +660,7 @@
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Mountain%20Tribe.png" alt="Mountain Village">
                     <h3>The Mountain Village</h3>
-                    <p>A stronghold of warriors and blacksmiths, where iron meets oath and ancient chants rise with the morning smoke.</p>
+                    <p>Built into the raw bones of the earth, a stronghold of warriors and blacksmiths. Where iron meets oath and ancient chants rise with the morning smoke.</p>
                 </div>
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Forest%20Tribe.png" alt="Forest Village">
@@ -631,7 +676,7 @@
         </div>
     </section>
 
-    <section class="layer section-dark" id="layer4" style="display: none; background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); background-size: cover; background-position: center;">
+    <section class="layer section-dark" id="layer4" style="background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); background-size: cover; background-position: center;">
         <div class="hero-overlay-top" style="background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);"></div>
         <div class="hero-overlay-bottom" style="background: linear-gradient(to top, var(--color-forest-deep) 0%, rgba(0,0,0,0) 100%);"></div>
         <div class="container layer-content" style="max-width: 800px;">
@@ -644,9 +689,9 @@
         </div>
     </section>
 
-    <section class="layer section-dark" id="layer5" style="display: none; background-color: var(--color-obsidian-black);">
+    <section class="layer section-dark" id="layer5" style="background-color: var(--color-obsidian-black);">
         <div class="container layer-content" style="max-width: 600px;">
-            <div class="spiral-glyph" style="width: 120px; height: 120px; margin-bottom: 2rem;"></div>
+            <div class="spiral-glyph" style="width: 120px; height: 120px; margin-bottom: 2rem; border-color: var(--color-gold-ancient); box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);"></div>
             <h2 class="section-title" style="color: var(--color-gold-ancient); font-size: 2.8rem; border-bottom: none;">Claim Your Legacy</h2>
             <p class="section-subtitle" style="font-size: 1.4rem;">
                 "Not all who enter remember. But those who do... carry the fire forward."
@@ -731,7 +776,7 @@
                         // If you want sections to reveal only once, uncomment next line:
                         // observer.unobserve(entry.target); 
                     } else if (!entry.isIntersecting && entry.target.style.display !== 'none' && entry.target.id !== 'layer0') {
-                        // Optional: Hide sections that scroll fully out of view to save resources or for specific effects
+                        // Optional: Hide sections that scroll fully out of view to save resources
                         // entry.target.style.opacity = '0';
                         // entry.target.style.display = 'none';
                     }
