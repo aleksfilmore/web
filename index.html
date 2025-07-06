@@ -36,15 +36,15 @@
         }
         .container {
             max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
         }
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
         .section-header h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: 2.5rem;
             font-weight: 900;
             margin: 0 0 0.5rem 0;
         }
@@ -66,11 +66,11 @@
             to { background-position: 100% center; }
         }
 
-        /* --- Buttons --- */
+        /* --- Stable Button Style --- */
         .button {
             display: inline-block;
             background-color: var(--wb-red);
-            color: white;
+            color: white !important;
             padding: 0.8rem 1.8rem;
             border: none;
             border-radius: 8px;
@@ -78,14 +78,23 @@
             font-size: 1rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-align: center;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
         .button:hover {
             background-color: #c44a28;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
+        .button:active {
+            transform: translateY(0);
+        }
+        .button-secondary {
+            background-color: var(--wb-teal);
+        }
+        .button-secondary:hover {
+            background-color: #055a6a;
+        }
+
 
         /* --- Header --- */
         header {
@@ -93,7 +102,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--wb-cream);
         }
 
         /* --- Hero --- */
@@ -102,13 +110,15 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 2rem;
-            padding: 4rem 1.5rem 6rem;
+            padding: 2rem 1.5rem 4rem;
             text-align: center;
         }
         .hero-content {
             flex: 1 1 500px;
         }
-        .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+        .hero p { max-width: 500px; margin: 0 auto 1.5rem; }
+        
         .hero-image {
             flex: 1 1 300px;
             max-width: 300px;
@@ -149,7 +159,6 @@
             animation: marquee 90s linear infinite;
         }
         .marquee-track span {
-            display: inline-block;
             padding: 0 2rem;
             font-weight: 700;
         }
@@ -162,7 +171,10 @@
         .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
         .dark { background-color: var(--wb-dark-teal); }
         .teal { background-color: var(--wb-teal); }
-
+        .about-author { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; }
+        .about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+        .about-author div { flex: 1; min-width: 300px; }
+        
         /* --- Mugshot Gallery --- */
         .mugshot-gallery {
             display: grid;
@@ -176,6 +188,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             cursor: pointer;
+            text-align: center;
         }
         .mugshot-card img {
             display: block; width: 100%; height: 250px; object-fit: cover;
@@ -186,7 +199,7 @@
         }
         .mugshot-info { padding: 1rem; }
         .mugshot-info h3 { margin: 0 0 0.5rem 0; }
-        .mugshot-charge { display: none; font-style: italic; opacity: 0.8; }
+        .mugshot-charge { display: none; font-style: italic; opacity: 0.8; font-size: 0.9rem; }
         .mugshot-card.is-revealed .mugshot-charge { display: block; }
         
         /* --- Quiz & Bingo --- */
@@ -203,6 +216,7 @@
             width: 100%;
             margin: 0.5rem 0;
             background-color: var(--wb-teal);
+            text-align: left;
         }
         .bingo-grid {
             display: grid;
@@ -218,13 +232,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .bingo-square:hover { transform: scale(1.05); }
         .bingo-square.is-checked { background: var(--rainbow-gradient); color: white; }
+
+        /* --- Footer --- */
+        footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; }
+        .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; text-decoration: none; }
+        .footer-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+        .footer-links a { color: var(--wb-cream); text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -237,13 +255,18 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
-                    <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
-                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
-                        <input type="email" name="email" placeholder="Your email for updates..." required>
-                        <button type="submit" class="button">Notify Me</button>
-                    </form>
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+                    <div class="hero-content">
+                        <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
+                        <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+                        <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
+                            <input type="email" name="email" placeholder="Your email for updates..." required>
+                            <button type="submit" class="button">Notify Me</button>
+                        </form>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
+                    </div>
                 </div>
             </div>
         </section>
@@ -258,7 +281,7 @@
                     <h2 class="rainbow-text">Inside the Chaos</h2>
                 </div>
                 <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> <b class="rainbow-text">“relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.</p>
+                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> and <b class="rainbow-text">“relatable.”</b><br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b>, dissected with deadpan honesty and queer fury.</p>
                 </div>
             </div>
         </section>
@@ -284,11 +307,11 @@
                         <button id="quiz-start-btn" class="button">Start Quiz</button>
                     </div>
                     <div id="quiz-questions" style="display: none;">
-                        <h3 id="current-question"></h3>
+                        <h3 id="current-question" style="margin-bottom: 1.5rem;"></h3>
                         <div id="quiz-options" class="quiz-options"></div>
                     </div>
                     <div id="quiz-results" style="display: none;">
-                        <h3 id="quiz-category"></h3>
+                        <h3 id="quiz-category" class="rainbow-text"></h3>
                         <p id="quiz-blurb"></p>
                         <button id="quiz-reset-btn" class="button">Retake Quiz</button>
                     </div>
@@ -304,17 +327,48 @@
                 </div>
                 <div class="interactive-container">
                     <div class="bingo-grid"></div>
-                    <p id="bingo-message" style="display:none; font-weight: 700;" class="rainbow-text">BINGO!</p>
+                    <p id="bingo-message" style="display:none; font-weight: 700; font-size: 1.5rem;" class="rainbow-text">BINGO!</p>
                     <button id="bingo-reset-btn" class="button">Reset Bingo</button>
                 </div>
             </div>
         </section>
+
+        <section class="section light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About the Author</h2>
+                </div>
+                <div class="about-author">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore">
+                    <div>
+                        <h3>Aleks Filmore</h3>
+                        <p>Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="https://aleksfilmore.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                <a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Marquee Builder ---
-            const reviews = [ { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" }, { name: "Gerald", text: "“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.”" }, { name: "J.L.G.", text: "“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.”" } ];
+            const reviews = [ { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" }, { name: "Gerald", text: "“If you've ever been ghosted, this book helps you laugh through the heartbreak.”" }, { name: "J.L.G.", text: "“Mixes sharp humor with gentle lessons on self‑respect.”" } ];
             const reviewTrack = document.querySelector('.marquee-track');
             if (reviewTrack) {
                 const fullTrackContent = [...reviews, ...reviews, ...reviews, ...reviews].map(r => `<span>★★★★★ ${r.text} – ${r.name}</span>`).join('');
@@ -323,7 +377,7 @@
 
             // --- Mugshot Gallery Builder ---
             const mugshotData = [
-                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub—said showers are 'for gym people.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer because my 'dewy glow' mattered more than my feelings.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic,' lived two streets away.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Treated mini golf like the Olympics—trash-talked children on the next lane.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }
+                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort,' watched static instead of fetching the remote.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }
             ];
             const gallery = document.querySelector('.mugshot-gallery');
             if (gallery) {
