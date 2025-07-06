@@ -17,7 +17,7 @@
             /* Backgrounds & Text */
             --color-obsidian-black: #0B0E11; /* Deepest black for seamless transitions */
             --color-forest-deep: #12181D; /* Primary background for most sections */
-            --color-stone-dark: #2C343D; /* A slightly lighter, cool grey for subtle contrast */
+            --color-stone-dark: #2C343D; /* A slightly lighter, cool grey for contrast elements */
             --color-text-white: #F8F9FA; /* Pure white for main text readability */
             --color-text-light-grey: #C7CDD4; /* Lighter grey for secondary text */
 
@@ -56,7 +56,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: opacity 0.5s ease-in-out; /* For JS fade-in */
+            opacity: 0; /* Hidden initially, shown by JS */
+            transition: opacity 1s ease-in-out;
         }
         .logo {
             font-weight: bold;
@@ -82,34 +83,33 @@
         /* === Layer Styling === */
         .layer {
             min-height: 100vh; /* Each layer takes full viewport height */
-            display: flex;
+            display: flex; /* Always flex so content is centered */
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
-            /* Start all content layers hidden by default, JS will manage display/opacity */
+            /* Default for content layers (Layer 1 onwards) */
             opacity: 0; 
-            visibility: hidden;
-            transition: opacity 1s ease-in-out, visibility 1s; 
+            pointer-events: none; /* Prevents interaction when hidden */
+            transition: opacity 1s ease-in-out; 
         }
-        /* Override for Layer 0 to be visible initially */
+        /* Specific for Layer 0 to be fixed and initially visible */
         #layer0 {
-            opacity: 1;
-            visibility: visible;
-            position: fixed; /* Fixed so it covers everything initially */
+            background-color: var(--color-obsidian-black);
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1001; /* Above header initially */
+            z-index: 1001; /* Above all initially */
+            opacity: 1; /* Starts visible */
+            visibility: visible;
+            pointer-events: auto; /* Allow clicks on gate */
             transition: opacity 1.5s ease-out, visibility 1.5s, transform 1.5s;
         }
 
         /* Layer 0: The Gate Specifics */
-        .gate {
-            background-color: var(--color-obsidian-black);
-        }
         .gate-content {
             position: relative;
             z-index: 2;
@@ -209,6 +209,7 @@
             background-size: cover;
             background-position: center;
             position: relative; /* For overlays */
+            background-attachment: fixed; /* Parallax effect */
         }
         #layer1::before { /* Overlay to darken and transition */
             content: '';
@@ -735,45 +736,62 @@
             const header = document.getElementById('main-header');
             const layer0 = document.getElementById('layer0');
             const enterBtn = document.getElementById('enter-dacia-btn');
-            const contentLayers = document.querySelectorAll('.layer:not(#layer0)'); // All layers after Layer 0
+            // Get all layers *including* Layer 0 for comprehensive management
+            const allLayers = document.querySelectorAll('.layer');
 
-            // Hide header initially
+            // Set initial state for all layers via JS to ensure consistency
+            allLayers.forEach(layer => {
+                if (layer.id === 'layer0') {
+                    layer.style.opacity = '1';
+                    layer.style.visibility = 'visible';
+                    layer.style.pointerEvents = 'auto';
+                } else {
+                    layer.style.opacity = '0';
+                    layer.style.visibility = 'hidden'; // Hide fully
+                    layer.style.pointerEvents = 'none';
+                    layer.style.position = 'absolute'; // Position absolute to stack them without taking space
+                    layer.style.width = '100%';
+                    layer.style.top = '0';
+                    layer.style.left = '0';
+                }
+            });
+
+            // Hide header initially (it's part of the main document flow now)
             header.style.opacity = '0';
             header.style.transition = 'opacity 1s ease-in';
 
-            // Initially set content layers to be hidden via JS, for progressive display
-            contentLayers.forEach(layer => {
-                layer.style.display = 'none'; // Ensure they are hidden initially
-                layer.style.opacity = '0';    // For fade-in animation
-            });
+            // Prevent scrolling on Layer 0 initially
+            document.body.style.overflowY = 'hidden';
 
             // Handle Layer 0 entry
             enterBtn.addEventListener('click', () => {
-                layer0.style.opacity = '0'; // Fade out Layer 0
+                // Fade out Layer 0 and remove from flow
+                layer0.style.opacity = '0';
                 layer0.style.visibility = 'hidden';
-                layer0.style.pointerEvents = 'none'; /* Disable interaction */
-                layer0.style.transition = 'opacity 1.5s ease-out, visibility 1.5s, transform 1.5s';
-                layer0.style.transform = 'translateY(-100vh)'; // Slide up slightly as it fades
-
-                document.body.style.overflowY = 'scroll'; // Enable scrolling for content
+                layer0.style.pointerEvents = 'none';
+                layer0.style.transform = 'translateY(-100vh)'; /* Slide up slightly as it fades */
+                
+                // Allow scrolling after Layer 0 starts disappearing
+                document.body.style.overflowY = 'scroll';
                 header.style.opacity = '1'; // Show header
 
-                // Show Layer 1 after Layer 0 has started fading
+                // After Layer 0 is gone, bring Layer 1 into normal flow and animate
                 setTimeout(() => {
-                    layer0.style.display = 'none'; // Fully remove Layer 0 from flow
+                    layer0.style.display = 'none'; // Completely remove Layer 0 from rendering flow
                     
-                    // Display Layer 1 and trigger its fade-in
-                    if (contentLayers[0]) {
-                        contentLayers[0].style.display = 'flex'; // Change display to make it visible
-                        setTimeout(() => {
-                            contentLayers[0].style.opacity = '1'; // Trigger fade-in
-                            contentLayers[0].classList.add('layer-animate'); // Add class to trigger inner animations for layer1
-                        }, 50); // Small delay to ensure display:flex takes effect before opacity transition
+                    // Restore position and make visible for Layer 1
+                    if (allLayers[1]) { // Assuming layer1 is the second element in allLayers
+                        allLayers[1].style.position = 'relative'; // Restore normal flow
+                        allLayers[1].style.visibility = 'visible';
+                        allLayers[1].style.pointerEvents = 'auto'; // Re-enable interaction
+                        allLayers[1].style.opacity = '1'; // Fade in Layer 1
+                        allLayers[1].classList.add('layer-animate'); // Trigger inner animations
                     }
-                }, 1000); // Wait for Layer 0 to start its animation
+                }, 1500); // Match Layer 0's transition duration
             });
 
             // Intersection Observer for revealing subsequent layers on scroll
+            // This now observes layers 2 through 5, which are positioned absolutely
             const observerOptions = {
                 root: null, // relative to the viewport
                 rootMargin: '0px',
@@ -782,24 +800,30 @@
 
             const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // Check if it's intersecting AND currently hidden (opacity 0)
-                    if (entry.isIntersecting && entry.target.style.opacity === '0') {
-                        entry.target.style.display = 'flex'; // Ensure flex layout is applied before fading
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1'; // Trigger fade-in
-                        }, 50); // Small delay to allow 'display' change to render
-                        // If you want sections to reveal only once, uncomment next line:
-                        // observer.unobserve(entry.target); 
-                    } else if (!entry.isIntersecting && entry.target.style.opacity === '1' && entry.target.id !== 'layer0') {
-                        // Optional: Hide sections that scroll fully out of view to save resources
-                        // This makes layers disappear as you scroll past them, useful for very long pages
-                        // entry.target.style.opacity = '0';
-                        // entry.target.style.display = 'none'; 
+                    // Only apply to content layers that are not Layer 0
+                    if (entry.target.id !== 'layer0') {
+                        if (entry.isIntersecting) {
+                            // When a layer enters view, make it visible and interactive
+                            entry.target.style.position = 'relative'; // Restore to normal flow
+                            entry.target.style.visibility = 'visible';
+                            entry.target.style.pointerEvents = 'auto'; // Enable interaction
+                            entry.target.style.opacity = '1'; // Fade in
+                            entry.target.classList.add('layer-animate'); // Trigger inner animations
+                            // If you want sections to reveal only once, uncomment: observer.unobserve(entry.target);
+                        } else {
+                            // Optional: Hide sections that scroll fully out of view to save resources
+                            // This will make them disappear as you scroll past them
+                            // You might or might not want this effect
+                            // entry.target.style.opacity = '0';
+                            // entry.target.visibility = 'hidden';
+                            // entry.target.pointerEvents = 'none';
+                            // entry.target.position = 'absolute'; // Collapse space
+                        }
                     }
                 });
             }, observerOptions);
 
-            // Observe all content layers (Layer 1 to Layer 5)
+            // Observe all content layers from Layer 1 onwards
             contentLayers.forEach(layer => {
                 sectionObserver.observe(layer);
             });
