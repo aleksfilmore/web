@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dacia Rising: The Bear's Awakening | Dark Epic Fantasy by Aleks Filmore</title>
+    
+    <meta name="description" content="Dacia Rising: The Bear's Awakening is a dark epic fantasy novel by Aleks Filmore, merging ancient history, tribal magic, prophecy, and war.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0e0f; /* Dark background for epic fantasy */
+            color: #d4d4d4; /* Light text for dark background */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #202022; /* Darker header */
+            border-bottom: 1px solid #333;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffc19c; /* Lighter color for logo */
+        }
+        .nav-links a {
+            color: #d4d4d4;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #f35b4e;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/587fb8d782f6c0dd33c30a28500e9059a579c4bb/DACIA%20RISING.png'); /* Book cover as background initially */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 70vh; /* Make it tall */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)); /* Dark overlay */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero .book-cover {
+            width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .hero .book-cover:hover {
+            transform: scale(1.03);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffc19c; /* Matches your accent color */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+        .hero h2 { /* Tagline */
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #ffa711; /* Another accent color */
+        }
+        .hero .author-line {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #d4d4d4;
+        }
+        .hero .rating {
+            font-size: 1rem;
+            color: #f35b4e; /* Red for emphasis */
+            margin-bottom: 1.5rem;
+        }
+        .hero .star {
+            color: gold;
+            font-size: 1.1rem;
+        }
+        .hero .short-hook {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+        .hero .cta-button {
+            background-color: #f35b4e;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px; /* Pill shape */
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .hero .cta-button:hover {
+            background-color: #d14a3d;
+            transform: translateY(-2px);
+        }
+        .formats-link {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-top: 1rem;
+        }
+        .formats-link a {
+            color: #ffa711;
+            text-decoration: underline;
+        }
+
+        /* General Section Styling */
+        .section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        .section-dark {
+            background-color: #1a1a1c;
+            color: #d4d4d4;
+        }
+        .section-light {
+            background-color: #202022;
+            color: #e0e0e0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            color: #ffc19c;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #f35b4e;
+            padding-bottom: 0.5rem;
+            display: inline-block; /* To make border-bottom fit content */
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #ffa711;
+            margin-bottom: 2.5rem;
+        }
+        .text-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1.1rem;
+            color: #d4d4d4;
+        }
+        .text-block strong {
+            color: #ffa711;
+        }
+        .text-block ul {
+            list-style-type: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+        .text-block ul li {
+            position: relative;
+            padding-left: 25px; /* Space for custom bullet */
+            margin-bottom: 0.8rem;
+        }
+        .text-block ul li::before {
+            content: '✦'; /* Custom bullet */
+            color: #f35b4e;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+        
+        /* Character & Location Showcase Grids */
+        .character-grid, .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .character-card, .location-card {
+            background-color: #1a1a1c;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .character-card:hover, .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        .character-card img, .location-card img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+            border: 2px solid #ffc19c;
+        }
+        .character-card h3, .location-card h3 {
+            font-size: 1.4rem;
+            color: #ffc19c;
+            margin-bottom: 0.5rem;
+        }
+        .character-card p, .location-card p {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+        .review-card {
+            background-color: #1a1a1c;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .review-card .stars {
+            color: gold;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .review-card p {
+            font-size: 1rem;
+            color: #d4d4d4;
+            margin-bottom: 1rem;
+        }
+        .review-card .reviewer {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ffc19c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d0e0f;
+            color: #b0b0b0;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        footer a {
+            color: #ffc19c;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #f35b4e;
+        }
+        .footer-social-links {
+            margin-bottom: 15px;
+        }
+        .footer-social-links a {
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .hero .book-cover {
+                width: 200px;
+            }
+            .hero .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            .character-grid, .location-grid, .reviews-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+            .character-card img, .location-card img {
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .nav-links a {
+                margin: 0;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .text-block {
+                font-size: 1rem;
+            }
+            .character-card, .location-card, .review-card {
+                padding: 1rem;
+            }
+            .character-card h3, .location-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Aleks Filmore</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dacia-rising.html">Dacia Rising</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="https://raw.githubusercontent.com/aleksfilmore/web/587fb8d782f6c0dd33c30a28500e9059a579c4bb/DACIA%20RISING.png" alt="Dacia Rising Book Cover" class="book-cover">
+            <h1>Dacia Rising: The Bear’s Awakening</h1>
+            <h2>A Dark Epic Fantasy of Tribal Magic, Prophecy, and War</h2>
+            <p class="author-line">by Aleks Filmore (Author)</p>
+            <p class="rating">
+                <span class="star">★★★★★</span> 4.7 out of 5 stars (5)
+            </p>
+            <p class="short-hook">Before the empire rose, a forgotten people faced extinction.</p>
+            <a href="https://a.co/d/g34g4gd" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
+            <p class="formats-link">See all formats and editions</p>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Step Into the Ancient World of Dacia</h2>
+            <p class="section-subtitle">Where Legends Are Forged and Spirits Roam</p>
+            <div class="text-block">
+                <p>
+                    Set in the shadow of Rome’s brutal expansion, <strong>Dacia Rising: The Bear’s Awakening</strong> is the first novel in a sweeping fantasy trilogy that merges ancient history, tribal myth, and a rising tide of war and destiny.
+                </p>
+                <p>
+                    As legions approach and Dacian villages burn, Sarion, a reluctant warrior with a mysterious lineage, is thrust into leadership. Marked by a prophecy no one dares speak aloud, he must unite the warring tribes, confront betrayal from within, and awaken a long-lost power whispered in the sacred fires of the Bear.
+                </p>
+                <p>
+                    Haunted by ancestral spirits, pursued by Roman scouts, and tested by trials both human and supernatural, Sarion’s journey takes him from the cursed mountain temples of Kogaionon to the blood-soaked lowlands where legends were born—and empires die.
+                </p>
+                <p>
+                    Within the folds of this ancient land, magic is not a force of spells, but a spiritual reckoning. The gods whisper in dreams, the dead speak in wind, and the land itself remembers what was taken.
+                </p>
+            </div>
+            <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Dacia.jpg" alt="Panoramic view of Dacia landscape" style="width: 100%; max-width: 900px; margin-top: 3rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">What Awaits You Inside This Book</h2>
+            <div class="text-block" style="text-align: center;">
+                <ul>
+                    <li>A <strong>high fantasy saga</strong> filled with gritty battles, dream-visions, and spirit-forged weapons</li>
+                    <li>Rich <strong>worldbuilding rooted in Eastern European myth</strong> and ancient tribal lore</li>
+                    <li>A cast of warriors, seers, traitors, and haunted heroes caught in a struggle for cultural survival</li>
+                    <li>Themes of brotherhood, identity, loyalty, and spiritual awakening</li>
+                    <li>Supernatural elements that feel ancient, raw, and deeply tied to the land</li>
+                    <li>A slow-burn <strong>romantic tension</strong> woven through warfare, grief, and fate</li>
+                    <li>For fans of <strong>The Witcher, The Poppy War, The Song of Achilles</strong>, and myth-heavy historical fantasy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">The Circle That Stands with Sarion</h2>
+            <div class="text-block" style="text-align: center;">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid #f35b4e; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <h3 style="font-size: 1.8rem; color: #ffc19c; margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
+                <p style="font-size: 1rem; color: #d4d4d4; max-width: 600px; margin: 0 auto 3rem auto;">
+                    Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes. Guided by the old teachings of Zalmoxis and armed with little more than a hunter’s instinct, he must rise as protector, leader, and symbol. But the fog is thick, and darkness moves unseen.
+                </p>
+            </div>
+            <div class="character-grid">
+                <div class="character-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Amara.png" alt="Amara">
+                    <h3>Amara</h3>
+                    <p>A fierce archer of the Lowlands Tribe, Amara’s loyalty is as unshakable as her aim. Her sharp wit and fire-hearted courage steady Sarion when the world tilts, and her bow never trembles in the face of danger.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Zibeltha.png" alt="Zibeltha">
+                    <h3>Zibeltha</h3>
+                    <p>High Priestess of the Lowlands, Zibeltha wields the sacred wisdom of Zalmoxis with quiet power. Her silver gaze pierces illusion, and her staff anchors prophecy in the mortal realm. She is more than a guide—she is the memory of the gods.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Cairos.png" alt="Cairos">
+                    <h3>Cairos</h3>
+                    <p>Stoic and unbreakable, Cairos of the Mountain Tribe carries the weight of a people long forgotten by peace. His carved spear speaks for him, a legacy etched in war and endurance. In silence, he holds the line.</p>
+                </div>
+                <div class="character-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Eldorin.png" alt="Eldorin">
+                    <h3>Eldorin</h3>
+                    <p>Eldorin walks the edge between worlds—forest priest, mystic, and soul-bonded to a silver-eyed wolf. His chants stir old powers, and his visions draw maps where no roads exist. Where others falter, he listens to the trees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">From Lowlands to the River</h2>
+            <p class="section-subtitle">The Tribes that Rise Together</p>
+            <div class="location-grid">
+                <div class="location-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Lowlands%20Village.jpg" alt="Lowlands Village">
+                    <h3>The Lowlands Village</h3>
+                    <p>Cradled by rolling hills and open skies, the Lowlands Village is the heart of prophecy and spiritual tradition. Bathed in morning mist and silence, this is where visions stir, choices echo, and the spirit of the old gods still speaks.</p>
+                </div>
+                <div class="location-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Mountain%20Tribe.jpg" alt="Mountain Village">
+                    <h3>The Mountain Village</h3>
+                    <p>Built into the raw bones of the earth, the Mountain Village is a stronghold of warriors and blacksmiths. Surrounded by cliffs and pine, it is where iron meets oath—and where ancient chants rise with the morning smoke.</p>
+                </div>
+                <div class="location-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/Forest%20Tribe.jpg" alt="Forest Village">
+                    <h3>The Forest Village</h3>
+                    <p>Hidden beneath towering trees, the Forest Village lives in rhythm with root and rain. Druids whisper to leaves, children learn the names of herbs, and wolves walk beside the wise.</p>
+                </div>
+                <div class="location-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5e22f3733169865e2682c7a0087e59be005bb2df/DaciaRising/River%20Dava.jpg" alt="River Dava">
+                    <h3>The River Dava</h3>
+                    <p>A crescent of commerce and celebration, the River Dava flows with stories, markets, and bloodlines. Traders and spies walk its docks, while the sacred arena bears witness to pacts sealed in water and fire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Why This Story Matters</h2>
+            <div class="text-block" style="text-align: center;">
+                <p>
+                    Dacia Rising is more than a sword-and-sorcery adventure—it’s a tribute to forgotten ancestors, lost histories, and the power of storytelling to reclaim cultural identity. As the tribes of Dacia face erasure, their stories rise in defiance, inked in blood, fire, and prophecy.
+                </p>
+                <p>
+                    You’ll feel the drums of war in your chest, smell the sacred smoke, and stand shoulder to shoulder with warriors who know that to survive, one must not just fight—but remember.
+                </p>
+                <h3 style="color: #ffc19c; margin-top: 2rem;">If you crave:</h3>
+                <ul>
+                    <li>Epic fantasy romance amid tribal conflict</li>
+                    <li>Battle-worn heroes with ancient scars</li>
+                    <li>Prophecies etched in bone and spirit</li>
+                    <li>Kindle Unlimited fantasy series with emotional grit</li>
+                    <li>A new mythos that <strong>isn’t</strong> just elves and dragons</li>
+                </ul>
+                <p style="margin-top: 2rem; font-size: 1.2rem; color: #ffa711;">Then this is your next great saga.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">Top Reviews</h2>
+            <p class="section-subtitle">What readers are saying</p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Highly recommend!</strong></p>
+                    <p>Dacia Rising – The Bear’s Awakening completely surprised me, in the best way. I picked it up looking for something fresh in the fantasy genre, and this book delivered a gritty, emotional, and myth-rich world that felt totally different from the usual elves-and-castles stuff.</p>
+                    <p class="reviewer">- Grissel</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★☆</div>
+                    <p><strong>Atmospheric, fresh take on fantasy</strong></p>
+                    <p>This book definitely stands out from most fantasy I’ve read lately. The setting, the myth, the spiritual layer to the magic—it’s all super atmospheric and feels really different from the usual medieval-fantasy-with-dragons formula. I loved the focus on Dacian culture and how grounded everything felt in ancient land and tradition. It’s raw, intense, and very dreamlike in places.</p>
+                    <p class="reviewer">- iamkireina</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Epic, Mystical, and Totally Unique</strong></p>
+                    <p>A gripping dive into ancient times like I’ve never seen before. The mix of myth, prophecy, and tribal intrigue pulls you in fast. If you're into epic worldbuilding with a spiritual twist, this one's a gem.</p>
+                    <p class="reviewer">- Elise</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Great book!</strong></p>
+                    <p>I really loved this book! I felt like I was right there with Sarion, fighting for Dacia. If you love ancient history and fantasy, this book is for you!</p>
+                    <p class="reviewer">- Dorin</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Hope there is a sequel!!</strong></p>
+                    <p>As someone that is interested in ancient cultures, this fantasy book is very well written and there is a very good portrayal of Dacian culture and their ancient customs and traditions, I really hope the sequel comes out soon!</p>
+                    <p class="reviewer">- F.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffa711;">The Call of Dacia Awaits—Will You Answer?</h2>
+            <p class="section-subtitle">Prepare to follow the Bear’s Mark. Begin the journey today.</p>
+            <a href="https://a.co/d/g34g4gd" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div>
+            <a href="https://aleksfilmore.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+        </div>
+    </footer>
+</body>
+</html>
