@@ -188,6 +188,10 @@
             animation: none; /* Remove initial fade-in, as overlay will handle visual impact */
             position: relative; /* Allow positioning children relative to this */
             margin: 0 auto; /* Center it */
+            /* NEW: Ensure children stack vertically */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center children horizontally within the column */
         }
         .book-cover-main {
             width: 240px;
