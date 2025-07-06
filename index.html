@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500 });
+      if (localStorage.getItem('cookies_accepted') === 'true') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        gtag('config', 'G-W9B5W1241H');
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
@@ -30,247 +41,99 @@
             line-height: 1.6;
         }
 
-        /* --- Global Styles --- */
-        .container {
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 1.5rem;
-        }
-        .section {
-            padding: 5rem 1.5rem;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-header h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            font-weight: 900;
-            margin: 0 0 0.5rem 0;
-        }
-        .section-header p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        .rainbow-text {
-            background: var(--rainbow-gradient);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow-flow 4s ease-in-out infinite alternate;
-        }
-        @keyframes rainbow-flow {
-            from { background-position: 0% center; }
-            to { background-position: 100% center; }
-        }
+        .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 1.5rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 900; margin: 0 0 0.5rem 0; }
+        .section-header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+        .rainbow-text { background: var(--rainbow-gradient); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbow-flow 4s ease-in-out infinite alternate; }
+        @keyframes rainbow-flow { from { background-position: 0% center; } to { background-position: 100% center; } }
 
-        /* --- Button Style --- */
-        .button {
-            display: inline-block;
-            background-color: var(--wb-red);
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        .button:hover {
-            background-color: #c44a28;
-            transform: translateY(-2px);
-        }
+        .button { display: inline-block; background-color: var(--wb-red); color: white; padding: 0.8rem 1.8rem; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; }
+        .button:hover { background-color: #c44a28; transform: translateY(-2px); }
+        .button:active { transform: translateY(0); }
 
-        /* --- Header --- */
-        header {
-            padding: 1rem 1.5rem;
-        }
-
-        /* --- Hero --- */
-        .hero {
-            padding: 2rem 1.5rem 4rem;
-        }
-        .hero-grid {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
-            text-align: center;
-        }
-        .hero-content {
-            flex: 1 1 500px;
-        }
+        header { padding: 1rem 1.5rem; background-color: var(--wb-dark-teal); }
+        
+        .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; padding: 4rem 1.5rem 6rem; position: relative; }
+        .hero-content { flex: 1 1 500px; text-align: center; z-index: 2; }
         .hero h1 { font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
         .hero p { max-width: 500px; margin: 0 auto 1.5rem; font-size: 1.25rem; }
-        
-        .hero-image {
-            flex: 1 1 300px;
-            max-width: 300px;
-            margin: 2rem auto 0;
-        }
-        .book-cover {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        .book-cover:hover {
-            transform: scale(1.05);
-        }
-        .hero-form {
-            display: flex;
-            max-width: 400px;
-            margin: 1.5rem auto 0;
-        }
-        .hero-form input {
-            flex-grow: 1; padding: 0.8rem; border: 1px solid var(--wb-teal);
-            border-radius: 8px 0 0 8px; background: rgba(0,0,0,0.2); color: white; font-size: 1rem;
-        }
-        .hero-form button {
-            border-radius: 0 8px 8px 0;
-        }
-        @media (min-width: 768px) {
-            .hero-grid { text-align: left; }
-            .hero-content { order: 1; }
+        .hero-image { flex: 1 1 300px; max-width: 300px; margin: 2rem auto 0; perspective: 1000px; }
+        .book-cover { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transform: rotateY(-15deg) rotateX(5deg); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .hero-image:hover .book-cover { transform: rotateY(0deg) rotateX(0deg) scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .hero-form { display: flex; max-width: 400px; margin: 1.5rem auto 0; }
+        .hero-form input { flex-grow: 1; padding: 0.8rem; border: 1px solid var(--wb-teal); border-radius: 8px 0 0 8px; background: rgba(0,0,0,0.2); color: white; font-size: 1rem; }
+        .hero-form button { border-radius: 0 8px 8px 0; }
+        @media (min-width: 900px) {
+            .hero-content { text-align: left; }
             .hero-image { order: 2; margin-top: 0; }
             .hero-form { margin-left: 0; }
         }
 
-        /* --- Marquee --- */
-        .marquee {
-            background-color: var(--wb-teal);
-            color: white;
-            padding: 1rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .marquee-track {
-            display: inline-block;
-            animation: marquee 90s linear infinite;
-        }
-        .marquee-track span {
-            padding: 0 2rem;
-            font-weight: 700;
-        }
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
+        .disaster-flicker-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; pointer-events: none; }
+        .flicker-text { position: absolute; color: var(--wb-cream); font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 8px rgba(247, 220, 170, 0.7); opacity: 0; animation: flickerEffect 8s infinite ease-in-out; }
+        @keyframes flickerEffect { 0%, 100% { opacity: 0; } 5%, 15% { opacity: 1; } 20% { opacity: 0; } }
 
-        /* --- Sections --- */
-        .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
-        .dark { background-color: var(--wb-dark-teal); }
-        .teal { background-color: var(--wb-teal); }
-        .about-author { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; text-align: center; }
-        .about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
-        .about-author div { flex: 1; min-width: 300px; text-align: left;}
+        .marquee { color: white; padding: 1rem 0; overflow: hidden; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); animation: rainbow-bg-flow 15s linear infinite alternate; }
+        @keyframes rainbow-bg-flow { 0% { background-color: var(--rainbow-1); } 25% { background-color: var(--rainbow-4); } 50% { background-color: var(--rainbow-3); } 75% { background-color: var(--rainbow-5); } 100% { background-color: var(--rainbow-1); } }
+        .marquee-track { display: inline-block; animation: marquee 60s linear infinite; white-space: nowrap; }
+        .marquee-track span { display: inline-flex; align-items: center; padding: 0 2rem; font-weight: 700; }
+        .marquee-track img { width: 30px; height: 30px; border-radius: 50%; margin-right: 0.75rem; border: 2px solid white; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .light-section { background-color: var(--wb-cream); color: var(--wb-text-dark); }
+        .dark-section { background-color: var(--wb-dark-teal); }
+        .teal-section { background-color: var(--wb-teal); }
         
-        /* --- Mugshot Gallery --- */
-        .mugshot-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-        }
+        .inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
+        .dangerous { text-decoration: underline; }
+
+        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
         @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-        .mugshot-card {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .mugshot-card-img {
-            display: block;
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            filter: grayscale(1);
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-        .mugshot-card:hover .mugshot-card-img {
-            filter: grayscale(0);
-            transform: scale(1.05);
-        }
-        .mugshot-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem 1rem 1rem;
-            color: white;
-            text-align: center;
-        }
-        .mugshot-overlay h3 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        .mugshot-charge {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0;
-            max-height: 0;
-            transition: opacity 0.3s ease, max-height 0.3s ease;
-        }
-        .mugshot-card.is-revealed .mugshot-charge {
-            opacity: 1;
-            max-height: 100px; /* Allow space for text */
-        }
+        .mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .mugshot-card:hover .mugshot-card-img { filter: grayscale(0); transform: scale(1.05); }
+        .mugshot-card-img { display: block; width: 100%; height: 250px; object-fit: cover; filter: grayscale(1); transition: filter 0.3s ease, transform 0.3s ease; }
+        .mugshot-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1rem 1rem; color: white; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+        .mugshot-overlay h3 { margin: 0; font-size: 1.2rem; }
+        .mugshot-charge { margin-top: 0.5rem; font-size: 0.9rem; font-style: italic; opacity: 0; max-height: 0; transition: opacity 0.3s ease, max-height 0.3s ease; }
+        .mugshot-card.is-revealed .mugshot-charge { opacity: 1; max-height: 100px; }
         
-        /* --- Quiz & Bingo --- */
-        .interactive-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--wb-dark-teal);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .quiz-options .button {
-            display: block;
-            width: 100%;
-            margin: 0.5rem 0;
-            background-color: var(--wb-teal);
-            text-align: left;
-        }
-        .bingo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .bingo-square {
-            background-color: var(--wb-teal);
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+        .interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: center; }
+        .dark .interactive-container { background-color: var(--wb-dark-teal); }
+        .teal .interactive-container { background-color: var(--wb-teal); }
+        
+        .quiz-options .button { display: block; width: 100%; margin: 0.5rem 0; background-color: var(--wb-teal); text-align: left; }
+        .quiz-options .button:hover { background-color: var(--rainbow-4); }
+
+        .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .bingo-square { background-color: var(--wb-teal); border-radius: 8px; padding: 1rem; min-height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
+        .bingo-square:hover { transform: scale(1.05); }
         .bingo-square.is-checked { background: var(--rainbow-gradient); color: white; }
 
-        /* --- Footer --- */
+        .about-author { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; text-align: center; }
+        .about-author img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+        .about-author-text { flex: 1; min-width: 300px; text-align: left; }
+        @media (max-width: 600px) { .about-author-text { text-align: center; } }
+
         footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; }
         .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; text-decoration: none; }
         .footer-links { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
         .footer-links a { color: var(--wb-cream); text-decoration: underline; }
+        
+        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--wb-dark-teal); padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; color: var(--wb-cream); cursor: pointer; }
+
+        .cookie-banner { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--wb-dark-teal); padding: 1rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; z-index: 1001; border-top: 1px solid var(--wb-teal); }
+        .cookie-banner.show { display: flex; }
     </style>
 </head>
 <body>
 
     <header class="container">
         <div class="logo">Aleks Filmore</div>
+        <div class="tagline">Queer Stories. Real Chaos.</div>
     </header>
 
     <main>
@@ -279,15 +142,18 @@
                 <div class="hero-content">
                     <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
                     <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+                    <p class="signup-prompt">Sign up for the secret chapter & audiobook launch notification!</p>
                     <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
-                        <input type="email" name="email" placeholder="Your email for updates..." required>
+                        <input type="email" name="email" placeholder="Your email..." required>
                         <button type="submit" class="button">Notify Me</button>
                     </form>
                 </div>
                 <div class="hero-image">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
+                    <a href="https://a.co/d/j2SrpJl" class="button" target="_blank" rel="noopener noreferrer" style="margin-top: 1.5rem;">Available on Amazon</a>
                 </div>
             </div>
+            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="marquee">
@@ -299,8 +165,8 @@
                 <div class="section-header">
                     <h2 class="rainbow-text">Inside the Chaos</h2>
                 </div>
-                <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> and <b class="rainbow-text">“relatable.”</b><br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b>, dissected with deadpan honesty and queer fury.</p>
+                <div class="inside-chaos-text">
+                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,”</b> <b class="rainbow-text">“relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>This isn’t self-help. It’s <b class="rainbow-text">self-defense</b>, wrapped in poetic rage and brutal punchlines. Every chapter is a <b class="rainbow-text">red flag parade</b> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury.<br><br>You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
                 </div>
             </div>
         </section>
@@ -315,13 +181,13 @@
             </div>
         </section>
 
-        <section class="section teal">
+        <section class="section teal-section">
             <div class="container">
                  <div class="section-header">
                     <h2>Red Flag Meter</h2>
                     <p>Think you're a red flag pro? Test your dating survival instincts!</p>
                 </div>
-                <div class="interactive-container">
+                <div class="interactive-container" style="background-color: var(--wb-dark-teal);">
                     <div id="quiz-intro">
                         <button id="quiz-start-btn" class="button">Start Quiz</button>
                     </div>
@@ -338,13 +204,13 @@
             </div>
         </section>
 
-        <section class="section dark">
+        <section class="section dark-section">
             <div class="container">
                 <div class="section-header">
                     <h2>Bad Date Bingo</h2>
                     <p>Ever had a date so bad, it felt like a game? Check off your experiences.</p>
                 </div>
-                <div class="interactive-container">
+                <div class="interactive-container" style="background-color: var(--wb-teal);">
                     <div class="bingo-grid"></div>
                     <p id="bingo-message" style="display:none; font-weight: 700; font-size: 1.5rem;" class="rainbow-text">BINGO!</p>
                     <button id="bingo-reset-btn" class="button">Reset Bingo</button>
@@ -374,12 +240,31 @@
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Cookie Policy</a>
+                <a href="#" id="open-contact-modal">Contact Me</a>
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span id="close-modal" class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Contact Me</h2>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
+                <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);">
+                <textarea name="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream);"></textarea>
+                <button type="submit" class="button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p style="margin: 0;">This website uses cookies to improve your experience.</p>
+        <button id="accept-cookies" class="button">Accept</button>
+    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -397,7 +282,7 @@
 
             // Mugshot Gallery Builder
             const mugshotData = [
-                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled plans because the dog 'needed support.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Did burpees over the picnic blanket.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a spreadsheet of my flaws.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer for his 'dewy glow.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Trash-talked children at mini golf.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" }
+                { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled plans because the dog 'needed support.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Did burpees over the picnic blanket.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a spreadsheet of my flaws.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer for his 'dewy glow.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Trash-talked children at mini golf.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' in Google Calendar.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" }
             ];
             const gallery = document.querySelector('.mugshot-gallery');
             if (gallery) {
@@ -480,17 +365,28 @@
                     });
                 }
                 function checkBingo() {
-                    // Simplified check for demonstration
-                    if (grid.querySelectorAll('.is-checked').length >= 3) {
-                         message.style.display = 'block';
-                    } else {
-                        message.style.display = 'none';
-                    }
+                    const squares = Array.from(grid.children);
+                    const winningCombos = [ [0,1,2], [3,4,5], [6,7,8], [9,10,11], [0,3,6,9], [1,4,7,10], [2,5,8,11] ];
+                    const isBingo = winningCombos.some(combo => combo.every(index => squares[index] && squares[index].classList.contains('is-checked')));
+                    message.style.display = isBingo ? 'block' : 'none';
                 }
                 resetBtn.addEventListener('click', initializeBingo);
                 initializeBingo();
             };
             bingoLogic();
+
+            // Modal and Cookie Logic
+            const contactModal = document.getElementById('contact-modal'), openBtn = document.getElementById('open-contact-modal'), closeBtn = document.getElementById('close-modal');
+            if(openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
+            if(closeBtn) closeBtn.addEventListener('click', () => { contactModal.style.display = 'none'; });
+            window.addEventListener('click', (e) => { if (e.target === contactModal) { contactModal.style.display = 'none'; } });
+
+            const cookieBanner = document.getElementById('cookie-banner'), acceptBtn = document.getElementById('accept-cookies');
+            if(cookieBanner && !localStorage.getItem('cookies_accepted')) { cookieBanner.classList.add('show'); }
+            if(acceptBtn) acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookies_accepted', 'true');
+                cookieBanner.classList.remove('show');
+            });
         });
     </script>
 </body>
