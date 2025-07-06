@@ -20,7 +20,7 @@
           'ad_storage': 'granted'
         });
         // Also configure GA immediately if consent was already given
-        gtag('config', 'G-W9B5W1241H'); // Configure GA only if consent is granted
+        gtag('config', 'G-W9B5W1241H');
       }
     </script>
     <meta charset="UTF-8" />
@@ -34,45 +34,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* New CSS Variables for The Worst Boyfriends Ever - Inspired by the new cover */
+        :root {
+            /* New Base Colors inspired by the cover */
+            --new-main-bg: #21354F; /* Deep Petrol Blue - main background for many sections */
+            --new-lighter-bg: #2B4463; /* Slightly lighter blue for contrast sections/cards */
+            --new-text-light: #F0F5F9; /* Off-white for main text */
+            --new-text-muted: #B0C4D9; /* Muted light blue for secondary text */
+
+            /* New Accent Colors - from muted rainbow & broken heart */
+            --new-rainbow-teal: #074755; /* User-provided Teal */
+            --new-rainbow-red: #e05b38; /* User-provided Red */
+            --new-rainbow-orange: #E08D43; /* Muted orange from previous palette (adjust as needed) */
+            --new-rainbow-blue: #5C87B2; /* Muted blue from previous palette (adjust as needed) */
+            --new-rainbow-green: #6AA84F; /* Muted green from previous palette (adjust as needed) */
+
+
+            /* Brand-specific for buttons/highlights, derived from above */
+            --new-cta-button-bg: var(--new-rainbow-teal); /* Teal button */
+            --new-cta-button-hover: #053640; /* Darker teal for button hover */
+            --new-cringe-highlight: var(--new-rainbow-red); /* Red for cringe index/accents */
+            --new-announcement-bar-bg: #1A2C40; /* Darker blue for announcement bar */
+        }
+
+
         html {
             scroll-behavior: smooth;
         }
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif; /* Ensure Inter is base font */
-            background-color: #fff2db;
-            color: #000;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--new-main-bg); /* Use new main background */
+            color: var(--new-text-light); /* Use new light text */
         }
         header {
             padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #ffc19c;
+            background-color: var(--new-lighter-bg); /* Use new lighter background */
         }
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            font-family: 'Inter', sans-serif; /* Explicitly set for logo */
+            color: var(--new-text-light); /* Logo color */
         }
         .tagline {
             font-size: 0.9rem;
-            font-family: 'Inter', sans-serif; /* Explicitly set for tagline */
+            color: var(--new-text-muted); /* Tagline color */
         }
         
         /* ============== CORRECTED ANNOUNCEMENT BAR STYLES (FADE ANIMATION) ============== */
         .announcement-bar {
-            background-color: #208e92;
-            color: #fff;
+            background-color: var(--new-announcement-bar-bg); /* New announcement bar background */
+            color: var(--new-text-light);
             text-align: center;
             padding: 0.75rem 1rem;
-            position: relative; /* Required for absolute positioning of children */
-            height: 42px; /* Set a fixed height to prevent layout shifts */
+            position: relative;
+            height: 42px;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
         }
         .announcement-item {
             display: flex;
@@ -81,7 +105,6 @@
             align-items: center;
             line-height: 1.3;
             font-size: 0.9rem;
-            /* Fade animation setup */
             position: absolute;
             width: 100%;
             opacity: 0;
@@ -95,7 +118,7 @@
             transform: translateY(0);
         }
         .announcement-item strong {
-            color: #ffa711;
+            color: var(--new-rainbow-orange); /* Strong color from new palette */
         }
         .announcement-item small {
             font-size: 0.7rem;
@@ -108,12 +131,12 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            background: url('https://raw.githubusercontent.com/aleksfilmore/web/88f6a754ba665a887e597a2e66169e19ea0db7e3/brush.png') top right/cover no-repeat, #f35b4e;
+            background: var(--new-main-bg); /* New main background */
             padding: 2.5rem 1.5rem;
-            color: white;
+            color: var(--new-text-light); /* Hero text color */
             animation: fadeHero 1.2s ease-in;
-            position: relative; /* Essential for positioning overlay */
-            overflow: hidden; /* Hide anything that goes beyond boundaries */
+            position: relative;
+            overflow: hidden;
         }
         @keyframes fadeHero {
             0% { opacity: 0; transform: translateY(20px); }
@@ -132,7 +155,8 @@
             letter-spacing: 1px;
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
+            color: var(--new-text-light); /* Headline color */
         }
         .hero h1 span {
             display: block;
@@ -142,7 +166,8 @@
             font-size: 1.4rem;
             margin-bottom: 1.5rem;
             font-weight: 500;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
+            color: var(--new-text-light); /* Paragraph color */
         }
         .hero-form {
             display: flex;
@@ -156,19 +181,21 @@
             border-radius: 4px;
             font-size: 0.9rem;
             transition: box-shadow 0.3s ease-in-out;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
+            background-color: var(--new-lighter-bg); /* Input background */
+            color: var(--new-text-light); /* Input text color */
         }
         .hero-form input[type="email"]:focus {
-            box-shadow: 0 0 5px rgba(255, 167, 17, 0.7);
+            box-shadow: 0 0 5px var(--new-rainbow-blue); /* Focus color */
             outline: none;
         }
         .hero-form input::placeholder {
             font-style: italic;
-            color: #999;
+            color: var(--new-text-muted); /* Placeholder color */
         }
         .hero-form button {
-            background-color: #ffa711;
-            color: #000;
+            background-color: var(--new-cta-button-bg); /* CTA button background */
+            color: var(--new-text-light); /* CTA button text */
             font-weight: bold;
             border: none;
             border-radius: 4px;
@@ -176,38 +203,37 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
         }
         .hero-form button:hover {
-            background-color: #ffb733;
+            background-color: var(--new-cta-button-hover); /* CTA button hover */
         }
         .hero-image {
             flex: 1;
             min-width: 250px;
             text-align: center;
-            animation: none; /* Remove initial fade-in, as overlay will handle visual impact */
-            position: relative; /* Allow positioning children relative to this */
-            margin: 0 auto; /* Center it */
-            /* NEW: Ensure children stack vertically */
+            animation: none;
+            position: relative;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center children horizontally within the column */
+            align-items: center;
         }
         .book-cover-main {
             width: 240px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             border-radius: 6px;
             transition: transform 0.3s ease;
-            position: relative; /* Ensure it stacks above the flicker overlay if needed */
-            z-index: 2; /* Keep book cover on top */
-            transform: rotate(-3deg); /* Slight initial tilt for character */
+            position: relative;
+            z-index: 2;
+            transform: rotate(-3deg);
         }
         .book-cover-main:hover {
             transform: rotate(-2deg) scale(1.05);
         }
         .buy-btn {
-            background: white;
-            color: #f35b4e;
+            background: var(--new-lighter-bg); /* Button background */
+            color: var(--new-text-light); /* Button text color */
             padding: 0.6rem 1.1rem;
             font-weight: bold;
             border-radius: 5px;
@@ -216,11 +242,16 @@
             margin-top: 1rem;
             font-size: 0.85rem;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease;
         }
+        .buy-btn:hover {
+            background-color: var(--new-rainbow-blue); /* Hover color */
+        }
+
         .marquee-reviews {
-            background: linear-gradient(to right, #f35b4e, #ffc19c);
-            color: #000;
+            background: linear-gradient(to right, var(--new-main-bg), var(--new-lighter-bg)); /* New gradient */
+            color: var(--new-text-light);
             padding: 0.75rem;
             overflow: hidden;
             white-space: nowrap;
@@ -230,643 +261,233 @@
         }
         .marquee-reviews::before,
         .marquee-reviews::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 30px;
-            height: 100%;
-            z-index: 1;
-        }
-        .marquee-reviews::before {
-            left: 0;
-            background: linear-gradient(to right, #f35b4e, transparent);
+            background: linear-gradient(to right, var(--new-main-bg), transparent); /* Match gradient ends */
         }
         .marquee-reviews::after {
-            right: 0;
-            background: linear-gradient(to left, #ffc19c, transparent);
-        }
-        .review-track {
-            display: inline-block;
-            min-width: 300%;
-            animation: marquee 150s linear infinite;
+            background: linear-gradient(to left, var(--new-lighter-bg), transparent); /* Match gradient ends */
         }
         .review-track span {
-            display: inline-block;
-            padding: 0 2rem;
-            font-size: 0.85rem;
-            font-weight: bold;
-            white-space: nowrap;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
         }
         .star {
             color: gold;
-            font-size: 0.85rem;
-            margin-right: 0.2rem;
-            letter-spacing: -1px;
         }
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
-        }
-        /* START New/Modified Styles for Interactive Sections */
+
         .section-header {
-            font-size: 1.5rem;
-            text-align: center;
-            margin: 2rem auto 0.5rem;
-            font-weight: bold;
-            color: #f35b4e;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Inter', sans-serif; /* Consistent font for titles */
+            color: var(--new-cringe-highlight); /* Red for section titles */
         }
         .section-subheader {
-            text-align: center;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            color: #333;
-            font-family: 'Inter', sans-serif; /* Consistent font for subtitles */
+            color: var(--new-text-muted); /* Subheader color */
         }
 
         /* Mugshot Gallery Styles */
-        .mugshot-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
-            max-width: 1200px; /* Adjust as needed */
-            margin: 0 auto 1rem auto; /* Adjusted margin */
-        }
         .mugshot-card {
-            background-color: #ffc19c;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease-in-out;
-            height: 200px; /* Fixed height for consistency */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding-bottom: 1rem;
-            box-sizing: border-box;
-        }
-        .mugshot-card:hover {
-            transform: translateY(-5px);
+            background-color: var(--new-lighter-bg); /* Card background */
         }
         .mugshot-card-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(80%) blur(2px); /* Stylized mugshot effect */
-            transition: filter 0.3s ease;
+            filter: grayscale(80%) blur(2px) brightness(0.8); /* Darker, moodier mugshot effect */
         }
         .mugshot-card:hover .mugshot-card-img {
-            filter: grayscale(0%) blur(0px); /* Clear on hover */
+            filter: grayscale(0%) blur(0px) brightness(1); /* Clear on hover */
         }
         .mugshot-card-title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            z-index: 2; /* Above the image */
-            transition: opacity 0.3s ease;
-            font-family: 'Inter', sans-serif; /* Consistent font */
-        }
-        .mugshot-card.revealed .mugshot-card-title {
-            opacity: 0; /* Hide title when charge is shown */
+            color: var(--new-text-light); /* Title color */
         }
         .mugshot-card-charge {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(243, 91, 78, 0.9); /* Red overlay */
-            color: white;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(100%);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-            box-sizing: border-box;
-            z-index: 3;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-cringe-highlight); /* Red for charge overlay */
         }
-        .mugshot-card.revealed .mugshot-card-charge {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .thermometer {
+            background: var(--new-main-bg); /* Thermometer background */
+        }
+        .thermometer-fill {
+            background: linear-gradient(to right, var(--new-rainbow-blue), var(--new-cringe-highlight)); /* Rainbow gradient for fill */
+        }
+        .thermometer-label {
+            color: var(--new-text-light); /* Thermometer label */
+        }
+        .cringe-info {
+            color: var(--new-text-muted); /* Cringe info text */
         }
 
         /* Red Flag Quiz Styles */
         .quiz-container {
-            max-width: 700px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background-color: #f35b4e;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            color: white;
-            text-align: center;
-        }
-        .quiz-question {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-            line-height: 1.3;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-main-bg); /* Quiz container background */
+            color: var(--new-text-light);
         }
         .quiz-options button {
-            display: block;
-            width: 90%;
-            margin: 0.75rem auto;
-            padding: 1rem 1.5rem;
-            background-color: #ffc19c;
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            text-align: left;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-lighter-bg); /* Quiz button background */
+            color: var(--new-text-light);
         }
         .quiz-options button:hover {
-            background-color: #ffa711;
-            transform: translateY(-2px);
-        }
-        .quiz-options button:active {
-            transform: translateY(0);
-        }
-        .quiz-progress {
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
-            opacity: 0.8;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-rainbow-blue); /* Quiz button hover */
         }
         .quiz-result {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ffa711;
-            background-color: rgba(0,0,0,0.2);
-            padding: 1rem;
-            border-radius: 10px;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-rainbow-orange); /* Quiz result text */
+            background-color: var(--new-lighter-bg); /* Result background */
         }
         .quiz-result p {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #fff2db;
-            margin-top: 0.5rem;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-muted); /* Result paragraph */
         }
         #quiz-start-btn, #quiz-reset-btn {
-            background-color: #ffa711;
-            color: #000;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 1.5rem;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-cta-button-bg); /* Quiz start/reset button */
+            color: var(--new-text-light);
         }
         #quiz-start-btn:hover, #quiz-reset-btn:hover {
-            background-color: #ffb733;
+            background-color: var(--new-cta-button-hover);
         }
         
         /* Bad Date Bingo Styles */
         .bingo-container {
-            max-width: 600px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background-color: #208e92;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            color: white;
-            text-align: center;
-        }
-        .bingo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Default for larger screens */
-            gap: 10px;
-            margin-top: 1.5rem;
+            background-color: var(--new-main-bg); /* Bingo container background */
+            color: var(--new-text-light);
         }
         .bingo-square {
-            background-color: #ffc19c;
-            color: #000;
-            padding: 1rem;
-            border-radius: 8px;
-            min-height: 100px; /* Ensure squares are visible */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-lighter-bg); /* Bingo square background */
+            color: var(--new-text-light);
         }
         .bingo-square:hover:not(.checked) {
-            background-color: #ffa711;
-            transform: translateY(-2px);
+            background-color: var(--new-rainbow-blue); /* Bingo square hover */
         }
         .bingo-square.checked {
-            background-color: #f35b4e;
-            color: white;
-            text-decoration: line-through;
-            opacity: 0.8;
-            transform: scale(0.98);
+            background-color: var(--new-cringe-highlight); /* Checked bingo square */
+            color: var(--new-text-light);
         }
         .bingo-message {
-            margin-top: 2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ffa711;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-rainbow-orange); /* Bingo message */
         }
         #bingo-reset-btn {
-            background-color: #ffa711;
-            color: #000;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 1.5rem;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-cta-button-bg); /* Bingo reset button */
+            color: var(--new-text-light);
         }
         #bingo-reset-btn:hover {
-            background-color: #ffb733;
+            background-color: var(--new-cta-button-hover);
         }
 
-        /* END New/Modified Styles */
-
-        /* START New styles for Book Purchase Section */
         .book-purchase-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem; /* Space between text and button */
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background-color: #fff2db; /* Matches section background */
+            background-color: var(--new-main-bg); /* Book purchase background */
         }
         .book-formats-info {
-            text-align: center;
-            font-size: 1.1rem; /* Larger font */
-            font-weight: bold; /* Make it bold */
-            color: #333; /* Darker color for emphasis */
-            line-height: 1.5;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-muted); /* Book formats info */
         }
-        /* END New styles for Book Purchase Section */
-
         .cta-button {
-            display: block;
-            width: fit-content;
-            margin: 0 auto; /* Removed top/bottom margin, now handled by gap in parent */
-            padding: 1rem 2rem;
-            background: #208e92;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: background 0.3s ease;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background: var(--new-cta-button-bg); /* CTA button background */
+            color: var(--new-text-light);
         }
         .cta-button:hover {
-            background: #176f72;
+            background: var(--new-cta-button-hover);
         }
+
         .audiobook-promo {
-            background-color: #208e92;
-            background-image: url('https://www.transparenttextures.com/patterns/wavecut.png');
-            color: #ffffff;
-            text-align: center;
-            padding: 4rem 1.5rem;
-            position: relative;
-            overflow: hidden;
+            background-color: var(--new-lighter-bg); /* Audiobook promo background */
+            background-image: none; /* Remove old texture */
+            color: var(--new-text-light);
         }
         .audiobook-promo h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            margin: 0 0 1rem 0;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-light); /* Audiobook title */
         }
         .audiobook-promo p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            line-height: 1.6;
-            color: #fff2db;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-muted); /* Audiobook paragraph */
         }
         .audiobook-promo .audio-icon {
-            font-size: 4rem;
-            color: #ffa711;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 15px rgba(255, 167, 17, 0.5);
-        }
-        .audiobook-promo .platforms {
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            color: var(--new-rainbow-orange); /* Audio icon color */
         }
         .audiobook-promo .platforms span {
-            font-size: 1rem;
-            font-weight: bold;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-light); /* Platforms text */
         }
         .audiobook-promo .platforms i {
-            font-size: 2.5rem;
-            transition: transform 0.3s ease;
-        }
-        .audiobook-promo .platforms i:hover {
-            transform: scale(1.1);
+            color: var(--new-rainbow-blue); /* Platform icons */
         }
         .audiobook-promo .audio-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: #ffa711;
-            color: #000;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-cta-button-bg); /* Audio CTA button */
+            color: var(--new-text-light);
         }
         .audiobook-promo .audio-cta:hover {
-            background-color: #ffb733;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            background-color: var(--new-cta-button-hover);
         }
+
         .about-section {
-            padding: 3rem 1.5rem;
-            background-color: #ffc19c;
-            text-align: center;
-        }
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .about-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: var(--new-main-bg); /* About section background */
         }
         .about-text h2 {
-            font-size: 2rem;
-            color: #f35b4e;
-            margin: 0 0 1rem 0;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-rainbow-blue); /* About title */
         }
         .about-text p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-            text-align: center; /* Centered author bio text */
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-muted); /* About paragraph */
         }
         footer {
-            background-color: #f35b4e;
-            color: #fff2db;
-            padding: 40px 20px;
-            text-align: center;
+            background-color: var(--new-lighter-bg); /* Footer background */
+            color: var(--new-text-muted);
         }
         .footer-social-links a {
-            color: #ffffff;
-            font-size: 28px;
-            margin: 0 15px;
-            text-decoration: none;
-            transition: transform 0.3s ease, opacity 0.3s;
+            color: var(--new-text-light); /* Footer social links */
         }
         .footer-social-links a:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-        .footer-contact-links { /* New class for grouping contact/policy links */
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px; /* Space between links */
+            color: var(--new-rainbow-blue); /* Footer social hover */
         }
         .footer-contact-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            border-bottom: 1px dotted #ffffff;
-            padding-bottom: 2px;
-            transition: opacity 0.3s;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: var(--new-text-light); /* Footer contact links */
+            border-bottom-color: var(--new-text-light);
         }
         .footer-contact-links a:hover {
-            opacity: 0.8;
+            color: var(--new-rainbow-blue); /* Footer contact hover */
         }
         .footer-copyright p {
-            font-size: 14px;
-            margin: 0;
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            color: rgba(var(--new-text-light), 0.7); /* Copyright text */
         }
-        .modal-backdrop {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-        }
+
         .modal-content {
-            background-color: #fff2db;
-            margin: auto;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            animation: slideIn 0.4s ease-out;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            background-color: var(--new-main-bg); /* Modal background */
         }
         .modal-close {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            transition: color 0.3s;
+            color: var(--new-text-muted); /* Modal close button */
         }
         .modal-close:hover,
         .modal-close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+            color: var(--new-text-light);
         }
-        .modal-form input[type="text"],
-        .modal-form input[type="email"],
-        .modal-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Consistent font */
-            font-size: 1rem;
+        .modal-form input, .modal-form textarea {
+            background-color: var(--new-lighter-bg); /* Modal form input background */
+            border-color: rgba(var(--new-text-light), 0.1);
+            color: var(--new-text-light);
         }
         .modal-form input:focus, .modal-form textarea:focus {
-            outline: 2px solid #208e92;
-            border-color: #208e92;
+            outline-color: var(--new-rainbow-blue); /* Modal form focus */
+            border-color: var(--new-rainbow-blue);
         }
         .modal-form button {
-            background-color: #f35b4e;
-            color: white;
-            font-weight: bold;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            background-color: var(--new-cta-button-bg); /* Modal form button */
+            color: var(--new-text-light);
         }
         .modal-form button:hover {
-            background-color: #d14a3d;
+            background-color: var(--new-cta-button-hover);
         }
 
         /* Cookie Banner Styles */
         .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(32, 142, 146, 0.95); /* #208e92 with transparency */
-            color: #fff;
-            padding: 1rem 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-            font-size: 0.95rem;
-            line-height: 1.4;
-            transform: translateY(100%); /* Start off-screen */
-            transition: transform 0.5s ease-out;
-        }
-        .cookie-banner.show {
-            transform: translateY(0); /* Slide in */
+            background-color: var(--new-announcement-bar-bg); /* Cookie banner background */
+            color: var(--new-text-light);
         }
         .cookie-banner p {
-            margin: 0;
-            flex-basis: 100%; /* Full width on small screens */
-            text-align: center;
-        }
-        .cookie-banner-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
+            color: var(--new-text-light);
         }
         .cookie-banner-buttons button {
-            background-color: #ffa711;
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            padding: 0.75rem 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            background-color: var(--new-cta-button-bg); /* Cookie banner button */
+            color: var(--new-text-light);
         }
         .cookie-banner-buttons button:hover {
-            background-color: #ffb733;
+            background-color: var(--new-cta-button-hover);
         }
-        .cookie-banner-buttons a { /* Style for Cookie Settings link as button */
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 5px;
-            padding: 0.75rem 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+        .cookie-banner-buttons a {
+            background-color: rgba(255, 255, 255, 0.1); /* Muted background */
+            color: var(--new-text-light);
+            border-color: rgba(255, 255, 255, 0.2); /* Muted border */
         }
         .cookie-banner-buttons a:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Animated section (already exists) */
-        .animated-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .animated-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        @media (min-width: 769px) { /* Adjust flex basis for larger screens */
-            .cookie-banner p {
-                flex-basis: auto; /* Allow text to sit next to buttons */
-                margin-right: 1.5rem;
-            }
-        }
-
-        /* New: Styling for the dynamic "disaster flicker" overlay */
+        /* Hero Flicker Effect (color adjustments) */
         .disaster-flicker-overlay {
             position: absolute;
             top: 0;
@@ -880,39 +501,120 @@
 
         .flicker-text {
             position: absolute;
-            color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
-            font-size: 1.8rem; /* Adjust as needed */
+            color: var(--new-cringe-highlight); /* Flicker text color is now red */
+            font-size: 1.8rem;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-            opacity: 0; /* Start hidden */
-            animation: flickerEffect 6s infinite ease-in-out; /* Animation loop */
-            pointer-events: none; /* Crucial for click-through */
-            white-space: nowrap; /* Keep phrases on one line */
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            text-shadow: 0 0 8px rgba(var(--new-cringe-highlight), 0.7); /* Flicker glow */
+            opacity: 0;
+            animation: flickerEffect 6s infinite ease-in-out;
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
         }
 
         @keyframes flickerEffect {
             0%, 100% { opacity: 0; transform: scale(0.9) translateY(10px); }
-            10%, 40% { opacity: 1; transform: scale(1) translateY(0px); } /* Visible burst */
-            20%, 30%, 50%, 60%, 70% { opacity: 0; } /* Quick disappearance */
+            10%, 40% { opacity: 1; transform: scale(1) translateY(0px); }
+            20%, 30%, 50%, 60%, 70% { opacity: 0; }
         }
 
-        /* Adjustments for mobile flicker: */
+
         @media (max-width: 768px) {
-            .hero-tagline { /* Already exists, good to re-check its style */
-                font-size: 1.2rem; /* Make it more prominent on mobile */
+            .hero {
+                flex-direction: column;
+                text-align: center;
             }
-            .flicker-text {
-                font-size: 1.2rem; /* Smaller text on mobile */
+            .hero-content, .hero-image {
+                min-width: unset;
+                max-width: 100%;
+            }
+            .hero-form {
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+                line-height: 1.1;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            /* Adjust mugshot gallery for mobile */
+            .mugshot-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+            .mugshot-card {
+                height: 160px;
+            }
+            .audiobook-promo h2 {
+                font-size: 2.2rem;
+            }
+            .about-container {
+                flex-direction: column;
+            }
+            .about-text p {
+                text-align: center;
             }
         }
-
         @media (max-width: 480px) {
-            .hero-tagline {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+                line-height: 1.2;
+            }
+            .hero p {
                 font-size: 1.1rem;
             }
-            .flicker-text {
-                font-size: 0.9rem; /* Even smaller text on very small mobile */
+            .mugshot-gallery {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .mugshot-card {
+                height: 140px;
+            }
+            .mugshot-card-title {
+                font-size: 1rem;
+            }
+            .mugshot-card-charge {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            /* Quiz on mobile */
+            .quiz-container {
+                padding: 1.5rem;
+                margin: 2rem auto;
+            }
+            .quiz-question {
+                font-size: 1.2rem;
+            }
+            .quiz-options button {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Bingo on mobile */
+            .bingo-container {
+                padding: 1.5rem;
+                margin: 2rem auto;
+            }
+            .bingo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .bingo-square {
+                min-height: 85px;
+                font-size: 0.8rem;
+                padding: 0.75rem;
+            }
+            .bingo-message {
+                font-size: 1rem;
+            }
+            #bingo-reset-btn {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
             }
         }
     </style>
@@ -948,7 +650,7 @@
             </form>
         </div>
         <div class="hero-image">
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/da08789424a310ef39459d8e88d90fcd7e9c1895/The%20Worst%20Boyfriends%20Ever.png" alt="The Worst Boyfriends Ever cover" class="book-cover-main">
+            <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover-main">
             <div class="disaster-flicker-overlay" id="disaster-flicker">
                 </div>
             <a href="https://a.co/d/j2SrpJl" class="buy-btn" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
@@ -960,19 +662,18 @@
             <span><span class="star">★★★★★</span>“What starts as a chuckle grows into a parade of laughing and rereading.” – Zeus</span><span><span class="star">★★★★★</span>“Each chapter mixes sharp humor with gentle lessons on self‑respect and red flags.” – J.L.G.</span><span><span class="star">★★★★★</span>“It’s wild, messy, and somehow still uplifting.” – Samantha</span><span><span class="star">★★★★★</span>“If you've ever been ghosted or gaslit, this book helps you laugh through the heartbreak.” – Gerald</span><span><span class="star">★★★★★</span>“Fun, engaging, and totally unputdownable.” – Elise</span><span><span class="star">★★★★★</span>“A must-read for anyone healing from toxic experiences.” – Y.B.</span><span><span class="star">★★★★★</span>“Like telling a story with a close friend who has a sense of humor and entertaining nature.” – V.S.</span><span><span class="star">★★★★★</span>“If you’ve ever ignored a red flag (or ten), this is a must-read!” – Dorin</span><span><span class="star">★★★★★</span>“These are not failures at all! Instead, it is a curious soul exploring self and the world.” – 4evern</span><span><span class="star">★★★★★</span>“Great perspective on dating and relationships.” – Gerald</span><span><span class="star">★★★★★</span>“Easy and funny read, super relatable and witty.” – F.</span><span><span class="star">★★★★★</span>“Helps you notice the red flags we often choose to ignore.” – Marta</span><span><span class="star">★★★★★</span>“It certainly made me feel better about red flag guys I have dated in the past.” – NT</span><span><span class="star">★★★★★</span>“Made me laugh a ton, and somehow still left me thinking.” – Holly</span><span><span class="star">★★★★★</span>“Painfully accurate, yet delivered with such humour that past heartaches suddenly seem... laughable.” – JoK</span><span><span class="star">★★★★★</span>“Like reading your own worst dating stories—but funnier and with better comebacks.” – A.S.</span><span><span class="star">★★★★★</span>“Spot the subtle red flags with this book and do better on every future date.” – Jon</span><span><span class="star">★★★★★</span>“Well written, relatable (oh yeah!), alive stories that felt very real to me.” – 4evern</span>
         </div>
     </div>
-    
-    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+    <section class="inside-chaos animated-section" style="padding: 3rem 1.5rem; background: var(--new-main-bg);">
         <div style="max-width: 1000px; margin: auto;">
             <div style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative;">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem; position: relative; color: var(--new-text-light);">
                     Inside the Chaos – Weird boyfriends. Wild twists. Zero regrets.
-                    <span style="display:block; width: 60px; height: 4px; background: #ffa711; margin-top: 0.5rem; border-radius: 2px;"></span>
+                    <span style="display:block; width: 60px; height: 4px; background: var(--new-rainbow-orange); margin-top: 0.5rem; border-radius: 2px;"></span>
                 </h2>
-                <p style="font-size: 1rem; line-height: 1.6;">
-                    The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:#f35b4e; font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
-                    This isn’t self-help. It’s <span style="color:#f35b4e; font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:#f35b4e; font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
-                    Told with zero apologies and <span style="color:#f35b4e; font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
-                    You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:#f35b4e; font-weight:bold; text-decoration:underline;">a little dangerous.</span>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--new-text-muted);">
+                    The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it <span style="color:var(--new-cringe-highlight); font-weight:bold;">“hilarious,” “relatable,”</span> and “the perfect read for a long flight — or a long string of mistakes.”<br><br>
+                    This isn’t self-help. It’s <span style="color:var(--new-cringe-highlight); font-weight:bold;">self-defense</span>, wrapped in poetic rage and brutal punchlines. Every chapter is a <span style="color:var(--new-cringe-highlight); font-weight:bold;">red flag parade</span> — ghosters, liars, narcissists, conspiracy theorists — dissected with deadpan honesty and queer fury. One page has you cackling, the next? You’re reevaluating that guy who “wasn’t that bad.”<br><br>
+                    Told with zero apologies and <span style="color:var(--new-cringe-highlight); font-weight:bold;">maximum emotional whiplash</span>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.<br><br>
+                    You won’t just relate. You’ll feel seen. Then vindicated. Then <span style="color:var(--new-cringe-highlight); font-weight:bold; text-decoration:underline;">a little dangerous.</span>
                 </p>
             </div>
             
@@ -980,102 +681,102 @@
             <p class="section-subheader">Meet the infamous lineup. Click to reveal their crimes!</p>
             <div class="mugshot-gallery animated-section">
                 <div class="mugshot-card" data-charge="Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/THE%20GAMBLER.png" alt="The Gambler" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" alt="The Gambler" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Gambler</h3>
                     <p class="mugshot-card-charge">Maxed my card on 'a sure-thing tournament,' then pawned Grand-Dad’s Omega to chase the loss.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Ghoster.png" alt="The Ghoster" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" alt="The Ghoster" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Ghoster</h3>
                     <p class="mugshot-card-charge">Evaporated for ten days, re-materialised at 2:17 a.m. with one text: 'u up?'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Party%20Animal.png" alt="The Party Animal" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" alt="The Party Animal" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Party Animal</h3>
                     <p class="mugshot-card-charge">Hijacked the karaoke mic—shirtless Viking helmet—then demanded a 3 a.m. road-trip I never agreed to.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Pet-Obsessed.png" alt="The Pet-Obsessed" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" alt="The Pet-Obsessed" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Pet-Obsessed</h3>
                     <p class="mugshot-card-charge">Cancelled date night because Daisy the Labrador was 'emotionally fragile' and needed new Insta captions.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Crier.png" alt="The Crier" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" alt="The Crier" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Crier</h3>
                     <p class="mugshot-card-charge">Burst into tears when I declined tiramisu—apparently my dessert choice 'denied sweetness in life.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Liar.png" alt="The Liar" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" alt="The Liar" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Liar</h3>
                     <p class="mugshot-card-charge">Swore his family owned a secret Dalí—conveniently 'in restoration' and forever unavailable for viewing.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Kinkster.png" alt="The Kinkster" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" alt="The Kinkster" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Kinkster</h3>
                     <p class="mugshot-card-charge">Produced 37 clothespins and a rubber chicken, called it 'advanced sensory play.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Considered charging his phone 'too much effort,' watched static instead of fetching the remote.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Human%20Sloth.png" alt="The Human Sloth" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" alt="The Human Sloth" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Human Sloth</h3>
                     <p class="mugshot-card-charge">Considered charging his phone 'too much effort,' watched static instead of fetching the remote.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Fitness%20Fanatic.png" alt="The Fitness Fanatic" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" alt="The Fitness Fanatic" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Fitness Fanatic</h3>
                     <p class="mugshot-card-charge">Weighed my picnic sandwich, then did burpees over the blanket 'to keep the heart-rate honest.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/faeab34109c4968c04ba28303fbd6f66d362d828/mugs/The%20Perfectionist.png" alt="The Perfectionist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" alt="The Perfectionist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Perfectionist</h3>
                     <p class="mugshot-card-charge">Handed me a color-coded spreadsheet of my 'areas for improvement' over brunch.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Stored newspapers in the bathtub—said showers are 'for gym people.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Hoarder.png" alt="The Hoarder" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" alt="The Hoarder" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Hoarder</h3>
                     <p class="mugshot-card-charge">Stored newspapers in the bathtub—said showers are 'for gym people.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Stole my moisturizer because my 'dewy glow' mattered more than my feelings.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Narcissist.png" alt="The Narcissist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" alt="The Narcissist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Narcissist</h3>
                     <p class="mugshot-card-charge">Stole my moisturizer because my 'dewy glow' mattered more than my feelings.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Turned up 58 minutes late, blamed 'traffic,' lived two streets away.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Late%20One.png" alt="The Late One" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" alt="The Late One" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Late One</h3>
                     <p class="mugshot-card-charge">Turned up 58 minutes late, blamed 'traffic,' lived two streets away.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Treated mini golf like the Olympics—trash-talked children on the next lane.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Competitive.png" alt="The Competitive" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" alt="The Competitive" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Competitive</h3>
                     <p class="mugshot-card-charge">Treated mini golf like the Olympics—trash-talked children on the next lane.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Conspiracist.png" alt="The Conspiracist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" alt="The Conspiracist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Conspiracist</h3>
                     <p class="mugshot-card-charge">Explained chem-trails between courses, gifted me a 'protection amulet' that smelt like chicken soup.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Wizard.png" alt="The Wizard" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" alt="The Wizard" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Wizard</h3>
                     <p class="mugshot-card-charge">Tried to banish a spider with Latin chants—accidentally hexed my Wi-Fi instead.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Planner.png" alt="The Planner" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" alt="The Planner" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Planner</h3>
                     <p class="mugshot-card-charge">Scheduled 'spontaneous fun' into Google Calendar with 15-minute buffers for emotion.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Polyamorist.png" alt="The Polyamorist" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" alt="The Polyamorist" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Polyamorist</h3>
                     <p class="mugshot-card-charge">Color-coded lovers in iCal; I was 'Tuesday, 4 p.m., recurring.'</p>
                 </div>
                 <div class="mugshot-card" data-charge="Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20Apologizer.png" alt="The Apologizer" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" alt="The Apologizer" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The Apologizer</h3>
                     <p class="mugshot-card-charge">Prefaced every sentence with 'I’m sorry' then repeated the exact same nonsense.</p>
                 </div>
                 <div class="mugshot-card" data-charge="Perfect, kind, emotionally available—terrified me so much I ghosted myself.">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/58ac7c0a63bf3e9252a6cadbebb573abe031d3dc/mugs/The%20One%20Who%20Got%20Away.png" alt="The One Who Got Away" class="mugshot-card-img">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" alt="The One Who Got Away" class="mugshot-card-img">
                     <h3 class="mugshot-card-title">The One Who Got Away</h3>
                     <p class="mugshot-card-charge">Perfect, kind, emotionally available—terrified me so much I ghosted myself.</p>
                 </div>
@@ -1087,12 +788,12 @@
             </div>
     </section>
 
-    <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+    <section class="red-flag-quiz animated-section" style="padding: 3rem 1.5rem; background: var(--new-main-bg);">
         <h2 class="section-header">Red Flag Meter – Quick-n-Dirty Quiz</h2>
         <p class="section-subheader">How good are you at spotting trouble? Find out below!</p>
         <div class="quiz-container">
             <div id="quiz-intro">
-                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #fff2db;">Think you're a red flag pro? Test your dating survival instincts with our quick quiz!</p>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--new-text-muted);">Think you're a red flag pro? Test your dating survival instincts with our quick quiz!</p>
                 <button id="quiz-start-btn">Start Quiz</button>
             </div>
             <div id="quiz-questions" style="display: none;">
@@ -1110,7 +811,7 @@
         </div>
     </section>
 
-    <section class="bad-date-bingo animated-section" style="padding: 3rem 1.5rem; background: #fff2db;">
+    <section class="bad-date-bingo animated-section" style="padding: 3rem 1.5rem; background: var(--new-lighter-bg);">
         <h2 class="section-header">Bad Date Bingo – 12 Squares of Regret</h2>
         <p class="section-subheader">Ever had a date so bad, it felt like Bingo? Check off your experiences!</p>
         <div class="bingo-container">
@@ -1465,77 +1166,6 @@
 
         // Initial calls when the page loads
         initializeBingo();
-
-
-        // Cookie Consent Banner Logic
-        const cookieBanner = document.getElementById('cookie-banner');
-        const acceptCookiesBtn = document.getElementById('accept-cookies');
-
-        function setCookieConsent(accepted) {
-            localStorage.setItem('cookies_accepted', accepted);
-            if (accepted) {
-                gtag('consent', 'update', {
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'granted'
-                });
-                // Configure Google Analytics if consent is granted
-                gtag('config', 'G-W9B5W1241H'); 
-            } else {
-                gtag('consent', 'update', {
-                    'analytics_storage': 'denied',
-                    'ad_storage': 'denied'
-                });
-            }
-            cookieBanner.classList.remove('show');
-        }
-
-        // Check if consent has been given previously
-        window.addEventListener('load', () => {
-            const consentGiven = localStorage.getItem('cookies_accepted');
-            if (consentGiven === null) { // If no choice has been made
-                cookieBanner.classList.add('show');
-            } else if (consentGiven === 'false') { // If user previously denied, keep analytics denied
-                 gtag('consent', 'update', {
-                    'analytics_storage': 'denied',
-                    'ad_storage': 'denied'
-                 });
-            }
-        });
-
-        acceptCookiesBtn.addEventListener('click', () => {
-            setCookieConsent(true);
-        });
-        // The 'Cookie Settings' link already has its href set in the HTML to your cookies.html page.
-        // If you were to implement granular controls directly in a modal, this listener would trigger that modal.
-
-
-        // --- Hero Section Flicker Effect ---
-        const flickerContainer = document.getElementById('disaster-flicker');
-        const cringePhrases = [
-            { text: "RED FLAGS 🚩", x: 10, y: 20 },
-            { text: "GHOSTED 👻", x: 70, y: 15 },
-            { text: "MOMMY ISSUES 🍼", x: 25, y: 60 },
-            { text: "LOVE BOMBING 💔", x: 80, y: 50 },
-            { text: "EX OBSESSED 🤢", x: 50, y: 30 },
-            { text: "GASLIGHTED 🔥", x: 15, y: 45 },
-            { text: "CLINGY AF 😩", x: 85, y: 70 }
-        ]; // x and y are percentages relative to container
-
-        function createFlickerText(phrase, delay) {
-            const span = document.createElement('span');
-            span.classList.add('flicker-text');
-            span.textContent = phrase.text;
-            span.style.left = `${phrase.x}%`;
-            span.style.top = `${phrase.y}%`;
-            span.style.animationDelay = `${delay}s`;
-            span.style.animationDuration = `${6 + Math.random() * 4}s`; // Randomize duration slightly
-            flickerContainer.appendChild(span);
-        }
-
-        // Generate all flicker texts with staggered delays
-        cringePhrases.forEach((phrase, index) => {
-            createFlickerText(phrase, index * 0.8 + Math.random() * 0.5); // Staggered start times
-        });
 
     </script>
 
