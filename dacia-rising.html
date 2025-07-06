@@ -14,18 +14,19 @@
     <style>
         /* New CSS Variables for Dacia Rising Theme: Bold, Modern, Immersive Palette */
         :root {
-            --color-deep-night: #0B0E11; /* Very dark, almost black-blue background */
-            --color-forest-dark: #1A2228; /* Dark, muted green-blue for sections/cards */
-            --color-stone-grey: #2F3742; /* A slightly lighter, cool grey for subtle contrast */
-            --color-text-light: #E8EDF2; /* Off-white for readability */
-            --color-text-muted: #A1AAB8; /* Softer grey for secondary text */
+            /* Backgrounds & Text */
+            --color-obsidian-black: #0B0E11; /* Deepest black for seamless transitions */
+            --color-forest-deep: #12181D; /* Primary background for most sections */
+            --color-stone-dark: #2C343D; /* Slightly lighter dark for contrast elements */
+            --color-text-white: #F8F9FA; /* Pure white for main text readability */
+            --color-text-light-grey: #C7CDD4; /* Lighter grey for secondary text */
 
-            --color-primary-green: #34A853; /* Vibrant, strong forest green for CTAs & highlights */
-            --color-primary-green-dark: #2A8C45; /* Darker green for hover */
-            --color-gold-main: #CCAC00; /* Richer, deeper gold for main titles, strong highlights */
-            --color-gold-light: #E0B300; /* Lighter, but still rich, gold for subtle glows and secondary titles */
-            --color-bronze-accent: #B87333; /* Earthy bronze for specific accents (currently unused directly) */
-            --color-ancient-stone: #6B778D; /* Muted blue-grey for elements hinting at stone (currently unused directly) */
+            /* Accents & Highlights */
+            --color-gold-ancient: #D4AF37; /* Rich, aged gold for titles and highlights */
+            --color-gold-shine: #FFD700; /* Brighter gold for subtle glows */
+            --color-emerald-green: #2ECC71; /* Vibrant, magical green for active elements */
+            --color-emerald-dark: #27AE60; /* Darker emerald for hover */
+            --color-blood-red: #A52A2A; /* Deep, muted red for war/danger moments */
         }
 
         html {
@@ -34,8 +35,8 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-deep-night);
-            color: var(--color-text-light);
+            background-color: var(--color-obsidian-black);
+            color: var(--color-text-white);
             line-height: 1.7;
             overflow-x: hidden; /* Prevent horizontal scroll from any overflow */
         }
@@ -49,7 +50,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--color-forest-dark); /* Darker green-blue for header */
+            background-color: var(--color-forest-deep); /* Darker green-blue for header */
             border-bottom: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             position: sticky; /* Make header sticky */
@@ -59,22 +60,22 @@
         .logo {
             font-weight: bold;
             font-size: 1.2rem;
-            color: var(--color-gold-main); /* Gold logo */
-            text-decoration: none; /* Make logo a link */
+            color: var(--color-gold-ancient);
+            text-decoration: none;
             transition: color 0.3s ease;
         }
         .logo:hover {
-            color: var(--color-gold-light);
+            color: var(--color-gold-shine);
         }
         .nav-links a {
-            color: var(--color-text-light);
+            color: var(--color-text-white);
             text-decoration: none;
             margin-left: 20px;
             font-weight: bold;
             transition: color 0.3s ease;
         }
         .nav-links a:hover {
-            color: var(--color-primary-green);
+            color: var(--color-emerald-green);
         }
 
         /* Hero Section - The Immersive Portal */
@@ -126,7 +127,7 @@
             border-radius: 10px;
             margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 3px solid var(--color-gold-main); /* Gold border for cover */
+            border: 3px solid var(--color-gold-ancient); /* Gold border for cover */
         }
         .hero .book-cover:hover {
             transform: scale(1.05) translateY(-5px);
@@ -135,7 +136,7 @@
         .hero h1 {
             font-size: 4.5rem; /* Much larger title */
             margin-bottom: 0.5rem;
-            color: var(--color-gold-main); /* Strong gold */
+            color: var(--color-gold-ancient); /* Strong gold */
             text-transform: uppercase;
             letter-spacing: 3px;
             line-height: 1.1;
@@ -145,18 +146,18 @@
             font-size: 2.2rem;
             margin-top: 0;
             margin-bottom: 1.5rem;
-            color: var(--color-gold-light); /* Lighter gold for tagline */
+            color: var(--color-gold-shine); /* Lighter gold for tagline */
             font-weight: 400;
         }
         .hero .author-line {
             font-size: 1.2rem;
             margin-bottom: 0.8rem;
-            color: var(--color-text-light);
+            color: var(--color-text-white);
             font-weight: 400;
         }
         .hero .rating {
             font-size: 1.1rem;
-            color: var(--color-gold-main);
+            color: var(--color-gold-ancient);
             margin-bottom: 2rem;
             font-weight: bold;
         }
@@ -166,38 +167,41 @@
         }
         .hero .short-hook {
             font-size: 1.3rem;
-            color: var(--color-text-light);
+            color: var(--color-text-white);
             max-width: 700px;
             margin-bottom: 3rem;
             font-weight: 400;
         }
         .hero .cta-button {
-            background-color: var(--color-primary-green); /* Strong green button */
-            color: #fff;
+            background-color: var(--color-emerald-green); /* Strong green button */
+            color: var(--color-text-white);
             padding: 1.2rem 3rem;
             font-size: 1.3rem;
             font-weight: bold;
+            border: none;
             border-radius: 50px; /* Pill shape */
+            cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
         .hero .cta-button:hover {
-            background-color: var(--color-primary-green-dark); /* Darker green on hover */
+            background-color: var(--color-emerald-dark); /* Darker green on hover */
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
         .formats-link {
             font-size: 1rem;
-            color: var(--color-text-muted);
+            color: var(--color-text-light-grey);
             margin-top: 1.5rem;
         }
         .formats-link a {
-            color: var(--color-gold-light); /* Lighter gold for link */
+            color: var(--color-gold-shine); /* Lighter gold for link */
             text-decoration: underline;
             transition: color 0.3s ease;
         }
         .formats-link a:hover {
-            color: var(--color-gold-main);
+            color: var(--color-gold-ancient);
         }
 
         /* Scroll Prompt */
@@ -207,7 +211,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
-            color: var(--color-gold-light);
+            color: var(--color-gold-shine);
             font-size: 1rem;
             display: flex;
             flex-direction: column;
@@ -239,29 +243,29 @@
             position: relative; /* For angled sections and internal positioning */
         }
         .section-dark {
-            background-color: var(--color-forest-dark);
-            color: var(--color-text-light);
+            background-color: var(--color-forest-deep);
+            color: var(--color-text-white);
             box-shadow: inset 0 10px 20px rgba(0,0,0,0.3); /* Subtle internal shadow */
         }
         .section-light {
-            background-color: var(--color-stone-grey); /* Use a lighter cool grey for contrast */
-            color: var(--color-text-light);
+            background-color: var(--color-stone-dark); /* Use a lighter cool grey for contrast */
+            color: var(--color-text-white);
             box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
         }
         .section-title {
             font-size: 3rem; /* Larger section titles */
-            color: var(--color-gold-main); /* Strong gold for section titles */
+            color: var(--color-gold-ancient); /* Strong gold for section titles */
             margin-bottom: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-bottom: 3px solid var(--color-primary-green); /* Green border */
+            border-bottom: 3px solid var(--color-emerald-green); /* Green border */
             padding-bottom: 0.8rem;
             display: inline-block; /* To make border-bottom fit content */
             font-weight: 700;
         }
         .section-subtitle {
             font-size: 1.4rem;
-            color: var(--color-text-light);
+            color: var(--color-text-white);
             margin-bottom: 3.5rem;
             max-width: 800px;
             margin-left: auto;
@@ -272,10 +276,10 @@
             margin: 0 auto;
             text-align: left;
             font-size: 1.1rem;
-            color: var(--color-text-light);
+            color: var(--color-text-white);
         }
         .text-block strong {
-            color: var(--color-gold-main); /* Gold for strong text */
+            color: var(--color-gold-shine); /* Gold for strong text */
             font-weight: 700;
         }
         .text-block ul {
@@ -292,7 +296,7 @@
         }
         .text-block ul li::before {
             content: '🌿'; /* Custom nature-themed bullet */
-            color: var(--color-primary-green); /* Green for custom bullet */
+            color: var(--color-emerald-green); /* Green for custom bullet */
             position: absolute;
             left: 0;
             font-size: 1.4em;
@@ -308,7 +312,7 @@
             margin-top: 3rem;
         }
         .character-card, .location-card {
-            background-color: var(--color-darker-bg);
+            background-color: var(--color-forest-deep); /* Use deep forest for cards */
             border-radius: 12px;
             padding: 1.8rem;
             text-align: center;
@@ -318,7 +322,7 @@
         .character-card:hover, .location-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            background-color: var(--color-stone-grey); /* Slight background change on hover */
+            background-color: var(--color-stone-dark); /* Slight background change on hover */
         }
         .character-card img, .location-card img {
             width: 100%;
@@ -327,26 +331,26 @@
             border-radius: 50%; /* Round for characters */
             margin-bottom: 1.5rem;
             object-fit: cover;
-            border: 3px solid var(--color-primary-green); /* Green border for images */
+            border: 3px solid var(--color-emerald-green); /* Green border for images */
             transition: border-color 0.3s ease;
         }
         .location-card img {
             border-radius: 8px; /* Square images for locations */
         }
         .character-card img:hover, .location-card img:hover {
-             border-color: var(--color-gold-main); /* Gold border on hover */
+             border-color: var(--color-gold-ancient); /* Gold border on hover */
         }
 
         .character-card h3, .location-card h3 {
             font-size: 1.6rem;
-            color: var(--color-gold-light); /* Lighter gold for card titles */
+            color: var(--color-gold-shine); /* Lighter gold for card titles */
             margin-bottom: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .character-card p, .location-card p {
             font-size: 0.98rem;
-            color: var(--color-text-muted);
+            color: var(--color-text-light-grey);
             line-height: 1.6;
         }
 
@@ -359,7 +363,7 @@
             text-align: left;
         }
         .review-card {
-            background-color: var(--color-forest-dark);
+            background-color: var(--color-forest-deep);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
@@ -376,44 +380,44 @@
         }
         .review-card p {
             font-size: 1.05rem;
-            color: var(--color-text-light);
+            color: var(--color-text-white);
             margin-bottom: 1.2rem;
             font-style: italic; /* Emphasize review text */
         }
         .review-card strong {
-            color: var(--color-gold-main); /* Gold for bold parts of review */
+            color: var(--color-gold-ancient); /* Gold for bold parts of review */
             font-weight: 700;
         }
         .review-card .reviewer {
             font-size: 1rem;
             font-weight: bold;
-            color: var(--color-primary-green); /* Green for reviewer names */
+            color: var(--color-emerald-green); /* Green for reviewer names */
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         /* Final CTA Section */
         .final-cta-section .section-title {
-            color: var(--color-gold-main); /* Gold for the final powerful statement */
-            border-bottom-color: var(--color-primary-green);
+            color: var(--color-gold-ancient); /* Gold for the final powerful statement */
+            border-bottom-color: var(--color-emerald-green);
         }
 
         /* Footer */
         footer {
-            background-color: var(--color-deep-night);
-            color: var(--color-text-muted);
+            background-color: var(--color-obsidian-black);
+            color: var(--color-text-light-grey);
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
         footer a {
-            color: var(--color-gold-main); /* Gold for footer links */
+            color: var(--color-gold-ancient);
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: var(--color-primary-green); /* Green on hover */
+            color: var(--color-emerald-green);
         }
         .footer-social-links {
             margin-bottom: 15px;
@@ -433,6 +437,13 @@
             }
             .section-title {
                 font-size: 2.5rem;
+            }
+            .gate-text { /* Specific to Layer 0 intro */
+                font-size: 1.5rem;
+            }
+            .gate-cta-button { /* Specific to Layer 0 intro */
+                font-size: 1.1rem;
+                padding: 1rem 2.5rem;
             }
         }
         @media (max-width: 768px) {
@@ -480,6 +491,21 @@
         }
 
         @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                padding-bottom: 15px;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 5px;
+                margin-left: 0;
+            }
+            .nav-links a {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+
             .hero {
                 padding: 5rem 0.5rem;
                 min-height: 80vh;
@@ -502,6 +528,14 @@
                 font-size: 1rem;
                 padding: 0.9rem 2rem;
             }
+            .gate-text { /* Specific to Layer 0 intro */
+                font-size: 1.2rem;
+            }
+            .gate-cta-button { /* Specific to Layer 0 intro */
+                font-size: 1rem;
+                padding: 0.9rem 2rem;
+            }
+
             .section {
                 padding: 3rem 0.5rem;
             }
@@ -512,17 +546,8 @@
             .section-subtitle {
                 font-size: 0.9rem;
             }
-            .nav-links {
-                flex-direction: column;
-                gap: 5px;
-                margin-left: 0;
-            }
-            .nav-links a {
-                margin: 0;
-                font-size: 0.9rem;
-            }
             .character-grid, .location-grid, .reviews-grid {
-                grid-template-columns: 1fr; /* Stack on very small screens */
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             .character-card, .location-card, .review-card {
@@ -552,7 +577,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="main-header">
         <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Aleks Filmore</a></div>
         <nav class="nav-links">
             <a href="index.html">Home</a>
@@ -560,33 +585,21 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-overlay-top"></div>
-        <div class="hero-overlay-bottom"></div>
-        
-        <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DACIA%20RISING.png" alt="Dacia Rising Book Cover" class="book-cover">
-            <h1>Dacia Rising: The Bear’s Awakening</h1>
-            <h2>A Dark Epic Fantasy of Tribal Magic, Prophecy, and War</h2>
-            <p class="author-line">by Aleks Filmore (Author)</p>
-            <p class="rating">
-                <span class="star">★★★★★</span> 4.7 out of 5 stars (5)
-            </p>
-            <p class="short-hook">Before the empire rose, a forgotten people faced extinction.</p>
-            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
-            <p class="formats-link">See all formats and editions</p>
-        </div>
-
-        <div class="scroll-prompt">
-            <p>Enter the World</p>
-            <i class="fas fa-chevron-down"></i>
+    <section class="layer gate" id="layer0">
+        <div class="gate-content">
+            <div class="spiral-glyph" id="spiral-glyph"></div>
+            <p class="gate-text">"You are not remembered by chance. The land remembers. The Bear is stirring."</p>
+            <button class="gate-cta-button" id="enter-dacia-btn">Enter the Memory of Dacia</button>
         </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="layer section-dark" id="layer1" style="display: none;">
         <div class="container">
-            <h2 class="section-title">Step Into the Ancient World of Dacia</h2>
-            <p class="section-subtitle">Where Legends Are Forged and Spirits Roam</p>
+            <h2 class="section-title">The Prophecy Awakes</h2>
+            <p class="section-subtitle">
+                Before the empire rose, a forgotten people faced extinction…<br>
+                Now, their last hope bears the mark of the Bear.
+            </p>
             <div class="text-block">
                 <p>
                     Set in the shadow of Rome’s brutal expansion, <strong>Dacia Rising: The Bear’s Awakening</strong> is the first novel in a sweeping fantasy trilogy that merges ancient history, tribal myth, and a rising tide of war and destiny.
@@ -601,160 +614,100 @@
                     Within the folds of this ancient land, magic is not a force of spells, but a spiritual reckoning. The gods whisper in dreams, the dead speak in wind, and the land itself remembers what was taken.
                 </p>
             </div>
-            <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia.png" alt="Panoramic view of Dacia landscape" style="width: 100%; max-width: 900px; margin-top: 3rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer" style="margin-top: 3rem;">Begin the Journey on Amazon</a>
         </div>
     </section>
 
-    <section class="section section-light">
+    <section class="layer section-light" id="layer2" style="display: none;">
         <div class="container">
-            <h2 class="section-title">What Awaits You Inside This Book</h2>
-            <div class="text-block" style="text-align: center;">
-                <ul>
-                    <li>A <strong>high fantasy saga</strong> filled with gritty battles, dream-visions, and spirit-forged weapons</li>
-                    <li>Rich <strong>worldbuilding rooted in Eastern European myth</strong> and ancient tribal lore</li>
-                    <li>A cast of warriors, seers, traitors, and haunted heroes caught in a struggle for cultural survival</li>
-                    <li>Themes of brotherhood, identity, loyalty, and spiritual awakening</li>
-                    <li>Supernatural elements that feel ancient, raw, and deeply tied to the land</li>
-                    <li>A slow-burn <strong>romantic tension</strong> woven through warfare, grief, and fate</li>
-                    <li>For fans of <strong>The Witcher, The Poppy War, The Song of Achilles</strong>, and myth-heavy historical fantasy</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">The Circle That Stands with Sarion</h2>
-            <div class="text-block" style="text-align: center;">
-                <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Sarion.png" alt="Sarion, Bearer of the Mark" style="width: 100%; max-width: 250px; border-radius: 50%; margin-bottom: 1.5rem; border: 3px solid var(--color-primary-green); box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-                <h3 style="font-size: 1.8rem; color: var(--color-gold-light); margin-bottom: 0.5rem;">Sarion, Bearer of the Mark</h3>
-                <p style="font-size: 1rem; color: var(--color-text-light); max-width: 600px; margin: 0 auto 3rem auto;">
-                    Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes. Guided by the old teachings of Zalmoxis and armed with little more than a hunter’s instinct, he must rise as protector, leader, and symbol. But the fog is thick, and darkness moves unseen.
-                </p>
-            </div>
+            <h2 class="section-title">Meet the Circle</h2>
+            <p class="section-subtitle">The Bearer of the Mark and those who stand with him.</p>
             <div class="character-grid">
+                <div class="character-card">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Sarion.png" alt="Sarion">
+                    <h3>Sarion</h3>
+                    <p>Marked by the divine Bear, Sarion is thrust into a destiny he never sought—to unite the fractured Dacian tribes.</p>
+                </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Amara.png" alt="Amara">
                     <h3>Amara</h3>
-                    <p>A fierce archer of the Lowlands Tribe, Amara’s loyalty is as unshakable as her aim. Her sharp wit and fire-hearted courage steady Sarion when the world tilts, and her bow never trembles in the face of danger.</p>
+                    <p>A fierce archer whose loyalty is as unshakable as her aim. Her courage and bow never tremble in the face of danger.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Zibeltha.png" alt="Zibeltha">
                     <h3>Zibeltha</h3>
-                    <p>High Priestess of the Lowlands, Zibeltha wields the sacred wisdom of Zalmoxis with quiet power. Her silver gaze piercing illusion, and her staff anchors prophecy in the mortal realm. She is more than a guide—she is the memory of the gods.</p>
+                    <p>High Priestess wielding sacred wisdom and silver gaze. She anchors prophecy in the mortal realm and is the memory of the gods.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Cairos.png" alt="Cairos">
                     <h3>Cairos</h3>
-                    <p>Stoic and unbreakable, Cairos of the Mountain Tribe carries the weight of a people long forgotten by peace. His carved spear speaks for him, a legacy etched in war and endurance. In silence, he holds the line.</p>
+                    <p>Stoic and unbreakable, this Mountain Tribe warrior carries the weight of a forgotten people. His carved spear speaks for him.</p>
                 </div>
                 <div class="character-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Eldorin.png" alt="Eldorin">
                     <h3>Eldorin</h3>
-                    <p>Eldorin walks the edge between worlds—forest priest, mystic, and soul-bonded to a silver-eyed wolf. His chants stir old powers, and his visions draw maps where no roads exist. Where others falter, he listens to the trees.</p>
+                    <p>Forest priest, mystic, soul-bonded to a silver-eyed wolf. His visions draw maps where no roads exist, listening to the trees.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light">
+    <section class="layer section-dark" id="layer3" style="display: none;">
         <div class="container">
-            <h2 class="section-title">From Lowlands to the River</h2>
-            <p class="section-subtitle">The Tribes that Rise Together</p>
+            <h2 class="section-title">The Dacian Villages</h2>
+            <p class="section-subtitle">Forged by Faith, Bound by Honor – The Spirit of Dacia Lives On</p>
             <div class="location-grid">
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Lowlands%20Village.png" alt="Lowlands Village">
                     <h3>The Lowlands Village</h3>
-                    <p>Cradled by rolling hills and open skies, the Lowlands Village is the heart of prophecy and spiritual tradition. Bathed in morning mist and silence, this is where visions stir, choices echo, and the spirit of the old gods still speaks.</p>
+                    <p>Heart of prophecy and spiritual tradition, where visions stir and the spirit of the old gods still speaks.</p>
                 </div>
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Mountain%20Tribe.png" alt="Mountain Village">
                     <h3>The Mountain Village</h3>
-                    <p>Built into the raw bones of the earth, the Mountain Village is a stronghold of warriors and blacksmiths. Surrounded by cliffs and pine, it is where iron meets oath—and where ancient chants rise with the morning smoke.</p>
+                    <p>A stronghold of warriors and blacksmiths, where iron meets oath and ancient chants rise with the morning smoke.</p>
                 </div>
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Forest%20Tribe.png" alt="Forest Village">
                     <h3>The Forest Village</h3>
-                    <p>Hidden beneath towering trees, the Forest Village lives in rhythm with root and rain. Druids whisper to leaves, children learn the names of herbs, and wolves walk beside the wise.</p>
+                    <p>Hidden beneath towering trees, where druids whisper to leaves and wolves walk beside the wise.</p>
                 </div>
                 <div class="location-card">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/River%20Dava.png" alt="River Dava">
                     <h3>The River Dava</h3>
-                    <p>A crescent of commerce and celebration, the River Dava flows with stories, markets, and bloodlines. Traders and spies walk its docks, while the sacred arena bears witness to pacts sealed in water and fire.</p>
+                    <p>A crescent of commerce and celebration, where traders and spies walk its docks, and pacts are sealed in water and fire.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">Why This Story Matters</h2>
-            <div class="text-block" style="text-align: center;">
-                <p>
-                    Dacia Rising is more than a sword-and-sorcery adventure—it’s a tribute to forgotten ancestors, lost histories, and the power of storytelling to reclaim cultural identity. As the tribes of Dacia face erasure, their stories rise in defiance, inked in blood, fire, and prophecy.
-                </p>
-                <p>
-                    You’ll feel the drums of war in your chest, smell the sacred smoke, and stand shoulder to shoulder with warriors who know that to survive, one must not just fight—but remember.
-                </p>
-                <h3 style="color: var(--color-gold-light); margin-top: 2rem;">If you crave:</h3>
-                <ul>
-                    <li>Epic fantasy romance amid tribal conflict</li>
-                    <li>Battle-worn heroes with ancient scars</li>
-                    <li>Prophecies etched in bone and spirit</li>
-                    <li>Kindle Unlimited fantasy series with emotional grit</li>
-                    <li>A new mythos that <strong>isn’t</strong> just elves and dragons</li>
-                </ul>
-                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--color-gold-main);">Then this is your next great saga.</p>
-            </div>
+    <section class="layer section-dark" id="layer4" style="display: none; background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); background-size: cover; background-position: center;">
+        <div class="hero-overlay-top" style="background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);"></div>
+        <div class="hero-overlay-bottom" style="background: linear-gradient(to top, var(--color-forest-deep) 0%, rgba(0,0,0,0) 100%);"></div>
+        <div class="container" style="position: relative; z-index: 2; max-width: 800px;">
+            <h2 class="section-title" style="color: var(--color-gold-ancient); font-size: 3.5rem;">The Tribes Must Unite, Or Be Consumed.</h2>
+            <p class="section-subtitle" style="font-size: 1.8rem; color: var(--color-text-white); margin-bottom: 2rem;">
+                The Bear has been marked. The gods whisper through blood.
+            </p>
+            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">⚔️ Start Reading Now</a>
+            <p style="font-size: 1rem; color: var(--color-text-light-grey); margin-top: 1.5rem;">Available on Kindle & Kindle Unlimited</p>
         </div>
     </section>
 
-    <section class="section section-light">
-        <div class="container">
-            <h2 class="section-title">Top Reviews</h2>
-            <p class="section-subtitle">What readers are saying</p>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p><strong>Highly recommend!</strong></p>
-                    <p>Dacia Rising – The Bear’s Awakening completely surprised me, in the best way. I picked it up looking for something fresh in the fantasy genre, and this book delivered a gritty, emotional, and myth-rich world that felt totally different from the usual elves-and-castles stuff.</p>
-                    <p class="reviewer">- Grissel</p>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★☆</div>
-                    <p><strong>Atmospheric, fresh take on fantasy</strong></p>
-                    <p>This book definitely stands out from most fantasy I’ve read lately. The setting, the myth, the spiritual layer to the magic—it’s all super atmospheric and feels really different from the usual medieval-fantasy- L with-dragons formula. I loved the focus on Dacian culture and how grounded everything felt in ancient land and tradition. It’s raw, intense, and very dreamlike in places.</p>
-                    <p class="reviewer">- iamkireina</p>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p><strong>Epic, Mystical, and Totally Unique</strong></p>
-                    <p>A gripping dive into ancient times like I’ve never seen before. The mix of myth, prophecy, and tribal intrigue pulls you in fast. If you're into epic worldbuilding with a spiritual twist, this one's a gem.</p>
-                    <p class="reviewer">- Elise</p>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p><strong>Great book!</strong></p>
-                    <p>I really loved this book! I felt like I was right there with Sarion, fighting for Dacia. If you love ancient history and fantasy, this book is for you!</p>
-                    <p class="reviewer">- Dorin</p>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p><strong>Hope there is a sequel!!</strong></p>
-                    <p>As someone that is interested in ancient cultures, this fantasy book is very well written and there is a very good portrayal of Dacian culture and their ancient customs and traditions, I really hope the sequel comes out soon!</p>
-                    <p class="reviewer">- F.</p>
-                </div>
-            </div>
+    <section class="layer section-dark" id="layer5" style="display: none; background-color: var(--color-obsidian-black);">
+        <div class="container" style="max-width: 600px;">
+            <div class="spiral-glyph" style="width: 120px; height: 120px; margin-bottom: 2rem;"></div>
+            <h2 class="section-title" style="color: var(--color-gold-ancient); font-size: 2.8rem; border-bottom: none;">Claim Your Legacy</h2>
+            <p class="section-subtitle" style="font-size: 1.4rem;">
+                "Not all who enter remember. But those who do... carry the fire forward."
+            </p>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="email-capture-form" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 3rem;">
+                <input type="text" name="name" placeholder="Your name to be etched among the remembered" required style="padding: 0.8rem; font-size: 1rem; background-color: var(--color-stone-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; color: var(--color-text-white);">
+                <button type="submit" style="background-color: var(--color-emerald-green); color: var(--color-text-white); padding: 1rem; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">🔥 Claim Your Prophecy</button>
+            </form>
         </div>
     </section>
 
-    <section class="section section-dark final-cta-section">
-        <div class="container">
-            <h2 class="section-title">The Call of Dacia Awaits—Will You Answer?</h2>
-            <p class="section-subtitle">Prepare to follow the Bear’s Mark. Begin the journey today.</p>
-            <a href="https://a.co/d/49Un93W" class="cta-button" target="_blank" rel="noopener noreferrer">Order Your Copy Today</a>
-        </div>
-    </section>
 
     <footer>
         <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
@@ -767,5 +720,84 @@
             <a href="https://aleksfilmore.com/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('main-header');
+            const layer0 = document.getElementById('layer0');
+            const enterBtn = document.getElementById('enter-dacia-btn');
+            const layers = document.querySelectorAll('.layer:not(#layer0)'); // All content layers
+
+            // Hide header initially
+            header.style.opacity = '0';
+            header.style.transition = 'opacity 1s ease-in';
+
+            // Hide all content layers initially
+            layers.forEach(layer => {
+                layer.style.display = 'none';
+                layer.style.opacity = '0'; // Prepare for fade-in
+                layer.style.transition = 'opacity 1s ease-in-out';
+            });
+
+            // Handle Layer 0 entry
+            enterBtn.addEventListener('click', () => {
+                layer0.style.opacity = '0'; // Fade out Layer 0
+                layer0.style.visibility = 'hidden';
+                layer0.style.pointerEvents = 'none'; /* Disable interaction */
+                layer0.style.transition = 'opacity 1.5s ease-out, visibility 1.5s, transform 1.5s'; /* Add transform for smoother effect */
+                layer0.style.transform = 'translateY(-100vh)'; /* Slide up slightly as it fades */
+
+                document.body.style.overflowY = 'scroll'; // Enable scrolling for content
+                header.style.opacity = '1'; // Show header
+
+                // Show Layer 1 after a slight delay
+                setTimeout(() => {
+                    layer0.style.display = 'none'; // Fully remove Layer 0 from flow
+                    layers[0].style.display = 'flex'; // Show Layer 1 (Prophecy Awakes)
+                    setTimeout(() => {
+                        layers[0].style.opacity = '1'; // Fade in Layer 1
+                    }, 50); // Small delay to ensure display:flex takes effect
+                }, 1000); // Wait for Layer 0 to start fading/sliding out
+            });
+
+            // Smoothly reveal other layers on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Adjust as needed
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.style.opacity === '0') {
+                        entry.target.style.display = 'flex'; // Ensure flex display for visible sections
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                        }, 50); // Small delay
+                        // If you want them to reveal only once, uncomment: observer.unobserve(entry.target);
+                    } else if (!entry.isIntersecting && entry.target.style.display !== 'none' && entry.target.id !== 'layer0') {
+                        // Optional: hide sections that scroll out of view to save resources
+                        // entry.target.style.opacity = '0';
+                        // entry.target.style.display = 'none';
+                    }
+                });
+            }, observerOptions);
+
+            layers.forEach(layer => {
+                sectionObserver.observe(layer);
+            });
+            
+            // Adjust the background position of the hero section on scroll for a subtle parallax
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const heroSection = document.querySelector('.hero');
+                if (heroSection) {
+                    // Adjust background-position-y based on scroll for subtle parallax
+                    heroSection.style.backgroundPositionY = `calc(50% + ${scrollY * 0.2}px)`;
+                }
+            });
+
+
+        });
+    </script>
 </body>
-</html>
