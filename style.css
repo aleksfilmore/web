@@ -33,12 +33,12 @@ h1, h2, h3 {
 .button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; }
 .button-secondary:hover { background-color: var(--wb-red); color: white !important; }
 
-header { padding: 1rem 0; background-color: var(--wb-cream); border-bottom: 3px solid black; }
+header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; }
 .header-flex { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--wb-dark-teal); }
 
 .hero { padding: 5rem 1.5rem 7rem; background-color: var(--wb-teal); color: var(--wb-cream); position: relative; overflow: hidden; text-align: center; }
-.hero-background { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); opacity: 0.1; }
+.hero-background { position: absolute; top: 50%; left: 50%; width: 150%; height: 150%; transform: translate(-50%, -50%); opacity: 0.1; }
 .hero-rainbow { width: 100%; height: 100%; object-fit: cover; animation: spin 60s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .hero-content { position: relative; z-index: 2; }
@@ -53,19 +53,22 @@ header { padding: 1rem 0; background-color: var(--wb-cream); border-bottom: 3px 
 
 .reviews-section { background-color: var(--wb-dark-teal); background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23044654" fill-opacity="0.4"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>'); background-attachment: fixed; }
 .reviews-section .section-header h2, .reviews-section .section-header p { color: white; }
-.reviews-carousel { display: flex; gap: 2rem; overflow-x: auto; padding: 2rem; scroll-snap-type: x mandatory; }
-.review-card { flex: 0 0 300px; background: var(--wb-cream); color: var(--wb-text-dark); padding: 2rem; border-radius: 8px; border: 3px solid black; box-shadow: 5px 5px 0px black; scroll-snap-align: center; }
+.reviews-carousel-container { height: 400px; display: flex; align-items: center; overflow: hidden; position: relative; }
+.reviews-carousel { display: flex; flex-direction: column; height: 3000px; animation: scroll-reviews 120s linear infinite; }
+.review-card { background: var(--wb-cream); color: var(--wb-text-dark); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 8px; border: 3px solid black; box-shadow: 5px 5px 0px black; width: 320px; }
 .review-card p { font-style: italic; margin-top: 0; }
 .review-card .reviewer { font-weight: 700; text-align: right; }
+@keyframes scroll-reviews { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
 
 .inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
 
 .play-area { background-color: var(--wb-teal); color: var(--wb-cream); }
 .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
 .interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; background: var(--wb-dark-teal); text-align: center; }
-#quiz-intro { text-align: center; }
-.quiz-options .button { display: block; width: 100%; margin: 0.5rem 0; background-color: var(--wb-dark-teal); color: var(--wb-cream); border-color: var(--wb-cream); }
-.quiz-options .button:hover { background-color: var(--wb-red); border-color: black; }
+
+.mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+@media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
+.mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); height: 220px; }
 
 .final-cta { background-color: var(--wb-red); color: white; text-align: center; }
 .final-cta h2 { font-size: 2.5rem; text-shadow: 3px 3px 0px black; }
@@ -82,3 +85,6 @@ footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; co
 .modal-content { background-color: var(--wb-dark-teal); padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; border: 3px solid black; }
 .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; color: var(--wb-cream); cursor: pointer; }
 .modal-form input, .modal-form textarea { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream); }
+
+.cookie-banner { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--wb-dark-teal); padding: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; z-index: 1001; border-top: 1px solid var(--wb-teal); }
+.cookie-banner.show { display: flex; }
