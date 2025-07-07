@@ -31,6 +31,7 @@
                     <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
                 </div>
             </div>
+            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="audiobook-promo section">
@@ -38,7 +39,10 @@
                 <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
                 <h2>The Chaos, Now in Your Ears</h2>
                 <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
-                <audio controls src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" class="audio-player">Your browser does not support the audio element.</audio>
+                <audio controls class="audio-player">
+                    <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </section>
 
@@ -47,8 +51,10 @@
                 <h2>Hall of Mirrors</h2>
                 <p>"Laughing at your own reflection is cheaper than therapy."</p>
             </div>
-            <div class="reviews-carousel">
-                </div>
+            <div class="reviews-carousel-container">
+                <div class="reviews-carousel">
+                    </div>
+            </div>
         </section>
 
         <section class="section light" id="about">
@@ -60,36 +66,13 @@
             </div>
         </section>
 
-        <section class="section dark-section" id="gallery">
+        <section class="section play-area" id="gallery">
             <div class="container">
                 <div class="section-header">
                     <h2>Ex-Boyfriend Mugshot Gallery</h2>
                     <p>Meet the infamous lineup. Click to reveal their crimes against dating.</p>
                 </div>
                 <div class="mugshot-gallery"></div>
-            </div>
-        </section>
-
-        <section class="section teal-section" id="quiz">
-            <div class="container">
-                 <div class="section-header">
-                    <h2>The Red-Flag-o-Meter</h2>
-                    <p>Think you're a pro? Test your strength against these dating disasters!</p>
-                </div>
-                <div class="interactive-container">
-                    <div id="quiz-intro">
-                        <button id="quiz-start-btn" class="button">Start Quiz</button>
-                    </div>
-                    <div id="quiz-questions" style="display: none;">
-                        <h3 id="current-question"></h3>
-                        <div id="quiz-options" class="quiz-options"></div>
-                    </div>
-                    <div id="quiz-results" style="display: none;">
-                        <h3 id="quiz-category"></h3>
-                        <p id="quiz-blurb"></p>
-                        <button id="quiz-reset-btn" class="button">Try Again</button>
-                    </div>
-                </div>
             </div>
         </section>
         
@@ -132,7 +115,7 @@
             </form>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
