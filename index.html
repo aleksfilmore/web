@@ -6,23 +6,14 @@
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
     <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="announcement-bar">
-        <div class="announcement-item is-active">
-            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
-        </div>
-        <div class="announcement-item">
-            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
-        </div>
-    </div>
-
-    <header class="container">
-        <div class="header-flex">
+    <header>
+        <div class="container header-flex">
             <div class="logo">Aleks Filmore</div>
             <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
@@ -30,58 +21,46 @@
 
     <main>
         <section class="hero" id="home">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
-                    <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
-                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="hero-form">
-                        <input type="email" name="email" placeholder="Your email..." required>
-                        <button type="submit" class="button">Notify Me</button>
-                    </form>
-                </div>
-                <div class="hero-image">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
-                    <a href="https://a.co/d/j2SrpJl" class="button" target="_blank" rel="noopener noreferrer" style="margin-top: 1.5rem;">Available on Amazon</a>
+            <div class="hero-background">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
+            </div>
+            <div class="container hero-content">
+                <h1>Step right up to the parade of exes you’ll never forget.</h1>
+                <div class="hero-buttons">
+                    <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
+                    <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
                 </div>
             </div>
         </section>
 
         <section class="audiobook-promo section">
             <div class="container">
-                <div class="audio-icon">
-                    <i class="fa-solid fa-headphones-simple"></i>
-                </div>
+                <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
                 <h2>The Chaos, Now in Your Ears</h2>
-                <p>
-                    The official audiobook of <em>The Worst Boyfriends Ever</em> is landing this month! Get ready for every meltdown, red flag, and moment of poetic rage, delivered with maximum emotional whiplash.
-                </p>
-                <a href="#" class="button audio-cta">Notify Me When It Drops</a>
-                <div class="platforms">
-                    <span>Available Soon On:</span>
-                    <i class="fa-brands fa-spotify" title="Spotify"></i>
-                    <i class="fa-brands fa-kobo" title="Kobo"></i>
-                    <span>& many more</span>
-                </div>
+                <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
+                <audio controls src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" class="audio-player">Your browser does not support the audio element.</audio>
             </div>
         </section>
 
-        <section class="marquee">
-            <div class="marquee-track"></div>
+        <section class="section reviews-section" id="reviews">
+             <div class="section-header">
+                <h2>Hall of Mirrors</h2>
+                <p>"Laughing at your own reflection is cheaper than therapy."</p>
+            </div>
+            <div class="reviews-carousel">
+                </div>
         </section>
 
         <section class="section light" id="about">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="rainbow-text">Inside the Chaos</h2>
+                    <h2>Inside the Chaos</h2>
                 </div>
-                 <div class="chaos-main-text">
-                    <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a <b class="rainbow-text">breakup battle cry</b> in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,” “relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”</p>
-                    <p>Told with zero apologies and <b class="rainbow-text">maximum emotional whiplash</b>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
-                </div>
+                <p class="inside-chaos-text">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
             </div>
         </section>
 
-        <section class="section play-area" id="gallery">
+        <section class="section dark-section" id="gallery">
             <div class="container">
                 <div class="section-header">
                     <h2>Ex-Boyfriend Mugshot Gallery</h2>
@@ -91,11 +70,11 @@
             </div>
         </section>
 
-        <section class="section play-area" id="quiz">
+        <section class="section teal-section" id="quiz">
             <div class="container">
                  <div class="section-header">
-                    <h2>Red Flag Meter</h2>
-                    <p>Think you're a red flag pro? Test your dating survival instincts!</p>
+                    <h2>The Red-Flag-o-Meter</h2>
+                    <p>Think you're a pro? Test your strength against these dating disasters!</p>
                 </div>
                 <div class="interactive-container">
                     <div id="quiz-intro">
@@ -106,39 +85,23 @@
                         <div id="quiz-options" class="quiz-options"></div>
                     </div>
                     <div id="quiz-results" style="display: none;">
-                        <h3 id="quiz-category" class="rainbow-text"></h3>
+                        <h3 id="quiz-category"></h3>
                         <p id="quiz-blurb"></p>
-                        <button id="quiz-reset-btn" class="button">Retake Quiz</button>
+                        <button id="quiz-reset-btn" class="button">Try Again</button>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section play-area" id="bingo">
+        
+        <section class="section final-cta">
             <div class="container">
-                <div class="section-header">
-                    <h2>Bad Date Bingo</h2>
-                    <p>Ever had a date so bad, it felt like a game? Check off your experiences.</p>
-                </div>
-                <div class="interactive-container" style="background-color: var(--wb-dark-teal);">
-                    <div class="bingo-grid"></div>
-                    <p id="bingo-message" style="display:none; font-weight: 700; font-size: 1.5rem;" class="rainbow-text">BINGO!</p>
-                    <button id="bingo-reset-btn" class="button">Reset Bingo</button>
-                </div>
+                <div class="heart-icon"><i class="fas fa-heart-broken"></i></div>
+                <h2>Next emotional roller-coaster leaves in <span id="countdown">59</span> seconds.</h2>
+                <p>Read now before you talk yourself into texting him again.</p>
+                <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Buy The Book</a>
             </div>
         </section>
 
-        <section class="section light">
-            <div class="container">
-                <div class="about-author">
-                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore">
-                    <div class="about-author-text">
-                        <h2 class="rainbow-text">About the Author</h2>
-                        <p>Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -158,31 +121,18 @@
         </div>
     </footer>
 
-    <div id="contact-modal" class="modal-backdrop">
+    <div id="secret-chapter-modal" class="modal-backdrop">
         <div class="modal-content">
-            <span id="close-modal" class="modal-close">&times;</span>
-            <h2 style="text-align: center;">Contact Me</h2>
+            <span class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Get the Secret Chapter!</h2>
+            <p style="text-align: center;">Sign up to get the bonus chapter that was too chaotic for the book.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="button" style="width: 100%;">Send Message</button>
+                <button type="submit" class="button" style="width: 100%;">Unlock Chapter</button>
             </form>
         </div>
     </div>
 
-    <div id="cookie-banner" class="cookie-banner">
-        <p style="margin: 0 1rem 0 0;">This website uses cookies to improve your experience.</p>
-        <button id="accept-cookies" class="button">Accept</button>
-    </div>
-    
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-W9B5W1241H');
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
