@@ -1,5 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     try {
+        // Announcement Bar
+        const announcementItems = document.querySelectorAll('.announcement-item');
+        if (announcementItems.length > 0) {
+            let currentItemIndex = 0;
+            setInterval(() => {
+                if (announcementItems[currentItemIndex]) {
+                    announcementItems[currentItemIndex].classList.remove('is-active');
+                }
+                currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
+                if (announcementItems[currentItemIndex]) {
+                    announcementItems[currentItemIndex].classList.add('is-active');
+                }
+            }, 5000);
+        }
+
         // Countdown Timer
         const countdownElement = document.getElementById('countdown');
         if(countdownElement) {
