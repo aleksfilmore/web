@@ -30,7 +30,7 @@ h1, h2, h3 {
 .button { display: inline-block; background-color: var(--wb-red); color: white !important; padding: 0.8rem 1.8rem; border: 3px solid #000; border-radius: 8px; font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; box-shadow: 5px 5px 0px black; }
 .button:hover { transform: translateY(-3px) translateX(-3px); box-shadow: 8px 8px 0px black;}
 .button:active { transform: translateY(0) translateX(0); box-shadow: 5px 5px 0px black; }
-.button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; }
+.button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; box-shadow: 5px 5px 0px var(--wb-text-dark); }
 .button-secondary:hover { background-color: var(--wb-red); color: white !important; }
 
 header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; }
@@ -46,10 +46,6 @@ header { padding: 1rem 0; background-color: white; border-bottom: 3px solid blac
 .hero .hero-buttons { margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 .book-cover-container { margin: 2rem auto; max-width: 250px; }
 .book-cover { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-
-.disaster-flicker-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-.flicker-text { position: absolute; color: var(--wb-cream); font-size: 1.5rem; font-weight: bold; text-shadow: 0 0 8px rgba(247, 220, 170, 0.7); opacity: 0; animation: flickerEffect 8s infinite ease-in-out; }
-@keyframes flickerEffect { 0%, 100% { opacity: 0; } 5%, 15% { opacity: 1; } 20% { opacity: 0; } }
 
 .audiobook-promo { background-color: var(--wb-dark-teal); color: var(--wb-cream); text-align: center; }
 .audiobook-promo h2 { color: white; }
@@ -72,8 +68,7 @@ header { padding: 1rem 0; background-color: white; border-bottom: 3px solid blac
 .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
 .play-area { background-color: var(--wb-teal); }
 .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
-.inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
-
+.interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; background: var(--wb-dark-teal); text-align: center; }
 .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
 @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
 
