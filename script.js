@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Announcement Bar
+    const announcementItems = document.querySelectorAll('.announcement-item');
+    if (announcementItems.length > 0) {
+        let currentItemIndex = 0;
+        announcementItems[currentItemIndex].classList.add('is-active');
+        setInterval(() => {
+            announcementItems[currentItemIndex].classList.remove('is-active');
+            currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
+            announcementItems[currentItemIndex].classList.add('is-active');
+        }, 5000);
+    }
+
     // Marquee Builder
     const reviews = [
         { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" },
