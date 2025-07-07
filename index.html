@@ -14,7 +14,7 @@
 
     <header>
         <div class="container header-flex">
-            <div class="logo">Aleks Filmore</div>
+            <div class="logo">ALEKS FILMORE</div>
             <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
     </header>
@@ -22,30 +22,21 @@
     <main>
         <section class="hero" id="home">
             <div class="hero-background">
-                <img src="https://github.com/aleksfilmore/web/raw/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
             </div>
-            <div class="container hero-content">
-                <h1>Step right up to the parade of exes you’ll never forget.</h1>
-                <div class="book-cover-container">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Step right up to the parade of exes you’ll never forget.</h1>
+                    <div class="hero-buttons">
+                        <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
+                        <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
+                    </div>
+                </div>
+                <div class="hero-image">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
-                <div class="hero-buttons">
-                    <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
-                    <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
-                </div>
             </div>
-        </section>
-
-        <section class="audiobook-promo section">
-            <div class="container">
-                <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
-                <h2>The Chaos, Now in Your Ears</h2>
-                <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
-                <audio controls class="audio-player">
-                    <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
+            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="section reviews-section" id="reviews">
@@ -59,52 +50,7 @@
             </div>
         </section>
 
-        <section class="section light" id="about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Inside the Chaos</h2>
-                </div>
-                <p class="inside-chaos-text">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
-            </div>
-        </section>
-
-        <section class="section play-area" id="gallery">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Ex-Boyfriend Mugshot Gallery</h2>
-                    <p>Meet the infamous lineup. Click to reveal their crimes against dating.</p>
-                </div>
-                <div class="mugshot-gallery"></div>
-            </div>
-        </section>
-        
-        <section class="section final-cta">
-            <div class="container">
-                <div class="heart-icon"><i class="fas fa-heart-broken"></i></div>
-                <h2>Next emotional roller-coaster leaves in <span id="countdown">59</span> seconds.</h2>
-                <p>Read now before you talk yourself into texting him again.</p>
-                <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Buy The Book</a>
-            </div>
-        </section>
-
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-social">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
-                <a href="#" id="open-contact-modal">Contact Me</a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <div id="secret-chapter-modal" class="modal-backdrop">
         <div class="modal-content">
@@ -118,13 +64,6 @@
         </div>
     </div>
     
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-W9B5W1241H');
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
