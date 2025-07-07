@@ -67,9 +67,12 @@ header { padding: 1rem 0; background-color: white; border-bottom: 3px solid blac
 .review-card .reviewer { font-weight: 700; text-align: right; }
 @keyframes scroll-reviews { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
 
+.light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
 .play-area { background-color: var(--wb-teal); }
 .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
-.interactive-container { max-width: 700px; margin: 0 auto; padding: 2rem; border-radius: 12px; background: var(--wb-dark-teal); text-align: center; }
+.dark-section { background-color: var(--wb-dark-teal); color: var(--wb-cream); }
+.inside-chaos-text { max-width: 700px; margin: 0 auto; text-align: center; }
+
 .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
 @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
 
