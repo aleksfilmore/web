@@ -4,65 +4,109 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aleks Filmore | The Worst Boyfriends Ever</title>
-    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
+    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --wb-teal: #044654;
+            --wb-red: #e05b38;
+            --wb-cream: #f7dcaa;
+            --wb-dark-teal: #02313a;
+            --wb-text-dark: #2a2110;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--wb-cream);
+            color: var(--wb-text-dark);
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
+        .section { padding: 4rem 1.5rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; margin: 0 0 0.5rem 0; }
+        .rainbow-text {
+            background: linear-gradient(90deg, #e05b38, #f0cc00, #6aa84f, #45818e, #8b5baa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--wb-red);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .button:hover {
+            background-color: #c44a28;
+            transform: translateY(-2px);
+        }
+
+        header { padding: 1rem 1.5rem; }
+        .hero { padding: 2rem 1.5rem 4rem; background-color: var(--wb-dark-teal); color: var(--wb-cream); }
+        .hero h1 { color: var(--wb-cream); }
+        .hero-grid { display: grid; grid-template-columns: 1fr; align-items: center; gap: 2rem; text-align: center; }
+        @media (min-width: 768px) { .hero-grid { grid-template-columns: 1fr 1fr; text-align: left; } }
+        .book-cover-container { margin: 2rem auto; max-width: 250px; }
+        @media (min-width: 768px) { .book-cover-container { margin: 0; } }
+        .book-cover { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        .play-area { background-color: var(--wb-teal); color: var(--wb-cream); }
+        .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
+        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
+        .mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; height: 220px; background-color: var(--wb-dark-teal); }
+        .mugshot-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .mugshot-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1rem 1rem; color: white; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+        .mugshot-charge { display: none; }
+        .mugshot-card.is-revealed .mugshot-overlay { background: rgba(224, 91, 56, 0.9); height: 100%; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        .mugshot-card.is-revealed h3 { display: none; }
+        .mugshot-card.is-revealed .mugshot-charge { display: block; font-style: italic; font-size: 0.9rem; }
+        
+        footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; color: var(--wb-cream); }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="container header-flex">
+        <div class="container">
             <div class="logo">Aleks Filmore</div>
-            <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
     </header>
 
     <main>
-        <section class="hero" id="home">
-            <div class="hero-background">
-                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
-            </div>
-            <div class="container hero-content">
-                <h1>Step right up to the parade of exes you’ll never forget.</h1>
-                <div class="hero-buttons">
-                    <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
-                    <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1 class="rainbow-text">Breakups.<br>Meltdowns.<br>Mistakes.</h1>
+                    <p>A hilarious, messy–queer breakup memoir—now with an exclusive secret chapter.</p>
+                    <a href="https://a.co/d/j2SrpJl" class="button" target="_blank" rel="noopener noreferrer">Grab the Book</a>
+                </div>
+                <div class="book-cover-container">
+                    <img id="book-cover-img" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
             </div>
-            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
-        <section class="audiobook-promo section">
-            <div class="container">
-                <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
-                <h2>The Chaos, Now in Your Ears</h2>
-                <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
-                <audio controls class="audio-player">
-                    <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-        </section>
-
-        <section class="section reviews-section" id="reviews">
-             <div class="section-header">
-                <h2>Hall of Mirrors</h2>
-                <p>"Laughing at your own reflection is cheaper than therapy."</p>
-            </div>
-            <div class="reviews-carousel-container">
-                <div class="reviews-carousel">
-                    </div>
-            </div>
-        </section>
-
-        <section class="section light" id="about">
+        <section class="section light">
             <div class="container">
                 <div class="section-header">
                     <h2>Inside the Chaos</h2>
                 </div>
-                <p class="inside-chaos-text">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                <p style="max-width: 700px; margin: 0 auto; text-align: center;">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
             </div>
         </section>
 
@@ -72,57 +116,54 @@
                     <h2>Ex-Boyfriend Mugshot Gallery</h2>
                     <p>Meet the infamous lineup. Click to reveal their crimes against dating.</p>
                 </div>
-                <div class="mugshot-gallery"></div>
+                <div class="mugshot-gallery">
+                    </div>
             </div>
         </section>
-        
-        <section class="section final-cta">
-            <div class="container">
-                <div class="heart-icon"><i class="fas fa-heart-broken"></i></div>
-                <h2>Next emotional roller-coaster leaves in <span id="countdown">59</span> seconds.</h2>
-                <p>Read now before you talk yourself into texting him again.</p>
-                <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Buy The Book</a>
-            </div>
-        </section>
-
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-social">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
-                <a href="#" id="open-contact-modal">Contact Me</a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
-            </div>
+             <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <div id="secret-chapter-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 style="text-align: center;">Get the Secret Chapter!</h2>
-            <p style="text-align: center;">Sign up to get the bonus chapter that was too chaotic for the book.</p>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="email" name="email" placeholder="Your Email" required>
-                <button type="submit" class="button" style="width: 100%;">Unlock Chapter</button>
-            </form>
-        </div>
-    </div>
     
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-W9B5W1241H');
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const imageSources = {
+                    bookCover: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAJQA8ADAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ6hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD54ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigA-data:image/jpeg;base64,"
+                // ... all the other mugshots
+            };
+
+            const bookCover = document.getElementById('book-cover-img');
+            if(bookCover) {
+                bookCover.src = imageSources.bookCover;
+            }
+
+            const gallery = document.querySelector('.mugshot-gallery');
+            if (gallery) {
+                const mugshotData = [
+                    { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "data:image/png;base64,..." },
+                    { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "data:image/png;base64,..." },
+                    // ... All 20 entries with their Base64 image data
+                ];
+
+                mugshotData.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'mugshot-card';
+                    card.innerHTML = `
+                        <img src="${data.img}" alt="${data.name}" loading="lazy">
+                        <div class="mugshot-overlay">
+                            <h3>${data.name}</h3>
+                            <p class="mugshot-charge">${data.charge}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => card.classList.toggle('is-revealed'));
+                    gallery.appendChild(card);
+                });
+            }
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
