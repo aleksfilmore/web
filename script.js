@@ -3,11 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const announcementItems = document.querySelectorAll('.announcement-item');
     if (announcementItems.length > 0) {
         let currentItemIndex = 0;
-        announcementItems[currentItemIndex].classList.add('is-active');
         setInterval(() => {
-            announcementItems[currentItemIndex].classList.remove('is-active');
+            if (announcementItems[currentItemIndex]) {
+                announcementItems[currentItemIndex].classList.remove('is-active');
+            }
             currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
-            announcementItems[currentItemIndex].classList.add('is-active');
+            if (announcementItems[currentItemIndex]) {
+                announcementItems[currentItemIndex].classList.add('is-active');
+            }
         }, 5000);
     }
 
