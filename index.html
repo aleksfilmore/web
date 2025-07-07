@@ -8,136 +8,72 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            --wb-teal: #044654;
-            --wb-red: #e05b38;
-            --wb-cream: #f7dcaa;
-            --wb-dark-teal: #02313a;
-            --wb-text-dark: #2a2110;
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--wb-cream);
-            color: var(--wb-text-dark);
-            line-height: 1.6;
-        }
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
-        .section { padding: 5rem 1.5rem; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-size: 2.5rem; margin: 0 0 0.5rem 0; color: var(--wb-dark-teal); }
-        .section-header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
-
-        .button { display: inline-block; background-color: var(--wb-red); color: white !important; padding: 0.8rem 1.8rem; border: 3px solid #000; border-radius: 8px; font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; box-shadow: 5px 5px 0px black; }
-        .button:hover { transform: translateY(-3px) translateX(-3px); box-shadow: 8px 8px 0px black;}
-        .button:active { transform: translateY(0) translateX(0); box-shadow: 5px 5px 0px black; }
-        .button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; }
-
-        header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; position: relative; z-index: 100; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--wb-dark-teal); }
-
-        .hero { padding: 5rem 1.5rem 7rem; background-color: var(--wb-teal); color: var(--wb-cream); position: relative; overflow: hidden; text-align: center; }
-        .hero-background { position: absolute; top: 50%; left: 50%; width: 150%; height: 150%; transform: translate(-50%, -50%); opacity: 0.1; }
-        .hero-rainbow { width: 100%; height: 100%; object-fit: cover; animation: spin 60s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .hero-content { position: relative; z-index: 2; }
-        .hero h1 { font-size: clamp(3rem, 7vw, 5rem); color: var(--wb-cream); text-shadow: 4px 4px 0px black; }
-        .hero .hero-buttons { margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        
-        .audiobook-promo { background-color: var(--wb-dark-teal); color: var(--wb-cream); text-align: center; }
-        .audiobook-promo h2 { color: white; }
-        .audiobook-promo p { max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
-        .audio-icon { font-size: 4rem; color: var(--wb-red); margin-bottom: 1.5rem; }
-        .audio-player { margin-top: 1rem; max-width: 100%; }
-
-        .reviews-section { background-color: var(--wb-dark-teal); background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23044654" fill-opacity="0.4"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>'); background-attachment: fixed; }
-        .reviews-section .section-header h2, .reviews-section .section-header p { color: white; }
-        .reviews-carousel-container { height: 400px; display: flex; overflow: hidden; position: relative; }
-        .reviews-carousel-container::before, .reviews-carousel-container::after { content: ''; position: absolute; left: 0; z-index: 2; width: 100%; height: 50px; }
-        .reviews-carousel-container::before { top: 0; background: linear-gradient(to bottom, var(--wb-dark-teal), transparent); }
-        .reviews-carousel-container::after { bottom: 0; background: linear-gradient(to top, var(--wb-dark-teal), transparent); }
-        .reviews-carousel { display: flex; flex-direction: column; animation: scroll-reviews 120s linear infinite; }
-        .review-card { background: var(--wb-cream); color: var(--wb-text-dark); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 8px; border: 3px solid black; box-shadow: 5px 5px 0px black; width: 320px; flex-shrink: 0; }
-        .review-card p { font-style: italic; margin-top: 0; }
-        .review-card .reviewer { font-weight: 700; text-align: right; }
-        @keyframes scroll-reviews { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
-
-        .light { background-color: var(--wb-cream); color: var(--wb-text-dark); }
-        .play-area { background-color: var(--wb-teal); }
-        .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
-        
-        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-
-        .final-cta { background-color: var(--wb-red); color: white; text-align: center; }
-        .final-cta h2 { font-size: 2.5rem; text-shadow: 3px 3px 0px black; }
-        .final-cta p { font-size: 1.2rem; font-weight: 700; }
-        .heart-icon { font-size: 3rem; animation: pulse 1.5s infinite ease-in-out; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
-
-        footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; color: var(--wb-cream); }
-        .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; text-decoration: none; }
-        .footer-links { margin: 20px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-        .footer-links a { color: var(--wb-cream); text-decoration: underline; }
-
-        .modal-backdrop { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--wb-dark-teal); padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; border: 3px solid black; }
-        .modal-close { position: absolute; top: 10px; right: 20px; font-size: 28px; color: var(--wb-cream); cursor: pointer; }
-        .modal-form input, .modal-form textarea { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--wb-teal); border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif; font-size: 1rem; background-color: var(--wb-teal); color: var(--wb-cream); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="announcement-bar">
+        <div class="announcement-item is-active">
+            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
+        </div>
+        <div class="announcement-item">
+            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
+        </div>
+    </div>
+
     <header>
         <div class="container header-flex">
-            <div class="logo">Aleks Filmore</div>
+            <div class="logo">ALEKS FILMORE</div>
+            <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
     </header>
 
     <main>
         <section class="hero" id="home">
             <div class="hero-background">
-                <img id="hero-rainbow-img" alt="" class="hero-rainbow">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
             </div>
-            <div class="container hero-content">
-                <h1>Step right up to the parade of exes you’ll never forget.</h1>
-                <div class="book-cover-container">
-                     <img id="book-cover-img" alt="The Worst Boyfriends Ever cover" class="book-cover">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Dating is <span class="text-red">War</span>.<br>Laughter is <span class="text-red">Armor</span>.</h1>
+                    <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
+                    <div class="hero-buttons">
+                        <button id="open-secret-chapter-modal" class="button button-main">Unlock the Secret Chapter</button>
+                        <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-secondary">Available on Amazon</a>
+                    </div>
                 </div>
-                <div class="hero-buttons">
-                    <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
-                    <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
+                <div class="hero-image">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
             </div>
+            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="audiobook-promo section">
             <div class="container">
-                <div class="audio-icon">🎧</div>
+                <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
                 <h2>The Chaos, Now in Your Ears</h2>
                 <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
-                <audio controls class="audio-player" src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3"></audio>
+                <audio controls class="audio-player">
+                    <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="platforms">
+                    <span>Available Soon On:</span>
+                    <i class="fa-brands fa-spotify" title="Spotify"></i>
+                    <i class="fa-brands fa-kobo" title="Kobo"></i>
+                    <span>& many more</span>
+                </div>
             </div>
         </section>
 
-        <section class="section reviews-section" id="reviews">
+        <section class="reviews-section" id="reviews">
              <div class="section-header">
                 <h2>Hall of Mirrors</h2>
                 <p>"Laughing at your own reflection is cheaper than therapy."</p>
             </div>
-            <div class="reviews-carousel-container">
-                <div class="reviews-carousel">
+            <div class="reviews-marquee">
+                <div class="reviews-track">
                     </div>
             </div>
         </section>
@@ -145,9 +81,24 @@
         <section class="section light" id="about">
             <div class="container">
                 <div class="section-header">
-                    <h2>Inside the Chaos</h2>
+                    <h2 class="rainbow-text">Inside the Chaos</h2>
                 </div>
-                <p style="max-width: 700px; margin: 0 auto; text-align: center;">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                <div class="chaos-grid">
+                    <div class="chaos-main-text">
+                        <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a <b class="rainbow-text">breakup battle cry</b> in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,” “relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”</p>
+                        <p>Told with zero apologies and <b class="rainbow-text">maximum emotional whiplash</b>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
+                    </div>
+                    <div class="chaos-features">
+                        <ul class="features-list">
+                            <li><i class="fas fa-heart-broken"></i><span>Laugh-out-loud satire</span></li>
+                            <li><i class="fas fa-heart-broken"></i><span>Queer heartbreak with a punchline</span></li>
+                            <li><i class="fas fa-heart-broken"></i><span>Emotional healing disguised as chaos</span></li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="chaos-cta">
+                    <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
+                </div>
             </div>
         </section>
 
@@ -157,14 +108,13 @@
                     <h2>Ex-Boyfriend Mugshot Gallery</h2>
                     <p>Meet the infamous lineup. Click to reveal their crimes against dating.</p>
                 </div>
-                <div class="mugshot-gallery">
-                    </div>
+                <div class="mugshot-gallery"></div>
             </div>
         </section>
         
         <section class="section final-cta">
             <div class="container">
-                <div class="heart-icon">💔</div>
+                <div class="heart-icon"><i class="fas fa-heart-broken"></i></div>
                 <h2>Next emotional roller-coaster leaves in <span id="countdown">59</span> seconds.</h2>
                 <p>Read now before you talk yourself into texting him again.</p>
                 <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Buy The Book</a>
@@ -176,8 +126,8 @@
     <footer>
         <div class="container">
             <div class="footer-social">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram">Instagram</a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok">TikTok</a>
+                <a href="https://www.instagram.com/aleksfilmore" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
             <div class="footer-links">
                 <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
@@ -189,31 +139,44 @@
             </div>
         </div>
     </footer>
-    
+
     <div id="secret-chapter-modal" class="modal-backdrop">
         <div class="modal-content">
-            <span class="modal-close" id="close-secret-modal">&times;</span>
-            <h2 style="text-align: center; color: var(--wb-cream);">Get the Secret Chapter!</h2>
+            <span class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Get the Secret Chapter!</h2>
+            <p style="text-align: center;">Sign up to get the bonus chapter that was too chaotic for the book.</p>
             <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
                 <input type="email" name="email" placeholder="Your Email" required>
                 <button type="submit" class="button" style="width: 100%;">Unlock Chapter</button>
             </form>
         </div>
     </div>
+    
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Contact Me</h2>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
 
+    <div id="cookie-banner" class="cookie-banner">
+        <p style="margin: 0 1rem 0 0;">This website uses cookies to improve your experience.</p>
+        <button id="accept-cookies" class="button">Accept</button>
+    </div>
+    
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                // --- Self-Contained Image Data (Base64) ---
-                const imageSources = {
-                    bookCover: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAJQA8ADAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ6hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD54ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigA"
-            };
-
-            const bookCover = document.getElementById('book-cover-img');
-            if(bookCover) {
-                bookCover.src = imageSources.bookCover;
-            }
-        });
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W9B5W1241H');
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
