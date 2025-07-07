@@ -12,18 +12,9 @@
 </head>
 <body>
 
-    <div class="announcement-bar">
-        <div class="announcement-item is-active">
-            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
-        </div>
-        <div class="announcement-item">
-            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
-        </div>
-    </div>
-
     <header>
         <div class="container header-flex">
-            <div class="logo">ALEKS FILMORE</div>
+            <div class="logo">Aleks Filmore</div>
             <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
     </header>
@@ -31,22 +22,18 @@
     <main>
         <section class="hero" id="home">
             <div class="hero-background">
-                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
+                <img src="https://github.com/aleksfilmore/web/raw/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
             </div>
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1>Dating is <span class="text-red">War</span>.<br>Laughter is <span class="text-red">Armor</span>.</h1>
-                    <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
-                    <div class="hero-buttons">
-                        <button id="open-secret-chapter-modal" class="button button-main">Unlock the Secret Chapter</button>
-                        <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-secondary">Available on Amazon</a>
-                    </div>
-                </div>
-                <div class="hero-image">
+            <div class="container hero-content">
+                <h1>Step right up to the parade of exes you’ll never forget.</h1>
+                <div class="book-cover-container">
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
+                <div class="hero-buttons">
+                    <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Grab the Book</a>
+                    <button id="open-secret-chapter-modal" class="button button-secondary">ENTER AT YOUR OWN RISK</button>
+                </div>
             </div>
-            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
         </section>
 
         <section class="audiobook-promo section">
@@ -58,22 +45,16 @@
                     <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-                <div class="platforms">
-                    <span>Available Soon On:</span>
-                    <i class="fa-brands fa-spotify" title="Spotify"></i>
-                    <i class="fa-brands fa-kobo" title="Kobo"></i>
-                    <span>& many more</span>
-                </div>
             </div>
         </section>
 
-        <section class="reviews-section" id="reviews">
+        <section class="section reviews-section" id="reviews">
              <div class="section-header">
                 <h2>Hall of Mirrors</h2>
                 <p>"Laughing at your own reflection is cheaper than therapy."</p>
             </div>
-            <div class="reviews-marquee">
-                <div class="reviews-track">
+            <div class="reviews-carousel-container">
+                <div class="reviews-carousel">
                     </div>
             </div>
         </section>
@@ -81,24 +62,9 @@
         <section class="section light" id="about">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="rainbow-text">Inside the Chaos</h2>
+                    <h2>Inside the Chaos</h2>
                 </div>
-                <div class="chaos-grid">
-                    <div class="chaos-main-text">
-                        <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a <b class="rainbow-text">breakup battle cry</b> in bold font and eyeliner. Readers call it <b class="rainbow-text">“hilarious,” “relatable,”</b> and “the perfect read for a long flight — or a long string of mistakes.”</p>
-                        <p>Told with zero apologies and <b class="rainbow-text">maximum emotional whiplash</b>, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then <b class="dangerous rainbow-text">a little dangerous.</b></p>
-                    </div>
-                    <div class="chaos-features">
-                        <ul class="features-list">
-                            <li><i class="fas fa-heart-broken"></i><span>Laugh-out-loud satire</span></li>
-                            <li><i class="fas fa-heart-broken"></i><span>Queer heartbreak with a punchline</span></li>
-                            <li><i class="fas fa-heart-broken"></i><span>Emotional healing disguised as chaos</span></li>
-                        </ul>
-                    </div>
-                </div>
-                 <div class="chaos-cta">
-                    <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
-                </div>
+                <p class="inside-chaos-text">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
             </div>
         </section>
 
@@ -150,24 +116,6 @@
                 <button type="submit" class="button" style="width: 100%;">Unlock Chapter</button>
             </form>
         </div>
-    </div>
-    
-    <div id="contact-modal" class="modal-backdrop">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 style="text-align: center;">Contact Me</h2>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="button" style="width: 100%;">Send Message</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="cookie-banner" class="cookie-banner">
-        <p style="margin: 0 1rem 0 0;">This website uses cookies to improve your experience.</p>
-        <button id="accept-cookies" class="button">Accept</button>
     </div>
     
     <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
