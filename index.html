@@ -11,18 +11,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="announcement-bar">
+        <div class="announcement-item is-active">
+            <span>Recently Ranked: <strong>#1</strong> LGBTQ+ Humor · <strong>#2</strong> Gay Fiction</span>
+        </div>
+        <div class="announcement-item">
+            <span>Audiobook Drops This Month! <strong>Now Hear The Chaos.</strong></span>
+        </div>
+    </div>
+
     <header>
         <div class="container header-flex">
-            <div class="logo">Aleks Filmore</div>
+            <div class="logo">ALEKS FILMORE</div>
             <div class="tagline">Queer Stories. Real Chaos.</div>
         </div>
     </header>
 
     <main>
         <section class="hero" id="home">
+            <div class="hero-background">
+                <img src="https://raw.githubusercontent.com/aleksfilmore/web/dfbbacd43fb3e6103e9659505f5a8b056570fcd6/Rainbow.png" alt="" class="hero-rainbow">
+            </div>
             <div class="container hero-grid">
                 <div class="hero-content">
-                    <h1>Dating is War.<br>Laughter is Armor.</h1>
+                    <h1>Dating is <span class="text-red">War</span>.<br>Laughter is <span class="text-red">Armor</span>.</h1>
                     <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
                     <div class="hero-buttons">
                         <button id="open-secret-chapter-modal" class="button button-main">Unlock the Secret Chapter</button>
@@ -33,19 +46,43 @@
                     <img src="https://raw.githubusercontent.com/aleksfilmore/web/main/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
             </div>
+            <div class="disaster-flicker-overlay" id="disaster-flicker"></div>
+        </section>
+
+        <section class="audiobook-promo section">
+            <div class="container">
+                <div class="audio-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+                <h2>The Chaos, Now in Your Ears</h2>
+                <p>The official audiobook is coming soon! Hear every meltdown and moment of poetic rage. Here's a sneak peek.</p>
+                <audio controls class="audio-player">
+                    <source src="https://github.com/aleksfilmore/web/raw/main/audio/sample.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
         </section>
 
         <section class="marquee">
-            <div class="marquee-track">
-                </div>
+            <div class="marquee-track"></div>
         </section>
 
         <section class="section light" id="about">
             <div class="container">
                 <div class="section-header">
-                    <h2>Inside the Chaos</h2>
+                    <h2 class="rainbow-text">Inside the Chaos</h2>
                 </div>
-                <p class="inside-chaos-text">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                <div class="chaos-grid">
+                    <div class="chaos-main-text">
+                        <p>The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.”</p>
+                        <p>Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                    </div>
+                    <div class="chaos-features">
+                        <ul class="features-list">
+                            <li><i class="fas fa-heart-broken"></i><span>Laugh-out-loud satire</span></li>
+                            <li><i class="fas fa-heart-broken"></i><span>Queer heartbreak with a punchline</span></li>
+                            <li><i class="fas fa-heart-broken"></i><span>Emotional healing disguised as chaos</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -58,13 +95,16 @@
                 <div class="mugshot-gallery"></div>
             </div>
         </section>
-
-        <section class="section final-cta">
+        
+        <section class="section light">
             <div class="container">
-                <div class="heart-icon"><i class="fas fa-heart-broken"></i></div>
-                <h2>Next emotional roller-coaster leaves in <span id="countdown">59</span> seconds.</h2>
-                <p>Read now before you talk yourself into texting him again.</p>
-                <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-main">Buy The Book</a>
+                <div class="about-author">
+                    <img src="https://raw.githubusercontent.com/aleksfilmore/web/5aa454fcd11d297b911bcc37c9e07bec9c164b2f/ALEKS%20FILMORE.png" alt="Author Aleks Filmore">
+                    <div class="about-author-text">
+                        <h2>About the Author</h2>
+                        <p>Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos, his writing blends humor, honesty, and a touch of poetic rage.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -76,8 +116,8 @@
                 <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
             <div class="footer-links">
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                <a href="https://github.com/aleksfilmore/web/blob/b061d85e6999df2748de2efa8606d7f4128e38a3/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/cookies.html">Cookie Policy</a>
                 <a href="#" id="open-contact-modal">Contact Me</a>
             </div>
             <div class="footer-copyright">
@@ -96,6 +136,24 @@
                 <button type="submit" class="button" style="width: 100%;">Unlock Chapter</button>
             </form>
         </div>
+    </div>
+    
+    <div id="contact-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="text-align: center;">Contact Me</h2>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="modal-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p style="margin: 0 1rem 0 0;">This website uses cookies to improve your experience.</p>
+        <button id="accept-cookies" class="button">Accept</button>
     </div>
     
     <script src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
