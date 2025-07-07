@@ -1,20 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        // Announcement Bar
-        const announcementItems = document.querySelectorAll('.announcement-item');
-        if (announcementItems.length > 0) {
-            let currentItemIndex = 0;
-            setInterval(() => {
-                if (announcementItems[currentItemIndex]) {
-                    announcementItems[currentItemIndex].classList.remove('is-active');
-                }
-                currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
-                if (announcementItems[currentItemIndex]) {
-                    announcementItems[currentItemIndex].classList.add('is-active');
-                }
-            }, 5000);
-        }
-
         // Countdown Timer
         const countdownElement = document.getElementById('countdown');
         if(countdownElement) {
@@ -24,24 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (timeLeft < 0) timeLeft = 59;
                 countdownElement.textContent = timeLeft < 10 ? "0" + timeLeft : timeLeft;
             }, 1000);
-        }
-
-        // Flicker Effect
-        const flickerContainer = document.getElementById('disaster-flicker');
-        if (flickerContainer) {
-            const flickerWords = ["Ghosted", "Red Flag", "Gaslit", "Chaos", "Meltdown"];
-            setInterval(() => {
-                if(flickerContainer.children.length > 3) return; 
-                const word = flickerWords[Math.floor(Math.random() * flickerWords.length)];
-                const flickerSpan = document.createElement('span');
-                flickerSpan.className = 'flicker-text';
-                flickerSpan.textContent = word;
-                flickerSpan.style.top = `${Math.random() * 80 + 10}%`;
-                flickerSpan.style.left = `${Math.random() * 80 + 10}%`;
-                flickerSpan.style.animationDuration = `${Math.random() * 4 + 4}s`;
-                flickerContainer.appendChild(flickerSpan);
-                setTimeout(() => flickerSpan.remove(), 8000);
-            }, 2500);
         }
 
         // Reviews Carousel
@@ -105,17 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     modal.style.display = 'none';
                 });
             }
-            window.addEventListener('click', (e) => { 
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
         }
         setupModal(secretChapterModal, openSecretChapterBtn);
         setupModal(contactModal, openContactBtn);
         
     } catch (error) {
-        console.error("A critical error occurred on the page: ", error);
-        document.body.innerHTML = '<h1>A critical error occurred. Please check the console for more details.</h1>';
+        console.error("An error occurred while initializing the page:", error);
     }
 });
