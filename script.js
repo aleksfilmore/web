@@ -1,4 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Scroll Animations
+    const animatedSections = document.querySelectorAll('.animated-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    animatedSections.forEach(section => observer.observe(section));
+
+    // Chaos Flicker
+    const flickerContainer = document.getElementById('disaster-flicker');
+    if (flickerContainer) {
+        const flickerWords = ["Ghosted", "Red Flag", "Gaslit", "Chaos", "Meltdown"];
+        setInterval(() => {
+            if(flickerContainer.children.length > 3) return; 
+            const word = flickerWords[Math.floor(Math.random() * flickerWords.length)];
+            const flickerSpan = document.createElement('span');
+            flickerSpan.className = 'flicker-text';
+            flickerSpan.textContent = word;
+            flickerSpan.style.top = `${Math.random() * 80 + 10}%`;
+            flickerSpan.style.left = `${Math.random() * 80 + 10}%`;
+            flickerSpan.style.animationDuration = `${Math.random() * 4 + 4}s`;
+            flickerContainer.appendChild(flickerSpan);
+            setTimeout(() => flickerSpan.remove(), 8000);
+        }, 3000);
+    }
+
     // Marquee Builder
     const reviews = [
         { name: "Samantha", text: "“It’s wild, messy, and somehow still uplifting.”" },
@@ -96,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         function checkBingo() {
-            if (grid.querySelectorAll('.is-checked').length >= 4) { // Simplified check for BINGO
+            if (grid.querySelectorAll('.is-checked').length >= 4) {
                  message.style.display = 'block';
             } else {
                 message.style.display = 'none';
