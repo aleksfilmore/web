@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     try {
+        // Announcement Bar
+        const announcementItems = document.querySelectorAll('.announcement-item');
+        if (announcementItems.length > 1) {
+            let currentItemIndex = 0;
+            if (announcementItems[currentItemIndex]) {
+                announcementItems[currentItemIndex].classList.add('is-active');
+            }
+            setInterval(() => {
+                if (announcementItems[currentItemIndex]) {
+                    announcementItems[currentItemIndex].classList.remove('is-active');
+                }
+                currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
+                if (announcementItems[currentItemIndex]) {
+                    announcementItems[currentItemIndex].classList.add('is-active');
+                }
+            }, 5000);
+        }
+
         // Countdown Timer
         const countdownElement = document.getElementById('countdown');
         if(countdownElement) {
@@ -90,12 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Logic
-    function setupModal(modalId, openBtnId) {
-        const modal = document.getElementById(modalId);
-        const openBtn = document.getElementById(openBtnId);
+    function setupModal(modal, openBtn) {
         if (!modal || !openBtn) return;
         const closeBtn = modal.querySelector('.modal-close');
-        
         openBtn.addEventListener('click', (e) => {
             e.preventDefault();
             modal.style.display = 'flex';
@@ -105,9 +120,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
             });
         }
+        window.addEventListener('click', (e) => { 
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     }
-    setupModal('secret-chapter-modal', 'open-secret-chapter-modal');
-    setupModal('contact-modal', 'open-contact-modal');
+
+    const secretChapterModal = document.getElementById('secret-chapter-modal');
+    const openSecretChapterBtn = document.getElementById('open-secret-chapter-modal');
+    setupModal(secretChapterModal, openSecretChapterBtn);
+    
+    const contactModal = document.getElementById('contact-modal');
+    const openContactBtn = document.getElementById('open-contact-modal');
+    setupModal(contactModal, openContactBtn);
     
     // Cookie Banner
     const cookieBanner = document.getElementById('cookie-banner');
@@ -123,6 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     } catch (error) {
-        console.error("Error initializing page:", error);
+        console.error("An error occurred while initializing the page:", error);
     }
 });
