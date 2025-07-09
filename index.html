@@ -61,20 +61,20 @@
             animation: pulse-glow 2s infinite;
         }
 
-        /* Confetti -> Changed to dramatic embers/sparks */
+        /* Embers/Sparks Animation */
         @keyframes spark-rise {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+            0% { transform: translateY(0) scale(1.2); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
         }
         .spark {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
-            bottom: 0;
+            bottom: -10px;
             opacity: 0;
-            animation: spark-rise 4s linear infinite;
-            box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+            animation: spark-rise 6s linear infinite;
+            box-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
         }
 
         /* Interactive Ticket CTA */
@@ -307,7 +307,7 @@
     <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4 overflow-hidden bg-dark">
         <!-- Background with spotlight effect -->
         <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark z-10"></div>
-        <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(8, 51, 68, 0.5) 0%, var(--color-dark) 70%);"></div>
+        <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(8, 51, 68, 0.3) 0%, var(--color-dark) 70%);"></div>
         
         <!-- Content -->
         <div id="hero-content" class="relative z-20 flex flex-col items-center">
@@ -317,6 +317,7 @@
             <p class="text-xl md:text-2xl font-bold mt-6 bg-gold-custom text-dark py-1 px-4 rounded-sm shadow-md">
                 Step right up to the wildest rides, cringe-inducing games, and a secret chapter of The Worst Boyfriends Ever.
             </p>
+            <p class="mt-8 max-w-2xl text-xl italic text-cream-custom/80">“If red flags were currency, I’d be emotionally bankrupt with a thriving yacht collection. This is a memoir about those boyfriends—the worst ones. And maybe, a little, about me.”</p>
 
             <!-- Interactive Ticket CTA -->
             <div class="cta-ticket mt-12 w-80 max-w-full h-48">
@@ -324,13 +325,13 @@
                     <!-- Front of Ticket -->
                     <div class="cta-ticket-front absolute w-full h-full bg-cream-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-red-custom/50">
                         <h3 class="font-headline text-2xl text-red-custom">Admit One</h3>
-                        <p class="text-teal-custom font-bold">to a FREE Secret Chapter</p>
+                        <p class="text-teal-custom font-bold">to the Deleted Damage</p>
                         <p class="text-sm text-teal-custom/80 mt-4">(Hover to reveal)</p>
                     </div>
                     <!-- Back of Ticket -->
                     <div class="cta-ticket-back absolute w-full h-full bg-cream-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
                         <input type="email" placeholder="your.email@example.com" class="w-full p-2 rounded-sm border-2 border-teal-custom text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-custom">
-                        <button class="w-full bg-red-custom text-cream-custom font-headline py-2 mt-2 rounded-sm hover:bg-red-custom/90 transition-colors tracking-wider">Grab Your Chapter</button>
+                        <button class="w-full bg-red-custom text-cream-custom font-headline py-2 mt-2 rounded-sm hover:bg-red-custom/90 transition-colors tracking-wider">Read the Chapter Too Chaotic for Print</button>
                     </div>
                 </div>
             </div>
@@ -369,6 +370,16 @@
             </div>
         </div>
     </section>
+
+    <!-- Emotional Hook Section -->
+    <section class="py-20 bg-dark">
+        <div class="container mx-auto px-4 text-center max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-headline text-cream-custom/90 leading-relaxed" style="text-shadow: 0 0 10px var(--color-red);">
+                This isn’t just a breakup memoir. It’s what happens when laughter becomes a survival skill.
+            </h2>
+        </div>
+    </section>
+
 
     <!-- 4. Praise Carousel -->
     <section id="praise" class="py-16 md:py-24 bg-dark overflow-hidden">
@@ -518,8 +529,8 @@
             <button id="close-bingo-modal" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
             <h2 class="text-6xl font-headline text-gold-custom animate-pulse">BINGO!</h2>
             <p class="text-xl my-4">You've got a keen eye for chaos!</p>
-            <p class="mb-6">As a reward, use code <strong class="text-red-custom text-2xl">CARNIVAL15</strong> for 15% off your book purchase!</p>
-            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Claim My Prize!</a>
+            <p class="mb-6">Ready to dive deeper into the beautiful disaster? Grab your copy.</p>
+            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Buy The Book</a>
         </div>
     </div>
 
@@ -537,9 +548,9 @@
     <div id="exit-intent-popup" class="fixed inset-0 bg-black bg-opacity-75 items-center justify-center p-4 z-50 hidden">
         <div class="carnival-frame max-w-md w-full text-center p-8 relative transform scale-0 transition-transform duration-300 bg-dark text-cream-custom border-gold-custom">
              <button id="close-exit-popup" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
-            <h2 class="text-4xl font-headline text-red-custom mb-4">Wait! Don't Leave!</h2>
-            <p class="text-xl mb-6">Don't leave empty-handed! Grab this ticket for <strong class="text-gold-custom">10% off</strong> the paperback.</p>
-            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Grab My Ticket</a>
+            <h2 class="text-4xl font-headline text-red-custom mb-4">Leaving So Soon?</h2>
+            <p class="text-xl mb-6">Don't leave the carnival without your survival guide.</p>
+            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Grab The Book</a>
         </div>
     </div>
 
@@ -592,12 +603,13 @@
 
         // --- Hero Section: Sparks ---
         function createSparks() {
+            if (!heroContent) return;
             for (let i = 0; i < 40; i++) {
                 const spark = document.createElement('div');
                 spark.className = 'spark';
                 spark.style.left = `${Math.random() * 100}vw`;
-                spark.style.animationDelay = `${Math.random() * 4}s`;
-                spark.style.animationDuration = `${2 + Math.random() * 3}s`;
+                spark.style.animationDelay = `${Math.random() * 6}s`;
+                spark.style.animationDuration = `${3 + Math.random() * 4}s`;
                 spark.style.color = ['var(--color-gold)', 'var(--color-red)', '#ffffff'][Math.floor(Math.random() * 3)];
                 heroContent.appendChild(spark);
             }
