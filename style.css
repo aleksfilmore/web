@@ -1,4 +1,25 @@
-:root {
+:root {:root {
+    --wb-teal: #044654;
+    --wb-red: #e05b38;
+    --wb-cream: #f7dcaa;
+    --wb-dark-teal: #02313a;
+    --wb-text-dark: #2a2110;
+}
+
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--wb-cream);
+    color: var(--wb-text-dark);
+    line-height: 1.6;
+}
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
     --wb-teal: #044654;
     --wb-red: #e05b38;
     --wb-cream: #f7dcaa;
@@ -30,8 +51,8 @@ h1, h2, h3 {
 .button { display: inline-block; background-color: var(--wb-red); color: white !important; padding: 0.8rem 1.8rem; border: 3px solid #000; border-radius: 8px; font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; box-shadow: 5px 5px 0px black; }
 .button:hover { transform: translateY(-3px) translateX(-3px); box-shadow: 8px 8px 0px black;}
 .button:active { transform: translateY(0) translateX(0); box-shadow: 5px 5px 0px black; }
-.button-secondary { background-color: var(--wb-cream); color: var(--wb-red) !important; border-color: var(--wb-red); box-shadow: 5px 5px 0px var(--wb-red); text-shadow: 0 0 5px var(--wb-cream), 0 0 10px var(--wb-red); }
-.button-secondary:hover { background-color: var(--wb-red); color: white !important; text-shadow: none; border-color: black; box-shadow: 8px 8px 0px black; }
+.button-secondary { background-color: var(--wb-cream); color: var(--wb-red) !important; border-color: var(--wb-red); box-shadow: 5px 5px 0px var(--wb-red); }
+.button-secondary:hover { background-color: var(--wb-red); color: white !important; text-shadow: 0 0 5px white; }
 
 header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; }
 .header-flex { display: flex; justify-content: space-between; align-items: center; }
@@ -83,8 +104,6 @@ header { padding: 1rem 0; background-color: white; border-bottom: 3px solid blac
 
 .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
 @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
-.mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); height: 220px; }
-.mugshot-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .final-cta { background-color: var(--wb-red); color: white; text-align: center; }
 .final-cta h2 { font-size: 2.5rem; text-shadow: 3px 3px 0px black; }
