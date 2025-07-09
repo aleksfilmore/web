@@ -101,19 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const openContactBtn = document.getElementById('open-contact-modal');
     setupModal(contactModal, openContactBtn);
     
-    // Cookie Banner
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptCookiesBtn = document.getElementById('accept-cookies');
-    if(cookieBanner && !localStorage.getItem('cookies_accepted')) {
-        cookieBanner.style.display = 'flex';
-    }
-    if(acceptCookiesBtn) {
-        acceptCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('cookies_accepted', 'true');
-            cookieBanner.style.display = 'none';
-        });
-    }
-
     } catch (error) {
         console.error("Error initializing page:", error);
     }
