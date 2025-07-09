@@ -1,54 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        // Announcement Bar
-        const announcementItems = document.querySelectorAll('.announcement-item');
-        if (announcementItems.length > 1) {
-            let currentItemIndex = 0;
-            if (announcementItems[currentItemIndex]) {
-                announcementItems[currentItemIndex].classList.add('is-active');
-            }
-            setInterval(() => {
-                if (announcementItems[currentItemIndex]) {
-                    announcementItems[currentItemIndex].classList.remove('is-active');
-                }
-                currentItemIndex = (currentItemIndex + 1) % announcementItems.length;
-                if (announcementItems[currentItemIndex]) {
-                    announcementItems[currentItemIndex].classList.add('is-active');
-                }
-            }, 5000);
-        }
-
-        // Countdown Timer
-        const countdownElement = document.getElementById('countdown');
-        if(countdownElement) {
-            let timeLeft = 59;
-            setInterval(() => {
-                timeLeft--;
-                if (timeLeft < 0) timeLeft = 59;
-                countdownElement.textContent = timeLeft < 10 ? "0" + timeLeft : timeLeft;
-            }, 1000);
-        }
-        
-        // Flicker Effect
-        const flickerContainer = document.getElementById('disaster-flicker');
-        if (flickerContainer) {
-            const flickerWords = ["Ghosted", "Red Flag", "Gaslit", "The Ick", "U Up?", "Love Bombing", "Situationship", "Glow-Up", "Vindicated", "Chaos", "Meltdown"];
-            setInterval(() => {
-                if(flickerContainer.children.length > 2) return; 
-                const word = flickerWords[Math.floor(Math.random() * flickerWords.length)];
-                const flickerSpan = document.createElement('span');
-                flickerSpan.className = 'flicker-text';
-                flickerSpan.textContent = word;
-                flickerSpan.style.top = `${Math.random() * 80 + 10}%`;
-                flickerSpan.style.left = `${Math.random() * 80 + 10}%`;
-                flickerSpan.style.animationDuration = `${Math.random() * 4 + 4}s`;
-                flickerContainer.appendChild(flickerSpan);
-                setTimeout(() => {
-                    if (flickerSpan) flickerSpan.remove();
-                }, 8000);
-            }, 2000);
-        }
-
         // Reviews Carousel
         const reviews = [
             { stars: 5, quote: "Whether you’ve dated these types, been these types, or just enjoy peeking into other people’s chaotic love lives, this book delivers.", reviewer: "T." },
@@ -101,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mugshotData.forEach(data => {
             const card = document.createElement('div');
             card.className = 'mugshot-card';
-            card.innerHTML = `<img src="${data.img}" alt="${data.name}" loading="lazy" class="mugshot-card-img"><div class="mugshot-overlay"><h3>${data.name}</h3><p class="mugshot-charge">${data.charge}</p></div>`;
+            card.innerHTML = `<img src="${data.img}" alt="${data.name}" loading="lazy"><div class="mugshot-overlay"><h3>${data.name}</h3><p class="mugshot-charge">${data.charge}</p></div>`;
             card.addEventListener('click', () => card.classList.toggle('is-revealed'));
             gallery.appendChild(card);
         });
@@ -120,33 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
             });
         }
-        window.addEventListener('click', (e) => { 
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
     }
-
     const secretChapterModal = document.getElementById('secret-chapter-modal');
     const openSecretChapterBtn = document.getElementById('open-secret-chapter-modal');
     setupModal(secretChapterModal, openSecretChapterBtn);
     
-    const contactModal = document.getElementById('contact-modal');
-    const openContactBtn = document.getElementById('open-contact-modal');
-    setupModal(contactModal, openContactBtn);
-    
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptCookiesBtn = document.getElementById('accept-cookies');
-    if(cookieBanner && !localStorage.getItem('cookies_accepted')) {
-        cookieBanner.classList.add('show');
-    }
-    if(acceptCookiesBtn) {
-        acceptCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('cookies_accepted', 'true');
-            cookieBanner.classList.remove('show');
-        });
-    }
-
     } catch (error) {
         console.error("Error initializing page:", error);
     }
