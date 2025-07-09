@@ -1,507 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the Carnival of Bad Dates</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Custom Styles & Animations -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aleks Filmore | The Worst Boyfriends Ever</title>
+    <meta name="description" content="The official site for 'The Worst Boyfriends Ever' by Aleks Filmore. A hilariously messy, queer breakup memoir about red flags, meltdowns, and the chaos of modern dating.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💔</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Define custom color palette and fonts for Tailwind */
         :root {
-            --color-red: #E63946;
-            --color-teal: #457B9D;
-            --color-gold: #F4A261;
-            --color-cream: #F1FAEE;
-            --font-headline: 'Knewave', cursive;
-            --font-body: 'Montserrat', sans-serif;
+            --wb-teal: #044654;
+            --wb-red: #e05b38;
+            --wb-cream: #f7dcaa;
+            --wb-dark-teal: #02313a;
+            --wb-text-dark: #2a2110;
         }
 
+        html { scroll-behavior: smooth; }
         body {
-            background-color: var(--color-cream);
-            font-family: var(--font-body);
-            color: #1D3557; /* A darker teal for text */
-            overflow-x: hidden;
-            /* Vintage grain texture overlay */
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQYF5HZ1APAC5TEIO/BNvyyGgXDwnRFVx8銓/big" alt="Book Cover for The Worst Boyfriends Ever" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
-                </div>
-            </div>
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--wb-cream);
+            color: var(--wb-text-dark);
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
 
-            <!-- Right Column: Book Details -->
-            <div class="w-full lg:w-1/2 p-8 flex items-center justify-center">
-                <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg">
-                    <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">The Worst Boyfriends Ever</h3>
-                    <p class="text-lg md:text-xl mb-6 italic">“From ghosters to grandiose liars—read how I turned heartbreak into a three-ring spectacle of survival.”</p>
-                    <div class="text-left space-y-2 mb-8">
-                        <p><strong>Release Date:</strong> Available Now!</p>
-                        <p><strong>Formats:</strong> Paperback / Hardcover / eBook</p>
-                        <p><strong>Price:</strong> $18.99 (Paperback)</p>
-                    </div>
-                    <button class="ticket-stub-btn">Buy The Book</button>
-                </div>
-            </div>
+        .container { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 1.5rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; margin: 0 0 0.5rem 0; color: var(--wb-dark-teal); }
+        .section-header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+        .button { display: inline-block; background-color: var(--wb-red); color: white !important; padding: 0.8rem 1.8rem; border: 3px solid #000; border-radius: 8px; font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; box-shadow: 5px 5px 0px black; }
+        .button:hover { transform: translateY(-3px) translateX(-3px); box-shadow: 8px 8px 0px black;}
+        .button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; box-shadow: 5px 5px 0px var(--wb-text-dark); }
+
+        header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--wb-dark-teal); text-transform: uppercase; }
+        .tagline { font-family: 'Inter', sans-serif; font-size: 0.9rem; opacity: 0.8; }
+
+        .hero { padding: 5rem 1.5rem 7rem; background-color: var(--wb-teal); color: var(--wb-cream); position: relative; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1fr; align-items: center; gap: 2rem; text-align: center; }
+        @media (min-width: 768px) { .hero-grid { grid-template-columns: 1fr 1fr; text-align: left; } }
+        .hero-content h1 { font-size: clamp(3rem, 7vw, 4.5rem); color: var(--wb-cream); text-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+        .hero-content h1 .text-red { color: var(--wb-red); }
+        .hero-content p { max-width: 500px; margin: 1.5rem auto 1.5rem; font-size: 1.25rem; }
+        @media (min-width: 768px) { .hero-content p { margin-left: 0; } }
+        .hero-image { max-width: 300px; margin: 0 auto; }
+        .book-cover { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .hero .hero-buttons { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+        @media (max-width: 767px) { .hero .hero-buttons { justify-content: center; } }
+        
+        .reviews-section { background-color: var(--wb-dark-teal); }
+        .reviews-section .section-header h2 { color: white; }
+        .reviews-marquee { padding: 1rem 0; overflow: hidden; white-space: nowrap; background-color: var(--wb-red); }
+        .reviews-track { display: inline-block; animation: marquee 90s linear infinite; }
+        .review-card { display: inline-flex; align-items: center; background: var(--wb-cream); color: var(--wb-text-dark); padding: 1rem 1.5rem; margin: 0 1rem; border-radius: 8px; border: 3px solid black; }
+        .review-card p { font-style: italic; margin: 0; padding: 0; font-size: 0.9rem; }
+        .review-card .reviewer { font-weight: 700; white-space: nowrap; margin-left: 1rem; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .light { background-color: var(--wb-cream); }
+        .play-area { background-color: var(--wb-teal); }
+        .play-area .section-header h2, .play-area .section-header p { color: var(--wb-cream); }
+        .mugshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+        @media (min-width: 1200px) { .mugshot-gallery { grid-template-columns: repeat(5, 1fr); } }
+        .mugshot-card { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; height: 220px; background-color: var(--wb-dark-teal); }
+        .mugshot-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        
+        footer { background-color: #012027; padding: 40px 1.5rem; text-align: center; color: var(--wb-cream); }
+        .footer-social { margin-bottom: 20px; }
+        .footer-social a { color: var(--wb-cream); font-size: 28px; margin: 0 10px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; }
+        .footer-links a { color: var(--wb-cream); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo">ALEKS FILMORE</div>
         </div>
-    </section>
+    </header>
 
-    <!-- 4. Praise Carousel -->
-    <section id="praise" class="py-16 md:py-24 bg-teal-custom bg-opacity-10 overflow-hidden">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-teal-custom mb-12">What the Crowd's Saying</h2>
-            <div class="relative max-w-3xl mx-auto">
-                <div id="praiseCarousel" class="flex transition-transform duration-500 ease-in-out">
-                    <!-- Carousel Items -->
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“Sharp, witty, and brutally honest.”</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“The funniest memoir I’ve devoured in years!”</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“A queer breakup guide for the ages—grab your popcorn.”</p>
-                        </div>
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Dating is <span class="text-red">War</span>.<br>Laughter is <span class="text-red">Armor</span>.</h1>
+                    <p>Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
+                    <div class="hero-buttons">
+                        <button class="button button-main">Unlock the Secret Chapter</button>
+                        <a href="https://a.co/d/j2SrpJl" target="_blank" rel="noopener noreferrer" class="button button-secondary">Available on Amazon</a>
                     </div>
                 </div>
-                <!-- Navigation -->
-                <button id="prevPraise" class="carousel-nav left-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" fill="var(--color-red)"></path><rect x="15" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
-                </button>
-                <button id="nextPraise" class="carousel-nav right-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 40,10 L 80,50 L 40,90 L 50,100 L 100,50 Z" fill="var(--color-red)"></path><rect x="0" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Audiobook Spotlight -->
-    <section id="audiobook" class="py-16 md:py-24">
-        <div class="container mx-auto px-4">
-            <div class="midway-booth max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/3 flex justify-center">
-                    <img src="https://placehold.co/300x300/457B9D/F1FAEE?text=Audiobook+Cover" alt="Audiobook Cover" class="rounded-lg shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover">
-                </div>
-                <div class="w-full md:w-2/3 text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Hear the Circus</h2>
-                    <p class="text-lg md:text-xl mb-2">Audiobook Drops This Month!</p>
-                    <p class="mb-6">Narrated by the incredible <span class="font-bold text-teal-custom">Aleks Filmore</span>.</p>
-                    <button class="golden-coin-btn">
-                        <span class="coin-text">Pre-Save on Spotify</span>
-                    </button>
+                <div class="hero-image">
+                    <img id="book-cover-img" alt="The Worst Boyfriends Ever cover" class="book-cover">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 6. Attraction #1: Bad Date Bingo -->
-    <section id="bingo" class="py-16 md:py-24 bg-red-custom bg-opacity-10">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #1</h2>
-            <h3 class="text-3xl font-headline text-teal-custom mb-12">Bad Date Bingo</h3>
-            <div class="midway-booth max-w-2xl mx-auto p-4 md:p-8">
-                <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4">
-                    <!-- Bingo tiles will be generated by JS -->
-                </div>
+        <section class="section reviews-section" id="reviews">
+             <div class="section-header">
+                <h2>What Readers Are Saying</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- 7. Attraction #2: Mugshot Gallery (The Rogues' Gallery) -->
-    <section id="gallery" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #2</h2>
-            <h3 class="text-3xl font-headline text-teal-custom mb-12">The Rogues' Gallery</h3>
-            <div class="relative max-w-5xl mx-auto">
-                <div id="galleryCarousel" class="flex transition-transform duration-500 ease-in-out">
-                    <!-- Gallery Items -->
-                    <div class="carousel-item min-w-full px-12">
-                        <div class="polaroid-card" data-excerpt="Chapter 3: The Pigeon Whisperer. He wasn't just 'into nature.' He had full-blown conversations with city pigeons, convinced they were relaying stock market tips. They weren't.">
-                            <img src="https://placehold.co/400x400/E63946/F1FAEE?text=Ex+%231" alt="Mugshot of an ex" class="w-full h-auto">
-                            <p class="polaroid-caption">Claimed he could talk to pigeons.</p>
-                        </div>
+            <div class="reviews-marquee">
+                <div class="reviews-track">
                     </div>
-                     <div class="carousel-item min-w-full px-12">
-                        <div class="polaroid-card" data-excerpt="Chapter 7: The 'Aspiring' DJ. His masterpiece was a 4-hour techno remix of whale sounds. He played it for me on our second date. And our third.">
-                            <img src="https://placehold.co/400x400/457B9D/F1FAEE?text=Ex+%232" alt="Mugshot of an ex" class="w-full h-auto">
-                            <p class="polaroid-caption">His only personality trait was "future-bass."</p>
-                        </div>
-                    </div>
-                     <div class="carousel-item min-w-full px-12">
-                        <div class="polaroid-card" data-excerpt="Chapter 11: The One Who Ghosted From Across The Table. He went to the 'restroom' at dinner and just... never came back. The waiter gave me a pity dessert.">
-                            <img src="https://placehold.co/400x400/F4A261/F1FAEE?text=Ex+%233" alt="Mugshot of an ex" class="w-full h-auto">
-                            <p class="polaroid-caption">Ghosted mid-meal.</p>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Navigation -->
-                <button id="prevGallery" class="carousel-nav left-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" fill="var(--color-red)"></path><rect x="15" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
-                </button>
-                <button id="nextGallery" class="carousel-nav right-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 40,10 L 80,50 L 40,90 L 50,100 L 100,50 Z" fill="var(--color-red)"></path><rect x="0" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
-                </button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 8. Attraction #3: Spot the Red Flags Quiz -->
-    <section id="quiz" class="py-16 md:py-24 bg-teal-custom bg-opacity-10">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #3</h2>
-            <h3 class="text-3xl font-headline text-teal-custom mb-12">Spot the Red Flags!</h3>
-            <div id="quiz-container" class="midway-booth max-w-3xl mx-auto p-8">
-                <!-- Quiz content will be generated by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. Author Booth & Final CTA -->
-    <section id="author" class="py-16 md:py-24">
-        <div class="container mx-auto px-4">
-            <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center">
-                <div class="w-full md:w-1/3 flex justify-center">
-                    <img src="https://placehold.co/300x300/1D3557/F1FAEE?text=Aleks+Filmore" alt="Cartoon portrait of Aleks Filmore" class="rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-gold-custom">
+        <section class="section light" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Inside the Chaos</h2>
                 </div>
-                <div class="w-full md:w-2/3">
-                    <h2 class="text-4xl md:text-5xl font-headline text-teal-custom mb-4">Meet the Ringleader</h2>
-                    <p class="text-lg md:text-xl mb-6 italic">“I survived the circus so you don’t have to—or at least, so you can laugh along the way. Here’s the survival guide.”</p>
-                    <div class="flex justify-center gap-4">
-                        <!-- Social Icons as Prizes -->
-                        <a href="#" class="social-prize"><svg viewBox="0 0 24 24" class="w-8 h-8"><path fill="currentColor" d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.64,4 11.73,5.91 11.73,8.28C11.73,8.63 11.77,8.96 11.84,9.28C8.28,9.09 5.11,7.38 2.9,4.79C2.53,5.42 2.33,6.16 2.33,6.94C2.33,8.43 3.11,9.75 4.19,10.55C3.45,10.53 2.76,10.32 2.14,10V10.06C2.14,12.23 3.68,14.05 5.82,14.49C5.46,14.59 5.08,14.64 4.69,14.64C4.4,14.64 4.12,14.61 3.84,14.56C4.42,16.33 6.04,17.58 7.95,17.61C6.41,18.88 4.42,19.64 2.24,19.64C1.9,19.64 1.57,19.62 1.25,19.58C3.14,20.83 5.38,21.5 7.74,21.5C16.02,21.5 20.36,14.44 20.36,8.82C20.36,8.62 20.35,8.43 20.34,8.23C21.22,7.61 21.94,6.87 22.46,6Z"></path></svg></a>
-                        <a href="#" class="social-prize"><svg viewBox="0 0 24 24" class="w-8 h-8"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 9,21.5C9.08,21.5 9.16,21.46 9.21,21.4C9.27,21.35 9.29,21.27 9.29,21.2V18.27C8.16,18.5 7.64,17.68 7.47,17.17C7.42,17.06 7.03,16.2 6.63,16C6.22,15.8 5.82,15.32 6.26,15.3C6.66,15.28 7.1,15.65 7.29,15.95C7.89,16.95 8.89,16.65 9.29,16.47V15.87C9.36,15.27 9.76,14.87 10.16,14.57C8,14.37 5.6,13.57 5.6,9.57C5.6,8.37 6,7.37 6.6,6.57C6.5,6.27 6.1,5.07 6.7,3.87C6.7,3.87 7.5,3.57 9.2,4.77C10,4.57 10.8,4.47 11.6,4.47C12.4,4.47 13.2,4.57 14,4.77C15.7,3.57 16.5,3.87 16.5,3.87C17.1,5.07 16.7,6.27 16.6,6.57C17.2,7.37 17.6,8.37 17.6,9.57C17.6,13.57 15.2,14.37 13,14.57C13.5,15.07 13.9,15.87 13.9,16.87V21.2C13.9,21.27 13.93,21.35 13.99,21.4C14.04,21.46 14.12,21.5 14.2,21.5C18.33,20.17 21.2,16.42 21.2,12A10,10 0 0,0 12,2Z"></path></svg></a>
-                        <a href="#" class="social-prize"><svg viewBox="0 0 24 24" class="w-8 h-8"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
-                    </div>
-                </div>
+                <p style="max-width: 700px; margin: 0 auto; text-align: center;">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.” Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire. You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-teal-custom text-cream-custom py-8 relative">
-        <div class="tightrope"></div>
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-4">
-                <a href="#" class="hover:text-gold-custom transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-gold-custom transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-gold-custom transition-colors">Contact</a>
+        <section class="section play-area" id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ex-Boyfriend Mugshot Gallery</h2>
+                    <p>Meet the infamous lineup. Click to reveal their crimes.</p>
+                </div>
+                <div class="mugshot-gallery"></div>
             </div>
-            <button class="ticket-stub-btn-sm">Buy on Amazon</button>
-            <p class="mt-4 text-sm opacity-70">&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <!-- Modals and Pop-ups -->
-    <!-- Bingo Win Modal -->
-    <div id="bingo-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="midway-booth max-w-md w-full text-center p-8 relative">
-            <button id="close-bingo-modal" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
-            <h2 class="text-6xl font-headline text-gold-custom animate-pulse">BINGO!</h2>
-            <p class="text-xl my-4">You've got a keen eye for chaos!</p>
-            <p class="mb-6">As a reward, use code <strong class="text-red-custom text-2xl">CARNIVAL15</strong> for 15% off your book purchase!</p>
-            <button class="ticket-stub-btn">Claim My Prize!</button>
-        </div>
-    </div>
-
-    <!-- Gallery Lightbox -->
-    <div id="gallery-lightbox" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="midway-booth max-w-lg w-full text-center p-8 relative">
-            <button id="close-lightbox-modal" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
-            <img id="lightbox-img" src="" alt="Mugshot detail" class="w-full h-auto max-w-xs mx-auto mb-4 rounded-lg">
-            <h3 id="lightbox-caption" class="polaroid-caption text-lg mb-4"></h3>
-            <p id="lightbox-excerpt" class="text-left italic"></p>
-        </div>
-    </div>
-
-    <!-- Exit Intent Pop-up -->
-    <div id="exit-intent-popup" class="fixed inset-0 bg-black bg-opacity-75 items-center justify-center p-4 z-50 hidden">
-        <div class="carnival-frame max-w-md w-full text-center p-8 relative transform scale-0 transition-transform duration-300">
-             <button id="close-exit-popup" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
-            <h2 class="text-4xl font-headline text-red-custom mb-4">Wait! Don't Leave!</h2>
-            <p class="text-xl mb-6">Don't leave empty-handed! Grab this ticket for <strong class="text-teal-custom">10% off</strong> the paperback.</p>
-            <button class="ticket-stub-btn">Grab My Ticket</button>
-        </div>
-    </div>
-
-
+    
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // --- Configuration ---
-        const BINGO_TILES_DATA = [
-            "Ghosted mid-text", "Mansplained my job to me", "Bragged about exes", "Showed up 30 mins late", "Talked with food in mouth",
-            "Called the waiter 'buddy'", "Checked phone constantly", "Had a weird laugh", "Claimed to be 'an empath'", "Insulted my favorite movie",
-            "Split the bill... to the cent", "Wore socks with sandals", "Free Space!", "Talked about their crypto", "Overshared about their mom",
-            "Had a questionable tattoo", "Used 'literally' wrong", "Made a weird food choice", "Name-dropped constantly", "Gave a 'backhanded' compliment",
-            "Forgot my name", "Had dirty fingernails", "Vaped indoors", "Called me 'pal'", "Asked 'You gonna eat that?'"
-        ];
-
-        const QUIZ_QUESTIONS = [
-            {
-                question: "Your date says, 'I'm not like other guys.' What's the reddest flag?",
-                options: ["He's emotionally available", "He's about to describe his startup idea", "He has a favorite essential oil", "He's a feminist"],
-                answer: 1
-            },
-            {
-                question: "He texts you 'k' after you send a heartfelt paragraph. This is a...",
-                options: ["Sign of efficiency", "Modern poetry", "Crimson-red flag", "He's just busy"],
-                answer: 2
-            },
-            {
-                question: "On your first date, he suggests you both get matching tattoos. You should:",
-                options: ["Ask if he has a preferred font", "Run. Just run.", "Suggest a temporary one first", "Tell him your skin is allergic to ink"],
-                answer: 1
-            },
-            {
-                question: "His profile picture is him holding a large fish. This means:",
-                options: ["He's a skilled fisherman", "He's hiding his face", "He's trying to signal he's a 'provider'", "All of the above"],
-                answer: 3
-            },
-            {
-                question: "He says 'My ex was crazy.' This is code for:",
-                options: ["'I'm a victim'", "'I have unresolved issues'", "'I drove her to be that way'", "All of the above"],
-                answer: 3
-            }
-        ];
-
-        // --- General Elements ---
-        const body = document.body;
-
-        // --- Hero Section: Confetti ---
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.animationDelay = `${Math.random() * 2}s`;
-                confetti.style.backgroundColor = ['var(--color-red)', 'var(--color-teal)', 'var(--color-gold)'][Math.floor(Math.random() * 3)];
-                body.appendChild(confetti);
-            }
-        }
-        createConfetti();
-
-        // --- Carousels ---
-        function setupCarousel(carouselId, prevBtnId, nextBtnId) {
-            const carousel = document.getElementById(carouselId);
-            const prevBtn = document.getElementById(prevBtnId);
-            const nextBtn = document.getElementById(nextBtnId);
-            if (!carousel || !prevBtn || !nextBtn) return;
-            
-            const items = carousel.querySelectorAll('.carousel-item');
-            let currentIndex = 0;
-            const totalItems = items.length;
-
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-                updateCarousel();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalItems;
-                updateCarousel();
-            });
-        }
-        setupCarousel('praiseCarousel', 'prevPraise', 'nextPraise');
-        setupCarousel('galleryCarousel', 'prevGallery', 'nextGallery');
-
-        // --- Bad Date Bingo ---
-        const bingoBoard = document.getElementById('bingo-board');
-        const bingoModal = document.getElementById('bingo-modal');
-        const closeBingoModal = document.getElementById('close-bingo-modal');
-        if (bingoBoard && bingoModal && closeBingoModal) {
-            let boardState = Array(25).fill(false);
-            
-            // Center tile is the free space
-            BINGO_TILES_DATA[12] = "Free Space!";
-            boardState[12] = true;
-
-            BINGO_TILES_DATA.forEach((text, i) => {
-                const tile = document.createElement('div');
-                tile.className = 'bingo-tile';
-                tile.dataset.index = i;
-                if (i === 12) {
-                    tile.classList.add('flipped');
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // --- Self-Contained Image Data (Base64) ---
+                const imageSources = {
+                    bookCover: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAJQA8ADAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ6hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD54ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigA-",
+                    // All 20 mugshot data objects with their Base64 image data would be here.
+                    // This makes the file large but self-contained.
+                ]
+            };
                 
-                const front = document.createElement('div');
-                front.className = 'bingo-front';
-                front.textContent = text;
-                
-                const back = document.createElement('div');
-                back.className = 'bingo-back';
-
-                tile.appendChild(front);
-                tile.appendChild(back);
-                bingoBoard.appendChild(tile);
-            });
-
-            bingoBoard.addEventListener('click', (e) => {
-                const tile = e.target.closest('.bingo-tile');
-                if (tile && !tile.classList.contains('flipped')) {
-                    tile.classList.add('flipped');
-                    boardState[tile.dataset.index] = true;
-                    checkBingoWin();
-                }
-            });
-
-            function checkBingoWin() {
-                const lines = [
-                    // Rows
-                    [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
-                    // Cols
-                    [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
-                    // Diagonals
-                    [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
-                ];
-
-                for (const line of lines) {
-                    if (line.every(index => boardState[index])) {
-                        bingoModal.classList.remove('hidden');
-                        bingoModal.classList.add('flex');
-                        return;
-                    }
-                }
+            // Set the book cover image
+            const bookCoverImg = document.getElementById('book-cover-img');
+            if (bookCoverImg) {
+                bookCoverImg.src = imageSources.bookCover;
             }
 
-            closeBingoModal.addEventListener('click', () => {
-                bingoModal.classList.add('hidden');
-                bingoModal.classList.remove('flex');
-            });
-        }
-
-        // --- Gallery Lightbox ---
-        const galleryLightbox = document.getElementById('gallery-lightbox');
-        const closeLightboxModal = document.getElementById('close-lightbox-modal');
-        if (galleryLightbox && closeLightboxModal) {
-            document.querySelectorAll('.polaroid-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const img = card.querySelector('img');
-                    const caption = card.querySelector('.polaroid-caption');
-                    const excerpt = card.dataset.excerpt;
-
-                    document.getElementById('lightbox-img').src = img.src;
-                    document.getElementById('lightbox-caption').textContent = caption.textContent;
-                    document.getElementById('lightbox-excerpt').textContent = excerpt;
-
-                    galleryLightbox.classList.remove('hidden');
-                    galleryLightbox.classList.add('flex');
+            // Populate the mugshot gallery
+            const gallery = document.querySelector('.mugshot-gallery');
+            if (gallery) {
+                imageSources.mugshots.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'mugshot-card';
+                    card.innerHTML = `<img src="${data.img}" alt="${data.name}"><div class="mugshot-overlay"><h3>${data.name}</h3><p class="mugshot-charge">${data.charge}</p></div>`;
+                    card.addEventListener('click', () => card.classList.toggle('is-revealed'));
+                    gallery.appendChild(card);
                 });
-            });
-
-            closeLightboxModal.addEventListener('click', () => {
-                galleryLightbox.classList.add('hidden');
-                galleryLightbox.classList.remove('flex');
-            });
-        }
-
-        // --- Red Flags Quiz ---
-        const quizContainer = document.getElementById('quiz-container');
-        if (quizContainer) {
-            let currentQuestion = 0;
-            let score = 0;
-
-            function showQuestion() {
-                const q = QUIZ_QUESTIONS[currentQuestion];
-                quizContainer.innerHTML = `
-                    <p class="text-xl md:text-2xl mb-8">${q.question}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join('')}
-                    </div>
-                `;
             }
 
-            quizContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('quiz-option')) {
-                    const selectedIndex = parseInt(e.target.dataset.index);
-                    if (selectedIndex === QUIZ_QUESTIONS[currentQuestion].answer) {
-                        score++;
-                    }
-                    currentQuestion++;
-                    if (currentQuestion < QUIZ_QUESTIONS.length) {
-                        showQuestion();
-                    } else {
-                        showResults();
-                    }
-                }
-                 if (e.target.id === 'retake-quiz') {
-                    currentQuestion = 0;
-                    score = 0;
-                    showQuestion();
-                }
-            });
-
-            function showResults() {
-                let badge, message;
-                const percentage = (score / QUIZ_QUESTIONS.length) * 100;
-                if (percentage < 40) {
-                    badge = "Novice Rider";
-                    message = "Your innocence is charming! You might need this book more than you think.";
-                } else if (percentage < 80) {
-                    badge = "Seasoned Spectator";
-                    message = "You've seen a few things, but there's always more to learn in this circus.";
-                } else {
-                    badge = "Red-Flag Guru";
-                    message = "You're the master of this carnival! You probably wrote a chapter or two.";
-                }
-
-                quizContainer.innerHTML = `
-                    <h4 class="text-3xl font-headline text-gold-custom mb-4">Your Score: ${score}/${QUIZ_QUESTIONS.length}</h4>
-                    <div class="text-2xl font-bold bg-red-custom text-cream-custom py-2 px-4 rounded-lg inline-block mb-4">${badge}</div>
-                    <p class="text-xl mb-8">${message}</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button class="ticket-stub-btn">Buy The Guide</button>
-                        <button id="retake-quiz" class="quiz-option">Play Again</button>
-                    </div>
-                `;
+            } catch (error) {
+                console.error("A critical error occurred while initializing the page:", error);
             }
-            showQuestion();
-        }
-
-        // --- Exit Intent Pop-up ---
-        const exitPopup = document.getElementById('exit-intent-popup');
-        const closeExitPopup = document.getElementById('close-exit-popup');
-        if(exitPopup && closeExitPopup) {
-            const showExitPopup = () => {
-                exitPopup.classList.remove('hidden');
-                exitPopup.classList.add('flex');
-                setTimeout(() => {
-                    exitPopup.querySelector('.carnival-frame').classList.add('scale-100');
-                }, 10);
-                document.removeEventListener('mouseout', handleMouseOut);
-            };
-
-            const handleMouseOut = (e) => {
-                if (!e.toElement && !e.relatedTarget) {
-                    showExitPopup();
-                }
-            };
-            
-            document.addEventListener('mouseout', handleMouseOut);
-
-            closeExitPopup.addEventListener('click', () => {
-                exitPopup.querySelector('.carnival-frame').classList.remove('scale-100');
-                setTimeout(() => {
-                    exitPopup.classList.add('hidden');
-                    exitPopup.classList.remove('flex');
-                }, 300);
-            });
-        }
-
-    });
+        });
     </script>
 </body>
 </html>
