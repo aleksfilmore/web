@@ -46,3 +46,37 @@ header { padding: 1rem 1.5rem; background-color: white; border-bottom: 3px solid
 .hero-background { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; z-index: 1; pointer-events: none; }
 .hero-rainbow { width: 150%; height: 150%; max-width: 800px; max-height: 800px; opacity: 0.1; animation: spin 80s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* --- Audiobook Promo --- */
+.audiobook-promo {
+    background-color: var(--wb-dark-teal);
+    color: var(--wb-cream);
+    text-align: center;
+}
+.audiobook-promo h2 {
+    color: white;
+}
+.audiobook-promo p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.9;
+}
+.audio-icon {
+    font-size: 4rem;
+    color: var(--wb-red);
+    margin-bottom: 1.5rem;
+}
+.audio-player {
+    margin-top: 1rem;
+    max-width: 100%;
+}
+.platforms {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.platforms i {
+    font-size: 2.5rem;
+}
