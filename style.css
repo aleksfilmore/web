@@ -30,7 +30,7 @@ h1, h2, h3 {
 .button { display: inline-block; background-color: var(--wb-red); color: white !important; padding: 0.8rem 1.8rem; border: 3px solid #000; border-radius: 8px; font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-align: center; transition: all 0.2s ease; box-shadow: 5px 5px 0px black; }
 .button:hover { transform: translateY(-3px) translateX(-3px); box-shadow: 8px 8px 0px black;}
 .button:active { transform: translateY(0) translateX(0); box-shadow: 5px 5px 0px black; }
-.button-secondary { background-color: var(--wb-cream); color: var(--wb-text-dark) !important; box-shadow: 5px 5px 0px var(--wb-text-dark); }
+.button-secondary { background-color: var(--wb-cream); color: var(--wb-red) !important; border-color: var(--wb-red); box-shadow: 5px 5px 0px var(--wb-red); }
 .button-secondary:hover { background-color: var(--wb-red); color: white !important; text-shadow: 0 0 5px white; }
 
 header { padding: 1rem 0; background-color: white; border-bottom: 3px solid black; }
