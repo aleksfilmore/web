@@ -11,18 +11,19 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
 
     <!-- Custom Styles & Animations -->
     <style>
         /* Define custom color palette and fonts for Tailwind */
         :root {
-            --color-red: #B91C1C; /* Deeper, dramatic red */
+            --color-red: #D6336C; /* Pink-Red from cover */
             --color-teal: #083344; /* Dark, moody cyan/teal */
             --color-gold: #FBBF24; /* Vibrant gold */
             --color-cream: #F1FAEE;
             --color-dark: #111827; /* Near-black for backgrounds */
             --font-headline: 'Cinzel Decorative', cursive;
+            --font-book-title: 'Oswald', sans-serif;
             --font-body: 'Montserrat', sans-serif;
         }
 
@@ -35,6 +36,7 @@
 
         /* Custom utility classes */
         .font-headline { font-family: var(--font-headline); }
+        .font-book-title { font-family: var(--font-book-title); }
         .bg-red-custom { background-color: var(--color-red); }
         .bg-teal-custom { background-color: var(--color-teal); }
         .bg-gold-custom { background-color: var(--color-gold); }
@@ -351,7 +353,7 @@
             <!-- Right Column: Book Details -->
             <div class="w-full lg:w-1/2 p-8 flex items-center justify-center">
                 <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg bg-dark text-cream-custom border-red-custom">
-                    <h3 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">The Worst Boyfriends Ever</h3>
+                    <h3 class="text-5xl md:text-6xl font-book-title text-gold-custom mb-4 tracking-wider uppercase">The Worst Boyfriends Ever</h3>
                     
                     <div class="text-left text-lg">
                         <h4 class="text-2xl font-headline text-cream-custom mb-3 text-center">Inside the Chaos</h4>
