@@ -11,24 +11,25 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Custom Styles & Animations -->
     <style>
         /* Define custom color palette and fonts for Tailwind */
         :root {
-            --color-red: #E63946;
-            --color-teal: #457B9D;
-            --color-gold: #F4A261;
+            --color-red: #B91C1C; /* Deeper, dramatic red */
+            --color-teal: #083344; /* Dark, moody cyan/teal */
+            --color-gold: #FBBF24; /* Vibrant gold */
             --color-cream: #F1FAEE;
-            --font-headline: 'Knewave', cursive;
+            --color-dark: #111827; /* Near-black for backgrounds */
+            --font-headline: 'Cinzel Decorative', cursive;
             --font-body: 'Montserrat', sans-serif;
         }
 
         body {
-            background-color: var(--color-cream);
+            background-color: var(--color-dark);
             font-family: var(--font-body);
-            color: #1D3557; /* A darker teal for text */
+            color: var(--color-cream);
             overflow-x: hidden;
         }
 
@@ -50,28 +51,30 @@
             100% { transform: translateX(-100%); }
         }
         .marquee-text {
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
         }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 5px var(--color-gold), 0 0 10px var(--color-gold); }
-            50% { box-shadow: 0 0 15px var(--color-gold), 0 0 25px var(--color-gold); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 7px var(--color-gold), 0 0 12px var(--color-gold); }
+            50% { box-shadow: 0 0 18px var(--color-gold), 0 0 30px var(--color-gold); }
         }
         .marquee-lights {
-            animation: pulse 1.5s infinite;
+            animation: pulse-glow 2s infinite;
         }
 
-        /* Confetti Animation */
-        @keyframes confetti-fall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        /* Confetti -> Changed to dramatic embers/sparks */
+        @keyframes spark-rise {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
         }
-        .confetti {
+        .spark {
             position: absolute;
-            width: 10px;
-            height: 20px;
-            top: 0;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            bottom: 0;
             opacity: 0;
-            animation: confetti-fall 5s linear infinite;
+            animation: spark-rise 4s linear infinite;
+            box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
         }
 
         /* Interactive Ticket CTA */
@@ -93,71 +96,61 @@
             transform: rotateY(180deg);
         }
 
-        /* General Carnival Framing */
+        /* General Carnival Framing - More dramatic, less "silly" */
         .carnival-frame {
-            border: 10px solid var(--color-red);
-            border-image: repeating-linear-gradient(45deg, var(--color-red), var(--color-red) 10px, var(--color-cream) 10px, var(--color-cream) 20px) 20;
-            background-color: var(--color-cream);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 2px solid var(--color-gold);
+            background-color: rgba(17, 24, 39, 0.8); /* Dark, slightly transparent */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(251, 191, 36, 0.2);
+            padding: 2rem;
         }
         .midway-booth {
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--color-cream),
-                var(--color-cream) 20px,
-                #fff 20px,
-                #fff 40px
-            );
-            border: 4px solid var(--color-teal);
-            border-radius: 1rem;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.15), 0 8px 15px rgba(0,0,0,0.2);
+            background-color: var(--color-cream);
+            color: var(--color-dark);
+            border: 2px solid var(--color-teal);
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
          .funhouse-stall {
-            background-color: #fff;
-            border: 4px dashed var(--color-gold);
+            background-color: var(--color-cream);
+            color: var(--color-dark);
+            border: 4px solid var(--color-gold);
             border-radius: 1rem;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
-        /* Ticket Stub Button */
+        /* Ticket Stub Button - More refined */
         .ticket-stub-btn, .ticket-stub-btn-sm {
             background-color: var(--color-gold);
-            color: #1D3557;
+            color: var(--color-dark);
             font-family: var(--font-headline);
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 0.25rem;
             position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
             display: inline-block;
             text-decoration: none;
-            border: none;
+            border: 1px solid rgba(0,0,0,0.2);
             cursor: pointer;
+            letter-spacing: 1px;
         }
         .ticket-stub-btn-sm { padding: 0.5rem 1rem; font-size: 0.9rem; }
         .ticket-stub-btn:hover, .ticket-stub-btn-sm:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.3);
+            background-color: #FACC15; /* Brighter gold on hover */
         }
-        .ticket-stub-btn::before, .ticket-stub-btn::after, .ticket-stub-btn-sm::before, .ticket-stub-btn-sm::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 1rem;
-            height: 1rem;
-            background-color: var(--color-cream);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-        .ticket-stub-btn::before, .ticket-stub-btn-sm::before { left: -0.5rem; }
-        .ticket-stub-btn::after, .ticket-stub-btn-sm::after { right: -0.5rem; }
-
-        /* Praise Carousel */
+        
+        /* Praise Carousel - Vaudeville ticket style */
         .ticket-card {
             background-color: #fff;
-            border-left: 8px dashed var(--color-red);
+            color: var(--color-dark);
+            border-left: 10px solid var(--color-red);
             padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 0.25rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
         }
         .carousel-nav {
             position: absolute;
@@ -169,12 +162,13 @@
             padding: 1rem;
             opacity: 0.7;
             transition: opacity 0.2s, transform 0.2s;
+            color: var(--color-gold);
         }
         .carousel-nav:hover { opacity: 1; transform: translateY(-50%) scale(1.1); }
-        .carousel-nav.left-0 { left: -2rem; }
-        .carousel-nav.right-0 { right: -2rem; }
+        .carousel-nav.left-0 { left: -1rem; }
+        .carousel-nav.right-0 { right: -1rem; }
 
-        /* Golden Coin Button */
+        /* Golden Coin Button - Refined */
         .golden-coin-btn {
             background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
                         radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
@@ -186,10 +180,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .golden-coin-btn:hover { transform: scale(1.05); }
+        .golden-coin-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3); }
         .coin-text {
             font-family: var(--font-headline);
             color: #493910;
@@ -198,10 +192,11 @@
             line-height: 1.2;
         }
 
-        /* Bingo Game */
+        /* Bingo Game - Darker theme */
         .bingo-tile {
             aspect-ratio: 1 / 1;
             background-color: #fff;
+            color: var(--color-dark);
             border: 2px solid var(--color-teal);
             border-radius: 0.5rem;
             cursor: pointer;
@@ -222,10 +217,11 @@
             text-align: center;
             padding: 0.25rem;
             font-size: clamp(0.6rem, 2.5vw, 0.9rem);
+            font-weight: bold;
         }
         .bingo-back {
             background-color: var(--color-red);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23f1faee' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23f1faee' fill-opacity='0.2'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             transform: rotateY(180deg);
             border-radius: 0.5rem;
         }
@@ -237,13 +233,13 @@
             padding-bottom: 4rem;
             border-radius: 0.25rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transform: rotate(-2deg);
+            transform: rotate(-3deg);
             transition: transform 0.2s;
             position: relative;
             max-width: 300px;
         }
         .polaroid-card:hover {
-            transform: rotate(2deg) scale(1.05);
+            transform: rotate(1deg) scale(1.05);
             z-index: 10;
         }
         .polaroid-caption {
@@ -252,8 +248,9 @@
             left: 1rem;
             right: 1rem;
             text-align: center;
-            font-family: 'Knewave', cursive;
-            color: #555;
+            font-family: var(--font-body);
+            font-weight: bold;
+            color: #333;
         }
         
         /* Quiz Option Button */
@@ -262,7 +259,7 @@
              border: 2px solid var(--color-teal);
              color: var(--color-teal);
              padding: 0.75rem 1.5rem;
-             border-radius: 9999px;
+             border-radius: 0.25rem;
              font-weight: bold;
              transition: all 0.2s;
              cursor: pointer;
@@ -279,7 +276,7 @@
         }
         .social-prize:hover {
             color: var(--color-red);
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(-5deg);
         }
 
         /* Footer Tightrope */
@@ -289,51 +286,51 @@
             left: 0;
             right: 0;
             height: 4px;
-            background-color: #1D3557;
+            background-color: var(--color-gold);
+            box-shadow: 0 0 10px var(--color-gold);
         }
     </style>
 </head>
-<body class="bg-cream-custom">
+<body class="bg-dark">
 
     <!-- 1. Announcement Marquee -->
     <div class="sticky top-0 z-40 bg-red-custom text-cream-custom p-2 overflow-hidden whitespace-nowrap shadow-lg flex items-center">
-        <div class="marquee-lights w-4 h-4 rounded-full bg-gold-custom mr-4 flex-shrink-0"></div>
-        <div class="marquee-text font-headline text-lg">
-            <span class="mx-8">🎉 Hot Off the Amazon Midway: Ranked #27 in LGBTQ+ Memoirs This Week!</span>
-            <span class="mx-8">🎉 Hot Off the Amazon Midway: Ranked #27 in LGBTQ+ Memoirs This Week!</span>
+        <div class="marquee-lights w-3 h-3 rounded-full bg-gold-custom mr-4 flex-shrink-0"></div>
+        <div class="marquee-text font-headline text-lg tracking-wider">
+            <span class="mx-12">🎉 Hot Off the Amazon Midway: Ranked #27 in LGBTQ+ Memoirs This Week!</span>
+            <span class="mx-12">🎉 Hot Off the Amazon Midway: Ranked #27 in LGBTQ+ Memoirs This Week!</span>
         </div>
-        <div class="marquee-lights w-4 h-4 rounded-full bg-gold-custom ml-4 flex-shrink-0"></div>
+        <div class="marquee-lights w-3 h-3 rounded-full bg-gold-custom ml-4 flex-shrink-0"></div>
     </div>
 
     <!-- 2. Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4 overflow-hidden">
-        <!-- Background -->
-        <div class="absolute inset-0 bg-teal-custom z-0">
-             <div class="absolute inset-0 bg-black opacity-30"></div>
-        </div>
+    <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4 overflow-hidden bg-dark">
+        <!-- Background with spotlight effect -->
+        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark z-10"></div>
+        <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(8, 51, 68, 0.5) 0%, var(--color-dark) 70%);"></div>
         
         <!-- Content -->
-        <div class="relative z-10 flex flex-col items-center">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-headline text-cream-custom drop-shadow-lg" style="text-shadow: 4px 4px 0px var(--color-red);">
-                🎪 Welcome to the Carnival of Bad Dates 🎪
+        <div id="hero-content" class="relative z-20 flex flex-col items-center">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-headline text-cream-custom" style="text-shadow: 0 0 15px var(--color-gold), 0 0 25px var(--color-red);">
+                Welcome to the Carnival of Bad Dates
             </h1>
-            <p class="text-xl md:text-2xl font-bold mt-4 bg-gold-custom text-teal-custom py-1 px-4 rounded shadow-md">
-                Step right up to the wildest rides, cringe-inducing games, and secret chapter of The Worst Boyfriends Ever.
+            <p class="text-xl md:text-2xl font-bold mt-6 bg-gold-custom text-dark py-1 px-4 rounded-sm shadow-md">
+                Step right up to the wildest rides, cringe-inducing games, and a secret chapter of The Worst Boyfriends Ever.
             </p>
 
             <!-- Interactive Ticket CTA -->
             <div class="cta-ticket mt-12 w-80 max-w-full h-48">
                 <div class="cta-ticket-inner relative w-full h-full">
                     <!-- Front of Ticket -->
-                    <div class="cta-ticket-front absolute w-full h-full bg-gold-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-red-custom/50">
+                    <div class="cta-ticket-front absolute w-full h-full bg-cream-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-red-custom/50">
                         <h3 class="font-headline text-2xl text-red-custom">Admit One</h3>
                         <p class="text-teal-custom font-bold">to a FREE Secret Chapter</p>
                         <p class="text-sm text-teal-custom/80 mt-4">(Hover to reveal)</p>
                     </div>
                     <!-- Back of Ticket -->
-                    <div class="cta-ticket-back absolute w-full h-full bg-gold-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
-                        <input type="email" placeholder="your.email@example.com" class="w-full p-2 rounded border-2 border-teal-custom text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-custom">
-                        <button class="w-full bg-red-custom text-cream-custom font-headline py-2 mt-2 rounded hover:bg-red-custom/90 transition-colors">Grab Your Chapter</button>
+                    <div class="cta-ticket-back absolute w-full h-full bg-cream-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
+                        <input type="email" placeholder="your.email@example.com" class="w-full p-2 rounded-sm border-2 border-teal-custom text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-custom">
+                        <button class="w-full bg-red-custom text-cream-custom font-headline py-2 mt-2 rounded-sm hover:bg-red-custom/90 transition-colors tracking-wider">Grab Your Chapter</button>
                     </div>
                 </div>
             </div>
@@ -341,22 +338,22 @@
     </header>
 
     <!-- 3. Book Showcase: The Main Attraction -->
-    <section id="book" class="py-16 md:py-24">
+    <section id="book" class="py-16 md:py-24 bg-cream-custom text-dark">
         <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8">
             <!-- Left Column: Book Mockup -->
             <div class="w-full lg:w-1/2 flex justify-center p-8">
                 <div class="book-mockup group w-full max-w-md">
-                    <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';this.style.border='2px dashed red';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';this.style.border='2px dashed red';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 shadow-2xl">
                 </div>
             </div>
 
             <!-- Right Column: Book Details -->
             <div class="w-full lg:w-1/2 p-8 flex items-center justify-center">
-                <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg">
-                    <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">The Worst Boyfriends Ever</h3>
+                <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg bg-dark text-cream-custom border-red-custom">
+                    <h3 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">The Worst Boyfriends Ever</h3>
                     
                     <div class="text-left text-lg">
-                        <h4 class="text-2xl font-headline text-teal-custom mb-3 text-center">Inside the Chaos</h4>
+                        <h4 class="text-2xl font-headline text-cream-custom mb-3 text-center">Inside the Chaos</h4>
                         <p class="mb-4">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.”</p>
                         <p class="mb-4">Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.</p>
                         <p class="italic mb-6">You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
@@ -374,9 +371,9 @@
     </section>
 
     <!-- 4. Praise Carousel -->
-    <section id="praise" class="py-16 md:py-24 bg-teal-custom bg-opacity-10 overflow-hidden">
+    <section id="praise" class="py-16 md:py-24 bg-dark overflow-hidden">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-teal-custom mb-12">What the Crowd's Saying</h2>
+            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-12">From the Grandstands</h2>
             <div class="relative max-w-3xl mx-auto">
                 <div id="praiseCarousel" class="flex transition-transform duration-500 ease-in-out">
                     <!-- Carousel Items -->
@@ -408,26 +405,26 @@
                 </div>
                 <!-- Navigation -->
                 <button id="prevPraise" class="carousel-nav left-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" fill="var(--color-red)"></path><rect x="15" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 <button id="nextPraise" class="carousel-nav right-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 40,10 L 80,50 L 40,90 L 50,100 L 100,50 Z" fill="var(--color-red)"></path><rect x="0" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
             </div>
         </div>
     </section>
 
     <!-- 5. Audiobook Spotlight -->
-    <section id="audiobook" class="py-16 md:py-24">
+    <section id="audiobook" class="py-16 md:py-24 bg-cream-custom text-dark">
         <div class="container mx-auto px-4">
-            <div class="midway-booth max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+            <div class="midway-booth max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 p-8">
                 <div class="w-full md:w-1/3 flex justify-center">
                     <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" alt="Audiobook Cover" class="rounded-lg shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover">
                 </div>
                 <div class="w-full md:w-2/3 text-center md:text-left">
                     <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Hear the Circus</h2>
                     <p class="text-lg md:text-xl mb-2">Narrated by the incredible <span class="font-bold text-teal-custom">Deacon Deane</span>, the audiobook drops this month on Spotify!</p>
-                    <p class="mb-4 text-xl italic text-teal-custom font-headline">Dating is War.<br>Laughter is Armor.</p>
+                    <p class="mb-4 text-2xl italic text-teal-custom font-headline">Dating is War.<br>Laughter is Armor.</p>
                     <p class="mb-6">Join readers around the world who are laughing through the cringe and reclaiming their dating lives—one bad ex at a time.</p>
                     <button class="golden-coin-btn">
                         <span class="coin-text">Pre-Save on Spotify</span>
@@ -438,10 +435,10 @@
     </section>
 
     <!-- 6. Attraction #1: Bad Date Bingo -->
-    <section id="bingo" class="py-16 md:py-24 bg-red-custom bg-opacity-10">
+    <section id="bingo" class="py-16 md:py-24 bg-dark">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #1</h2>
-            <h3 class="text-3xl font-headline text-teal-custom mb-12">Bad Date Bingo</h3>
+            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #1</h2>
+            <h3 class="text-3xl font-headline text-cream-custom mb-12">Bad Date Bingo</h3>
             <div class="midway-booth max-w-2xl mx-auto p-4 md:p-8">
                 <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4">
                     <!-- Bingo tiles will be generated by JS -->
@@ -451,7 +448,7 @@
     </section>
 
     <!-- 7. Attraction #2: Mugshot Gallery (The Rogues' Gallery) -->
-    <section id="gallery" class="py-16 md:py-24">
+    <section id="gallery" class="py-16 md:py-24 bg-cream-custom text-dark">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #2</h2>
             <h3 class="text-3xl font-headline text-teal-custom mb-12">The Rogues' Gallery</h3>
@@ -460,21 +457,21 @@
                     <!-- Gallery items will be populated by JavaScript -->
                 </div>
                  <!-- Navigation -->
-                <button id="prevGallery" class="carousel-nav left-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" fill="var(--color-red)"></path><rect x="15" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
+                <button id="prevGallery" class="carousel-nav left-0 text-teal-custom">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
-                <button id="nextGallery" class="carousel-nav right-0">
-                    <svg class="w-12 h-12" viewBox="0 0 100 100"><path d="M 50,0 L 40,10 L 80,50 L 40,90 L 50,100 L 100,50 Z" fill="var(--color-red)"></path><rect x="0" y="45" width="85" height="10" fill="var(--color-gold)" rx="5"></rect></svg>
+                <button id="nextGallery" class="carousel-nav right-0 text-teal-custom">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
             </div>
         </div>
     </section>
 
     <!-- 8. Attraction #3: Spot the Red Flags Quiz -->
-    <section id="quiz" class="py-16 md:py-24 bg-teal-custom bg-opacity-10">
+    <section id="quiz" class="py-16 md:py-24 bg-dark">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #3</h2>
-            <h3 class="text-3xl font-headline text-teal-custom mb-12">Red Flag Meter</h3>
+            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #3</h2>
+            <h3 class="text-3xl font-headline text-cream-custom mb-12">Red Flag Meter</h3>
             <div id="quiz-container" class="midway-booth max-w-3xl mx-auto p-8">
                 <!-- Quiz content will be generated by JS -->
             </div>
@@ -482,19 +479,19 @@
     </section>
 
     <!-- 9. Author Booth & Final CTA -->
-    <section id="author" class="py-16 md:py-24">
+    <section id="author" class="py-16 md:py-24 bg-cream-custom text-dark">
         <div class="container mx-auto px-4">
-            <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center">
+            <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center p-8">
                 <div class="w-full md:w-1/3 flex justify-center">
                     <img src="https://aleksfilmore.com/AF.png" alt="Portrait of Aleks Filmore" class="rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-gold-custom">
                 </div>
                 <div class="w-full md:w-2/3">
                     <h2 class="text-4xl md:text-5xl font-headline text-teal-custom mb-4">Meet the Ringleader</h2>
-                    <p class="text-lg md:text-xl mb-6 text-left">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
-                    <div class="flex justify-center gap-4">
+                    <p class="text-lg mb-6 text-left">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
+                    <div class="flex justify-center gap-6">
                         <!-- Social Icons as Prizes -->
-                        <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-8 h-8"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
-                        <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-8 h-8"><path fill="currentColor" d="M12.28.22a1.46,1.46,0,0,0-1.4-1.48A1.47,1.47,0,0,0,9.41.22V12.63a3.89,3.89,0,1,1-3.88-3.89,1.47,1.47,0,0,0,1.47-1.47A1.48,1.48,0,0,0,5.53,5.8,6.84,6.84,0,1,0,12.37,12.6V4.75a3.86,3.86,0,0,1,3.88-3.88,3.78,3.78,0,0,1,3.88,3.88V12.2a9.14,9.14,0,0,0-1.47-.1,1.47,1.47,0,0,0-1.47,1.47,1.4,1.4,0,0,0,1.47,1.47,1.52,1.52,0,0,0,.1-.05,6.84,6.84,0,0,0,5.35-6.78V.22a1.46,1.46,0,0,0-1.4-1.48A1.47,1.47,0,0,0,21.2.22Z"/></svg></a>
+                        <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-10 h-10"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
+                        <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-10 h-10"><path fill="currentColor" d="M12.28.22a1.46,1.46,0,0,0-1.4-1.48A1.47,1.47,0,0,0,9.41.22V12.63a3.89,3.89,0,1,1-3.88-3.89,1.47,1.47,0,0,0,1.47-1.47A1.48,1.48,0,0,0,5.53,5.8,6.84,6.84,0,1,0,12.37,12.6V4.75a3.86,3.86,0,0,1,3.88-3.88,3.78,3.78,0,0,1,3.88,3.88V12.2a9.14,9.14,0,0,0-1.47-.1,1.47,1.47,0,0,0-1.47,1.47,1.4,1.4,0,0,0,1.47,1.47,1.52,1.52,0,0,0,.1-.05,6.84,6.84,0,0,0,5.35-6.78V.22a1.46,1.46,0,0,0-1.4-1.48A1.47,1.47,0,0,0,21.2.22Z"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -502,16 +499,15 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-teal-custom text-cream-custom py-8 relative">
-        <div class="tightrope"></div>
+    <footer class="bg-dark text-cream-custom py-8 relative border-t-4 border-gold-custom">
         <div class="container mx-auto px-4 text-center">
             <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-4">
                 <a href="#" class="hover:text-gold-custom transition-colors">Privacy Policy</a>
                 <a href="#" class="hover:text-gold-custom transition-colors">Terms of Service</a>
                 <a href="#" class="hover:text-gold-custom transition-colors">Contact</a>
             </div>
-            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn-sm">Buy on Amazon</a>
-            <p class="mt-4 text-sm opacity-70">&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn-sm mt-4">Buy on Amazon</a>
+            <p class="mt-6 text-sm opacity-70">&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -539,10 +535,10 @@
 
     <!-- Exit Intent Pop-up -->
     <div id="exit-intent-popup" class="fixed inset-0 bg-black bg-opacity-75 items-center justify-center p-4 z-50 hidden">
-        <div class="carnival-frame max-w-md w-full text-center p-8 relative transform scale-0 transition-transform duration-300">
+        <div class="carnival-frame max-w-md w-full text-center p-8 relative transform scale-0 transition-transform duration-300 bg-dark text-cream-custom border-gold-custom">
              <button id="close-exit-popup" class="absolute top-2 right-2 text-2xl font-bold text-red-custom">&times;</button>
             <h2 class="text-4xl font-headline text-red-custom mb-4">Wait! Don't Leave!</h2>
-            <p class="text-xl mb-6">Don't leave empty-handed! Grab this ticket for <strong class="text-teal-custom">10% off</strong> the paperback.</p>
+            <p class="text-xl mb-6">Don't leave empty-handed! Grab this ticket for <strong class="text-gold-custom">10% off</strong> the paperback.</p>
             <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Grab My Ticket</a>
         </div>
     </div>
@@ -592,20 +588,21 @@
         ];
 
         // --- General Elements ---
-        const body = document.body;
+        const heroContent = document.getElementById('hero-content');
 
-        // --- Hero Section: Confetti ---
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.animationDelay = `${Math.random() * 2}s`;
-                confetti.style.backgroundColor = ['var(--color-red)', 'var(--color-teal)', 'var(--color-gold)'][Math.floor(Math.random() * 3)];
-                body.appendChild(confetti);
+        // --- Hero Section: Sparks ---
+        function createSparks() {
+            for (let i = 0; i < 40; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = `${Math.random() * 100}vw`;
+                spark.style.animationDelay = `${Math.random() * 4}s`;
+                spark.style.animationDuration = `${2 + Math.random() * 3}s`;
+                spark.style.color = ['var(--color-gold)', 'var(--color-red)', '#ffffff'][Math.floor(Math.random() * 3)];
+                heroContent.appendChild(spark);
             }
         }
-        createConfetti();
+        createSparks();
 
         // --- Carousels ---
         function setupCarousel(carouselId, prevBtnId, nextBtnId) {
@@ -758,7 +755,7 @@
                 const q = QUIZ_QUESTIONS[currentQuestion];
                 quizContainer.innerHTML = `
                     <p class="text-xl md:text-2xl mb-8">${q.question}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4">
                         ${q.options.map((opt, i) => `<button class="quiz-option" data-points="${opt.points}">${opt.text}</button>`).join('')}
                     </div>
                 `;
