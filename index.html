@@ -45,6 +45,7 @@
         .bg-cream-custom { background-color: var(--color-cream); }
         .text-red-custom { color: var(--color-red); }
         .text-teal-custom { color: var(--color-teal-vibrant); }
+        .text-teal-dark { color: var(--color-teal-dark); }
         .text-gold-custom { color: var(--color-gold); }
         .text-cream-custom { color: var(--color-cream); }
         .border-gold-custom { border-color: var(--color-gold); }
@@ -316,7 +317,7 @@
                     <div class="cta-ticket-front absolute w-full h-full bg-cream-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-red-custom/50">
                         <h3 class="font-headline text-2xl text-red-custom">Admit One</h3>
                         <p class="text-teal-dark font-bold">to the Deleted Damage</p>
-                        <p class="text-sm text-teal-dark/80 mt-4">(Hover to reveal)</p>
+                        <p class="text-sm text-teal-dark opacity-80 mt-4">(Hover to reveal)</p>
                     </div>
                     <!-- Back of Ticket -->
                     <form action="https://formspree.io/f/myzjjjjp" method="POST" class="cta-ticket-back absolute w-full h-full bg-cream-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
@@ -574,6 +575,12 @@
             <p class="text-xl mb-6">Don't leave the carnival without your survival guide.</p>
             <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Grab The Book</a>
         </div>
+    </div>
+
+    <!-- Cookie Notice -->
+    <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-dark border-t-2 border-gold-custom p-4 flex items-center justify-center gap-4 z-40 hidden">
+        <p class="text-cream-custom text-sm">This website uses cookies to ensure you get the best experience. By continuing, you agree to our <a href="/cookies.html" class="underline hover:text-gold-custom">Cookie Policy</a>.</p>
+        <button id="accept-cookies" class="bg-gold-custom text-dark font-bold py-1 px-3 rounded-sm text-sm hover:bg-gold-custom/80">Accept</button>
     </div>
 
 
@@ -888,6 +895,21 @@
                     exitPopup.classList.add('hidden');
                     exitPopup.classList.remove('flex');
                 }, 300);
+            });
+        }
+        
+        // --- Cookie Notice ---
+        const cookieNotice = document.getElementById('cookie-notice');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+
+        if (cookieNotice && acceptCookiesBtn) {
+            if (localStorage.getItem('cookiesAccepted') !== 'true') {
+                cookieNotice.classList.remove('hidden');
+            }
+
+            acceptCookiesBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieNotice.style.display = 'none';
             });
         }
 
