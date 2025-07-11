@@ -107,7 +107,8 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        .cta-ticket:hover .cta-ticket-inner {
+        .cta-ticket:hover .cta-ticket-inner,
+        .cta-ticket.is-flipped .cta-ticket-inner {
             transform: rotateY(180deg);
         }
         .cta-ticket-front, .cta-ticket-back {
@@ -352,7 +353,7 @@
                     <div class="cta-ticket-front absolute w-full h-full bg-red-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-gold-custom/70">
                         <h3 class="font-headline text-2xl text-gold-custom">Admit One</h3>
                         <p class="text-cream-custom font-bold">to the Deleted Damage</p>
-                        <p class="text-sm text-cream-custom opacity-80 mt-4">(Hover to reveal)</p>
+                        <p class="text-sm text-cream-custom opacity-80 mt-4">(Hover or Tap to reveal)</p>
                     </div>
                     <!-- Back of Ticket -->
                     <form action="https://formspree.io/f/myzjjjjp" method="POST" class="cta-ticket-back absolute w-full h-full bg-red-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
@@ -916,6 +917,16 @@
             acceptCookiesBtn.addEventListener('click', () => {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieNotice.style.display = 'none';
+            });
+        }
+
+        // --- Mobile Ticket Flip ---
+        const ctaTicket = document.querySelector('.cta-ticket');
+        if (ctaTicket) {
+            ctaTicket.addEventListener('click', function(e) {
+                if (!e.target.closest('form')) {
+                    this.classList.toggle('is-flipped');
+                }
             });
         }
 
