@@ -71,23 +71,7 @@
         .text-dark { color: var(--color-dark); }
         .border-gold-custom { border-color: var(--color-gold); }
 
-        /* Marquee Animation */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .marquee-text {
-            animation: marquee 25s linear infinite;
-        }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 7px var(--color-gold), 0 0 12px var(--color-gold); }
-            50% { box-shadow: 0 0 18px var(--color-gold), 0 0 30px var(--color-gold); }
-        }
-        .marquee-lights {
-            animation: pulse-glow 2s infinite;
-        }
-
-        /* Confetti -> Changed to dramatic embers/sparks */
+        /* Embers/Sparks Animation */
         @keyframes spark-rise {
             0% { transform: translateY(0) scale(1); opacity: 1; }
             100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
@@ -202,8 +186,8 @@
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
-        .spotify-button {
-            background-color: #1DB954;
+        .platform-button {
+            background-color: rgba(255,255,255,0.1);
             color: white;
             border-radius: 9999px;
             padding: 0.75rem 1.5rem;
@@ -211,17 +195,11 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.2s;
+            transition: background-color 0.2s;
+            text-decoration: none;
         }
-        .spotify-button:hover {
-            transform: scale(1.05);
-        }
-        .spotify-button.disabled {
-            background-color: #535353;
-            cursor: not-allowed;
-        }
-        .spotify-button.disabled:hover {
-            transform: none;
+        .platform-button:hover {
+            background-color: rgba(255,255,255,0.2);
         }
 
         /* Bingo Game - Darker theme */
@@ -323,243 +301,236 @@
     </style>
 </head>
 <body class="bg-dark">
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4 overflow-hidden bg-dark">
+            <!-- Background with spotlight effect -->
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark z-10"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(8, 51, 68, 0.5) 0%, var(--color-dark) 70%);"></div>
+            
+            <!-- Content -->
+            <div id="hero-content" class="relative z-20 flex flex-col items-center">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-headline text-cream-custom" style="text-shadow: 0 0 15px var(--color-gold), 0 0 25px var(--color-red);">
+                    Welcome to the Carnival of Bad Dates
+                </h1>
+                <p class="text-xl md:text-2xl font-bold mt-6 bg-gold-custom text-dark py-1 px-4 rounded-sm shadow-md">
+                    Step right up to the wildest rides, cringe-inducing games, and a secret chapter of The Worst Boyfriends Ever.
+                </p>
+                <p class="mt-8 max-w-2xl text-xl italic text-cream-custom/80">“If red flags were currency, I’d be emotionally bankrupt with a thriving yacht collection. This is a memoir about those boyfriends—the worst ones. And maybe, a little, about me.”</p>
 
-    <!-- 1. Announcement Marquee -->
-    <div class="sticky top-0 z-40 bg-red-custom text-cream-custom p-2 overflow-hidden whitespace-nowrap shadow-lg flex items-center">
-        <div class="marquee-lights w-3 h-3 rounded-full bg-gold-custom mr-4 flex-shrink-0"></div>
-        <div class="marquee-text font-bold text-lg tracking-wider">
-            <span class="mx-12">🎉 Hot Off the Amazon Midway: Ranked #27 in LGBTQ+ Memoirs This Week!</span>
-            <span class="mx-12">🎉 Audiobook Dropping on Spotify: This Month!</span>
-        </div>
-        <div class="marquee-lights w-3 h-3 rounded-full bg-gold-custom ml-4 flex-shrink-0"></div>
-    </div>
+                <!-- Interactive Ticket CTA -->
+                <div class="cta-ticket mt-12 w-80 max-w-full h-48">
+                    <div class="cta-ticket-inner relative w-full h-full">
+                        <!-- Front of Ticket -->
+                        <div class="cta-ticket-front absolute w-full h-full bg-red-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-gold-custom/70">
+                            <h3 class="font-headline text-2xl text-gold-custom">Admit One</h3>
+                            <p class="text-cream-custom font-bold">to the Deleted Damage</p>
+                            <p class="text-sm text-cream-custom opacity-80 mt-4">(Hover or Tap to reveal)</p>
+                        </div>
+                        <!-- Back of Ticket -->
+                        <form action="https://formspree.io/f/myzjjjjp" method="POST" class="cta-ticket-back absolute w-full h-full bg-red-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
+                            <input type="email" name="email" placeholder="your.email@example.com" class="w-full p-2 rounded-sm border-2 border-gold-custom/50 bg-cream-custom text-dark focus:outline-none focus:ring-2 focus:ring-gold-custom" required>
+                            <button type="submit" class="w-full bg-gold-custom text-dark font-headline py-2 mt-2 rounded-sm hover:bg-yellow-300 transition-colors tracking-wider">Read the Chapter Too Chaotic for Print</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <!-- 2. Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4 overflow-hidden bg-dark">
-        <!-- Background with spotlight effect -->
-        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark z-10"></div>
-        <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(8, 51, 68, 0.5) 0%, var(--color-dark) 70%);"></div>
+        <!-- Book Showcase: The Main Attraction -->
+        <section id="book" class="py-16 md:py-24 bg-cream-custom text-dark">
+            <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8">
+                <!-- Left Column: Book Mockup -->
+                <div class="w-full lg:w-1/2 flex justify-center p-8">
+                    <div class="book-mockup group w-full max-w-md">
+                        <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';this.style.border='2px dashed red';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- Right Column: Book Details -->
+                <div class="w-full lg:w-1/2 p-8 flex items-center justify-center">
+                    <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg bg-dark text-cream-custom border-red-custom">
+                        <h3 class="text-5xl md:text-6xl font-book-title text-gold-custom mb-4 tracking-wider uppercase">The Worst Boyfriends Ever</h3>
+                        
+                        <div class="text-left text-lg">
+                            <h4 class="text-2xl font-headline text-cream-custom mb-3 text-center">Inside the Chaos</h4>
+                            <p class="mb-4">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.”</p>
+                            <p class="mb-4">Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.</p>
+                            <p class="italic mb-6">You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                        </div>
+
+                        <div class="text-left space-y-2 mb-8">
+                            <p><strong>Formats:</strong> Paperback / Audiobook / eBook</p>
+                            <p><strong>Price:</strong> $11.11 (Paperback)</p>
+                        </div>
+                        <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Buy The Book</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emotional Hook Section -->
+        <section class="py-20 bg-dark">
+            <div class="container mx-auto px-4 text-center max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-headline text-cream-custom/90 leading-relaxed" style="text-shadow: 0 0 10px var(--color-red);">
+                    This isn’t just a breakup memoir. It’s what happens when laughter becomes a survival skill.
+                </h2>
+            </div>
+        </section>
+
+
+        <!-- Praise Carousel -->
+        <section id="praise" class="py-16 md:py-24 bg-dark overflow-hidden">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-12">From the Grandstands</h2>
+                <div class="relative max-w-3xl mx-auto overflow-hidden">
+                    <div id="praiseCarousel" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Carousel Items -->
+                        <div class="carousel-item min-w-full px-4">
+                            <div class="ticket-card">
+                                <p class="text-xl md:text-2xl italic">“A hilariously raw and painfully honest LGBTQ+ memoir that turns romantic disasters into healing gold.”</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item min-w-full px-4">
+                            <div class="ticket-card">
+                                <p class="text-xl md:text-2xl italic">“Fun, engaging, and totally unputdownable.”</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item min-w-full px-4">
+                            <div class="ticket-card">
+                                <p class="text-xl md:text-2xl italic">“Like swapping tales with a brutally honest friend—wild, messy, and uplifting.”</p>
+                            </div>
+                        </div>
+                         <div class="carousel-item min-w-full px-4">
+                            <div class="ticket-card">
+                                <p class="text-xl md:text-2xl italic">“Easy, funny, super relatable, and witty.”</p>
+                            </div>
+                        </div>
+                         <div class="carousel-item min-w-full px-4">
+                            <div class="ticket-card">
+                                <p class="text-xl md:text-2xl italic">“Equal parts cringe and catharsis—I devoured it.”</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <button id="prevPraise" class="carousel-nav left-0">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button id="nextPraise" class="carousel-nav right-0">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audiobook Spotlight -->
+        <section id="audiobook" class="py-16 md:py-24 bg-dark">
+            <div class="container mx-auto px-4">
+                <div class="spotify-card max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/3 flex-shrink-0">
+                        <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover for The Worst Boyfriends Ever" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+                    </div>
+                    <div class="w-full md:w-2/3 text-center md:text-left">
+                        <h2 class="text-3xl md:text-4xl font-book-title text-cream-custom uppercase tracking-wider">The Worst Boyfriends Ever</h2>
+                        <p class="text-lg text-cream-custom/80 mb-4">By Aleks Filmore</p>
+                        <p class="text-lg text-cream-custom/80 mb-4">Narrated by Deacon Deane</p>
+                        
+                        <div class="my-4">
+                             <audio controls class="w-full">
+                                <source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+                            <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="platform-button">
+                                <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" class="fill-current"><path d="M12 2.163a9.84 9.84 0 100 19.68 9.84 9.84 0 000-19.68zM5.334 16.91a8.132 8.132 0 0111.332-6.445A8.132 8.132 0 015.334 16.91zm6.66-1.58a1.694 1.694 0 00-2.35-2.438c-1.32.76-3.004.93-4.444.514a.423.423 0 01-.18-.848l.848-.424a.423.423 0 01.514.18c1.116.338 2.47.18 3.586-.424a.423.423 0 01.514 0l.848.424a.423.423 0 010 .742zm1.692-2.35a2.033 2.033 0 00-2.82-2.925c-1.583.913-3.604 1.116-5.333.6a.514.514 0 01-.212-1.028l1.028-.514a.514.514 0 01.6.212c1.392.424 3.004.296 4.24-.514a.514.514 0 01.684 0l1.028.514a.514.514 0 010 .848zM15.42 9.9a2.458 2.458 0 00-3.41-3.527c-1.9.996-4.528 1.116-6.357.6a.6.6 0 01-.296-1.2l1.2-.6a.6.6 0 01.742.296c1.583.424 3.773.296 5.418-.742a.6.6 0 01.848 0l1.2.6a.6.6 0 01.084 1.028z"></path></svg>
+                                <span>Spotify</span>
+                            </a>
+                             <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="platform-button">Kobo</a>
+                             <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="platform-button">Barnes & Noble</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Attraction #1: Bad Date Bingo -->
+        <section id="bingo" class="py-16 md:py-24 bg-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #1</h2>
+                <h3 class="text-3xl font-headline text-cream-custom mb-12">Bad Date Bingo</h3>
+                <div class="midway-booth max-w-2xl mx-auto p-4 md:p-8">
+                    <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4">
+                        <!-- Bingo tiles will be generated by JS -->
+                    </div>
+                    <button id="reset-bingo" class="mt-8 ticket-stub-btn bg-red-custom text-cream-custom">Reset Board</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Attraction #2: Mugshot Gallery (The Rogues' Gallery) -->
+        <section id="gallery" class="py-16 md:py-24 bg-cream-custom text-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #2</h2>
+                <h3 class="text-3xl font-headline text-teal-dark mb-12">The Ex-Boyfriends Gallery</h3>
+                <div class="relative max-w-7xl mx-auto overflow-hidden">
+                    <!-- On mobile, it's a carousel -->
+                    <div id="galleryCarousel" class="md:hidden flex transition-transform duration-500 ease-in-out">
+                        <!-- Mobile items populated by JS -->
+                    </div>
+                    <!-- On desktop, it's a grid -->
+                    <div id="galleryGrid" class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <!-- Desktop items populated by JS -->
+                    </div>
+                     <!-- Mobile Navigation -->
+                    <button id="prevGallery" class="carousel-nav left-0 text-teal-dark md:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button id="nextGallery" class="carousel-nav right-0 text-teal-dark md:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Attraction #3: Spot the Red Flags Quiz -->
+        <section id="quiz" class="py-16 md:py-24 bg-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #3</h2>
+                <h3 class="text-3xl font-headline text-cream-custom mb-12">Red Flag Meter</h3>
+                <div id="quiz-container" class="midway-booth max-w-3xl mx-auto p-8">
+                    <!-- Quiz content will be generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Author Booth -->
+        <section id="author" class="py-16 md:py-24 bg-cream-custom text-dark">
+            <div class="container mx-auto px-4">
+                <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center p-8">
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <img src="https://aleksfilmore.com/AF.png" alt="Portrait of Aleks Filmore" class="rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-gold-custom">
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h2 class="text-4xl md:text-5xl font-headline text-teal-dark mb-4">Meet the Ringleader</h2>
+                        <p class="text-lg mb-6 text-left">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <!-- Content -->
-        <div id="hero-content" class="relative z-20 flex flex-col items-center">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-headline text-cream-custom" style="text-shadow: 0 0 15px var(--color-gold), 0 0 25px var(--color-red);">
-                Welcome to the Carnival of Bad Dates
-            </h1>
-            <p class="text-xl md:text-2xl font-bold mt-6 bg-gold-custom text-dark py-1 px-4 rounded-sm shadow-md">
-                Step right up to the wildest rides, cringe-inducing games, and a secret chapter of The Worst Boyfriends Ever.
-            </p>
-            <p class="mt-8 max-w-2xl text-xl italic text-cream-custom/80">“If red flags were currency, I’d be emotionally bankrupt with a thriving yacht collection. This is a memoir about those boyfriends—the worst ones. And maybe, a little, about me.”</p>
-
-            <!-- Interactive Ticket CTA -->
-            <div class="cta-ticket mt-12 w-80 max-w-full h-48">
-                <div class="cta-ticket-inner relative w-full h-full">
-                    <!-- Front of Ticket -->
-                    <div class="cta-ticket-front absolute w-full h-full bg-red-custom rounded-lg flex flex-col items-center justify-center p-4 shadow-xl border-2 border-dashed border-gold-custom/70">
-                        <h3 class="font-headline text-2xl text-gold-custom">Admit One</h3>
-                        <p class="text-cream-custom font-bold">to the Deleted Damage</p>
-                        <p class="text-sm text-cream-custom opacity-80 mt-4">(Hover or Tap to reveal)</p>
-                    </div>
-                    <!-- Back of Ticket -->
-                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="cta-ticket-back absolute w-full h-full bg-red-custom rounded-lg p-4 shadow-xl flex flex-col justify-center">
-                        <input type="email" name="email" placeholder="your.email@example.com" class="w-full p-2 rounded-sm border-2 border-gold-custom/50 bg-cream-custom text-dark focus:outline-none focus:ring-2 focus:ring-gold-custom" required>
-                        <button type="submit" class="w-full bg-gold-custom text-dark font-headline py-2 mt-2 rounded-sm hover:bg-yellow-300 transition-colors tracking-wider">Read the Chapter Too Chaotic for Print</button>
-                    </form>
+        <!-- 10. Social CTA -->
+        <section id="social-cta" class="py-20 bg-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Join the Chaos</h2>
+                <p class="text-xl text-cream-custom/80 mb-8">Follow the mayhem on social media for more bad dates & good stories.</p>
+                <div class="flex justify-center gap-8">
+                    <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
+                    <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0a2.55 2.55 0 012.59 2.5c.02 1.2.04 2.4.05 3.6.01.07.03.14.03.21a5.6 5.6 0 01-5.65 5.65A5.6 5.6 0 017.8 6.31a5.54 5.54 0 014.3-4.43 2.89 2.89 0 011.43-.36zM16.44 3.48a2.1 2.1 0 00-2.1-2.1c-.43 0-.85.08-1.25.23a2.07 2.07 0 00-1.68 2.03v6.33a2.12 2.12 0 002.13 2.12 2.1 2.1 0 002.1-2.1z"/></svg></a>
                 </div>
             </div>
-        </div>
-    </header>
-
-    <!-- 3. Book Showcase: The Main Attraction -->
-    <section id="book" class="py-16 md:py-24 bg-cream-custom text-dark">
-        <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8">
-            <!-- Left Column: Book Mockup -->
-            <div class="w-full lg:w-1/2 flex justify-center p-8">
-                <div class="book-mockup group w-full max-w-md">
-                    <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';this.style.border='2px dashed red';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500 shadow-2xl">
-                </div>
-            </div>
-
-            <!-- Right Column: Book Details -->
-            <div class="w-full lg:w-1/2 p-8 flex items-center justify-center">
-                <div class="carnival-frame p-8 md:p-12 text-center relative max-w-lg bg-dark text-cream-custom border-red-custom">
-                    <h3 class="text-5xl md:text-6xl font-book-title text-gold-custom mb-4 tracking-wider uppercase">The Worst Boyfriends Ever</h3>
-                    
-                    <div class="text-left text-lg">
-                        <h4 class="text-2xl font-headline text-cream-custom mb-3 text-center">Inside the Chaos</h4>
-                        <p class="mb-4">The Worst Boyfriends Ever isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.”</p>
-                        <p class="mb-4">Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.</p>
-                        <p class="italic mb-6">You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
-                    </div>
-
-                    <div class="text-left space-y-2 mb-8">
-                        <p><strong>Formats:</strong> Paperback / Audiobook / eBook</p>
-                        <p><strong>Price:</strong> $11.11 (Paperback)</p>
-                    </div>
-                    <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-stub-btn">Buy The Book</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Emotional Hook Section -->
-    <section class="py-20 bg-dark">
-        <div class="container mx-auto px-4 text-center max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-headline text-cream-custom/90 leading-relaxed" style="text-shadow: 0 0 10px var(--color-red);">
-                This isn’t just a breakup memoir. It’s what happens when laughter becomes a survival skill.
-            </h2>
-        </div>
-    </section>
-
-
-    <!-- 4. Praise Carousel -->
-    <section id="praise" class="py-16 md:py-24 bg-dark overflow-hidden">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-12">From the Grandstands</h2>
-            <div class="relative max-w-3xl mx-auto overflow-hidden">
-                <div id="praiseCarousel" class="flex transition-transform duration-500 ease-in-out">
-                    <!-- Carousel Items -->
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“A hilariously raw and painfully honest LGBTQ+ memoir that turns romantic disasters into healing gold.”</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“Fun, engaging, and totally unputdownable.”</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“Like swapping tales with a brutally honest friend—wild, messy, and uplifting.”</p>
-                        </div>
-                    </div>
-                     <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“Easy, funny, super relatable, and witty.”</p>
-                        </div>
-                    </div>
-                     <div class="carousel-item min-w-full px-4">
-                        <div class="ticket-card">
-                            <p class="text-xl md:text-2xl italic">“Equal parts cringe and catharsis—I devoured it.”</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Navigation -->
-                <button id="prevPraise" class="carousel-nav left-0">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                </button>
-                <button id="nextPraise" class="carousel-nav right-0">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Audiobook Spotlight -->
-    <section id="audiobook" class="py-16 md:py-24 bg-dark">
-        <div class="container mx-auto px-4">
-            <div class="spotify-card max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                <div class="w-full md:w-1/3 flex-shrink-0">
-                    <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover for The Worst Boyfriends Ever" class="rounded-lg shadow-2xl w-full h-auto object-cover">
-                </div>
-                <div class="w-full md:w-2/3 text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-book-title text-cream-custom uppercase tracking-wider">The Worst Boyfriends Ever</h2>
-                    <p class="text-lg text-cream-custom/80 mb-4">By Aleks Filmore</p>
-                    <p class="text-lg text-cream-custom/80 mb-4">Narrated by Deacon Deane</p>
-                    
-                    <div class="my-4">
-                         <audio controls class="w-full">
-                            <source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    <div class="mt-6">
-                        <button class="spotify-button disabled">
-                            <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" class="fill-current"><path d="M12 2.163a9.84 9.84 0 100 19.68 9.84 9.84 0 000-19.68zM5.334 16.91a8.132 8.132 0 0111.332-6.445A8.132 8.132 0 015.334 16.91zm6.66-1.58a1.694 1.694 0 00-2.35-2.438c-1.32.76-3.004.93-4.444.514a.423.423 0 01-.18-.848l.848-.424a.423.423 0 01.514.18c1.116.338 2.47.18 3.586-.424a.423.423 0 01.514 0l.848.424a.423.423 0 010 .742zm1.692-2.35a2.033 2.033 0 00-2.82-2.925c-1.583.913-3.604 1.116-5.333.6a.514.514 0 01-.212-1.028l1.028-.514a.514.514 0 01.6.212c1.392.424 3.004.296 4.24-.514a.514.514 0 01.684 0l1.028.514a.514.514 0 010 .848zM15.42 9.9a2.458 2.458 0 00-3.41-3.527c-1.9.996-4.528 1.116-6.357.6a.6.6 0 01-.296-1.2l1.2-.6a.6.6 0 01.742.296c1.583.424 3.773.296 5.418-.742a.6.6 0 01.848 0l1.2.6a.6.6 0 01.084 1.028z"></path></svg>
-                            <span>Coming Soon to Spotify</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Attraction #1: Bad Date Bingo -->
-    <section id="bingo" class="py-16 md:py-24 bg-dark">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #1</h2>
-            <h3 class="text-3xl font-headline text-cream-custom mb-12">Bad Date Bingo</h3>
-            <div class="midway-booth max-w-2xl mx-auto p-4 md:p-8">
-                <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4">
-                    <!-- Bingo tiles will be generated by JS -->
-                </div>
-                <button id="reset-bingo" class="mt-8 ticket-stub-btn bg-red-custom text-cream-custom">Reset Board</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Attraction #2: Mugshot Gallery (The Rogues' Gallery) -->
-    <section id="gallery" class="py-16 md:py-24 bg-cream-custom text-dark">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #2</h2>
-            <h3 class="text-3xl font-headline text-teal-dark mb-12">The Ex-Boyfriends Gallery</h3>
-            <div class="relative max-w-7xl mx-auto overflow-hidden">
-                <!-- On mobile, it's a carousel -->
-                <div id="galleryCarousel" class="md:hidden flex transition-transform duration-500 ease-in-out">
-                    <!-- Mobile items populated by JS -->
-                </div>
-                <!-- On desktop, it's a grid -->
-                <div id="galleryGrid" class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Desktop items populated by JS -->
-                </div>
-                 <!-- Mobile Navigation -->
-                <button id="prevGallery" class="carousel-nav left-0 text-teal-dark md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                </button>
-                <button id="nextGallery" class="carousel-nav right-0 text-teal-dark md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. Attraction #3: Spot the Red Flags Quiz -->
-    <section id="quiz" class="py-16 md:py-24 bg-dark">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #3</h2>
-            <h3 class="text-3xl font-headline text-cream-custom mb-12">Red Flag Meter</h3>
-            <div id="quiz-container" class="midway-booth max-w-3xl mx-auto p-8">
-                <!-- Quiz content will be generated by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. Author Booth -->
-    <section id="author" class="py-16 md:py-24 bg-cream-custom text-dark">
-        <div class="container mx-auto px-4">
-            <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center p-8">
-                <div class="w-full md:w-1/3 flex justify-center">
-                    <img src="https://aleksfilmore.com/AF.png" alt="Portrait of Aleks Filmore" class="rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-gold-custom">
-                </div>
-                <div class="w-full md:w-2/3">
-                    <h2 class="text-4xl md:text-5xl font-headline text-teal-dark mb-4">Meet the Ringleader</h2>
-                    <p class="text-lg mb-6 text-left">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. With a background in storytelling, queer identity, and emotional chaos (both lived and observed), his writing blends humor, honesty, and a touch of poetic rage. His work spans raw memoir and queer gothic fiction, from the dating disasters of The Worst Boyfriends Ever to the fog-drenched mystery of Fogbound Hearts. Aleks tells stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 10. Social CTA -->
-    <section id="social-cta" class="py-20 bg-dark">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Join the Chaos</h2>
-            <p class="text-xl text-cream-custom/80 mb-8">Follow the mayhem on social media for more bad dates & good stories.</p>
-            <div class="flex justify-center gap-8">
-                <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
-                <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0a2.55 2.55 0 012.59 2.5c.02 1.2.04 2.4.05 3.6.01.07.03.14.03.21a5.6 5.6 0 01-5.65 5.65A5.6 5.6 0 017.8 6.31a5.54 5.54 0 014.3-4.43 2.89 2.89 0 011.43-.36zM16.44 3.48a2.1 2.1 0 00-2.1-2.1c-.43 0-.85.08-1.25.23a2.07 2.07 0 00-1.68 2.03v6.33a2.12 2.12 0 002.13 2.12 2.1 2.1 0 002.1-2.1z"/></svg></a>
-            </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Footer -->
     <footer class="text-cream-custom py-8 relative border-t-4 border-gold-custom">
