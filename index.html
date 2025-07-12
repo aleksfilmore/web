@@ -301,6 +301,22 @@
     </style>
 </head>
 <body class="bg-dark">
+
+    <!-- Hamburger Menu Button -->
+    <button id="menu-btn" class="fixed top-4 right-4 z-50 p-2 rounded-md bg-gold-custom/80 text-dark hover:bg-gold-custom">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+    </button>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-dark/90 backdrop-blur-sm z-40 flex items-center justify-center hidden">
+        <button id="close-menu-btn" class="absolute top-4 right-4 text-cream-custom p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <nav class="text-center">
+            <a href="https://aleksfilmore.com/fogboundhearts" class="block font-headline text-4xl text-gold-custom hover:text-red-custom transition-colors py-4">Fogbound Hearts</a>
+        </nav>
+    </div>
+
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
@@ -480,7 +496,7 @@
                         <!-- Mobile items populated by JS -->
                     </div>
                     <!-- On desktop, it's a grid -->
-                    <div id="galleryGrid" class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div id="galleryGrid" class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
                         <!-- Desktop items populated by JS -->
                     </div>
                      <!-- Mobile Navigation -->
@@ -902,6 +918,20 @@
                 if (!e.target.closest('form')) {
                     this.classList.toggle('is-flipped');
                 }
+            });
+        }
+
+        // --- Menu Toggle ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        if(menuBtn && closeMenuBtn && menuOverlay) {
+            menuBtn.addEventListener('click', () => {
+                menuOverlay.classList.remove('hidden');
+            });
+            closeMenuBtn.addEventListener('click', () => {
+                menuOverlay.classList.add('hidden');
             });
         }
 
