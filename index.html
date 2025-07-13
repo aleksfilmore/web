@@ -45,6 +45,7 @@
             --font-body: 'Montserrat', sans-serif;
         }
 
+        /* FIX: Prevents horizontal scrolling on mobile */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -65,11 +66,12 @@
         .bg-cream-custom { background-color: var(--color-cream); }
         .text-red-custom { color: var(--color-red); }
         .text-teal-custom { color: var(--color-teal); }
-        .text-teal-dark { color: var(--color-teal-dark); }
         .text-gold-custom { color: var(--color-gold); }
         .text-cream-custom { color: var(--color-cream); }
         .text-dark { color: var(--color-dark); }
         .border-gold-custom { border-color: var(--color-gold); }
+        .text-teal-dark { color: var(--color-teal); }
+
 
         /* Embers/Sparks Animation */
         @keyframes spark-rise {
@@ -107,7 +109,7 @@
             transform: rotateY(180deg);
         }
 
-        /* General Carnival Framing - More dramatic, less "silly" */
+        /* General Carnival Framing */
         .carnival-frame {
             border: 2px solid var(--color-gold);
             background-color: rgba(17, 24, 39, 0.8); /* Dark, slightly transparent */
@@ -130,7 +132,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
-        /* Ticket Stub Button - More refined */
+        /* Ticket Stub Button */
         .ticket-stub-btn, .ticket-stub-btn-sm {
             background-color: var(--color-gold);
             color: var(--color-dark);
@@ -153,7 +155,7 @@
             background-color: #FACC15; /* Brighter gold on hover */
         }
         
-        /* Praise Carousel - Vaudeville ticket style */
+        /* Praise Carousel */
         .ticket-card {
             background-color: #fff;
             color: var(--color-dark);
@@ -181,7 +183,7 @@
 
         /* Spotify Card Style */
         .spotify-card {
-            background: linear-gradient(135deg, var(--color-teal-dark) 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, var(--color-teal) 0%, #1e3a8a 100%);
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
@@ -202,7 +204,7 @@
             background-color: rgba(255,255,255,0.2);
         }
 
-        /* Bingo Game - Darker theme */
+        /* Bingo Game */
         .bingo-tile {
             aspect-ratio: 1 / 1;
             background-color: #fff;
@@ -236,7 +238,7 @@
             border-radius: 0.5rem;
         }
 
-        /* Polaroid Card */
+        /* FIX: Polaroid Card - no click events, just hover */
         .polaroid-card {
             background-color: #fff;
             padding: 1rem;
@@ -247,7 +249,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            cursor: default; /* Remove pointer cursor */
+            cursor: default; 
         }
         .polaroid-card:hover {
             transform: rotate(1deg) scale(1.05);
@@ -288,7 +290,7 @@
             transform: scale(1.2) rotate(-5deg);
         }
 
-        /* Reel Thumbnail */
+        /* NEW: Reel Thumbnail */
         .reel-thumbnail {
             position: relative;
             overflow: hidden;
@@ -310,9 +312,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            background-color: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0,0,0,0.6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -475,6 +477,8 @@
                     </div>
                     <div class="w-full md:w-2/3 text-center md:text-left">
                         <h2 class="text-3xl md:text-4xl font-book-title text-cream-custom uppercase tracking-wider">The Worst Boyfriends Ever</h2>
+                        <!-- FIX: Added new intro line -->
+                        <p class="text-xl text-cream-custom/90 mb-2 italic">"You've survived the text. Now hear the wreckage."</p>
                         <p class="text-lg text-cream-custom/80 mb-4">By Aleks Filmore</p>
                         <p class="text-lg text-cream-custom/80 mb-4">Narrated by Deacon Deane</p>
                         
@@ -486,7 +490,8 @@
                         </div>
                         <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
                             <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="platform-button">
-                                <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" class="fill-current"><path d="M12 2.163a9.84 9.84 0 100 19.68 9.84 9.84 0 000-19.68zM5.334 16.91a8.132 8.132 0 0111.332-6.445A8.132 8.132 0 015.334 16.91zm6.66-1.58a1.694 1.694 0 00-2.35-2.438c-1.32.76-3.004.93-4.444.514a.423.423 0 01-.18-.848l.848-.424a.423.423 0 01.514.18c1.116.338 2.47.18 3.586-.424a.423.423 0 01.514 0l.848.424a.423.423 0 010 .742zm1.692-2.35a2.033 2.033 0 00-2.82-2.925c-1.583.913-3.604 1.116-5.333.6a.514.514 0 01-.212-1.028l1.028-.514a.514.514 0 01.6.212c1.392.424 3.004.296 4.24-.514a.514.514 0 01.684 0l1.028.514a.514.514 0 010 .848zM15.42 9.9a2.458 2.458 0 00-3.41-3.527c-1.9.996-4.528 1.116-6.357.6a.6.6 0 01-.296-1.2l1.2-.6a.6.6 0 01.742.296c1.583.424 3.773.296 5.418-.742a.6.6 0 01.848 0l1.2.6a.6.6 0 01.084 1.028z"></path></svg>
+                                <!-- FIX: Corrected Spotify Logo -->
+                                <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" class="fill-current"><path d="M12 2.163a9.84 9.84 0 100 19.68 9.84 9.84 0 000-19.68zM8.134 17.91a8.132 8.132 0 01-4.8-4.8 8.132 8.132 0 014.8-4.8 8.132 8.132 0 014.8 4.8 8.132 8.132 0 01-4.8 4.8zm1.11-7.155a.423.423 0 00-.514-.18c-1.116.338-2.47.18-3.586-.424a.423.423 0 00-.514.18l-.848.424a.423.423 0 00.18.848c1.44.424 3.124.254 4.444-.514a.423.423 0 00.18-.848l-.848-.424zm1.692-2.35a.514.514 0 00-.684 0c-1.244.81-2.856.938-4.24.514a.514.514 0 00-.6-.212l-1.028.514a.514.514 0 00.212 1.028c1.729.514 3.75.312 5.333-.6a.514.514 0 00.212-1.028l-1.028-.514zM15.42 9.9a.6.6 0 00-.848 0c-1.645 1.038-3.835 1.166-5.418.742a.6.6 0 00-.742-.296l-1.2.6a.6.6 0 00.296 1.2c1.829.514 4.457.394 6.357-.6a.6.6 0 00.296-1.2l-1.2-.6z"></path></svg>
                                 <span>Spotify</span>
                             </a>
                              <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="platform-button">Kobo</a>
@@ -497,7 +502,7 @@
             </div>
         </section>
 
-        <!-- 6. Attraction #1: Bad Date Bingo -->
+        <!-- Attraction #1: Bad Date Bingo -->
         <section id="bingo" class="py-16 md:py-24 bg-dark">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #1</h2>
@@ -511,7 +516,7 @@
             </div>
         </section>
 
-        <!-- 7. Attraction #2: Mugshot Gallery (The Rogues' Gallery) -->
+        <!-- Attraction #2: The Ex-Boyfriends Gallery -->
         <section id="gallery" class="py-16 md:py-24 bg-cream-custom text-dark">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #2</h2>
@@ -521,7 +526,7 @@
                     <div id="galleryCarousel" class="md:hidden flex transition-transform duration-500 ease-in-out">
                         <!-- Mobile items populated by JS -->
                     </div>
-                    <!-- On desktop, it's a grid -->
+                    <!-- FIX: On desktop, it's a grid of up to 5 items -->
                     <div id="galleryGrid" class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
                         <!-- Desktop items populated by JS -->
                     </div>
@@ -535,22 +540,53 @@
                 </div>
             </div>
         </section>
-
-        <!-- 8. Attraction #3: Spot the Red Flags Quiz -->
-        <section id="quiz" class="py-16 md:py-24 bg-dark">
+        
+        <!-- NEW: Instagram Reels Section -->
+        <section id="reels" class="py-16 md:py-24 bg-dark">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Attraction #3</h2>
-                <h3 class="text-3xl font-headline text-cream-custom mb-12">Red Flag Meter</h3>
+                <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">From the Director's Cut</h2>
+                <p class="text-xl text-cream-custom/80 mb-12">More chaos, captured on film.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Reel 1 -->
+                    <a href="https://www.instagram.com/reel/C8qX5V8S2Y_/" target="_blank" rel="noopener noreferrer" class="reel-thumbnail group">
+                        <img src="https://placehold.co/400x711/083344/FBBF24?text=Reel+1" onerror="this.onerror=null;this.src='https://placehold.co/400x711/083344/FBBF24?text=Reel+1';" alt="Instagram Reel Thumbnail 1">
+                        <div class="play-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </a>
+                    <!-- Reel 2 -->
+                    <a href="https://www.instagram.com/reel/C8J_uPyyG7y/" target="_blank" rel="noopener noreferrer" class="reel-thumbnail group">
+                        <img src="https://placehold.co/400x711/083344/FBBF24?text=Reel+2" onerror="this.onerror=null;this.src='https://placehold.co/400x711/083344/FBBF24?text=Reel+2';" alt="Instagram Reel Thumbnail 2">
+                        <div class="play-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </a>
+                    <!-- Reel 3 -->
+                    <a href="https://www.instagram.com/reel/C8s_ZgYy6a-/" target="_blank" rel="noopener noreferrer" class="reel-thumbnail group">
+                        <img src="https://placehold.co/400x711/083344/FBBF24?text=Reel+3" onerror="this.onerror=null;this.src='https://placehold.co/400x711/083344/FBBF24?text=Reel+3';" alt="Instagram Reel Thumbnail 3">
+                        <div class="play-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Attraction #3: Spot the Red Flags Quiz -->
+        <section id="quiz" class="py-16 md:py-24 bg-cream-custom text-dark">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Attraction #3</h2>
+                <h3 class="text-3xl font-headline text-teal-dark mb-12">Red Flag Meter</h3>
                 <div id="quiz-container" class="midway-booth max-w-3xl mx-auto p-8">
                     <!-- Quiz content will be generated by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- 9. Author Booth -->
-        <section id="author" class="py-16 md:py-24 bg-cream-custom text-dark">
+        <!-- Author Booth -->
+        <section id="author" class="py-16 md:py-24 bg-dark">
             <div class="container mx-auto px-4">
-                <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center p-8">
+                <div class="funhouse-stall max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center p-8 bg-cream-custom text-dark">
                     <div class="w-full md:w-1/3 flex justify-center">
                         <img src="https://aleksfilmore.com/AF.png" alt="Portrait of Aleks Filmore" class="rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-gold-custom">
                     </div>
@@ -562,14 +598,15 @@
             </div>
         </section>
         
-        <!-- 10. Social CTA -->
+        <!-- Social CTA -->
         <section id="social-cta" class="py-20 bg-dark">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Join the Chaos</h2>
                 <p class="text-xl text-cream-custom/80 mb-8">Follow the mayhem on social media for more bad dates & good stories.</p>
                 <div class="flex justify-center gap-8">
                     <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg></a>
-                    <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0a2.55 2.55 0 012.59 2.5c.02 1.2.04 2.4.05 3.6.01.07.03.14.03.21a5.6 5.6 0 01-5.65 5.65A5.6 5.6 0 017.8 6.31a5.54 5.54 0 014.3-4.43 2.89 2.89 0 011.43-.36zM16.44 3.48a2.1 2.1 0 00-2.1-2.1c-.43 0-.85.08-1.25.23a2.07 2.07 0 00-1.68 2.03v6.33a2.12 2.12 0 002.13 2.12 2.1 2.1 0 002.1-2.1z"/></svg></a>
+                    <!-- FIX: Corrected TikTok Logo -->
+                    <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><svg viewBox="0 0 24 24" class="w-16 h-16"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.58 2.25-3.81 3.57-6.54 3.54-4.46-.05-8.01-3.61-8.01-8.02 0-3.53 2.36-6.55 5.61-7.66.17-.04.34-.09.51-.11.08-2.3.02-4.6-.02-6.9.65-.27 1.3-.48 1.96-.61.64-.13 1.29-.19 1.94-.22z"/></svg></a>
                 </div>
             </div>
         </section>
