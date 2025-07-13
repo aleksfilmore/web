@@ -118,7 +118,8 @@
 
         /* --- HERO SECTION --- */
         #hero {
-            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://www.toptal.com/designers/subtlepatterns/uploads/vintage-wallpaper.png');
+            /* FIX: Using the new wallpaper link */
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://github.com/aleksfilmore/web/raw/2c013d83f4091fc8c9615facb584e39147d7ffb6/vintage-wallpaper.webp');
             border-bottom: 4px solid var(--color-gold);
         }
         
@@ -206,11 +207,42 @@
             font-weight: bold;
             color: #333;
         }
+        
+        /* --- AUTHOR & SOCIALS --- */
+        #author .playbill-card {
+            background-color: #2a2a2a;
+            color: var(--color-cream);
+        }
+        .social-prize img {
+             transition: transform 0.3s ease;
+        }
+        .social-prize:hover img {
+            transform: scale(1.15) rotate(-8deg);
+        }
 
         /* --- FOOTER --- */
         footer {
             background-color: #000;
             border-top: 4px solid var(--color-gold);
+        }
+        
+        /* --- MODALS & NOTICES --- */
+        .modal-backdrop {
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        .form-input {
+            background-color: #e0e0e0;
+            border: 2px solid var(--color-dark);
+            color: var(--color-dark);
+            padding: 0.75rem;
+            border-radius: 2px;
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-red);
         }
     </style>
 </head>
@@ -260,8 +292,25 @@
             </div>
         </section>
 
+        <!-- Bonus Chapter Section -->
+        <section id="bonus-chapter" class="py-20 md:py-32 bg-dark/50">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="section-title text-4xl md:text-5xl mb-4">An Exclusive Invitation</h2>
+                <h3 class="section-subtitle text-xl md:text-2xl mb-12">Get the chapter too chaotic for print.</h3>
+                <div class="playbill-card max-w-2xl mx-auto">
+                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4">
+                        <div>
+                            <label for="bonus-email" class="sr-only">Email Address</label>
+                            <input type="email" name="email" id="bonus-email" placeholder="your.email@example.com" class="form-input text-center" required>
+                        </div>
+                        <button type="submit" class="ticket-btn w-full">Read The Deleted Scene</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <!-- Praise Carousel -->
-        <section id="praise" class="py-20 md:py-32 bg-dark/50">
+        <section id="praise" class="py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="section-title text-4xl md:text-5xl mb-4">From the Grandstands</h2>
                 <h3 class="section-subtitle text-xl md:text-2xl mb-16">What Readers Are Saying</h3>
@@ -282,7 +331,7 @@
         </section>
 
         <!-- Audiobook Spotlight -->
-        <section id="audiobook" class="py-20 md:py-32">
+        <section id="audiobook" class="py-20 md:py-32 bg-dark/50">
             <div class="container mx-auto px-6">
                 <div class="playbill-card max-w-5xl mx-auto">
                     <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
@@ -353,7 +402,7 @@
                     <img src="https://aleksfilmore.com/AF.png" alt="Aleks Filmore" class="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-gold-custom flex-shrink-0">
                     <div>
                         <h2 class="text-4xl font-headline text-red-custom mb-2">Meet the Ringleader</h2>
-                        <p class="text-lg mb-6">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. His work blends humor, honesty, and a touch of poetic rage, telling stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
+                        <p class="text-lg mb-6 text-cream-custom/90">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. His work blends humor, honesty, and a touch of poetic rage, telling stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
                         <div class="flex justify-center md:justify-start gap-6">
                             <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/instagram-64.png?raw=true" alt="Instagram" class="w-12 h-12"></a>
                             <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/tiktok-64.png?raw=true" alt="TikTok" class="w-12 h-12"></a>
@@ -371,10 +420,42 @@
             <div class="flex justify-center items-center gap-4 md:gap-8 mb-4">
                 <a href="/privacy.html" class="hover:text-gold-custom transition-colors">Privacy Policy</a>
                 <a href="/cookies.html" class="hover:text-gold-custom transition-colors">Cookie Policy</a>
+                <button id="open-contact-modal" class="hover:text-gold-custom transition-colors">Contact</button>
             </div>
             <p class="mt-4 text-sm">&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
         </div>
     </footer>
+    
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div class="playbill-card max-w-lg w-full text-center p-8 relative">
+            <button id="close-contact-modal" class="absolute top-2 right-4 text-3xl font-bold text-dark/70 hover:text-red-custom transition-colors">&times;</button>
+            <h2 class="game-title text-4xl">Contact Me</h2>
+            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4 text-left">
+                <div>
+                    <label for="name" class="block mb-1 font-bold font-title">Name</label>
+                    <input type="text" name="name" id="name" class="form-input" required>
+                </div>
+                <div>
+                    <label for="email" class="block mb-1 font-bold font-title">Email</label>
+                    <input type="email" name="email" id="email" class="form-input" required>
+                </div>
+                <div>
+                    <label for="message" class="block mb-1 font-bold font-title">Message</label>
+                    <textarea name="message" id="message" rows="4" class="form-input" required></textarea>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="ticket-btn">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cookie Notice -->
+    <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-dark border-t-2 border-gold-custom p-4 flex flex-col sm:flex-row items-center justify-center gap-4 z-40 hidden">
+        <p class="text-cream-custom text-sm text-center sm:text-left">This website uses cookies to ensure you get the best experience. By continuing, you agree to our <a href="/cookies.html" class="underline hover:text-gold-custom">Cookie Policy</a>.</p>
+        <button id="accept-cookies" class="ticket-btn !py-1 !px-4 text-sm flex-shrink-0">Accept</button>
+    </div>
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -435,6 +516,35 @@
             }
             resetBingoBtn.addEventListener('click', initializeBingo);
             initializeBingo();
+        }
+
+        // --- Contact Modal ---
+        const contactModal = document.getElementById('contact-modal');
+        const openContactBtn = document.getElementById('open-contact-modal');
+        const closeContactBtn = document.getElementById('close-contact-modal');
+        if(contactModal && openContactBtn && closeContactBtn) {
+            openContactBtn.addEventListener('click', () => {
+                contactModal.classList.remove('hidden');
+                contactModal.classList.add('flex');
+            });
+            closeContactBtn.addEventListener('click', () => {
+                contactModal.classList.add('hidden');
+                contactModal.classList.remove('flex');
+            });
+        }
+        
+        // --- Cookie Notice ---
+        const cookieNotice = document.getElementById('cookie-notice');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+        if (cookieNotice && acceptCookiesBtn) {
+            if (localStorage.getItem('cookiesAccepted') !== 'true') {
+                cookieNotice.classList.remove('hidden');
+                cookieNotice.classList.add('flex');
+            }
+            acceptCookiesBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieNotice.style.display = 'none';
+            });
         }
     });
     </script>
