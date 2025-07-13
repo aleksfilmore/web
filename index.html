@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +51,7 @@
 
         body {
             background-color: var(--color-dark);
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.04"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3Cpath d="M6 5V0H5v5H0v1h5v94h1V6h94V5H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
             font-family: var(--font-body);
             color: var(--color-cream);
         }
@@ -69,23 +69,17 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
         }
-        .playbill-card::before, .playbill-card::after {
+        .playbill-card::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            top: 6px;
+            left: 6px;
             pointer-events: none;
             border: 1px solid rgba(214, 162, 74, 0.5);
         }
-        .playbill-card::before {
-            transform: translate(6px, 6px);
-        }
-        .playbill-card::after {
-            transform: translate(-6px, -6px);
-        }
-
+        
         /* --- SECTION STYLING --- */
         .section-title {
             font-family: var(--font-headline);
@@ -112,20 +106,19 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            border: 2px solid transparent;
+            border: 2px solid var(--color-red);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .ticket-btn:hover {
             background-color: var(--color-cream);
             color: var(--color-red);
-            border-color: var(--color-red);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
         /* --- HERO SECTION --- */
         #hero {
-            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('https://www.toptal.com/designers/subtlepatterns/uploads/vintage-wallpaper.png');
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://www.toptal.com/designers/subtlepatterns/uploads/vintage-wallpaper.png');
             border-bottom: 4px solid var(--color-gold);
         }
         
@@ -174,6 +167,7 @@
             cursor: pointer;
             transition: transform 0.6s, box-shadow 0.3s;
             transform-style: preserve-3d;
+            border-radius: 4px;
         }
         .bingo-tile.flipped { transform: rotateY(180deg); }
         .bingo-front, .bingo-back {
@@ -184,6 +178,7 @@
             text-align: center; padding: 0.25rem;
             font-size: clamp(0.6rem, 2.5vw, 0.9rem);
             font-weight: bold;
+            border-radius: 2px;
         }
         .bingo-back {
             background-color: var(--color-red);
@@ -192,18 +187,19 @@
         }
 
         /* --- POLAROID & REELS --- */
-        .polaroid-card, .reel-card {
+        .framed-photo, .reel-card {
             background-color: #fff;
             padding: 1rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.2s;
             text-decoration: none;
+            border: 1px solid #ddd;
         }
-        .polaroid-card:hover, .reel-card:hover {
+        .framed-photo:hover, .reel-card:hover {
             transform: translateY(-5px) scale(1.03);
             z-index: 10;
         }
-        .polaroid-caption {
+        .photo-caption {
             margin-top: 1rem;
             text-align: center;
             font-family: var(--font-body);
@@ -233,7 +229,7 @@
                     Breakups. Meltdowns. Mistakes. A raw, funny queer memoir packed with red flags, emotional whiplash, and dark humor. You'll laugh. You'll cringe. You might text your ex.
                 </p>
                 <div class="mt-12">
-                    <a href="#book" class="ticket-btn">Buy The Book</a>
+                    <a href="#book" class="ticket-btn">Get Your Ticket to the Show</a>
                 </div>
             </div>
         </section>
@@ -241,7 +237,7 @@
         <!-- Book Showcase -->
         <section id="book" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                     <!-- Left: Book Mockup -->
                     <div class="w-full lg:w-2/5 flex justify-center">
                         <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full max-w-sm h-auto object-cover shadow-2xl transform hover:scale-105 transition-transform duration-500">
@@ -256,7 +252,7 @@
                                 <p class="italic font-semibold text-cream-custom">You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
                             </div>
                             <div class="mt-8">
-                                <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Get Your Copy</a>
+                                <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy The Book</a>
                             </div>
                         </div>
                     </div>
@@ -288,17 +284,19 @@
         <!-- Audiobook Spotlight -->
         <section id="audiobook" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
-                <div class="spotify-card max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 text-left">
-                    <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover" class="rounded-lg shadow-2xl w-full md:w-1/3 h-auto object-cover">
-                    <div class="w-full md:w-2/3">
-                        <h2 class="text-3xl md:text-4xl font-title text-cream-custom uppercase">You've survived the text.</h2>
-                        <h3 class="text-4xl md:text-5xl font-headline text-gold-custom mb-4">Now hear the wreckage.</h3>
-                        <p class="text-lg text-cream-custom/80 mb-4">Narrated by Deacon Deane</p>
-                        <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
-                        <div class="mt-6 flex flex-wrap gap-4">
-                            <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="platform-button"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6"><span>Spotify</span></a>
-                            <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="platform-button">Kobo</a>
-                            <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="platform-button">Barnes & Noble</a>
+                <div class="playbill-card max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                        <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover" class="rounded-lg shadow-2xl w-full md:w-1/3 h-auto object-cover">
+                        <div class="w-full md:w-2/3">
+                            <h2 class="text-3xl md:text-4xl font-title text-dark uppercase">You've survived the text.</h2>
+                            <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Now hear the wreckage.</h3>
+                            <p class="text-lg text-dark/80 mb-4">Narrated by Deacon Deane</p>
+                            <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
+                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+                                <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6 inline-block mr-2">Spotify</a>
+                                <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Kobo</a>
+                                <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Barnes & Noble</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -379,11 +377,8 @@
     </footer>
     
     <script>
-    // All JS logic remains the same, as the IDs and core structure are preserved.
-    // The changes are purely visual (CSS and some HTML class/structure adjustments).
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- Configuration ---
         const BINGO_TILES_DATA = [ "Dog needed 'emotional support'", "Mansplained my job to me", "Lied about ex being dead", "Showed up 30 mins late", "Talked about their crypto", "Gave a date itinerary", "Claimed to be 'an empath'", "Pawned family heirloom", "Bragged about exes", "Brought weird kink items", "Shirtless karaoke", "Bathtub full of newspapers", "Free Space!", "Split the bill... to the cent", "Overshared about their mom", "Had a questionable tattoo", "Lied about owning a Dalí", "Turned a date into a race", "Name-dropped constantly", "Vaped indoors", "2 a.m. 'u up?' text", "Kept six toasters", "Sobbed over dessert", "Ghosted mid-text", "Gave a 'backhanded' compliment" ];
         const MUGSHOT_DATA = [ { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled plans because the dog 'needed support.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Did burpees over the picnic blanket.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a spreadsheet of my flaws.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer for his 'dewy glow.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Trash-talked children at mini golf.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' in Google Calendar.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" } ];
 
@@ -417,7 +412,7 @@
             if (!galleryGrid) return;
             MUGSHOT_DATA.forEach(mugshot => {
                 const gridItem = document.createElement('div');
-                gridItem.innerHTML = `<div class="polaroid-card"><img src="${mugshot.img}" alt="Mugshot of ${mugshot.name}" class="w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1D3557/F1FAEE?text=Image+Missing';"><p class="polaroid-caption"><strong>${mugshot.name}:</strong> ${mugshot.charge}</p></div>`;
+                gridItem.innerHTML = `<div class="framed-photo"><img src="${mugshot.img}" alt="Mugshot of ${mugshot.name}" class="w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1D3557/F1FAEE?text=Image+Missing';"><p class="photo-caption"><strong>${mugshot.name}:</strong> ${mugshot.charge}</p></div>`;
                 galleryGrid.appendChild(gridItem);
             });
         }
