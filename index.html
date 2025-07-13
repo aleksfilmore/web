@@ -118,7 +118,6 @@
 
         /* --- HERO SECTION --- */
         #hero {
-            /* FIX: Using the new wallpaper link */
             background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://github.com/aleksfilmore/web/raw/2c013d83f4091fc8c9615facb584e39147d7ffb6/vintage-wallpaper.webp');
             border-bottom: 4px solid var(--color-gold);
         }
@@ -177,7 +176,9 @@
             backface-visibility: hidden;
             display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 0.25rem;
-            font-size: clamp(0.6rem, 2.5vw, 0.9rem);
+            /* FIX: Adjusted font size for better mobile display */
+            font-size: clamp(0.5rem, 2.2vw, 0.9rem);
+            line-height: 1.1;
             font-weight: bold;
             border-radius: 2px;
         }
@@ -451,6 +452,17 @@
         </div>
     </div>
 
+    <!-- Bingo Win Modal -->
+    <div id="bingo-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div class="playbill-card max-w-md w-full text-center p-8 relative">
+            <button id="close-bingo-modal" class="absolute top-2 right-4 text-3xl font-bold text-dark/70 hover:text-red-custom transition-colors">&times;</button>
+            <h2 class="game-title text-6xl animate-pulse">BINGO!</h2>
+            <p class="text-xl my-4">You've got a keen eye for chaos!</p>
+            <p class="mb-6">Ready to dive deeper into the beautiful disaster? Grab your copy.</p>
+            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy The Book</a>
+        </div>
+    </div>
+
     <!-- Cookie Notice -->
     <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-dark border-t-2 border-gold-custom p-4 flex flex-col sm:flex-row items-center justify-center gap-4 z-40 hidden">
         <p class="text-cream-custom text-sm text-center sm:text-left">This website uses cookies to ensure you get the best experience. By continuing, you agree to our <a href="/cookies.html" class="underline hover:text-gold-custom">Cookie Policy</a>.</p>
@@ -502,19 +514,57 @@
         // --- Bad Date Bingo ---
         const bingoBoard = document.getElementById('bingo-board');
         const resetBingoBtn = document.getElementById('reset-bingo');
-        if (bingoBoard && resetBingoBtn) {
+        const bingoModal = document.getElementById('bingo-modal');
+        const closeBingoModalBtn = document.getElementById('close-bingo-modal');
+
+        if (bingoBoard && resetBingoBtn && bingoModal && closeBingoModalBtn) {
+            let boardState = [];
+
+            function checkBingoWin() {
+                const lines = [
+                    [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
+                    [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
+                    [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
+                ];
+                for (const line of lines) {
+                    if (line.every(index => boardState[index])) {
+                        bingoModal.classList.remove('hidden');
+                        bingoModal.classList.add('flex');
+                        return;
+                    }
+                }
+            }
+
             function initializeBingo() {
                 bingoBoard.innerHTML = '';
+                boardState = Array(25).fill(false);
+                boardState[12] = true; 
+
                 BINGO_TILES_DATA.forEach((text, i) => {
                     const tile = document.createElement('div');
                     tile.className = 'bingo-tile aspect-square';
-                    if (i === 12) tile.classList.add('flipped');
+                    tile.dataset.index = i;
+                    if (i === 12) {
+                        tile.classList.add('flipped');
+                    }
                     tile.innerHTML = `<div class="bingo-front">${text}</div><div class="bingo-back"></div>`;
-                    tile.addEventListener('click', () => tile.classList.toggle('flipped'));
+                    tile.addEventListener('click', () => {
+                        if (!tile.classList.contains('flipped')) {
+                            tile.classList.add('flipped');
+                            boardState[i] = true;
+                            checkBingoWin();
+                        }
+                    });
                     bingoBoard.appendChild(tile);
                 });
             }
+            
             resetBingoBtn.addEventListener('click', initializeBingo);
+            closeBingoModalBtn.addEventListener('click', () => {
+                bingoModal.classList.add('hidden');
+                bingoModal.classList.remove('flex');
+            });
+
             initializeBingo();
         }
 
