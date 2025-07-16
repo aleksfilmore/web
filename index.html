@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Worst Boyfriends Ever | A Memoir by Aleks Filmore</title>
+    <title>The Worst Boyfriends Ever | A Queer Dating Memoir by Aleks Filmore</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Welcome to the Carnival of Bad Dates, the official landing page for Aleks Filmore's hilarious and heartbreaking queer breakup memoir, The Worst Boyfriends Ever. Play games, read reviews, and buy the book.">
-    <meta name="keywords" content="Aleks Filmore, The Worst Boyfriends Ever, LGBTQ memoir, queer book, breakup memoir, gay fiction, humor, dating, relationships">
+    <meta name="description" content="He ghosted. You healed. Now we laugh. The official page for The Worst Boyfriends Ever, a wildly funny and painfully accurate LGBTQ+ dating memoir by Aleks Filmore.">
+    <meta name="keywords" content="Aleks Filmore, The Worst Boyfriends Ever, LGBTQ memoir, queer book, breakup memoir, gay comedy books, funny lgbtq romance, dating disaster stories">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aleksfilmore.com/">
-    <meta property="og:title" content="The Worst Boyfriends Ever | A Memoir by Aleks Filmore">
-    <meta property="og:description" content="Welcome to the Carnival of Bad Dates. Step right up to the wildest rides, cringe-inducing games, and a secret chapter of the hilariously raw queer breakup memoir.">
+    <meta property="og:title" content="The Worst Boyfriends Ever | He Ghosted. You Healed. Now We Laugh.">
+    <meta property="og:description" content="Welcome to the support group for anyone who's ever dated a red flag and called it a rainbow. The official page for the hilarious queer dating memoir by Aleks Filmore.">
     <meta property="og:image" content="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://aleksfilmore.com/">
-    <meta property="twitter:title" content="The Worst Boyfriends Ever | A Memoir by Aleks Filmore">
-    <meta property="twitter:description" content="Welcome to the Carnival of Bad Dates. Step right up to the wildest rides, cringe-inducing games, and a secret chapter of the hilariously raw queer breakup memoir.">
+    <meta property="twitter:title" content="The Worst Boyfriends Ever | He Ghosted. You Healed. Now We Laugh.">
+    <meta property="twitter:description" content="Welcome to the support group for anyone who's ever dated a red flag and called it a rainbow. The official page for the hilarious queer dating memoir by Aleks Filmore.">
     <meta property="twitter:image" content="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg">
 
     <!-- Tailwind CSS -->
@@ -33,7 +33,6 @@
 
     <!-- Custom Styles & Animations -->
     <style>
-        /* --- REFINED CARNIVAL THEME --- */
         :root {
             --color-red: #A31621;
             --color-gold: #D6A24A;
@@ -56,11 +55,9 @@
             color: var(--color-cream);
         }
 
-        /* --- TYPOGRAPHY --- */
         .font-headline { font-family: var(--font-headline); }
         .font-title { font-family: var(--font-title); text-transform: uppercase; letter-spacing: 0.05em; }
 
-        /* --- UNIFIED CARD COMPONENT: THE PLAYBILL --- */
         .playbill-card {
             background-color: var(--color-cream);
             color: var(--color-dark);
@@ -80,7 +77,6 @@
             border: 1px solid rgba(214, 162, 74, 0.5);
         }
         
-        /* --- SECTION STYLING --- */
         .section-title {
             font-family: var(--font-headline);
             font-weight: 900;
@@ -93,7 +89,6 @@
             opacity: 0.9;
         }
 
-        /* --- BUTTONS & CTAs --- */
         .ticket-btn {
             background-color: var(--color-red);
             color: var(--color-cream);
@@ -116,13 +111,11 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* --- HERO SECTION --- */
         #hero {
             background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://github.com/aleksfilmore/web/raw/2c013d83f4091fc8c9615facb584e39147d7ffb6/vintage-wallpaper.webp');
             border-bottom: 4px solid var(--color-gold);
         }
         
-        /* --- BOOK SHOWCASE --- */
         .book-details-card {
             background-color: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(4px);
@@ -130,7 +123,6 @@
             color: var(--color-cream);
         }
 
-        /* --- PRAISE CAROUSEL --- */
         .praise-quote {
             font-family: var(--font-body);
             font-style: italic;
@@ -153,7 +145,6 @@
         }
         .carousel-nav:hover { color: var(--color-cream); transform: scale(1.1); }
 
-        /* --- INTERACTIVE SECTIONS (BINGO, QUIZ, ETC.) --- */
         .interactive-section .game-title {
             font-family: var(--font-headline);
             font-weight: 700;
@@ -176,7 +167,6 @@
             backface-visibility: hidden;
             display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 0.25rem;
-            /* FIX: Adjusted font size for better mobile display */
             font-size: clamp(0.5rem, 2.2vw, 0.9rem);
             line-height: 1.1;
             font-weight: bold;
@@ -188,7 +178,6 @@
             transform: rotateY(180deg);
         }
 
-        /* --- POLAROID & REELS --- */
         .framed-photo, .reel-card {
             background-color: #fff;
             padding: 1rem;
@@ -209,7 +198,6 @@
             color: #333;
         }
         
-        /* --- AUTHOR & SOCIALS --- */
         #author .playbill-card {
             background-color: #2a2a2a;
             color: var(--color-cream);
@@ -221,13 +209,11 @@
             transform: scale(1.15) rotate(-8deg);
         }
 
-        /* --- FOOTER --- */
         footer {
             background-color: #000;
             border-top: 4px solid var(--color-gold);
         }
         
-        /* --- MODALS & NOTICES --- */
         .modal-backdrop {
             background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
@@ -251,41 +237,65 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Section 1: The New Hero - "The Commiseration Corner" -->
         <section id="hero" class="min-h-screen flex items-center justify-center text-center p-6">
             <div class="relative z-10 max-w-4xl">
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-black text-cream-custom" style="text-shadow: 3px 3px 0px var(--color-red);">
-                    The Worst Boyfriends Ever
+                    He Ghosted. You Healed. Now We Laugh.
                 </h1>
-                <h2 class="text-2xl md:text-3xl font-title mt-4 text-gold-custom tracking-widest">A MEMOIR BY ALEKS FILMORE</h2>
+                <h2 class="text-2xl md:text-3xl font-title mt-4 text-gold-custom tracking-widest">Welcome to the support group for anyone who's ever dated a red flag and called it a rainbow.</h2>
                 <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-cream-custom/90 leading-relaxed">
-                    Breakups. Meltdowns. Mistakes. A raw, funny queer memoir packed with red flags, emotional whiplash, and dark humor. You'll laugh. You'll cringe. You might text your ex.
+                    <i>The Worst Boyfriends Ever</i> is my (and maybe your) wildly funny, painfully accurate tour through 25+ romantic disasters. From gaslighters to gym bros, I've dated them all so you can feel better about your own choices. If you've ever asked, "Was it me?"... this book is here to scream, "No, it absolutely was not."
                 </p>
                 <div class="mt-12">
-                    <a href="#book" class="ticket-btn">Get Your Ticket to the Show</a>
+                    <a href="#book" class="ticket-btn">Start the Healing (with Laughter)</a>
                 </div>
             </div>
         </section>
 
-        <!-- Book Showcase -->
+        <!-- Section 2: The "Book" Section - A Field Guide to Red Flags -->
         <section id="book" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                    <!-- Left: Book Mockup -->
                     <div class="w-full lg:w-2/5 flex justify-center">
-                        <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/E63946/F1FAEE?text=Book+Cover';" alt="Book Cover for The Worst Boyfriends Ever" class="w-full max-w-sm h-auto object-cover shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                        <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/A31621/F7F3E3?text=Book+Cover';" alt="Cover of The Worst Boyfriends Ever, a queer dating memoir by Aleks Filmore" class="w-full max-w-sm h-auto object-cover shadow-2xl transform hover:scale-105 transition-transform duration-500">
                     </div>
-                    <!-- Right: Book Details -->
                     <div class="w-full lg:w-3/5">
                         <div class="book-details-card p-8 md:p-12">
-                            <h3 class="text-4xl md:text-5xl font-title text-gold-custom mb-4">Inside The Chaos</h3>
+                            <h3 class="text-4xl md:text-5xl font-title text-gold-custom mb-4">Meet the Villains of My Dating History</h3>
                             <div class="text-lg space-y-4 text-cream-custom/90">
-                                <p>This isn’t just a memoir — it’s a breakup battle cry in bold font and eyeliner. Readers call it “hilarious,” “relatable,” and “the perfect read for a long flight — or a long string of mistakes.”</p>
-                                <p>Told with zero apologies and maximum emotional whiplash, this book isn’t here to fix you. It’s here to fuel you. Because healing sometimes means making a list. Sometimes it means setting it on fire.</p>
-                                <p class="italic font-semibold text-cream-custom">You won’t just relate. You’ll feel seen. Then vindicated. Then a little dangerous.</p>
+                                <p>I've turned my trauma into your entertainment. Each chapter is a self-contained story of gay dating gone spectacularly wrong. You'll meet:</p>
+                                <ul class="list-none space-y-2 pl-2">
+                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Gambler:</b> Who risked it all—except vulnerability.</li>
+                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Conspiracist:</b> Who thought chemtrails could explain your feelings.</li>
+                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Narcissist:</b> Who needed a mirror more than a boyfriend.</li>
+                                </ul>
+                                <p class="pt-2">This isn't just a book; it's a field guide to the walking red flags of the queer dating world. It’s the validation you crave and the laughter you need.</p>
                             </div>
-                            <div class="mt-8">
-                                <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy The Book</a>
+                            <div class="mt-8 flex flex-wrap gap-4">
+                                <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">I'm Ready for the Train Wreck</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: The Audiobook - "Hear the Wreckage" -->
+        <section id="audiobook" class="py-20 md:py-32 bg-dark/50">
+            <div class="container mx-auto px-6">
+                <div class="playbill-card max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                        <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover for The Worst Boyfriends Ever" class="rounded-lg shadow-2xl w-full md:w-1/3 h-auto object-cover">
+                        <div class="w-full md:w-2/3">
+                            <h2 class="text-3xl md:text-4xl font-title text-dark uppercase">You've survived the text.</h2>
+                            <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Now hear the wreckage.</h3>
+                             <p class="text-lg text-dark/80 mb-4">Narrated by Deacon Deane, the audiobook brings every cringe-worthy moment, every disastrous date, and every hard-won laugh to life. It's the perfect companion for your commute, your workout, or whenever you need a reminder that it could always be worse.</p>
+                            <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
+                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+                                <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6 inline-block mr-2">Spotify</a>
+                                <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Kobo</a>
+                                <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Barnes & Noble</a>
                             </div>
                         </div>
                     </div>
@@ -293,25 +303,35 @@
             </div>
         </section>
 
-        <!-- Bonus Chapter Section -->
-        <section id="bonus-chapter" class="py-20 md:py-32 bg-dark/50">
+        <!-- Section 4: The Midway of Mayhem - Your Interactive Hook -->
+        <section class="py-20 text-center">
+            <h2 class="section-title text-5xl md:text-6xl">How Bad Was *Your* Last Date?</h2>
+            <h3 class="section-subtitle text-xl md:text-2xl mt-2">Don't worry, you're in a safe space. Let's play.</h3>
+        </section>
+
+        <section id="bingo" class="pb-20 md:pb-32 interactive-section">
+            <div class="container mx-auto px-6">
+                <div class="playbill-card max-w-3xl mx-auto text-center">
+                    <h3 class="game-title text-4xl">Bad Date Bingo</h3>
+                    <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4"></div>
+                    <button id="reset-bingo" class="mt-8 ticket-btn">Reset Board</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery" class="pb-20 md:pb-32 interactive-section">
             <div class="container mx-auto px-6 text-center">
-                 <h2 class="section-title text-4xl md:text-5xl mb-4">An Exclusive Invitation</h2>
-                <h3 class="section-subtitle text-xl md:text-2xl mb-12">Get the chapter too chaotic for print.</h3>
-                <div class="playbill-card max-w-2xl mx-auto">
-                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4">
-                        <div>
-                            <label for="bonus-email" class="sr-only">Email Address</label>
-                            <input type="email" name="email" id="bonus-email" placeholder="your.email@example.com" class="form-input text-center" required>
-                        </div>
-                        <button type="submit" class="ticket-btn w-full">Read The Deleted Scene</button>
-                    </form>
+                <div class="playbill-card max-w-7xl mx-auto">
+                    <h3 class="game-title text-4xl">A Vaudeville of Villains</h3>
+                    <div class="relative">
+                        <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Praise Carousel -->
-        <section id="praise" class="py-20 md:py-32">
+        <section id="praise" class="py-20 md:py-32 bg-dark/50">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="section-title text-4xl md:text-5xl mb-4">From the Grandstands</h2>
                 <h3 class="section-subtitle text-xl md:text-2xl mb-16">What Readers Are Saying</h3>
@@ -331,79 +351,31 @@
             </div>
         </section>
 
-        <!-- Audiobook Spotlight -->
-        <section id="audiobook" class="py-20 md:py-32 bg-dark/50">
-            <div class="container mx-auto px-6">
-                <div class="playbill-card max-w-5xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                        <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover" class="rounded-lg shadow-2xl w-full md:w-1/3 h-auto object-cover">
-                        <div class="w-full md:w-2/3">
-                            <h2 class="text-3xl md:text-4xl font-title text-dark uppercase">You've survived the text.</h2>
-                            <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Now hear the wreckage.</h3>
-                            <p class="text-lg text-dark/80 mb-4">Narrated by Deacon Deane</p>
-                            <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
-                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
-                                <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6 inline-block mr-2">Spotify</a>
-                                <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Kobo</a>
-                                <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Barnes & Noble</a>
-                            </div>
+        <!-- Bonus Chapter Section -->
+        <section id="bonus-chapter" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="section-title text-4xl md:text-5xl mb-4">An Exclusive Invitation</h2>
+                <h3 class="section-subtitle text-xl md:text-2xl mb-12">Get the chapter too chaotic for print.</h3>
+                <div class="playbill-card max-w-2xl mx-auto">
+                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4">
+                        <div>
+                            <label for="bonus-email" class="sr-only">Email Address</label>
+                            <input type="email" name="email" id="bonus-email" placeholder="your.email@example.com" class="form-input text-center" required>
                         </div>
-                    </div>
+                        <button type="submit" class="ticket-btn w-full">Read The Deleted Scene</button>
+                    </form>
                 </div>
             </div>
         </section>
 
-        <!-- The Midway of Mayhem Title -->
-        <section class="py-20 text-center">
-            <h2 class="section-title text-5xl md:text-6xl">The Midway of Mayhem</h2>
-            <h3 class="section-subtitle text-xl md:text-2xl mt-2">Interactive Attractions</h3>
-        </section>
-
-        <!-- Attraction 1: Bingo -->
-        <section id="bingo" class="pb-20 md:pb-32 interactive-section">
-            <div class="container mx-auto px-6">
-                <div class="playbill-card max-w-3xl mx-auto text-center">
-                    <h3 class="game-title text-4xl">Bad Date Bingo</h3>
-                    <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4"></div>
-                    <button id="reset-bingo" class="mt-8 ticket-btn">Reset Board</button>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Attraction 2: Gallery -->
-        <section id="gallery" class="pb-20 md:pb-32 interactive-section">
-            <div class="container mx-auto px-6 text-center">
-                <div class="playbill-card max-w-7xl mx-auto">
-                    <h3 class="game-title text-4xl">A Vaudeville of Villains</h3>
-                    <div class="relative">
-                        <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Attraction 3: Reels -->
-        <section id="reels" class="pb-20 md:pb-32 interactive-section">
-            <div class="container mx-auto px-6 text-center">
-                <div class="playbill-card max-w-7xl mx-auto">
-                     <h3 class="game-title text-4xl">From the Director's Cut</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <a href="https://www.instagram.com/aleksfilmore/reel/DL7nuNdPu2n/" target="_blank" rel="noopener noreferrer" class="reel-card"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/REEL1.png?raw=true" alt="Reel 1" class="w-full h-auto"></a>
-                        <a href="https://www.instagram.com/aleksfilmore/reel/DL-Lt2oh4Ku/" target="_blank" rel="noopener noreferrer" class="reel-card"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/REEL2.png?raw=true" alt="Reel 2" class="w-full h-auto"></a>
-                        <a href="https://www.instagram.com/aleksfilmore/reel/DMAtIhcS0iU/" target="_blank" rel="noopener noreferrer" class="reel-card"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/REEL3.png?raw=true" alt="Reel 3" class="w-full h-auto"></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Author & Socials -->
+        <!-- Section 5: The Author - Your Fearless Guide -->
         <section id="author" class="py-20 md:py-32 bg-dark/50">
             <div class="container mx-auto px-6">
                 <div class="playbill-card max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                    <img src="https://aleksfilmore.com/AF.png" alt="Aleks Filmore" class="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-gold-custom flex-shrink-0">
+                    <img src="https://aleksfilmore.com/AF.png" alt="A photo of the author, Aleks Filmore" class="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-gold-custom flex-shrink-0">
                     <div>
-                        <h2 class="text-4xl font-headline text-red-custom mb-2">Meet the Ringleader</h2>
-                        <p class="text-lg mb-6 text-cream-custom/90">Aleks Filmore writes books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever asked “Was it just me?” after a bad date. His work blends humor, honesty, and a touch of poetic rage, telling stories that hold space for heartbreak, healing, and the messy, resilient ways we keep going.</p>
+                        <h2 class="text-4xl font-headline text-red-custom mb-2">Your Fearless, Slightly Traumatized Guide</h2>
+                        <p class="text-lg mb-6 text-cream-custom/90">I'm Aleks Filmore, and I'm a connoisseur of romantic disasters. I write books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever ugly-cried over a ghosting. Think of me as your friend who went through it all first and is now back with notes (and a lot of jokes). My work is a blend of humor, honesty, and a touch of what I like to call 'poetic rage.' Let's heal together, one bad ex at a time.</p>
                         <div class="flex justify-center md:justify-start gap-6">
                             <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/instagram-64.png?raw=true" alt="Instagram" class="w-12 h-12"></a>
                             <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/tiktok-64.png?raw=true" alt="TikTok" class="w-12 h-12"></a>
@@ -470,8 +442,12 @@
     </div>
     
     <script>
+    // This script handles all the interactive elements on the page.
+    // It's responsible for the praise carousel, the mugshot gallery, the bingo game,
+    // the contact modal, and the cookie notice.
     document.addEventListener('DOMContentLoaded', function() {
 
+        // Data for the interactive elements
         const BINGO_TILES_DATA = [ "Dog needed 'emotional support'", "Mansplained my job to me", "Lied about ex being dead", "Showed up 30 mins late", "Talked about their crypto", "Gave a date itinerary", "Claimed to be 'an empath'", "Pawned family heirloom", "Bragged about exes", "Brought weird kink items", "Shirtless karaoke", "Bathtub full of newspapers", "Free Space!", "Split the bill... to the cent", "Overshared about their mom", "Had a questionable tattoo", "Lied about owning a Dalí", "Turned a date into a race", "Name-dropped constantly", "Vaped indoors", "2 a.m. 'u up?' text", "Kept six toasters", "Sobbed over dessert", "Ghosted mid-text", "Gave a 'backhanded' compliment" ];
         const MUGSHOT_DATA = [ { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled plans because the dog 'needed support.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Did burpees over the picnic blanket.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a spreadsheet of my flaws.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer for his 'dewy glow.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Trash-talked children at mini golf.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' in Google Calendar.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" } ];
 
