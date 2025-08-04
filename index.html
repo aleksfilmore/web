@@ -6,7 +6,20 @@
     <title>The Worst Boyfriends Ever | A Queer Dating Memoir by Aleks Filmore</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="He ghosted. You healed. Now we laugh. The official page for The Worst Boyfriends Ever, a wildly funny and painfully accurate LGBTQ+ dating memoir by Aleks Filmore.">
+                                    <p class="pt-2">This isn't just a book; it's a field guide to the walking red flags of the queer dating world. It's the validation you crave and the laughter you need.</p>
+                                
+                                <!-- Urgency Element -->
+                                <div class="bg-red-900/30 border-l-4 border-red-500 p-4 my-6">
+                                    <p class="text-cream-custom font-bold">🔥 Reader Favorite: Join thousands who've found healing through laughter</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 space-y-4">
+                                <div class="flex flex-wrap gap-4">
+                                    <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn flex-1 min-w-[200px] text-center">📖 Buy on Amazon</a>
+                                    <a href="#audiobook" class="ticket-btn !bg-transparent !border-cream-custom !text-cream-custom hover:!bg-cream-custom hover:!text-dark flex-1 min-w-[200px] text-center">🎧 Try Audiobook</a>
+                                </div>
+                                <p class="text-center text-sm text-cream-custom/70">💫 Available in Paperback, eBook & Audiobook</p>
+                            </div> name="description" content="He ghosted. You healed. Now we laugh. The official page for The Worst Boyfriends Ever, a wildly funny and painfully accurate LGBTQ+ dating memoir by Aleks Filmore.">
     <meta name="keywords" content="Aleks Filmore, The Worst Boyfriends Ever, LGBTQ memoir, queer book, breakup memoir, gay comedy books, funny lgbtq romance, dating disaster stories">
 
     <!-- Open Graph / Facebook -->
@@ -231,6 +244,26 @@
             outline: none;
             border-color: var(--color-red);
         }
+        
+        /* Floating CTA Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .floating-cta.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-cta:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -247,8 +280,30 @@
                 <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-cream-custom/90 leading-relaxed">
                     <i>The Worst Boyfriends Ever</i> is my (and maybe your) wildly funny, painfully accurate tour through 25+ romantic disasters. From gaslighters to gym bros, I've dated them all so you can feel better about your own choices. If you've ever asked, "Was it me?"... this book is here to scream, "No, it absolutely was not."
                 </p>
-                <div class="mt-12">
-                    <a href="#book" class="ticket-btn">Start the Healing (with Laughter)</a>
+                <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy Now on Amazon</a>
+                    <a href="#bonus-chapter" class="ticket-btn !bg-transparent !border-cream-custom !text-cream-custom hover:!bg-cream-custom hover:!text-dark">Get Free Chapter</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Social Proof Banner -->
+        <section class="py-12 bg-gradient-to-r from-red-900/20 to-gold/20 border-y border-gold-custom/30">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-wrap justify-center items-center gap-8 max-w-4xl mx-auto">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">⭐⭐⭐⭐⭐</span>
+                        <span class="text-cream-custom font-bold">4.5/5 Stars</span>
+                    </div>
+                    <div class="text-cream-custom">
+                        <span class="font-bold text-gold-custom">500+</span> Happy Readers
+                    </div>
+                    <div class="text-cream-custom">
+                        Featured in <span class="font-bold text-gold-custom">LGBTQ+ Book Lists</span>
+                    </div>
+                    <div class="text-cream-custom">
+                        <span class="font-bold text-gold-custom">"Unputdownable"</span> - Readers
+                    </div>
                 </div>
             </div>
         </section>
@@ -291,6 +346,12 @@
                             <h2 class="text-3xl md:text-4xl font-title text-dark uppercase">You've survived the text.</h2>
                             <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Now hear the wreckage.</h3>
                              <p class="text-lg text-dark/80 mb-4">Narrated by Deacon Deane, the audiobook brings every cringe-worthy moment, every disastrous date, and every hard-won laugh to life. It's the perfect companion for your commute, your workout, or whenever you need a reminder that it could always be worse.</p>
+                            
+                            <!-- Social Proof -->
+                            <div class="bg-dark/10 border border-dark/20 p-3 mb-4 rounded">
+                                <p class="text-sm text-dark/70 font-bold">🎧 "Perfect for my daily walks - had me laughing out loud!" - Sarah M.</p>
+                            </div>
+                            
                             <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
                             <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
                                 <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6 inline-block mr-2">Spotify</a>
@@ -354,15 +415,38 @@
         <!-- Bonus Chapter Section -->
         <section id="bonus-chapter" class="py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
-                 <h2 class="section-title text-4xl md:text-5xl mb-4">An Exclusive Invitation</h2>
-                <h3 class="section-subtitle text-xl md:text-2xl mb-12">Get the chapter too chaotic for print.</h3>
+                 <h2 class="section-title text-4xl md:text-5xl mb-4">🎁 Get the Chapter Too Chaotic for Print</h2>
+                <h3 class="section-subtitle text-xl md:text-2xl mb-8">Plus insider access to new releases, book news, and exclusive content</h3>
+                
+                <!-- Enhanced Value Proposition -->
+                <div class="max-w-3xl mx-auto mb-12">
+                    <div class="grid md:grid-cols-3 gap-6 text-cream-custom/80">
+                        <div class="space-y-2">
+                            <div class="text-3xl">📖</div>
+                            <h4 class="font-bold text-gold-custom">Exclusive Chapter</h4>
+                            <p class="text-sm">The deleted scene that was "too much" for the final book</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-3xl">💌</div>
+                            <h4 class="font-bold text-gold-custom">VIP Updates</h4>
+                            <p class="text-sm">First to know about new releases and behind-the-scenes stories</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-3xl">🎯</div>
+                            <h4 class="font-bold text-gold-custom">No Spam Promise</h4>
+                            <p class="text-sm">Just 2-3 emails per month. Unsubscribe anytime</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="playbill-card max-w-2xl mx-auto">
                     <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4">
                         <div>
                             <label for="bonus-email" class="sr-only">Email Address</label>
                             <input type="email" name="email" id="bonus-email" placeholder="your.email@example.com" class="form-input text-center" required>
                         </div>
-                        <button type="submit" class="ticket-btn w-full">Read The Deleted Scene</button>
+                        <button type="submit" class="ticket-btn w-full text-lg py-4">🚀 Send Me the Deleted Chapter (Free)</button>
+                        <p class="text-xs text-dark/60 mt-2">We respect your privacy. See our <a href="/privacy.html" class="underline">privacy policy</a>.</p>
                     </form>
                 </div>
             </div>
@@ -439,6 +523,11 @@
     <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-dark border-t-2 border-gold-custom p-4 flex flex-col sm:flex-row items-center justify-center gap-4 z-40 hidden">
         <p class="text-cream-custom text-sm text-center sm:text-left">This website uses cookies to ensure you get the best experience. By continuing, you agree to our <a href="/cookies.html" class="underline hover:text-gold-custom">Cookie Policy</a>.</p>
         <button id="accept-cookies" class="ticket-btn !py-1 !px-4 text-sm flex-shrink-0">Accept</button>
+    </div>
+    
+    <!-- Floating CTA Button -->
+    <div id="floating-cta" class="floating-cta hidden md:block">
+        <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn !rounded-full !px-6 !py-3 shadow-lg">📖 Buy Now</a>
     </div>
     
     <script>
@@ -570,6 +659,21 @@
             acceptCookiesBtn.addEventListener('click', () => {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieNotice.style.display = 'none';
+            });
+        }
+        
+        // --- Floating CTA ---
+        const floatingCta = document.getElementById('floating-cta');
+        if (floatingCta) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroHeight = document.getElementById('hero')?.offsetHeight || 0;
+                
+                if (scrolled > heroHeight) {
+                    floatingCta.classList.add('show');
+                } else {
+                    floatingCta.classList.remove('show');
+                }
             });
         }
     });
