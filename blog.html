@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Blog | Dating Disasters & Life Lessons | Aleks Filmore</title>
+    <meta name="description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos. New posts weekly from Brussels.">
+    <meta name="keywords" content="Aleks Filmore blog, dating advice, relationship blog, queer dating, LGBTQ experiences, writing life, Brussels author, relationship lessons">
+    <meta name="author" content="Aleks Filmore">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aleksfilmore.com/blog.html">
+    <meta property="og:title" content="Blog | Dating Disasters & Life Lessons | Aleks Filmore">
+    <meta property="og:description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos.">
+    <meta property="og:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aleksfilmore.com/blog.html">
+    <meta property="twitter:title" content="Blog | Dating Disasters & Life Lessons">
+    <meta property="twitter:description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos.">
+    <meta property="twitter:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aleksfilmore.com/blog.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/AF.png" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Aleks Filmore Blog",
+        "description": "Dating disasters, relationship lessons, and life updates from author Aleks Filmore",
+        "url": "https://aleksfilmore.com/blog.html",
+        "author": {
+            "@type": "Person",
+            "name": "Aleks Filmore",
+            "url": "https://aleksfilmore.com"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Aleks Filmore"
+        }
+    }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+
+        /* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile-First Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--color-bone);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile-First Blog Cards */
+        .blog-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 59, 59, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-meta {
+            color: var(--color-bone);
+            opacity: 0.7;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .blog-tag {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            color: var(--color-charcoal);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+            display: inline-block;
+            margin: 0.125rem;
+            box-shadow: 0 2px 6px rgba(199, 255, 65, 0.2);
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
+        }
+
+        .newsletter-signup {
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(199, 255, 65, 0.05) 100%);
+            border: 2px solid rgba(199, 255, 65, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: auto;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .blog-card {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Large tablet/Small desktop (1024px+) */
+        @media (min-width: 1024px) {
+            .btn-primary, .btn-secondary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Loading animation */
+        .blog-grid {
+            opacity: 0;
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Mobile-First Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="blog.html" class="nav-link hover-underline-slide text-red-flag">Blog</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="blog.html" class="block text-lg nav-link text-red-flag">Blog</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">🎪 Hall of Red Flags</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 sm:pt-20">
+        
+        <!-- Hero Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6">
+                        Dating Disasters & <span class="text-red-flag">Life Lessons</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed">
+                        Weekly posts about recovering from romantic chaos, writing life, and other spectacular failures.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                        <a href="#newsletter" class="btn-primary">
+                            📧 Subscribe to Newsletter
+                        </a>
+                        <a href="shop.html" class="btn-secondary">
+                            📚 Read My Book
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    
+                    <div class="blog-grid">
+                        
+                        <!-- Featured Post -->
+                        <article class="blog-card relative">
+                            <div class="featured-badge">Featured</div>
+                            <div class="p-6 sm:p-8">
+                                <div class="blog-meta mb-3">
+                                    <time datetime="2025-08-20">August 20, 2025</time>
+                                    <span class="mx-2">•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h2 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">
+                                    <a href="blog/why-i-stopped-dating-apps.html" class="text-bone hover:text-red-flag transition-colors">
+                                        Why I Deleted All My Dating Apps (And You Should Too)
+                                    </a>
+                                </h2>
+                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                    After documenting 25 dating disasters, I finally realized the apps weren't the problem—they were the symptom. Here's what happened when I went offline for three months and actually started meeting people in Brussels coffee shops.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="blog-tag">Dating Apps</span>
+                                    <span class="blog-tag">Mental Health</span>
+                                    <span class="blog-tag">Brussels Life</span>
+                                </div>
+                                <a href="blog/why-i-stopped-dating-apps.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Regular Posts -->
+                        <article class="blog-card">
+                            <div class="p-6 sm:p-8">
+                                <div class="blog-meta mb-3">
+                                    <time datetime="2025-08-15">August 15, 2025</time>
+                                    <span class="mx-2">•</span>
+                                    <span>3 min read</span>
+                                </div>
+                                <h2 class="font-display font-bold text-lg sm:text-xl lg:text-2xl mb-4">
+                                    <a href="blog/writing-audiobook-hangover.html" class="text-bone hover:text-red-flag transition-colors">
+                                        The Post-Audiobook Recording Hangover is Real
+                                    </a>
+                                </h2>
+                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                    Spending 8 hours in a recording booth reading your own dating disasters back to yourself is a special kind of therapy. Or torture. The jury's still out.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="blog-tag">Writing Life</span>
+                                    <span class="blog-tag">Audiobooks</span>
+                                </div>
+                                <a href="blog/writing-audiobook-hangover.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="p-6 sm:p-8">
+                                <div class="blog-meta mb-3">
+                                    <time datetime="2025-08-10">August 10, 2025</time>
+                                    <span class="mx-2">•</span>
+                                    <span>4 min read</span>
+                                </div>
+                                <h2 class="font-display font-bold text-lg sm:text-xl lg:text-2xl mb-4">
+                                    <a href="blog/brussels-coffee-shop-rankings.html" class="text-bone hover:text-red-flag transition-colors">
+                                        Brussels Coffee Shop Power Rankings (For Writers and Emotional Disasters)
+                                    </a>
+                                </h2>
+                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                    A comprehensive guide to the best places in Brussels to write, cry, or dramatically stare out windows while processing your latest romantic catastrophe.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="blog-tag">Brussels</span>
+                                    <span class="blog-tag">Coffee</span>
+                                    <span class="blog-tag">Writing Spots</span>
+                                </div>
+                                <a href="blog/brussels-coffee-shop-rankings.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="p-6 sm:p-8">
+                                <div class="blog-meta mb-3">
+                                    <time datetime="2025-08-05">August 5, 2025</time>
+                                    <span class="mx-2">•</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h2 class="font-display font-bold text-lg sm:text-xl lg:text-2xl mb-4">
+                                    <a href="blog/therapy-vs-memoir-writing.html" class="text-bone hover:text-red-flag transition-colors">
+                                        Therapy vs. Memoir Writing: Which One Actually Works?
+                                    </a>
+                                </h2>
+                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                    Spoiler alert: you need both. But writing a book about your dating disasters does provide some unique therapeutic benefits that your therapist might not mention.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="blog-tag">Mental Health</span>
+                                    <span class="blog-tag">Writing Process</span>
+                                    <span class="blog-tag">Self-Help</span>
+                                </div>
+                                <a href="blog/therapy-vs-memoir-writing.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <div class="p-6 sm:p-8">
+                                <div class="blog-meta mb-3">
+                                    <time datetime="2025-07-30">July 30, 2025</time>
+                                    <span class="mx-2">•</span>
+                                    <span>7 min read</span>
+                                </div>
+                                <h2 class="font-display font-bold text-lg sm:text-xl lg:text-2xl mb-4">
+                                    <a href="blog/red-flags-vs-deal-breakers.html" class="text-bone hover:text-red-flag transition-colors">
+                                        Red Flags vs. Deal Breakers: A Comprehensive Guide
+                                    </a>
+                                </h2>
+                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                    Not all relationship warning signs are created equal. Here's how to tell the difference between "proceed with caution" and "run for your life."
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="blog-tag">Dating Advice</span>
+                                    <span class="blog-tag">Red Flags</span>
+                                    <span class="blog-tag">Boundaries</span>
+                                </div>
+                                <a href="blog/red-flags-vs-deal-breakers.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section id="newsletter" class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-2xl mx-auto">
+                    
+                    <div class="newsletter-signup">
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl mb-4">
+                            Get the <span class="text-glitch-lime">Chaos</span> Delivered
+                        </h2>
+                        <p class="text-bone/80 mb-6 text-sm sm:text-base">
+                            Weekly doses of dating disasters, writing updates, and life lessons learned the hard way. 
+                            No spam, just spectacular failures and questionable life advice.
+                        </p>
+                        
+                        <form id="newsletter-form" class="space-y-4">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="your.email@disaster.com" 
+                                    required
+                                    class="flex-1 px-4 py-3 rounded-lg bg-charcoal/50 border border-bone/20 text-bone placeholder-bone/50 focus:outline-none focus:border-glitch-lime transition-colors"
+                                >
+                                <button 
+                                    type="submit" 
+                                    class="btn-primary sm:w-auto px-6"
+                                >
+                                    Subscribe
+                                </button>
+                            </div>
+                            <p class="text-xs text-bone/60">
+                                Unsubscribe anytime. Unlike my dating history, this commitment is actually easy to exit.
+                            </p>
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile-First Footer -->
+    <footer class="bg-charcoal/50 border-t border-bone/10 py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-bold text-base sm:text-lg mb-3 sm:mb-4">Aleks Filmore</h4>
+                    <p class="text-bone/60 text-xs sm:text-sm">Weekly chaos delivered from Brussels. Dating disasters transformed into life lessons and questionable wisdom.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Blog</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="blog.html" class="text-bone/60 hover:text-red-flag transition-colors">All Posts</a></li>
+                        <li><a href="blog/category/dating.html" class="text-bone/60 hover:text-red-flag transition-colors">Dating Disasters</a></li>
+                        <li><a href="blog/category/writing.html" class="text-bone/60 hover:text-red-flag transition-colors">Writing Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Books</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Copies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-bone/10 pt-6 sm:pt-8 text-center">
+                <p class="text-bone/60 text-xs sm:text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Blog posts may contain traces of emotional baggage.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Newsletter form submission
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Subscribing...';
+            submitButton.disabled = true;
+            
+            try {
+                // In a real implementation, this would send to your newsletter service
+                // For now, we'll simulate the API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Show success
+                submitButton.textContent = 'Subscribed!';
+                submitButton.style.background = 'linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%)';
+                submitButton.style.color = 'var(--color-charcoal)';
+                
+                // Reset form
+                document.getElementById('email').value = '';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = '';
+                    submitButton.style.color = '';
+                    submitButton.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                // Show error
+                submitButton.textContent = 'Error - Try Again';
+                submitButton.style.background = 'linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%)';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = '';
+                    submitButton.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

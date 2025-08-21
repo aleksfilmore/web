@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Aleks Filmore</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Aleks Filmore writes like your blunt friend after two espressos and a boundary. Author of The Worst Boyfriends Ever - queer dating memoir.">
-    <meta name="keywords" content="Aleks Filmore, author bio, queer memoir writer, LGBTQ author, dating memoir">
+    <!-- Enhanced SEO Meta Tags -->
+    <title>About Aleks Filmore | Queer Dating Memoir Author | The Worst Boyfriends Ever</title>
+    <meta name="description" content="Meet Aleks Filmore, author of The Worst Boyfriends Ever. Writing queer dating memoirs from Brussels since bad decisions became literature. Press kit, bio, and contact info.">
+    <meta name="keywords" content="Aleks Filmore, queer author, LGBTQ memoir writer, dating memoir author, The Worst Boyfriends Ever author, queer literature, Brussels author, press kit">
+    <meta name="author" content="Aleks Filmore">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://aleksfilmore.com/about.html">
+    <meta property="og:title" content="About Aleks Filmore | Queer Dating Memoir Author">
+    <meta property="og:description" content="Meet Aleks Filmore, author of The Worst Boyfriends Ever. Writing queer dating memoirs from Brussels since bad decisions became literature.">
+    <meta property="og:image" content="https://aleksfilmore.com/AF.png">
+    <meta property="profile:first_name" content="Aleks">
+    <meta property="profile:last_name" content="Filmore">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aleksfilmore.com/about.html">
+    <meta property="twitter:title" content="About Aleks Filmore | Queer Dating Memoir Author">
+    <meta property="twitter:description" content="Meet Aleks Filmore, author of The Worst Boyfriends Ever. Writing queer dating memoirs from Brussels since bad decisions became literature.">
+    <meta property="twitter:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aleksfilmore.com/about.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/AF.png" type="image/png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +39,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aleks Filmore",
+        "jobTitle": "Author",
+        "description": "Queer dating memoir author of The Worst Boyfriends Ever",
+        "url": "https://aleksfilmore.com",
+        "image": "https://aleksfilmore.com/AF.png",
+        "sameAs": [
+            "https://instagram.com/aleksfilmore",
+            "https://tiktok.com/@aleksfilmore"
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Independent Author"
+        },
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Brussels, Belgium"
+        },
+        "knowsAbout": ["Queer literature", "Dating memoir", "LGBTQ+ experiences", "Relationship advice"],
+        "author": [
+            {
+                "@type": "Book",
+                "name": "The Worst Boyfriends Ever",
+                "genre": "Memoir",
+                "description": "A queer dating memoir that turns wreckage into punchlines"
+            }
+        ]
+    }
+    </script>
 
     <!-- Custom Styles -->
     <style>
@@ -29,42 +86,32 @@
             --font-body: 'Inter', sans-serif;
         }
 
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
-            background-color: var(--color-charcoal);
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
             font-family: var(--font-body);
             color: var(--color-bone);
             line-height: 1.6;
+            font-size: 16px;
         }
 
         .font-display { font-family: var(--font-display); }
         .text-red-flag { color: var(--color-red-flag); }
-        .bg-charcoal { background-color: var(--color-charcoal); }
-        .bg-bone { background-color: var(--color-bone); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
 
-        .btn-primary {
-            background-color: var(--color-red-flag);
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s ease;
-            border: 2px solid var(--color-red-flag);
-        }
-        
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--color-red-flag);
-            transform: translateY(-1px);
-        }
-
+        /* Mobile-First Navigation */
         .nav-link {
             color: var(--color-bone);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s ease;
+            font-size: 0.875rem;
         }
 
         .nav-link:hover {
@@ -73,7 +120,6 @@
 
         .hover-underline-slide {
             position: relative;
-            text-decoration: none;
         }
         
         .hover-underline-slide::after {
@@ -91,230 +137,505 @@
             width: 100%;
         }
 
-        .bio-card {
-            background-color: rgba(247, 243, 237, 0.05);
-            border: 1px solid rgba(247, 243, 237, 0.2);
-            padding: 2rem;
-            border-radius: 1rem;
-        }
-
-        .press-download {
-            background-color: var(--color-bone);
-            color: var(--color-charcoal);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
+        /* Mobile-First Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
             text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
         }
 
-        .press-download:hover {
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--color-bone);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile-First Author Photo */
+        .author-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border: 4px solid var(--color-red-flag);
+            transition: all 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .author-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 59, 59, 0.2);
+        }
+
+        /* Mobile-First Cards */
+        .bio-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1rem;
+        }
+
+        .bio-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 59, 59, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .press-item {
+            background: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.1);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .press-item:hover {
+            border-color: rgba(255, 59, 59, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Small mobile (320px+) - Default styles above */
+        
+        /* Large mobile (375px+) */
+        @media (min-width: 375px) {
+            .author-photo {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .bio-card {
+                padding: 1.75rem;
+            }
+        }
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: auto;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .author-photo {
+                width: 260px;
+                height: 260px;
+            }
+            
+            .bio-card {
+                padding: 2rem;
+            }
+        }
+        
+        /* Medium tablet (768px+) */
+        @media (min-width: 768px) {
+            .author-photo {
+                width: 300px;
+                height: 300px;
+            }
+        }
+        
+        /* Large tablet/Small desktop (1024px+) */
+        @media (min-width: 1024px) {
+            .btn-primary, .btn-secondary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Animation for mobile */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
+    <!-- Mobile-First Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
-                <div class="font-display font-bold text-xl">
-                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/books" class="nav-link hover-underline-slide">Books</a>
-                    <a href="/audiobook" class="nav-link hover-underline-slide">Audiobook</a>
-                    <a href="/shop" class="nav-link hover-underline-slide">Shop</a>
-                    <a href="/reviews" class="nav-link hover-underline-slide">Reviews</a>
-                    <a href="/about" class="nav-link hover-underline-slide text-red-flag">About</a>
-                    <a href="/dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
-                    <a href="/midway" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="about.html" class="nav-link hover-underline-slide text-red-flag">About</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
                 </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="about.html" class="block text-lg nav-link text-red-flag">About</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">🎪 Hall of Red Flags</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-24">
-        <!-- Hero -->
-        <section class="py-16">
-            <div class="container mx-auto px-6">
+    <main class="pt-16 sm:pt-20">
+        
+        <!-- Hero Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h1 class="font-display font-bold text-5xl md:text-6xl mb-8">
-                        Your fearless, slightly <span class="text-red-flag">traumatized</span> guide
+                    
+                    <!-- Author Photo -->
+                    <div class="mb-6 sm:mb-8">
+                        <img src="AF.png" alt="Aleks Filmore - Author Photo" class="author-photo floating-element" loading="eager">
+                    </div>
+                    
+                    <!-- Intro -->
+                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6">
+                        Hi, I'm <span class="text-red-flag">Aleks Filmore</span>
                     </h1>
+                    
+                    <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed">
+                        I write like your blunt friend after two espressos and a boundary.
+                    </p>
+                    
+                    <!-- Quick Actions -->
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                        <a href="shop.html" class="btn-primary">
+                            📚 Get My Book
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            💌 Say Hello
+                        </a>
+                    </div>
+                    
                 </div>
             </div>
         </section>
 
         <!-- Bio Section -->
-        <section class="py-8">
-            <div class="container mx-auto px-6">
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto">
-                    <div class="bio-card text-lg leading-relaxed">
-                        <p class="mb-6">I write like your blunt friend after two espressos and a boundary. <em>The Worst Boyfriends Ever</em> is my ledger of romantic disasters turned usable insight—funny first, honest always. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+                    
+                    <div class="grid gap-6 sm:gap-8 lg:grid-cols-2">
                         
-                        <p class="mb-6">I keep the author image minimal on purpose. The work is the face. The receipts are the proof. If you want soft-focus redemption arcs, look elsewhere. If you want the joke that lands and the line that makes you finally choose yourself, welcome.</p>
+                        <!-- Main Bio -->
+                        <div class="bio-card">
+                            <h2 class="font-display font-bold text-xl sm:text-2xl mb-4 text-red-flag">The Short Version</h2>
+                            <div class="space-y-4 text-sm sm:text-base">
+                                <p>
+                                    I'm a queer author living in Brussels, turning my dating disasters into literature 
+                                    that hopefully saves you from repeating my mistakes.
+                                </p>
+                                <p>
+                                    My debut memoir <strong>"The Worst Boyfriends Ever"</strong> is a collection of 
+                                    25 red-flag chronicles that reads like your group chat after someone asks 
+                                    "wait, what happened with that guy?"
+                                </p>
+                                <p>
+                                    When I'm not writing about romance gone wrong, I'm probably planning my next 
+                                    book, avoiding dating apps, or explaining to people that yes, Brussels has good coffee.
+                                </p>
+                            </div>
+                        </div>
                         
-                        <p class="mb-6">I live in Brussels, ship worldwide, and sign books with love and a little smoke. The audiobook includes a direct-only bonus epilogue because some lessons hit better when you hear the breath between them.</p>
+                        <!-- Fun Facts -->
+                        <div class="bio-card">
+                            <h2 class="font-display font-bold text-xl sm:text-2xl mb-4 text-glitch-lime">Random Facts</h2>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-flag mt-1">🚩</span>
+                                    <span>Collected 27 red flags before writing them into a book</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-flag mt-1">☕</span>
+                                    <span>Requires minimum two espressos before human interaction</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-flag mt-1">🇧🇪</span>
+                                    <span>Ships signed books from Brussels with terrible handwriting</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-flag mt-1">📱</span>
+                                    <span>Has never sent "hey" as an opening message</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-flag mt-1">🎧</span>
+                                    <span>Narrates own audiobooks because who else would?</span>
+                                </li>
+                            </ul>
+                        </div>
                         
-                        <p class="text-red-flag font-semibold">Buy it, gift it, annotate it. Laugh, wince, repeat—until the pattern breaks.</p>
                     </div>
+                    
                 </div>
             </div>
         </section>
 
-        <!-- Principles -->
-        <section class="py-16 bg-bone/5">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="font-display font-bold text-3xl mb-12">Principles</h2>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div>
-                            <h3 class="font-display font-semibold text-xl mb-4 text-red-flag">Honest over polite</h3>
-                            <p class="text-bone/80">The truth might sting, but it won't lie to you for months while maxing out your emotional credit card.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-display font-semibold text-xl mb-4 text-red-flag">Funny over precious</h3>
-                            <p class="text-bone/80">Humor changes behavior better than shame. Laughter is the cheapest therapy and the loudest alarm.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-display font-semibold text-xl mb-4 text-red-flag">Lessons over lint</h3>
-                            <p class="text-bone/80">You don't need another feel-good story. You need tools that work when the feeling stops being good.</p>
+        <!-- Writing & Approach -->
+        <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-bone/5 to-glitch-lime/5">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8">
+                        My Writing Philosophy
+                    </h2>
+                    
+                    <div class="bio-card text-left">
+                        <div class="space-y-4 sm:space-y-6 text-sm sm:text-base lg:text-lg">
+                            <p>
+                                <strong class="text-red-flag">Honest, not polite.</strong> I write about dating like 
+                                we actually experience it—messy, confusing, sometimes hilarious, often painful.
+                            </p>
+                            <p>
+                                <strong class="text-glitch-lime">Queer experiences, universal feelings.</strong> While 
+                                my stories come from a queer perspective, the feelings of hope, disappointment, and 
+                                "what the hell was I thinking" translate across all identities.
+                            </p>
+                            <p>
+                                <strong class="text-dusty-blush">Boundaries you can actually use.</strong> Every disaster 
+                                taught me something. I share those lessons without the sanctimonious self-help tone.
+                            </p>
+                            <p>
+                                My goal isn't to make dating perfect—it's to make you feel less alone in the chaos, 
+                                and maybe laugh at some truly unhinged behavior along the way.
+                            </p>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
 
         <!-- Press Kit -->
-        <section class="py-16">
-            <div class="container mx-auto px-6">
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="font-display font-bold text-3xl mb-8 text-center">Press Kit</h2>
                     
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Bios -->
-                        <div>
-                            <h3 class="font-display font-semibold text-xl mb-4">Bios</h3>
-                            
-                            <div class="space-y-4">
-                                <div class="press-download">
-                                    <h4 class="font-semibold mb-2">100-word bio</h4>
-                                    <p class="text-sm text-charcoal/70 mb-3">Press-ready short version</p>
-                                    <p class="text-sm">Aleks Filmore writes like your blunt friend after two espressos and a boundary. His breakout memoir, The Worst Boyfriends Ever, turns queer dating wreckage into laugh-out-loud confessionals with actual utility...</p>
-                                </div>
-                                
-                                <div class="press-download">
-                                    <h4 class="font-semibold mb-2">300-word bio</h4>
-                                    <p class="text-sm text-charcoal/70 mb-3">Extended interview-ready version</p>
-                                    <p class="text-sm">Aleks Filmore is a queer author who treats heartbreak like raw material and humor like a survival skill. His breakout memoir, The Worst Boyfriends Ever, is a field guide to modern dating calamities...</p>
-                                </div>
-                            </div>
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-center">
+                        Press Kit
+                    </h2>
+                    
+                    <div class="grid gap-4 sm:gap-6 lg:grid-cols-2">
+                        
+                        <!-- Bio for Press -->
+                        <div class="press-item">
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-red-flag">Short Bio</h3>
+                            <p class="text-sm sm:text-base text-bone/80">
+                                Aleks Filmore is the author of "The Worst Boyfriends Ever," a queer dating memoir 
+                                that turns romantic chaos into punchlines and boundaries. Based in Brussels, 
+                                Filmore writes with the honesty of your blunt friend and the wisdom of someone 
+                                who learned the hard way.
+                            </p>
                         </div>
-
+                        
                         <!-- Media Assets -->
-                        <div>
-                            <h3 class="font-display font-semibold text-xl mb-4">Media Assets</h3>
-                            
-                            <div class="space-y-4">
-                                <div class="press-download">
-                                    <h4 class="font-semibold mb-2">Book Cover (High-Res)</h4>
-                                    <p class="text-sm text-charcoal/70">300 DPI, RGB + CMYK versions</p>
-                                </div>
-                                
-                                <div class="press-download">
-                                    <h4 class="font-semibold mb-2">Author Photos</h4>
-                                    <p class="text-sm text-charcoal/70">Faceless, hands, objects, text-focused</p>
-                                </div>
-                                
-                                <div class="press-download">
-                                    <h4 class="font-semibold mb-2">One-Sheet PDF</h4>
-                                    <p class="text-sm text-charcoal/70">Synopsis, talking points, contact</p>
-                                </div>
+                        <div class="press-item">
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-red-flag">Media Assets</h3>
+                            <ul class="space-y-2 text-sm sm:text-base text-bone/80">
+                                <li>• High-res author photo: <a href="AF.png" class="text-glitch-lime hover:underline" download>Download</a></li>
+                                <li>• Book cover images available on request</li>
+                                <li>• Interview availability: Email preferred</li>
+                                <li>• Speaking topics: Dating, boundaries, queer experiences</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="press-item">
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-red-flag">Media Contact</h3>
+                            <div class="text-sm sm:text-base text-bone/80">
+                                <p><strong>Email:</strong> <a href="mailto:aleksfilmore@gmail.com" class="text-glitch-lime hover:underline">aleksfilmore@gmail.com</a></p>
+                                <p><strong>Response time:</strong> 24-48 hours</p>
+                                <p><strong>Based in:</strong> Brussels, Belgium (CET timezone)</p>
+                                <p><strong>Available for:</strong> Interviews, podcasts, panel discussions</p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Interview Topics -->
-                    <div class="mt-12">
-                        <h3 class="font-display font-semibold text-xl mb-6">Interview Topics</h3>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <ul class="space-y-3 text-bone/80">
-                                <li>• The hidden economics of bad relationships</li>
-                                <li>• Why humor changes behavior better than shame</li>
-                                <li>• Crafting voicey memoir without vanity</li>
-                            </ul>
-                            <ul class="space-y-3 text-bone/80">
-                                <li>• What direct publishing teaches about readers</li>
-                                <li>• Red flags vs. boundaries: the difference that matters</li>
-                                <li>• Writing faceless: when the work is the face</li>
+                        
+                        <!-- Stats -->
+                        <div class="press-item">
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-red-flag">By the Numbers</h3>
+                            <ul class="space-y-2 text-sm sm:text-base text-bone/80">
+                                <li>• 25 dating disasters documented</li>
+                                <li>• 1 memoir published (The Worst Boyfriends Ever)</li>
+                                <li>• 27 red flags catalogued and survived</li>
+                                <li>• Based in Brussels since 2019</li>
+                                <li>• Direct-to-reader sales model</li>
                             </ul>
                         </div>
+                        
                     </div>
-
-                    <!-- Contact -->
-                    <div class="mt-12 text-center">
-                        <h3 class="font-display font-semibold text-xl mb-4">Media Contact</h3>
-                        <p class="text-bone/80 mb-6">Press materials, interview requests, signed stock</p>
-                        <a href="mailto:press@aleksfilmore.com" class="btn-primary">press@aleksfilmore.com</a>
-                    </div>
+                    
                 </div>
             </div>
         </section>
+
+        <!-- Connect Section -->
+        <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-charcoal to-charcoal/95">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
+                <div class="max-w-2xl mx-auto">
+                    
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6">
+                        Let's Connect
+                    </h2>
+                    
+                    <p class="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-bone/80">
+                        I love hearing from readers, especially if you have your own red flag stories to share.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto mb-8">
+                        <a href="mailto:aleksfilmore@gmail.com" class="btn-primary">
+                            📧 Email Me
+                        </a>
+                        <a href="contact.html" class="btn-secondary">
+                            📝 Contact Form
+                        </a>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex justify-center gap-6 sm:gap-8">
+                        <a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors text-2xl" aria-label="Instagram">
+                            📷
+                        </a>
+                        <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors text-2xl" aria-label="TikTok">
+                            🎵
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-charcoal border-t border-bone/10 py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
-                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+    <!-- Mobile-First Footer -->
+    <footer class="bg-charcoal/50 border-t border-bone/10 py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-bold text-base sm:text-lg mb-3 sm:mb-4">Aleks Filmore</h4>
+                    <p class="text-bone/60 text-xs sm:text-sm">Author collecting receipts from the dating apocalypse. Currently shipping red flags from Brussels.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Books</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/books/worst-boyfriends-ever" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
-                        <li><a href="/dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Books</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="books.html" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
+                        <li><a href="dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Shop</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/audiobook" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
-                        <li><a href="/shop/signed" class="text-bone/60 hover:text-red-flag transition-colors">Signed Copies</a></li>
-                        <li><a href="/shop/bundles" class="text-bone/60 hover:text-red-flag transition-colors">Bundles</a></li>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Shop</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Shop</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/audiobook" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
-                        <li><a href="/shop" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
-                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Connect</h4>
-                    <ul class="space-y-2 text-sm">
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
                         <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
-                        <li><a href="/newsletter" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
-                        <li><a href="/contact" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
-                        <li><a href="/about" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
-                        <li><a href="/midway" class="text-bone/60 hover:text-red-flag transition-colors text-xs">Hall of Red Flags 🚩</a></li>
+                        <li><a href="contact.html" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
-                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            <div class="border-t border-bone/10 pt-6 sm:pt-8 text-center">
+                <p class="text-bone/60 text-xs sm:text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

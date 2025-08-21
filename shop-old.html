@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Aleks Filmore</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Buy The Worst Boyfriends Ever audiobook and signed copies directly from author Aleks Filmore. Exclusive content and direct author support.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-bone { background-color: var(--color-bone); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .product-card {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .price-tag {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .feature-badge {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-bone);
+            border-top: 2px solid var(--color-red-flag);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cart-item {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-xl">
+                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/books" class="nav-link hover-underline-slide">Books</a>
+                    <a href="/audiobook" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="/shop" class="nav-link hover-underline-slide text-red-flag">Shop</a>
+                    <a href="/reviews" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="/about" class="nav-link hover-underline-slide">About</a>
+                    <button id="cart-btn" class="nav-link hover-underline-slide">Cart (<span id="cart-count">0</span>)</button>
+                    <a href="/midway" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero -->
+        <section class="py-16 text-center">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="font-display font-bold text-5xl md:text-6xl mb-6">
+                        Shop the <span class="text-red-flag">chaos.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-bone/80">
+                        Audiobooks, signed copies, and more ways to support direct from the source.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    
+                    <!-- Audiobook Product -->
+                    <div class="product-card shadow-xl">
+                        <div class="aspect-square bg-charcoal/10 relative overflow-hidden">
+                            <img src="THE WORST BOYFRIENDS EVER AUDIOBOOK.png" alt="The Worst Boyfriends Ever Audiobook" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="feature-badge">Exclusive Bonus</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display font-bold text-2xl mb-2">The Worst Boyfriends Ever</h3>
+                            <p class="text-charcoal/60 mb-2">Audiobook (Digital)</p>
+                            <p class="text-charcoal/80 mb-4">Narrated by Deacon Deane. Includes exclusive bonus epilogue only available here.</p>
+                            
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="price-tag text-lg">€14.99</div>
+                                <span class="text-sm text-charcoal/60">Instant access</span>
+                            </div>
+
+                            <ul class="text-sm text-charcoal/80 mb-6 space-y-1">
+                                <li>✓ Full unabridged audiobook (8+ hours)</li>
+                                <li>✓ Exclusive bonus epilogue</li>
+                                <li>✓ Stream on your private player</li>
+                                <li>✓ Download for offline listening</li>
+                                <li>✓ Works on all devices</li>
+                            </ul>
+
+                            <button 
+                                class="btn-primary w-full" 
+                                onclick="addToCart('audiobook', 'The Worst Boyfriends Ever (Audiobook)', 14.99, 'digital')"
+                            >
+                                Add to Cart - €14.99
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Signed Book Product -->
+                    <div class="product-card shadow-xl">
+                        <div class="aspect-square bg-charcoal/10 relative overflow-hidden">
+                            <img src="The Worst Boyfriends Ever KINDLE.jpg" alt="The Worst Boyfriends Ever Signed Paperback" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="feature-badge">Signed by Author</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display font-bold text-2xl mb-2">The Worst Boyfriends Ever</h3>
+                            <p class="text-charcoal/60 mb-2">Signed Paperback</p>
+                            <p class="text-charcoal/80 mb-4">Personally signed paperback by Aleks Filmore. Ships from Brussels with a handwritten note.</p>
+                            
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="price-tag text-lg">€14.99 + shipping</div>
+                                <span class="text-sm text-charcoal/60">Ships worldwide</span>
+                            </div>
+
+                            <ul class="text-sm text-charcoal/80 mb-6 space-y-1">
+                                <li>✓ Personally signed by author</li>
+                                <li>✓ Handwritten thank you note</li>
+                                <li>✓ Ships from Brussels</li>
+                                <li>✓ Protective packaging</li>
+                                <li>✓ Perfect for gifts</li>
+                            </ul>
+
+                            <button 
+                                class="btn-primary w-full" 
+                                onclick="addToCart('signed-book', 'The Worst Boyfriends Ever (Signed Paperback)', 14.99, 'physical')"
+                            >
+                                Add to Cart - €14.99
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Bundle Offer -->
+        <section class="py-16 bg-bone/5">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="product-card shadow-2xl">
+                        <div class="p-8 text-center">
+                            <h3 class="font-display font-bold text-3xl mb-4">Bundle & Save</h3>
+                            <p class="text-charcoal/80 mb-6">Get both the audiobook and signed paperback together</p>
+                            
+                            <div class="flex items-center justify-center gap-4 mb-6">
+                                <span class="text-2xl text-charcoal/60 line-through">€29.98</span>
+                                <div class="price-tag text-2xl">€24.99</div>
+                                <span class="bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-semibold">Save €4.99</span>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                <div class="text-left">
+                                    <h4 class="font-semibold mb-2">You Get:</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>✓ Signed paperback with note</li>
+                                        <li>✓ Audiobook with bonus epilogue</li>
+                                        <li>✓ Instant audiobook access</li>
+                                        <li>✓ Worldwide shipping included</li>
+                                    </ul>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-semibold mb-2">Perfect For:</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>✓ Ultimate fans</li>
+                                        <li>✓ Gift giving</li>
+                                        <li>✓ Collection building</li>
+                                        <li>✓ Supporting authors directly</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <button 
+                                class="btn-primary btn-large" 
+                                onclick="addToCart('bundle', 'Complete Bundle (Audiobook + Signed Paperback)', 24.99, 'bundle')"
+                            >
+                                Add Bundle to Cart - €24.99
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="font-display font-bold text-2xl">Your Cart</h2>
+                <button onclick="closeCart()" class="text-2xl">&times;</button>
+            </div>
+            
+            <div id="cart-items"></div>
+            
+            <div class="border-t pt-4 mt-4">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-semibold text-lg">Total:</span>
+                    <span id="cart-total" class="font-bold text-xl text-red-flag">€0.00</span>
+                </div>
+                
+                <div id="checkout-section">
+                    <button id="checkout-btn" class="btn-primary w-full mb-4" onclick="proceedToCheckout()">
+                        <span id="checkout-text">Proceed to Checkout</span>
+                        <div id="checkout-spinner" class="loading-spinner ml-2"></div>
+                    </button>
+                    <p class="text-xs text-center text-charcoal/60">Secure payment powered by Stripe</p>
+                </div>
+                
+                <div id="empty-cart" class="text-center py-8" style="display: none;">
+                    <p class="text-charcoal/60 mb-4">Your cart is empty</p>
+                    <button onclick="closeCart()" class="btn-primary">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-bone/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
+                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. Direct sales, no platform drama.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/audiobook" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="/shop" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
+                        <li><a href="#" class="text-bone/60 hover:text-red-flag transition-colors">Bundles</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/shipping" class="text-bone/60 hover:text-red-flag transition-colors">Shipping Info</a></li>
+                        <li><a href="/returns" class="text-bone/60 hover:text-red-flag transition-colors">Returns</a></li>
+                        <li><a href="/contact" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/newsletter" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
+                        <li><a href="/about" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
+                        <li><a href="/midway" class="text-bone/60 hover:text-red-flag transition-colors text-xs">Hall of Red Flags 🚩</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. Ships from Brussels, refuses to text first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Cart functionality
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCart(id, name, price, type) {
+            // Check if item already exists
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    type: type,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showCartNotification();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateQuantity(id, quantity) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = parseInt(quantity);
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutSection = document.getElementById('checkout-section');
+            const emptyCart = document.getElementById('empty-cart');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '';
+                cartTotal.textContent = '€0.00';
+                checkoutSection.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+            
+            checkoutSection.style.display = 'block';
+            emptyCart.style.display = 'none';
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-semibold">${item.name}</h4>
+                        <button onclick="removeFromCart('${item.id}')" class="text-red-flag hover:text-red-flag/80">×</button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm">Qty:</label>
+                            <select onchange="updateQuantity('${item.id}', this.value)" class="px-2 py-1 border rounded">
+                                ${[1,2,3,4,5].map(n => `<option value="${n}" ${item.quantity === n ? 'selected' : ''}>${n}</option>`).join('')}
+                            </select>
+                        </div>
+                        <span class="font-semibold">€${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                    ${item.type === 'physical' || item.type === 'bundle' ? '<p class="text-xs text-charcoal/60 mt-1">+ shipping calculated at checkout</p>' : ''}
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `€${total.toFixed(2)}`;
+        }
+
+        function showCartNotification() {
+            // Simple notification - you could enhance this
+            const notification = document.createElement('div');
+            notification.textContent = 'Added to cart!';
+            notification.className = 'fixed top-20 right-4 bg-red-flag text-bone px-4 py-2 rounded-lg z-50';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        function showCart() {
+            document.getElementById('cart-modal').classList.add('show');
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').classList.remove('show');
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) return;
+            
+            // Show loading state
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const checkoutText = document.getElementById('checkout-text');
+            const checkoutSpinner = document.getElementById('checkout-spinner');
+            
+            checkoutBtn.disabled = true;
+            checkoutText.textContent = 'Processing...';
+            checkoutSpinner.style.display = 'inline-block';
+            
+            // Create checkout session
+            createCheckoutSession();
+        }
+
+        async function createCheckoutSession() {
+            try {
+                const response = await fetch('https://dynamic-blessing-production-8be8.up.railway.app/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: cart
+                    })
+                });
+                
+                const session = await response.json();
+                
+                if (session.url) {
+                    window.location.href = session.url;
+                } else {
+                    throw new Error('No checkout URL received');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('There was an error processing your order. Please try again.');
+                
+                // Reset button state
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const checkoutText = document.getElementById('checkout-text');
+                const checkoutSpinner = document.getElementById('checkout-spinner');
+                
+                checkoutBtn.disabled = false;
+                checkoutText.textContent = 'Proceed to Checkout';
+                checkoutSpinner.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('cart-btn').addEventListener('click', showCart);
+
+        // Close modal when clicking outside
+        document.getElementById('cart-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+
+        // Initialize cart from localStorage if exists
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+            updateCartUI();
+        }
+
+        // Save cart to localStorage whenever it changes
+        const originalAddToCart = addToCart;
+        addToCart = function(...args) {
+            originalAddToCart.apply(this, args);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        };
+
+        const originalRemoveFromCart = removeFromCart;
+        removeFromCart = function(...args) {
+            originalRemoveFromCart.apply(this, args);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        };
+
+        const originalUpdateQuantity = updateQuantity;
+        updateQuantity = function(...args) {
+            originalUpdateQuantity.apply(this, args);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        };
+    </script>
+
+</body>
+</html>
