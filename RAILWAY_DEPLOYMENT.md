@@ -25,13 +25,13 @@ railway up
 After deployment, go to Railway dashboard and add these variables:
 
 ```
-STRIPE_PUBLISHABLE_KEY=pk_live_51RyeOz5SMnEa5xV174Ii8H14pZa3KxUYPIxJpIRMa36HxWOYCKxEMbFccn3rRfWvVzq7pZum2cpLpM7Id9o49mI300xrHVP1Fc
-STRIPE_SECRET_KEY=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
-STRIPE_WEBHOOK_SECRET=whsec_NGTtLuqdQ6QyzRHThRftxJsCsEV8mJLA
-RESEND_API_KEY=re_frsyZKmT_P7tzjaPWyneDQvT1zWEkZXQL
+STRIPE_PUBLISHABLE_KEY=pk_live_your_actual_publishable_key_here
+STRIPE_SECRET_KEY=sk_live_your_actual_secret_key_here
+STRIPE_WEBHOOK_SECRET=whsec_your_actual_webhook_secret_here
+RESEND_API_KEY=re_your_actual_resend_key_here
 SITE_URL=https://aleksfilmore.com
 BASE_URL=https://aleksfilmore.com
-SESSION_SECRET=aleks_filmore_2025_secure_session_key_random_string_xyz789
+SESSION_SECRET=your_random_session_secret_here
 ```
 
 ### 4. Get Your Railway API URL
