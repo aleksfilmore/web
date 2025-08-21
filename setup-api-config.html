@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Configuration</title>
+</head>
+<body>
+    <h1>🔧 API Configuration Setup</h1>
+    
+    <div id="setup">
+        <h2>Enter your Railway API URL:</h2>
+        <input type="url" id="apiUrl" placeholder="https://your-project.railway.app" style="width: 400px; padding: 10px;">
+        <button onclick="updateConfig()" style="padding: 10px 20px; margin-left: 10px;">Update Configuration</button>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Deploy your backend to Railway</li>
+            <li>Get your Railway project URL</li>
+            <li>Enter it above and click "Update Configuration"</li>
+            <li>Download the updated files</li>
+            <li>Upload to Netlify</li>
+        </ol>
+    </div>
+    
+    <div id="result" style="display: none;">
+        <h2>✅ Configuration Updated!</h2>
+        <p>Your API configuration has been updated. Here are the files ready for Netlify:</p>
+        <ul>
+            <li><a href="#" id="downloadConfig">Download api-config.js</a></li>
+            <li><a href="#" id="downloadIndexNew">Download updated index-new.html</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function updateConfig() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            if (!apiUrl) {
+                alert('Please enter your Railway API URL');
+                return;
+            }
+            
+            // Update API config
+            const configContent = `// Configuration for API endpoints
+const API_CONFIG = {
+    BASE_URL: '${apiUrl}',
+    
+    ENDPOINTS: {
+        CONFIG: '/api/config',
+        PRODUCTS: '/api/products',
+        CREATE_CHECKOUT: '/api/create-checkout-session',
+        VERIFY_ACCESS: '/api/verify-access'
+    }
+};
+
+// Helper function to get full API URL
+function getApiUrl(endpoint) {
+    return API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS[endpoint];
+}
+
+// Export for use in other files
+window.API_CONFIG = API_CONFIG;
+window.getApiUrl = getApiUrl;`;
+
+            // Create download links
+            createDownloadLink('downloadConfig', 'api-config.js', configContent);
+            
+            document.getElementById('setup').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }
+        
+        function createDownloadLink(elementId, filename, content) {
+            const element = document.getElementById(elementId);
+            const file = new Blob([content], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = filename;
+        }
+    </script>
+</body>
+</html>

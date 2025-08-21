@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Integration Test - Aleks Filmore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">🧪 Stripe Integration Test</h1>
+            
+            <!-- Test Results -->
+            <div id="testResults" class="space-y-4 mb-8">
+                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h2 class="text-lg font-semibold text-blue-900 mb-2">Running Tests...</h2>
+                    <div id="testStatus" class="text-blue-700">
+                        <div class="flex items-center space-x-2">
+                            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                            <span>Testing Stripe configuration...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Test Buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Audiobook Test -->
+                <div class="border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">📱 Audiobook Purchase Test</h3>
+                    <p class="text-gray-600 mb-4">Test the audiobook checkout flow with live Stripe</p>
+                    <button id="testAudiobook" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                        Test Audiobook Checkout ($7.99)
+                    </button>
+                </div>
+
+                <!-- Signed Book Test -->
+                <div class="border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">📚 Signed Book Purchase Test</h3>
+                    <p class="text-gray-600 mb-4">Test the signed paperback checkout flow</p>
+                    <button id="testSignedBook" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                        Test Signed Book Checkout ($17.99)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Configuration Display -->
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">🔧 Current Configuration</h3>
+                <div id="configInfo" class="space-y-2 text-sm text-gray-600">
+                    <div><strong>Environment:</strong> <span id="envType">Loading...</span></div>
+                    <div><strong>Stripe Key:</strong> <span id="stripeKey">Loading...</span></div>
+                    <div><strong>Products:</strong> <span id="productCount">Loading...</span></div>
+                    <div><strong>Base URL:</strong> <span id="baseUrl">Loading...</span></div>
+                </div>
+            </div>
+
+            <!-- Test Instructions -->
+            <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <h3 class="text-lg font-semibold text-yellow-900 mb-2">⚠️ Testing Instructions</h3>
+                <ul class="text-yellow-800 space-y-1 text-sm">
+                    <li>• Use Stripe test card numbers for testing (4242 4242 4242 4242)</li>
+                    <li>• Check that webhooks are properly configured</li>
+                    <li>• Verify email delivery and audiobook access</li>
+                    <li>• Test on different devices and browsers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Stripe (we'll get the key from the server)
+        let stripe = null;
+
+        // Test functions
+        async function runTests() {
+            const testStatus = document.getElementById('testStatus');
+            const configInfo = document.getElementById('configInfo');
+            
+            try {
+                // Test 1: Check Stripe configuration
+                testStatus.innerHTML = '<div class="flex items-center space-x-2"><div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div><span>Checking Stripe configuration...</span></div>';
+                
+                const response = await fetch('/api/config');
+                const config = await response.json();
+                
+                if (config.stripe_publishable_key) {
+                    stripe = Stripe(config.stripe_publishable_key);
+                    document.getElementById('stripeKey').textContent = config.stripe_publishable_key.substring(0, 20) + '...';
+                    document.getElementById('envType').textContent = config.stripe_publishable_key.includes('test') ? 'Test Mode' : 'Live Mode';
+                } else {
+                    throw new Error('No Stripe key found');
+                }
+
+                // Test 2: Check products
+                testStatus.innerHTML = '<div class="flex items-center space-x-2"><div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div><span>Checking products...</span></div>';
+                
+                const productsResponse = await fetch('/api/products');
+                const products = await productsResponse.json();
+                document.getElementById('productCount').textContent = `${Object.keys(products).length} products configured`;
+                
+                // Test 3: Check server status
+                document.getElementById('baseUrl').textContent = window.location.origin;
+                
+                // All tests passed
+                document.getElementById('testResults').innerHTML = `
+                    <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <h2 class="text-lg font-semibold text-green-900 mb-2">✅ All Tests Passed!</h2>
+                        <div class="text-green-700">
+                            <p>• Stripe configuration: OK</p>
+                            <p>• Products configured: OK</p>
+                            <p>• Server responding: OK</p>
+                            <p class="mt-2 font-semibold">Ready for manual testing!</p>
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                document.getElementById('testResults').innerHTML = `
+                    <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <h2 class="text-lg font-semibold text-red-900 mb-2">❌ Test Failed</h2>
+                        <div class="text-red-700">
+                            <p>Error: ${error.message}</p>
+                            <p class="mt-2 text-sm">Check console for details</p>
+                        </div>
+                    </div>
+                `;
+                console.error('Test error:', error);
+            }
+        }
+
+        // Test checkout functions
+        async function testCheckout(productType) {
+            if (!stripe) {
+                alert('Stripe not initialized. Please refresh the page.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        items: [{ type: productType, quantity: 1 }]
+                    })
+                });
+
+                const session = await response.json();
+                
+                if (session.error) {
+                    alert('Error: ' + session.error);
+                    return;
+                }
+
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.sessionId
+                });
+
+                if (result.error) {
+                    alert('Checkout error: ' + result.error.message);
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Failed to create checkout session. Check console for details.');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('testAudiobook').addEventListener('click', () => testCheckout('audiobook'));
+        document.getElementById('testSignedBook').addEventListener('click', () => testCheckout('signed-book'));
+
+        // Run tests on page load
+        runTests();
+    </script>
+</body>
+</html>

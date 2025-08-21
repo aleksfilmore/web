@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Aleks Filmore | Press, Interviews & General Chaos</title>
+    
+    <meta name="description" content="Get in touch with Aleks Filmore for press inquiries, book reviews, interviews, or just to share your dating disaster stories. Based in Brussels, responds to emails faster than red flags.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.05) 0%, rgba(247, 243, 237, 0.1) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-red-flag);
+            box-shadow: 0 15px 30px rgba(255, 59, 59, 0.2);
+        }
+
+        .form-input, .form-textarea {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            width: 100%;
+            font-family: var(--font-body);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-red-flag);
+            box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-xl">
+                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="/audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="/shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="/reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="/about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="/dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="text-6xl mb-6 floating">📧</div>
+                    <h1 class="font-display font-bold text-5xl md:text-6xl mb-6">
+                        Let's <span class="text-red-flag">Talk</span>
+                    </h1>
+                    <p class="text-xl text-bone/80 mb-8">
+                        Press, podcasts, partnerships, or just sharing your own dating disasters—I'm here for it all
+                    </p>
+                    <p class="text-lg text-bone/70">
+                        Based in Brussels • Responds faster than red flags appear
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Options -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- Press & Media -->
+                        <div class="contact-card text-center">
+                            <div class="text-4xl mb-4">📰</div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-red-flag">Press & Media</h3>
+                            <p class="text-bone/80 mb-4">Interviews, podcast appearances, book reviews, and media inquiries</p>
+                            <div class="text-sm text-bone/60">
+                                <p>• Press kit available</p>
+                                <p>• High-res photos included</p>
+                                <p>• Quick response time</p>
+                            </div>
+                        </div>
+
+                        <!-- Collaborations -->
+                        <div class="contact-card text-center">
+                            <div class="text-4xl mb-4">🤝</div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-glitch-lime">Collaborations</h3>
+                            <p class="text-bone/80 mb-4">Speaking engagements, workshops, brand partnerships, and creative projects</p>
+                            <div class="text-sm text-bone/60">
+                                <p>• Dating/relationship topics</p>
+                                <p>• LGBTQ+ events</p>
+                                <p>• Writing workshops</p>
+                            </div>
+                        </div>
+
+                        <!-- General Inquiries -->
+                        <div class="contact-card text-center">
+                            <div class="text-4xl mb-4">💬</div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-dusty-blush">General Chat</h3>
+                            <p class="text-bone/80 mb-4">Book questions, reader feedback, dating disaster stories to share</p>
+                            <div class="text-sm text-bone/60">
+                                <p>• Reader questions welcome</p>
+                                <p>• Share your red flag stories</p>
+                                <p>• General life chaos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-red-flag/10 p-8 rounded-2xl border border-red-flag/20">
+                        <h2 class="font-display font-bold text-2xl mb-6 text-center">Send a Message</h2>
+                        
+                        <form class="space-y-6" action="https://formspree.io/f/myzjjjjp" method="POST">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-semibold mb-2">Name *</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        name="name"
+                                        class="form-input" 
+                                        placeholder="Your name"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email"
+                                        class="form-input" 
+                                        placeholder="your.email@example.com"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-semibold mb-2">Subject *</label>
+                                <select name="subject" id="subject" class="form-input" required>
+                                    <option value="">What's this about?</option>
+                                    <option value="press">Press & Media Inquiry</option>
+                                    <option value="podcast">Podcast Interview</option>
+                                    <option value="speaking">Speaking Engagement</option>
+                                    <option value="collaboration">Collaboration/Partnership</option>
+                                    <option value="review">Book Review Request</option>
+                                    <option value="reader">Reader Question/Feedback</option>
+                                    <option value="other">Other/General Inquiry</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="organization" class="block text-sm font-semibold mb-2">Organization/Company (if applicable)</label>
+                                <input 
+                                    type="text" 
+                                    id="organization" 
+                                    name="organization"
+                                    class="form-input" 
+                                    placeholder="Your publication, podcast, company, etc."
+                                >
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-semibold mb-2">Message *</label>
+                                <textarea 
+                                    id="message" 
+                                    name="message"
+                                    class="form-textarea" 
+                                    placeholder="Tell me what's on your mind. The more context, the better I can help!"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div>
+                                <label for="timeline" class="block text-sm font-semibold mb-2">Timeline (if applicable)</label>
+                                <input 
+                                    type="text" 
+                                    id="timeline" 
+                                    name="timeline"
+                                    class="form-input" 
+                                    placeholder="When do you need a response? Any deadlines?"
+                                >
+                            </div>
+
+                            <input type="hidden" name="_subject" value="Contact Form Submission">
+                            
+                            <button type="submit" class="btn-primary w-full mt-6">
+                                📧 Send Message
+                            </button>
+                        </form>
+                        
+                        <div class="mt-6 p-4 bg-bone/10 rounded-lg">
+                            <h4 class="font-semibold mb-2">📋 For Press/Media Inquiries, Please Include:</h4>
+                            <ul class="text-sm text-bone/80 space-y-1">
+                                <li>• Publication/platform name and audience size</li>
+                                <li>• Interview format (written, audio, video)</li>
+                                <li>• Estimated length and timeline</li>
+                                <li>• Specific topics or angles you'd like to cover</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-xs text-bone/60 mt-4 text-center">
+                            I aim to respond within 24-48 hours. For urgent requests, mention it in your subject line.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Info -->
+        <section class="py-16 bg-bone/5">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="font-display font-bold text-3xl mb-12 text-center">Quick Info</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-red-flag">About Aleks</h3>
+                            <ul class="space-y-2 text-bone/80">
+                                <li>• Author of "The Worst Boyfriends Ever"</li>
+                                <li>• LGBTQ+ memoir and fantasy writer</li>
+                                <li>• Based in Brussels, Belgium</li>
+                                <li>• Available for interviews in English</li>
+                                <li>• Experienced podcast guest</li>
+                                <li>• Speaker on dating, relationships, boundaries</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-display font-bold text-xl mb-4 text-glitch-lime">Available Topics</h3>
+                            <ul class="space-y-2 text-bone/80">
+                                <li>• Red flags in dating and relationships</li>
+                                <li>• LGBTQ+ dating experiences</li>
+                                <li>• Setting healthy boundaries</li>
+                                <li>• Writing memoir and personal stories</li>
+                                <li>• Modern dating culture and apps</li>
+                                <li>• Healing through humor and storytelling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="font-display font-bold text-3xl mb-8">Find Me Online</h2>
+                    <p class="text-bone/80 mb-8">For quick updates, behind-the-scenes content, and daily doses of chaos</p>
+                    
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://instagram.com/aleksfilmore" target="_blank" class="contact-card inline-block text-center hover:scale-105 transition-transform">
+                            <div class="text-3xl mb-2">📷</div>
+                            <div class="font-semibold">Instagram</div>
+                            <div class="text-sm text-bone/60">@aleksfilmore</div>
+                        </a>
+                        
+                        <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="contact-card inline-block text-center hover:scale-105 transition-transform">
+                            <div class="text-3xl mb-2">🎵</div>
+                            <div class="font-semibold">TikTok</div>
+                            <div class="text-sm text-bone/60">@aleksfilmore</div>
+                        </a>
+                        
+                        <a href="/newsletter.html" class="contact-card inline-block text-center hover:scale-105 transition-transform">
+                            <div class="text-3xl mb-2">📮</div>
+                            <div class="font-semibold">Newsletter</div>
+                            <div class="text-sm text-bone/60">Weekly updates</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-bone/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
+                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Books</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/books.html" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
+                        <li><a href="/dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="/shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
+                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="/newsletter.html" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
+                        <li><a href="/contact.html" class="text-bone/60 hover:text-red-flag transition-colors text-red-flag">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

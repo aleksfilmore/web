@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Audiobook Access</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0E0F10;
+            color: #F7F3ED;
+            padding: 50px;
+            text-align: center;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .btn {
+            background: #FF3B3B;
+            color: #F7F3ED;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn:hover {
+            background: #e63232;
+        }
+        .test-token {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success {
+            background: #1e4d3a;
+            color: #4ade80;
+        }
+        .error {
+            background: #4d1e1e;
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎧 Audiobook Access Test</h1>
+        <p>This page demonstrates the audiobook access flow with unique tokens.</p>
+        
+        <h3>Step 1: Generate Test Token</h3>
+        <button class="btn" onclick="generateTestToken()">Generate Test Access Token</button>
+        
+        <div id="tokenDisplay" class="test-token" style="display: none;">
+            <strong>Test Token:</strong>
+            <div id="tokenValue"></div>
+        </div>
+        
+        <h3>Step 2: Test Access</h3>
+        <button class="btn" onclick="testAccess()" id="testAccessBtn" disabled>Test Audiobook Player Access</button>
+        
+        <div id="status"></div>
+        
+        <h3>Production Flow:</h3>
+        <ol style="text-align: left; max-width: 500px; margin: 20px auto;">
+            <li>Customer purchases audiobook via Stripe</li>
+            <li>Webhook generates unique access token</li>
+            <li>Email sent via Resend with personalized link</li>
+            <li>Customer clicks link to access player</li>
+            <li>Token verified, player loads with protected audio</li>
+        </ol>
+        
+        <h3>Email Integration:</h3>
+        <p>Add your <strong>RESEND_API_KEY</strong> to .env file to enable email delivery.</p>
+        <p>Configure your domain in Resend dashboard for "from" address.</p>
+    </div>
+
+    <script>
+        let currentToken = null;
+
+        async function generateTestToken() {
+            try {
+                // Simulate token generation (in production this happens via webhook)
+                const response = await fetch('/api/generate-test-token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'test@example.com',
+                        productType: 'audiobook'
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    currentToken = data.token;
+                    
+                    document.getElementById('tokenValue').textContent = currentToken;
+                    document.getElementById('tokenDisplay').style.display = 'block';
+                    document.getElementById('testAccessBtn').disabled = false;
+                    
+                    showStatus('✅ Test token generated successfully!', 'success');
+                } else {
+                    showStatus('❌ Failed to generate token', 'error');
+                }
+            } catch (error) {
+                showStatus('❌ Error: ' + error.message, 'error');
+            }
+        }
+
+        function testAccess() {
+            if (currentToken) {
+                const playerUrl = `/audiobook-player?token=${currentToken}`;
+                window.open(playerUrl, '_blank');
+                showStatus('🎵 Opening audiobook player in new tab...', 'success');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+            
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

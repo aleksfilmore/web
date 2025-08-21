@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books by Aleks Filmore | Author</title>
+    
+    <meta name="description" content="Explore all books by Aleks Filmore, including The Worst Boyfriends Ever and upcoming releases. Get audiobooks, signed copies, and more.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-bone { background-color: var(--color-bone); }
+        .bg-red-flag { background-color: var(--color-red-flag); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-bone);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        .book-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.05) 0%, rgba(247, 243, 237, 0.1) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-red-flag);
+            box-shadow: 0 20px 40px rgba(255, 59, 59, 0.2);
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-xl">
+                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/books.html" class="nav-link hover-underline-slide text-red-flag">Books</a>
+                    <a href="/audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="/shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="/reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="/about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="/dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="font-display font-bold text-5xl md:text-6xl mb-6">
+                        Books by <span class="text-red-flag">Aleks Filmore</span>
+                    </h1>
+                    <p class="text-xl text-bone/80 mb-12">
+                        Queer memoirs, fantasy epics, and stories that refuse to behave themselves
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Published Books -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="font-display font-bold text-3xl mb-12 text-center">Published Works</h2>
+                    
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <!-- The Worst Boyfriends Ever -->
+                        <div class="book-card">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div class="relative">
+                                    <img src="THE WORST BOYFRIENDS EVER AUDIOBOOK.png" alt="The Worst Boyfriends Ever" class="w-full h-auto rounded-lg shadow-xl floating">
+                                    <div class="absolute -top-4 -right-4 bg-red-flag text-bone px-3 py-1 rounded-full font-bold text-sm">
+                                        🚩 NEW
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-2xl mb-4">The Worst Boyfriends Ever</h3>
+                                    <p class="text-bone/80 mb-6">A queer dating memoir that turns wreckage into punchlines—and boundaries you can actually use. Every bad date left a receipt. I kept them.</p>
+                                    
+                                    <div class="space-y-3 mb-6">
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-glitch-lime">📖</span>
+                                            <span>Memoir • LGBTQ+ • Dating</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-dusty-blush">⭐</span>
+                                            <span>★★★★★ "Hilarious and brutally honest"</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-red-flag">🎧</span>
+                                            <span>Available as audiobook (narrated by author)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col sm:flex-row gap-3">
+                                        <a href="/audiobook.html" class="btn-primary text-center">Listen - $7.99</a>
+                                        <a href="/shop.html" class="btn-secondary text-center">Get Signed - $17.99</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dacia Rising -->
+                        <div class="book-card">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div class="relative">
+                                    <img src="DACIA RISING.png" alt="Dacia Rising" class="w-full h-auto rounded-lg shadow-xl floating" style="animation-delay: 0.5s;">
+                                    <div class="absolute -top-4 -right-4 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-sm">
+                                        ✨ FANTASY
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-2xl mb-4">Dacia Rising</h3>
+                                    <p class="text-bone/80 mb-6">An epic fantasy adventure set in a world where ancient magic awakens and unlikely heroes must rise to face an emerging darkness threatening their realm.</p>
+                                    
+                                    <div class="space-y-3 mb-6">
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-glitch-lime">⚔️</span>
+                                            <span>Fantasy • Adventure • Magic</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-dusty-blush">🌟</span>
+                                            <span>World-building • Character-driven</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 text-sm">
+                                            <span class="text-red-flag">📚</span>
+                                            <span>Part of planned series</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col sm:flex-row gap-3">
+                                        <a href="/dacia-rising.html" class="btn-primary text-center">Learn More</a>
+                                        <a href="https://a.co/d/72FYeam" target="_blank" class="btn-secondary text-center">Buy on Amazon</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Works -->
+        <section class="py-16 bg-bone/5">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-display font-bold text-3xl mb-8">Coming Soon</h2>
+                    <p class="text-bone/70 mb-12">More chaos, more boundaries, more receipts</p>
+                    
+                    <div class="bg-charcoal/20 p-8 rounded-2xl border border-bone/10">
+                        <h3 class="font-display font-bold text-xl mb-4">📝 Currently Writing</h3>
+                        <p class="text-bone/80 mb-6">The sequel to The Worst Boyfriends Ever is in progress, along with new fantasy adventures in the Dacia Rising universe.</p>
+                        <a href="/newsletter.html" class="btn-primary">Get Updates</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Author Note -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <div class="bg-red-flag/10 p-8 rounded-2xl border border-red-flag/20">
+                        <h2 class="font-display font-bold text-2xl mb-4">Why I Write</h2>
+                        <p class="text-bone/80 text-lg italic">
+                            "I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags and start living authentically."
+                        </p>
+                        <p class="text-bone/60 mt-4">— Aleks Filmore</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-bone/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
+                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Books</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/books.html" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
+                        <li><a href="/dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="/shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
+                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="/newsletter.html" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
+                        <li><a href="/contact.html" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

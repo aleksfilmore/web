@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleks Filmore | Author of The Worst Boyfriends Ever</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Every bad date left a receipt. I kept them. Get the audiobook, signed copies, and bundles of Aleks Filmore's queer dating memoir directly from the author.">
+    <meta name="keywords" content="Aleks Filmore, The Worst Boyfriends Ever, queer memoir, LGBTQ author, dating memoir, audiobook, signed books, direct sales">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aleksfilmore.com/">
+    <meta property="og:title" content="Aleks Filmore | Author of The Worst Boyfriends Ever">
+    <meta property="og:description" content="Every bad date left a receipt. I kept them. Get the audiobook, signed copies, and bundles directly from the author.">
+    <meta property="og:image" content="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aleksfilmore.com/">
+    <meta property="twitter:title" content="Aleks Filmore | Author of The Worst Boyfriends Ever">
+    <meta property="twitter:description" content="Every bad date left a receipt. I kept them. Get the audiobook, signed copies, and bundles directly from the author.">
+    <meta property="twitter:image" content="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+        
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-bone { background-color: var(--color-bone); }
+        .bg-red-flag { background-color: var(--color-red-flag); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-bone);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        .price-tag {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 0.875rem;
+        }
+
+        .red-flag-tag {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            transform: rotate(-2deg);
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .receipt-card {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            padding: 1.5rem;
+            position: relative;
+            border-top: 2px dashed #ccc;
+            border-bottom: 2px dashed #ccc;
+            margin: 1rem 0;
+        }
+
+        /* Creative Shop Cards */
+        .shop-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.05) 0%, rgba(247, 243, 237, 0.1) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .shop-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 59, 59, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .shop-card:hover::before {
+            opacity: 1;
+            top: -100%;
+            left: -100%;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--color-red-flag);
+            box-shadow: 0 20px 40px rgba(255, 59, 59, 0.2);
+        }
+
+        .shop-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -10px;
+            right: 1rem;
+            background: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 0 0 1rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: rotate(3deg);
+        }
+
+        .feature-tag {
+            background: var(--color-glitch-lime);
+            color: var(--color-charcoal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.2rem;
+            transform: rotate(-1deg);
+        }
+
+        /* Enhanced Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(2deg); }
+            50% { transform: translateY(-10px) rotate(-2deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 59, 59, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 59, 59, 0.6); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .wiggle {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .bounce-gentle {
+            animation: bounce-gentle 2s ease-in-out infinite;
+        }
+
+        /* Number Counter Animation */
+        .counter-number {
+            background: linear-gradient(135deg, var(--color-red-flag), var(--color-dusty-blush));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .underline-red {
+            text-decoration: underline;
+            text-decoration-color: var(--color-red-flag);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .hover-underline-slide {
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        .edition-card {
+            background-color: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .edition-card:hover {
+            background-color: rgba(247, 243, 237, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--color-red-flag);
+        }
+
+        .social-proof-strip {
+            background: linear-gradient(90deg, var(--color-charcoal) 0%, rgba(14, 15, 16, 0.8) 50%, var(--color-charcoal) 100%);
+            border-top: 1px solid rgba(247, 243, 237, 0.1);
+            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .quote-chip {
+            background-color: rgba(247, 243, 237, 0.1);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+        }
+
+        @keyframes flag-twitch {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .red-flag-tag:hover {
+            animation: flag-twitch 0.3s ease-in-out;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            min-width: 100%;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-xl">
+                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/books" class="nav-link hover-underline-slide">Books</a>
+                    <a href="/audiobook" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="/shop" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="/reviews" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="/about" class="nav-link hover-underline-slide">About</a>
+                    <a href="/dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="/midway" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-charcoal z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="/books" class="text-2xl nav-link">Books</a>
+            <a href="/audiobook" class="text-2xl nav-link">Audiobook</a>
+            <a href="/shop" class="text-2xl nav-link">Shop</a>
+            <a href="/reviews" class="text-2xl nav-link">Reviews</a>
+            <a href="/about" class="text-2xl nav-link">About</a>
+            <a href="/dacia-rising.html" class="text-xl nav-link opacity-75">Dacia Rising</a>
+            <button id="mobile-menu-close" class="mt-8 text-bone">Close</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        
+                        <!-- Text Content -->
+                        <div class="text-center lg:text-left">
+                            <h1 class="font-display font-bold text-5xl md:text-7xl mb-6">
+                                Every bad date left a receipt. <span class="text-red-flag">I kept them.</span>
+                            </h1>
+                            <p class="text-xl md:text-2xl mb-8 text-bone/80">
+                                A queer dating memoir that turns wreckage into punchlines—and boundaries you can actually use.
+                            </p>
+                            
+                            <!-- Creative Shop Cards -->
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                                <!-- Audiobook Card -->
+                                <div class="shop-card group">
+                                    <div class="price-badge">$7.99</div>
+                                    <div class="shop-card-icon">🎧</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Audiobook</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Narrated disasters + bonus epilogue</p>
+                                    <div class="feature-tag">Instant Access</div>
+                                    <div class="feature-tag">Bonus Chapter</div>
+                                    <a href="/audiobook" class="btn-primary w-full mt-4 block text-center group-hover:pulse-glow">Listen Now</a>
+                                </div>
+
+                                <!-- Signed Book Card -->
+                                <div class="shop-card group">
+                                    <div class="price-badge">$17.99</div>
+                                    <div class="shop-card-icon">✍️</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Signed Copy</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Personally signed + handwritten note</p>
+                                    <div class="feature-tag">From Brussels</div>
+                                    <div class="feature-tag">Personal Note</div>
+                                    <a href="/shop" class="btn-primary w-full mt-4 block text-center group-hover:pulse-glow">Get Signed</a>
+                                </div>
+
+                                <!-- Amazon Card -->
+                                <div class="shop-card group sm:col-span-2 lg:col-span-1">
+                                    <div class="shop-card-icon">📦</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Amazon</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Standard paperback, fast shipping</p>
+                                    <div class="feature-tag">Prime Eligible</div>
+                                    <a href="https://a.co/d/72FYeam" target="_blank" class="btn-secondary w-full mt-4 block text-center">Buy on Amazon</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Book Visuals -->
+                        <div class="flex justify-center lg:justify-end">
+                            <div class="relative">
+                                <!-- Main book cover with floating animation -->
+                                <img src="THE WORST BOYFRIENDS EVER AUDIOBOOK.png" alt="The Worst Boyfriends Ever" class="w-80 h-auto rounded-lg shadow-2xl transform rotate-2 floating-element">
+                                
+                                <!-- Kindle cover overlay -->
+                                <img src="The Worst Boyfriends Ever KINDLE.jpg" alt="Kindle Cover" class="absolute -top-8 -left-8 w-64 h-auto rounded-lg shadow-xl transform -rotate-3 opacity-90">
+                                
+                                <!-- Creative floating elements -->
+                                <div class="absolute -bottom-4 -right-4 bg-red-flag text-bone px-4 py-2 rounded-full font-bold text-sm transform rotate-12 floating-element">
+                                    🚩 27 Red Flags
+                                </div>
+                                
+                                <!-- Additional floating badges -->
+                                <div class="absolute -top-6 -right-6 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform -rotate-12 floating-element">
+                                    ★★★★★ Rated
+                                </div>
+                                
+                                <div class="absolute -left-6 top-1/2 bg-dusty-blush text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-6 floating-element">
+                                    🎧 Narrated
+                                </div>
+                                
+                                <!-- Background glow effect -->
+                                <div class="absolute inset-0 bg-red-flag/20 blur-3xl -z-10 rounded-full transform scale-150"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Reviews Section -->
+        <section class="bg-red-flag text-bone py-4 overflow-hidden">
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-content">
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Read this before you download another dating app!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="marquee-content">
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Read this before you download another dating app!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edition Picker -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Audiobook -->
+                    <div class="edition-card">
+                        <div class="red-flag-tag mb-4">Direct Only</div>
+                        <h3 class="font-display font-bold text-2xl mb-4">Audiobook</h3>
+                        <p class="text-bone/80 mb-6">Hear the red flags in HD—and finally stop saluting them. Unabridged memoir, direct-only bonus epilogue, instant access.</p>
+                        <div class="text-3xl mb-4">🎧</div>
+                        <div class="price-tag mb-4">$7.99</div>
+                        <a href="/audiobook" class="btn-primary">Listen Now</a>
+                    </div>
+
+                    <!-- Signed Paperback -->
+                    <div class="edition-card">
+                        <h3 class="font-display font-bold text-2xl mb-4">Signed Paperback</h3>
+                        <p class="text-bone/80 mb-6">Personally signed paperback with personalized handwritten message. Ships from Brussels worldwide.</p>
+                        <div class="text-3xl mb-4">✍️</div>
+                        <div class="price-tag mb-4">$17.99 + shipping</div>
+                        <a href="/shop" class="btn-secondary">Get Signed</a>
+                    </div>
+
+                    <!-- Amazon -->
+                    <div class="edition-card">
+                        <h3 class="font-display font-bold text-2xl mb-4">Amazon Paperback</h3>
+                        <p class="text-bone/80 mb-6">Standard paperback via Amazon. Fast shipping, no signature, supports platforms.</p>
+                        <div class="text-3xl mb-4">�</div>
+                        <div class="price-tag mb-4">Amazon Price</div>
+                        <a href="https://a.co/d/72FYeam" target="_blank" class="btn-secondary">Buy on Amazon</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Inside -->
+        <section class="py-16 bg-gradient-to-r from-bone/5 to-glitch-lime/5">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-display font-bold text-4xl mb-4">What's Inside</h2>
+                    <p class="text-bone/70 mb-12">The damage report you've been waiting for</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-red-flag/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 counter-number bounce-gentle group-hover:wiggle">25</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">stories of romantic chaos</h3>
+                            <p class="text-bone/60 text-sm">Each more unhinged than the last</p>
+                        </div>
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-glitch-lime/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 text-glitch-lime bounce-gentle group-hover:wiggle" style="animation-delay: 0.2s;">0</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">tidy morals. Only useful ones.</h3>
+                            <p class="text-bone/60 text-sm">Life's messy. So is this book.</p>
+                        </div>
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-dusty-blush/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 text-dusty-blush bounce-gentle group-hover:wiggle" style="animation-delay: 0.4s;">1</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">spine saved: hopefully yours</h3>
+                            <p class="text-bone/60 text-sm">The receipts are here to help</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audiobook Tease -->
+        <section class="py-16 bg-gradient-to-b from-charcoal to-charcoal/95">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    
+                    <!-- Creative Audiobook Showcase -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        
+                        <!-- Audiobook Player Preview -->
+                        <div class="relative">
+                            <!-- Spotify-style Player Mockup -->
+                            <div class="bg-gradient-to-br from-bone to-bone/90 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                                
+                                <!-- Decorative Elements -->
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-red-flag/10 rounded-full transform translate-x-16 -translate-y-16"></div>
+                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-glitch-lime/10 rounded-full transform -translate-x-12 translate-y-12"></div>
+                                
+                                <div class="relative z-10">
+                                    <h3 class="font-display font-bold text-2xl mb-2 text-charcoal">
+                                        🎧 Hear the disasters. Heal anyway.
+                                    </h3>
+                                    <p class="text-charcoal/70 mb-6">
+                                        Narrated like a wink and a bruise. Perfect for walks, commutes, not-texting-your-ex.
+                                    </p>
+                                    
+                                    <!-- Fake Player Interface -->
+                                    <div class="bg-charcoal/5 p-6 rounded-xl mb-6 border-2 border-charcoal/10">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-12 h-12 bg-red-flag rounded-lg flex items-center justify-center">
+                                                    <span class="text-bone font-bold">🚩</span>
+                                                </div>
+                                                <div>
+                                                    <div class="font-semibold text-charcoal">Chapter 1: The Red Flag Parade</div>
+                                                    <div class="text-sm text-charcoal/60">Aleks Filmore</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-sm text-charcoal/60">2:34 / 8:15</div>
+                                        </div>
+                                        
+                                        <!-- Progress Bar -->
+                                        <div class="bg-charcoal/10 h-2 rounded-full mb-4">
+                                            <div class="bg-red-flag h-full w-1/3 rounded-full relative">
+                                                <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-red-flag rounded-full shadow-lg"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Player Controls -->
+                                        <div class="flex items-center justify-center space-x-4">
+                                            <button class="w-8 h-8 flex items-center justify-center text-charcoal/60 hover:text-charcoal">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M7 6v12l10-6z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="w-12 h-12 bg-red-flag text-bone rounded-full flex items-center justify-center hover:bg-red-flag/80 pulse-glow">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="w-8 h-8 flex items-center justify-center text-charcoal/60 hover:text-charcoal">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M17 6v12l-10-6z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a href="/audiobook" class="btn-primary inline-flex items-center space-x-2">
+                                            <span>🎧</span>
+                                            <span>Get the Full Audiobook + Bonus</span>
+                                            <span class="text-xs bg-bone/20 px-2 py-1 rounded">$7.99</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Highlights -->
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="font-display font-bold text-4xl mb-8">
+                                    Why listeners are <span class="text-red-flag underline">obsessed</span>
+                                </h2>
+                            </div>
+
+                            <!-- Feature Cards -->
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">🎭</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Perfectly Chaotic Narration</h4>
+                                        <p class="text-bone/70">Like getting tea from your funniest friend who survived dating hell</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">✨</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Exclusive Bonus Chapter</h4>
+                                        <p class="text-bone/70">The story too wild for the book - audiobook listeners only</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">⚡</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Instant Access</h4>
+                                        <p class="text-bone/70">Stream immediately after purchase. No waiting, just healing through laughter</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Magnet -->
+        <section class="py-16 bg-red-flag/10">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="font-display font-bold text-3xl mb-4">Free Secret Chapter: The Disaster We Don't Talk About</h2>
+                    <p class="text-bone/80 mb-8">Drop your email. Get the chapter. Keep your dignity.</p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" action="https://formspree.io/f/myzjjjjp" method="POST">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="your.email@example.com" 
+                            class="flex-1 px-4 py-3 rounded-lg bg-bone text-charcoal border-0 focus:outline-none focus:ring-2 focus:ring-red-flag"
+                            required
+                        >
+                        <input type="hidden" name="_subject" value="New Secret Chapter Request">
+                        <input type="hidden" name="_next" value="https://aleksfilmore.com/thank-you">
+                        <button type="submit" class="btn-primary whitespace-nowrap">Send the Chapter</button>
+                    </form>
+                    
+                    <p class="text-xs text-bone/60 mt-4">No spam. Just the good stuff. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-bone/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
+                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Books</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/books/worst-boyfriends-ever" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
+                        <li><a href="/dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/audiobook" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="/shop" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
+                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="/newsletter" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
+                        <li><a href="/contact" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
+                        <li><a href="/about" class="text-bone/60 hover:text-red-flag transition-colors">Press Kit</a></li>
+                        <li><a href="/midway" class="text-bone/60 hover:text-red-flag transition-colors text-xs">Hall of Red Flags 🚩</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Audio sample placeholder functionality
+        const playButton = document.querySelector('button');
+        if (playButton && playButton.textContent.includes('Play Sample')) {
+            playButton.addEventListener('click', () => {
+                // Placeholder for audio functionality
+                alert('Audio sample would play here. Connect to your actual audio file.');
+            });
+        }
+
+        // Formspree will handle the newsletter form submission
+    </script>
+</body>
+</html>
