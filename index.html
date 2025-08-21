@@ -38,6 +38,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="css/cookie-notice.css">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -697,6 +700,14 @@
                     </ul>
                 </div>
                 <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Legal</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy Policy</a></li>
+                        <li><button onclick="openCookieSettings()" class="text-bone/60 hover:text-red-flag transition-colors text-left">Cookie Settings</button></li>
+                    </ul>
+                </div>
+                <div>
                     <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
                     <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
@@ -707,7 +718,7 @@
             </div>
             
             <div class="border-t border-bone/10 pt-6 sm:pt-8 text-center">
-                <p class="text-bone/60 text-xs sm:text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+                <p class="text-bone/60 text-xs sm:text-sm">&copy; 2025 Aleks Filmore. All rights reserved. No refunds, but plenty of regrets. <a href="terms.html" class="text-red-flag hover:text-glitch-lime">Terms</a> | <a href="privacy.html" class="text-red-flag hover:text-glitch-lime">Privacy</a></p>
             </div>
         </div>
     </footer>
@@ -772,6 +783,9 @@
             lastScroll = currentScroll;
         });
     </script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
 
     <style>
         .nav-hidden {

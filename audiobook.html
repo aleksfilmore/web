@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="css/cookie-notice.css">
+
     <!-- Custom Styles -->
     <style>
         :root {
@@ -29,6 +32,7 @@
             --font-body: 'Inter', sans-serif;
         }
 
+        /* Mobile-First Base Styles */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -39,6 +43,7 @@
             font-family: var(--font-body);
             color: var(--color-bone);
             line-height: 1.6;
+            font-size: 16px;
         }
 
         .font-display { font-family: var(--font-display); }
@@ -52,12 +57,13 @@
             background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 50%, var(--color-charcoal) 100%);
         }
 
+        /* Mobile-First Buttons */
         .btn-primary {
             background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
             color: var(--color-bone);
             font-family: var(--font-display);
             font-weight: 600;
-            padding: 1.25rem 2.5rem;
+            padding: 0.875rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
@@ -65,38 +71,46 @@
             justify-content: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid transparent;
-            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.3);
-            position: relative;
-            overflow: hidden;
-            font-size: 1.125rem;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 59, 59, 0.4);
-            background: linear-gradient(135deg, #e63946 0%, var(--color-red-flag) 100%);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--color-red-flag);
+            color: var(--color-bone);
             font-family: var(--font-display);
             font-weight: 600;
-            padding: 1rem 2rem;
+            padding: 0.875rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--color-red-flag);
+            border: 2px solid var(--color-bone);
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 100%;
         }
         
         .btn-secondary:hover {
-            background: var(--color-red-flag);
-            color: var(--color-bone);
+            background: var(--color-bone);
+            color: var(--color-charcoal);
             transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.3);
         }
 
         .nav-link {
@@ -130,13 +144,16 @@
             width: 100%;
         }
 
+        /* Mobile-First Audiobook Player */
         .audiobook-player {
             background: linear-gradient(135deg, var(--color-bone) 0%, #f8f8f8 100%);
             border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .audiobook-player::before {
@@ -150,24 +167,24 @@
         }
 
         .play-button {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.3);
+            box-shadow: 0 6px 16px rgba(255, 59, 59, 0.3);
             border: none;
         }
 
         .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(255, 59, 59, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4);
         }
 
         .floating-element {
@@ -267,6 +284,70 @@
             margin: 0 auto 1rem;
             box-shadow: 0 4px 15px rgba(255, 59, 59, 0.3);
         }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: auto;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .audiobook-player {
+                padding: 2.5rem;
+            }
+            
+            .play-button {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+        }
+        
+        /* Large tablet/Small desktop (1024px+) */
+        @media (min-width: 1024px) {
+            .btn-primary, .btn-secondary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+            
+            .audiobook-player {
+                max-width: none;
+            }
+            
+            .play-button {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Cart notification */
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            color: var(--color-charcoal);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(199, 255, 65, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .cart-notification.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -323,9 +404,9 @@
                             </div>
                             
                             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <a href="shop.html" class="btn-primary">
-                                    🎧 Get The Audiobook
-                                </a>
+                                <button class="btn-primary" onclick="addToCart('audiobook')">
+                                    🛒 Add to Cart - €7.99
+                                </button>
                                 <a href="#preview" class="btn-secondary">
                                     👂 Listen to Sample
                                 </a>
@@ -334,18 +415,18 @@
 
                         <!-- Audiobook Player Preview -->
                         <div class="flex justify-center lg:justify-end">
-                            <div class="relative">
+                            <div class="relative w-full max-w-md">
                                 <!-- Main Player Card -->
                                 <div class="audiobook-player">
                                     <div class="text-charcoal">
-                                        <h3 class="font-display font-bold text-2xl mb-2">
+                                        <h3 class="font-display font-bold text-lg sm:text-xl mb-2">
                                             Sample: Chapter 3 - The Gambler
                                         </h3>
-                                        <p class="text-sm text-charcoal/70 mb-6">
+                                        <p class="text-sm text-charcoal/70 mb-4">
                                             A 4D chess board of the mind, and clearly like needs.
                                         </p>
                                         
-                                        <div class="flex items-center gap-4 mb-4">
+                                        <div class="flex items-center gap-3 mb-4">
                                             <button class="play-button" id="audioPlayBtn">
                                                 ▶️
                                             </button>
@@ -356,7 +437,7 @@
                                         </div>
                                         
                                         <!-- Progress Bar -->
-                                        <div class="w-full bg-charcoal/10 rounded-full h-2 mb-4">
+                                        <div class="w-full bg-charcoal/10 rounded-full h-2 mb-3">
                                             <div class="bg-red-flag h-2 rounded-full" style="width: 0%" id="progressBar"></div>
                                         </div>
                                         
@@ -367,11 +448,11 @@
                                 </div>
                                 
                                 <!-- Floating badges -->
-                                <div class="absolute -top-4 -right-4 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-12 floating-element">
+                                <div class="absolute -top-2 -right-2 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-12 floating-element">
                                     ★★★★★ Rated
                                 </div>
                                 
-                                <div class="absolute -bottom-6 -left-6 bg-dusty-blush text-charcoal px-4 py-2 rounded-full font-bold text-sm transform -rotate-6 floating-element">
+                                <div class="absolute -bottom-4 -left-4 bg-dusty-blush text-charcoal px-3 py-2 rounded-full font-bold text-sm transform -rotate-6 floating-element">
                                     🎭 34 Chapters
                                 </div>
                             </div>
@@ -481,9 +562,9 @@
                     
                     <div class="price-badge mb-8">€7.99</div>
                     
-                    <a href="shop.html" class="btn-primary btn-large">
-                        🎧 Get The Audiobook Now
-                    </a>
+                    <button class="btn-primary btn-large" onclick="addToCart('audiobook')">
+                        🛒 Add to Cart - €7.99
+                    </button>
                     
                     <p class="text-bone/60 text-sm mt-6">
                         One-time payment. Lifetime access. No subscriptions. No regrets.
@@ -509,11 +590,11 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <h4 class="font-semibold mb-4">Legal</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
-                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
-                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
+                        <li><a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy Policy</a></li>
+                        <li><button onclick="openCookieSettings()" class="text-bone/60 hover:text-red-flag transition-colors text-left">Cookie Settings</button></li>
                     </ul>
                 </div>
                 <div>
@@ -530,7 +611,7 @@
             </div>
             
             <div class="border-t border-bone/10 mt-8 pt-8 text-center">
-                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. No refunds, but plenty of regrets. <a href="terms.html" class="text-red-flag hover:text-glitch-lime">Terms</a> | <a href="privacy.html" class="text-red-flag hover:text-glitch-lime">Privacy</a></p>
             </div>
         </div>
     </footer>
@@ -541,8 +622,70 @@
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
+
     <!-- JavaScript -->
     <script>
+        // Cart functionality
+        function addToCart(productType) {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = '⏳ Adding...';
+            button.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // In real implementation, this would call your Stripe/backend
+                if (productType === 'audiobook') {
+                    // Redirect to Stripe checkout for audiobook
+                    window.location.href = 'https://dynamic-blessing-production-8be8.up.railway.app/checkout?product=audiobook';
+                } else {
+                    // Handle other products
+                    console.log('Adding to cart:', productType);
+                }
+                
+                // Show success notification
+                showCartNotification('Added to cart! Redirecting to checkout...');
+                
+            }, 500);
+        }
+
+        function showCartNotification(message) {
+            // Remove any existing notifications
+            const existingNotification = document.querySelector('.cart-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'cart-notification';
+            notification.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span>✅</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
         // Audio player functionality
         const audio = document.getElementById('audioPreview');
         const playBtn = document.getElementById('audioPlayBtn');
@@ -576,7 +719,36 @@
             mobileMenuToggle.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
+            
+            // Close mobile menu when clicking on links
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
         }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
