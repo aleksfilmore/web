@@ -29,18 +29,18 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Custom Styles & Animations -->
+    <!-- Custom Styles -->
     <style>
         :root {
-            --color-red: #A31621;
-            --color-gold: #D6A24A;
-            --color-cream: #F7F3E3;
-            --color-dark: #121212;
-            --font-headline: 'Cinzel Decorative', cursive;
-            --font-title: 'Oswald', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
         html, body {
@@ -49,600 +49,775 @@
         }
 
         body {
-            background-color: var(--color-dark);
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h9V0h1v4h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3Cpath d="M6 5V0H5v5H0v1h5v94h1V6h94V5H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            background-color: var(--color-charcoal);
             font-family: var(--font-body);
-            color: var(--color-cream);
-        }
-
-        .font-headline { font-family: var(--font-headline); }
-        .font-title { font-family: var(--font-title); text-transform: uppercase; letter-spacing: 0.05em; }
-
-        .playbill-card {
-            background-color: var(--color-cream);
-            color: var(--color-dark);
-            border: 2px solid var(--color-gold);
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-        }
-        .playbill-card::before {
-            content: '';
-            position: absolute;
-            width: calc(100% - 12px);
-            height: calc(100% - 12px);
-            top: 6px;
-            left: 6px;
-            pointer-events: none;
-            border: 1px solid rgba(214, 162, 74, 0.5);
-        }
-        
-        .section-title {
-            font-family: var(--font-headline);
-            font-weight: 900;
-            color: var(--color-gold);
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-        .section-subtitle {
-            font-family: var(--font-title);
-            color: var(--color-cream);
-            opacity: 0.9;
-        }
-
-        .ticket-btn {
-            background-color: var(--color-red);
-            color: var(--color-cream);
-            font-family: var(--font-title);
-            font-weight: 700;
-            padding: 0.75rem 2.5rem;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border: 2px solid var(--color-red);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .ticket-btn:hover {
-            background-color: var(--color-cream);
-            color: var(--color-red);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        #hero {
-            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://github.com/aleksfilmore/web/raw/2c013d83f4091fc8c9615facb584e39147d7ffb6/vintage-wallpaper.webp');
-            border-bottom: 4px solid var(--color-gold);
-        }
-        
-        .book-details-card {
-            background-color: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--color-gold);
-            color: var(--color-cream);
-        }
-
-        .praise-quote {
-            font-family: var(--font-body);
-            font-style: italic;
-            font-size: 1.25rem;
+            color: var(--color-bone);
             line-height: 1.6;
         }
-        .praise-quote::before {
-            content: '“';
-            font-family: var(--font-headline);
-            font-size: 4rem;
-            color: var(--color-red);
-            opacity: 0.5;
-            position: absolute;
-            top: 0.5rem;
-            left: 1rem;
-        }
-        .carousel-nav {
-            color: var(--color-gold);
-            transition: color 0.2s, transform 0.2s;
-        }
-        .carousel-nav:hover { color: var(--color-cream); transform: scale(1.1); }
 
-        .interactive-section .game-title {
-            font-family: var(--font-headline);
-            font-weight: 700;
-            color: var(--color-red);
-            margin-bottom: 1.5rem;
-        }
-        .bingo-tile {
-            background-color: #fff;
-            color: var(--color-dark);
-            border: 2px solid var(--color-dark);
-            cursor: pointer;
-            transition: transform 0.6s, box-shadow 0.3s;
-            transform-style: preserve-3d;
-            border-radius: 4px;
-        }
-        .bingo-tile.flipped { transform: rotateY(180deg); }
-        .bingo-front, .bingo-back {
-            position: absolute;
-            width: 100%; height: 100%;
-            backface-visibility: hidden;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 0.25rem;
-            font-size: clamp(0.5rem, 2.2vw, 0.9rem);
-            line-height: 1.1;
-            font-weight: bold;
-            border-radius: 2px;
-        }
-        .bingo-back {
-            background-color: var(--color-red);
-            color: var(--color-cream);
-            transform: rotateY(180deg);
-        }
+        .font-display { font-family: var(--font-display); }
+        
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+        
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-bone { background-color: var(--color-bone); }
+        .bg-red-flag { background-color: var(--color-red-flag); }
 
-        .framed-photo, .reel-card {
-            background-color: #fff;
-            padding: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            border: 1px solid #ddd;
-        }
-        .framed-photo:hover, .reel-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            z-index: 10;
-        }
-        .photo-caption {
-            margin-top: 1rem;
-            text-align: center;
-            font-family: var(--font-body);
-            font-weight: bold;
-            color: #333;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
         }
         
-        #author .playbill-card {
-            background-color: #2a2a2a;
-            color: var(--color-cream);
-        }
-        .social-prize img {
-             transition: transform 0.3s ease;
-        }
-        .social-prize:hover img {
-            transform: scale(1.15) rotate(-8deg);
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
         }
 
-        footer {
-            background-color: #000;
-            border-top: 4px solid var(--color-gold);
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-bone);
         }
         
-        .modal-backdrop {
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+        .btn-secondary:hover {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
         }
-        .form-input {
-            background-color: #e0e0e0;
-            border: 2px solid var(--color-dark);
-            color: var(--color-dark);
-            padding: 0.75rem;
+
+        .price-tag {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 0.875rem;
+        }
+
+        .red-flag-tag {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            transform: rotate(-2deg);
+            display: inline-block;
             border-radius: 2px;
-            width: 100%;
-            transition: border-color 0.2s;
         }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-red);
+
+        .receipt-card {
+            background-color: var(--color-bone);
+            color: var(--color-charcoal);
+            padding: 1.5rem;
+            position: relative;
+            border-top: 2px dashed #ccc;
+            border-bottom: 2px dashed #ccc;
+            margin: 1rem 0;
+        }
+
+        /* Creative Shop Cards */
+        .shop-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.05) 0%, rgba(247, 243, 237, 0.1) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .shop-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 59, 59, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .shop-card:hover::before {
+            opacity: 1;
+            top: -100%;
+            left: -100%;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--color-red-flag);
+            box-shadow: 0 20px 40px rgba(255, 59, 59, 0.2);
+        }
+
+        .shop-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -10px;
+            right: 1rem;
+            background: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 0 0 1rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: rotate(3deg);
+        }
+
+        .feature-tag {
+            background: var(--color-glitch-lime);
+            color: var(--color-charcoal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.2rem;
+            transform: rotate(-1deg);
+        }
+
+        /* Enhanced Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(2deg); }
+            50% { transform: translateY(-10px) rotate(-2deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 59, 59, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 59, 59, 0.6); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .wiggle {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .bounce-gentle {
+            animation: bounce-gentle 2s ease-in-out infinite;
+        }
+
+        /* Number Counter Animation */
+        .counter-number {
+            background: linear-gradient(135deg, var(--color-red-flag), var(--color-dusty-blush));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .underline-red {
+            text-decoration: underline;
+            text-decoration-color: var(--color-red-flag);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .hover-underline-slide {
+            position: relative;
+            text-decoration: none;
         }
         
-        /* Floating CTA Button */
-        .floating-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.3s ease;
-            border-radius: 50px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
         }
-        .floating-cta.show {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
         }
-        .floating-cta:hover {
-            transform: translateY(-5px);
+
+        .edition-card {
+            background-color: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .edition-card:hover {
+            background-color: rgba(247, 243, 237, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--color-red-flag);
+        }
+
+        .social-proof-strip {
+            background: linear-gradient(90deg, var(--color-charcoal) 0%, rgba(14, 15, 16, 0.8) 50%, var(--color-charcoal) 100%);
+            border-top: 1px solid rgba(247, 243, 237, 0.1);
+            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .quote-chip {
+            background-color: rgba(247, 243, 237, 0.1);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+        }
+
+        @keyframes flag-twitch {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .red-flag-tag:hover {
+            animation: flag-twitch 0.3s ease-in-out;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            min-width: 100%;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-xl">
+                    <a href="/" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-charcoal z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="books.html" class="text-2xl nav-link">Books</a>
+            <a href="audiobook.html" class="text-2xl nav-link">Audiobook</a>
+            <a href="shop.html" class="text-2xl nav-link">Shop</a>
+            <a href="reviews.html" class="text-2xl nav-link">Reviews</a>
+            <a href="about.html" class="text-2xl nav-link">About</a>
+            <a href="dacia-rising.html" class="text-xl nav-link opacity-75">Dacia Rising</a>
+            <button id="mobile-menu-close" class="mt-8 text-bone">Close</button>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main>
-        <!-- Section 1: The New Hero - "The Commiseration Corner" -->
-        <section id="hero" class="min-h-screen flex items-center justify-center text-center p-6">
-            <div class="relative z-10 max-w-4xl">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-black text-cream-custom" style="text-shadow: 3px 3px 0px var(--color-red);">
-                    He Ghosted. You Healed. Now We Laugh.
-                </h1>
-                <h2 class="text-2xl md:text-3xl font-title mt-4 text-gold-custom tracking-widest">Welcome to the support group for anyone who's ever dated a red flag and called it a rainbow.</h2>
-                <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-cream-custom/90 leading-relaxed">
-                    <i>The Worst Boyfriends Ever</i> is my (and maybe your) wildly funny, painfully accurate tour through 25+ romantic disasters. From gaslighters to gym bros, I've dated them all so you can feel better about your own choices. If you've ever asked, "Was it me?"... this book is here to scream, "No, it absolutely was not."
-                </p>
-                <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy Now on Amazon</a>
-                    <a href="#bonus-chapter" class="ticket-btn !bg-transparent !border-cream-custom !text-cream-custom hover:!bg-cream-custom hover:!text-dark">Get Free Chapter</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: The "Book" Section - A Field Guide to Red Flags -->
-        <section id="book" class="py-20 md:py-32">
+        <!-- Hero Section -->
+        <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                    <div class="w-full lg:w-2/5 flex justify-center">
-                        <img src="https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x900/A31621/F7F3E3?text=Book+Cover';" alt="Cover of The Worst Boyfriends Ever, a queer dating memoir by Aleks Filmore" class="w-full max-w-sm h-auto object-cover shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="w-full lg:w-3/5">
-                        <div class="book-details-card p-8 md:p-12">
-                            <h3 class="text-4xl md:text-5xl font-title text-gold-custom mb-4">Meet the Villains of My Dating History</h3>
-                            <div class="text-lg space-y-4 text-cream-custom/90">
-                                <p>I've turned my trauma into your entertainment. Each chapter is a self-contained story of gay dating gone spectacularly wrong. You'll meet:</p>
-                                <ul class="list-none space-y-2 pl-2">
-                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Gambler:</b> Who risked it all—except vulnerability.</li>
-                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Conspiracist:</b> Who thought chemtrails could explain your feelings.</li>
-                                    <li><span class="text-red-500 mr-2">🚩</span><b>The Narcissist:</b> Who needed a mirror more than a boyfriend.</li>
-                                </ul>
-                                <p class="pt-2">This isn't just a book; it's a field guide to the walking red flags of the queer dating world. It’s the validation you crave and the laughter you need.</p>
-                            </div>
-                            <div class="mt-8 flex flex-wrap gap-4">
-                                <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">I'm Ready for the Train Wreck</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 3: The Audiobook - "Hear the Wreckage" -->
-        <section id="audiobook" class="py-20 md:py-32 bg-dark/50">
-            <div class="container mx-auto px-6">
-                <div class="playbill-card max-w-5xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                        <img src="/THE WORST BOYFRIENDS EVER AUDIOBOOK.png" onerror="this.onerror=null;this.src='https://aleksfilmore.com/The%20Worst%20Boyfriends%20Ever%20KINDLE.jpg';" alt="Audiobook Cover for The Worst Boyfriends Ever" class="rounded-lg shadow-2xl w-full md:w-1/3 h-auto object-cover">
-                        <div class="w-full md:w-2/3">
-                            <h2 class="text-3xl md:text-4xl font-title text-dark uppercase">You've survived the text.</h2>
-                            <h3 class="text-4xl md:text-5xl font-headline text-red-custom mb-4">Now hear the wreckage.</h3>
-                             <p class="text-lg text-dark/80 mb-4">Narrated by Deacon Deane, the audiobook brings every cringe-worthy moment, every disastrous date, and every hard-won laugh to life. It's the perfect companion for your commute, your workout, or whenever you need a reminder that it could always be worse.</p>
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        
+                        <!-- Text Content -->
+                        <div class="text-center lg:text-left">
+                            <h1 class="font-display font-bold text-5xl md:text-7xl mb-6">
+                                Every bad date left a receipt. <span class="text-red-flag">I kept them.</span>
+                            </h1>
+                            <p class="text-xl md:text-2xl mb-8 text-bone/80">
+                                A queer dating memoir that turns wreckage into punchlines—and boundaries you can actually use.
+                            </p>
                             
-                            <!-- Social Proof -->
-                            <div class="bg-dark/10 border border-dark/20 p-3 mb-4 rounded">
-                                <p class="text-sm text-dark/70 font-bold">🎧 "Perfect for my daily walks - had me laughing out loud!" - Sarah M.</p>
-                            </div>
-                            
-                            <audio controls class="w-full my-4"><source src="https://github.com/aleksfilmore/web/raw/main/The%20Worst%20Boyfriends%20Ever%20Audio%20Sample.mp3" type="audio/mpeg"></audio>
-                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
-                                <a href="https://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/spotify-64.png?raw=true" alt="Spotify" class="w-6 h-6 inline-block mr-2">Spotify</a>
-                                <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Kobo</a>
-                                <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" target="_blank" rel="noopener noreferrer" class="ticket-btn !bg-gray-800 !border-gray-800 hover:!bg-black">Barnes & Noble</a>
+                            <!-- Creative Shop Cards -->
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                                <!-- Audiobook Card -->
+                                <div class="shop-card group">
+                                    <div class="price-badge">€7.99</div>
+                                    <div class="shop-card-icon">🎧</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Audiobook</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Narrated disasters + bonus epilogue</p>
+                                    <div class="feature-tag">Instant Access</div>
+                                    <div class="feature-tag">Bonus Chapter</div>
+                                    <a href="audiobook.html" class="btn-primary w-full mt-4 block text-center group-hover:pulse-glow">Listen Now</a>
+                                </div>
+
+                                <!-- Signed Book Card -->
+                                <div class="shop-card group">
+                                    <div class="price-badge">€17.99</div>
+                                    <div class="shop-card-icon">✍️</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Signed Copy</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Personally signed + handwritten note</p>
+                                    <div class="feature-tag">From Brussels</div>
+                                    <div class="feature-tag">Personal Note</div>
+                                    <a href="shop.html" class="btn-primary w-full mt-4 block text-center group-hover:pulse-glow">Get Signed</a>
+                                </div>
+
+                                <!-- Amazon Card -->
+                                <div class="shop-card group sm:col-span-2 lg:col-span-1">
+                                    <div class="shop-card-icon">📦</div>
+                                    <h3 class="font-display font-bold text-lg mb-2">Amazon</h3>
+                                    <p class="text-bone/70 text-sm mb-4">Standard paperback, fast shipping</p>
+                                    <div class="feature-tag">Prime Eligible</div>
+                                    <a href="https://a.co/d/72FYeam" target="_blank" class="btn-secondary w-full mt-4 block text-center">Buy on Amazon</a>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Book Visuals -->
+                        <div class="flex justify-center lg:justify-end">
+                            <div class="relative">
+                                <!-- Main book cover with floating animation -->
+                                <img src="THE WORST BOYFRIENDS EVER AUDIOBOOK.png" alt="The Worst Boyfriends Ever" class="w-80 h-auto rounded-lg shadow-2xl transform rotate-2 floating-element">
+                                
+                                <!-- Kindle cover overlay -->
+                                <img src="The Worst Boyfriends Ever KINDLE.jpg" alt="Kindle Cover" class="absolute -top-8 -left-8 w-64 h-auto rounded-lg shadow-xl transform -rotate-3 opacity-90">
+                                
+                                <!-- Creative floating elements -->
+                                <div class="absolute -bottom-4 -right-4 bg-red-flag text-bone px-4 py-2 rounded-full font-bold text-sm transform rotate-12 floating-element">
+                                    🚩 27 Red Flags
+                                </div>
+                                
+                                <!-- Additional floating badges -->
+                                <div class="absolute -top-6 -right-6 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform -rotate-12 floating-element">
+                                    ★★★★★ Rated
+                                </div>
+                                
+                                <div class="absolute -left-6 top-1/2 bg-dusty-blush text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-6 floating-element">
+                                    🎧 Narrated
+                                </div>
+                                
+                                <!-- Background glow effect -->
+                                <div class="absolute inset-0 bg-red-flag/20 blur-3xl -z-10 rounded-full transform scale-150"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: The Midway of Mayhem - Your Interactive Hook -->
-        <section class="py-20 text-center">
-            <h2 class="section-title text-5xl md:text-6xl">How Bad Was *Your* Last Date?</h2>
-            <h3 class="section-subtitle text-xl md:text-2xl mt-2">Don't worry, you're in a safe space. Let's play.</h3>
+        <!-- Marquee Reviews Section -->
+        <section class="bg-red-flag text-bone py-4 overflow-hidden">
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-content">
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Read this before you download another dating app!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="marquee-content">
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Read this before you download another dating app!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg">★★★★★</span>
+                        <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="bingo" class="pb-20 md:pb-32 interactive-section">
+        <!-- Edition Picker -->
+        <section class="py-16">
             <div class="container mx-auto px-6">
-                <div class="playbill-card max-w-3xl mx-auto text-center">
-                    <h3 class="game-title text-4xl">Bad Date Bingo</h3>
-                    <div id="bingo-board" class="grid grid-cols-5 gap-2 md:gap-4"></div>
-                    <button id="reset-bingo" class="mt-8 ticket-btn">Reset Board</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="gallery" class="pb-20 md:pb-32 interactive-section">
-            <div class="container mx-auto px-6 text-center">
-                <div class="playbill-card max-w-7xl mx-auto">
-                    <h3 class="game-title text-4xl">A Vaudeville of Villains</h3>
-                    <div class="relative">
-                        <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"></div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Audiobook -->
+                    <div class="edition-card">
+                        <div class="red-flag-tag mb-4">Direct Only</div>
+                        <h3 class="font-display font-bold text-2xl mb-4">Audiobook</h3>
+                        <p class="text-bone/80 mb-6">Hear the red flags in HD—and finally stop saluting them. Unabridged memoir, direct-only bonus epilogue, instant access.</p>
+                        <div class="text-3xl mb-4">🎧</div>
+                        <div class="price-tag mb-4">€7.99</div>
+                        <a href="audiobook.html" class="btn-primary">Listen Now</a>
+                    </div>
+
+                    <!-- Signed Paperback -->
+                    <div class="edition-card">
+                        <h3 class="font-display font-bold text-2xl mb-4">Signed Paperback</h3>
+                        <p class="text-bone/80 mb-6">Personally signed paperback with personalized handwritten message. Ships from Brussels worldwide.</p>
+                        <div class="text-3xl mb-4">✍️</div>
+                        <div class="price-tag mb-4">€17.99 + shipping</div>
+                        <a href="shop.html" class="btn-secondary">Get Signed</a>
+                    </div>
+
+                    <!-- Amazon -->
+                    <div class="edition-card">
+                        <h3 class="font-display font-bold text-2xl mb-4">Amazon Paperback</h3>
+                        <p class="text-bone/80 mb-6">Standard paperback via Amazon. Fast shipping, no signature, supports platforms.</p>
+                        <div class="text-3xl mb-4">�</div>
+                        <div class="price-tag mb-4">Amazon Price</div>
+                        <a href="https://a.co/d/72FYeam" target="_blank" class="btn-secondary">Buy on Amazon</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Praise Carousel -->
-        <section id="praise" class="py-20 md:py-32 bg-dark/50">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title text-4xl md:text-5xl mb-4">From the Grandstands</h2>
-                <h3 class="section-subtitle text-xl md:text-2xl mb-16">What Readers Are Saying</h3>
-                <div class="relative max-w-3xl mx-auto">
-                    <div id="praiseCarousel" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Carousel Items -->
-                        <div class="carousel-item min-w-full px-4"><div class="playbill-card relative p-8 md:p-12"><p class="praise-quote">“A hilariously raw and painfully honest LGBTQ+ memoir that turns romantic disasters into healing gold.”</p></div></div>
-                        <div class="carousel-item min-w-full px-4"><div class="playbill-card relative p-8 md:p-12"><p class="praise-quote">“Fun, engaging, and totally unputdownable.”</p></div></div>
-                        <div class="carousel-item min-w-full px-4"><div class="playbill-card relative p-8 md:p-12"><p class="praise-quote">“Like swapping tales with a brutally honest friend—wild, messy, and uplifting.”</p></div></div>
-                        <div class="carousel-item min-w-full px-4"><div class="playbill-card relative p-8 md:p-12"><p class="praise-quote">“Easy, funny, super relatable, and witty.”</p></div></div>
-                        <div class="carousel-item min-w-full px-4"><div class="playbill-card relative p-8 md:p-12"><p class="praise-quote">“Equal parts cringe and catharsis—I devoured it.”</p></div></div>
+        <!-- What's Inside -->
+        <section class="py-16 bg-gradient-to-r from-bone/5 to-glitch-lime/5">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-display font-bold text-4xl mb-4">What's Inside</h2>
+                    <p class="text-bone/70 mb-12">The damage report you've been waiting for</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-red-flag/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 counter-number bounce-gentle group-hover:wiggle">25</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">stories of romantic chaos</h3>
+                            <p class="text-bone/60 text-sm">Each more unhinged than the last</p>
+                        </div>
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-glitch-lime/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 text-glitch-lime bounce-gentle group-hover:wiggle" style="animation-delay: 0.2s;">0</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">tidy morals. Only useful ones.</h3>
+                            <p class="text-bone/60 text-sm">Life's messy. So is this book.</p>
+                        </div>
+                        <div class="p-6 bg-charcoal/20 rounded-2xl border border-bone/10 hover:border-dusty-blush/50 transition-all duration-300 group">
+                            <div class="text-6xl mb-4 text-dusty-blush bounce-gentle group-hover:wiggle" style="animation-delay: 0.4s;">1</div>
+                            <h3 class="font-display font-semibold text-xl mb-2">spine saved: hopefully yours</h3>
+                            <p class="text-bone/60 text-sm">The receipts are here to help</p>
+                        </div>
                     </div>
-                    <!-- Navigation -->
-                    <button id="prevPraise" class="carousel-nav absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12"><svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
-                    <button id="nextPraise" class="carousel-nav absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12"><svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
                 </div>
             </div>
         </section>
 
-        <!-- Bonus Chapter Section -->
-        <section id="bonus-chapter" class="py-20 md:py-32">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="section-title text-4xl md:text-5xl mb-4">🎁 Get the Chapter Too Chaotic for Print</h2>
-                <h3 class="section-subtitle text-xl md:text-2xl mb-8">Plus insider access to new releases, book news, and exclusive content</h3>
-                
-                <!-- Enhanced Value Proposition -->
-                <div class="max-w-3xl mx-auto mb-12">
-                    <div class="grid md:grid-cols-3 gap-6 text-cream-custom/80">
-                        <div class="space-y-2">
-                            <div class="text-3xl">📖</div>
-                            <h4 class="font-bold text-gold-custom">Exclusive Chapter</h4>
-                            <p class="text-sm">The deleted scene that was "too much" for the final book</p>
+        <!-- Audiobook Tease -->
+        <section class="py-16 bg-gradient-to-b from-charcoal to-charcoal/95">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    
+                    <!-- Creative Audiobook Showcase -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        
+                        <!-- Audiobook Player Preview -->
+                        <div class="relative">
+                            <!-- Spotify-style Player Mockup -->
+                            <div class="bg-gradient-to-br from-bone to-bone/90 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                                
+                                <!-- Decorative Elements -->
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-red-flag/10 rounded-full transform translate-x-16 -translate-y-16"></div>
+                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-glitch-lime/10 rounded-full transform -translate-x-12 translate-y-12"></div>
+                                
+                                <div class="relative z-10">
+                                    <h3 class="font-display font-bold text-2xl mb-2 text-charcoal">
+                                        🎧 Hear the disasters. Heal anyway.
+                                    </h3>
+                                    <p class="text-charcoal/70 mb-6">
+                                        Narrated like a wink and a bruise. Perfect for walks, commutes, not-texting-your-ex.
+                                    </p>
+                                    
+                                    <!-- Fake Player Interface -->
+                                    <div class="bg-charcoal/5 p-6 rounded-xl mb-6 border-2 border-charcoal/10">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-12 h-12 bg-red-flag rounded-lg flex items-center justify-center">
+                                                    <span class="text-bone font-bold">🚩</span>
+                                                </div>
+                                                <div>
+                                                    <div class="font-semibold text-charcoal">Chapter 1: The Red Flag Parade</div>
+                                                    <div class="text-sm text-charcoal/60">Aleks Filmore</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-sm text-charcoal/60">2:34 / 8:15</div>
+                                        </div>
+                                        
+                                        <!-- Progress Bar -->
+                                        <div class="bg-charcoal/10 h-2 rounded-full mb-4">
+                                            <div class="bg-red-flag h-full w-1/3 rounded-full relative">
+                                                <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-red-flag rounded-full shadow-lg"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Player Controls -->
+                                        <div class="flex items-center justify-center space-x-4">
+                                            <button class="w-8 h-8 flex items-center justify-center text-charcoal/60 hover:text-charcoal">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M7 6v12l10-6z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="w-12 h-12 bg-red-flag text-bone rounded-full flex items-center justify-center hover:bg-red-flag/80 pulse-glow">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="w-8 h-8 flex items-center justify-center text-charcoal/60 hover:text-charcoal">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M17 6v12l-10-6z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a href="audiobook.html" class="btn-primary inline-flex items-center space-x-2">
+                                            <span>🎧</span>
+                                            <span>Get the Full Audiobook + Bonus</span>
+                                            <span class="text-xs bg-bone/20 px-2 py-1 rounded">$7.99</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="text-3xl">💌</div>
-                            <h4 class="font-bold text-gold-custom">VIP Updates</h4>
-                            <p class="text-sm">First to know about new releases and behind-the-scenes stories</p>
+
+                        <!-- Feature Highlights -->
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="font-display font-bold text-4xl mb-8">
+                                    Why listeners are <span class="text-red-flag underline">obsessed</span>
+                                </h2>
+                            </div>
+
+                            <!-- Feature Cards -->
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">🎭</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Perfectly Chaotic Narration</h4>
+                                        <p class="text-bone/70">Like getting tea from your funniest friend who survived dating hell</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">✨</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Exclusive Bonus Chapter</h4>
+                                        <p class="text-bone/70">The story too wild for the book - audiobook listeners only</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 bg-bone/5 rounded-xl border border-bone/10">
+                                    <div class="text-2xl">⚡</div>
+                                    <div>
+                                        <h4 class="font-display font-semibold text-lg mb-1">Instant Access</h4>
+                                        <p class="text-bone/70">Stream immediately after purchase. No waiting, just healing through laughter</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="text-3xl">🎯</div>
-                            <h4 class="font-bold text-gold-custom">No Spam Promise</h4>
-                            <p class="text-sm">Just 2-3 emails per month. Unsubscribe anytime</p>
-                        </div>
+
                     </div>
                 </div>
-                
-                <div class="playbill-card max-w-2xl mx-auto">
-                    <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4">
-                        <div>
-                            <label for="bonus-email" class="sr-only">Email Address</label>
-                            <input type="email" name="email" id="bonus-email" placeholder="your.email@example.com" class="form-input text-center" required>
-                        </div>
-                        <button type="submit" class="ticket-btn w-full text-lg py-4">🚀 Send Me the Deleted Chapter (Free)</button>
-                        <p class="text-xs text-dark/60 mt-2">We respect your privacy. See our <a href="/privacy.html" class="underline">privacy policy</a>.</p>
+            </div>
+        </section>
+
+        <!-- Lead Magnet -->
+        <section class="py-16 bg-red-flag/10">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="font-display font-bold text-3xl mb-4">Free Secret Chapter: The Disaster We Don't Talk About</h2>
+                    <p class="text-bone/80 mb-8">Drop your email. Get the chapter. Keep your dignity.</p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" action="https://formspree.io/f/myzjjjjp" method="POST">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="your.email@example.com" 
+                            class="flex-1 px-4 py-3 rounded-lg bg-bone text-charcoal border-0 focus:outline-none focus:ring-2 focus:ring-red-flag"
+                            required
+                        >
+                        <input type="hidden" name="_subject" value="New Secret Chapter Request">
+                        <input type="hidden" name="_next" value="https://aleksfilmore.com/thank-you">
+                        <button type="submit" class="btn-primary whitespace-nowrap">Send the Chapter</button>
                     </form>
+                    
+                    <p class="text-xs text-bone/60 mt-4">No spam. Just the good stuff. Unsubscribe anytime.</p>
                 </div>
             </div>
         </section>
-
-        <!-- Section 5: The Author - Your Fearless Guide -->
-        <section id="author" class="py-20 md:py-32 bg-dark/50">
-            <div class="container mx-auto px-6">
-                <div class="playbill-card max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                    <img src="https://aleksfilmore.com/AF.png" alt="A photo of the author, Aleks Filmore" class="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-gold-custom flex-shrink-0">
-                    <div>
-                        <h2 class="text-4xl font-headline text-red-custom mb-2">Your Fearless, Slightly Traumatized Guide</h2>
-                        <p class="text-lg mb-6 text-cream-custom/90">I'm Aleks Filmore, and I'm a connoisseur of romantic disasters. I write books for the beautifully broken, the hilariously heart-bruised, and anyone who's ever ugly-cried over a ghosting. Think of me as your friend who went through it all first and is now back with notes (and a lot of jokes). My work is a blend of humor, honesty, and a touch of what I like to call 'poetic rage.' Let's heal together, one bad ex at a time.</p>
-                        <div class="flex justify-center md:justify-start gap-6">
-                            <a href="https://www.instagram.com/aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/instagram-64.png?raw=true" alt="Instagram" class="w-12 h-12"></a>
-                            <a href="https://www.tiktok.com/@aleksfilmore" target="_blank" rel="noopener noreferrer" class="social-prize"><img src="https://github.com/aleksfilmore/web/blob/e8463d721b434801237428866d7dceca9f9816b6/tiktok-64.png?raw=true" alt="TikTok" class="w-12 h-12"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer -->
-    <footer class="text-cream-custom/70 py-8 text-center">
+    <footer class="bg-charcoal border-t border-bone/10 py-12">
         <div class="container mx-auto px-6">
-            <div class="flex justify-center items-center gap-4 md:gap-8 mb-4">
-                <a href="/privacy.html" class="hover:text-gold-custom transition-colors">Privacy Policy</a>
-                <a href="/cookies.html" class="hover:text-gold-custom transition-colors">Cookie Policy</a>
-                <button id="open-contact-modal" class="hover:text-gold-custom transition-colors">Contact</button>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display font-bold text-xl mb-4">Aleks Filmore</h3>
+                    <p class="text-bone/60 text-sm">I write like your blunt friend after two espressos and a boundary. No tidy morals. Just the ones that help you stop saluting red flags.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Books</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="books.html" class="text-bone/60 hover:text-red-flag transition-colors">The Worst Boyfriends Ever</a></li>
+                        <li><a href="dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-colors">Dacia Rising</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Paperbacks</a></li>
+                        <li><a href="https://a.co/d/72FYeam" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">Amazon Paperback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="newsletter.html" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
+                        <li><a href="contact.html" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
+                        <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">Press Kit</a></li>
+                        <li><a href="midway.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs">Hall of Red Flags 🚩</a></li>
+                    </ul>
+                </div>
             </div>
-            <p class="mt-4 text-sm">&copy; 2025 Aleks Filmore. All Rights Reserved.</p>
+            
+            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
+                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            </div>
         </div>
     </footer>
-    
-    <!-- Contact Modal -->
-    <div id="contact-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
-        <div class="playbill-card max-w-lg w-full text-center p-8 relative">
-            <button id="close-contact-modal" class="absolute top-2 right-4 text-3xl font-bold text-dark/70 hover:text-red-custom transition-colors">&times;</button>
-            <h2 class="game-title text-4xl">Contact Me</h2>
-            <form action="https://formspree.io/f/myzjjjjp" method="POST" class="space-y-4 text-left">
-                <div>
-                    <label for="name" class="block mb-1 font-bold font-title">Name</label>
-                    <input type="text" name="name" id="name" class="form-input" required>
-                </div>
-                <div>
-                    <label for="email" class="block mb-1 font-bold font-title">Email</label>
-                    <input type="email" name="email" id="email" class="form-input" required>
-                </div>
-                <div>
-                    <label for="message" class="block mb-1 font-bold font-title">Message</label>
-                    <textarea name="message" id="message" rows="4" class="form-input" required></textarea>
-                </div>
-                <div class="text-center pt-4">
-                    <button type="submit" class="ticket-btn">Send Message</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- Bingo Win Modal -->
-    <div id="bingo-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
-        <div class="playbill-card max-w-md w-full text-center p-8 relative">
-            <button id="close-bingo-modal" class="absolute top-2 right-4 text-3xl font-bold text-dark/70 hover:text-red-custom transition-colors">&times;</button>
-            <h2 class="game-title text-6xl animate-pulse">BINGO!</h2>
-            <p class="text-xl my-4">You've got a keen eye for chaos!</p>
-            <p class="mb-6">Ready to dive deeper into the beautiful disaster? Grab your copy.</p>
-            <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn">Buy The Book</a>
-        </div>
-    </div>
-
-    <!-- Cookie Notice -->
-    <div id="cookie-notice" class="fixed bottom-0 left-0 right-0 bg-dark border-t-2 border-gold-custom p-4 flex flex-col sm:flex-row items-center justify-center gap-4 z-40 hidden">
-        <p class="text-cream-custom text-sm text-center sm:text-left">This website uses cookies to ensure you get the best experience. By continuing, you agree to our <a href="/cookies.html" class="underline hover:text-gold-custom">Cookie Policy</a>.</p>
-        <button id="accept-cookies" class="ticket-btn !py-1 !px-4 text-sm flex-shrink-0">Accept</button>
-    </div>
-    
-    <!-- Floating CTA Button -->
-    <div id="floating-cta" class="floating-cta hidden md:block">
-        <a href="https://a.co/d/3gteCs1" target="_blank" rel="noopener noreferrer" class="ticket-btn !rounded-full !px-6 !py-3 shadow-lg">📖 Buy Now</a>
-    </div>
-    
+    <!-- JavaScript -->
     <script>
-    // This script handles all the interactive elements on the page.
-    // It's responsible for the praise carousel, the mugshot gallery, the bingo game,
-    // the contact modal, and the cookie notice.
-    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
 
-        // Data for the interactive elements
-        const BINGO_TILES_DATA = [ "Dog needed 'emotional support'", "Mansplained my job to me", "Lied about ex being dead", "Showed up 30 mins late", "Talked about their crypto", "Gave a date itinerary", "Claimed to be 'an empath'", "Pawned family heirloom", "Bragged about exes", "Brought weird kink items", "Shirtless karaoke", "Bathtub full of newspapers", "Free Space!", "Split the bill... to the cent", "Overshared about their mom", "Had a questionable tattoo", "Lied about owning a Dalí", "Turned a date into a race", "Name-dropped constantly", "Vaped indoors", "2 a.m. 'u up?' text", "Kept six toasters", "Sobbed over dessert", "Ghosted mid-text", "Gave a 'backhanded' compliment" ];
-        const MUGSHOT_DATA = [ { name: "The Gambler", charge: "Maxed my card on 'a sure-thing tournament.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/THE%20GAMBLER.png" }, { name: "The Ghoster", charge: "Evaporated for ten days, re-materialised with 'u up?'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Ghoster.png" }, { name: "The Party Animal", charge: "Hijacked the karaoke mic—shirtless Viking helmet.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Party%20Animal.png" }, { name: "The Pet-Obsessed", charge: "Cancelled plans because the dog 'needed support.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Pet-Obsessed.png" }, { name: "The Crier", charge: "Burst into tears when I declined tiramisu.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Crier.png" }, { name: "The Liar", charge: "Swore his family owned a secret Dalí.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Liar.png" }, { name: "The Kinkster", charge: "Produced 37 clothespins and a rubber chicken.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Kinkster.png" }, { name: "The Human Sloth", charge: "Considered charging his phone 'too much effort.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Human%20Sloth.png" }, { name: "The Fitness Fanatic", charge: "Did burpees over the picnic blanket.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Fitness%20Fanatic.png" }, { name: "The Perfectionist", charge: "Handed me a spreadsheet of my flaws.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Perfectionist.png" }, { name: "The Hoarder", charge: "Stored newspapers in the bathtub.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Hoarder.png" }, { name: "The Narcissist", charge: "Stole my moisturizer for his 'dewy glow.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Narcissist.png" }, { name: "The Late One", charge: "Turned up 58 minutes late, blamed 'traffic.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Late%20One.png" }, { name: "The Competitive", charge: "Trash-talked children at mini golf.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Competitive.png" }, { name: "The Conspiracist", charge: "Explained chem-trails between courses.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Conspiracist.png" }, { name: "The Wizard", charge: "Tried to banish a spider with Latin chants.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Wizard.png" }, { name: "The Planner", charge: "Scheduled 'spontaneous fun' in Google Calendar.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Planner.png" }, { name: "The Polyamorist", charge: "Color-coded lovers in iCal; I was 'Tuesday, 4 p.m.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Polyamorist.png" }, { name: "The Apologizer", charge: "Prefaced every sentence with 'I’m sorry.'", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20Apologizer.png" }, { name: "The One Who Got Away", charge: "Perfect, kind, emotionally available—terrified me so much I ghosted myself.", img: "https://raw.githubusercontent.com/aleksfilmore/web/main/mugs/The%20One%20Who%20Got%20Away.png" } ];
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
 
-        // --- Carousels ---
-        function setupCarousel(carouselId, prevBtnId, nextBtnId, autoSlide = true, intervalTime = 5000) {
-            const carousel = document.getElementById(carouselId);
-            const prevBtn = document.getElementById(prevBtnId);
-            const nextBtn = document.getElementById(nextBtnId);
-            if (!carousel || !prevBtn || !nextBtn) return;
-            const items = carousel.querySelectorAll('.carousel-item');
-            if (items.length <= 1) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-                return;
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
             }
-            let currentIndex = 0;
-            const totalItems = items.length;
-            let slideInterval;
-            function updateCarousel() { carousel.style.transform = `translateX(-${currentIndex * 100}%)`; }
-            function startInterval() { if (autoSlide) { slideInterval = setInterval(() => { currentIndex = (currentIndex + 1) % totalItems; updateCarousel(); }, intervalTime); } }
-            function resetInterval() { clearInterval(slideInterval); startInterval(); }
-            prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalItems) % totalItems; updateCarousel(); resetInterval(); });
-            nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalItems; updateCarousel(); resetInterval(); });
-            startInterval();
-        }
-        setupCarousel('praiseCarousel', 'prevPraise', 'nextPraise');
-        
-        // --- Mugshot Gallery ---
-        function populateGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            if (!galleryGrid) return;
-            MUGSHOT_DATA.forEach(mugshot => {
-                const gridItem = document.createElement('div');
-                gridItem.innerHTML = `<div class="framed-photo"><img src="${mugshot.img}" alt="Mugshot of ${mugshot.name}" class="w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1D3557/F1FAEE?text=Image+Missing';"><p class="photo-caption"><strong>${mugshot.name}:</strong> ${mugshot.charge}</p></div>`;
-                galleryGrid.appendChild(gridItem);
+        });
+
+        // Audio sample placeholder functionality
+        const playButton = document.querySelector('button');
+        if (playButton && playButton.textContent.includes('Play Sample')) {
+            playButton.addEventListener('click', () => {
+                // Placeholder for audio functionality
+                alert('Audio sample would play here. Connect to your actual audio file.');
             });
         }
-        populateGallery();
 
-        // --- Bad Date Bingo ---
-        const bingoBoard = document.getElementById('bingo-board');
-        const resetBingoBtn = document.getElementById('reset-bingo');
-        const bingoModal = document.getElementById('bingo-modal');
-        const closeBingoModalBtn = document.getElementById('close-bingo-modal');
-
-        if (bingoBoard && resetBingoBtn && bingoModal && closeBingoModalBtn) {
-            let boardState = [];
-
-            function checkBingoWin() {
-                const lines = [
-                    [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
-                    [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
-                    [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
-                ];
-                for (const line of lines) {
-                    if (line.every(index => boardState[index])) {
-                        bingoModal.classList.remove('hidden');
-                        bingoModal.classList.add('flex');
-                        return;
-                    }
-                }
-            }
-
-            function initializeBingo() {
-                bingoBoard.innerHTML = '';
-                boardState = Array(25).fill(false);
-                boardState[12] = true; 
-
-                BINGO_TILES_DATA.forEach((text, i) => {
-                    const tile = document.createElement('div');
-                    tile.className = 'bingo-tile aspect-square';
-                    tile.dataset.index = i;
-                    if (i === 12) {
-                        tile.classList.add('flipped');
-                    }
-                    tile.innerHTML = `<div class="bingo-front">${text}</div><div class="bingo-back"></div>`;
-                    tile.addEventListener('click', () => {
-                        if (!tile.classList.contains('flipped')) {
-                            tile.classList.add('flipped');
-                            boardState[i] = true;
-                            checkBingoWin();
-                        }
-                    });
-                    bingoBoard.appendChild(tile);
-                });
-            }
-            
-            resetBingoBtn.addEventListener('click', initializeBingo);
-            closeBingoModalBtn.addEventListener('click', () => {
-                bingoModal.classList.add('hidden');
-                bingoModal.classList.remove('flex');
-            });
-
-            initializeBingo();
-        }
-
-        // --- Contact Modal ---
-        const contactModal = document.getElementById('contact-modal');
-        const openContactBtn = document.getElementById('open-contact-modal');
-        const closeContactBtn = document.getElementById('close-contact-modal');
-        if(contactModal && openContactBtn && closeContactBtn) {
-            openContactBtn.addEventListener('click', () => {
-                contactModal.classList.remove('hidden');
-                contactModal.classList.add('flex');
-            });
-            closeContactBtn.addEventListener('click', () => {
-                contactModal.classList.add('hidden');
-                contactModal.classList.remove('flex');
-            });
-        }
-        
-        // --- Cookie Notice ---
-        const cookieNotice = document.getElementById('cookie-notice');
-        const acceptCookiesBtn = document.getElementById('accept-cookies');
-        if (cookieNotice && acceptCookiesBtn) {
-            if (localStorage.getItem('cookiesAccepted') !== 'true') {
-                cookieNotice.classList.remove('hidden');
-                cookieNotice.classList.add('flex');
-            }
-            acceptCookiesBtn.addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                cookieNotice.style.display = 'none';
-            });
-        }
-        
-        // --- Floating CTA ---
-        const floatingCta = document.getElementById('floating-cta');
-        if (floatingCta) {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const heroHeight = document.getElementById('hero')?.offsetHeight || 0;
-                
-                if (scrolled > heroHeight) {
-                    floatingCta.classList.add('show');
-                } else {
-                    floatingCta.classList.remove('show');
-                }
-            });
-        }
-    });
+        // Formspree will handle the newsletter form submission
     </script>
 </body>
 </html>
