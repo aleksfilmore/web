@@ -220,9 +220,14 @@
             <section class="mb-12">
                 <div class="flex justify-between items-center mb-8">
                     <h2 class="text-2xl font-bold">Order Management</h2>
-                    <button onclick="refreshOrders()" class="btn-secondary">
-                        Refresh Orders
-                    </button>
+                    <div class="flex gap-4">
+                        <button onclick="showAddOrderModal()" class="btn-primary">
+                            Add Missing Order
+                        </button>
+                        <button onclick="refreshOrders()" class="btn-secondary">
+                            Refresh Orders
+                        </button>
+                    </div>
                 </div>
 
                 <div class="dashboard-card">
@@ -872,25 +877,32 @@
                 return;
             }
 
-            tableBody.innerHTML = orders.map(order => `
+            tableBody.innerHTML = orders.map(order => {
+                const hasAudiobook = order.products && order.products.some(p => p.id === 'audiobook');
+                const resendEmailButton = hasAudiobook ? 
+                    `<button onclick="resendAudiobookEmail('${order.id}')" class="text-blue-400 hover:underline mr-3 text-sm">Resend Email</button>` : '';
+                
+                return `
                 <tr class="border-b border-bone/10 hover:bg-bone/5">
                     <td class="py-3 font-mono text-sm">${order.id.substring(0, 12)}...</td>
                     <td class="py-3">
                         <div class="font-medium">${order.customer.name}</div>
                         <div class="text-sm opacity-70">${order.customer.email}</div>
                     </td>
-                    <td class="py-3">${order.product}</td>
-                    <td class="py-3 font-semibold">€${order.amount.toFixed(2)}</td>
+                    <td class="py-3">${order.products ? order.products.map(p => p.id).join(', ') : 'Unknown'}</td>
+                    <td class="py-3 font-semibold">$${order.amount.toFixed(2)}</td>
                     <td class="py-3">
                         <span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span>
                     </td>
                     <td class="py-3 text-sm">${new Date(order.date).toLocaleDateString()}</td>
                     <td class="py-3">
                         <button onclick="viewOrderDetails('${order.id}')" class="text-glitch-lime hover:underline mr-3 text-sm">View</button>
+                        ${resendEmailButton}
                         ${order.status === 'pending' ? `<button onclick="markAsShipped('${order.id}')" class="text-red-flag hover:underline text-sm">Ship</button>` : ''}
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function getStatusClass(status) {
@@ -1356,6 +1368,131 @@
             closeModal('compose-newsletter-modal');
             alert('Newsletter sent successfully to all subscribers!');
         });
+
+        // Admin order management functions
+        function showAddOrderModal() {
+            document.getElementById('add-order-modal').style.display = 'flex';
+        }
+
+        function hideAddOrderModal() {
+            document.getElementById('add-order-modal').style.display = 'none';
+        }
+
+        async function addMissingOrder() {
+            const customerEmail = document.getElementById('order-email').value;
+            const sessionId = document.getElementById('order-session-id').value;
+            const amountTotal = document.getElementById('order-amount').value;
+            const productIds = [];
+            
+            if (document.getElementById('product-audiobook').checked) productIds.push('audiobook');
+            if (document.getElementById('product-signed-book').checked) productIds.push('signed-book');
+            
+            if (!customerEmail || !sessionId || !amountTotal || productIds.length === 0) {
+                alert('Please fill in all fields and select at least one product');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/admin/add-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        customerEmail,
+                        sessionId,
+                        amountTotal: parseFloat(amountTotal),
+                        productIds
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message);
+                    hideAddOrderModal();
+                    loadOrders(); // Refresh the orders list
+                    
+                    // Clear form
+                    document.getElementById('order-email').value = '';
+                    document.getElementById('order-session-id').value = '';
+                    document.getElementById('order-amount').value = '';
+                    document.getElementById('product-audiobook').checked = false;
+                    document.getElementById('product-signed-book').checked = false;
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error adding order:', error);
+                alert('Failed to add order. Please try again.');
+            }
+        }
+
+        async function resendAudiobookEmail(sessionId) {
+            if (!confirm('Are you sure you want to resend the audiobook access email for this order?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/admin/resend-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sessionId })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message);
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error resending email:', error);
+                alert('Failed to resend email. Please try again.');
+            }
+        }
     </script>
+    
+    <!-- Add Order Modal -->
+    <div id="add-order-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: var(--color-charcoal); padding: 2rem; border-radius: 16px; max-width: 500px; width: 90%;">
+            <h3 style="color: var(--color-bone); margin-bottom: 1rem;">Add Missing Order</h3>
+            
+            <div style="margin-bottom: 1rem;">
+                <label style="color: var(--color-bone); display: block; margin-bottom: 0.5rem;">Customer Email:</label>
+                <input type="email" id="order-email" style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label style="color: var(--color-bone); display: block; margin-bottom: 0.5rem;">Stripe Session ID:</label>
+                <input type="text" id="order-session-id" style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;" placeholder="cs_live_...">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label style="color: var(--color-bone); display: block; margin-bottom: 0.5rem;">Amount Total ($):</label>
+                <input type="number" id="order-amount" step="0.01" style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <label style="color: var(--color-bone); display: block; margin-bottom: 0.5rem;">Products:</label>
+                <div style="display: flex; gap: 1rem;">
+                    <label style="color: var(--color-bone);">
+                        <input type="checkbox" id="product-audiobook"> Audiobook ($7.99)
+                    </label>
+                    <label style="color: var(--color-bone);">
+                        <input type="checkbox" id="product-signed-book"> Signed Book ($17.99)
+                    </label>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button onclick="hideAddOrderModal()" style="padding: 0.5rem 1rem; background: #666; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+                <button onclick="addMissingOrder()" style="padding: 0.5rem 1rem; background: var(--color-red-flag); color: white; border: none; border-radius: 4px; cursor: pointer;">Add Order & Send Email</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

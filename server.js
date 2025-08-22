@@ -802,6 +802,154 @@ app.get('/api/admin/stats', async (req, res) => {
     }
 });
 
+// Admin endpoint to resend audiobook access email
+app.post('/api/admin/resend-email', async (req, res) => {
+    try {
+        const { sessionId } = req.body;
+        
+        if (!sessionId) {
+            return res.status(400).json({ error: 'Session ID is required' });
+        }
+        
+        const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+        
+        if (!fs.existsSync(purchasesFile)) {
+            return res.status(404).json({ error: 'No orders found' });
+        }
+        
+        const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        const purchase = purchases.find(p => p.sessionId === sessionId);
+        
+        if (!purchase) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+        
+        // Check if this order has audiobook access
+        const hasAudiobook = purchase.products.some(p => p.id === 'audiobook');
+        if (!hasAudiobook) {
+            return res.status(400).json({ error: 'This order does not include audiobook access' });
+        }
+        
+        if (!purchase.accessToken) {
+            return res.status(400).json({ error: 'No access token found for this order' });
+        }
+        
+        // Create a mock session object for the email function
+        const mockSession = {
+            customer_details: {
+                email: purchase.customerEmail
+            },
+            id: purchase.sessionId,
+            amount_total: purchase.amountTotal * 100, // Convert back to cents
+            line_items: {
+                data: purchase.products.map(p => ({
+                    price: {
+                        product: {
+                            metadata: { product_id: p.id }
+                        }
+                    },
+                    quantity: p.quantity
+                }))
+            }
+        };
+        
+        await sendConfirmationEmail(mockSession, purchase.accessToken);
+        
+        res.json({ 
+            success: true, 
+            message: `Audiobook access email resent to ${purchase.customerEmail}` 
+        });
+        
+    } catch (error) {
+        console.error('Error resending email:', error);
+        res.status(500).json({ 
+            error: 'Failed to resend email', 
+            details: error.message 
+        });
+    }
+});
+
+// Admin endpoint to manually add a missing order
+app.post('/api/admin/add-order', async (req, res) => {
+    try {
+        const { customerEmail, sessionId, amountTotal, productIds } = req.body;
+        
+        if (!customerEmail || !sessionId || !amountTotal || !productIds) {
+            return res.status(400).json({ 
+                error: 'Missing required fields: customerEmail, sessionId, amountTotal, productIds' 
+            });
+        }
+        
+        const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+        let purchases = [];
+        
+        if (fs.existsSync(purchasesFile)) {
+            purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        }
+        
+        // Check if order already exists
+        if (purchases.find(p => p.sessionId === sessionId)) {
+            return res.status(400).json({ error: 'Order with this session ID already exists' });
+        }
+        
+        // Generate access token for audiobook orders
+        let accessToken = null;
+        if (productIds.includes('audiobook')) {
+            accessToken = Buffer.from(`${customerEmail}:${sessionId}:${Date.now()}`).toString('base64');
+        }
+        
+        const newOrder = {
+            sessionId,
+            customerEmail,
+            accessToken,
+            purchaseDate: new Date().toISOString(),
+            products: productIds.map(id => ({ id, quantity: 1 })),
+            shippingAddress: productIds.includes('signed-book') ? 'To be collected' : null,
+            paymentStatus: 'paid',
+            amountTotal: parseFloat(amountTotal)
+        };
+        
+        purchases.push(newOrder);
+        
+        // Save to file
+        fs.writeFileSync(purchasesFile, JSON.stringify(purchases, null, 2));
+        
+        // Send confirmation email if audiobook is included
+        if (accessToken) {
+            const mockSession = {
+                customer_details: { email: customerEmail },
+                id: sessionId,
+                amount_total: amountTotal * 100,
+                line_items: {
+                    data: productIds.map(id => ({
+                        price: {
+                            product: {
+                                metadata: { product_id: id }
+                            }
+                        },
+                        quantity: 1
+                    }))
+                }
+            };
+            
+            await sendConfirmationEmail(mockSession, accessToken);
+        }
+        
+        res.json({ 
+            success: true, 
+            message: 'Order added successfully and email sent',
+            order: newOrder
+        });
+        
+    } catch (error) {
+        console.error('Error adding order:', error);
+        res.status(500).json({ 
+            error: 'Failed to add order', 
+            details: error.message 
+        });
+    }
+});
+
 // Helper function to determine order status
 function determineOrderStatus(purchase) {
     if (!purchase.products || purchase.products.length === 0) {
@@ -829,8 +977,16 @@ function determineOrderStatus(purchase) {
 }
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+
+console.log('About to start server...');
+const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+server.on('error', (error) => {
+    console.error('Server error:', error);
+});
+
+console.log('Server setup complete');
 
 module.exports = app;
