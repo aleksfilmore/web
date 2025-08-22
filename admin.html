@@ -6,6 +6,17 @@
     <title>Admin Dashboard | Aleks Filmore</title>
     <meta name="description" content="Content management dashboard for sales analytics, blog posts, and newsletter management.">
     
+    <!-- Security Meta Tags -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="bingbot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    
+    <!-- Prevent caching of admin panel -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -434,42 +445,206 @@
         let formspreeData = null;
 
         // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            checkAuth();
-        });
-
-        function checkAuth() {
-            const authToken = localStorage.getItem('admin_auth');
-            if (!authToken) {
-                showLoginModal();
-                return false;
-            }
-            isAuthenticated = true;
-            document.getElementById('user-info').textContent = 'Logged in as: aleks';
-            loadDashboard();
-            return true;
-        }
-
-        function showLoginModal() {
-            document.getElementById('login-modal').style.display = 'flex';
+        // ========================
+        // ADMIN AUTHENTICATION
+        // ========================
+        
+        function checkAdminAuthentication() {
+            // Check for admin session
+            const adminToken = localStorage.getItem('admin_auth_token');
+            const adminSession = sessionStorage.getItem('admin_session');
             
-            document.getElementById('login-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                if (username === 'aleks' && password === 'worstboyfriends2025') {
-                    localStorage.setItem('admin_auth', 'authenticated');
-                    document.getElementById('login-modal').style.display = 'none';
-                    checkAuth();
-                } else {
-                    alert('Invalid credentials');
+            // Valid admin credentials (in production, use proper hashing)
+            const validAdminTokens = [
+                'admin_aleksfilmore_2024_secure',  // Main admin token
+                'admin_twbe_management_2024'       // Alternative admin token
+            ];
+            
+            // Check if already authenticated this session
+            if (adminSession === 'authenticated' && validAdminTokens.includes(adminToken)) {
+                return true;
+            }
+            
+            // If no valid session, prompt for authentication
+            return promptAdminLogin();
+        }
+        
+        function promptAdminLogin() {
+            // Create login overlay
+            const loginOverlay = document.createElement('div');
+            loginOverlay.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(14, 15, 16, 0.95);
+                    backdrop-filter: blur(10px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    font-family: 'Inter', sans-serif;
+                ">
+                    <div style="
+                        background: linear-gradient(135deg, rgba(247, 243, 237, 0.1) 0%, rgba(247, 243, 237, 0.05) 100%);
+                        border: 1px solid rgba(247, 243, 237, 0.2);
+                        border-radius: 20px;
+                        padding: 3rem;
+                        max-width: 400px;
+                        width: 90%;
+                        text-align: center;
+                        color: #F7F3ED;
+                    ">
+                        <h2 style="color: #FF3B3B; margin-bottom: 1rem; font-size: 1.8rem;">🔐 Admin Access</h2>
+                        <p style="margin-bottom: 2rem; color: #C7CDD4;">Enter your admin credentials to access the dashboard.</p>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <input type="password" id="adminPassword" placeholder="Admin Password" style="
+                                width: 100%;
+                                padding: 1rem;
+                                border: 1px solid rgba(247, 243, 237, 0.2);
+                                border-radius: 12px;
+                                background: rgba(247, 243, 237, 0.1);
+                                color: #F7F3ED;
+                                font-size: 1rem;
+                                margin-bottom: 1rem;
+                            ">
+                        </div>
+                        
+                        <button onclick="validateAdminCredentials()" style="
+                            background: #FF3B3B;
+                            color: white;
+                            padding: 1rem 2rem;
+                            border: none;
+                            border-radius: 50px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            width: 100%;
+                            margin-bottom: 1rem;
+                        ">Access Dashboard</button>
+                        
+                        <button onclick="window.location.href='/'" style="
+                            background: transparent;
+                            color: #C7FF41;
+                            padding: 0.5rem 1rem;
+                            border: 1px solid #C7FF41;
+                            border-radius: 25px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Back to Homepage</button>
+                        
+                        <div id="loginError" style="color: #FF3B3B; margin-top: 1rem; display: none;"></div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(loginOverlay);
+            document.getElementById('adminPassword').focus();
+            
+            // Handle Enter key
+            document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    validateAdminCredentials();
                 }
             });
+            
+            return false;
+        }
+        
+        function validateAdminCredentials() {
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            // Valid admin passwords (in production, use proper authentication)
+            const validPasswords = [
+                'aleksfilmore2024admin!',  // Main admin password
+                'twbe_admin_secure_2024'   // Alternative admin password
+            ];
+            
+            if (validPasswords.includes(password)) {
+                // Generate session token
+                const adminToken = 'admin_aleksfilmore_2024_secure';
+                
+                // Store authentication
+                localStorage.setItem('admin_auth_token', adminToken);
+                sessionStorage.setItem('admin_session', 'authenticated');
+                sessionStorage.setItem('admin_login_time', new Date().toISOString());
+                
+                // Remove login overlay
+                document.querySelector('[style*="position: fixed"]').parentElement.remove();
+                
+                // Log access
+                console.log(`Admin access granted at ${new Date().toISOString()}`);
+                
+                // Initialize admin dashboard
+                initializeAdminDashboard();
+                
+                return true;
+            } else {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Invalid credentials. Access denied.';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+                
+                // Log failed attempt
+                console.warn(`Failed admin login attempt at ${new Date().toISOString()}`);
+                
+                return false;
+            }
+        }
+        
+        // Session timeout (30 minutes)
+        function checkSessionTimeout() {
+            const loginTime = sessionStorage.getItem('admin_login_time');
+            if (loginTime) {
+                const now = new Date().getTime();
+                const loginTimestamp = new Date(loginTime).getTime();
+                const thirtyMinutes = 30 * 60 * 1000; // 30 minutes in milliseconds
+                
+                if (now - loginTimestamp > thirtyMinutes) {
+                    // Session expired
+                    sessionStorage.removeItem('admin_session');
+                    sessionStorage.removeItem('admin_login_time');
+                    alert('Admin session expired. Please log in again.');
+                    window.location.reload();
+                }
+            }
+        }
+        
+        // Check session timeout every 5 minutes
+        setInterval(checkSessionTimeout, 5 * 60 * 1000);
+        
+        function initializeAdminDashboard() {
+            // Original admin dashboard initialization code goes here
+            setupDashboard();
+            loadOrders();
+            loadBlogPosts();
+            setupCharts();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication before loading dashboard
+            if (!checkAdminAuthentication()) {
+                return; // Don't load dashboard if not authenticated
+            }
+            
+            // If authenticated, initialize dashboard
+            initializeAdminDashboard();
+        });
+
+        function setupDashboard() {
+            // Dashboard setup logic here
+            isAuthenticated = true;
+            document.getElementById('user-info').textContent = 'Logged in as: Aleks Filmore';
+            loadDashboard();
         }
 
         function logout() {
-            localStorage.removeItem('admin_auth');
+            localStorage.removeItem('admin_auth_token');
+            sessionStorage.removeItem('admin_session');
+            sessionStorage.removeItem('admin_login_time');
             localStorage.removeItem('blog_posts');
             localStorage.removeItem('newsletter_history');
             location.reload();

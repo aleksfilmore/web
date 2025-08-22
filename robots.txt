@@ -30,6 +30,8 @@ Allow: /*.ico
 # Disallow admin and sensitive areas
 Disallow: /admin.html
 Disallow: /admin/
+Disallow: /audiobook-player.html
+Disallow: /audiobook-player/
 Disallow: /private/
 Disallow: /temp/
 Disallow: /*.tmp

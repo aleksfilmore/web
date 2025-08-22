@@ -61,7 +61,7 @@ AddType image/webp .webp
 # Redirect common typos and old URLs (if applicable)
 # Redirect 301 /old-page.html /new-page.html
 
-# Block access to sensitive files
+# Block access to sensitive files and directories
 <Files ~ "^\.">
     Order allow,deny
     Deny from all
@@ -71,6 +71,36 @@ AddType image/webp .webp
     Order allow,deny
     Deny from all
 </Files>
+
+# Additional security for admin and audiobook player
+<Files "admin.html">
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+</Files>
+
+<Files "audiobook-player.html">
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+</Files>
+
+# Block direct access to sensitive directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block access to admin directory if it exists
+    RewriteRule ^admin/?$ - [F,L]
+    
+    # Block access to audiobook-player directory if it exists
+    RewriteRule ^audiobook-player/?$ - [F,L]
+    
+    # Block access to private directories
+    RewriteRule ^private/?.*$ - [F,L]
+    RewriteRule ^temp/?.*$ - [F,L]
+</IfModule>
 
 # Optimize robots.txt and sitemap.xml delivery
 <Files "robots.txt">
