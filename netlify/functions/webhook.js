@@ -16,7 +16,13 @@ exports.handler = async (event, context) => {
     console.log('=== NETLIFY WEBHOOK RECEIVED ===');
     
     const sig = event.headers['stripe-signature'];
-    const body = event.body;
+    let body = event.body;
+    
+    // Netlify Functions receive the body as base64 encoded when it's binary data
+    // For webhooks, we need the raw body
+    if (event.isBase64Encoded) {
+        body = Buffer.from(body, 'base64');
+    }
     
     let stripeEvent;
     
@@ -24,6 +30,7 @@ exports.handler = async (event, context) => {
         console.log('Verifying webhook signature...');
         console.log('Body type:', typeof body);
         console.log('Body length:', body ? body.length : 'undefined');
+        console.log('Is base64 encoded:', event.isBase64Encoded);
         console.log('Signature header:', sig ? 'present' : 'missing');
         
         // Trim the webhook secret to remove any whitespace
@@ -38,6 +45,7 @@ exports.handler = async (event, context) => {
         console.log('✅ Webhook signature verified successfully');
     } catch (err) {
         console.error('❌ Webhook signature verification failed:', err.message);
+        console.error('Headers received:', JSON.stringify(event.headers, null, 2));
         return {
             statusCode: 400,
             body: JSON.stringify({ error: `Webhook Error: ${err.message}` })
