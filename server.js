@@ -706,6 +706,128 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
     res.json({received: true});
 });
 
+// Admin API endpoints
+app.get('/api/admin/orders', async (req, res) => {
+    try {
+        const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+        
+        if (!fs.existsSync(purchasesFile)) {
+            return res.json([]);
+        }
+        
+        const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        
+        // Transform purchases into admin-friendly format
+        const orders = purchases.map(purchase => ({
+            id: purchase.sessionId,
+            customer: {
+                name: purchase.customerEmail ? purchase.customerEmail.split('@')[0] : 'Unknown',
+                email: purchase.customerEmail
+            },
+            products: purchase.products,
+            amount: purchase.amountTotal,
+            status: determineOrderStatus(purchase),
+            date: purchase.purchaseDate,
+            shippingAddress: purchase.shippingAddress,
+            paymentStatus: purchase.paymentStatus,
+            accessToken: purchase.accessToken
+        }));
+        
+        // Sort by date (newest first)
+        orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        res.json(orders);
+    } catch (error) {
+        console.error('Error fetching admin orders:', error);
+        res.status(500).json({ error: 'Failed to fetch orders' });
+    }
+});
+
+// Admin stats endpoint
+app.get('/api/admin/stats', async (req, res) => {
+    try {
+        const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+        
+        if (!fs.existsSync(purchasesFile)) {
+            return res.json({
+                totalRevenue: 0,
+                totalOrders: 0,
+                audiobookSales: 0,
+                signedBookSales: 0,
+                bundleSales: 0,
+                recentOrders: []
+            });
+        }
+        
+        const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        
+        let totalRevenue = 0;
+        let audiobookSales = 0;
+        let signedBookSales = 0;
+        let bundleSales = 0;
+        
+        purchases.forEach(purchase => {
+            totalRevenue += purchase.amountTotal;
+            
+            if (purchase.products) {
+                purchase.products.forEach(product => {
+                    switch(product.id) {
+                        case 'audiobook':
+                            audiobookSales += PRODUCTS.audiobook.price;
+                            break;
+                        case 'signed-book':
+                            signedBookSales += PRODUCTS['signed-book'].price;
+                            break;
+                        case 'bundle':
+                            bundleSales += PRODUCTS.bundle?.price || 22.99;
+                            break;
+                    }
+                });
+            }
+        });
+        
+        const stats = {
+            totalRevenue,
+            totalOrders: purchases.length,
+            audiobookSales,
+            signedBookSales,
+            bundleSales,
+            recentOrders: purchases.slice(-5).reverse()
+        };
+        
+        res.json(stats);
+    } catch (error) {
+        console.error('Error fetching admin stats:', error);
+        res.status(500).json({ error: 'Failed to fetch stats' });
+    }
+});
+
+// Helper function to determine order status
+function determineOrderStatus(purchase) {
+    if (!purchase.products || purchase.products.length === 0) {
+        return 'unknown';
+    }
+    
+    // Check if it's digital only (audiobook)
+    const hasDigitalOnly = purchase.products.every(p => p.id === 'audiobook');
+    if (hasDigitalOnly) {
+        return 'digital_delivered';
+    }
+    
+    // Check if it has physical products
+    const hasPhysical = purchase.products.some(p => p.id === 'signed-book' || p.id === 'bundle');
+    if (hasPhysical) {
+        // In a real system, you'd check shipping status from Stripe or shipping provider
+        // For now, mark recent orders as pending and older ones as shipped
+        const orderDate = new Date(purchase.purchaseDate);
+        const daysSinceOrder = (new Date() - orderDate) / (1000 * 60 * 60 * 24);
+        
+        return daysSinceOrder > 7 ? 'shipped' : 'pending_fulfillment';
+    }
+    
+    return 'unknown';
+}
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

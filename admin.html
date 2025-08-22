@@ -664,10 +664,11 @@
         // Stripe Analytics Integration
         async function loadStripeAnalytics() {
             try {
-                // For now, we'll use mock data since we need backend integration
-                // TODO: Replace with actual Stripe API integration
-                const mockData = {
-                    totalRevenue: 0,
+                // Load real data from server
+                await loadStats();
+                
+                stripeData = {
+                    totalRevenue: 0, // Will be updated by loadStats()
                     audiobookRevenue: 0,
                     bookRevenue: 0,
                     bundleRevenue: 0,
@@ -677,12 +678,6 @@
                     }
                 };
 
-                document.getElementById('total-revenue').textContent = '€' + mockData.totalRevenue.toLocaleString();
-                document.getElementById('audiobook-revenue').textContent = '€' + mockData.audiobookRevenue.toLocaleString();
-                document.getElementById('book-revenue').textContent = '€' + mockData.bookRevenue.toLocaleString();
-                document.getElementById('bundle-revenue').textContent = '€' + mockData.bundleRevenue.toLocaleString();
-
-                stripeData = mockData;
             } catch (error) {
                 console.error('Error loading Stripe analytics:', error);
                 document.getElementById('total-revenue').textContent = 'Error';
@@ -749,30 +744,91 @@
 
         async function loadOrders() {
             try {
-                // Load real orders from localStorage (from checkout process)
-                const storedOrders = JSON.parse(localStorage.getItem('pending_orders') || '[]');
+                console.log('Loading orders from server...');
+                const response = await fetch('/api/admin/orders');
                 
-                // Convert stored orders to proper format
-                const realOrders = storedOrders.map(order => ({
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const orders = await response.json();
+                console.log('Loaded orders:', orders);
+                
+                // Transform orders to match admin panel format
+                allOrders = orders.map(order => ({
                     id: order.id,
                     customer: {
-                        name: order.email.split('@')[0], // Extract name from email
-                        email: order.email
+                        name: order.customer.name,
+                        email: order.customer.email
                     },
-                    product: getProductName(order.product),
-                    amount: getProductPrice(order.product),
-                    status: order.status === 'pending_payment' ? 'pending' : order.status,
-                    date: order.timestamp,
-                    custom_note: order.customNote,
-                    shipping: null // Would be filled by Stripe webhook in real implementation
+                    product: formatProductsDisplay(order.products),
+                    amount: order.amount,
+                    status: order.status,
+                    date: order.date,
+                    shipping: order.shippingAddress,
+                    accessToken: order.accessToken,
+                    products: order.products
                 }));
-
-                allOrders = realOrders;
+                
                 displayOrders(allOrders);
+                
+                // Also load stats
+                await loadStats();
+                
             } catch (error) {
                 console.error('Error loading orders:', error);
-                document.getElementById('orders-table').innerHTML = '<tr><td colspan="7" class="text-center py-8 opacity-70">Error loading orders</td></tr>';
+                document.getElementById('orders-table').innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-8">
+                            <div class="text-red-flag mb-2">⚠️ Error loading orders</div>
+                            <div class="text-sm opacity-70">Check if server is running and try refreshing</div>
+                        </td>
+                    </tr>
+                `;
             }
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/admin/stats');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const stats = await response.json();
+                console.log('Loaded stats:', stats);
+                
+                // Update revenue displays
+                document.getElementById('total-revenue').textContent = '€' + stats.totalRevenue.toFixed(2);
+                document.getElementById('audiobook-revenue').textContent = '€' + stats.audiobookSales.toFixed(2);
+                document.getElementById('book-revenue').textContent = '€' + stats.signedBookSales.toFixed(2);
+                document.getElementById('bundle-revenue').textContent = '€' + stats.bundleSales.toFixed(2);
+                
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                // Keep loading indicators if stats fail
+                document.getElementById('total-revenue').textContent = 'Error';
+                document.getElementById('audiobook-revenue').textContent = 'Error';
+                document.getElementById('book-revenue').textContent = 'Error';
+                document.getElementById('bundle-revenue').textContent = 'Error';
+            }
+        }
+
+        function formatProductsDisplay(products) {
+            if (!products || products.length === 0) {
+                return 'Unknown Product';
+            }
+            
+            const productNames = products.map(p => {
+                switch(p.id) {
+                    case 'audiobook': return 'Audiobook';
+                    case 'signed-book': return 'Signed Book';
+                    case 'bundle': return 'Complete Bundle';
+                    default: return p.id;
+                }
+            });
+            
+            return productNames.join(', ');
         }
 
         function getAllCustomNotes() {
@@ -839,19 +895,29 @@
 
         function getStatusClass(status) {
             switch(status) {
-                case 'pending': return 'status-draft';
-                case 'shipped': return 'status-published';
-                case 'digital': return 'status-published';
-                default: return 'status-draft';
+                case 'pending_fulfillment':
+                case 'pending': 
+                    return 'status-draft';
+                case 'shipped': 
+                    return 'status-published';
+                case 'digital_delivered': 
+                    return 'status-published';
+                default: 
+                    return 'status-draft';
             }
         }
 
         function getStatusText(status) {
             switch(status) {
-                case 'pending': return 'Pending Fulfillment';
-                case 'shipped': return 'Shipped';
-                case 'digital': return 'Digital Delivered';
-                default: return status;
+                case 'pending_fulfillment':
+                case 'pending': 
+                    return 'Pending Fulfillment';
+                case 'shipped': 
+                    return 'Shipped';
+                case 'digital_delivered': 
+                    return 'Digital Delivered';
+                default: 
+                    return status;
             }
         }
 
