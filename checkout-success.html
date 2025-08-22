@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Successful | Aleks Filmore</title>
+    <meta name="description" content="Thank you for your purchase! Check your email for audiobook access.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8ff0f 100%);
+            color: var(--color-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .font-display { font-family: var(--font-display); }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <div class="mb-8">
+            <div class="text-6xl mb-4">🎉</div>
+            <h1 class="font-display text-3xl font-bold mb-4 text-green-400">
+                Purchase Successful!
+            </h1>
+        </div>
+
+        <div id="audiobook-success" style="display: none;">
+            <h2 class="font-display text-2xl font-semibold mb-4">
+                Your Audiobook is Being Delivered! 🎧
+            </h2>
+            <p class="text-lg mb-6 text-gray-300">
+                Check your email in the next few minutes for your exclusive audiobook access link with the bonus epilogue.
+            </p>
+            <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4 mb-6">
+                <p class="text-green-400 font-semibold">✅ Payment confirmed</p>
+                <p class="text-green-400">📧 Access link being sent to your email</p>
+                <p class="text-green-400">🎧 Includes exclusive bonus content</p>
+            </div>
+        </div>
+
+        <div id="book-success" style="display: none;">
+            <h2 class="font-display text-2xl font-semibold mb-4">
+                Your Signed Copy is On Its Way! 📚
+            </h2>
+            <p class="text-lg mb-6 text-gray-300">
+                Thank you for your order! Your personalized signed copy will be shipped within 2-3 business days.
+            </p>
+            <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 mb-6">
+                <p class="text-blue-400 font-semibold">✅ Order confirmed</p>
+                <p class="text-blue-400">📦 Ships within 2-3 business days</p>
+                <p class="text-blue-400">✍️ Personally signed by Aleks</p>
+            </div>
+        </div>
+
+        <div id="bundle-success" style="display: none;">
+            <h2 class="font-display text-2xl font-semibold mb-4">
+                Your Complete Bundle is Ready! 🎁
+            </h2>
+            <p class="text-lg mb-6 text-gray-300">
+                You'll receive your audiobook access immediately via email, and your signed copy will ship within 2-3 business days.
+            </p>
+            <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
+                <p class="text-purple-400 font-semibold">✅ Bundle confirmed</p>
+                <p class="text-purple-400">🎧 Audiobook access via email</p>
+                <p class="text-purple-400">📚 Signed book shipping soon</p>
+            </div>
+        </div>
+
+        <div class="space-y-4 mt-8">
+            <a href="/" class="btn-primary">
+                🏠 Back to Homepage
+            </a>
+            
+            <div class="text-sm text-gray-400 mt-6">
+                <p>Questions? Contact: <a href="mailto:aleks@aleksfilmore.com" class="text-green-400 hover:underline">aleks@aleksfilmore.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters to show appropriate success message
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = urlParams.get('product');
+
+        // Show appropriate success message
+        if (product === 'audiobook') {
+            document.getElementById('audiobook-success').style.display = 'block';
+        } else if (product === 'signed-book') {
+            document.getElementById('book-success').style.display = 'block';
+        } else if (product === 'bundle') {
+            document.getElementById('bundle-success').style.display = 'block';
+        } else {
+            // Default success message
+            document.getElementById('audiobook-success').style.display = 'block';
+        }
+
+        // Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'purchase', {
+                transaction_id: urlParams.get('session_id'),
+                value: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 17.99 : 22.99,
+                currency: 'EUR',
+                items: [{
+                    item_id: product,
+                    item_name: product === 'audiobook' ? 'The Worst Boyfriends Ever Audiobook' : 
+                              product === 'signed-book' ? 'The Worst Boyfriends Ever Signed Copy' :
+                              'The Worst Boyfriends Ever Bundle',
+                    category: 'Books',
+                    quantity: 1,
+                    price: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 17.99 : 22.99
+                }]
+            });
+        }
+    </script>
+</body>
+</html>

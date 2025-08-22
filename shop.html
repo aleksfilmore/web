@@ -784,11 +784,32 @@
         let cartCount = 0;
 
         function addToCart(id, name, price, type) {
-            // Redirect to our custom checkout page to collect custom notes
-            showCartNotification('Redirecting to checkout...');
-            setTimeout(() => {
-                window.location.href = `checkout.html?product=${id}`;
-            }, 500);
+            // Use Stripe checkout system - direct redirect to Payment Links
+            if (id === 'audiobook') {
+                // Redirect to Stripe Payment Link for audiobook
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/6oUfZa3ZW00q66g0x79fW00';
+                }, 1000);
+            } else if (id === 'signed-book') {
+                // Redirect to Stripe Payment Link for signed book
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01';
+                }, 1000);
+            } else if (id === 'bundle') {
+                // Redirect to Stripe Payment Link for bundle
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02';
+                }, 1000);
+            } else {
+                // Fallback to checkout page for other products
+                showCartNotification('Redirecting to checkout...');
+                setTimeout(() => {
+                    window.location.href = `checkout.html?product=${id}`;
+                }, 500);
+            }
         }
 
         function removeFromCart(id) {
@@ -853,8 +874,11 @@
             cartTotal.textContent = `€${total.toFixed(2)}`;
         }
 
-        function showCartNotification() {
+        function showCartNotification(message = 'Added to cart!') {
             const notification = document.getElementById('cart-notification');
+            const notificationText = document.getElementById('notification-text');
+            
+            notificationText.textContent = message;
             notification.classList.add('show');
             
             setTimeout(() => {

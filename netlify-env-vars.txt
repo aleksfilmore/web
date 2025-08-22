@@ -1,0 +1,24 @@
+# Netlify Environment Variables Configuration
+# Copy these to your Netlify dashboard: Site Settings > Environment Variables
+
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_live_YOUR_ACTUAL_STRIPE_SECRET_KEY_HERE
+STRIPE_WEBHOOK_SECRET=whsec_GpUHVaUHWI5eTD5uUL1xR9Drm9y5ygJ2
+
+# Resend Email API
+RESEND_API_KEY=re_YOUR_ACTUAL_RESEND_API_KEY_HERE
+
+# Production Settings
+NODE_ENV=production
+
+# Instructions:
+# 1. Go to your Netlify dashboard
+# 2. Navigate to Site Settings > Environment Variables
+# 3. Add each variable above (without the # comments)
+# 4. Make sure to use your actual API keys
+# 5. Deploy your site after adding these variables
+
+# Notes:
+# - Webhook secret is already set correctly: whsec_GpUHVaUHWI5eTD5uUL1xR9Drm9y5ygJ2
+# - You'll need to get your live Stripe Secret Key from Stripe Dashboard
+# - You already have Resend integrated, so use your existing API key

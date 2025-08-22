@@ -1,6 +1,7 @@
 [build]
   publish = "."
   command = "echo 'Static site ready'"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -8,6 +9,12 @@
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+# Webhook endpoint
+[[redirects]]
+  from = "/webhook/stripe"
+  to = "/.netlify/functions/stripe-webhook"
   status = 200
 
 [[headers]]
@@ -20,3 +27,24 @@
   for = "*.html"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Admin panel protection
+[[headers]]
+  for = "/admin*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Audiobook player protection  
+[[headers]]
+  for = "/audiobook-player*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
