@@ -724,7 +724,7 @@
                 // In real implementation, this would call your Stripe/backend
                 if (productType === 'audiobook') {
                     // Redirect to Stripe checkout for audiobook
-                    window.location.href = 'https://dynamic-blessing-production-8be8.up.railway.app/checkout?product=audiobook';
+                    window.location.href = '/checkout?product=audiobook';
                 } else {
                     // Handle other products
                     console.log('Adding to cart:', productType);

@@ -1,9 +1,9 @@
 // Configuration for API endpoints
-// Updated with actual Railway URL
+// Updated to use local server
 
 const API_CONFIG = {
-    // Your Railway deployment URL
-    BASE_URL: 'https://dynamic-blessing-production-8be8.up.railway.app',
+    // Local development server URL
+    BASE_URL: 'http://localhost:3000',
     
     ENDPOINTS: {
         CONFIG: '/api/config',
