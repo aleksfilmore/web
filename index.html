@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://aleksfilmore.com/">
     <meta property="og:title" content="Aleks Filmore | Author of The Worst Boyfriends Ever">
     <meta property="og:description" content="Every bad date left a receipt. I kept them. Get the audiobook, signed copies, and bundles directly from the author. Ships from Brussels.">
-    <meta property="og:image" content="https://aleksfilmore.com/THE WORST BOYFRIENDS EVER AUDIOBOOK.png">
+    <meta property="og:image" content="https://aleksfilmore.com/TWBE 1.png">
     <meta property="og:site_name" content="Aleks Filmore">
 
     <!-- Twitter -->
@@ -23,7 +23,7 @@
     <meta property="twitter:url" content="https://aleksfilmore.com/">
     <meta property="twitter:title" content="Aleks Filmore | Author of The Worst Boyfriends Ever">
     <meta property="twitter:description" content="Every bad date left a receipt. I kept them. Get the audiobook, signed copies, and bundles directly from the author.">
-    <meta property="twitter:image" content="https://aleksfilmore.com/THE WORST BOYFRIENDS EVER AUDIOBOOK.png">
+    <meta property="twitter:image" content="https://aleksfilmore.com/TWBE 1.png">
     <meta property="twitter:creator" content="@aleksfilmore">
 
     <!-- Canonical URL -->
@@ -377,7 +377,37 @@
                 padding: 2rem;
             }
         }
+        # Stripe Configuration (REQUIRED)
+        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
+        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
+        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
         
+        # Email Service (REQUIRED)
+        RESEND_API_KEY=re_... # Get from resend.com
+        
+        # Site Configuration
+        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
+        PORT=3000        # Stripe Configuration (REQUIRED)
+        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
+        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
+        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
+        
+        # Email Service (REQUIRED)
+        RESEND_API_KEY=re_... # Get from resend.com
+        
+        # Site Configuration
+        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
+        PORT=3000        # Stripe Configuration (REQUIRED)
+        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
+        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
+        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
+        
+        # Email Service (REQUIRED)
+        RESEND_API_KEY=re_... # Get from resend.com
+        
+        # Site Configuration
+        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
+        PORT=3000        
         /* Large tablet/Small desktop (1024px+) */
         @media (min-width: 1024px) {
             .btn-primary, .btn-secondary {
@@ -437,11 +467,11 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center">
                     <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-                        Every bad date left a <span class="text-red-flag">receipt.</span><br>
-                        I kept them.
+                        DATING IS WAR. <span class="text-red-flag">LAUGHTER IS ARMOR.</span><br>
+                        I kept mistaking warnings for charm.
                     </h1>
                     <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed max-w-2xl mx-auto">
-                        I'm Aleks Filmore. I write like your blunt friend after two espressos and a boundary.
+                        I'm Aleks Filmore. These are the twenty-five times I learned the hard way.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
                         <a href="shop.html" class="btn-primary">
@@ -465,7 +495,7 @@
                             The Worst Boyfriends Ever
                         </h2>
                         <p class="text-base sm:text-lg lg:text-xl text-bone/80 max-w-2xl mx-auto">
-                            A queer dating memoir that turns wreckage into punchlines and red flags into boundaries.
+                            The Worst Boyfriends Ever isn't just a memoir, it's a breakup battle cry in bold font and eyeliner. You won't just relate. You'll feel seen. Then vindicated. Then a little dangerous.
                         </p>
                     </div>
 
@@ -473,8 +503,8 @@
                         
                         <!-- Book Image -->
                         <div class="order-2 lg:order-1 text-center">
-                            <img src="THE WORST BOYFRIENDS EVER AUDIOBOOK.png" 
-                                 alt="The Worst Boyfriends Ever Book Cover" 
+                            <img src="TWBE 1.png" 
+                                 alt="The Worst Boyfriends Ever - 3D Book Mockup" 
                                  class="max-w-full h-auto mx-auto floating-element max-h-96 lg:max-h-none"
                                  loading="eager">
                         </div>
@@ -540,7 +570,7 @@
                                 <div class="shop-card-icon">🎧</div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Audiobook</h3>
                                 <p class="text-bone/80 text-sm sm:text-base mb-4">
-                                    Narrated by me. Full disaster, instant access.
+                                    Narrated by Deacon Deane. Full disaster, instant access.
                                 </p>
                                 <div class="space-y-1 mb-4">
                                     <div class="feature-tag">8+ Hours</div>
@@ -560,7 +590,7 @@
                                 <div class="shop-card-icon">✍️</div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Signed Paperback</h3>
                                 <p class="text-bone/80 text-sm sm:text-base mb-4">
-                                    Personally signed. Handwritten note. Brussels shipping.
+                                    Personally signed. Handwritten note. Worldwide shipping.
                                 </p>
                                 <div class="space-y-1 mb-4">
                                     <div class="feature-tag">Signed by Author</div>
@@ -616,13 +646,32 @@
                         </div>
                         
                         <div class="text-center">
-                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">27</div>
-                            <p class="text-bone/80 text-sm sm:text-base">Red Flags Catalogued</p>
+                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">200</div>
+                            <p class="text-bone/80 text-sm sm:text-base">Pages of cringe & catharsis</p>
                         </div>
                         
                         <div class="text-center">
-                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">8+</div>
-                            <p class="text-bone/80 text-sm sm:text-base">Hours Audio</p>
+                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">4.7★</div>
+                            <p class="text-bone/80 text-sm sm:text-base">Average rating</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">20+</div>
+                            <p class="text-bone/80 text-sm sm:text-base">Countries with reader reviews</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-6 sm:gap-8 mt-8">
+                        
+                        <div class="text-center">
+                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">7+</div>
+                            <p class="text-bone/80 text-sm sm:text-base">Hours of audiobook</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="counter-number font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-2">1</div>
+                            <p class="text-bone/80 text-sm sm:text-base">Bonus chapter (free to unlock)</p>
                         </div>
                         
                         <div class="text-center">
@@ -648,16 +697,16 @@
                     <div class="receipt-card text-left mb-8">
                         <div class="space-y-4 text-sm sm:text-base">
                             <p>
-                                <strong class="text-red-flag">More money for the author.</strong> When you buy direct, 
-                                platforms don't take their cut. I get to keep writing instead of working in customer service.
+                                <strong class="text-red-flag">You fund the writer, not the platform.</strong> No middleman tax. More pages, fewer headaches.
                             </p>
                             <p>
-                                <strong class="text-glitch-lime">Exclusive content.</strong> The bonus epilogue and 
-                                handwritten notes are only available here. No algorithmic middlemen deciding what you see.
+                                <strong class="text-glitch-lime">Extras you can't get elsewhere.</strong> Bonus epilogue + handwritten notes live here, not in the algorithm.
                             </p>
                             <p>
-                                <strong class="text-dusty-blush">Personal connection.</strong> Every order is handled 
-                                personally. Questions? I actually answer emails. Revolutionary, I know.
+                                <strong class="text-dusty-blush">A real human hits reply.</strong> Questions? I answer my own email. Revolutionary, I know.
+                            </p>
+                            <p class="text-center mt-6 font-display font-semibold text-lg">
+                                Buy direct. Keep the chaos indie.
                             </p>
                         </div>
                     </div>
@@ -683,7 +732,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <div class="col-span-2 md:col-span-1">
                     <h4 class="font-display font-bold text-base sm:text-lg mb-3 sm:mb-4">Aleks Filmore</h4>
-                    <p class="text-bone/60 text-xs sm:text-sm">I write like your blunt friend after two espressos and a boundary. Currently shipping red flags from Brussels.</p>
+                    <p class="text-bone/60 text-xs sm:text-sm">Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Books</h4>
