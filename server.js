@@ -93,6 +93,8 @@ const PRODUCTS = {
     },
     'bundle': {
         name: 'The Worst Boyfriends Ever (Bundle)',
+        stripe_product_id: process.env.STRIPE_BUNDLE_PRODUCT_ID,
+        stripe_price_id: process.env.STRIPE_BUNDLE_PRICE_ID,
         price: 22.99,
         currency: 'usd',
         type: 'mixed',
