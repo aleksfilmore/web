@@ -732,13 +732,18 @@
             
             // Simulate API call
             setTimeout(() => {
-                // Use Stripe Checkout directly for production
+                // Reset button first
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Use improved checkout system
                 if (productType === 'audiobook') {
                     // Create Stripe checkout session
                     createStripeCheckout();
                 } else {
                     // Handle other products
                     console.log('Adding to cart:', productType);
+                    showCartNotification('Added to cart!');
                 }
                 
                 // Show success notification
@@ -783,24 +788,89 @@
         // Stripe Checkout functionality
         async function createStripeCheckout() {
             try {
-                // For production, we'll use Stripe Payment Links or redirect to a payment processor
-                // Replace this URL with your actual Stripe Payment Link
-                const stripePaymentUrl = 'https://buy.stripe.com/your-payment-link-here';
-                
-                // For now, show a message that checkout is being set up
                 showCartNotification('Redirecting to secure checkout...');
                 
-                // Temporary: redirect to a coming soon page or show message
-                setTimeout(() => {
-                    alert('Checkout is being set up! Please check back soon or contact aleks@aleksfilmore.com to purchase.');
-                }, 1000);
+                // For static hosting, use direct Stripe Payment Links
+                // Replace with your actual Stripe Payment Link for the audiobook
+                const audioBookPaymentLink = 'https://buy.stripe.com/test_your_audiobook_payment_link';
                 
-                // TODO: Replace with actual Stripe Payment Link when ready
-                // window.location.href = stripePaymentUrl;
+                // For now, provide alternative purchase options
+                const modal = document.createElement('div');
+                modal.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.8);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 10000;
+                        font-family: Inter, sans-serif;
+                    ">
+                        <div style="
+                            background: white;
+                            padding: 2rem;
+                            border-radius: 12px;
+                            max-width: 400px;
+                            text-align: center;
+                            margin: 1rem;
+                        ">
+                            <h3 style="color: #FF3B3B; margin-bottom: 1rem;">Get Your Audiobook</h3>
+                            <p style="margin-bottom: 1.5rem; color: #333;">Choose your preferred way to purchase:</p>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <a href="mailto:aleks@aleksfilmore.com?subject=Audiobook Purchase&body=Hi! I'd like to purchase 'The Worst Boyfriends Ever' audiobook for $7.99. Please send me payment instructions." 
+                                   style="
+                                       display: block;
+                                       background: #FF3B3B;
+                                       color: white;
+                                       padding: 12px 24px;
+                                       border-radius: 8px;
+                                       text-decoration: none;
+                                       margin-bottom: 0.5rem;
+                                   ">
+                                   📧 Email Purchase ($7.99)
+                                </a>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <a href="https://www.paypal.com/paypalme/aleksfilmore/7.99" 
+                                   target="_blank"
+                                   style="
+                                       display: block;
+                                       background: #0070ba;
+                                       color: white;
+                                       padding: 12px 24px;
+                                       border-radius: 8px;
+                                       text-decoration: none;
+                                   ">
+                                   💳 PayPal ($7.99)
+                                </a>
+                            </div>
+                            
+                            <button onclick="this.parentElement.parentElement.remove()" 
+                                    style="
+                                        background: #6b7280;
+                                        color: white;
+                                        border: none;
+                                        padding: 8px 16px;
+                                        border-radius: 6px;
+                                        cursor: pointer;
+                                    ">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
                 
             } catch (error) {
                 console.error('Checkout error:', error);
-                showCartNotification('Checkout temporarily unavailable. Please try again later.');
+                showCartNotification('Please try the email or PayPal option below!');
             }
         }
 
@@ -878,6 +948,18 @@
                     });
                 }
             });
+        });
+
+        // Global error handling for checkout issues
+        window.addEventListener('error', function(e) {
+            console.error('Page error:', e.error);
+            // Don't show error messages for minor issues
+        });
+
+        // Handle any unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            e.preventDefault(); // Prevent the default behavior
         });
     </script>
 </body>
