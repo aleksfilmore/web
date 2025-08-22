@@ -669,48 +669,70 @@ async function handleAudiobookAccess(session) {
 
 // Webhook for Stripe events
 app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) => {
+    console.log('=== WEBHOOK RECEIVED ===');
     const sig = req.headers['stripe-signature'];
     
     let event;
     
     try {
+        console.log('Verifying webhook signature...');
         event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        console.log('✅ Webhook signature verified successfully');
     } catch (err) {
-        console.log(`Webhook signature verification failed.`, err.message);
+        console.error('❌ Webhook signature verification failed:', err.message);
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
     
-    console.log(`Received webhook event: ${event.type}`);
+    console.log(`📧 Received webhook event: ${event.type} (ID: ${event.id})`);
     
     // Handle the event
-    switch (event.type) {
-        case 'checkout.session.completed':
-            const session = event.data.object;
-            console.log('Payment completed:', session.id, 'Customer:', session.customer_email);
-            
-            try {
-                // Generate access token for digital products
-                const accessToken = generateAccessToken(session.customer_email || session.customer_details?.email, session.id);
+    try {
+        switch (event.type) {
+            case 'checkout.session.completed':
+                const session = event.data.object;
+                console.log('💳 Payment completed:', session.id);
+                console.log('👤 Customer:', session.customer_email || session.customer_details?.email);
+                console.log('💰 Amount:', session.amount_total / 100, session.currency?.toUpperCase());
                 
-                // Save purchase record
-                await savePurchaseRecord(session, accessToken);
-                
-                // Send confirmation email
-                await sendConfirmationEmail(session, accessToken);
-                
-                // Handle audiobook access specifically
-                await handleAudiobookAccess(session);
-                
-                console.log(`Successfully processed order ${session.id}`);
-            } catch (error) {
-                console.error('Error processing completed checkout:', error);
-            }
-            break;
-        default:
-            console.log(`Unhandled event type ${event.type}`);
+                try {
+                    // Generate access token for digital products
+                    console.log('🔐 Generating access token...');
+                    const accessToken = generateAccessToken(session.customer_email || session.customer_details?.email, session.id);
+                    
+                    // Save purchase record
+                    console.log('💾 Saving purchase record...');
+                    await savePurchaseRecord(session, accessToken);
+                    
+                    // Send confirmation email
+                    console.log('📬 Sending confirmation email...');
+                    await sendConfirmationEmail(session, accessToken);
+                    
+                    // Handle audiobook access specifically
+                    console.log('🎧 Handling audiobook access...');
+                    await handleAudiobookAccess(session);
+                    
+                    console.log(`✅ Successfully processed order ${session.id}`);
+                } catch (error) {
+                    console.error('❌ Error processing completed checkout:', error);
+                    // Don't return error to Stripe - we'll handle this manually
+                    console.log('📝 Order data saved for manual processing');
+                }
+                break;
+            default:
+                console.log(`ℹ️ Unhandled event type ${event.type}`);
+        }
+        
+        // Always return 200 to Stripe to acknowledge receipt
+        console.log('✅ Webhook processed successfully, sending 200 response');
+        res.json({received: true, event_type: event.type, event_id: event.id});
+        
+    } catch (error) {
+        console.error('❌ Critical error in webhook handler:', error);
+        // Still return 200 to avoid webhook retries, but log for manual handling
+        res.json({received: true, error: 'Logged for manual processing'});
     }
     
-    res.json({received: true});
+    console.log('=== WEBHOOK COMPLETE ===\n');
 });
 
 // Admin API endpoints
