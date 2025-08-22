@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Aleks Filmore</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Navigate back to Aleks Filmore's website to find books, audiobooks, and more.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        
+        .red-flag { color: var(--color-red-flag); }
+        .electric-green { color: var(--color-glitch-lime); }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8ff0f 100%);
+            color: var(--color-charcoal);
+            border-color: var(--color-glitch-lime);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center px-4">
+        <div class="mb-8">
+            <h1 class="font-display text-6xl md:text-8xl font-bold mb-4">
+                <span class="red-flag">4</span><span class="electric-green">0</span><span class="red-flag">4</span>
+            </h1>
+            <div class="text-4xl mb-6">🚩</div>
+            <h2 class="font-display text-2xl md:text-3xl font-semibold mb-4">
+                This page is a red flag
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-md mx-auto">
+                Unlike my dating history, this page doesn't exist. Let's get you back to safety.
+            </p>
+        </div>
+        
+        <div class="space-y-4">
+            <a href="/" class="btn-primary">
+                🏠 Back to Homepage
+            </a>
+            
+            <div class="mt-8 space-y-2 text-sm text-gray-400">
+                <p>Looking for something specific?</p>
+                <div class="space-x-4">
+                    <a href="/audiobook.html" class="electric-green hover:underline">Audiobook</a>
+                    <a href="/shop.html" class="electric-green hover:underline">Shop</a>
+                    <a href="/blog.html" class="electric-green hover:underline">Blog</a>
+                    <a href="/newsletter.html" class="electric-green hover:underline">Newsletter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics tracking for 404 errors -->
+    <script>
+        // Track 404 errors if you have analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '404 Error',
+                page_location: window.location.href
+            });
+        }
+    </script>
+</body>
+</html>

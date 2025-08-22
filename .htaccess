@@ -1,0 +1,82 @@
+# .htaccess file for SEO optimization
+# Note: This is for Apache servers. If using Nginx or other servers, convert accordingly.
+
+# Force HTTPS redirect
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove trailing slashes from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)/?(\?[^\s]*)?\s [NC]
+RewriteRule ^ /%1%2 [R=301,L]
+
+# Redirect www to non-www (adjust if you prefer www)
+RewriteCond %{HTTP_HOST} ^www\.aleksfilmore\.com [NC]
+RewriteRule ^(.*)$ https://aleksfilmore.com/$1 [L,R=301]
+
+# Set custom error pages
+ErrorDocument 404 /404.html
+
+# Compression for better loading times
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Browser caching for better performance
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/html "access plus 1 week"
+</IfModule>
+
+# Security headers for SEO trust signals
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Set correct MIME types
+AddType text/css .css
+AddType application/javascript .js
+AddType image/webp .webp
+
+# Redirect common typos and old URLs (if applicable)
+# Redirect 301 /old-page.html /new-page.html
+
+# Block access to sensitive files
+<Files ~ "^\.">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Optimize robots.txt and sitemap.xml delivery
+<Files "robots.txt">
+    Header set Content-Type "text/plain"
+</Files>
+
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml"
+</Files>

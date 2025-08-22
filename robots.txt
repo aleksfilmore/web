@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://aleksfilmore.com/sitemap.xml
+
+# Allow crawling of all important pages
+Allow: /index.html
+Allow: /audiobook.html
+Allow: /shop.html
+Allow: /dacia-rising.html
+Allow: /blog.html
+Allow: /newsletter.html
+Allow: /checkout.html
+Allow: /terms.html
+Allow: /privacy.html
+Allow: /cookies.html
+
+# Allow crawling of assets
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.ico
+
+# Disallow admin and sensitive areas
+Disallow: /admin.html
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.tmp
+
+# Crawl delay (optional - be respectful to search engines)
+Crawl-delay: 1

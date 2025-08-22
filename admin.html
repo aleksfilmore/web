@@ -574,64 +574,9 @@
 
         async function loadOrders() {
             try {
-                // Load both mock orders and real orders from localStorage
+                // Load real orders from localStorage (from checkout process)
                 const storedOrders = JSON.parse(localStorage.getItem('pending_orders') || '[]');
-                const customNotes = getAllCustomNotes();
                 
-                // Mock orders for demo
-                const mockOrders = [
-                    {
-                        id: 'pi_example123',
-                        customer: {
-                            name: 'Alex Johnson',
-                            email: 'alex@example.com'
-                        },
-                        product: 'Signed Paperback',
-                        amount: 17.99,
-                        status: 'pending',
-                        date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-                        shipping: {
-                            name: 'Alex Johnson',
-                            address: '123 Main St',
-                            city: 'Brussels',
-                            postal_code: '1000',
-                            country: 'Belgium'
-                        },
-                        custom_note: 'Please sign it to my partner Sam - Happy Anniversary!'
-                    },
-                    {
-                        id: 'pi_example456',
-                        customer: {
-                            name: 'Jordan Smith',
-                            email: 'jordan@example.com'
-                        },
-                        product: 'Complete Bundle',
-                        amount: 22.99,
-                        status: 'shipped',
-                        date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-                        shipping: {
-                            name: 'Jordan Smith',
-                            address: '456 Oak Ave',
-                            city: 'London',
-                            postal_code: 'SW1A 1AA',
-                            country: 'United Kingdom'
-                        },
-                        custom_note: 'For my book club - can\'t wait to discuss!'
-                    },
-                    {
-                        id: 'pi_example789',
-                        customer: {
-                            name: 'Casey Williams',
-                            email: 'casey@example.com'
-                        },
-                        product: 'Audiobook',
-                        amount: 7.99,
-                        status: 'digital',
-                        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-                        custom_note: null
-                    }
-                ];
-
                 // Convert stored orders to proper format
                 const realOrders = storedOrders.map(order => ({
                     id: order.id,
@@ -647,8 +592,7 @@
                     shipping: null // Would be filled by Stripe webhook in real implementation
                 }));
 
-                // Combine real and mock orders
-                allOrders = [...realOrders, ...mockOrders];
+                allOrders = realOrders;
                 displayOrders(allOrders);
             } catch (error) {
                 console.error('Error loading orders:', error);
@@ -893,7 +837,27 @@
 
         // Blog Management
         function loadBlogPosts() {
+            // Load existing blog posts from localStorage and add the real blog post
             const savedPosts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            
+            // Add the real blog post if it doesn't exist
+            const realBlogPost = {
+                id: 'why-i-stopped-dating-apps',
+                title: 'Why I Deleted All My Dating Apps (And You Should Too)',
+                slug: 'why-i-stopped-dating-apps',
+                meta: 'After documenting 25 dating disasters, I finally realized the apps weren\'t the problem—they were the symptom.',
+                content: 'After documenting 25 dating disasters, I finally realized the apps weren\'t the problem—they were the symptom. Here\'s what happened when I went offline for three months and actually started meeting people in Brussels coffee shops...',
+                status: 'published',
+                date: '2025-08-20T00:00:00.000Z'
+            };
+            
+            // Check if the real post already exists
+            const existingPost = savedPosts.find(post => post.id === realBlogPost.id);
+            if (!existingPost) {
+                savedPosts.unshift(realBlogPost);
+                localStorage.setItem('blog_posts', JSON.stringify(savedPosts));
+            }
+            
             const tableBody = document.getElementById('blog-posts-table');
             
             if (savedPosts.length === 0) {
@@ -910,7 +874,7 @@
                     <td class="py-3">${new Date(post.date).toLocaleDateString()}</td>
                     <td class="py-3">
                         <button onclick="editPost('${post.id}')" class="text-glitch-lime hover:underline mr-3">Edit</button>
-                        <button onclick="deletePost('${post.id}')" class="text-red-flag hover:underline">Delete</button>
+                        ${post.id !== 'why-i-stopped-dating-apps' ? `<button onclick="deletePost('${post.id}')" class="text-red-flag hover:underline">Delete</button>` : '<span class="text-bone/50 text-sm">Live</span>'}
                     </td>
                 </tr>
             `).join('');
