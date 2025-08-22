@@ -408,12 +408,19 @@ async function sendConfirmationEmail(session, accessToken) {
     );
     
     let emailContent = `
-        <h2>Thank you for your purchase!</h2>
-        <p>Dear customer,</p>
-        <p>Your order has been confirmed. Here are the details:</p>
-        
-        <h3>Order Summary:</h3>
-        <ul>
+        <div style="max-width: 600px; margin: 0 auto; font-family: 'Inter', sans-serif; background-color: #0E0F10; color: #F7F3ED; padding: 40px 20px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="color: #FF3B3B; font-size: 28px; margin: 0;">🚩 Order Confirmed!</h1>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(247,243,237,0.05) 0%, rgba(247,243,237,0.1) 100%); border: 1px solid rgba(247,243,237,0.1); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
+                <h2 style="color: #F7F3ED; margin: 0 0 15px 0;">Thank you for your purchase!</h2>
+                <p style="color: rgba(247,243,237,0.8); margin: 0 0 25px 0;">
+                    Your order has been confirmed. Here are the details:
+                </p>
+                
+                <h3 style="color: #FF3B3B; margin: 20px 0 10px 0;">Order Summary:</h3>
+                <ul style="color: rgba(247,243,237,0.8);">
     `;
     
     items.forEach(item => {
@@ -425,40 +432,62 @@ async function sendConfirmationEmail(session, accessToken) {
     
     if (hasDigital) {
         emailContent += `
-            <h3>Access Your Audiobook:</h3>
-            <p>Click here to access your audiobook player: 
-            <a href="${process.env.SITE_URL}/audiobook-player?token=${accessToken}">Listen Now</a></p>
-            <p>Bookmark this link for future access to your audiobook.</p>
+            <div style="text-align: center; margin: 30px 0;">
+                <h3 style="color: #FF3B3B;">🎧 Access Your Audiobook:</h3>
+                <a href="${process.env.SITE_URL}/audiobook-player?token=${accessToken}" style="
+                    background-color: #FF3B3B;
+                    color: #F7F3ED;
+                    padding: 15px 30px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    display: inline-block;
+                    margin: 10px 0;
+                ">🎧 Start Listening</a>
+                <p style="color: rgba(247,243,237,0.6); font-size: 14px;">
+                    Bookmark this link for future access to your audiobook.
+                </p>
+            </div>
         `;
     }
     
     if (session.shipping_address) {
         emailContent += `
-            <h3>Shipping Information:</h3>
-            <p>Your signed book will be shipped to:</p>
-            <p>
-                ${session.shipping_address.line1}<br>
-                ${session.shipping_address.line2 ? session.shipping_address.line2 + '<br>' : ''}
-                ${session.shipping_address.city}, ${session.shipping_address.state} ${session.shipping_address.postal_code}<br>
-                ${session.shipping_address.country}
-            </p>
-            <p>Expected delivery: 5-10 business days</p>
+            <h3 style="color: #FF3B3B; margin: 20px 0 10px 0;">📦 Shipping Information:</h3>
+            <p style="color: rgba(247,243,237,0.8);">Your signed book will be shipped to:</p>
+            <div style="background: rgba(247,243,237,0.05); padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <p style="margin: 0; color: #F7F3ED;">
+                    ${session.shipping_address.line1}<br>
+                    ${session.shipping_address.line2 ? session.shipping_address.line2 + '<br>' : ''}
+                    ${session.shipping_address.city}, ${session.shipping_address.state} ${session.shipping_address.postal_code}<br>
+                    ${session.shipping_address.country}
+                </p>
+            </div>
+            <p style="color: rgba(247,243,237,0.6); font-size: 14px;">Expected delivery: 5-10 business days</p>
         `;
     }
     
     emailContent += `
-        <p>Thank you for supporting independent authors!</p>
-        <p>Best,<br>Aleks Filmore</p>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(247,243,237,0.1); padding-top: 20px; text-align: center;">
+                <p style="color: rgba(247,243,237,0.8);">Thank you for supporting independent queer authors!</p>
+                <p style="color: rgba(247,243,237,0.6);">Best,<br>Aleks Filmore</p>
+            </div>
+        </div>
     `;
     
-    const mailOptions = {
-        from: 'aleks@aleksfilmore.com',
-        to: session.customer_email,
-        subject: 'Order Confirmation - The Worst Boyfriends Ever',
-        html: emailContent
-    };
-    
-    await transporter.sendMail(mailOptions);
+    try {
+        await resend.emails.send({
+            from: 'aleks@aleksfilmore.com',
+            to: session.customer_email,
+            subject: 'Order Confirmation - The Worst Boyfriends Ever',
+            html: emailContent
+        });
+        console.log(`Confirmation email sent to ${session.customer_email}`);
+    } catch (error) {
+        console.error('Error sending confirmation email:', error);
+    }
 }
 
 // Test endpoint for generating access tokens (development only)
@@ -549,37 +578,11 @@ app.get('/audio/:filename', (req, res) => {
     res.sendFile(audioPath);
 });
 
-// Webhook for Stripe events
-app.post('/webhook', express.raw({type: 'application/json'}), (req, res) => {
-    const sig = req.headers['stripe-signature'];
-    
-    let event;
-    
-    try {
-        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-    } catch (err) {
-        console.log(`Webhook signature verification failed.`, err.message);
-        return res.status(400).send(`Webhook Error: ${err.message}`);
-    }
-    
-    // Handle the event
-    switch (event.type) {
-        case 'checkout.session.completed':
-            const session = event.data.object;
-            console.log('Payment completed:', session);
-            
-            // Handle audiobook access
-            handleAudiobookAccess(session);
-            break;
-        default:
-            console.log(`Unhandled event type ${event.type}`);
-    }
-
 // Handle audiobook access after successful payment
 async function handleAudiobookAccess(session) {
     try {
         // Get customer email
-        const customerEmail = session.customer_details?.email;
+        const customerEmail = session.customer_details?.email || session.customer_email;
         if (!customerEmail) {
             console.error('No customer email found in session');
             return;
@@ -596,7 +599,7 @@ async function handleAudiobookAccess(session) {
         if (hasAudiobook) {
             // Generate unique access token
             const accessToken = generateAccessToken(customerEmail, 'audiobook');
-            const accessUrl = `${process.env.BASE_URL || 'https://aleksfilmore.com'}/audiobook-player?token=${accessToken}`;
+            const accessUrl = `${process.env.SITE_URL || 'https://aleksfilmore.github.io/web'}/audiobook-player?token=${accessToken}`;
 
             // Send email with unique access link
             await resend.emails.send({
@@ -656,6 +659,49 @@ async function handleAudiobookAccess(session) {
         console.error('Error handling audiobook access:', error);
     }
 }
+
+// Webhook for Stripe events
+app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    
+    let event;
+    
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    } catch (err) {
+        console.log(`Webhook signature verification failed.`, err.message);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+    
+    console.log(`Received webhook event: ${event.type}`);
+    
+    // Handle the event
+    switch (event.type) {
+        case 'checkout.session.completed':
+            const session = event.data.object;
+            console.log('Payment completed:', session.id, 'Customer:', session.customer_email);
+            
+            try {
+                // Generate access token for digital products
+                const accessToken = generateAccessToken(session.customer_email || session.customer_details?.email, session.id);
+                
+                // Save purchase record
+                await savePurchaseRecord(session, accessToken);
+                
+                // Send confirmation email
+                await sendConfirmationEmail(session, accessToken);
+                
+                // Handle audiobook access specifically
+                await handleAudiobookAccess(session);
+                
+                console.log(`Successfully processed order ${session.id}`);
+            } catch (error) {
+                console.error('Error processing completed checkout:', error);
+            }
+            break;
+        default:
+            console.log(`Unhandled event type ${event.type}`);
+    }
     
     res.json({received: true});
 });
