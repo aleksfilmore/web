@@ -75,17 +75,17 @@ function verifyAccessToken(token) {
 const PRODUCTS = {
     'audiobook': {
         name: 'The Worst Boyfriends Ever (Audiobook)',
-        stripe_product_id: 'prod_SuUDw7DR0N23yE',
-        stripe_price_id: 'price_1RyfF65SMnEa5xV10VFMLiIC',
+        stripe_product_id: process.env.STRIPE_AUDIOBOOK_PRODUCT_ID,
+        stripe_price_id: process.env.STRIPE_AUDIOBOOK_PRICE_ID,
         price: 7.99,
         currency: 'usd',
         type: 'digital',
         description: 'Audiobook with exclusive bonus epilogue and instant access'
     },
     'signed-book': {
-        name: 'The Worst Boyfriends Ever (Signed Paperback)',
-        stripe_product_id: 'prod_SuUDnKkQvQ3Bxs',
-        stripe_price_id: 'price_1RyfF05SMnEa5xV17jx5btCf',
+        name: 'The Worst Boyfriends Ever (Signed Paperbook)',
+        stripe_product_id: process.env.STRIPE_SIGNED_BOOK_PRODUCT_ID,
+        stripe_price_id: process.env.STRIPE_SIGNED_BOOK_PRICE_ID,
         price: 17.99,
         currency: 'usd',
         type: 'physical',
@@ -545,9 +545,9 @@ async function handleAudiobookAccess(session) {
         // Check if this purchase includes audiobook
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
         const hasAudiobook = lineItems.data.some(item => 
-            item.price?.id === 'price_1RyfF65SMnEa5xV10VFMLiIC' || // Audiobook price ID
+            item.price?.id === process.env.STRIPE_AUDIOBOOK_PRICE_ID || // Audiobook price ID
             item.description?.toLowerCase().includes('audiobook') ||
-            item.price?.product === 'prod_SuUDw7DR0N23yE' // Audiobook product ID
+            item.price?.product === process.env.STRIPE_AUDIOBOOK_PRODUCT_ID // Audiobook product ID
         );
 
         if (hasAudiobook) {
