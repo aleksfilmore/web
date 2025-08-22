@@ -1,16 +1,59 @@
 # Admin Dashboard Setup Guide
 
 ## Overview
-The admin dashboard has been completely rebuilt with clean, working functionality for blog management, newsletter composition, and analytics.
+The admin dashboard has been completely rebuilt with clean, working functionality for blog management, newsletter composition, order management, and analytics.
 
 ## Current Features
 
 ### ✅ Working Now
 - **Authentication**: Username: `aleks`, Password: `worstboyfriends2025`
+- **Order Management**: View orders, shipping addresses, and custom notes/dedications
 - **Blog Management**: Create, edit, delete blog posts with status tracking
 - **Newsletter Composition**: Templates, preview, and sending functionality
+- **Subscriber Management**: Formspree integration with refresh functionality
 - **Clean Analytics Dashboard**: Ready for real data integration
 - **Responsive Design**: Works on all devices
+
+### 🆕 New Order Management Features
+- **Custom Notes**: Customers can add dedication requests during checkout
+- **Order Filtering**: Filter by status (pending, shipped, digital)
+- **Order Search**: Search by customer name, email, or product
+- **Shipping Addresses**: Full address details for physical orders
+- **Order Status Updates**: Mark orders as shipped directly from admin panel
+
+### 🆕 Enhanced Checkout Process
+- **Custom Checkout Page**: `/checkout.html?product=audiobook|signed-book|bundle`
+- **Custom Notes Field**: For personalized dedications on signed copies
+- **Newsletter Signup**: Optional subscription during checkout
+- **Email Collection**: Required for all orders
+- **Secure Stripe Integration**: Redirects to Stripe after collecting custom data
+
+## How It Works
+
+### Customer Journey
+1. **Shop Page**: Customer clicks "Add to Cart" on any product
+2. **Checkout Page**: Redirected to `/checkout.html?product=X` to enter:
+   - Email address (required)
+   - Custom note/dedication (for physical products)
+   - Newsletter signup (optional)
+3. **Stripe Payment**: Redirected to secure Stripe Payment Link
+4. **Admin Notification**: Order appears in admin panel with all details
+
+### Admin Management
+1. **Login**: Access `/admin.html` with credentials
+2. **View Orders**: See all orders in the Order Management section
+3. **Order Details**: Click "View" to see full order details including:
+   - Customer information
+   - Shipping address (when available)
+   - Custom notes/dedication requests
+   - Order status
+4. **Fulfill Orders**: Mark physical orders as "Shipped" when completed
+
+### Newsletter Integration
+- **Formspree Form ID**: `myzjjjjp` (your existing form)
+- **Auto-Signup**: Newsletter checkouts automatically submit to Formspree
+- **Manual Refresh**: Click "Refresh from Formspree" to update subscriber count
+- **Cache System**: Subscriber data cached locally for offline viewing
 
 ### 🔧 Next Steps for Full Integration
 
