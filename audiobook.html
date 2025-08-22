@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Heroicons for professional icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/style.css">
+    
     <!-- Cookie Notice CSS -->
     <link rel="stylesheet" href="css/cookie-notice.css">
 
@@ -404,17 +407,23 @@
                             </div>
                             
                             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <button class="btn-primary" onclick="addToCart('audiobook')">
-                                    🛒 Add to Cart - €7.99
+                                <button class="btn-primary group" onclick="addToCart('audiobook')">
+                                    <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                                    </svg>
+                                    Add to Cart - €7.99
                                 </button>
-                                <a href="#preview" class="btn-secondary">
-                                    👂 Listen to Sample
+                                <a href="#preview" class="btn-secondary group">
+                                    <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                                    </svg>
+                                    Listen to Sample
                                 </a>
                             </div>
                         </div>
 
                         <!-- Audiobook Player Preview -->
-                        <div class="flex justify-center lg:justify-end">
+                        <div class="flex justify-center lg:justify-end" id="preview">
                             <div class="relative w-full max-w-md">
                                 <!-- Main Player Card -->
                                 <div class="audiobook-player">
@@ -428,7 +437,9 @@
                                         
                                         <div class="flex items-center gap-3 mb-4">
                                             <button class="play-button" id="audioPlayBtn">
-                                                ▶️
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
                                             </button>
                                             <div class="flex-1">
                                                 <p class="font-display font-semibold text-sm">Narrated by Deacon Deane</p>
@@ -448,12 +459,18 @@
                                 </div>
                                 
                                 <!-- Floating badges -->
-                                <div class="absolute -top-2 -right-2 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-12 floating-element">
+                                <div class="absolute -top-2 -right-2 bg-glitch-lime text-charcoal px-3 py-1 rounded-full font-bold text-xs transform rotate-12 floating-element flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                    </svg>
                                     ★★★★★ Rated
                                 </div>
                                 
-                                <div class="absolute -bottom-4 -left-4 bg-dusty-blush text-charcoal px-3 py-2 rounded-full font-bold text-sm transform -rotate-6 floating-element">
-                                    🎭 34 Chapters
+                                <div class="absolute -bottom-4 -left-4 bg-dusty-blush text-charcoal px-3 py-2 rounded-full font-bold text-sm transform -rotate-6 floating-element flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                                    </svg>
+                                    34 Chapters
                                 </div>
                             </div>
                         </div>
@@ -473,19 +490,31 @@
                 
                 <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                     <div class="feature-card">
-                        <div class="feature-icon">📚</div>
+                        <div class="feature-icon">
+                            <svg class="w-12 h-12 mx-auto text-glitch-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
                         <h3 class="font-display font-bold text-xl mb-3">The full memoir, unabridged</h3>
                         <p class="text-bone/70 text-sm">All 25 red flag chronicles + 8 bonus disasters, no filters, just vibes and unhinged stories.</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon">⭐</div>
+                        <div class="feature-icon">
+                            <svg class="w-12 h-12 mx-auto text-red-flag" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                            </svg>
+                        </div>
                         <h3 class="font-display font-bold text-xl mb-3">Direct-only bonus epilogue</h3>
                         <p class="text-bone/70 text-sm">An extra chapter that won't hit other platforms. Consider it your reward for basic impulse restraint.</p>
                     </div>
                     
                     <div class="feature-card">
-                        <div class="feature-icon">📱</div>
+                        <div class="feature-icon">
+                            <svg class="w-12 h-12 mx-auto text-dusty-blush" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
                         <h3 class="font-display font-bold text-xl mb-3">Instant access + offline mode</h3>
                         <p class="text-bone/70 text-sm">Stream wherever: on all devices, even offline when your commute turns cellular dead zone.</p>
                     </div>
@@ -531,12 +560,42 @@
                     <p class="text-bone/70 text-lg mb-12">Works on everything except your serotonin</p>
                     
                     <div class="flex flex-wrap justify-center gap-4 mb-12">
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">📱 iOS</div>
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">🤖 Android</div>
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">💻 Desktop</div>
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">🌐 Web Browser</div>
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">📧 Air Headphones</div>
-                        <div class="bg-bone/10 px-4 py-2 rounded-lg">📻 Any Headphones</div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                            iOS
+                        </div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.523 15.3414c-.5511-.8725-1.4471-1.2381-1.9382-1.2381-.5911 0-1.387-.3656-1.9382-1.2381-.5511-.8725-.5511-2.2873 0-3.1598.5511-.8725 1.4471-1.2381 1.9382-1.2381.4911 0 1.387.3656 1.9382 1.2381.5511.8725.5511 2.2873 0 3.1598z"/>
+                            </svg>
+                            Android
+                        </div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Desktop
+                        </div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                            </svg>
+                            Web Browser
+                        </div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                            </svg>
+                            AirPods
+                        </div>
+                        <div class="bg-bone/10 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                            </svg>
+                            Any Headphones
+                        </div>
                     </div>
                     
                     <div class="max-w-2xl mx-auto">
@@ -562,8 +621,11 @@
                     
                     <div class="price-badge mb-8">€7.99</div>
                     
-                    <button class="btn-primary btn-large" onclick="addToCart('audiobook')">
-                        🛒 Add to Cart - €7.99
+                    <button class="btn-primary btn-large group" onclick="addToCart('audiobook')">
+                        <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                        Add to Cart - €7.99
                     </button>
                     
                     <p class="text-bone/60 text-sm mt-6">
@@ -600,12 +662,33 @@
                 <div>
                     <h4 class="font-semibold mb-4">Connect</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
-                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li>
+                            <a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C8.396 0 7.939.016 6.71.078 5.481.14 4.65.301 3.927.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.301 4.863.14 5.694.078 6.923.016 8.152 0 8.609 0 12.017s.016 3.865.078 5.094c.062 1.229.223 2.06.552 2.783.306.789.717 1.459 1.384 2.126s1.337 1.078 2.126 1.384c.723.329 1.554.49 2.783.552 1.229.062 1.686.078 5.094.078s3.865-.016 5.094-.078c1.229-.062 2.06-.223 2.783-.552.789-.306 1.459-.717 2.126-1.384s1.078-1.337 1.384-2.126c.329-.723.49-1.554.552-2.783.062-1.229.078-1.686.078-5.094s-.016-3.865-.078-5.094c-.062-1.229-.223-2.06-.552-2.783-.306-.789-.717-1.459-1.384-2.126S19.65.935 18.861.63C18.138.301 17.307.14 16.078.078 14.849.016 14.392 0 12.017 0zM12.017 2.17c3.291 0 3.683.013 4.947.072 1.194.055 1.843.249 2.274.413.572.222.98.487 1.41.916.43.43.694.838.916 1.41.164.431.358 1.08.413 2.274.059 1.264.072 1.656.072 4.947s-.013 3.683-.072 4.947c-.055 1.194-.249 1.843-.413 2.274-.222.572-.487.98-.916 1.41-.43.43-.838.694-1.41.916-.431.164-1.08.358-2.274.413-1.264.059-1.656.072-4.947.072s-3.683-.013-4.947-.072c-1.194-.055-1.843-.249-2.274-.413-.572-.222-.98-.487-1.41-.916-.43-.43-.694-.838-.916-1.41-.164-.431-.358-1.08-.413-2.274-.059-1.264-.072-1.656-.072-4.947s.013-3.683.072-4.947c.055-1.194.249-1.843.413-2.274.222-.572.487-.98.916-1.41.43-.43.838-.694 1.41-.916.431-.164 1.08-.358 2.274-.413 1.264-.059 1.656-.072 4.947-.072z"/>
+                                    <path d="M12.017 5.838A6.179 6.179 0 1 0 18.196 12 6.179 6.179 0 0 0 12.017 5.838zM12.017 16A4 4 0 1 1 16.017 12a4 4 0 0 1-4 4z"/>
+                                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                                </svg>
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                                </svg>
+                                TikTok
+                            </a>
+                        </li>
                         <li><a href="newsletter.html" class="text-bone/60 hover:text-red-flag transition-colors">Newsletter</a></li>
                         <li><a href="contact.html" class="text-bone/60 hover:text-red-flag transition-colors">Contact</a></li>
                         <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">Press Kit</a></li>
-                        <li><a href="midway.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs">Hall of Red Flags 🚩</a></li>
+                        <li><a href="midway.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                            </svg>
+                            Hall of Red Flags
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -618,7 +701,7 @@
 
     <!-- Audio element for preview -->
     <audio id="audioPreview" preload="metadata">
-        <source src="The Worst Boyfriends Ever Audio Sample.mp3" type="audio/mpeg">
+        <source src="audio/sample.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -694,10 +777,18 @@
         playBtn.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play();
-                playBtn.textContent = '⏸️';
+                playBtn.innerHTML = `
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                `;
             } else {
                 audio.pause();
-                playBtn.textContent = '▶️';
+                playBtn.innerHTML = `
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                `;
             }
         });
 
@@ -707,7 +798,11 @@
         });
 
         audio.addEventListener('ended', function() {
-            playBtn.textContent = '▶️';
+            playBtn.innerHTML = `
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            `;
             progressBar.style.width = '0%';
         });
 

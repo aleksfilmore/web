@@ -93,6 +93,49 @@ const PRODUCTS = {
     }
 };
 
+// Simple checkout route for direct product purchase
+app.get('/checkout', async (req, res) => {
+    try {
+        const { product } = req.query;
+        
+        if (!product || !PRODUCTS[product]) {
+            return res.status(400).send('Invalid product');
+        }
+        
+        const productInfo = PRODUCTS[product];
+        
+        // Create Stripe session for single product
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price: productInfo.stripe_price_id,
+                quantity: 1,
+            }],
+            mode: 'payment',
+            success_url: `${req.headers.origin || process.env.SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${req.headers.origin || process.env.SITE_URL}/audiobook.html`,
+            metadata: {
+                product_id: product,
+                product_type: productInfo.type || 'digital',
+                cart_items: JSON.stringify([{ id: product, quantity: 1 }])
+            },
+            customer_email: req.query.email || undefined,
+            ...(productInfo.type === 'physical' || productInfo.type === 'bundle' ? {
+                shipping_address_collection: {
+                    allowed_countries: ['US', 'CA', 'GB', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH', 'AU', 'JP']
+                }
+            } : {})
+        });
+        
+        // Redirect to Stripe Checkout
+        res.redirect(303, session.url);
+        
+    } catch (error) {
+        console.error('Checkout redirect error:', error);
+        res.status(500).send('Error creating checkout session');
+    }
+});
+
 // Create checkout session
 app.post('/api/create-checkout-session', async (req, res) => {
     try {

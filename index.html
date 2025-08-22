@@ -38,6 +38,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Heroicons for professional icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/style.css">
+    
     <!-- Cookie Notice CSS -->
     <link rel="stylesheet" href="css/cookie-notice.css">
 
@@ -377,42 +380,158 @@
                 padding: 2rem;
             }
         }
-        # Stripe Configuration (REQUIRED)
-        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
-        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
-        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
         
-        # Email Service (REQUIRED)
-        RESEND_API_KEY=re_... # Get from resend.com
+        /* Enhanced Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 50%, var(--color-charcoal) 100%);
+            position: relative;
+            overflow: hidden;
+        }
         
-        # Site Configuration
-        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
-        PORT=3000        # Stripe Configuration (REQUIRED)
-        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
-        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
-        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 59, 59, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(199, 255, 65, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
         
-        # Email Service (REQUIRED)
-        RESEND_API_KEY=re_... # Get from resend.com
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
         
-        # Site Configuration
-        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
-        PORT=3000        # Stripe Configuration (REQUIRED)
-        STRIPE_SECRET_KEY=sk_test_... # Get from Stripe Dashboard
-        STRIPE_PUBLISHABLE_KEY=pk_test_... # Get from Stripe Dashboard  
-        STRIPE_WEBHOOK_SECRET=whsec_... # Create webhook endpoint first
+        .hero-title {
+            background: linear-gradient(135deg, var(--color-bone) 0%, var(--color-dusty-blush) 50%, var(--color-bone) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(247, 243, 237, 0.1);
+        }
         
-        # Email Service (REQUIRED)
-        RESEND_API_KEY=re_... # Get from resend.com
+        .hero-subtitle {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
         
-        # Site Configuration
-        SITE_URL=https://your-railway-app.railway.app # Railway will provide this
-        PORT=3000        
-        /* Large tablet/Small desktop (1024px+) */
+        /* Enhanced Why Buy Direct Box */
+        .why-direct-box {
+            background: linear-gradient(135deg, 
+                rgba(247, 243, 237, 0.12) 0%, 
+                rgba(247, 243, 237, 0.08) 50%, 
+                rgba(247, 243, 237, 0.12) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(247, 243, 237, 0.1);
+        }
+        
+        .why-direct-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 59, 59, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 59, 59, 0.05);
+            border-radius: 12px;
+            margin: 0 -0.5rem;
+            padding: 1rem 1rem;
+        }
+        
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            margin-top: 0.125rem;
+        }
+        
+        .benefit-icon.primary {
+            background: linear-gradient(135deg, var(--color-red-flag), #e63946);
+            color: var(--color-bone);
+        }
+        
+        .benefit-icon.secondary {
+            background: linear-gradient(135deg, var(--color-glitch-lime), #b8e000);
+            color: var(--color-charcoal);
+        }
+        
+        .benefit-icon.tertiary {
+            background: linear-gradient(135deg, var(--color-dusty-blush), #e8a4b8);
+            color: var(--color-charcoal);
+        }
+
+        /* Icon styles for replacing emojis */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .icon-lg {
+            width: 2rem;
+            height: 2rem;
+        }
+        
+        .icon-xl {
+            width: 3rem;
+            height: 3rem;
+        }
         @media (min-width: 1024px) {
             .btn-primary, .btn-secondary {
                 padding: 1.25rem 2.5rem;
                 font-size: 1.125rem;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
+                line-height: 0.9;
+            }
+            
+            .why-direct-box {
+                padding: 3rem;
+            }
+            
+            .benefit-item {
+                padding: 1.5rem 0;
+            }
+            
+            .benefit-icon {
+                width: 2.5rem;
+                height: 2.5rem;
             }
         }
     </style>
@@ -463,22 +582,28 @@
     <main class="pt-16 sm:pt-20">
 
         <!-- Hero Section -->
-        <section class="py-8 sm:py-12 lg:py-16 xl:py-20">
+        <section class="hero-gradient py-12 sm:py-16 lg:py-24 xl:py-32">
             <div class="container mx-auto px-4 sm:px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
+                <div class="hero-content max-w-5xl mx-auto text-center">
+                    <h1 class="hero-title font-display font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 leading-tight">
                         DATING IS WAR. <span class="text-red-flag">LAUGHTER IS ARMOR.</span><br>
-                        I kept mistaking warnings for charm.
+                        <span class="text-lg sm:text-xl lg:text-2xl font-normal text-bone/90 block mt-4">I kept mistaking warnings for charm.</span>
                     </h1>
-                    <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed max-w-2xl mx-auto">
+                    <p class="hero-subtitle text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-10 text-bone/90 leading-relaxed max-w-3xl mx-auto font-light">
                         I'm Aleks Filmore. These are the twenty-five times I learned the hard way.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
-                        <a href="shop.html" class="btn-primary">
-                            🛒 Shop Books
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center max-w-lg mx-auto">
+                        <a href="shop.html" class="btn-primary group">
+                            <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                            Shop Books
                         </a>
-                        <a href="audiobook.html" class="btn-secondary">
-                            🎧 Preview Audio
+                        <a href="audiobook.html" class="btn-secondary group">
+                            <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                            </svg>
+                            Preview Audio
                         </a>
                     </div>
                 </div>
@@ -512,30 +637,54 @@
                         <!-- Book Info -->
                         <div class="order-1 lg:order-2">
                             <div class="receipt-card">
-                                <h3 class="font-display font-bold text-xl sm:text-2xl mb-4">
+                                <h3 class="font-display font-bold text-xl sm:text-2xl mb-6">
                                     What You Get:
                                 </h3>
-                                <ul class="space-y-3 text-sm sm:text-base mb-6">
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-red-flag mt-1">📖</span>
-                                        <span><strong>25 dating disasters</strong> documented with surgical precision</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-red-flag mt-1">🚩</span>
-                                        <span><strong>Red flags catalog</strong> that could save your emotional budget</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-red-flag mt-1">💡</span>
-                                        <span><strong>Boundary blueprints</strong> learned the hard way</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-red-flag mt-1">😂</span>
-                                        <span><strong>Therapeutic laughter</strong> at my expense</span>
-                                    </li>
-                                </ul>
+                                <div class="space-y-1">
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon primary">
+                                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <strong>25 dating disasters</strong> documented with surgical precision
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon primary">
+                                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <strong>Red flags catalog</strong> that could save your emotional budget
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon secondary">
+                                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <strong>Boundary blueprints</strong> learned the hard way
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon tertiary">
+                                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2.5 2.5 0 100-5H9v5zm0 0v6a2 2 0 104 0v-6m3-2a2.5 2.5 0 100-5m0 5H9"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <strong>Therapeutic laughter</strong> at my expense
+                                        </div>
+                                    </div>
+                                </div>
                                 
-                                <div class="text-center">
-                                    <div class="red-flag-tag mb-4">
+                                <div class="text-center mt-6">
+                                    <div class="red-flag-tag">
                                         Direct from author • No platform drama
                                     </div>
                                 </div>
@@ -567,7 +716,11 @@
                         <div class="shop-card floating-element">
                             <div class="price-badge">€7.99</div>
                             <div>
-                                <div class="shop-card-icon">🎧</div>
+                                <div class="shop-card-icon">
+                                    <svg class="icon-xl text-glitch-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                                    </svg>
+                                </div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Audiobook</h3>
                                 <p class="text-bone/80 text-sm sm:text-base mb-4">
                                     Narrated by Deacon Deane. Full disaster, instant access.
@@ -587,7 +740,11 @@
                         <div class="shop-card floating-element" style="animation-delay: 0.2s;">
                             <div class="price-badge">€17.99</div>
                             <div>
-                                <div class="shop-card-icon">✍️</div>
+                                <div class="shop-card-icon">
+                                    <svg class="icon-xl text-dusty-blush" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                    </svg>
+                                </div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Signed Paperback</h3>
                                 <p class="text-bone/80 text-sm sm:text-base mb-4">
                                     Personally signed. Handwritten note. Worldwide shipping.
@@ -607,7 +764,11 @@
                         <div class="shop-card floating-element sm:col-span-2 lg:col-span-1" style="animation-delay: 0.4s;">
                             <div class="price-badge">€22.99</div>
                             <div>
-                                <div class="shop-card-icon">📦</div>
+                                <div class="shop-card-icon">
+                                    <svg class="icon-xl text-red-flag" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                    </svg>
+                                </div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Complete Bundle</h3>
                                 <p class="text-bone/80 text-sm sm:text-base mb-4">
                                     Both formats. Maximum chaos. Best value.
@@ -686,37 +847,67 @@
         </section>
 
         <!-- Why Direct Sales Section -->
-        <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-charcoal to-charcoal/95">
+        <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-charcoal via-charcoal/98 to-charcoal">
             <div class="container mx-auto px-4 sm:px-6">
-                <div class="max-w-3xl mx-auto text-center">
+                <div class="max-w-4xl mx-auto text-center">
                     
-                    <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8">
-                        Why Buy Direct?
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-8 sm:mb-12">
+                        Why Buy <span class="text-red-flag">Direct</span>?
                     </h2>
                     
-                    <div class="receipt-card text-left mb-8">
-                        <div class="space-y-4 text-sm sm:text-base">
-                            <p>
-                                <strong class="text-red-flag">You fund the writer, not the platform.</strong> No middleman tax. More pages, fewer headaches.
-                            </p>
-                            <p>
-                                <strong class="text-glitch-lime">Extras you can't get elsewhere.</strong> Bonus epilogue + handwritten notes live here, not in the algorithm.
-                            </p>
-                            <p>
-                                <strong class="text-dusty-blush">A real human hits reply.</strong> Questions? I answer my own email. Revolutionary, I know.
-                            </p>
-                            <p class="text-center mt-6 font-display font-semibold text-lg">
+                    <div class="why-direct-box p-6 sm:p-8 lg:p-10 text-left mb-8">
+                        <div class="space-y-2">
+                            <div class="benefit-item">
+                                <div class="benefit-icon primary">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-red-flag">You fund the writer, not the platform.</strong> No middleman tax. More pages, fewer headaches.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon secondary">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-glitch-lime">Extras you can't get elsewhere.</strong> Bonus epilogue + handwritten notes live here, not in the algorithm.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon tertiary">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-dusty-blush">A real human hits reply.</strong> Questions? I answer my own email. Revolutionary, I know.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-8 pt-6 border-t border-bone/10">
+                            <p class="font-display font-semibold text-xl lg:text-2xl text-red-flag">
                                 Buy direct. Keep the chaos indie.
                             </p>
                         </div>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
-                        <a href="about.html" class="btn-secondary">
-                            👋 Meet the Author
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center max-w-lg mx-auto">
+                        <a href="about.html" class="btn-secondary group">
+                            <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            Meet the Author
                         </a>
-                        <a href="contact.html" class="btn-primary">
-                            📧 Say Hello
+                        <a href="contact.html" class="btn-primary group">
+                            <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Say Hello
                         </a>
                     </div>
                     
@@ -759,8 +950,24 @@
                 <div>
                     <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
                     <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
-                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li>
+                            <a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors flex items-center gap-2">
+                                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C8.396 0 7.939.016 6.71.078 5.481.14 4.65.301 3.927.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.301 4.863.14 5.694.078 6.923.016 8.152 0 8.609 0 12.017s.016 3.865.078 5.094c.062 1.229.223 2.06.552 2.783.306.789.717 1.459 1.384 2.126s1.337 1.078 2.126 1.384c.723.329 1.554.49 2.783.552 1.229.062 1.686.078 5.094.078s3.865-.016 5.094-.078c1.229-.062 2.06-.223 2.783-.552.789-.306 1.459-.717 2.126-1.384s1.078-1.337 1.384-2.126c.329-.723.49-1.554.552-2.783.062-1.229.078-1.686.078-5.094s-.016-3.865-.078-5.094c-.062-1.229-.223-2.06-.552-2.783-.306-.789-.717-1.459-1.384-2.126S19.65.935 18.861.63C18.138.301 17.307.14 16.078.078 14.849.016 14.392 0 12.017 0zM12.017 2.17c3.291 0 3.683.013 4.947.072 1.194.055 1.843.249 2.274.413.572.222.98.487 1.41.916.43.43.694.838.916 1.41.164.431.358 1.08.413 2.274.059 1.264.072 1.656.072 4.947s-.013 3.683-.072 4.947c-.055 1.194-.249 1.843-.413 2.274-.222.572-.487.98-.916 1.41-.43.43-.838.694-1.41.916-.431.164-1.08.358-2.274.413-1.264.059-1.656.072-4.947.072s-3.683-.013-4.947-.072c-1.194-.055-1.843-.249-2.274-.413-.572-.222-.98-.487-1.41-.916-.43-.43-.694-.838-.916-1.41-.164-.431-.358-1.08-.413-2.274-.059-1.264-.072-1.656-.072-4.947s.013-3.683.072-4.947c.055-1.194.249-1.843.413-2.274.222-.572.487-.98.916-1.41.43-.43.838-.694 1.41-.916.431-.164 1.08-.358 2.274-.413 1.264-.059 1.656-.072 4.947-.072z"/>
+                                    <path d="M12.017 5.838A6.179 6.179 0 1 0 18.196 12 6.179 6.179 0 0 0 12.017 5.838zM12.017 16A4 4 0 1 1 16.017 12a4 4 0 0 1-4 4z"/>
+                                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                                </svg>
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors flex items-center gap-2">
+                                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                                </svg>
+                                TikTok
+                            </a>
+                        </li>
                         <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
                     </ul>
                 </div>
