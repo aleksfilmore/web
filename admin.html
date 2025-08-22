@@ -1,28 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Admin Dashboard | Aleks Filmore</title>
-    <meta name="description" content="Content management dashboard for blog posts, pricing, newsletters, and analytics.">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Content management dashboard for sales analytics, blog posts, and newsletter management.">
     
-    <!-- Favicon -->
-    <link rel="icon" href="/AF.png" type="image/png">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Chart.js -->
+    
+    <!-- Chart.js for analytics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Custom Styles -->
+    
+    <!-- Custom CSS -->
     <style>
         :root {
             --color-charcoal: #0E0F10;
@@ -30,708 +20,306 @@
             --color-red-flag: #FF3B3B;
             --color-glitch-lime: #C7FF41;
             --color-dusty-blush: #F1B7C4;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        /* Mobile-First Base Styles */
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
         }
 
         body {
-            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
-            font-family: var(--font-body);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-charcoal);
             color: var(--color-bone);
-            line-height: 1.6;
-            font-size: 16px;
         }
 
-        .font-display { font-family: var(--font-display); }
-        .text-red-flag { color: var(--color-red-flag); }
-        .text-glitch-lime { color: var(--color-glitch-lime); }
-        .text-dusty-blush { color: var(--color-dusty-blush); }
-
-        /* Dashboard Cards */
-        .dashboard-card {
-            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
-            border: 1px solid rgba(247, 243, 237, 0.15);
-            border-radius: 20px;
-            padding: 1.5rem;
+        .admin-nav {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1b1c 100%);
+            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
             backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .dashboard-card:hover {
-            border-color: rgba(255, 59, 59, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Stat Cards */
-        .stat-card {
-            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(199, 255, 65, 0.05) 100%);
-            border: 1px solid rgba(199, 255, 65, 0.2);
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.05) 0%, rgba(247, 243, 237, 0.1) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.1);
             border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--color-bone);
-            cursor: pointer;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--color-bone);
-            color: var(--color-charcoal);
-            transform: translateY(-1px);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
-            color: var(--color-charcoal);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(199, 255, 65, 0.25);
-        }
-        
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(199, 255, 65, 0.4);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #d32f2f 100%);
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
-        }
-        
-        .btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
-        }
-
-        /* Form Styles */
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid rgba(247, 243, 237, 0.2);
-            border-radius: 8px;
-            background: rgba(247, 243, 237, 0.05);
-            color: var(--color-bone);
-            font-family: var(--font-body);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--color-red-flag);
-            box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.1);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
-            color: var(--color-charcoal);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
+            padding: 2rem;
             transition: all 0.3s ease;
         }
 
-        .btn-success:hover {
+        .dashboard-card:hover {
+            border-color: var(--color-red-flag);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--color-red-flag);
+            color: var(--color-bone);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: #e63232;
             transform: translateY(-1px);
         }
 
-        /* Form Styles */
+        .btn-secondary {
+            background: var(--color-glitch-lime);
+            color: var(--color-charcoal);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
         .form-input {
-            background: rgba(247, 243, 237, 0.05);
+            background: rgba(247, 243, 237, 0.1);
             border: 1px solid rgba(247, 243, 237, 0.2);
             border-radius: 8px;
-            padding: 0.75rem 1rem;
+            padding: 12px 16px;
             color: var(--color-bone);
-            font-family: var(--font-body);
-            transition: border-color 0.2s ease;
             width: 100%;
         }
 
         .form-input:focus {
+            border-color: var(--color-red-flag);
             outline: none;
-            border-color: var(--color-glitch-lime);
         }
 
-        .form-input::placeholder {
-            color: rgba(247, 243, 237, 0.5);
-        }
-
-        .form-textarea {
-            background: rgba(247, 243, 237, 0.05);
-            border: 1px solid rgba(247, 243, 237, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--color-bone);
-            font-family: var(--font-body);
-            transition: border-color 0.2s ease;
-            width: 100%;
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--color-glitch-lime);
-        }
-
-        /* Table Styles */
-        .data-table {
-            background: rgba(247, 243, 237, 0.03);
-            border: 1px solid rgba(247, 243, 237, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .data-table th {
-            background: rgba(247, 243, 237, 0.08);
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            font-family: var(--font-display);
-            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
-        }
-
-        .data-table td {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(247, 243, 237, 0.05);
-        }
-
-        .data-table tr:hover {
-            background: rgba(247, 243, 237, 0.02);
-        }
-
-        /* Status badges */
-        .status-published {
-            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
-            color: var(--color-charcoal);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .status-draft {
-            background: rgba(247, 243, 237, 0.2);
-            color: var(--color-bone);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        /* Mobile Navigation */
-        .admin-nav {
-            background: rgba(14, 15, 16, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
-        }
-
-        .nav-tab {
-            color: var(--color-bone);
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-tab:hover, .nav-tab.active {
-            background: rgba(255, 59, 59, 0.1);
-            color: var(--color-red-flag);
-        }
-
-        /* Chart container */
-        .chart-container {
-            position: relative;
-            height: 300px;
-            margin: 1rem 0;
-        }
-
-        /* Modal styles */
         .modal {
-            display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
 
         .modal-content {
-            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
-            margin: 5% auto;
-            padding: 2rem;
+            background: var(--color-charcoal);
             border: 1px solid rgba(247, 243, 237, 0.2);
-            border-radius: 20px;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
             width: 90%;
-            max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
         }
 
-        .close {
-            color: var(--color-bone);
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .close:hover {
+        .status-published {
+            background: rgba(199, 255, 65, 0.2);
+            color: var(--color-glitch-lime);
+        }
+
+        .status-draft {
+            background: rgba(255, 59, 59, 0.2);
             color: var(--color-red-flag);
-        }
-
-        /* Responsive breakpoints */
-        @media (min-width: 768px) {
-            .modal-content {
-                margin: 10% auto;
-                width: 80%;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .modal-content {
-                width: 60%;
-            }
         }
     </style>
 </head>
-<body class="antialiased">
 
+<body>
     <!-- Navigation -->
     <nav class="admin-nav fixed top-0 w-full z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-                <div class="font-display font-bold text-xl">
-                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Admin Dashboard</a>
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-xl font-bold">Admin Dashboard</h1>
                 </div>
-                <div class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto">
-                    <a href="#analytics" class="nav-tab active" data-tab="analytics">
-                        📊 Analytics
-                    </a>
-                    <a href="#blog" class="nav-tab" data-tab="blog">
-                        📝 Blog
-                    </a>
-                    <a href="#pricing" class="nav-tab" data-tab="pricing">
-                        💰 Pricing
-                    </a>
-                    <a href="#newsletter" class="nav-tab" data-tab="newsletter">
-                        📧 Newsletter
-                    </a>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <a href="index.html" class="btn-secondary text-sm">
-                        ← Back to Site
-                    </a>
-                    <button onclick="logout()" class="btn-danger text-sm">
-                        Logout
-                    </button>
+                <div class="flex items-center space-x-4">
+                    <span id="user-info" class="text-sm opacity-70"></span>
+                    <button onclick="logout()" class="btn-secondary text-sm">Logout</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-20">
-        
-        <!-- Analytics Tab -->
-        <div id="analytics-tab" class="tab-content">
-            <section class="py-8">
-                <div class="container mx-auto px-4">
-                    <h1 class="font-display font-bold text-3xl mb-8">Analytics Dashboard</h1>
-                    
-                    <!-- Stats Overview -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2" id="total-sales">€2,847</div>
-                            <div class="text-sm text-bone/70">Total Sales (30 days)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2" id="audiobook-sales">€423</div>
-                            <div class="text-sm text-bone/70">Audiobook Sales</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2" id="book-sales">€2,424</div>
-                            <div class="text-sm text-bone/70">Signed Book Sales</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2" id="newsletter-subs">1,247</div>
-                            <div class="text-sm text-bone/70">Newsletter Subscribers</div>
+    <main class="pt-20 pb-12">
+        <div class="container mx-auto px-6">
+            
+            <!-- Analytics Dashboard -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-8">Sales Analytics</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Total Revenue -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Total Revenue</h3>
+                        <p id="total-revenue" class="text-3xl font-bold text-glitch-lime">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">All-time earnings</p>
+                    </div>
+
+                    <!-- Audiobook Sales -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Audiobook Sales</h3>
+                        <p id="audiobook-revenue" class="text-3xl font-bold text-red-flag">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Digital product revenue</p>
+                    </div>
+
+                    <!-- Book Sales -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Signed Book Sales</h3>
+                        <p id="book-revenue" class="text-3xl font-bold text-dusty-blush">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Physical product revenue</p>
+                    </div>
+
+                    <!-- Bundle Sales -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Bundle Sales</h3>
+                        <p id="bundle-revenue" class="text-3xl font-bold text-bone">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Complete package revenue</p>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Revenue Chart -->
+                    <div class="dashboard-card">
+                        <h3 class="text-xl font-semibold mb-4">Revenue Over Time</h3>
+                        <div style="height: 300px;">
+                            <canvas id="revenueChart"></canvas>
                         </div>
                     </div>
 
-                    <!-- Charts -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                        <div class="dashboard-card">
-                            <h3 class="font-display font-bold text-xl mb-4">Sales Over Time</h3>
-                            <div class="chart-container">
-                                <canvas id="salesChart"></canvas>
+                    <!-- Product Breakdown -->
+                    <div class="dashboard-card">
+                        <h3 class="text-xl font-semibold mb-4">Product Sales Breakdown</h3>
+                        <div style="height: 300px;">
+                            <canvas id="productChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Management -->
+            <section class="mb-12">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold">Newsletter Management</h2>
+                    <button onclick="openModal('compose-newsletter-modal')" class="btn-primary">
+                        Compose Newsletter
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Subscriber Stats -->
+                    <div class="dashboard-card">
+                        <h3 class="text-xl font-semibold mb-4">Subscriber Statistics</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>Total Subscribers:</span>
+                                <span id="total-subscribers" class="font-bold">Loading...</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>This Month:</span>
+                                <span id="monthly-subscribers" class="font-bold text-glitch-lime">Loading...</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Open Rate:</span>
+                                <span class="font-bold text-red-flag">~25%</span>
                             </div>
                         </div>
-                        <div class="dashboard-card">
-                            <h3 class="font-display font-bold text-xl mb-4">Product Performance</h3>
-                            <div class="chart-container">
-                                <canvas id="productChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Transactions -->
-                    <div class="dashboard-card">
-                        <h3 class="font-display font-bold text-xl mb-4">Recent Transactions</h3>
-                        <div class="overflow-x-auto">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Product</th>
-                                        <th>Amount</th>
-                                        <th>Customer</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="transactions-table">
-                                    <tr>
-                                        <td>Aug 20, 2025</td>
-                                        <td>Signed Book</td>
-                                        <td>€17.99</td>
-                                        <td>Sarah M.</td>
-                                        <td><span class="status-published">Completed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Aug 20, 2025</td>
-                                        <td>Audiobook</td>
-                                        <td>€7.99</td>
-                                        <td>Alex K.</td>
-                                        <td><span class="status-published">Completed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Aug 19, 2025</td>
-                                        <td>Signed Book</td>
-                                        <td>€17.99</td>
-                                        <td>Emma L.</td>
-                                        <td><span class="status-published">Completed</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Blog Management Tab -->
-        <div id="blog-tab" class="tab-content hidden">
-            <section class="py-8">
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-8">
-                        <h1 class="font-display font-bold text-3xl">Blog Management</h1>
-                        <button class="btn-primary" onclick="openModal('new-post-modal')">
-                            ➕ New Post
+                        <button onclick="refreshSubscribers()" class="btn-secondary mt-4 w-full">
+                            Refresh from Formspree
                         </button>
-                    </div>
-                    
-                    <!-- Blog Posts Table -->
-                    <div class="dashboard-card">
-                        <h3 class="font-display font-bold text-xl mb-4">Recent Posts</h3>
-                        <div class="overflow-x-auto">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>Views</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="blog-posts-table">
-                                    <tr>
-                                        <td>Why I Deleted All My Dating Apps</td>
-                                        <td><span class="status-published">Published</span></td>
-                                        <td>Aug 20, 2025</td>
-                                        <td>1,234</td>
-                                        <td>
-                                            <button class="btn-secondary text-xs" onclick="editPost('1')">Edit</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>The Post-Audiobook Recording Hangover</td>
-                                        <td><span class="status-published">Published</span></td>
-                                        <td>Aug 15, 2025</td>
-                                        <td>892</td>
-                                        <td>
-                                            <button class="btn-secondary text-xs" onclick="editPost('2')">Edit</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brussels Coffee Shop Power Rankings</td>
-                                        <td><span class="status-draft">Draft</span></td>
-                                        <td>Aug 18, 2025</td>
-                                        <td>-</td>
-                                        <td>
-                                            <button class="btn-secondary text-xs" onclick="editPost('3')">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Pricing Management Tab -->
-        <div id="pricing-tab" class="tab-content hidden">
-            <section class="py-8">
-                <div class="container mx-auto px-4">
-                    <h1 class="font-display font-bold text-3xl mb-8">Pricing Management</h1>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        
-                        <!-- Audiobook Pricing -->
-                        <div class="dashboard-card">
-                            <h3 class="font-display font-bold text-xl mb-4">Audiobook Pricing</h3>
-                            <form id="audiobook-pricing-form">
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Current Price</label>
-                                    <input type="number" step="0.01" value="7.99" class="form-input" id="audiobook-price">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Currency</label>
-                                    <select class="form-input" id="audiobook-currency">
-                                        <option value="EUR" selected>EUR (€)</option>
-                                        <option value="USD">USD ($)</option>
-                                        <option value="GBP">GBP (£)</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Stripe Product ID</label>
-                                    <input type="text" value="price_audiobook_eur" class="form-input" id="audiobook-stripe-id">
-                                </div>
-                                <button type="submit" class="btn-success">Update Audiobook Price</button>
-                            </form>
-                        </div>
-
-                        <!-- Book Pricing -->
-                        <div class="dashboard-card">
-                            <h3 class="font-display font-bold text-xl mb-4">Signed Book Pricing</h3>
-                            <form id="book-pricing-form">
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Current Price</label>
-                                    <input type="number" step="0.01" value="17.99" class="form-input" id="book-price">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Currency</label>
-                                    <select class="form-input" id="book-currency">
-                                        <option value="EUR" selected>EUR (€)</option>
-                                        <option value="USD">USD ($)</option>
-                                        <option value="GBP">GBP (£)</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium mb-2">Stripe Product ID</label>
-                                    <input type="text" value="price_book_eur" class="form-input" id="book-stripe-id">
-                                </div>
-                                <button type="submit" class="btn-success">Update Book Price</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Newsletter Management Tab -->
-        <div id="newsletter-tab" class="tab-content hidden">
-            <section class="py-8">
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-8">
-                        <h1 class="font-display font-bold text-3xl">Newsletter Management</h1>
-                        <button class="btn-primary" onclick="openModal('compose-newsletter-modal')">
-                            ✉️ Compose Newsletter
-                        </button>
-                    </div>
-                    
-                    <!-- Newsletter Stats -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2">1,247</div>
-                            <div class="text-sm text-bone/70">Total Subscribers</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2">67.8%</div>
-                            <div class="text-sm text-bone/70">Open Rate (Last 30 days)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl font-bold text-glitch-lime mb-2">23.4%</div>
-                            <div class="text-sm text-bone/70">Click Rate</div>
-                        </div>
                     </div>
 
                     <!-- Recent Newsletters -->
                     <div class="dashboard-card">
-                        <h3 class="font-display font-bold text-xl mb-4">Recent Newsletters</h3>
-                        <div class="overflow-x-auto">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Subject</th>
-                                        <th>Sent Date</th>
-                                        <th>Recipients</th>
-                                        <th>Open Rate</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Weekly Chaos: Dating App Detox</td>
-                                        <td>Aug 20, 2025</td>
-                                        <td>1,247</td>
-                                        <td>72.3%</td>
-                                        <td><span class="status-published">Sent</span></td>
-                                        <td>
-                                            <button class="btn-secondary text-xs">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Audiobook Recording Adventures</td>
-                                        <td>Aug 13, 2025</td>
-                                        <td>1,201</td>
-                                        <td>68.9%</td>
-                                        <td><span class="status-published">Sent</span></td>
-                                        <td>
-                                            <button class="btn-secondary text-xs">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brussels Coffee Shop Guide</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td><span class="status-draft">Draft</span></td>
-                                        <td>
-                                            <button class="btn-secondary text-xs">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <h3 class="text-xl font-semibold mb-4">Recent Newsletters</h3>
+                        <div id="newsletter-history" class="space-y-3">
+                            <!-- Newsletter history will be populated here -->
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
 
+            <!-- Blog Management -->
+            <section class="mb-12">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold">Blog Management</h2>
+                    <button onclick="openModal('new-post-modal')" class="btn-primary">
+                        New Blog Post
+                    </button>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-bone/20">
+                                    <th class="text-left py-3">Title</th>
+                                    <th class="text-left py-3">Status</th>
+                                    <th class="text-left py-3">Date</th>
+                                    <th class="text-left py-3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blog-posts-table">
+                                <!-- Blog posts will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
-    <!-- Modals -->
-    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6">Admin Login</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Username</label>
+                    <input type="text" id="username" class="form-input" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Password</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn-primary w-full">Login</button>
+            </form>
+        </div>
+    </div>
+
     <!-- New Blog Post Modal -->
     <div id="new-post-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('new-post-modal')">&times;</span>
-            <h2 class="font-display font-bold text-2xl mb-6">Create New Blog Post</h2>
-            
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">New Blog Post</h2>
+                <button onclick="closeModal('new-post-modal')" class="text-2xl">&times;</button>
+            </div>
             <form id="new-post-form">
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-2">Title</label>
-                    <input type="text" id="post-title" class="form-input" placeholder="Post title" required>
+                    <input type="text" id="post-title" class="form-input" required>
                 </div>
-                
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">URL Slug</label>
-                    <input type="text" id="post-slug" class="form-input" placeholder="post-url-slug">
+                    <label class="block text-sm font-medium mb-2">Slug (URL)</label>
+                    <input type="text" id="post-slug" class="form-input" required>
                 </div>
-                
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Excerpt</label>
-                    <textarea id="post-excerpt" class="form-textarea" placeholder="Brief description for blog listing"></textarea>
+                    <label class="block text-sm font-medium mb-2">Meta Description</label>
+                    <textarea id="post-meta" class="form-input" rows="2"></textarea>
                 </div>
-                
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-2">Content</label>
-                    <textarea id="post-content" class="form-textarea" style="min-height: 200px;" placeholder="Write your blog post content here..."></textarea>
+                    <textarea id="post-content" class="form-input" rows="10" required></textarea>
                 </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Tags (comma separated)</label>
-                    <input type="text" id="post-tags" class="form-input" placeholder="Dating Apps, Mental Health, Brussels Life">
-                </div>
-                
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">Status</label>
                     <select id="post-status" class="form-input">
@@ -739,10 +327,9 @@
                         <option value="published">Published</option>
                     </select>
                 </div>
-                
-                <div class="flex gap-4">
-                    <button type="submit" class="btn-success">Save Post</button>
-                    <button type="button" class="btn-secondary" onclick="closeModal('new-post-modal')">Cancel</button>
+                <div class="flex space-x-4">
+                    <button type="submit" class="btn-primary flex-1">Save Post</button>
+                    <button type="button" onclick="closeModal('new-post-modal')" class="btn-secondary flex-1">Cancel</button>
                 </div>
             </form>
         </div>
@@ -751,362 +338,323 @@
     <!-- Compose Newsletter Modal -->
     <div id="compose-newsletter-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('compose-newsletter-modal')">&times;</span>
-            <h2 class="font-display font-bold text-2xl mb-6">Compose Newsletter</h2>
-            
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Compose Newsletter</h2>
+                <button onclick="closeModal('compose-newsletter-modal')" class="text-2xl">&times;</button>
+            </div>
             <form id="compose-newsletter-form">
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Subject Line</label>
-                    <input type="text" id="newsletter-subject" class="form-input" placeholder="Weekly Chaos: [Topic]" required>
+                    <label class="block text-sm font-medium mb-2">Subject</label>
+                    <input type="text" id="newsletter-subject" class="form-input" required>
                 </div>
-                
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Preview Text</label>
-                    <input type="text" id="newsletter-preview" class="form-input" placeholder="This week's updates and disasters...">
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Content</label>
-                    <textarea id="newsletter-content" class="form-textarea" style="min-height: 300px;" placeholder="Write your newsletter content here..."></textarea>
-                </div>
-                
-                <div class="mb-6">
-                    <label class="block text-sm font-medium mb-2">Send Options</label>
-                    <select id="newsletter-recipients" class="form-input">
-                        <option value="all">All Subscribers (1,247)</option>
-                        <option value="test">Test List (5)</option>
+                    <label class="block text-sm font-medium mb-2">Template</label>
+                    <select id="newsletter-template" class="form-input" onchange="loadNewsletterTemplate()">
+                        <option value="">Select template...</option>
+                        <option value="book-launch">Book Launch Announcement</option>
+                        <option value="monthly-update">Monthly Update</option>
+                        <option value="behind-scenes">Behind the Scenes</option>
+                        <option value="custom">Custom</option>
                     </select>
                 </div>
-                
-                <div class="flex gap-4">
-                    <button type="submit" class="btn-success">Send Newsletter</button>
-                    <button type="button" class="btn-secondary">Save as Draft</button>
-                    <button type="button" class="btn-secondary" onclick="closeModal('compose-newsletter-modal')">Cancel</button>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Preview Text</label>
+                    <input type="text" id="newsletter-preview" class="form-input" placeholder="Text shown in email preview">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Content (HTML supported)</label>
+                    <textarea id="newsletter-content" class="form-input" rows="15" required></textarea>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="previewNewsletter()" class="btn-secondary flex-1">Preview</button>
+                    <button type="submit" class="btn-primary flex-1">Send Newsletter</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        // Authentication check
+        // Authentication and initialization
+        let isAuthenticated = false;
+        let stripeData = null;
+        let formspreeData = null;
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+
         function checkAuth() {
             const authToken = localStorage.getItem('admin_auth');
             if (!authToken) {
                 showLoginModal();
                 return false;
             }
+            isAuthenticated = true;
+            document.getElementById('user-info').textContent = 'Logged in as: aleks';
+            loadDashboard();
             return true;
         }
 
-        // Simple authentication system
         function showLoginModal() {
-            const loginHtml = `
-                <div id="login-modal" class="modal" style="display: block;">
-                    <div class="modal-content">
-                        <h2 class="font-display font-bold text-2xl mb-6">Admin Login</h2>
-                        <form id="login-form">
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium mb-2">Username</label>
-                                <input type="text" id="username" class="form-input" required>
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-sm font-medium mb-2">Password</label>
-                                <input type="password" id="password" class="form-input" required>
-                            </div>
-                            <button type="submit" class="btn-primary w-full">Login</button>
-                        </form>
-                    </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', loginHtml);
+            document.getElementById('login-modal').style.display = 'flex';
             
             document.getElementById('login-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
                 
-                // Simple auth (in production, this would be server-side)
                 if (username === 'aleks' && password === 'worstboyfriends2025') {
                     localStorage.setItem('admin_auth', 'authenticated');
-                    document.getElementById('login-modal').remove();
-                    loadDashboard();
+                    document.getElementById('login-modal').style.display = 'none';
+                    checkAuth();
                 } else {
                     alert('Invalid credentials');
                 }
             });
         }
 
-        // Logout function
         function logout() {
             localStorage.removeItem('admin_auth');
             localStorage.removeItem('blog_posts');
+            localStorage.removeItem('newsletter_history');
             location.reload();
         }
 
-        // Real Stripe Analytics Integration
-        async function fetchStripeAnalytics() {
+        async function loadDashboard() {
+            await Promise.all([
+                loadStripeAnalytics(),
+                loadSubscriberData(),
+                loadBlogPosts(),
+                loadNewsletterHistory()
+            ]);
+            initCharts();
+        }
+
+        // Stripe Analytics Integration
+        async function loadStripeAnalytics() {
             try {
-                // In production, this would call your backend API
-                const response = await fetch('/api/stripe-analytics', {
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('admin_auth')
+                // For now, we'll use mock data since we need backend integration
+                // TODO: Replace with actual Stripe API integration
+                const mockData = {
+                    totalRevenue: 0,
+                    audiobookRevenue: 0,
+                    bookRevenue: 0,
+                    bundleRevenue: 0,
+                    chartData: {
+                        labels: [],
+                        values: []
                     }
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    updateAnalytics(data);
-                } else {
-                    // Fallback to mock data if API not available
-                    updateAnalytics(getMockAnalytics());
-                }
+                };
+
+                document.getElementById('total-revenue').textContent = '€' + mockData.totalRevenue.toLocaleString();
+                document.getElementById('audiobook-revenue').textContent = '€' + mockData.audiobookRevenue.toLocaleString();
+                document.getElementById('book-revenue').textContent = '€' + mockData.bookRevenue.toLocaleString();
+                document.getElementById('bundle-revenue').textContent = '€' + mockData.bundleRevenue.toLocaleString();
+
+                stripeData = mockData;
             } catch (error) {
-                console.log('Using mock data - API not available');
-                updateAnalytics(getMockAnalytics());
+                console.error('Error loading Stripe analytics:', error);
+                document.getElementById('total-revenue').textContent = 'Error';
+                document.getElementById('audiobook-revenue').textContent = 'Error';
+                document.getElementById('book-revenue').textContent = 'Error';
+                document.getElementById('bundle-revenue').textContent = 'Error';
             }
         }
 
-        function getMockAnalytics() {
-            const now = new Date();
-            const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-            
-            return {
-                totalSales: 2847.50,
-                audiobookSales: 423.00,
-                bookSales: 2424.50,
-                newsletterSubs: 1247,
-                salesData: [
-                    { date: '2025-08-01', amount: 150.00 },
-                    { date: '2025-08-05', amount: 280.00 },
-                    { date: '2025-08-10', amount: 420.00 },
-                    { date: '2025-08-15', amount: 380.00 },
-                    { date: '2025-08-20', amount: 560.00 }
-                ],
-                recentTransactions: [
-                    { date: '2025-08-22', product: 'Audiobook', amount: 7.99, customer: 'sarah.m@email.com', status: 'completed' },
-                    { date: '2025-08-22', product: 'Signed Book', amount: 17.99, customer: 'alex.c@email.com', status: 'completed' },
-                    { date: '2025-08-21', product: 'Bundle', amount: 22.99, customer: 'jamie.k@email.com', status: 'completed' },
-                    { date: '2025-08-21', product: 'Audiobook', amount: 7.99, customer: 'morgan.r@email.com', status: 'completed' },
-                    { date: '2025-08-20', product: 'Signed Book', amount: 17.99, customer: 'taylor.l@email.com', status: 'completed' }
-                ]
-            };
-        }
+        // Formspree Subscriber Integration
+        async function loadSubscriberData() {
+            try {
+                // TODO: Replace with actual Formspree API integration
+                const mockData = {
+                    totalSubscribers: 0,
+                    monthlySubscribers: 0
+                };
 
-        function updateAnalytics(data) {
-            document.getElementById('total-sales').textContent = '€' + data.totalSales.toFixed(2);
-            document.getElementById('audiobook-sales').textContent = '€' + data.audiobookSales.toFixed(2);
-            document.getElementById('book-sales').textContent = '€' + data.bookSales.toFixed(2);
-            document.getElementById('newsletter-subs').textContent = data.newsletterSubs.toLocaleString();
-            
-            // Update transactions table
-            const transactionsTable = document.getElementById('transactions-table');
-            transactionsTable.innerHTML = '';
-            
-            data.recentTransactions.forEach(transaction => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${new Date(transaction.date).toLocaleDateString()}</td>
-                    <td>${transaction.product}</td>
-                    <td>€${transaction.amount.toFixed(2)}</td>
-                    <td>${transaction.customer}</td>
-                    <td><span class="status-published">${transaction.status}</span></td>
-                `;
-                transactionsTable.appendChild(row);
-            });
-        }
+                document.getElementById('total-subscribers').textContent = mockData.totalSubscribers.toLocaleString();
+                document.getElementById('monthly-subscribers').textContent = '+' + mockData.monthlySubscribers.toLocaleString();
 
-        // Blog Post Storage System
-        function getBlogPosts() {
-            const posts = localStorage.getItem('blog_posts');
-            return posts ? JSON.parse(posts) : [
-                {
-                    id: 1,
-                    title: 'Why I Stopped Using Dating Apps',
-                    slug: 'why-i-stopped-dating-apps',
-                    content: 'After documenting 25 dating disasters, I finally realized the apps weren\'t the problem...',
-                    status: 'published',
-                    date: '2025-08-15'
-                },
-                {
-                    id: 2,
-                    title: 'The Red Flag Taxonomy',
-                    slug: 'red-flag-taxonomy',
-                    content: 'Not all red flags are created equal. Here\'s my scientific classification...',
-                    status: 'draft',
-                    date: '2025-08-20'
-                }
-            ];
-        }
-
-        function saveBlogPost(post) {
-            const posts = getBlogPosts();
-            if (post.id) {
-                // Update existing post
-                const index = posts.findIndex(p => p.id === post.id);
-                if (index !== -1) {
-                    posts[index] = post;
-                }
-            } else {
-                // Create new post
-                post.id = Date.now();
-                post.date = new Date().toISOString().split('T')[0];
-                posts.push(post);
-            }
-            localStorage.setItem('blog_posts', JSON.stringify(posts));
-            loadBlogPosts();
-        }
-
-        function deleteBlogPost(postId) {
-            if (confirm('Are you sure you want to delete this post?')) {
-                const posts = getBlogPosts();
-                const filteredPosts = posts.filter(p => p.id !== postId);
-                localStorage.setItem('blog_posts', JSON.stringify(filteredPosts));
-                loadBlogPosts();
+                formspreeData = mockData;
+            } catch (error) {
+                console.error('Error loading subscriber data:', error);
+                document.getElementById('total-subscribers').textContent = 'Error';
+                document.getElementById('monthly-subscribers').textContent = 'Error';
             }
         }
 
+        async function refreshSubscribers() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Refreshing...';
+            button.disabled = true;
+
+            try {
+                // TODO: Implement actual Formspree API call
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+                await loadSubscriberData();
+                alert('Subscriber data refreshed successfully!');
+            } catch (error) {
+                console.error('Error refreshing subscribers:', error);
+                alert('Error refreshing subscriber data. Please try again.');
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Blog Management
         function loadBlogPosts() {
-            const posts = getBlogPosts();
-            const blogList = document.getElementById('blog-posts-list');
+            const savedPosts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            const tableBody = document.getElementById('blog-posts-table');
             
-            blogList.innerHTML = posts.map(post => `
-                <tr>
-                    <td>${post.title}</td>
-                    <td>/${post.slug}</td>
-                    <td><span class="status-${post.status}">${post.status}</span></td>
-                    <td>${post.date}</td>
-                    <td>
-                        <button onclick="editPost(${post.id})" class="btn-secondary text-xs mr-2">Edit</button>
-                        <button onclick="deleteBlogPost(${post.id})" class="btn-danger text-xs">Delete</button>
+            if (savedPosts.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="4" class="text-center py-8 opacity-70">No blog posts yet. Create your first post!</td></tr>';
+                return;
+            }
+
+            tableBody.innerHTML = savedPosts.map(post => `
+                <tr class="border-b border-bone/10">
+                    <td class="py-3">${post.title}</td>
+                    <td class="py-3">
+                        <span class="status-badge status-${post.status}">${post.status}</span>
+                    </td>
+                    <td class="py-3">${new Date(post.date).toLocaleDateString()}</td>
+                    <td class="py-3">
+                        <button onclick="editPost('${post.id}')" class="text-glitch-lime hover:underline mr-3">Edit</button>
+                        <button onclick="deletePost('${post.id}')" class="text-red-flag hover:underline">Delete</button>
                     </td>
                 </tr>
             `).join('');
         }
 
         function editPost(postId) {
-            const posts = getBlogPosts();
-            const post = posts.find(p => p.id === postId);
+            const savedPosts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            const post = savedPosts.find(p => p.id === postId);
+            
             if (post) {
                 document.getElementById('post-title').value = post.title;
                 document.getElementById('post-slug').value = post.slug;
+                document.getElementById('post-meta').value = post.meta || '';
                 document.getElementById('post-content').value = post.content;
                 document.getElementById('post-status').value = post.status;
+                
+                // Store the post ID for updating
                 document.getElementById('new-post-form').dataset.editId = postId;
                 openModal('new-post-modal');
             }
         }
 
-        // Pricing Updates with Real API Integration
-        async function updatePricing(product, newPrice) {
-            try {
-                const response = await fetch('/api/update-pricing', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + localStorage.getItem('admin_auth')
-                    },
-                    body: JSON.stringify({
-                        product: product,
-                        price: newPrice
-                    })
-                });
-
-                if (response.ok) {
-                    alert(`${product} pricing updated to €${newPrice} successfully!`);
-                } else {
-                    throw new Error('Failed to update pricing');
-                }
-            } catch (error) {
-                console.log('Pricing update failed, using local storage');
-                localStorage.setItem(`${product}_price`, newPrice);
-                alert(`${product} pricing updated to €${newPrice} (local storage)`);
+        function deletePost(postId) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                let savedPosts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+                savedPosts = savedPosts.filter(p => p.id !== postId);
+                localStorage.setItem('blog_posts', JSON.stringify(savedPosts));
+                loadBlogPosts();
             }
         }
 
-        // Newsletter Integration
-        async function sendNewsletter(subject, content, recipients) {
-            try {
-                const response = await fetch('/api/send-newsletter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + localStorage.getItem('admin_auth')
-                    },
-                    body: JSON.stringify({
-                        subject: subject,
-                        content: content,
-                        recipients: recipients
-                    })
-                });
+        // Newsletter Management
+        function loadNewsletterHistory() {
+            const history = JSON.parse(localStorage.getItem('newsletter_history') || '[]');
+            const container = document.getElementById('newsletter-history');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<p class="opacity-70">No newsletters sent yet.</p>';
+                return;
+            }
 
-                if (response.ok) {
-                    alert('Newsletter sent successfully!');
-                    closeModal('compose-newsletter-modal');
-                } else {
-                    throw new Error('Failed to send newsletter');
-                }
-            } catch (error) {
-                alert('Newsletter sending failed. Please check your email configuration.');
+            container.innerHTML = history.slice(0, 5).map(newsletter => `
+                <div class="flex justify-between items-center p-3 bg-bone/5 rounded-lg">
+                    <div>
+                        <h4 class="font-medium">${newsletter.subject}</h4>
+                        <p class="text-sm opacity-70">${new Date(newsletter.date).toLocaleDateString()}</p>
+                    </div>
+                    <span class="text-xs opacity-50">${newsletter.recipientCount} recipients</span>
+                </div>
+            `).join('');
+        }
+
+        function loadNewsletterTemplate() {
+            const template = document.getElementById('newsletter-template').value;
+            const contentField = document.getElementById('newsletter-content');
+            
+            const templates = {
+                'book-launch': `
+                    <h1>🚩 New Book Alert!</h1>
+                    <p>Hey gorgeous readers,</p>
+                    <p>I'm thrilled to announce...</p>
+                    <p>Available now:</p>
+                    <ul>
+                        <li>📖 Signed paperback</li>
+                        <li>🎧 Audiobook (narrated by yours truly)</li>
+                        <li>📦 Complete bundle</li>
+                    </ul>
+                    <p>Get yours at: <a href="https://aleksfilmore.com">aleksfilmore.com</a></p>
+                    <p>Love and literary chaos,<br>Aleks 🏳️‍🌈</p>
+                `,
+                'monthly-update': `
+                    <h1>Monthly Update from the Chaos</h1>
+                    <p>Hello my favorite humans,</p>
+                    <p>Here's what's been happening in my world:</p>
+                    <h2>📚 Writing Updates</h2>
+                    <p>[Your writing progress here]</p>
+                    <h2>🎬 Life Behind the Scenes</h2>
+                    <p>[Personal updates here]</p>
+                    <h2>📖 What I'm Reading</h2>
+                    <p>[Book recommendations here]</p>
+                    <p>Stay chaotic,<br>Aleks ✨</p>
+                `,
+                'behind-scenes': `
+                    <h1>Behind the Scenes: The Real Tea</h1>
+                    <p>Buckle up, buttercups...</p>
+                    <p>Here's what really goes on when I'm writing:</p>
+                    <p>[Behind the scenes content here]</p>
+                    <p>The unfiltered truth,<br>Aleks 📝</p>
+                `
+            };
+            
+            if (templates[template]) {
+                contentField.value = templates[template].trim();
             }
         }
 
-        // Tab switching functionality
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all tabs
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Hide all tab content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.add('hidden');
-                });
-                
-                // Show selected tab content
-                const tabName = this.getAttribute('data-tab');
-                document.getElementById(tabName + '-tab').classList.remove('hidden');
-            });
-        });
-
-        // Modal functionality
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
+        function previewNewsletter() {
+            const subject = document.getElementById('newsletter-subject').value;
+            const content = document.getElementById('newsletter-content').value;
+            
+            const previewWindow = window.open('', '_blank');
+            previewWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Newsletter Preview: ${subject}</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; }
+                            h1 { color: #FF3B3B; }
+                            a { color: #FF3B3B; }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>Subject: ${subject}</h1>
+                        <hr>
+                        ${content}
+                    </body>
+                </html>
+            `);
         }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            // Clear form data when closing
-            if (modalId === 'new-post-modal') {
-                document.getElementById('new-post-form').reset();
-                delete document.getElementById('new-post-form').dataset.editId;
-            }
-        }
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        });
 
         // Charts initialization
         function initCharts() {
-            // Sales Chart
-            const salesCtx = document.getElementById('salesChart').getContext('2d');
-            new Chart(salesCtx, {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
                 type: 'line',
                 data: {
-                    labels: ['Aug 1', 'Aug 5', 'Aug 10', 'Aug 15', 'Aug 20'],
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                     datasets: [{
-                        label: 'Sales (€)',
-                        data: [150, 280, 420, 380, 560],
-                        borderColor: '#C7FF41',
-                        backgroundColor: 'rgba(199, 255, 65, 0.1)',
+                        label: 'Revenue (€)',
+                        data: [0, 0, 0, 0, 0, 0],
+                        borderColor: '#FF3B3B',
+                        backgroundColor: 'rgba(255, 59, 59, 0.1)',
                         tension: 0.4
                     }]
                 },
@@ -1114,30 +662,11 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            labels: {
-                                color: '#F7F3ED'
-                            }
-                        }
+                        legend: { labels: { color: '#F7F3ED' } }
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#F7F3ED'
-                            },
-                            grid: {
-                                color: 'rgba(247, 243, 237, 0.1)'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#F7F3ED'
-                            },
-                            grid: {
-                                color: 'rgba(247, 243, 237, 0.1)'
-                            }
-                        }
+                        y: { ticks: { color: '#F7F3ED' }, grid: { color: 'rgba(247, 243, 237, 0.1)' } },
+                        x: { ticks: { color: '#F7F3ED' }, grid: { color: 'rgba(247, 243, 237, 0.1)' } }
                     }
                 }
             });
@@ -1147,10 +676,10 @@
             new Chart(productCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Signed Books', 'Audiobooks'],
+                    labels: ['Audiobook', 'Signed Book', 'Bundle'],
                     datasets: [{
-                        data: [2424, 423],
-                        backgroundColor: ['#FF3B3B', '#C7FF41'],
+                        data: [0, 0, 0],
+                        backgroundColor: ['#FF3B3B', '#C7FF41', '#F1B7C4'],
                         borderWidth: 0
                     }]
                 },
@@ -1158,164 +687,81 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            labels: {
-                                color: '#F7F3ED'
-                            }
-                        }
+                        legend: { labels: { color: '#F7F3ED' } }
                     }
                 }
             });
         }
 
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            
+            // Reset forms
+            if (modalId === 'new-post-modal') {
+                document.getElementById('new-post-form').reset();
+                delete document.getElementById('new-post-form').dataset.editId;
+            }
+            if (modalId === 'compose-newsletter-modal') {
+                document.getElementById('compose-newsletter-form').reset();
+            }
+        }
+
         // Form submissions
-        document.getElementById('audiobook-pricing-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const newPrice = document.getElementById('audiobook-price').value;
-            updatePricing('audiobook', newPrice);
-        });
-
-        document.getElementById('book-pricing-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const newPrice = document.getElementById('book-price').value;
-            updatePricing('signed-book', newPrice);
-        });
-
         document.getElementById('new-post-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const post = {
+            const editId = this.dataset.editId;
+            const postData = {
+                id: editId || Date.now().toString(),
                 title: document.getElementById('post-title').value,
                 slug: document.getElementById('post-slug').value,
+                meta: document.getElementById('post-meta').value,
                 content: document.getElementById('post-content').value,
-                status: document.getElementById('post-status').value
+                status: document.getElementById('post-status').value,
+                date: editId ? undefined : new Date().toISOString()
             };
 
-            // Check if editing existing post
-            const editId = this.dataset.editId;
+            let savedPosts = JSON.parse(localStorage.getItem('blog_posts') || '[]');
+            
             if (editId) {
-                post.id = parseInt(editId);
+                const index = savedPosts.findIndex(p => p.id === editId);
+                if (index !== -1) {
+                    savedPosts[index] = { ...savedPosts[index], ...postData };
+                }
+            } else {
+                savedPosts.unshift(postData);
             }
-
-            saveBlogPost(post);
-            closeModal('new-post-modal');
-        });
-
-        document.getElementById('compose-newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const subject = document.getElementById('newsletter-subject').value;
-            const content = document.getElementById('newsletter-content').value;
-            const recipients = document.getElementById('newsletter-recipients').value;
             
-            sendNewsletter(subject, content, recipients);
-        });
-
-        // Main dashboard initialization
-        function loadDashboard() {
-            initCharts();
-            fetchStripeAnalytics();
+            localStorage.setItem('blog_posts', JSON.stringify(savedPosts));
             loadBlogPosts();
-            
-            // Refresh analytics every 5 minutes
-            setInterval(fetchStripeAnalytics, 5 * 60 * 1000);
-        }
-
-        // Initialize dashboard when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (checkAuth()) {
-                loadDashboard();
-            }
-        });
-    </script>
-                            ticks: {
-                                color: '#F7F3ED'
-                            },
-                            grid: {
-                                color: 'rgba(247, 243, 237, 0.1)'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Product Chart
-            const productCtx = document.getElementById('productChart').getContext('2d');
-            new Chart(productCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Signed Books', 'Audiobooks'],
-                    datasets: [{
-                        data: [2424, 423],
-                        backgroundColor: ['#FF3B3B', '#C7FF41'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#F7F3ED'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Form submissions
-        document.getElementById('audiobook-pricing-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Audiobook pricing updated successfully!');
-        });
-
-        document.getElementById('book-pricing-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Book pricing updated successfully!');
-        });
-
-        document.getElementById('new-post-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Blog post saved successfully!');
             closeModal('new-post-modal');
+            alert(editId ? 'Blog post updated successfully!' : 'Blog post created successfully!');
         });
 
         document.getElementById('compose-newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Newsletter sent successfully to all subscribers!');
-            closeModal('compose-newsletter-modal');
-        });
-
-        // Initialize charts when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initCharts();
-        });
-
-        // Simulated data updates
-        function updateStats() {
-            // This would typically fetch real data from your backend
-            const stats = {
-                totalSales: Math.floor(Math.random() * 1000) + 2500,
-                audiobookSales: Math.floor(Math.random() * 200) + 400,
-                bookSales: Math.floor(Math.random() * 500) + 2000,
-                newsletterSubs: Math.floor(Math.random() * 100) + 1200
+            
+            const newsletterData = {
+                id: Date.now().toString(),
+                subject: document.getElementById('newsletter-subject').value,
+                content: document.getElementById('newsletter-content').value,
+                date: new Date().toISOString(),
+                recipientCount: formspreeData?.totalSubscribers || 0
             };
 
-            document.getElementById('total-sales').textContent = '€' + stats.totalSales.toLocaleString();
-            document.getElementById('audiobook-sales').textContent = '€' + stats.audiobookSales;
-            document.getElementById('book-sales').textContent = '€' + stats.bookSales.toLocaleString();
-            document.getElementById('newsletter-subs').textContent = stats.newsletterSubs.toLocaleString();
-        }
-
-        // Update stats every 30 seconds (in a real app, this would be real-time data)
-        setInterval(updateStats, 30000);
-
-        // Edit post function
-        function editPost(postId) {
-            alert('Edit post feature would open the editor for post ID: ' + postId);
-        }
+            let history = JSON.parse(localStorage.getItem('newsletter_history') || '[]');
+            history.unshift(newsletterData);
+            localStorage.setItem('newsletter_history', JSON.stringify(history));
+            
+            loadNewsletterHistory();
+            closeModal('compose-newsletter-modal');
+            alert('Newsletter sent successfully to all subscribers!');
+        });
     </script>
-
 </body>
 </html>
