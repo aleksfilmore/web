@@ -4,3 +4,9 @@ dist/
 .env
 # Local Netlify folder
 .netlify
+
+# Environment configuration files (keep local only)
+netlify-env-vars.txt
+*-env-vars.txt
+*.env.local
+*.env.production

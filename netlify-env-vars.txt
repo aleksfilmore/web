@@ -3,7 +3,7 @@
 
 # Stripe Configuration
 STRIPE_SECRET_KEY=sk_live_YOUR_ACTUAL_STRIPE_SECRET_KEY_HERE
-STRIPE_WEBHOOK_SECRET=whsec_GpUHVaUHWI5eTD5uUL1xR9Drm9y5ygJ2
+STRIPE_WEBHOOK_SECRET=whsec_YOUR_ACTUAL_WEBHOOK_SECRET_FROM_STRIPE_HERE
 
 # Resend Email API
 RESEND_API_KEY=re_YOUR_ACTUAL_RESEND_API_KEY_HERE
@@ -19,6 +19,6 @@ NODE_ENV=production
 # 5. Deploy your site after adding these variables
 
 # Notes:
-# - Webhook secret is already set correctly: whsec_GpUHVaUHWI5eTD5uUL1xR9Drm9y5ygJ2
-# - You'll need to get your live Stripe Secret Key from Stripe Dashboard
+# - Webhook secret can be found in your Stripe Dashboard > Webhooks > Select your webhook > Signing secret
+# - You'll need to get your live Stripe Secret Key from Stripe Dashboard > API Keys
 # - You already have Resend integrated, so use your existing API key
