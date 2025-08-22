@@ -90,6 +90,13 @@ const PRODUCTS = {
         currency: 'usd',
         type: 'physical',
         description: 'Personally signed paperback with handwritten note + shipping'
+    },
+    'bundle': {
+        name: 'The Worst Boyfriends Ever (Bundle)',
+        price: 22.99,
+        currency: 'usd',
+        type: 'mixed',
+        description: 'Audiobook + Signed paperback bundle'
     }
 };
 
@@ -708,14 +715,17 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
 
 // Admin API endpoints
 app.get('/api/admin/orders', async (req, res) => {
+    console.log('Admin orders endpoint called');
     try {
         const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
         
         if (!fs.existsSync(purchasesFile)) {
+            console.log('No purchases file found, returning empty array');
             return res.json([]);
         }
         
         const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        console.log('Loaded purchases:', purchases.length);
         
         // Transform purchases into admin-friendly format
         const orders = purchases.map(purchase => ({
@@ -736,6 +746,7 @@ app.get('/api/admin/orders', async (req, res) => {
         // Sort by date (newest first)
         orders.sort((a, b) => new Date(b.date) - new Date(a.date));
         
+        console.log('Returning orders:', orders.length);
         res.json(orders);
     } catch (error) {
         console.error('Error fetching admin orders:', error);
@@ -745,10 +756,12 @@ app.get('/api/admin/orders', async (req, res) => {
 
 // Admin stats endpoint
 app.get('/api/admin/stats', async (req, res) => {
+    console.log('Admin stats endpoint called');
     try {
         const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
         
         if (!fs.existsSync(purchasesFile)) {
+            console.log('No purchases file found for stats');
             return res.json({
                 totalRevenue: 0,
                 totalOrders: 0,
@@ -760,6 +773,7 @@ app.get('/api/admin/stats', async (req, res) => {
         }
         
         const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+        console.log('Calculating stats for', purchases.length, 'purchases');
         
         let totalRevenue = 0;
         let audiobookSales = 0;
@@ -779,7 +793,7 @@ app.get('/api/admin/stats', async (req, res) => {
                             signedBookSales += PRODUCTS['signed-book'].price;
                             break;
                         case 'bundle':
-                            bundleSales += PRODUCTS.bundle?.price || 22.99;
+                            bundleSales += PRODUCTS.bundle.price;
                             break;
                     }
                 });
@@ -795,6 +809,7 @@ app.get('/api/admin/stats', async (req, res) => {
             recentOrders: purchases.slice(-5).reverse()
         };
         
+        console.log('Returning stats:', stats);
         res.json(stats);
     } catch (error) {
         console.error('Error fetching admin stats:', error);
