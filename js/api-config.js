@@ -1,9 +1,11 @@
 // Configuration for API endpoints
-// Updated to use local server
+// Auto-detects environment (development vs production)
 
 const API_CONFIG = {
-    // Local development server URL
-    BASE_URL: 'http://localhost:3000',
+    // Automatically use correct URL based on environment
+    BASE_URL: window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000' 
+        : 'https://aleksfilmore.com',
     
     ENDPOINTS: {
         CONFIG: '/api/config',
