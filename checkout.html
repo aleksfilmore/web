@@ -221,6 +221,20 @@
 
                     <!-- Checkout Button -->
                     <div class="space-y-4">
+                        <!-- Refunds Policy Notice -->
+                        <div class="p-4 bg-red-flag/10 border border-red-flag/30 rounded-lg mb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="text-red-flag text-lg">⚠️</div>
+                                <div>
+                                    <div class="font-medium text-sm">Important: All Sales Are Final</div>
+                                    <div class="text-xs text-bone/70 mt-1">
+                                        We do not offer refunds for digital products or personalized signed copies. 
+                                        By proceeding, you agree to our <a href="terms.html" class="text-red-flag hover:underline" target="_blank">Terms & Conditions</a>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <button id="checkout-button" class="btn-primary" onclick="proceedToStripe()">
                             <span id="checkout-text">Continue to Secure Payment</span>
                             <div id="checkout-spinner" class="loading-spinner ml-2"></div>
