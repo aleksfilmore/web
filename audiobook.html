@@ -157,6 +157,17 @@
             overflow: hidden;
             max-width: 400px;
             margin: 0 auto;
+            color: var(--color-charcoal);
+        }
+
+        .audiobook-player h3,
+        .audiobook-player p,
+        .audiobook-player .text-charcoal {
+            color: var(--color-charcoal) !important;
+        }
+
+        .audiobook-player .text-charcoal\/70 {
+            color: rgba(14, 15, 16, 0.7) !important;
         }
 
         .audiobook-player::before {
@@ -428,11 +439,11 @@
                                 <!-- Main Player Card -->
                                 <div class="audiobook-player">
                                     <div class="text-charcoal">
-                                        <h3 class="font-display font-bold text-lg sm:text-xl mb-2">
-                                            Sample: Chapter 3 - The Gambler
+                                        <h3 class="font-display font-bold text-lg sm:text-xl mb-2 text-charcoal">
+                                            Sample: Chapter 1 - The Parade of Red Flags
                                         </h3>
                                         <p class="text-sm text-charcoal/70 mb-4">
-                                            A 4D chess board of the mind, and clearly like needs.
+                                            "Your sort of cosmic, self I take coming back..."
                                         </p>
                                         
                                         <div class="flex items-center gap-3 mb-4">
@@ -721,10 +732,10 @@
             
             // Simulate API call
             setTimeout(() => {
-                // In real implementation, this would call your Stripe/backend
+                // Use Stripe Checkout directly for production
                 if (productType === 'audiobook') {
-                    // Redirect to Stripe checkout for audiobook
-                    window.location.href = '/checkout?product=audiobook';
+                    // Create Stripe checkout session
+                    createStripeCheckout();
                 } else {
                     // Handle other products
                     console.log('Adding to cart:', productType);
@@ -767,6 +778,30 @@
                     notification.remove();
                 }, 300);
             }, 3000);
+        }
+
+        // Stripe Checkout functionality
+        async function createStripeCheckout() {
+            try {
+                // For production, we'll use Stripe Payment Links or redirect to a payment processor
+                // Replace this URL with your actual Stripe Payment Link
+                const stripePaymentUrl = 'https://buy.stripe.com/your-payment-link-here';
+                
+                // For now, show a message that checkout is being set up
+                showCartNotification('Redirecting to secure checkout...');
+                
+                // Temporary: redirect to a coming soon page or show message
+                setTimeout(() => {
+                    alert('Checkout is being set up! Please check back soon or contact aleks@aleksfilmore.com to purchase.');
+                }, 1000);
+                
+                // TODO: Replace with actual Stripe Payment Link when ready
+                // window.location.href = stripePaymentUrl;
+                
+            } catch (error) {
+                console.error('Checkout error:', error);
+                showCartNotification('Checkout temporarily unavailable. Please try again later.');
+            }
         }
 
         // Audio player functionality
