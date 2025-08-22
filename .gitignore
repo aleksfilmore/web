@@ -10,3 +10,15 @@ netlify-env-vars.txt
 *-env-vars.txt
 *.env.local
 *.env.production
+
+# Internal development documentation (contains sensitive info)
+TECH_STACK.md
+*_STACK.md
+DEVELOPMENT_NOTES.md
+
+# Test files and debugging scripts
+test-*.js
+debug-*.js
+fix-*.js
+*-test.js
+*-debug.js
