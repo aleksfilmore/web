@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Aleks Filmore</title>
+    <meta name="description" content="Complete your purchase securely with Stripe. Add custom notes and dedication requests for signed copies.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+
+        .checkout-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input {
+            background: rgba(247, 243, 237, 0.1);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--color-bone);
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--color-red-flag);
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: rgba(247, 243, 237, 0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--color-bone);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-bone);
+            border-top: 2px solid var(--color-red-flag);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">← Back to Shop</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-12 min-h-screen">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-2xl mx-auto">
+                
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <h1 class="font-display font-bold text-3xl sm:text-4xl mb-4">
+                        Complete Your <span class="text-red-flag">Order</span>
+                    </h1>
+                    <p class="text-bone/80 text-lg">
+                        Add your details and any custom requests before secure checkout
+                    </p>
+                </div>
+
+                <!-- Checkout Form -->
+                <div class="checkout-card p-6 sm:p-8">
+                    
+                    <!-- Product Summary -->
+                    <div id="product-summary" class="mb-8 pb-6 border-b border-bone/20">
+                        <!-- Product info will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Custom Note Section (for physical products) -->
+                    <div id="custom-note-section" class="mb-8" style="display: none;">
+                        <h3 class="font-display font-semibold text-xl mb-4">Custom Note/Dedication</h3>
+                        <p class="text-bone/70 text-sm mb-4">
+                            Would you like a custom dedication or note with your signed copy? (Optional)
+                        </p>
+                        <textarea 
+                            id="custom-note" 
+                            class="form-input" 
+                            rows="3" 
+                            maxlength="200"
+                            placeholder="e.g., 'To Sarah, Happy Birthday! - Aleks' or 'For my book club - can't wait to discuss!'"
+                        ></textarea>
+                        <div class="text-xs text-bone/50 mt-2">
+                            <span id="char-count">0</span>/200 characters
+                        </div>
+                    </div>
+
+                    <!-- Email for Digital Products -->
+                    <div id="email-section" class="mb-8">
+                        <h3 class="font-display font-semibold text-xl mb-4">Contact Information</h3>
+                        <div class="mb-4">
+                            <label for="customer-email" class="block text-sm font-medium mb-2">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="customer-email" 
+                                class="form-input" 
+                                required
+                                placeholder="your@email.com"
+                            >
+                            <p class="text-xs text-bone/60 mt-1">We'll send your order confirmation and any digital products to this email.</p>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="mb-8 p-4 bg-glitch-lime/10 border border-glitch-lime/30 rounded-lg">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" id="newsletter-signup" class="form-checkbox text-red-flag">
+                            <div>
+                                <div class="font-medium">🚩 Join the Red Flag Report (Optional)</div>
+                                <div class="text-sm text-bone/70">Get updates on new books, exclusive content, and dating disaster stories. Unsubscribe anytime.</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Checkout Button -->
+                    <div class="space-y-4">
+                        <button id="checkout-button" class="btn-primary" onclick="proceedToStripe()">
+                            <span id="checkout-text">Continue to Secure Payment</span>
+                            <div id="checkout-spinner" class="loading-spinner ml-2"></div>
+                        </button>
+                        
+                        <p class="text-xs text-center text-bone/60">
+                            🔒 Secure payment powered by Stripe. Your payment information is encrypted and never stored on our servers.
+                        </p>
+                        
+                        <div class="text-center">
+                            <a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors text-sm">
+                                ← Back to Shop
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal/50 border-t border-bone/10 py-8">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <p class="text-bone/60 text-sm">
+                &copy; 2025 Aleks Filmore. Secure checkout powered by Stripe. 
+                <a href="privacy.html" class="text-red-flag hover:text-glitch-lime">Privacy</a> | 
+                <a href="terms.html" class="text-red-flag hover:text-glitch-lime">Terms</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Product configurations
+        const products = {
+            'audiobook': {
+                name: 'The Worst Boyfriends Ever (Audiobook)',
+                price: 7.99,
+                type: 'digital',
+                stripeUrl: 'https://buy.stripe.com/6oUfZa3ZW00q66g0x79fW00',
+                description: 'Digital audiobook with exclusive bonus epilogue'
+            },
+            'signed-book': {
+                name: 'The Worst Boyfriends Ever (Signed Paperback)',
+                price: 17.99,
+                type: 'physical',
+                stripeUrl: 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01',
+                description: 'Personally signed paperback with handwritten note'
+            },
+            'bundle': {
+                name: 'Complete Bundle (Audiobook + Signed Paperback)',
+                price: 22.99,
+                type: 'bundle',
+                stripeUrl: 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02',
+                description: 'Both audiobook and signed paperback together'
+            }
+        };
+
+        let currentProduct = null;
+
+        // Get product from URL parameters
+        function getProductFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('product');
+            
+            if (productId && products[productId]) {
+                currentProduct = products[productId];
+                currentProduct.id = productId;
+                return true;
+            }
+            return false;
+        }
+
+        // Initialize page
+        function initializePage() {
+            if (!getProductFromURL()) {
+                // Redirect to shop if no valid product
+                window.location.href = 'shop.html';
+                return;
+            }
+
+            displayProductSummary();
+            setupCustomNoteSection();
+            setupCharacterCounter();
+        }
+
+        // Display product summary
+        function displayProductSummary() {
+            const summaryDiv = document.getElementById('product-summary');
+            summaryDiv.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="font-display font-semibold text-xl">${currentProduct.name}</h3>
+                        <p class="text-bone/70 text-sm">${currentProduct.description}</p>
+                    </div>
+                    <div class="price-tag text-lg">€${currentProduct.price.toFixed(2)}</div>
+                </div>
+                ${currentProduct.type === 'physical' || currentProduct.type === 'bundle' ? 
+                    '<p class="text-xs text-bone/60">+ shipping calculated by Stripe</p>' : 
+                    '<p class="text-xs text-bone/60">Instant digital delivery</p>'
+                }
+            `;
+        }
+
+        // Setup custom note section
+        function setupCustomNoteSection() {
+            const noteSection = document.getElementById('custom-note-section');
+            
+            if (currentProduct.type === 'physical' || currentProduct.type === 'bundle') {
+                noteSection.style.display = 'block';
+            } else {
+                noteSection.style.display = 'none';
+            }
+        }
+
+        // Setup character counter
+        function setupCharacterCounter() {
+            const textarea = document.getElementById('custom-note');
+            const counter = document.getElementById('char-count');
+            
+            if (textarea && counter) {
+                textarea.addEventListener('input', function() {
+                    const count = this.value.length;
+                    counter.textContent = count;
+                    
+                    if (count > 180) {
+                        counter.style.color = 'var(--color-red-flag)';
+                    } else {
+                        counter.style.color = 'rgba(247, 243, 237, 0.5)';
+                    }
+                });
+            }
+        }
+
+        // Proceed to Stripe checkout
+        async function proceedToStripe() {
+            const checkoutButton = document.getElementById('checkout-button');
+            const checkoutText = document.getElementById('checkout-text');
+            const checkoutSpinner = document.getElementById('checkout-spinner');
+            const emailInput = document.getElementById('customer-email');
+            const customNote = document.getElementById('custom-note');
+            const newsletterSignup = document.getElementById('newsletter-signup');
+
+            // Validate email
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                alert('Please enter a valid email address.');
+                emailInput.focus();
+                return;
+            }
+
+            // Show loading state
+            checkoutButton.disabled = true;
+            checkoutText.textContent = 'Processing...';
+            checkoutSpinner.style.display = 'inline-block';
+
+            try {
+                // Collect order data
+                const orderData = {
+                    product: currentProduct.id,
+                    email: emailInput.value,
+                    customNote: customNote ? customNote.value : null,
+                    newsletterSignup: newsletterSignup.checked,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Store order data for admin panel (in a real app, this would go to your database)
+                const existingOrders = JSON.parse(localStorage.getItem('pending_orders') || '[]');
+                existingOrders.push({
+                    id: 'temp_' + Date.now(),
+                    ...orderData,
+                    status: 'pending_payment'
+                });
+                localStorage.setItem('pending_orders', JSON.stringify(existingOrders));
+
+                // Handle newsletter signup
+                if (newsletterSignup.checked) {
+                    await submitToFormspree(emailInput.value);
+                }
+
+                // Add custom note to Stripe URL if it exists and it's a physical product
+                let stripeUrl = currentProduct.stripeUrl;
+                
+                if (customNote && customNote.value && (currentProduct.type === 'physical' || currentProduct.type === 'bundle')) {
+                    // For now, we'll store the custom note in localStorage and redirect
+                    // In a real implementation, you'd pass this to your backend to include in Stripe metadata
+                    localStorage.setItem('custom_note_' + Date.now(), JSON.stringify({
+                        email: emailInput.value,
+                        note: customNote.value,
+                        product: currentProduct.id
+                    }));
+                }
+
+                // Redirect to Stripe
+                window.location.href = stripeUrl;
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('There was an error processing your order. Please try again.');
+            } finally {
+                // Reset button state
+                checkoutButton.disabled = false;
+                checkoutText.textContent = 'Continue to Secure Payment';
+                checkoutSpinner.style.display = 'none';
+            }
+        }
+
+        // Submit email to Formspree for newsletter
+        async function submitToFormspree(email) {
+            try {
+                const response = await fetch('https://formspree.io/f/myzjjjjp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        _subject: 'New Newsletter Subscription from Checkout',
+                        source: 'Checkout Page'
+                    })
+                });
+                
+                console.log('Newsletter signup submitted');
+            } catch (error) {
+                console.error('Newsletter signup error:', error);
+            }
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+
+</body>
+</html>
