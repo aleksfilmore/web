@@ -33,16 +33,23 @@ exports.handler = async (event, context) => {
     let stripeEvent;
     
     try {
-        // Get and clean webhook secret
-        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
+        // Get and thoroughly clean webhook secret - remove all whitespace
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.replace(/\s/g, '');
         console.log('Webhook secret configured:', !!webhookSecret);
+        console.log('Webhook secret length:', webhookSecret?.length);
         
         if (!webhookSecret) {
             throw new Error('STRIPE_WEBHOOK_SECRET not configured');
         }
         
+        // Ensure body is a string for signature verification
+        const bodyForVerification = typeof body === 'string' ? body : JSON.stringify(body);
+        
         console.log('🔐 Verifying webhook signature...');
-        stripeEvent = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+        console.log('Body for verification length:', bodyForVerification.length);
+        console.log('Signature:', sig?.substring(0, 20) + '...');
+        
+        stripeEvent = stripe.webhooks.constructEvent(bodyForVerification, sig, webhookSecret);
         console.log('✅ Webhook signature verified');
         console.log('Event type:', stripeEvent.type);
         console.log('Event ID:', stripeEvent.id);
