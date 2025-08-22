@@ -738,8 +738,11 @@
                 
                 // Use improved checkout system
                 if (productType === 'audiobook') {
-                    // Create Stripe checkout session
-                    createStripeCheckout();
+                    // Temporary: Stripe checkout setup in progress
+                    showCartNotification('Stripe checkout coming soon! Email aleks@aleksfilmore.com for immediate purchase.');
+                    
+                    // TODO: Add your Stripe Payment Link here:
+                    // window.location.href = 'https://buy.stripe.com/your_stripe_payment_link';
                 } else {
                     // Handle other products
                     console.log('Adding to cart:', productType);
