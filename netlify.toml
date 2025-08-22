@@ -11,11 +11,12 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Webhook endpoint
+# Webhook endpoint - preserve raw body for signature verification
 [[redirects]]
   from = "/webhook"
   to = "/.netlify/functions/webhook"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/webhook/stripe"
