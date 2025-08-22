@@ -43,6 +43,11 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files
 app.use(express.static('.'));
 
+// Serve admin panel
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
 // Generate unique access token
 function generateAccessToken(email, productType) {
     const token = uuidv4();
@@ -678,10 +683,23 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
     
     try {
         console.log('Verifying webhook signature...');
-        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        console.log('Body type:', typeof req.body);
+        console.log('Body length:', req.body ? req.body.length : 'undefined');
+        console.log('Signature header:', sig ? 'present' : 'missing');
+        
+        // Trim the webhook secret to remove any whitespace
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
+        console.log('Webhook secret configured:', webhookSecret ? 'yes' : 'no');
+        
+        if (!webhookSecret) {
+            throw new Error('Webhook secret not configured');
+        }
+        
+        event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
         console.log('✅ Webhook signature verified successfully');
     } catch (err) {
         console.error('❌ Webhook signature verification failed:', err.message);
+        console.error('Full error:', err);
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
     

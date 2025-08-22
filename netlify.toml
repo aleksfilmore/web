@@ -13,6 +13,11 @@
 
 # Webhook endpoint
 [[redirects]]
+  from = "/webhook"
+  to = "/.netlify/functions/webhook"
+  status = 200
+
+[[redirects]]
   from = "/webhook/stripe"
   to = "/.netlify/functions/stripe-webhook"
   status = 200
