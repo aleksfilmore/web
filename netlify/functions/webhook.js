@@ -37,18 +37,29 @@ exports.handler = async (event, context) => {
         const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.replace(/\s/g, '');
         console.log('Webhook secret configured:', !!webhookSecret);
         console.log('Webhook secret length:', webhookSecret?.length);
+        console.log('Webhook secret first 10 chars:', webhookSecret?.substring(0, 10));
         
         if (!webhookSecret) {
             throw new Error('STRIPE_WEBHOOK_SECRET not configured');
         }
+        
+        // Log environment info for debugging
+        console.log('Environment variables check:');
+        console.log('- STRIPE_SECRET_KEY configured:', !!process.env.STRIPE_SECRET_KEY);
+        console.log('- RESEND_API_KEY configured:', !!process.env.RESEND_API_KEY);
         
         // Ensure body is a string for signature verification
         const bodyForVerification = typeof body === 'string' ? body : JSON.stringify(body);
         
         console.log('🔐 Verifying webhook signature...');
         console.log('Body for verification length:', bodyForVerification.length);
+        console.log('Body type:', typeof bodyForVerification);
+        console.log('Body first 100 chars:', bodyForVerification.substring(0, 100));
         console.log('Signature:', sig?.substring(0, 20) + '...');
+        console.log('Signature length:', sig?.length);
         
+        // Try different signature verification approaches
+        console.log('Attempting signature verification...');
         stripeEvent = stripe.webhooks.constructEvent(bodyForVerification, sig, webhookSecret);
         console.log('✅ Webhook signature verified');
         console.log('Event type:', stripeEvent.type);
@@ -56,6 +67,31 @@ exports.handler = async (event, context) => {
         
     } catch (err) {
         console.error('❌ Webhook verification failed:', err.message);
+        console.error('Full error:', err);
+        
+        // Enhanced debugging for signature issues
+        if (err.message.includes('No signatures found')) {
+            console.log('🔍 DEBUGGING SIGNATURE ISSUE:');
+            console.log('Raw signature header:', event.headers['stripe-signature']);
+            console.log('All headers:', JSON.stringify(event.headers, null, 2));
+            console.log('Body encoding info:', {
+                isBase64Encoded: event.isBase64Encoded,
+                originalBodyLength: event.body?.length,
+                processedBodyLength: body?.length,
+                bodyType: typeof body
+            });
+            
+            // Try to manually parse signature
+            try {
+                const sigHeader = event.headers['stripe-signature'];
+                if (sigHeader) {
+                    const sigParts = sigHeader.split(',');
+                    console.log('Signature parts:', sigParts);
+                }
+            } catch (parseErr) {
+                console.log('Could not parse signature header:', parseErr.message);
+            }
+        }
         
         return {
             statusCode: 400,
