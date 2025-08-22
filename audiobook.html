@@ -736,13 +736,28 @@
                 button.innerHTML = originalText;
                 button.disabled = false;
                 
-                // Use improved checkout system
+                // Use Stripe checkout system
                 if (productType === 'audiobook') {
-                    // Temporary: Stripe checkout setup in progress
-                    showCartNotification('Stripe checkout coming soon! Email aleks@aleksfilmore.com for immediate purchase.');
+                    // Redirect to Stripe Payment Link for audiobook
+                    showCartNotification('Redirecting to secure Stripe checkout...');
                     
-                    // TODO: Add your Stripe Payment Link here:
-                    // window.location.href = 'https://buy.stripe.com/your_stripe_payment_link';
+                    setTimeout(() => {
+                        window.location.href = 'https://buy.stripe.com/6oUfZa3ZW00q66g0x79fW00';
+                    }, 1000);
+                } else if (productType === 'signed-book') {
+                    // Redirect to Stripe Payment Link for signed book
+                    showCartNotification('Redirecting to secure Stripe checkout...');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01';
+                    }, 1000);
+                } else if (productType === 'bundle') {
+                    // Redirect to Stripe Payment Link for bundle
+                    showCartNotification('Redirecting to secure Stripe checkout...');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02';
+                    }, 1000);
                 } else {
                     // Handle other products
                     console.log('Adding to cart:', productType);

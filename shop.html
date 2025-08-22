@@ -766,7 +766,28 @@
         let cartCount = 0;
 
         function addToCart(id, name, price, type) {
-            // Check if item already exists
+            // For single-item purchases, redirect directly to Stripe
+            if (id === 'audiobook') {
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/6oUfZa3ZW00q66g0x79fW00';
+                }, 1000);
+                return;
+            } else if (id === 'signed-book') {
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01';
+                }, 1000);
+                return;
+            } else if (id === 'bundle') {
+                showCartNotification('Redirecting to secure Stripe checkout...');
+                setTimeout(() => {
+                    window.location.href = 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02';
+                }, 1000);
+                return;
+            }
+            
+            // Legacy cart system (if needed for future multi-item purchases)
             const existingItem = cart.find(item => item.id === id);
             
             if (existingItem) {
