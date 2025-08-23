@@ -492,8 +492,8 @@
         }
 
         .marquee-section {
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
-            color: var(--color-bone);
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #7dd3fc 100%);
+            color: var(--color-charcoal);
             position: relative;
             overflow: hidden;
         }
@@ -616,8 +616,9 @@
         }
 
         .partner-logo {
-            height: 2rem;
+            height: 2.5rem;
             width: auto;
+            max-width: 120px;
             opacity: 0.7;
             transition: all 0.3s ease;
             filter: grayscale(1) brightness(0) invert(1);
@@ -633,10 +634,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem;
+            padding: 1rem;
             border-radius: 8px;
             transition: all 0.3s ease;
             background: rgba(247, 243, 237, 0.02);
+            min-height: 4rem;
+            min-width: 100px;
         }
 
         .partner-link:hover {
@@ -646,13 +649,18 @@
 
         @media (min-width: 640px) {
             .partner-logo {
-                height: 2.5rem;
+                height: 3rem;
+            }
+            .partner-link {
+                padding: 1.25rem;
+                min-height: 4.5rem;
+                min-width: 120px;
             }
         }
 
         @media (min-width: 768px) {
             .partner-logo {
-                height: 3rem;
+                height: 3.5rem;
             }
         }
         @media (min-width: 1024px) {
@@ -723,6 +731,19 @@
         </div>
     </nav>
 
+    <!-- Sticky CTA Bar -->
+    <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 bg-primary text-charcoal px-4 py-3 z-40 transform translate-y-full transition-transform duration-300 ease-in-out">
+        <div class="container mx-auto flex items-center justify-between max-w-4xl">
+            <div class="flex items-center">
+                <span class="font-semibold text-sm sm:text-base">Get your copy now!</span>
+                <span class="ml-2 text-xs sm:text-sm opacity-80 hidden sm:inline">Don't miss these hard-earned lessons</span>
+            </div>
+            <a href="shop.html" class="bg-charcoal text-primary px-4 py-2 rounded-md font-semibold text-sm hover:bg-charcoal/90 transition-colors">
+                Get the Book
+            </a>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
 
@@ -735,20 +756,20 @@
                         <span class="text-lg sm:text-xl lg:text-2xl font-normal block mt-4" style="background: linear-gradient(135deg, var(--color-bone) 0%, var(--color-glitch-lime) 50%, var(--color-bone) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">I kept mistaking warnings for charm.</span>
                     </h1>
                     <p class="hero-subtitle text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-10 leading-relaxed max-w-3xl mx-auto font-light">
-                        I'm Aleks Filmore. These are the <span class="text-glitch-lime font-semibold">twenty-five times</span> I learned the hard way.
+                        I'm Aleks Filmore. And these are <span class="text-glitch-lime font-semibold">twenty-five lessons</span> I learned the hard way.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center max-w-lg mx-auto">
-                        <a href="shop.html" class="btn-primary group">
+                        <a href="shop.html" class="btn-primary group text-lg font-semibold">
                             <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                             </svg>
-                            Shop Books
+                            Get the Book
                         </a>
-                        <a href="audiobook.html" class="btn-secondary group">
+                        <a href="audiobook.html" class="btn-secondary group text-lg">
                             <svg class="icon mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a3 3 0 106 0v-1a3 3 0 00-6 0v1z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15M9 10V9a2 2 0 012-2h2a2 2 0 012 2v1m-6 0V9a2 2 0 012-2h2a2 2 0 012 2v1"/>
                             </svg>
-                            Preview Audio
+                            Hear a 60-sec Sample
                         </a>
                     </div>
                 </div>
@@ -812,7 +833,7 @@
                         Also Available On
                     </h3>
                     
-                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center">
+                    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8">
                         
                         <!-- Amazon -->
                         <a href="https://a.co/d/1eaTrOP" 
@@ -820,7 +841,7 @@
                            rel="noopener noreferrer" 
                            class="partner-link group"
                            title="Available on Amazon">
-                            <span class="partner-logo text-lg font-semibold text-bone group-hover:text-glitch-lime transition-colors">
+                            <span class="partner-logo text-xl font-semibold text-bone group-hover:text-glitch-lime transition-colors">
                                 Amazon
                             </span>
                         </a>
@@ -1028,7 +1049,7 @@
                                     Narrated by Deacon Deane. Full disaster, instant access.
                                 </p>
                                 <div class="space-y-1 mb-4">
-                                    <div class="feature-tag">8+ Hours</div>
+                                    <div class="feature-tag">7+ Hours</div>
                                     <div class="feature-tag">Bonus Epilogue</div>
                                     <div class="feature-tag">All Devices</div>
                                 </div>
@@ -1344,6 +1365,29 @@
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>
+
+    <!-- Sticky CTA Bar JavaScript -->
+    <script>
+        // Show/hide sticky CTA bar based on scroll position
+        let lastScrollY = 0;
+        let stickyCTA = document.getElementById('sticky-cta');
+        let heroSection = document.querySelector('.hero-gradient');
+        
+        function handleStickyCTA() {
+            const scrollY = window.scrollY;
+            const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+            
+            // Show sticky bar when user scrolls past hero section
+            if (scrollY > heroHeight * 0.8) {
+                stickyCTA.classList.remove('translate-y-full');
+            } else {
+                stickyCTA.classList.add('translate-y-full');
+            }
+        }
+        
+        window.addEventListener('scroll', handleStickyCTA);
+        window.addEventListener('resize', handleStickyCTA);
+    </script>
 
     <style>
         .nav-hidden {
