@@ -2,6 +2,8 @@
 node_modules/
 dist/
 .env
+.env.*
+
 # Local Netlify folder
 .netlify
 
@@ -11,15 +13,17 @@ netlify-env-vars.txt
 *.env.local
 *.env.production
 
-# Internal development docs (exclude only explicitly sensitive markdown)
-TECH_STACK.md
-ADMIN_SETUP.md
-
-# Do NOT ignore all markdown by default (keep README.md etc)
-
 # Service account / credentials (never commit)
 google-analytics-key.json
 prime-sunset-*-*.json
+*-service-account.json
+*-credentials.json
+
+# Secret/API key files
+*-api-key.json
+*-secret.json
+config/secrets.js
+config/keys.js
 
 # Test files and debugging scripts
 test-*.js
@@ -28,3 +32,12 @@ fix-*.js
 *-test.js
 *-debug.js
 create-*
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
