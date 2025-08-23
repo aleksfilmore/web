@@ -79,23 +79,7 @@ exports.handler = async (event, context) => {
         console.log('Signature:', sig?.substring(0, 20) + '...');
         console.log('Signature length:', sig?.length);
         
-        // TEMPORARY: Try to parse the webhook without signature verification to test payload
-        console.log('🧪 TESTING: Attempting to parse webhook payload without verification...');
-        try {
-            const testEvent = JSON.parse(body);
-            console.log('✅ Payload is valid JSON');
-            console.log('Test Event type:', testEvent.type);
-            console.log('Test Event ID:', testEvent.id);
-            
-            // If this works, it means the issue is purely signature verification
-            if (testEvent.type === 'checkout.session.completed') {
-                console.log('🎯 This is a checkout completion event - payload structure is correct');
-            }
-        } catch (parseErr) {
-            console.log('❌ Payload is not valid JSON:', parseErr.message);
-        }
-        
-        // Try different signature verification approaches
+        // Try signature verification
         console.log('Attempting signature verification...');
         
         try {
@@ -113,17 +97,7 @@ exports.handler = async (event, context) => {
                     console.log('✅ Webhook signature verified with original body');
                 } catch (secondaryErr) {
                     console.log('❌ Secondary verification failed:', secondaryErr.message);
-                    
-                    // TEMPORARY BYPASS: Process the webhook without signature verification
-                    // This is ONLY for debugging - remove in production
-                    console.log('🚨 TEMPORARY: Processing webhook without signature verification for debugging');
-                    try {
-                        stripeEvent = JSON.parse(body);
-                        console.log('⚠️ Using unverified payload - this is TEMPORARY for debugging only');
-                    } catch (jsonErr) {
-                        console.log('❌ Cannot parse JSON payload:', jsonErr.message);
-                        throw primaryErr; // Throw the original signature error
-                    }
+                    throw primaryErr; // Throw the original error
                 }
             } else {
                 throw primaryErr;
