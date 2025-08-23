@@ -7,6 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 exports.handler = async (event, context) => {
     console.log('=== STRIPE WEBHOOK RECEIVED ===');
     console.log('Method:', event.httpMethod);
+    console.log('Headers:', JSON.stringify(event.headers, null, 2));
     
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
@@ -17,18 +18,44 @@ exports.handler = async (event, context) => {
         };
     }
 
-    const sig = event.headers['stripe-signature'];
+    const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
     let body = event.body;
     
+    console.log('Raw event data:', {
+        isBase64Encoded: event.isBase64Encoded,
+        bodyType: typeof body,
+        bodyLength: body?.length,
+        hasSignature: !!sig,
+        signaturePreview: sig?.substring(0, 50)
+    });
+    
     // Handle different body encodings in Netlify
-    if (event.isBase64Encoded) {
+    if (event.isBase64Encoded && body) {
         console.log('📦 Converting from base64...');
         body = Buffer.from(body, 'base64').toString('utf8');
+        console.log('After base64 decode - length:', body.length);
     }
     
-    console.log('Body type:', typeof body);
-    console.log('Body length:', body ? body.length : 'undefined');
-    console.log('Signature present:', !!sig);
+    // Additional body handling for different scenarios
+    if (typeof body !== 'string') {
+        if (body && typeof body === 'object') {
+            body = JSON.stringify(body);
+            console.log('Converted object body to string');
+        } else {
+            console.log('❌ Invalid body type:', typeof body);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Invalid request body' })
+            };
+        }
+    }
+    
+    console.log('Final body info:', {
+        type: typeof body,
+        length: body.length,
+        firstChars: body.substring(0, 100),
+        lastChars: body.substring(body.length - 50)
+    });
     
     let stripeEvent;
     
@@ -48,19 +75,34 @@ exports.handler = async (event, context) => {
         console.log('- STRIPE_SECRET_KEY configured:', !!process.env.STRIPE_SECRET_KEY);
         console.log('- RESEND_API_KEY configured:', !!process.env.RESEND_API_KEY);
         
-        // Ensure body is a string for signature verification
-        const bodyForVerification = typeof body === 'string' ? body : JSON.stringify(body);
-        
         console.log('🔐 Verifying webhook signature...');
-        console.log('Body for verification length:', bodyForVerification.length);
-        console.log('Body type:', typeof bodyForVerification);
-        console.log('Body first 100 chars:', bodyForVerification.substring(0, 100));
         console.log('Signature:', sig?.substring(0, 20) + '...');
         console.log('Signature length:', sig?.length);
         
         // Try different signature verification approaches
         console.log('Attempting signature verification...');
-        stripeEvent = stripe.webhooks.constructEvent(bodyForVerification, sig, webhookSecret);
+        
+        try {
+            // Primary attempt with current body
+            stripeEvent = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+            console.log('✅ Webhook signature verified with current body');
+        } catch (primaryErr) {
+            console.log('❌ Primary verification failed:', primaryErr.message);
+            
+            // Try with raw event body if different
+            if (event.body !== body) {
+                try {
+                    console.log('Trying with original event body...');
+                    stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret);
+                    console.log('✅ Webhook signature verified with original body');
+                } catch (secondaryErr) {
+                    console.log('❌ Secondary verification failed:', secondaryErr.message);
+                    throw primaryErr; // Throw the original error
+                }
+            } else {
+                throw primaryErr;
+            }
+        }
         console.log('✅ Webhook signature verified');
         console.log('Event type:', stripeEvent.type);
         console.log('Event ID:', stripeEvent.id);
