@@ -341,9 +341,9 @@
                             <div class="text-center sm:text-right">
                                 <p class="text-bone/60 text-sm mb-2">Share this guide:</p>
                                 <div class="flex gap-3 justify-center sm:justify-end">
-                                    <a href="#" class="text-bone/60 hover:text-primary">Twitter</a>
-                                    <a href="#" class="text-bone/60 hover:text-primary">Facebook</a>
-                                    <a href="#" class="text-bone/60 hover:text-primary">Copy Link</a>
+                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Share on Twitter">🐦 Twitter</a>
+                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Share on Facebook">📘 Facebook</a>
+                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Copy link">🔗 Copy Link</a>
                                 </div>
                             </div>
                         </div>
@@ -361,5 +361,28 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Share functionality
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = document.title;
+                const url = window.location.href;
+                
+                if (this.title.includes('Twitter')) {
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+                } else if (this.title.includes('Facebook')) {
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                } else if (this.title.includes('Copy')) {
+                    navigator.clipboard.writeText(url);
+                    this.innerHTML = '✅ Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = '🔗 Copy Link';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

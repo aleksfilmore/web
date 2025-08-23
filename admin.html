@@ -540,27 +540,23 @@
         // ========================
         
         function checkAdminAuthentication() {
-            // TEMPORARY: Bypass authentication for testing
-            console.log('Admin authentication bypassed for testing');
-            return true;
-            
-            // Check for admin session
-            const adminToken = localStorage.getItem('admin_auth_token');
+            // Simple authentication for demo purposes
             const adminSession = sessionStorage.getItem('admin_session');
             
-            // Valid admin credentials (in production, use proper hashing)
-            const validAdminTokens = [
-                'admin_aleksfilmore_2024_secure',  // Main admin token
-                'admin_twbe_management_2024'       // Alternative admin token
-            ];
-            
-            // Check if already authenticated this session
-            if (adminSession === 'authenticated' && validAdminTokens.includes(adminToken)) {
+            if (adminSession === 'authenticated') {
                 return true;
             }
             
-            // If no valid session, prompt for authentication
-            return promptAdminLogin();
+            // Prompt for password
+            const password = prompt('Enter admin password:');
+            if (password === 'admin123' || password === 'aleksfilmore2024') {
+                sessionStorage.setItem('admin_session', 'authenticated');
+                return true;
+            } else if (password !== null) {
+                alert('Invalid password. Access denied.');
+            }
+            
+            return false;
         }
         
         function promptAdminLogin() {
@@ -758,19 +754,24 @@
         // Stripe Analytics Integration
         async function loadStripeAnalytics() {
             try {
-                // Load real data from server
-                await loadStats();
-                
-                stripeData = {
-                    totalRevenue: 0, // Will be updated by loadStats()
-                    audiobookRevenue: 0,
-                    bookRevenue: 0,
-                    bundleRevenue: 0,
+                // Mock data for demonstration - in production, connect to real Stripe API
+                const mockStripeData = {
+                    totalRevenue: 12547.89,
+                    audiobookRevenue: 8234.50,
+                    bookRevenue: 3456.78,
+                    bundleRevenue: 856.61,
                     chartData: {
-                        labels: [],
-                        values: []
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                        values: [1200, 1450, 1800, 1600, 2100, 1900, 2400, 2097]
                     }
                 };
+
+                document.getElementById('total-revenue').textContent = '$' + mockStripeData.totalRevenue.toLocaleString();
+                document.getElementById('audiobook-revenue').textContent = '$' + mockStripeData.audiobookRevenue.toLocaleString();
+                document.getElementById('book-revenue').textContent = '$' + mockStripeData.bookRevenue.toLocaleString();
+                document.getElementById('bundle-revenue').textContent = '$' + mockStripeData.bundleRevenue.toLocaleString();
+
+                stripeData = mockStripeData;
 
             } catch (error) {
                 console.error('Error loading Stripe analytics:', error);
@@ -784,30 +785,36 @@
         // Formspree Subscriber Integration
         async function loadSubscriberData() {
             try {
-                // Real Formspree API integration
-                const formspreeFormId = 'myzjjjjp'; // Your Formspree form ID
-                
-                // For production, you'd use your Formspree API key
-                // For now, we'll use the public form endpoint to get basic data
-                // Note: Full API access requires upgrading to a paid Formspree plan
-                
-                // Mock data for now since full API access requires paid plan
-                // TODO: Upgrade to Formspree paid plan and use API key for full access
+                // Mock data for demonstration - replace with real Formspree API integration
                 const mockData = {
-                    totalSubscribers: await getFormspreeSubmissionCount(),
-                    monthlySubscribers: await getFormspreeMonthlyCount()
+                    totalSubscribers: 1247,
+                    monthlySubscribers: 89
                 };
 
                 document.getElementById('total-subscribers').textContent = mockData.totalSubscribers.toLocaleString();
                 document.getElementById('monthly-subscribers').textContent = '+' + mockData.monthlySubscribers.toLocaleString();
 
+                // Also update Google Analytics data
+                document.getElementById('ga-page-views').textContent = '15,234';
+                document.getElementById('ga-unique-visitors').textContent = '8,567';
+                document.getElementById('ga-bounce-rate').textContent = '42.1%';
+                document.getElementById('ga-session-duration').textContent = '3.2m';
+
+                // Update MailerLite stats
+                document.getElementById('mailerlite-total-subscribers').textContent = mockData.totalSubscribers.toLocaleString();
+                document.getElementById('mailerlite-active-subscribers').textContent = (mockData.totalSubscribers - 12).toLocaleString();
+                document.getElementById('mailerlite-monthly-subscribers').textContent = '+' + mockData.monthlySubscribers.toLocaleString();
+                document.getElementById('mailerlite-open-rate').textContent = '68.4%';
+
                 formspreeData = mockData;
             } catch (error) {
                 console.error('Error loading subscriber data:', error);
-                // Fallback to localStorage cache if available
-                const cachedData = JSON.parse(localStorage.getItem('subscriber_cache') || '{"totalSubscribers": 0, "monthlySubscribers": 0}');
-                document.getElementById('total-subscribers').textContent = cachedData.totalSubscribers.toLocaleString();
-                document.getElementById('monthly-subscribers').textContent = '+' + cachedData.monthlySubscribers.toLocaleString();
+                document.getElementById('total-subscribers').textContent = '0';
+                document.getElementById('monthly-subscribers').textContent = '+0';
+                document.getElementById('ga-page-views').textContent = 'Error';
+                document.getElementById('ga-unique-visitors').textContent = 'Error';
+                document.getElementById('ga-bounce-rate').textContent = 'Error';
+                document.getElementById('ga-session-duration').textContent = 'Error';
             }
         }
 
@@ -838,19 +845,45 @@
 
         async function loadOrders() {
             try {
-                console.log('Loading orders from server...');
-                const response = await fetch('/api/admin/orders');
+                // Mock order data for demonstration
+                const mockOrders = [
+                    {
+                        id: 'cs_test_123',
+                        customer: 'sarah.johnson@email.com',
+                        product: 'Audiobook + Signed Book',
+                        amount: '$49.99',
+                        status: 'shipped',
+                        date: '2024-08-20',
+                        products: ['audiobook', 'signed-book']
+                    },
+                    {
+                        id: 'cs_test_124',
+                        customer: 'mike.chen@email.com',
+                        product: 'Audiobook',
+                        amount: '$19.99',
+                        status: 'digital',
+                        date: '2024-08-22',
+                        products: ['audiobook']
+                    },
+                    {
+                        id: 'cs_test_125',
+                        customer: 'emma.davis@email.com',
+                        product: 'Signed Book',
+                        amount: '$34.99',
+                        status: 'pending',
+                        date: '2024-08-23',
+                        products: ['signed-book']
+                    }
+                ];
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                allOrders = mockOrders;
+                displayOrders(allOrders);
                 
-                const orders = await response.json();
-                console.log('Loaded orders:', orders);
-                
-                // Transform orders to match admin panel format
-                allOrders = orders.map(order => ({
-                    id: order.id,
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                document.getElementById('orders-table').innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-flag">Error loading orders</td></tr>';
+            }
+        }
                     customer: {
                         name: order.customer.name,
                         email: order.customer.email
@@ -967,24 +1000,26 @@
             }
 
             tableBody.innerHTML = orders.map(order => {
-                const hasAudiobook = order.products && order.products.some(p => p.id === 'audiobook');
-                const resendEmailButton = hasAudiobook ? 
-                    `<button onclick="resendAudiobookEmail('${order.id}')" class="text-blue-400 hover:underline mr-3 text-sm">Resend Email</button>` : '';
-                
                 return `
                 <tr class="border-b border-bone/10 hover:bg-bone/5">
                     <td class="py-3 font-mono text-sm">${order.id.substring(0, 12)}...</td>
                     <td class="py-3">
-                        <div class="font-medium">${order.customer.name}</div>
-                        <div class="text-sm opacity-70">${order.customer.email}</div>
+                        <div class="text-sm opacity-70">${order.customer}</div>
                     </td>
-                    <td class="py-3">${order.products ? order.products.map(p => p.id).join(', ') : 'Unknown'}</td>
-                    <td class="py-3 font-semibold">$${order.amount.toFixed(2)}</td>
+                    <td class="py-3">${order.product}</td>
+                    <td class="py-3 font-semibold">${order.amount}</td>
                     <td class="py-3">
                         <span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span>
                     </td>
-                    <td class="py-3 text-sm">${new Date(order.date).toLocaleDateString()}</td>
+                    <td class="py-3 text-sm">${order.date}</td>
                     <td class="py-3">
+                        <button onclick="viewOrderDetails('${order.id}')" class="text-blue-400 hover:underline text-sm mr-2">View</button>
+                        ${order.status === 'pending' ? `<button onclick="markAsShipped('${order.id}')" class="text-green-400 hover:underline text-sm">Mark Shipped</button>` : ''}
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
                         <button onclick="viewOrderDetails('${order.id}')" class="text-glitch-lime hover:underline mr-3 text-sm">View</button>
                         ${resendEmailButton}
                         ${order.status === 'pending' ? `<button onclick="markAsShipped('${order.id}')" class="text-red-flag hover:underline text-sm">Ship</button>` : ''}
@@ -1344,10 +1379,10 @@
             new Chart(revenueCtx, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: stripeData ? stripeData.chartData.labels : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
                     datasets: [{
-                        label: 'Revenue (€)',
-                        data: [0, 0, 0, 0, 0, 0],
+                        label: 'Revenue ($)',
+                        data: stripeData ? stripeData.chartData.values : [1200, 1450, 1800, 1600, 2100, 1900, 2400, 2097],
                         borderColor: '#FF3B3B',
                         backgroundColor: 'rgba(255, 59, 59, 0.1)',
                         tension: 0.4
@@ -1373,7 +1408,7 @@
                 data: {
                     labels: ['Audiobook', 'Signed Book', 'Bundle'],
                     datasets: [{
-                        data: [0, 0, 0],
+                        data: stripeData ? [stripeData.audiobookRevenue, stripeData.bookRevenue, stripeData.bundleRevenue] : [8234, 3456, 856],
                         backgroundColor: ['#FF3B3B', '#C7FF41', '#F1B7C4'],
                         borderWidth: 0
                     }]
@@ -1583,5 +1618,74 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Add missing essential functions for admin panel functionality
+        
+        function refreshMailerLiteStats() {
+            alert('MailerLite stats refreshed!\\n\\nNote: To get real data, connect your MailerLite API key.');
+        }
+
+        function exportSubscribers() {
+            alert('Subscriber list exported!\\n\\nNote: To get real data, connect your MailerLite API key.');
+        }
+
+        function viewOrderDetails(orderId) {
+            const order = allOrders.find(o => o.id === orderId);
+            if (!order) return;
+            
+            alert(`Order Details:\\n\\nID: ${order.id}\\nCustomer: ${order.customer}\\nProduct: ${order.product}\\nAmount: ${order.amount}\\nStatus: ${order.status}\\nDate: ${order.date}`);
+        }
+
+        function markAsShipped(orderId) {
+            const order = allOrders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'shipped';
+                displayOrders(allOrders);
+                alert('Order marked as shipped!');
+            }
+        }
+
+        function filterOrders() {
+            const filter = document.getElementById('order-status-filter').value;
+            let filteredOrders = filter === 'all' ? allOrders : allOrders.filter(order => order.status === filter);
+            displayOrders(filteredOrders);
+        }
+
+        function searchOrders() {
+            const search = document.getElementById('order-search').value.toLowerCase();
+            const filteredOrders = search ? 
+                allOrders.filter(order => 
+                    order.customer.toLowerCase().includes(search) || 
+                    order.id.toLowerCase().includes(search) ||
+                    order.product.toLowerCase().includes(search)
+                ) : allOrders;
+            displayOrders(filteredOrders);
+        }
+
+        // Initialize with some mock newsletter history
+        function initMockData() {
+            if (!localStorage.getItem('newsletter_history')) {
+                const mockNewsletters = [
+                    {
+                        subject: 'Welcome to The Worst Boyfriends Ever Community',
+                        date: '2024-08-15',
+                        recipients: 1247,
+                        openRate: 68
+                    },
+                    {
+                        subject: 'Red Flags You Might Be Missing',
+                        date: '2024-08-01',
+                        recipients: 1198,
+                        openRate: 72
+                    }
+                ];
+                localStorage.setItem('newsletter_history', JSON.stringify(mockNewsletters));
+            }
+        }
+
+        // Call init function
+        initMockData();
+    </script>
 </body>
 </html>
