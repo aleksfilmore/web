@@ -472,6 +472,12 @@
             triggerBingo(winningLine) {
                 this.hasWon = true;
                 
+                // Store discount in localStorage for checkout
+                localStorage.setItem('discount_code', 'BINGO20');
+                localStorage.setItem('discount_type', 'bingo');
+                localStorage.setItem('discount_amount', '20');
+                localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString());
+                
                 // Highlight winning line
                 winningLine.forEach(index => {
                     const cell = document.querySelector(`[data-index="${index}"]`);

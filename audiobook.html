@@ -1217,6 +1217,53 @@
             progressBar.style.width = '0%';
         });
 
+        // Handle discount codes from URL parameters (e.g., from Bingo game)
+        function handleDiscountFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const discountParam = urlParams.get('discount');
+            
+            if (discountParam) {
+                // Store discount in localStorage for checkout
+                localStorage.setItem('discount_code', discountParam);
+                localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString());
+                
+                console.log(`Discount code ${discountParam} stored for checkout`);
+                
+                // Show discount notification
+                showDiscountNotification(discountParam);
+            }
+        }
+        
+        function showDiscountNotification(code) {
+            // Create and show discount notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-red-flag text-bone px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+            notification.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="font-semibold">20% Discount Applied!</span>
+                </div>
+                <p class="text-sm mt-1">Code: ${code} - Valid for 24 hours</p>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Slide in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
         // Mobile menu functionality
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1266,6 +1313,11 @@
         window.addEventListener('unhandledrejection', function(e) {
             console.error('Unhandled promise rejection:', e.reason);
             e.preventDefault(); // Prevent the default behavior
+        });
+        
+        // Initialize discount handling on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleDiscountFromURL();
         });
     </script>
 </body>
