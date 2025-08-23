@@ -11,10 +11,15 @@ netlify-env-vars.txt
 *.env.local
 *.env.production
 
-# Internal development documentation (contains sensitive info)
+# Internal development docs (exclude only explicitly sensitive markdown)
 TECH_STACK.md
-*_STACK.md
-*.md
+ADMIN_SETUP.md
+
+# Do NOT ignore all markdown by default (keep README.md etc)
+
+# Service account / credentials (never commit)
+google-analytics-key.json
+prime-sunset-*-*.json
 
 # Test files and debugging scripts
 test-*.js

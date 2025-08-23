@@ -153,7 +153,7 @@
                 <div class="flex items-center space-x-4">
                     <span id="user-info" class="text-sm opacity-70"></span>
                     <button onclick="quickRefresh()" class="btn-secondary text-sm">Quick Refresh</button>
-                    <button onclick="testAdminPanel()" class="btn-primary text-sm">Test Integrations</button>
+                    <button onclick="testAllIntegrations()" class="btn-primary text-sm">Test APIs</button>
                     <button onclick="logout()" class="btn-secondary text-sm">Logout</button>
                 </div>
             </div>
@@ -426,16 +426,16 @@
     <div id="login-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-6">Admin Login</h2>
-            <form id="login-form">
+            <div id="login-error" style="display: none; color: var(--color-red-flag); margin-bottom: 1rem;"></div>
+            <form id="login-form" onsubmit="return handleLogin(event)">
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Username</label>
-                    <input type="text" id="username" class="form-input" required>
+                    <label class="block text-sm font-medium mb-2">Admin Password</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-sm font-medium mb-2">Password</label>
-                    <input type="password" id="password" class="form-input" required>
+                    <small class="text-xs opacity-70">Enter the admin password to access the dashboard</small>
                 </div>
-                <button type="submit" class="btn-primary w-full">Login</button>
+                <button type="submit" id="login-submit-btn" class="btn-primary w-full">Enter Dashboard</button>
             </form>
         </div>
     </div>
@@ -544,63 +544,65 @@
         function checkAdminAuthentication() {
             // Check if already authenticated
             const adminSession = sessionStorage.getItem('admin_session');
-            
-            if (adminSession === 'authenticated') {
+            const token = localStorage.getItem('admin_auth_token');
+            if (adminSession === 'authenticated' && token) {
+                verifyAdminToken(token); // async, optimistic
                 return true;
             }
             
-            // If not authenticated, prompt for login and return false for now
-            // The login modal will handle authentication
+            // If not authenticated, show login modal
             promptAdminLogin();
             return false;
         }
         
         function promptAdminLogin() {
-            // Skip the login overlay for now to allow testing
-            console.log('Skipping login for testing purposes');
-            return false;
+            // Show login modal
+            document.getElementById('login-modal').style.display = 'flex';
+            
+            // Focus on password field
+            setTimeout(() => {
+                const passwordField = document.getElementById('admin-password');
+                if (passwordField) {
+                    passwordField.focus();
+                }
+            }, 100);
         }
         
-        function validateAdminCredentials() {
-            const password = document.getElementById('adminPassword').value;
-            const errorDiv = document.getElementById('loginError');
-            
-            // Valid admin passwords (in production, use proper authentication)
-            const validPasswords = [
-                'aleksfilmore2024admin!',  // Main admin password
-                'twbe_admin_secure_2024'   // Alternative admin password
-            ];
-            
-            if (validPasswords.includes(password)) {
-                // Generate session token
-                const adminToken = 'admin_aleksfilmore_2024_secure';
-                
-                // Store authentication
-                localStorage.setItem('admin_auth_token', adminToken);
-                sessionStorage.setItem('admin_session', 'authenticated');
-                sessionStorage.setItem('admin_login_time', new Date().toISOString());
-                
-                // Remove login overlay
-                document.querySelector('[style*="position: fixed"]').parentElement.remove();
-                
-                // Log access
-                console.log(`Admin access granted at ${new Date().toISOString()}`);
-                
-                // Initialize admin dashboard
-                initializeAdminDashboard();
-                
-                return true;
-            } else {
+        function handleLogin(event) {
+            event.preventDefault();
+            const passwordInput = document.getElementById('admin-password');
+            const password = passwordInput.value.trim();
+            const errorDiv = document.getElementById('login-error');
+            errorDiv.style.display = 'none';
+            if (!password) {
+                errorDiv.textContent = 'Password required';
                 errorDiv.style.display = 'block';
-                errorDiv.textContent = 'Invalid credentials. Access denied.';
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
-                
-                // Log failed attempt
-                console.warn(`Failed admin login attempt at ${new Date().toISOString()}`);
-                
                 return false;
             }
+            const submitBtn = document.getElementById('login-submit-btn');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Authenticating...'; }
+            fetch('/.netlify/functions/admin-auth-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            }).then(r => r.json().then(j => ({ ok: r.ok, data: j }))).then(res => {
+                if (!res.ok) throw new Error(res.data.error || 'Login failed');
+                const { token, expiresIn } = res.data;
+                localStorage.setItem('admin_auth_token', token);
+                sessionStorage.setItem('admin_session', 'authenticated');
+                sessionStorage.setItem('admin_login_time', new Date().toISOString());
+                sessionStorage.setItem('admin_token_expires_in', expiresIn);
+                document.getElementById('login-modal').style.display = 'none';
+                console.log('Admin authenticated');
+                initializeAdminDashboard();
+            }).catch(err => {
+                errorDiv.textContent = err.message;
+                errorDiv.style.display = 'block';
+            }).finally(() => {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enter Dashboard'; }
+                passwordInput.value = '';
+            });
+            return false;
         }
         
         // Session timeout (30 minutes)
@@ -635,7 +637,12 @@
         function setupDashboard() {
             // Dashboard setup logic here
             isAuthenticated = true;
-            document.getElementById('user-info').textContent = 'Logged in as: Aleks Filmore';
+            
+            // Update user info in navigation
+            const userInfoElement = document.getElementById('user-info');
+            if (userInfoElement) {
+                userInfoElement.textContent = 'Logged in as: Aleks Filmore';
+            }
             
             // Load enhanced dashboard immediately
             console.log('Starting enhanced dashboard load...');
@@ -651,12 +658,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // For testing purposes, let's skip authentication temporarily
-            // Comment this out later when authentication is working properly
-            sessionStorage.setItem('admin_session', 'authenticated');
-            
             // Check authentication before loading dashboard
             if (!checkAdminAuthentication()) {
+                // Ensure modal visible
+                const m = document.getElementById('login-modal');
+                if (m) m.style.display = 'flex';
                 return; // Don't load dashboard if not authenticated
             }
             
@@ -673,32 +679,62 @@
             loadDashboard();
         }
 
+        // Quick analytics refresh function
+        async function quickRefresh() {
+            console.log('Quick refreshing all analytics...');
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Refreshing...';
+            button.disabled = true;
+            
+            try {
+                showLoadingSpinner();
+                await loadRealData();
+                hideLoadingSpinner();
+                
+                // Show success message
+                alert('✅ Analytics data refreshed successfully!');
+                
+            } catch (error) {
+                console.error('Error during quick refresh:', error);
+                hideLoadingSpinner();
+                
+                // Fall back to mock data and show warning
+                loadMockData();
+                alert('⚠️ Could not connect to real data sources. Using demo data.\n\nMake sure the server is running and API keys are configured.');
+                
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
         function logout() {
             localStorage.removeItem('admin_auth_token');
             sessionStorage.removeItem('admin_session');
             sessionStorage.removeItem('admin_login_time');
+            sessionStorage.removeItem('admin_token_expires_in');
             localStorage.removeItem('blog_posts');
             localStorage.removeItem('newsletter_history');
+            alert('Logged out successfully');
             location.reload();
         }
 
         // ===== ENHANCED ANALYTICS FUNCTIONS =====
         
         async function loadDashboard() {
+            if (!localStorage.getItem('admin_auth_token')) {
+                console.warn('Not authenticated - blocking dashboard load');
+                promptAdminLogin();
+                return;
+            }
             console.log('Loading enhanced dashboard data...');
             showLoadingSpinner();
             
             try {
-                // Load all analytics data
-                await Promise.all([
-                    loadGoogleAnalytics(),
-                    loadStripeAnalytics(),
-                    loadAudiobookAnalytics(),
-                    loadNewsletterData(),
-                    loadOrders(),
-                    loadBlogPosts(),
-                    loadNewsletterHistory()
-                ]);
+                // Try to load real data from server endpoints
+                await loadRealData();
                 
                 console.log('All enhanced dashboard data loaded, initializing charts...');
                 initCharts();
@@ -707,20 +743,224 @@
             } catch (error) {
                 console.error('Error loading dashboard:', error);
                 hideLoadingSpinner();
-                showErrorMessage('Failed to load dashboard data. Some features may not work properly.');
+                
+                // Fall back to mock data if server is not available
+                console.log('Server not available, loading mock data...');
+                loadMockData();
+                initCharts();
+                showErrorMessage('Using demo data - server may not be running. Start the server to see real analytics.');
             }
+        }
+        // Verify token helper
+        async function verifyAdminToken(token) {
+            try {
+                const res = await fetch('/.netlify/functions/admin-auth-verify', { headers: { 'Authorization': 'Bearer ' + token } });
+                const data = await res.json();
+                if (!data.valid) {
+                    console.warn('Token invalid/expired');
+                    logout();
+                }
+            } catch (e) {
+                console.error('Token verify failed', e);
+            }
+        }
+
+        // Load real data from server
+        async function loadRealData() {
+            try {
+                console.log('Fetching real analytics data from Netlify Functions...');
+                
+                // Load dashboard summary from Netlify Function
+                const dashboardResponse = await fetch('/.netlify/functions/admin-dashboard-summary?days=30');
+                if (dashboardResponse.ok) {
+                    const dashboardData = await dashboardResponse.json();
+                    updateDashboardWithRealData(dashboardData);
+                    console.log('Real dashboard data loaded successfully from Netlify Functions');
+                    
+                    // Also load orders separately for the orders table
+                    await loadRealOrders();
+                    return;
+                } else {
+                    console.warn('Dashboard summary endpoint failed, trying individual endpoints...');
+                }
+                
+                // Fallback to individual Netlify Functions
+                await Promise.all([
+                    loadRealNewsletterData(),
+                    loadRealOrders()
+                ]);
+                
+            } catch (error) {
+                console.error('Failed to load real data:', error);
+                throw error; // Re-throw to trigger fallback
+            }
+        }
+
+        // Load real orders from Netlify Function
+        async function loadRealOrders() {
+            try {
+                console.log('Loading real orders from Stripe via Netlify Function...');
+                const response = await fetch('/.netlify/functions/admin-orders?limit=50');
+                
+                if (response.ok) {
+                    const orders = await response.json();
+                    allOrders = orders;
+                    displayOrders(allOrders);
+                    console.log('Real orders loaded successfully:', orders.length);
+                    
+                    // Update order count in summary
+                    updateElement('total-orders', orders.length.toLocaleString());
+                } else {
+                    throw new Error(`Orders endpoint failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error loading real orders:', error);
+                throw error;
+            }
+        }
+
+        // Load real newsletter data from Netlify Function
+        async function loadRealNewsletterData() {
+            try {
+                console.log('Loading real newsletter data from MailerLite via Netlify Function...');
+                const response = await fetch('/.netlify/functions/admin-newsletter-stats');
+                
+                if (response.ok) {
+                    const stats = await response.json();
+                    console.log('Newsletter stats loaded:', stats);
+                    
+                    // Update newsletter displays
+                    updateElement('mailerlite-total-subscribers', (stats.totalSubscribers || 0).toLocaleString());
+                    updateElement('mailerlite-active-subscribers', (stats.activeSubscribers || 0).toLocaleString());
+                    updateElement('mailerlite-monthly-subscribers', '+' + (stats.monthlyNew || 0).toLocaleString());
+                    updateElement('mailerlite-open-rate', stats.openRate ? stats.openRate.toFixed(1) + '%' : 'N/A');
+                    
+                    newsletterData = stats;
+                    console.log('Newsletter stats updated successfully');
+                } else {
+                    throw new Error(`Newsletter endpoint failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error loading real newsletter data:', error);
+                throw error;
+            }
+        }
+
+        // Update dashboard with real server data
+        function updateDashboardWithRealData(data) {
+            console.log('Updating dashboard with real data:', data);
+            
+            try {
+                // Mark that we have real data so mock loaders won't overwrite
+                window.dataMode = 'real';
+                // Update revenue metrics
+                if (data.revenue) {
+                    updateElement('total-revenue', '$' + (data.revenue.totalRevenue || 0).toLocaleString());
+                    updateElement('audiobook-revenue', '$' + (data.revenue.audiobookRevenue || 0).toLocaleString());
+                    updateElement('book-revenue', '$' + (data.revenue.bookRevenue || 0).toLocaleString());
+                    updateElement('bundle-revenue', '$' + (data.revenue.bundleRevenue || 0).toLocaleString());
+                }
+                
+                // Update website analytics
+                if (data.website) {
+                    updateElement('ga-page-views', (data.website.pageViews || 0).toLocaleString());
+                    updateElement('ga-unique-visitors', (data.website.users || 0).toLocaleString());
+                    updateElement('ga-bounce-rate', data.website.bounceRate ? data.website.bounceRate.toFixed(1) + '%' : 'N/A');
+                    updateElement('ga-session-duration', data.website.averageSessionDuration ? formatDuration(data.website.averageSessionDuration) : 'N/A');
+                }
+                
+                // Update newsletter stats
+                if (data.newsletter) {
+                    updateElement('mailerlite-total-subscribers', (data.newsletter.totalSubscribers || 0).toLocaleString());
+                    updateElement('mailerlite-active-subscribers', (data.newsletter.activeSubscribers || 0).toLocaleString());
+                    updateElement('mailerlite-monthly-subscribers', '+' + (data.newsletter.monthlyNew || 0).toLocaleString());
+                    updateElement('mailerlite-open-rate', data.newsletter.openRate ? data.newsletter.openRate.toFixed(1) + '%' : 'N/A');
+                }
+                
+                // Update orders
+                if (data.summary) {
+                    updateElement('total-orders', (data.summary.totalOrders || 0).toLocaleString());
+                }
+                
+                // Store data for charts
+                window.realAnalyticsData = data;
+                
+            } catch (error) {
+                console.error('Error updating dashboard with real data:', error);
+                loadMockData(); // Fallback to mock data
+            }
+        }
+
+        // Load mock data as fallback
+        function loadMockData() {
+            if (window.dataMode === 'real') {
+                console.log('Real data already loaded; skipping mock data');
+                return;
+            }
+            console.log('Loading mock data for demo purposes...');
+            
+            // Mock revenue data
+            updateElement('total-revenue', '$2,847');
+            updateElement('audiobook-revenue', '$1,247');
+            updateElement('book-revenue', '$1,079');
+            updateElement('bundle-revenue', '$521');
+            updateElement('total-orders', '127');
+            
+            // Mock website analytics
+            updateElement('ga-page-views', '15,234');
+            updateElement('ga-unique-visitors', '8,567');
+            updateElement('ga-bounce-rate', '42.1%');
+            updateElement('ga-session-duration', '3.2m');
+            
+            // Mock newsletter stats
+            updateElement('mailerlite-total-subscribers', '1,247');
+            updateElement('mailerlite-active-subscribers', '1,189');
+            updateElement('mailerlite-monthly-subscribers', '+78');
+            updateElement('mailerlite-open-rate', '34.2%');
+            
+            // Mock traffic sources
+            updateElement('organic-traffic', '5,234');
+            updateElement('direct-traffic', '2,567');
+            updateElement('social-traffic', '1,123');
+            
+            // Mock top pages
+            const topPages = [
+                { page: '/audiobook-player', views: 2543 },
+                { page: '/shop', views: 1876 },
+                { page: '/books', views: 1234 },
+                { page: '/blog/anatomy-of-a-ghost', views: 987 },
+                { page: '/about', views: 756 }
+            ];
+            
+            const topPagesContainer = document.getElementById('top-pages-list');
+            if (topPagesContainer) {
+                topPagesContainer.innerHTML = topPages.map(page => `
+                    <div class="flex justify-between items-center p-2 bg-bone/5 rounded">
+                        <span class="text-bone">${page.page}</span>
+                        <span class="text-red-flag font-bold">${page.views.toLocaleString()}</span>
+                    </div>
+                `).join('');
+            }
+            
+            // Also load mock orders and blog posts
+            loadOrders();
+            loadBlogPosts();
+            loadNewsletterHistory();
+            
+            console.log('Mock data loaded successfully');
         }
 
         // Google Analytics Integration
         async function loadGoogleAnalytics() {
             try {
                 console.log('Loading Google Analytics data...');
-                
+                const auth = localStorage.getItem('admin_auth_token');
+                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
                 const [statsResponse, topPagesResponse, trafficResponse, realtimeResponse] = await Promise.all([
-                    fetch('/admin/api/google-analytics/stats?days=30'),
-                    fetch('/admin/api/google-analytics/top-pages?days=30'),
-                    fetch('/admin/api/google-analytics/traffic-sources?days=30'),
-                    fetch('/admin/api/google-analytics/realtime')
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=stats&days=30', { headers }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=top-pages&days=30', { headers }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=traffic&days=30', { headers }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=realtime', { headers })
                 ]);
 
                 const stats = await statsResponse.json();
@@ -756,51 +996,29 @@
 
         // Stripe Analytics Integration (enhanced)
         async function loadStripeAnalytics() {
-            console.log('Loading enhanced Stripe analytics...');
+            console.log('Loading enhanced Stripe analytics (Netlify functions)...');
             try {
-                // Use the correct enhanced endpoint paths
-                const [revenueResponse, productResponse, ordersResponse] = await Promise.all([
-                    fetch('/admin/api/stripe/revenue-analytics?days=30'),
-                    fetch('/admin/api/stripe/product-analytics?days=30'),
-                    fetch('/admin/api/stripe/recent-orders?limit=10')
-                ]);
+                const auth = localStorage.getItem('admin_auth_token');
+                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
+                const summaryResp = await fetch('/.netlify/functions/admin-dashboard-summary?section=stripe&days=30', { headers });
+                const ordersResp = await fetch('/.netlify/functions/admin-orders?limit=10', { headers });
+                if (!summaryResp.ok) throw new Error('Stripe summary failed ' + summaryResp.status);
+                if (!ordersResp.ok) throw new Error('Orders failed ' + ordersResp.status);
+                const summary = await summaryResp.json();
+                const orders = await ordersResp.json();
                 
-                const revenueData = await revenueResponse.json();
-                const productData = await productResponse.json();
-                const ordersData = await ordersResponse.json();
-                
-                console.log('Enhanced Stripe data loaded:', { revenueData, productData, ordersData });
-                
-                // Update revenue displays with real data
-                if (revenueData.summary) {
-                    updateElement('total-revenue', '$' + (revenueData.summary.totalRevenue || 0).toLocaleString());
-                    updateElement('audiobook-revenue', '$' + (revenueData.summary.audiobookRevenue || 0).toLocaleString());
-                    updateElement('book-revenue', '$' + (revenueData.summary.bookRevenue || 0).toLocaleString());
-                    updateElement('bundle-revenue', '$' + (revenueData.summary.bundleRevenue || 0).toLocaleString());
+                if (summary.revenue) {
+                    updateElement('total-revenue', '$' + (summary.revenue.totalRevenue || 0).toLocaleString());
+                    updateElement('audiobook-revenue', '$' + (summary.revenue.audiobookRevenue || 0).toLocaleString());
+                    updateElement('book-revenue', '$' + (summary.revenue.bookRevenue || 0).toLocaleString());
+                    updateElement('bundle-revenue', '$' + (summary.revenue.bundleRevenue || 0).toLocaleString());
                 }
-                
-                // Update order count
-                if (ordersData.orders) {
-                    updateElement('total-orders', ordersData.orders.length.toString());
-                }
-
-                // Store data for charts
+                updateElement('total-orders', (orders.length || 0).toString());
                 stripeData = {
-                    totalRevenue: revenueData.summary?.totalRevenue || 0,
-                    audiobookRevenue: revenueData.summary?.audiobookRevenue || 0,
-                    bookRevenue: revenueData.summary?.bookRevenue || 0,
-                    bundleRevenue: revenueData.summary?.bundleRevenue || 0,
-                    chartData: {
-                        labels: revenueData.chartData?.map(d => d.date) || ['Last 30 Days'],
-                        datasets: [{
-                            label: 'Daily Revenue',
-                            data: revenueData.chartData?.map(d => d.revenue) || [revenueData.summary?.totalRevenue || 0],
-                            backgroundColor: 'rgba(255, 59, 59, 0.1)',
-                            borderColor: '#FF3B3B',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    }
+                    totalRevenue: summary.revenue?.totalRevenue || 0,
+                    audiobookRevenue: summary.revenue?.audiobookRevenue || 0,
+                    bookRevenue: summary.revenue?.bookRevenue || 0,
+                    bundleRevenue: summary.revenue?.bundleRevenue || 0
                 };
                 
                 console.log('Enhanced Stripe analytics loaded successfully');
@@ -820,10 +1038,11 @@
         async function loadAudiobookAnalytics() {
             try {
                 console.log('Loading audiobook analytics...');
-                
+                const auth = localStorage.getItem('admin_auth_token');
+                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
                 const [analyticsResponse, listenersResponse] = await Promise.all([
-                    fetch('/admin/api/audiobook/analytics?days=30'),
-                    fetch('/admin/api/audiobook/recent-listeners?limit=10')
+                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook&days=30', { headers }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook-listeners&limit=10', { headers })
                 ]);
 
                 const analytics = await analyticsResponse.json();
@@ -921,14 +1140,21 @@
 
         function showLoadingSpinner() {
             // Add loading indicators to the dashboard
-            const indicators = document.querySelectorAll('[id$="-revenue"], [id$="-visitors"], [id$="-sessions"]');
+            const indicators = document.querySelectorAll('[id$="-revenue"], [id$="-visitors"], [id$="-sessions"], [id$="-subscribers"], [id$="-orders"]');
             indicators.forEach(el => {
                 if (el) el.textContent = 'Loading...';
             });
+            
+            // Also update orders table
+            const ordersTable = document.getElementById('orders-table');
+            if (ordersTable) {
+                ordersTable.innerHTML = '<tr><td colspan="7" class="text-center py-8">Loading orders...</td></tr>';
+            }
         }
 
         function hideLoadingSpinner() {
-            // Remove loading indicators (handled by individual update functions)
+            // Loading indicators are replaced by actual data in update functions
+            console.log('Loading complete');
         }
 
         function showErrorMessage(message) {
@@ -940,20 +1166,37 @@
         // Test all integrations
         async function testAllIntegrations() {
             try {
-                const response = await fetch('/admin/api/test-integrations');
+                console.log('Testing integrations via Netlify Functions...');
+                const response = await fetch('/.netlify/functions/admin-test-integrations');
+                
+                // Check if response is OK
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                // Check if response is JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await response.text();
+                    console.error('Non-JSON response:', text.substring(0, 200));
+                    throw new Error('Server returned HTML instead of JSON. Check if the Netlify Functions are deployed properly.');
+                }
+                
                 const results = await response.json();
                 
-                let message = 'Integration Test Results:\\n\\n';
-                message += `Google Analytics: ${results.googleAnalytics.success ? '✅ Connected' : '❌ ' + results.googleAnalytics.error}\\n`;
-                message += `Stripe: ${results.stripe.success ? '✅ Connected' : '❌ ' + results.stripe.error}\\n`;
-                message += `MailerLite: ${results.mailerLite.success ? '✅ Connected' : '❌ ' + results.mailerLite.error}\\n`;
-                message += `Audiobook Analytics: ${results.audiobook.success ? '✅ Working' : '❌ ' + results.audiobook.error}\\n`;
-                message += `\\nOverall Status: ${results.overall.success ? '✅ All systems operational' : '⚠️ Some issues detected'}`;
+                let message = '🔧 Integration Test Results:\\n\\n';
+                message += `📊 Google Analytics: ${results.googleAnalytics?.success ? '✅ Connected' : '❌ ' + (results.googleAnalytics?.error || 'Unknown error')}\\n`;
+                message += `💳 Stripe: ${results.stripe?.success ? '✅ Connected' : '❌ ' + (results.stripe?.error || 'Unknown error')}\\n`;
+                message += `📧 MailerLite: ${results.mailerLite?.success ? '✅ Connected' : '❌ ' + (results.mailerLite?.error || 'Unknown error')}\\n`;
+                message += `📬 Resend: ${results.resend?.success ? '✅ Connected' : '❌ ' + (results.resend?.error || 'Unknown error')}\\n`;
+                message += `🎧 Audiobook Analytics: ${results.audiobook?.success ? '✅ Working' : '❌ ' + (results.audiobook?.error || 'Unknown error')}\\n`;
+                message += `\\n🎯 Overall Status: ${results.overall?.success ? '✅ All systems operational!' : '⚠️ Some issues detected'}`;
                 
                 alert(message);
                 
             } catch (error) {
-                alert('Failed to test integrations: ' + error.message);
+                console.error('Integration test failed:', error);
+                alert('Failed to test integrations: ' + error.message + '\\n\\nMake sure the Netlify Functions are deployed and working.');
             }
         }
 
@@ -1047,10 +1290,11 @@
         let newsletterData = null;
 
         // MailerLite Newsletter Integration
-        async function loadNewsletterData() {
+    async function loadNewsletterData() {
             try {
                 console.log('Loading newsletter stats from MailerLite...');
-                const response = await fetch('/admin/api/newsletter-stats');
+        const auth = localStorage.getItem('admin_auth_token');
+        const response = await fetch('/.netlify/functions/admin-newsletter-stats', { headers: auth? { Authorization: 'Bearer ' + auth } : {} });
                 
                 if (response.ok) {
                     const stats = await response.json();
@@ -1059,64 +1303,39 @@
                     // Update MailerLite stats
                     document.getElementById('mailerlite-total-subscribers').textContent = stats.totalSubscribers?.toLocaleString() || '0';
                     document.getElementById('mailerlite-active-subscribers').textContent = stats.activeSubscribers?.toLocaleString() || '0';
-                    document.getElementById('mailerlite-monthly-subscribers').textContent = '+' + (stats.monthlyEmailsUsed || 0).toLocaleString();
-                    
-                    // Calculate usage percentage
-                    const usagePercent = ((stats.monthlyEmailsUsed || 0) / (stats.monthlyLimit || 12000)) * 100;
-                    document.getElementById('mailerlite-open-rate').textContent = usagePercent.toFixed(1) + '% used';
+                    document.getElementById('mailerlite-monthly-subscribers').textContent = '+' + (stats.monthlyNew || 0).toLocaleString();
+                    document.getElementById('mailerlite-open-rate').textContent = stats.openRate ? stats.openRate.toFixed(1) + '%' : 'N/A';
                     
                     newsletterData = stats;
                 } else {
                     throw new Error(`HTTP ${response.status}`);
                 }
-                
-                // Mock Google Analytics data (replace with real GA integration)
-                document.getElementById('ga-page-views').textContent = '15,234';
-                document.getElementById('ga-unique-visitors').textContent = '8,567';
-                document.getElementById('ga-bounce-rate').textContent = '42.1%';
-                document.getElementById('ga-session-duration').textContent = '3.2m';
-
-                // Mock traffic sources (replace with real GA integration)
-                document.getElementById('organic-traffic').textContent = '5,234';
-                document.getElementById('direct-traffic').textContent = '2,567';
-                document.getElementById('social-traffic').textContent = '1,123';
-
-                // Mock top pages (replace with real GA integration)
-                const topPages = [
-                    { page: '/audiobook-player', views: 2342 },
-                    { page: '/shop', views: 1876 },
-                    { page: '/books', views: 1234 },
-                    { page: '/blog', views: 987 },
-                    { page: '/about', views: 654 }
-                ];
-                
-                document.getElementById('top-pages-list').innerHTML = topPages.map(page => `
-                    <div class="flex justify-between items-center p-2 bg-bone/5 rounded">
-                        <span class="text-sm">${page.page}</span>
-                        <span class="text-sm font-medium">${page.views.toLocaleString()} views</span>
-                    </div>
-                `).join('');
 
             } catch (error) {
                 console.error('Error loading newsletter data:', error);
-                document.getElementById('mailerlite-total-subscribers').textContent = 'Error';
-                document.getElementById('mailerlite-active-subscribers').textContent = 'Error';
-                document.getElementById('mailerlite-monthly-subscribers').textContent = 'Error';
-                document.getElementById('mailerlite-open-rate').textContent = 'Error';
+                console.log('Loading fallback newsletter data...');
                 
-                // Still load mock analytics data
-                document.getElementById('ga-page-views').textContent = '15,234';
-                document.getElementById('ga-unique-visitors').textContent = '8,567';
-                document.getElementById('ga-bounce-rate').textContent = '42.1%';
-                document.getElementById('ga-session-duration').textContent = '3.2m';
+                // Fallback to mock data
+                document.getElementById('mailerlite-total-subscribers').textContent = '1,247';
+                document.getElementById('mailerlite-active-subscribers').textContent = '1,189';
+                document.getElementById('mailerlite-monthly-subscribers').textContent = '+78';
+                document.getElementById('mailerlite-open-rate').textContent = '34.2%';
+                
+                newsletterData = {
+                    totalSubscribers: 1247,
+                    activeSubscribers: 1189,
+                    monthlyNew: 78,
+                    openRate: 34.2
+                };
             }
         }
 
         // Load subscribers list for admin display
-        async function loadSubscribersList() {
+    async function loadSubscribersList() {
             try {
                 console.log('Loading subscribers list...');
-                const response = await fetch('/admin/api/subscribers?limit=100');
+        const auth = localStorage.getItem('admin_auth_token');
+        const response = await fetch('/.netlify/functions/admin-newsletter-stats?detail=subscribers&limit=100', { headers: auth? { Authorization: 'Bearer ' + auth } : {} });
                 
                 if (response.ok) {
                     const data = await response.json();
@@ -1188,44 +1407,53 @@
         async function loadOrders() {
             console.log('Loading orders...');
             try {
+                // Try to load real orders from server
+                const response = await fetch('/api/admin/orders');
+                if (response.ok) {
+                    const orders = await response.json();
+                    allOrders = orders;
+                    displayOrders(allOrders);
+                    console.log('Real orders loaded successfully:', orders.length);
+                    return;
+                }
+                
+                throw new Error('Failed to fetch orders from server');
+                
+            } catch (error) {
+                console.error('Error loading orders from server:', error);
+                console.log('Loading mock orders as fallback...');
+                
                 // Mock order data for demonstration
                 const mockOrders = [
                     {
                         id: 'cs_test_123',
-                        customer: 'sarah.johnson@email.com',
-                        product: 'Audiobook + Signed Book',
-                        amount: '$49.99',
+                        customer: { name: 'Sarah', email: 'sarah.johnson@email.com' },
+                        products: [{ id: 'audiobook', quantity: 1 }, { id: 'signed-book', quantity: 1 }],
+                        amount: 25.98,
                         status: 'shipped',
-                        date: '2024-08-20',
-                        products: ['audiobook', 'signed-book']
+                        date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
                     },
                     {
                         id: 'cs_test_124',
-                        customer: 'mike.chen@email.com',
-                        product: 'Audiobook',
-                        amount: '$19.99',
-                        status: 'digital',
-                        date: '2024-08-22',
-                        products: ['audiobook']
+                        customer: { name: 'Mike', email: 'mike.chen@email.com' },
+                        products: [{ id: 'audiobook', quantity: 1 }],
+                        amount: 7.99,
+                        status: 'digital_delivered',
+                        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
                     },
                     {
                         id: 'cs_test_125',
-                        customer: 'emma.davis@email.com',
-                        product: 'Signed Book',
-                        amount: '$34.99',
-                        status: 'pending',
-                        date: '2024-08-23',
-                        products: ['signed-book']
+                        customer: { name: 'Emma', email: 'emma.davis@email.com' },
+                        products: [{ id: 'signed-book', quantity: 1 }],
+                        amount: 17.99,
+                        status: 'pending_fulfillment',
+                        date: new Date().toISOString()
                     }
                 ];
                 
                 allOrders = mockOrders;
-                console.log('Displaying orders:', mockOrders);
+                console.log('Displaying mock orders:', mockOrders);
                 displayOrders(allOrders);
-                
-            } catch (error) {
-                console.error('Error loading orders:', error);
-                document.getElementById('orders-table').innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-flag">Error loading orders</td></tr>';
             }
         }
 
@@ -1235,11 +1463,12 @@
             }
             
             const productNames = products.map(p => {
-                switch(p.id) {
+                const productId = p.id || p;
+                switch(productId) {
                     case 'audiobook': return 'Audiobook';
-                    case 'signed-book': return 'Signed Book';
+                    case 'signed-book': return 'Signed Paperback';
                     case 'bundle': return 'Complete Bundle';
-                    default: return p.id;
+                    default: return p.name || productId || 'Unknown';
                 }
             });
             
@@ -1286,26 +1515,34 @@
                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-8 opacity-70">No orders found</td></tr>';
                 return;
             }
-
             tableBody.innerHTML = orders.map(order => {
+                const customerName = order.customer?.name || 'Unknown';
+                const customerEmail = order.customer?.email || 'No email';
+                const productNames = Array.isArray(order.products) ? order.products.map(p => `${getProductName(p.id)}${p.quantity>1?` x${p.quantity}`:''}`).join(', ') : formatProductsDisplay(order.products);
+                const orderDate = order.date ? new Date(order.date).toLocaleDateString() : '—';
+                const statusClass = getStatusClass(order.status);
+                const statusText = getStatusText(order.status);
+                const amountNumber = typeof order.amount === 'number' ? order.amount : parseFloat(String(order.amount).replace(/[^0-9.]/g,''));
+                const amount = isNaN(amountNumber) ? 0 : amountNumber;
+                const hasAudiobook = Array.isArray(order.products) && order.products.some(p => p.id === 'audiobook');
                 return `
                 <tr class="border-b border-bone/10 hover:bg-bone/5">
-                    <td class="py-3 font-mono text-sm">${order.id.substring(0, 12)}...</td>
+                    <td class="py-3 font-mono text-sm" title="${order.id}">${order.id.substring(0, 12)}...</td>
                     <td class="py-3">
-                        <div class="text-sm opacity-70">${order.customer}</div>
+                        <div class="text-sm font-medium">${customerName}</div>
+                        <div class="text-xs opacity-70 break-all">${customerEmail}</div>
                     </td>
-                    <td class="py-3">${order.product}</td>
-                    <td class="py-3 font-semibold">${order.amount}</td>
+                    <td class="py-3">${productNames || '—'}</td>
+                    <td class="py-3 font-semibold">$${amount.toFixed(2)}</td>
                     <td class="py-3">
-                        <span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span>
+                        <span class="status-badge ${statusClass}">${statusText}</span>
                     </td>
-                    <td class="py-3 text-sm">${order.date}</td>
+                    <td class="py-3 text-sm">${orderDate}</td>
                     <td class="py-3">
                         <button onclick="viewOrderDetails('${order.id}')" class="text-blue-400 hover:underline text-sm mr-2">View</button>
-                        ${order.status === 'pending' ? `<button onclick="markAsShipped('${order.id}')" class="text-green-400 hover:underline text-sm">Mark Shipped</button>` : ''}
+                        ${(order.status === 'pending_fulfillment' || order.status === 'pending') ? `<button onclick=\"markAsShipped('${order.id}')\" class=\"text-green-400 hover:underline text-sm\">Ship</button>` : (hasAudiobook ? `<button onclick=\"resendAudiobookEmail('${order.id}')\" class=\"text-yellow-400 hover:underline text-sm\">Resend</button>` : '')}
                     </td>
-                </tr>
-                `;
+                </tr>`;
             }).join('');
         }
 
@@ -1353,11 +1590,12 @@
             let filteredOrders = allOrders;
             
             if (search) {
-                filteredOrders = allOrders.filter(order => 
-                    order.customer.toLowerCase().includes(search) ||
-                    order.product.toLowerCase().includes(search) ||
-                    order.id.toLowerCase().includes(search)
-                );
+                filteredOrders = allOrders.filter(order => {
+                    const name = (order.customer?.name || '').toLowerCase();
+                    const email = (order.customer?.email || '').toLowerCase();
+                    const products = Array.isArray(order.products) ? order.products.map(p => getProductName(p.id)).join(' ').toLowerCase() : String(order.product||'').toLowerCase();
+                    return name.includes(search) || email.includes(search) || products.includes(search) || order.id.toLowerCase().includes(search);
+                });
             }
             
             displayOrders(filteredOrders);
@@ -1368,6 +1606,11 @@
             if (!order) return;
             
             const content = document.getElementById('order-details-content');
+            const productsHtml = Array.isArray(order.products) ? order.products.map(p => `
+                <div class="flex justify-between text-sm">
+                    <span>${getProductName(p.id)} ${p.quantity>1?`x${p.quantity}`:''}</span>
+                    <span>$${(p.amount || (getProductPrice(p.id)* (p.quantity||1))).toFixed(2)}</span>
+                </div>`).join('') : `<div class="text-sm">${order.product || 'Unknown product'}</div>`;
             content.innerHTML = `
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1375,27 +1618,27 @@
                             <h3 class="font-semibold text-lg mb-3">Order Information</h3>
                             <div class="space-y-2 text-sm">
                                 <div><strong>Order ID:</strong> ${order.id}</div>
-                                <div><strong>Product:</strong> ${order.product}</div>
-                                <div><strong>Amount:</strong> ${order.amount}</div>
                                 <div><strong>Status:</strong> <span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span></div>
-                                <div><strong>Date:</strong> ${order.date}</div>
+                                <div><strong>Date:</strong> ${order.date ? new Date(order.date).toLocaleString() : '—'}</div>
+                                <div><strong>Total Amount:</strong> $${(typeof order.amount==='number'?order.amount:parseFloat(String(order.amount).replace(/[^0-9.]/g,''))||0).toFixed(2)}</div>
                             </div>
+                            <h4 class="font-semibold text-md mt-4 mb-2">Products</h4>
+                            <div class="space-y-1">${productsHtml}</div>
                         </div>
-                        
                         <div>
                             <h3 class="font-semibold text-lg mb-3">Customer Information</h3>
                             <div class="space-y-2 text-sm">
-                                <div><strong>Email:</strong> ${order.customer}</div>
+                                <div><strong>Name:</strong> ${order.customer?.name || 'Unknown'}</div>
+                                <div><strong>Email:</strong> ${order.customer?.email || '—'}</div>
+                                ${order.shippingAddress ? `<div><strong>Shipping:</strong> ${order.shippingAddress.line1 || ''} ${order.shippingAddress.city || ''} ${order.shippingAddress.state || ''}</div>` : ''}
                             </div>
                         </div>
                     </div>
-                    
                     <div class="flex gap-4 pt-4 border-t border-bone/20">
-                        ${order.status === 'pending' ? `<button onclick="markAsShipped('${order.id}')" class="btn-primary flex-1">Mark as Shipped</button>` : ''}
+                        ${(order.status === 'pending_fulfillment' || order.status==='pending') ? `<button onclick=\"markAsShipped('${order.id}')\" class=\"btn-primary flex-1\">Mark as Shipped</button>` : ''}
                         <button onclick="closeModal('order-details-modal')" class="btn-secondary flex-1">Close</button>
                     </div>
-                </div>
-            `;
+                </div>`;
             
             openModal('order-details-modal');
         }
