@@ -52,6 +52,11 @@
             color: var(--color-bone);
         }
 
+        /* Hide dashboard content by default until authenticated */
+        main {
+            display: none;
+        }
+
         .admin-nav {
             background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1b1c 100%);
             border-bottom: 1px solid rgba(247, 243, 237, 0.1);
@@ -800,15 +805,28 @@
 
         const authManager = new AuthManager();
         
-        function checkAdminAuthentication() {
-            const adminSession = sessionStorage.getItem('admin_session');
-            if (adminSession === 'authenticated' && authManager.token) {
-                authManager.checkSession(); // async verification
-                return true;
+        async function checkAdminAuthentication() {
+            // Check if user has valid token and session
+            if (!authManager.token || !authManager.sessionExpiry) {
+                promptAdminLogin();
+                return false;
             }
             
-            promptAdminLogin();
-            return false;
+            // Check if session is expired
+            if (Date.now() >= authManager.sessionExpiry) {
+                authManager.logout();
+                promptAdminLogin();
+                return false;
+            }
+            
+            // Verify token with server
+            const isValid = await authManager.checkSession();
+            if (!isValid) {
+                promptAdminLogin();
+                return false;
+            }
+            
+            return true;
         }
         
         function promptAdminLogin() {
@@ -900,6 +918,16 @@
         }
 
         function initializeAdminDashboard() {
+            console.log('Initializing authenticated admin dashboard...');
+            
+            // Show the dashboard content now that user is authenticated
+            const main = document.querySelector('main');
+            if (main) main.style.display = 'block';
+            
+            // Hide login modal
+            const modal = document.getElementById('login-modal');
+            if (modal) modal.style.display = 'none';
+            
             isAuthenticated = true;
             // Enhanced admin dashboard initialization
             setupDashboard();
@@ -928,19 +956,23 @@
             }, 100);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check authentication before loading dashboard
-            if (!checkAdminAuthentication()) {
-                // Ensure modal visible
-                const m = document.getElementById('login-modal');
-                if (m) m.style.display = 'flex';
-                return; // Don't load dashboard if not authenticated
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Force authentication check - no dashboard loading until authenticated
+            const isAuthenticated = await checkAdminAuthentication();
+            
+            if (!isAuthenticated) {
+                // Ensure modal is visible and no dashboard content loads
+                const modal = document.getElementById('login-modal');
+                if (modal) modal.style.display = 'flex';
+                
+                // Hide all dashboard content until authenticated
+                const main = document.querySelector('main');
+                if (main) main.style.display = 'none';
+                return;
             }
             
-            // If authenticated, initialize dashboard immediately
-            setTimeout(() => {
-                initializeAdminDashboard();
-            }, 100);
+            // Only initialize dashboard if authenticated
+            initializeAdminDashboard();
         });
 
         function setupDashboard() {
