@@ -33,6 +33,11 @@ fix-*.js
 *-debug.js
 create-*
 
+# Git temporary files
+.git-rewrite/
+*.orig
+*.rej
+
 # Documentation with sensitive information
 TECH_STACK.md
 *-STACK.md
