@@ -8,10 +8,16 @@ const { v4: uuidv4 } = require('uuid');
 const cors = require('cors');
 const helmet = require('helmet');
 const MailerLiteService = require('./mailerlite-integration');
+const GoogleAnalyticsService = require('./google-analytics-service');
+const StripeAnalyticsService = require('./stripe-analytics-service');
+const AudiobookAnalyticsService = require('./audiobook-analytics-service');
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 const mailerLite = new MailerLiteService();
+const googleAnalytics = new GoogleAnalyticsService();
+const stripeAnalytics = new StripeAnalyticsService();
+const audiobookAnalytics = new AudiobookAnalyticsService();
 
 // Store for access tokens and purchase records (in production, use a database)
 const accessTokens = new Map();
@@ -794,7 +800,271 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (req, res) =
     console.log('=== WEBHOOK COMPLETE ===\n');
 });
 
-// Admin API endpoints
+// ===== ENHANCED ADMIN API ENDPOINTS =====
+
+// Google Analytics endpoints
+app.get('/admin/api/google-analytics/stats', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching Google Analytics stats for ${days} days...`);
+        
+        const stats = await googleAnalytics.getWebsiteStats(`${days}daysAgo`);
+        res.json(stats);
+    } catch (error) {
+        console.error('Google Analytics stats error:', error);
+        res.status(500).json({ error: 'Failed to fetch Google Analytics stats' });
+    }
+});
+
+app.get('/admin/api/google-analytics/top-pages', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching top pages for ${days} days...`);
+        
+        const topPages = await googleAnalytics.getTopPages(`${days}daysAgo`);
+        res.json(topPages);
+    } catch (error) {
+        console.error('Google Analytics top pages error:', error);
+        res.status(500).json({ error: 'Failed to fetch top pages' });
+    }
+});
+
+app.get('/admin/api/google-analytics/traffic-sources', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching traffic sources for ${days} days...`);
+        
+        const trafficSources = await googleAnalytics.getTrafficSources(`${days}daysAgo`);
+        res.json(trafficSources);
+    } catch (error) {
+        console.error('Google Analytics traffic sources error:', error);
+        res.status(500).json({ error: 'Failed to fetch traffic sources' });
+    }
+});
+
+app.get('/admin/api/google-analytics/realtime', async (req, res) => {
+    try {
+        console.log('Fetching realtime Google Analytics data...');
+        
+        const realtimeData = await googleAnalytics.getRealtimeStats();
+        res.json(realtimeData);
+    } catch (error) {
+        console.error('Google Analytics realtime error:', error);
+        res.status(500).json({ error: 'Failed to fetch realtime data' });
+    }
+});
+
+// Stripe Analytics endpoints
+app.get('/admin/api/stripe/revenue-analytics', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching Stripe revenue analytics for ${days} days...`);
+        
+        const revenueData = await stripeAnalytics.getRevenueAnalytics(parseInt(days));
+        res.json(revenueData);
+    } catch (error) {
+        console.error('Stripe revenue analytics error:', error);
+        res.status(500).json({ error: 'Failed to fetch revenue analytics' });
+    }
+});
+
+app.get('/admin/api/stripe/product-analytics', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching Stripe product analytics for ${days} days...`);
+        
+        const productData = await stripeAnalytics.getProductAnalytics(parseInt(days));
+        res.json(productData);
+    } catch (error) {
+        console.error('Stripe product analytics error:', error);
+        res.status(500).json({ error: 'Failed to fetch product analytics' });
+    }
+});
+
+app.get('/admin/api/stripe/recent-orders', async (req, res) => {
+    try {
+        const { limit = 10 } = req.query;
+        console.log(`Fetching ${limit} recent Stripe orders...`);
+        
+        const orders = await stripeAnalytics.getRecentOrders(parseInt(limit));
+        res.json(orders);
+    } catch (error) {
+        console.error('Stripe recent orders error:', error);
+        res.status(500).json({ error: 'Failed to fetch recent orders' });
+    }
+});
+
+app.get('/admin/api/stripe/customer-analytics', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching Stripe customer analytics for ${days} days...`);
+        
+        const customerData = await stripeAnalytics.getCustomerAnalytics(parseInt(days));
+        res.json(customerData);
+    } catch (error) {
+        console.error('Stripe customer analytics error:', error);
+        res.status(500).json({ error: 'Failed to fetch customer analytics' });
+    }
+});
+
+// Audiobook Analytics endpoints
+app.get('/admin/api/audiobook/analytics', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching audiobook analytics for ${days} days...`);
+        
+        const analytics = await audiobookAnalytics.getAnalytics(parseInt(days));
+        res.json(analytics);
+    } catch (error) {
+        console.error('Audiobook analytics error:', error);
+        res.status(500).json({ error: 'Failed to fetch audiobook analytics' });
+    }
+});
+
+app.get('/admin/api/audiobook/recent-listeners', async (req, res) => {
+    try {
+        const { limit = 10 } = req.query;
+        console.log(`Fetching ${limit} recent audiobook listeners...`);
+        
+        const listeners = await audiobookAnalytics.getRecentListeners(parseInt(limit));
+        res.json(listeners);
+    } catch (error) {
+        console.error('Audiobook recent listeners error:', error);
+        res.status(500).json({ error: 'Failed to fetch recent listeners' });
+    }
+});
+
+// Log audiobook listening session
+app.post('/api/audiobook/log-session', async (req, res) => {
+    try {
+        const { token, chapterFile, duration = 0, completed = false } = req.body;
+        
+        if (!token) {
+            return res.status(400).json({ error: 'Access token required' });
+        }
+        
+        console.log(`Logging audiobook session: ${chapterFile}, duration: ${duration}s`);
+        
+        const result = await audiobookAnalytics.logListeningSession(token, chapterFile, duration, completed);
+        res.json(result);
+    } catch (error) {
+        console.error('Error logging audiobook session:', error);
+        res.status(500).json({ error: 'Failed to log session' });
+    }
+});
+
+// Combined dashboard data endpoint
+app.get('/admin/api/dashboard-summary', async (req, res) => {
+    try {
+        const { days = 30 } = req.query;
+        console.log(`Fetching combined dashboard data for ${days} days...`);
+        
+        // Fetch all data in parallel
+        const [
+            googleStats,
+            stripeRevenue,
+            stripeProducts,
+            stripeCustomers,
+            recentOrders,
+            audiobookStats,
+            newsletterStats
+        ] = await Promise.all([
+            googleAnalytics.getWebsiteStats(`${days}daysAgo`),
+            stripeAnalytics.getRevenueAnalytics(parseInt(days)),
+            stripeAnalytics.getProductAnalytics(parseInt(days)),
+            stripeAnalytics.getCustomerAnalytics(parseInt(days)),
+            stripeAnalytics.getRecentOrders(5),
+            audiobookAnalytics.getAnalytics(parseInt(days)),
+            mailerLite.getStats()
+        ]);
+
+        const dashboardData = {
+            website: googleStats,
+            revenue: stripeRevenue,
+            products: stripeProducts,
+            customers: stripeCustomers,
+            recentOrders: recentOrders,
+            audiobook: audiobookStats.data,
+            newsletter: newsletterStats.data || newsletterStats,
+            summary: {
+                totalRevenue: stripeRevenue.totalRevenue || 0,
+                totalOrders: recentOrders.length || 0,
+                websiteVisitors: googleStats.users || 0,
+                audiobookListeners: audiobookStats.data?.uniqueListeners || 0,
+                newsletterSubscribers: newsletterStats.data?.totalSubscribers || 0,
+                generatedAt: new Date().toISOString()
+            }
+        };
+
+        console.log('Dashboard summary generated successfully');
+        res.json(dashboardData);
+    } catch (error) {
+        console.error('Dashboard summary error:', error);
+        res.status(500).json({ error: 'Failed to generate dashboard summary' });
+    }
+});
+
+// Test all integrations endpoint
+app.get('/admin/api/test-integrations', async (req, res) => {
+    try {
+        console.log('Testing all integrations...');
+        
+        const [
+            googleTest,
+            stripeTest,
+            mailerLiteTest,
+            audiobookTest
+        ] = await Promise.all([
+            googleAnalytics.testConnection(),
+            stripeAnalytics.testConnection(),
+            mailerLite.testConnection(),
+            audiobookAnalytics.testAnalytics()
+        ]);
+
+        const testResults = {
+            googleAnalytics: googleTest,
+            stripe: stripeTest,
+            mailerLite: mailerLiteTest,
+            audiobook: audiobookTest,
+            overall: {
+                success: googleTest.success && stripeTest.success && mailerLiteTest.success && audiobookTest.success,
+                timestamp: new Date().toISOString()
+            }
+        };
+
+        console.log('Integration tests completed');
+        res.json(testResults);
+    } catch (error) {
+        console.error('Integration test error:', error);
+        res.status(500).json({ error: 'Failed to test integrations' });
+    }
+});
+
+// Admin stats endpoint (legacy support - now enhanced)
+app.get('/api/admin/stats', async (req, res) => {
+    console.log('Admin stats endpoint called (legacy)');
+    try {
+        const dashboardData = await fetch(`http://localhost:${PORT}/admin/api/dashboard-summary`).then(r => r.json());
+        
+        // Transform to legacy format for backwards compatibility
+        const legacyStats = {
+            totalRevenue: dashboardData.summary.totalRevenue,
+            totalOrders: dashboardData.summary.totalOrders,
+            audiobookSales: dashboardData.revenue.audiobookRevenue || 0,
+            signedBookSales: dashboardData.revenue.bookRevenue || 0,
+            bundleSales: dashboardData.revenue.bundleRevenue || 0,
+            recentOrders: dashboardData.recentOrders.slice(0, 5)
+        };
+        
+        console.log('Returning legacy stats:', legacyStats);
+        res.json(legacyStats);
+    } catch (error) {
+        console.error('Error fetching legacy admin stats:', error);
+        res.status(500).json({ error: 'Failed to fetch stats' });
+    }
+});
+
+// Admin API endpoints (legacy support)
 app.get('/api/admin/orders', async (req, res) => {
     console.log('Admin orders endpoint called');
     try {
@@ -835,66 +1105,89 @@ app.get('/api/admin/orders', async (req, res) => {
     }
 });
 
-// Admin stats endpoint
+// Admin stats endpoint (legacy support - now enhanced)
 app.get('/api/admin/stats', async (req, res) => {
-    console.log('Admin stats endpoint called');
+    console.log('Admin stats endpoint called (legacy)');
     try {
-        const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+        // Get enhanced stats from Stripe
+        const stripeRevenue = await stripeAnalytics.getRevenueAnalytics(30);
+        const recentOrders = await stripeAnalytics.getRecentOrders(5);
         
-        if (!fs.existsSync(purchasesFile)) {
-            console.log('No purchases file found for stats');
-            return res.json({
-                totalRevenue: 0,
-                totalOrders: 0,
-                audiobookSales: 0,
-                signedBookSales: 0,
-                bundleSales: 0,
-                recentOrders: []
-            });
-        }
-        
-        const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
-        console.log('Calculating stats for', purchases.length, 'purchases');
-        
-        let totalRevenue = 0;
-        let audiobookSales = 0;
-        let signedBookSales = 0;
-        let bundleSales = 0;
-        
-        purchases.forEach(purchase => {
-            totalRevenue += purchase.amountTotal;
-            
-            if (purchase.products) {
-                purchase.products.forEach(product => {
-                    switch(product.id) {
-                        case 'audiobook':
-                            audiobookSales += PRODUCTS.audiobook.price;
-                            break;
-                        case 'signed-book':
-                            signedBookSales += PRODUCTS['signed-book'].price;
-                            break;
-                        case 'bundle':
-                            bundleSales += PRODUCTS.bundle.price;
-                            break;
-                    }
-                });
-            }
-        });
-        
-        const stats = {
-            totalRevenue,
-            totalOrders: purchases.length,
-            audiobookSales,
-            signedBookSales,
-            bundleSales,
-            recentOrders: purchases.slice(-5).reverse()
+        // Transform to legacy format for backwards compatibility
+        const legacyStats = {
+            totalRevenue: stripeRevenue.totalRevenue || 0,
+            totalOrders: stripeRevenue.transactionCount || 0,
+            audiobookSales: stripeRevenue.audiobookRevenue || 0,
+            signedBookSales: stripeRevenue.bookRevenue || 0,
+            bundleSales: stripeRevenue.bundleRevenue || 0,
+            recentOrders: recentOrders.slice(0, 5)
         };
         
-        console.log('Returning stats:', stats);
-        res.json(stats);
+        console.log('Returning enhanced legacy stats:', legacyStats);
+        res.json(legacyStats);
     } catch (error) {
-        console.error('Error fetching admin stats:', error);
-        res.status(500).json({ error: 'Failed to fetch stats' });
+        console.error('Error fetching legacy admin stats:', error);
+        
+        // Fallback to file-based stats if enhanced analytics fail
+        try {
+            const purchasesFile = path.join(__dirname, 'data', 'purchases.json');
+            
+            if (!fs.existsSync(purchasesFile)) {
+                console.log('No purchases file found for stats');
+                return res.json({
+                    totalRevenue: 0,
+                    totalOrders: 0,
+                    audiobookSales: 0,
+                    signedBookSales: 0,
+                    bundleSales: 0,
+                    recentOrders: []
+                });
+            }
+            
+            const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
+            console.log('Calculating stats for', purchases.length, 'purchases');
+            
+            let totalRevenue = 0;
+            let audiobookSales = 0;
+            let signedBookSales = 0;
+            let bundleSales = 0;
+            
+            purchases.forEach(purchase => {
+                totalRevenue += purchase.amountTotal;
+                
+                if (purchase.products) {
+                    purchase.products.forEach(product => {
+                        switch(product.id) {
+                            case 'audiobook':
+                                audiobookSales += PRODUCTS.audiobook.price;
+                                break;
+                            case 'signed-book':
+                                signedBookSales += PRODUCTS['signed-book'].price;
+                                break;
+                            case 'bundle':
+                                bundleSales += PRODUCTS.bundle.price;
+                                break;
+                        }
+                    });
+                }
+            });
+            
+            const stats = {
+                totalRevenue,
+                totalOrders: purchases.length,
+                audiobookSales,
+                signedBookSales,
+                bundleSales,
+                recentOrders: purchases.slice(-5).reverse()
+            };
+            
+            console.log('Returning fallback stats:', stats);
+            res.json(stats);
+            
+        } catch (fallbackError) {
+            console.error('Fallback stats also failed:', fallbackError);
+            res.status(500).json({ error: 'Failed to fetch stats' });
+        }
     }
 });
 
@@ -1267,18 +1560,44 @@ app.post('/api/dacia-newsletter', async (req, res) => {
 app.get('/admin/api/newsletter-stats', async (req, res) => {
     try {
         console.log('Fetching newsletter stats...');
+        
+        // Add defensive check for mailerLite service
+        if (!mailerLite) {
+            console.error('MailerLite service not initialized');
+            return res.status(500).json({ error: 'MailerLite service not available' });
+        }
+        
         const stats = await mailerLite.getStats();
         
-        if (stats.success) {
+        if (stats && stats.success) {
             console.log('Newsletter stats fetched successfully:', stats.data);
             res.json(stats.data);
         } else {
-            console.error('Failed to fetch newsletter stats:', stats.error);
-            res.status(500).json({ error: 'Failed to fetch newsletter stats' });
+            console.error('Failed to fetch newsletter stats:', stats?.error || 'Unknown error');
+            // Return mock data as fallback
+            res.json({
+                totalSubscribers: 0,
+                activeSubscribers: 0,
+                monthlyEmailsUsed: 0,
+                monthlyLimit: 12000,
+                groups: [],
+                campaigns: []
+            });
         }
     } catch (error) {
-        console.error('Newsletter stats error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Newsletter stats error:', error.message);
+        console.error('Stack trace:', error.stack);
+        
+        // Return mock data as fallback
+        res.json({
+            totalSubscribers: 0,
+            activeSubscribers: 0,
+            monthlyEmailsUsed: 0,
+            monthlyLimit: 12000,
+            groups: [],
+            campaigns: [],
+            error: 'Fallback data due to service error'
+        });
     }
 });
 
@@ -1338,13 +1657,51 @@ app.get('/admin/api/test-mailerlite', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
+// Initialize analytics services
+async function initializeServices() {
+    console.log('Initializing analytics services...');
+    
+    try {
+        await googleAnalytics.initialize();
+        console.log('Google Analytics service ready');
+    } catch (error) {
+        console.warn('Google Analytics initialization failed:', error.message);
+    }
+    
+    try {
+        // MailerLite and other services don't need explicit initialization
+        console.log('Other services ready');
+    } catch (error) {
+        console.warn('Service initialization warning:', error.message);
+    }
+}
+
 console.log('About to start server...');
-const server = app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+
+// Add global error handlers to prevent crashes
+process.on('uncaughtException', (error) => {
+    console.error('Uncaught Exception:', error);
+    console.error('Stack:', error.stack);
+    // Don't exit - just log it
 });
 
-server.on('error', (error) => {
-    console.error('Server error:', error);
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    // Don't exit - just log it
+});
+
+// Initialize services before starting server
+initializeServices().then(() => {
+    const server = app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+
+    server.on('error', (error) => {
+        console.error('Server error:', error);
+    });
+}).catch(error => {
+    console.error('Service initialization failed:', error);
+    process.exit(1);
 });
 
 console.log('Server setup complete');

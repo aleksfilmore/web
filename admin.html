@@ -152,7 +152,8 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <span id="user-info" class="text-sm opacity-70"></span>
-                    <button onclick="testAdminPanel()" class="btn-primary text-sm">Test</button>
+                    <button onclick="quickRefresh()" class="btn-secondary text-sm">Quick Refresh</button>
+                    <button onclick="testAdminPanel()" class="btn-primary text-sm">Test Integrations</button>
                     <button onclick="logout()" class="btn-secondary text-sm">Logout</button>
                 </div>
             </div>
@@ -624,12 +625,21 @@
         setInterval(checkSessionTimeout, 5 * 60 * 1000);
         
         function initializeAdminDashboard() {
-            console.log('Initializing admin dashboard...');
-            // Original admin dashboard initialization code goes here
+            console.log('Initializing enhanced admin dashboard...');
+            // Enhanced admin dashboard initialization
             setupDashboard();
-            loadOrders();
-            loadBlogPosts();
+            // Don't call loadOrders and loadBlogPosts separately - loadDashboard handles everything
             setupCharts();
+        }
+
+        function setupDashboard() {
+            // Dashboard setup logic here
+            isAuthenticated = true;
+            document.getElementById('user-info').textContent = 'Logged in as: Aleks Filmore';
+            
+            // Load enhanced dashboard immediately
+            console.log('Starting enhanced dashboard load...');
+            loadDashboard();
         }
 
         function setupCharts() {
@@ -672,18 +682,334 @@
             location.reload();
         }
 
+        // ===== ENHANCED ANALYTICS FUNCTIONS =====
+        
         async function loadDashboard() {
-            console.log('Loading dashboard data...');
-            await Promise.all([
-                loadStripeAnalytics(),
-                loadNewsletterData(),
-                loadSubscribersList(),
-                loadOrders(),
-                loadBlogPosts(),
-                loadNewsletterHistory()
-            ]);
-            console.log('All dashboard data loaded, initializing charts...');
-            initCharts();
+            console.log('Loading enhanced dashboard data...');
+            showLoadingSpinner();
+            
+            try {
+                // Load all analytics data
+                await Promise.all([
+                    loadGoogleAnalytics(),
+                    loadStripeAnalytics(),
+                    loadAudiobookAnalytics(),
+                    loadNewsletterData(),
+                    loadOrders(),
+                    loadBlogPosts(),
+                    loadNewsletterHistory()
+                ]);
+                
+                console.log('All enhanced dashboard data loaded, initializing charts...');
+                initCharts();
+                hideLoadingSpinner();
+                
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                hideLoadingSpinner();
+                showErrorMessage('Failed to load dashboard data. Some features may not work properly.');
+            }
+        }
+
+        // Google Analytics Integration
+        async function loadGoogleAnalytics() {
+            try {
+                console.log('Loading Google Analytics data...');
+                
+                const [statsResponse, topPagesResponse, trafficResponse, realtimeResponse] = await Promise.all([
+                    fetch('/admin/api/google-analytics/stats?days=30'),
+                    fetch('/admin/api/google-analytics/top-pages?days=30'),
+                    fetch('/admin/api/google-analytics/traffic-sources?days=30'),
+                    fetch('/admin/api/google-analytics/realtime')
+                ]);
+
+                const stats = await statsResponse.json();
+                const topPages = await topPagesResponse.json();
+                const trafficSources = await trafficResponse.json();
+                const realtime = await realtimeResponse.json();
+
+                // Update Google Analytics displays
+                updateElement('ga-page-views', stats.pageViews?.toLocaleString() || 'N/A');
+                updateElement('ga-unique-visitors', stats.users?.toLocaleString() || 'N/A');
+                updateElement('ga-bounce-rate', stats.bounceRate ? stats.bounceRate.toFixed(1) + '%' : 'N/A');
+                updateElement('ga-session-duration', stats.averageSessionDuration ? formatDuration(stats.averageSessionDuration) : 'N/A');
+                updateElement('ga-realtime-users', realtime.activeUsers?.toString() || '0');
+
+                // Update traffic sources
+                updateTrafficSources(trafficSources);
+                updateTopPages(topPages);
+
+                // Store data for charts
+                window.googleAnalyticsData = stats;
+                
+                console.log('Google Analytics data loaded successfully');
+
+            } catch (error) {
+                console.error('Error loading Google Analytics:', error);
+                // Set fallback values
+                updateElement('ga-page-views', 'Error');
+                updateElement('ga-unique-visitors', 'Error');
+                updateElement('ga-bounce-rate', 'Error');
+                updateElement('ga-session-duration', 'Error');
+            }
+        }
+
+        // Stripe Analytics Integration (enhanced)
+        async function loadStripeAnalytics() {
+            console.log('Loading enhanced Stripe analytics...');
+            try {
+                // Use the correct enhanced endpoint paths
+                const [revenueResponse, productResponse, ordersResponse] = await Promise.all([
+                    fetch('/admin/api/stripe/revenue-analytics?days=30'),
+                    fetch('/admin/api/stripe/product-analytics?days=30'),
+                    fetch('/admin/api/stripe/recent-orders?limit=10')
+                ]);
+                
+                const revenueData = await revenueResponse.json();
+                const productData = await productResponse.json();
+                const ordersData = await ordersResponse.json();
+                
+                console.log('Enhanced Stripe data loaded:', { revenueData, productData, ordersData });
+                
+                // Update revenue displays with real data
+                if (revenueData.summary) {
+                    updateElement('total-revenue', '$' + (revenueData.summary.totalRevenue || 0).toLocaleString());
+                    updateElement('audiobook-revenue', '$' + (revenueData.summary.audiobookRevenue || 0).toLocaleString());
+                    updateElement('book-revenue', '$' + (revenueData.summary.bookRevenue || 0).toLocaleString());
+                    updateElement('bundle-revenue', '$' + (revenueData.summary.bundleRevenue || 0).toLocaleString());
+                }
+                
+                // Update order count
+                if (ordersData.orders) {
+                    updateElement('total-orders', ordersData.orders.length.toString());
+                }
+
+                // Store data for charts
+                stripeData = {
+                    totalRevenue: revenueData.summary?.totalRevenue || 0,
+                    audiobookRevenue: revenueData.summary?.audiobookRevenue || 0,
+                    bookRevenue: revenueData.summary?.bookRevenue || 0,
+                    bundleRevenue: revenueData.summary?.bundleRevenue || 0,
+                    chartData: {
+                        labels: revenueData.chartData?.map(d => d.date) || ['Last 30 Days'],
+                        datasets: [{
+                            label: 'Daily Revenue',
+                            data: revenueData.chartData?.map(d => d.revenue) || [revenueData.summary?.totalRevenue || 0],
+                            backgroundColor: 'rgba(255, 59, 59, 0.1)',
+                            borderColor: '#FF3B3B',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    }
+                };
+                
+                console.log('Enhanced Stripe analytics loaded successfully');
+
+            } catch (error) {
+                console.error('Error loading Stripe analytics:', error);
+                // Set fallback values
+                updateElement('total-revenue', 'Error');
+                updateElement('audiobook-revenue', 'Error');
+                updateElement('book-revenue', 'Error');
+                updateElement('bundle-revenue', 'Error');
+                updateElement('total-orders', 'Error');
+            }
+        }
+
+        // Audiobook Analytics Integration
+        async function loadAudiobookAnalytics() {
+            try {
+                console.log('Loading audiobook analytics...');
+                
+                const [analyticsResponse, listenersResponse] = await Promise.all([
+                    fetch('/admin/api/audiobook/analytics?days=30'),
+                    fetch('/admin/api/audiobook/recent-listeners?limit=10')
+                ]);
+
+                const analytics = await analyticsResponse.json();
+                const listeners = await listenersResponse.json();
+
+                if (analytics.success) {
+                    const data = analytics.data;
+                    
+                    // Update audiobook analytics displays
+                    updateElement('audiobook-sessions', data.totalSessions?.toLocaleString() || '0');
+                    updateElement('audiobook-listeners', data.uniqueListeners?.toLocaleString() || '0');
+                    updateElement('audiobook-hours', Math.round((data.totalListeningTime || 0) / 3600).toLocaleString());
+                    updateElement('audiobook-completion', data.completionRate + '%' || '0%');
+                    updateElement('avg-session-duration', formatDuration(data.averageSessionDuration || 0));
+
+                    // Update popular chapters
+                    updatePopularChapters(data.popularChapters || []);
+                    
+                    // Store data for charts
+                    window.audiobookAnalyticsData = data;
+                }
+
+                console.log('Audiobook analytics loaded successfully');
+
+            } catch (error) {
+                console.error('Error loading audiobook analytics:', error);
+                // Set fallback values
+                updateElement('audiobook-sessions', 'Error');
+                updateElement('audiobook-listeners', 'Error');
+                updateElement('audiobook-hours', 'Error');
+                updateElement('audiobook-completion', 'Error');
+            }
+        }
+
+        // Helper functions for data display
+        function updateElement(id, value) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        function formatDuration(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            
+            if (hours > 0) {
+                return `${hours}h ${minutes}m`;
+            } else if (minutes > 0) {
+                return `${minutes}m`;
+            } else {
+                return `${Math.floor(seconds)}s`;
+            }
+        }
+
+        function updateTrafficSources(sources) {
+            const organicEl = document.getElementById('organic-traffic');
+            const directEl = document.getElementById('direct-traffic');
+            const socialEl = document.getElementById('social-traffic');
+
+            if (Array.isArray(sources)) {
+                const organic = sources.find(s => s.source.toLowerCase().includes('organic') || s.source.toLowerCase().includes('search'));
+                const direct = sources.find(s => s.source.toLowerCase().includes('direct'));
+                const social = sources.find(s => s.source.toLowerCase().includes('social'));
+
+                if (organicEl) organicEl.textContent = organic?.sessions.toLocaleString() || '0';
+                if (directEl) directEl.textContent = direct?.sessions.toLocaleString() || '0';
+                if (socialEl) socialEl.textContent = social?.sessions.toLocaleString() || '0';
+            }
+        }
+
+        function updateTopPages(pages) {
+            const container = document.getElementById('top-pages-list');
+            if (container && Array.isArray(pages)) {
+                container.innerHTML = pages.slice(0, 5).map(page => `
+                    <div class="flex justify-between items-center p-2 bg-bone/5 rounded">
+                        <span class="text-sm">${page.path}</span>
+                        <span class="text-xs opacity-70">${page.pageviews.toLocaleString()} views</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function updatePopularChapters(chapters) {
+            const container = document.getElementById('popular-chapters-list');
+            if (container && Array.isArray(chapters)) {
+                container.innerHTML = chapters.slice(0, 5).map(chapter => `
+                    <div class="flex justify-between items-center p-2 bg-bone/5 rounded">
+                        <span class="text-sm">${chapter.chapter}</span>
+                        <span class="text-xs opacity-70">${chapter.plays} plays</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function showLoadingSpinner() {
+            // Add loading indicators to the dashboard
+            const indicators = document.querySelectorAll('[id$="-revenue"], [id$="-visitors"], [id$="-sessions"]');
+            indicators.forEach(el => {
+                if (el) el.textContent = 'Loading...';
+            });
+        }
+
+        function hideLoadingSpinner() {
+            // Remove loading indicators (handled by individual update functions)
+        }
+
+        function showErrorMessage(message) {
+            // You can implement a toast notification or alert here
+            console.error(message);
+            alert(message);
+        }
+
+        // Test all integrations
+        async function testAllIntegrations() {
+            try {
+                const response = await fetch('/admin/api/test-integrations');
+                const results = await response.json();
+                
+                let message = 'Integration Test Results:\\n\\n';
+                message += `Google Analytics: ${results.googleAnalytics.success ? '✅ Connected' : '❌ ' + results.googleAnalytics.error}\\n`;
+                message += `Stripe: ${results.stripe.success ? '✅ Connected' : '❌ ' + results.stripe.error}\\n`;
+                message += `MailerLite: ${results.mailerLite.success ? '✅ Connected' : '❌ ' + results.mailerLite.error}\\n`;
+                message += `Audiobook Analytics: ${results.audiobook.success ? '✅ Working' : '❌ ' + results.audiobook.error}\\n`;
+                message += `\\nOverall Status: ${results.overall.success ? '✅ All systems operational' : '⚠️ Some issues detected'}`;
+                
+                alert(message);
+                
+            } catch (error) {
+                alert('Failed to test integrations: ' + error.message);
+            }
+        }
+
+        // Enhanced refresh functions
+        async function refreshGoogleAnalytics() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Refreshing...';
+            button.disabled = true;
+
+            try {
+                await loadGoogleAnalytics();
+                alert('Google Analytics data refreshed successfully!');
+            } catch (error) {
+                console.error('Error refreshing Google Analytics:', error);
+                alert('Error refreshing Google Analytics data.');
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        async function refreshStripeAnalytics() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Refreshing...';
+            button.disabled = true;
+
+            try {
+                await loadStripeAnalytics();
+                alert('Stripe analytics refreshed successfully!');
+            } catch (error) {
+                console.error('Error refreshing Stripe analytics:', error);
+                alert('Error refreshing Stripe analytics.');
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        async function refreshAudiobookAnalytics() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Refreshing...';
+            button.disabled = true;
+
+            try {
+                await loadAudiobookAnalytics();
+                alert('Audiobook analytics refreshed successfully!');
+            } catch (error) {
+                console.error('Error refreshing audiobook analytics:', error);
+                alert('Error refreshing audiobook analytics.');
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
         }
 
         // Stripe Analytics Integration
@@ -1658,7 +1984,69 @@
         }
 
         // Test button (you can call this in browser console)
-        console.log('Admin panel loaded successfully. Type testAdminPanel() to verify functionality.');
+        console.log('Enhanced admin panel loaded successfully. Type testAdminPanel() to verify functionality.');
+        
+        // Enhanced test admin panel function
+        async function testAdminPanel() {
+            console.log('Testing enhanced admin panel functionality...');
+            
+            try {
+                // Test all integrations
+                const response = await fetch('/admin/api/test-integrations');
+                const results = await response.json();
+                
+                let message = '🔧 Enhanced Admin Panel Test Results:\\n\\n';
+                message += `📊 Google Analytics: ${results.googleAnalytics.success ? '✅ Connected' : '❌ ' + results.googleAnalytics.error}\\n`;
+                message += `💳 Stripe Analytics: ${results.stripe.success ? '✅ Connected' : '❌ ' + results.stripe.error}\\n`;
+                message += `📧 MailerLite: ${results.mailerLite.success ? '✅ Connected' : '❌ ' + results.mailerLite.error}\\n`;
+                message += `🎧 Audiobook Analytics: ${results.audiobook.success ? '✅ Working' : '❌ ' + results.audiobook.error}\\n\\n`;
+                message += `🎯 Overall Status: ${results.overall.success ? '✅ All systems operational!' : '⚠️ Some issues detected'}\\n\\n`;
+                
+                if (!results.overall.success) {
+                    message += '💡 Note: The system will use mock data for any disconnected services.\\n';
+                    message += '📖 See ADMIN_SETUP.md for configuration instructions.';
+                }
+                
+                alert(message);
+                console.log('Integration test results:', results);
+                
+                // Also test basic functionality
+                console.log('Testing data loading...');
+                await loadDashboard();
+                console.log('✅ Dashboard data loading test complete');
+                
+                return results;
+                
+            } catch (error) {
+                console.error('Admin panel test failed:', error);
+                alert('❌ Admin panel test failed: ' + error.message + '\\n\\nCheck the console for details.');
+                return { success: false, error: error.message };
+            }
+        }
+        
+        // Quick analytics refresh function
+        async function quickRefresh() {
+            console.log('Quick refreshing all analytics...');
+            showLoadingSpinner();
+            
+            try {
+                await Promise.all([
+                    loadGoogleAnalytics(),
+                    loadStripeAnalytics(),
+                    loadAudiobookAnalytics(),
+                    loadNewsletterData()
+                ]);
+                
+                hideLoadingSpinner();
+                alert('📊 All analytics refreshed successfully!');
+                console.log('✅ Quick refresh complete');
+                
+            } catch (error) {
+                hideLoadingSpinner();
+                console.error('Quick refresh failed:', error);
+                alert('❌ Quick refresh failed: ' + error.message);
+            }
+        }
     </script>
 </body>
 </html>
