@@ -278,7 +278,7 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
             <div style="background: linear-gradient(135deg, rgba(247,243,237,0.05) 0%, rgba(247,243,237,0.1) 100%); border: 1px solid rgba(247,243,237,0.1); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
                 <h2 style="color: #F7F3ED; margin: 0 0 15px 0;">Your audiobook is ready to stream!</h2>
                 <p style="color: rgba(247,243,237,0.8); margin: 0 0 25px 0;">
-                    Thanks for supporting independent queer lit. Here's your personal streaming link:
+                    Thanks for supporting independent queer authors and their beautifully chaotic storytelling! Here's your personal streaming link:
                 </p>
                 
                 <div style="text-align: center;">
@@ -316,7 +316,7 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
         console.log('📬 Sending audiobook access email...');
         
         await resend.emails.send({
-            from: 'aleks@aleksfilmore.com',
+            from: 'aleksfilmore@gmail.com',
             to: customerEmail,
             subject: '🎧 Your Audiobook is Ready!',
             html: emailContent

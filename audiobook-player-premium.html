@@ -1,39 +1,4 @@
 <!DOCTYPE html>
-<!--
-🔒 FINAL LOCKED VERSION 🔒
-The Worst Boyfriends Ever - Premium Audiobook Player
-Version: 1.0 FINAL
-Date: August 23, 2025
-Author: Aleks Filmore
-Narrator: Deacon Deane
-
-🎵 PREMIUM FEATURES:
-✅ Stunning visual design with glass morphism effects
-✅ Animated backgrounds with signature red accents
-✅ Secure token-based streaming (no downloads)
-✅ 33 chapters with smooth transitions
-✅ Position saving/restoring
-✅ Content protection (disabled dev tools, right-click, etc.)
-✅ Spicy interactive elements and celebrations
-✅ Professional author/narrator credits
-✅ Mobile responsive design
-✅ Keyboard shortcuts
-✅ Premium user experience
-
-🔐 SECURITY MEASURES:
-- Right-click disabled
-- Dev tools blocked
-- Text selection disabled
-- Source viewing prevented
-- Console clearing
-- Download protection
-
-🌶️ SPICE LEVEL: Perfect balance of professional & playful
-🎨 BRAND COLORS: Charcoal, Bone, Red Flag, Glitch Lime, Dusty Blush
-
-⚠️  DO NOT MODIFY WITHOUT BACKUP ⚠️
-This is the production-ready, final version.
--->
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -108,10 +73,9 @@ This is the production-ready, final version.
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 59, 59, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 110, 0.12) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(199, 255, 65, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 60% 70%, rgba(58, 134, 255, 0.06) 0%, transparent 50%);
+                radial-gradient(circle at 40% 40%, rgba(58, 134, 255, 0.06) 0%, transparent 50%);
             animation: breathe 12s ease-in-out infinite;
             pointer-events: none;
             z-index: -2;
@@ -124,7 +88,7 @@ This is the production-ready, final version.
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff3b3b' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             pointer-events: none;
             z-index: -1;
         }
@@ -132,17 +96,6 @@ This is the production-ready, final version.
         @keyframes breathe {
             0%, 100% { opacity: 0.6; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.02); }
-        }
-
-        @keyframes fallDown {
-            0% {
-                transform: translateY(-50px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
         }
 
         @keyframes glow {
@@ -215,88 +168,22 @@ This is the production-ready, final version.
             font-family: var(--font-serif);
             font-size: 3.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--color-bone), var(--color-red-flag), var(--color-glitch-lime), var(--color-dusty-blush));
+            background: linear-gradient(135deg, var(--color-bone), var(--color-glitch-lime), var(--color-dusty-blush));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(255, 59, 59, 0.3);
-            animation: titleGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 59, 59, 0.3)); }
-            50% { filter: drop-shadow(0 0 20px rgba(255, 59, 59, 0.6)); }
-        }
-
-        .credits-container {
-            margin: 1rem 0;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .author-credit, .narrator-credit {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--color-dusty-blush);
-            font-weight: 400;
-        }
-
-        .author-name, .narrator-name {
-            color: var(--color-red-flag);
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(255, 59, 59, 0.4);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(199, 255, 65, 0.3);
         }
 
         .subtitle {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            color: var(--color-glitch-lime);
-            font-weight: 500;
+            color: var(--color-dusty-blush);
+            font-weight: 400;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .spice-warning {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, rgba(255, 59, 59, 0.15), rgba(255, 0, 110, 0.15));
-            border: 1px solid rgba(255, 59, 59, 0.3);
-            border-radius: 20px;
-            padding: 0.75rem 1.5rem;
-            margin: 1rem auto 0;
-            max-width: 400px;
-            backdrop-filter: blur(10px);
-            animation: spiceGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes spiceGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 59, 59, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(255, 59, 59, 0.6); }
-        }
-
-        .warning-emoji {
-            font-size: 1.2rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .warning-text {
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--color-bone);
-            font-weight: 500;
-            text-align: center;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
         }
 
         .player-main {
@@ -318,22 +205,11 @@ This is the production-ready, final version.
             left: -1px;
             right: -1px;
             bottom: -1px;
-            background: linear-gradient(45deg, var(--color-red-flag), var(--color-glitch-lime), var(--color-toxic-pink), var(--color-electric-blue), var(--color-red-flag));
+            background: linear-gradient(45deg, var(--color-glitch-lime), var(--color-toxic-pink), var(--color-electric-blue), var(--color-glitch-lime));
             border-radius: 20px;
             z-index: -1;
-            animation: redGlow 4s ease-in-out infinite;
-            opacity: 0.4;
-        }
-
-        @keyframes redGlow {
-            0%, 100% { 
-                opacity: 0.4;
-                filter: blur(1px);
-            }
-            50% { 
-                opacity: 0.7;
-                filter: blur(2px);
-            }
+            animation: glow 3s ease-in-out infinite;
+            opacity: 0.3;
         }
 
         .now-playing {
@@ -706,24 +582,6 @@ This is the production-ready, final version.
                 font-size: 2.5rem;
             }
             
-            .credits-container {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .author-credit, .narrator-credit {
-                font-size: 0.9rem;
-            }
-            
-            .spice-warning {
-                padding: 0.5rem 1rem;
-                margin: 0.5rem auto 0;
-            }
-            
-            .warning-text {
-                font-size: 0.8rem;
-            }
-            
             .player-main {
                 padding: 1.5rem;
             }
@@ -771,16 +629,7 @@ This is the production-ready, final version.
         <!-- Header -->
         <div class="title-container">
             <h1 class="main-title">The Worst Boyfriends Ever</h1>
-            <div class="credits-container">
-                <p class="author-credit">Written by <span class="author-name">Aleks Filmore</span></p>
-                <p class="narrator-credit">Narrated by <span class="narrator-name">Deacon Deane</span></p>
-            </div>
-            <p class="subtitle">🔥 Premium Audiobook Experience 🔥</p>
-            <div class="spice-warning">
-                <span class="warning-emoji">🌶️</span>
-                <span class="warning-text">Contains brutally honest dating advice</span>
-                <span class="warning-emoji">🌶️</span>
-            </div>
+            <p class="subtitle">Premium Audiobook Experience</p>
         </div>
 
         <!-- Player Card -->
@@ -946,30 +795,6 @@ This is the production-ready, final version.
                 console.log('🌟 Premium audiobook player ready! Enjoy "The Worst Boyfriends Ever"!');
             }
 
-            createCelebrationEffect() {
-                // Create red flag confetti effect
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        const flag = document.createElement('div');
-                        flag.innerHTML = '🚩';
-                        flag.style.position = 'fixed';
-                        flag.style.left = Math.random() * window.innerWidth + 'px';
-                        flag.style.top = '-50px';
-                        flag.style.fontSize = '2rem';
-                        flag.style.zIndex = '9999';
-                        flag.style.pointerEvents = 'none';
-                        flag.style.animation = 'fallDown 3s linear forwards';
-                        document.body.appendChild(flag);
-                        
-                        setTimeout(() => {
-                            if (flag.parentNode) {
-                                flag.parentNode.removeChild(flag);
-                            }
-                        }, 3000);
-                    }, i * 100);
-                }
-            }
-
             createFloatingParticles() {
                 const particlesContainer = document.getElementById('particles');
                 const particleCount = 20;
@@ -1055,27 +880,11 @@ This is the production-ready, final version.
 
                 this.audioPlayer.addEventListener('ended', () => {
                     if (this.currentChapterIndex < this.chapters.length - 1) {
-                        // Add some spice to chapter transitions
-                        const spicyMessages = [
-                            "Another red flag down! 🚩",
-                            "Plot twist incoming... 🌪️",
-                            "Ready for more chaos? 😈",
-                            "The drama continues... 🔥",
-                            "Next boyfriend loading... 💀"
-                        ];
-                        const randomMessage = spicyMessages[Math.floor(Math.random() * spicyMessages.length)];
-                        this.currentDurationEl.textContent = randomMessage;
-                        
-                        setTimeout(() => {
-                            this.nextChapter();
-                        }, 2000);
+                        this.nextChapter();
                     } else {
                         this.isPlaying = false;
                         this.playPauseBtn.textContent = '▶';
-                        this.currentDurationEl.textContent = 'You survived all the boyfriends! 🎉🔥 Time to find a good one! 💎';
-                        
-                        // Celebration effect
-                        this.createCelebrationEffect();
+                        this.currentDurationEl.textContent = 'Audiobook complete! 🎉';
                     }
                 });
 
@@ -1281,118 +1090,6 @@ This is the production-ready, final version.
 
         // Initialize the premium player
         new AudiobookPlayer();
-
-        // Security measures to protect content
-        // Disable right-click context menu
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Disable F12, Ctrl+Shift+I, Ctrl+U, and other dev tools shortcuts
-        document.addEventListener('keydown', function(e) {
-            // F12
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+I (Dev Tools)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+C (Inspect Element)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+J (Console)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+U (View Source)
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+S (Save Page)
-            if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Disable text selection to prevent copying
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Disable drag and drop
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // Clear console periodically and add warning
-        setInterval(function() {
-            console.clear();
-            console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
-            console.log('%cThis is a premium audiobook player. Unauthorized access to content is prohibited.', 'color: red; font-size: 16px;');
-            console.log('%c© 2025 Aleks Filmore - All Rights Reserved', 'color: #666; font-size: 12px;');
-        }, 3000);
-
-        // Detect if developer tools are open and redirect
-        let devtools = {
-            open: false,
-            orientation: null
-        };
-        
-        setInterval(function() {
-            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    alert('Developer tools detected. For content security, you will be redirected.');
-                    window.location.href = '/shop';
-                }
-            } else {
-                devtools.open = false;
-            }
-        }, 500);
-
-        // Disable saving audio files
-        document.addEventListener('contextmenu', function(e) {
-            if (e.target.tagName === 'AUDIO') {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Add CSS to disable text selection and right-click menu
-        const style = document.createElement('style');
-        style.innerHTML = `
-            * {
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                -webkit-touch-callout: none;
-                -webkit-tap-highlight-color: transparent;
-            }
-            
-            audio {
-                pointer-events: none;
-            }
-            
-            body {
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

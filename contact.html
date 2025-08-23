@@ -7,6 +7,16 @@
     
     <meta name="description" content="Get in touch with Aleks Filmore for press inquiries, book reviews, interviews, or just to share your dating disaster stories. Based in Brussels, responds to emails faster than red flags.">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W9B5W1241H');
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,8 +111,8 @@
         }
 
         .form-input, .form-textarea {
-            background-color: var(--color-bone);
-            color: var(--color-charcoal);
+            background-color: var(--color-bone) !important;
+            color: var(--color-charcoal) !important;
             border: 2px solid transparent;
             border-radius: 0.5rem;
             padding: 1rem;
@@ -115,6 +125,12 @@
             outline: none;
             border-color: var(--color-red-flag);
             box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.1);
+            background-color: var(--color-bone) !important;
+            color: var(--color-charcoal) !important;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(14, 15, 16, 0.6) !important;
         }
 
         .form-textarea {
@@ -227,7 +243,7 @@
                     <div class="bg-red-flag/10 p-8 rounded-2xl border border-red-flag/20">
                         <h2 class="font-display font-bold text-2xl mb-6 text-center">Send a Message</h2>
                         
-                        <form class="space-y-6" action="https://formspree.io/f/myzjjjjp" method="POST">
+                        <form id="contact-form" class="space-y-6">
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label for="name" class="block text-sm font-semibold mb-2">Name *</label>
@@ -300,9 +316,24 @@
                                 >
                             </div>
 
+                            <!-- Newsletter Opt-in -->
+                            <div class="flex items-start space-x-3 p-4 bg-red-flag/10 border border-red-flag/20 rounded-lg">
+                                <input 
+                                    type="checkbox" 
+                                    id="newsletter_opt_in" 
+                                    name="newsletter_opt_in"
+                                    class="mt-1 h-4 w-4 text-red-flag border-bone/30 rounded focus:ring-red-flag focus:ring-offset-0 bg-charcoal"
+                                >
+                                <label for="newsletter_opt_in" class="text-sm text-bone">
+                                    <span class="font-semibold">📩 Join The Red Flag Report Newsletter</span>
+                                    <br>
+                                    <span class="text-bone/70">Get weekly dating disasters, book updates, and your exclusive secret chapter!</span>
+                                </label>
+                            </div>
+
                             <input type="hidden" name="_subject" value="Contact Form Submission">
                             
-                            <button type="submit" class="btn-primary w-full mt-6">
+                            <button type="submit" class="btn-primary w-full mt-6" id="contact-submit-btn">
                                 📧 Send Message
                             </button>
                         </form>
@@ -430,6 +461,87 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const email = formData.get('email');
+            const name = formData.get('name');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            const newsletter_opt_in = formData.get('newsletter_opt_in') === 'on';
+            
+            const submitButton = document.getElementById('contact-submit-btn');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        email,
+                        name,
+                        subject,
+                        message,
+                        newsletter_opt_in
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    let successMessage = 'Message sent successfully! I\'ll get back to you soon.';
+                    if (newsletter_opt_in) {
+                        successMessage += ' Welcome to The Red Flag Report! Check your email for your secret chapter.';
+                    }
+                    
+                    document.getElementById('contact-form').innerHTML = `
+                        <div class="text-center p-8 bg-green-500/20 border border-green-500/30 rounded-lg">
+                            <div class="text-glitch-lime text-4xl mb-4">✅</div>
+                            <div class="text-bone font-semibold text-xl mb-2">Message Sent!</div>
+                            <div class="text-bone/80 text-center">${successMessage}</div>
+                        </div>
+                    `;
+                } else {
+                    throw new Error(result.error || 'Failed to send message');
+                }
+            } catch (error) {
+                console.error('Contact form error:', error);
+                
+                // Show error message
+                submitButton.textContent = 'Try Again';
+                submitButton.disabled = false;
+                
+                // Show error message below form
+                let errorDiv = document.getElementById('contact-error-message');
+                if (!errorDiv) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.id = 'contact-error-message';
+                    errorDiv.className = 'mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-center';
+                    document.getElementById('contact-form').after(errorDiv);
+                }
+                errorDiv.innerHTML = `
+                    <div class="text-red-flag font-semibold mb-1">Oops! Something went wrong</div>
+                    <div class="text-bone/70 text-sm">Please try again or email me directly at aleks@aleksfilmore.com</div>
+                `;
+                
+                // Hide error after 5 seconds
+                setTimeout(() => {
+                    if (errorDiv) errorDiv.remove();
+                }, 5000);
+            }
+        });
+    </script>
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>

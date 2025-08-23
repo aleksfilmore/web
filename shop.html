@@ -15,17 +15,27 @@
     <meta property="og:url" content="https://aleksfilmore.com/shop.html">
     <meta property="og:title" content="Shop The Worst Boyfriends Ever | Audiobook & Signed Copies">
     <meta property="og:description" content="Buy The Worst Boyfriends Ever audiobook and signed copies directly from author Aleks Filmore. Instant access, worldwide shipping, exclusive content.">
-    <meta property="og:image" content="https://aleksfilmore.com/TWBE 2.png">
+    <meta property="og:image" content="https://aleksfilmore.com/public/audiobookshop.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://aleksfilmore.com/shop.html">
     <meta property="twitter:title" content="Shop The Worst Boyfriends Ever | Audiobook & Signed Copies">
     <meta property="twitter:description" content="Buy The Worst Boyfriends Ever audiobook and signed copies directly from author Aleks Filmore. Instant access, worldwide shipping, exclusive content.">
-    <meta property="twitter:image" content="https://aleksfilmore.com/TWBE 2.png">
+    <meta property="twitter:image" content="https://aleksfilmore.com/public/audiobookshop.png">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/shop.html">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W9B5W1241H');
+    </script>
     
     <!-- Favicon -->
     <link rel="icon" href="/AF.png" type="image/png">
@@ -60,7 +70,7 @@
                 "@type": "Product",
                 "name": "The Worst Boyfriends Ever Audiobook",
                 "description": "Full unabridged audiobook with exclusive bonus epilogue, narrated by Deacon Deane",
-                "image": "https://aleksfilmore.com/TWBE 2.png",
+                "image": "https://aleksfilmore.com/public/audiobookshop.png",
                 "brand": {
                     "@type": "Person",
                     "name": "Aleks Filmore"
@@ -80,7 +90,7 @@
                 "@type": "Product",
                 "name": "The Worst Boyfriends Ever Signed Paperback",
                 "description": "Personally signed paperback with handwritten note, shipped from Brussels",
-                "image": "https://aleksfilmore.com/The Worst Boyfriends Ever KINDLE.jpg",
+                "image": "https://aleksfilmore.com/public/signed1.png",
                 "brand": {
                     "@type": "Person",
                     "name": "Aleks Filmore"
@@ -116,6 +126,7 @@
         html, body {
             overflow-x: hidden;
             width: 100%;
+            max-width: 100vw;
         }
 
         body {
@@ -124,6 +135,16 @@
             color: var(--color-bone);
             line-height: 1.6;
             font-size: 16px;
+        }
+
+        /* Prevent horizontal overflow on all containers */
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         .font-display { font-family: var(--font-display); }
@@ -271,15 +292,302 @@
             font-size: 0.75rem;
             font-weight: 600;
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 10;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
+        /* Image Carousel for Signed Books */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            border-radius: inherit;
+        }
+
+        .carousel-image.active {
+            opacity: 1;
+        }
+
         .bundle-highlight {
-            background: linear-gradient(135deg, rgba(199, 255, 65, 0.15) 0%, rgba(199, 255, 65, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.12) 0%, rgba(255, 59, 59, 0.06) 30%, rgba(199, 255, 65, 0.08) 70%, rgba(199, 255, 65, 0.15) 100%);
             border: 2px solid rgba(199, 255, 65, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 32px rgba(199, 255, 65, 0.15),
+                0 4px 16px rgba(255, 59, 59, 0.08),
+                inset 0 1px 0 rgba(199, 255, 65, 0.2);
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .bundle-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(199, 255, 65, 0.15), rgba(255, 59, 59, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .bundle-highlight::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(199, 255, 65, 0.4), rgba(255, 59, 59, 0.2), rgba(199, 255, 65, 0.4));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .bundle-highlight:hover {
+            border-color: rgba(199, 255, 65, 0.6);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(199, 255, 65, 0.25),
+                0 10px 30px rgba(255, 59, 59, 0.15),
+                inset 0 1px 0 rgba(199, 255, 65, 0.3);
+        }
+
+        .bundle-highlight:hover::before {
+            left: 100%;
+        }
+
+        .bundle-highlight:hover::after {
+            opacity: 1;
+        }
+
+        /* Enhanced bundle-specific elements */
+        .bundle-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, #c7ff41 0%, #a8d635 100%);
+            color: var(--color-charcoal);
+            padding: 0.6rem 1.2rem;
+            border-radius: 1.2rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(199, 255, 65, 0.4);
+            z-index: 20;
+            transform: rotate(8deg);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                transform: rotate(12deg) scale(1);
+                box-shadow: 0 4px 16px rgba(199, 255, 65, 0.4);
+            }
+            50% { 
+                transform: rotate(12deg) scale(1.05);
+                box-shadow: 0 6px 24px rgba(199, 255, 65, 0.6);
+            }
+        }
+
+        .bundle-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            aspect-ratio: 1 / 1;
+        }
+
+        .bundle-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .bundle-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bundle-savings {
+            background: linear-gradient(135deg, #ff3b3b 0%, #cc2e2e 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-savings::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .bundle-highlight:hover .bundle-savings::before {
+            left: 100%;
+        }
+
+        .bundle-features {
+            background: rgba(15, 15, 15, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(247, 243, 237, 0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        .bundle-features h4 {
+            color: var(--color-glitch-lime);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .bundle-features h4::before {
+            content: '🎁';
+            font-size: 1.2em;
+        }
+
+        .bundle-features ul li {
+            color: var(--color-bone);
+            opacity: 0.9;
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .bundle-features ul li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            color: var(--color-glitch-lime);
+        }
+
+        /* Bundle Section Background Enhancement */
+        .bundle-section {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(199, 255, 65, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 59, 59, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(15, 15, 15, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(199, 255, 65, 0.1);
+            border-bottom: 1px solid rgba(199, 255, 65, 0.1);
+        }
+
+        /* Enhanced price display */
+        .bundle-price-container {
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(247, 243, 237, 0.08);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        /* Bundle title enhancement */
+        .bundle-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .bundle-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-glitch-lime) 0%, var(--color-red-flag) 100%);
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        /* Bundle-specific mobile optimizations */
+        @media (max-width: 640px) {
+            .bundle-features {
+                padding: 1rem;
+                margin: 0;
+            }
+            
+            .bundle-savings {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .bundle-highlight {
+                margin: 0 -0.5rem;
+            }
+            
+            .bundle-image-container {
+                max-width: 240px;
+            }
+            
+            /* Ensure no horizontal overflow */
+            .flex {
+                min-width: 0;
+            }
+            
+            .text-lg, .text-xl, .text-2xl {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bundle-image-container {
+                max-width: 200px;
+            }
+            
+            .bundle-highlight {
+                margin: 0 -1rem;
+            }
+            
+            /* Further reduce text sizes on very small screens */
+            .text-lg {
+                font-size: 1rem;
+            }
         }
 
         /* Mobile-First Cart Styles */
@@ -296,10 +604,12 @@
             transition: transform 0.3s ease;
             font-size: 0.875rem;
             font-weight: 600;
+            display: none;
         }
 
         .cart-notification.show {
             transform: translateX(0);
+            display: block;
         }
 
         .modal {
@@ -354,9 +664,48 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Mobile-First Responsive Breakpoints */
-        
-        /* Small mobile (320px+) - Default styles above */
+        /* Additional mobile optimizations */
+        @media (max-width: 768px) {
+            /* Ensure product cards don't overflow */
+            .product-card {
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 100%;
+            }
+            
+            /* Optimize grid layouts for mobile */
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            /* Bundle section mobile fixes */
+            .bundle-highlight .flex {
+                gap: 1rem;
+            }
+            
+            /* Ensure text doesn't overflow */
+            .font-display {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+        }
+
+        /* Very small mobile devices */
+        @media (max-width: 320px) {
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .bundle-highlight {
+                margin: 0 -0.75rem;
+            }
+            
+            .p-4 {
+                padding: 0.75rem;
+            }
+        }
         
         /* Large mobile (375px+) */
         @media (min-width: 375px) {
@@ -409,54 +758,6 @@
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
-        }
-
-        /* Partners Section */
-        .partners-section {
-            background: linear-gradient(135deg, rgba(247, 243, 237, 0.03) 0%, rgba(199, 255, 65, 0.02) 100%);
-            border-top: 1px solid rgba(247, 243, 237, 0.08);
-            border-bottom: 1px solid rgba(247, 243, 237, 0.08);
-        }
-
-        .partner-logo {
-            height: 2rem;
-            width: auto;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            filter: grayscale(1) brightness(0) invert(1);
-        }
-
-        .partner-logo:hover {
-            opacity: 1;
-            transform: scale(1.1);
-            filter: grayscale(0) brightness(1) invert(0);
-        }
-
-        .partner-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background: rgba(247, 243, 237, 0.02);
-        }
-
-        .partner-link:hover {
-            background: rgba(247, 243, 237, 0.08);
-            transform: translateY(-2px);
-        }
-
-        @media (min-width: 640px) {
-            .partner-logo {
-                height: 2.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .partner-logo {
-                height: 3rem;
-            }
         }
     </style>
 </head>
@@ -531,87 +832,6 @@
             </div>
         </section>
 
-        <!-- Partners Section -->
-        <section class="partners-section py-6 sm:py-8">
-            <div class="container mx-auto px-4 sm:px-6">
-                <div class="max-w-5xl mx-auto text-center">
-                    <h3 class="font-display font-semibold text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 text-bone/60 uppercase tracking-wider">
-                        Also Available On
-                    </h3>
-                    
-                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center">
-                        
-                        <!-- Amazon -->
-                        <a href="https://a.co/d/1eaTrOP" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="partner-link group"
-                           title="Available on Amazon">
-                            <svg class="partner-logo" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                                <text x="50" y="19" font-family="sans-serif" font-weight="bold" font-size="12" fill="currentColor" text-anchor="middle">Amazon</text>
-                                <path d="M20 22c8-2 15-1 20 0" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <path d="M38 20l2 2-2 2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                            </svg>
-                        </a>
-
-                        <!-- Barnes & Noble -->
-                        <a href="https://www.barnesandnoble.com/w/the-worst-boyfriends-ever-aleks-filmore/1147815344" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="partner-link group"
-                           title="Available on Barnes & Noble">
-                            <svg class="partner-logo" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="10" y="8" width="25" height="14" fill="none" stroke="currentColor" stroke-width="1.5" rx="2"/>
-                                <text x="22" y="18" font-family="serif" font-weight="bold" font-size="10" fill="currentColor" text-anchor="middle">B</text>
-                                <rect x="40" y="8" width="25" height="14" fill="none" stroke="currentColor" stroke-width="1.5" rx="2"/>
-                                <text x="52" y="18" font-family="serif" font-weight="bold" font-size="10" fill="currentColor" text-anchor="middle">N</text>
-                            </svg>
-                        </a>
-
-                        <!-- Kobo -->
-                        <a href="https://www.kobo.com/us/en/audiobook/worst-boyfriends-ever-the" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="partner-link group"
-                           title="Available on Kobo">
-                            <svg class="partner-logo" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="20" cy="15" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <text x="35" y="19" font-family="sans-serif" font-weight="bold" font-size="12" fill="currentColor">Kobo</text>
-                            </svg>
-                        </a>
-
-                        <!-- Spotify -->
-                        <a href="http://open.spotify.com/show/3MkwMuRw52OlPjxp9NSMYF" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="partner-link group"
-                           title="Listen on Spotify">
-                            <svg class="partner-logo" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                                <path fill="currentColor" d="M20.5 11.5c-3.5-2.1-9.3-2.3-12.7-1.3-0.5 0.2-1.1-0.1-1.3-0.6s0.1-1.1 0.6-1.3c3.9-1.1 10.4-0.9 14.4 1.5 0.5 0.3 0.6 0.9 0.3 1.4-0.3 0.4-0.8 0.6-1.3 0.3zm-0.1 2.9c-0.3 0.4-0.8 0.5-1.2 0.2-2.9-1.8-7.3-2.3-10.7-1.3-0.4 0.1-0.9-0.1-1-0.5-0.1-0.4 0.1-0.9 0.5-1 3.9-1.2 8.8-0.6 12.2 1.4 0.4 0.2 0.5 0.7 0.2 1.2zm-1.4 2.8c-0.2 0.3-0.6 0.4-1 0.2-2.5-1.5-5.6-1.8-9.3-1-0.3 0.1-0.7-0.1-0.8-0.4-0.1-0.3 0.1-0.7 0.4-0.8 4.1-0.9 7.6-0.5 10.5 1.1 0.3 0.2 0.4 0.6 0.2 0.9z"/>
-                                <text x="35" y="18" font-family="sans-serif" font-weight="bold" font-size="9" fill="currentColor">Spotify</text>
-                            </svg>
-                        </a>
-
-                        <!-- TuneIn -->
-                        <a href="https://tunein.com/podcasts/Fiction---Humor/The-Worst-Boyfriends-Ever-p4654811/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="partner-link group"
-                           title="Listen on TuneIn">
-                            <svg class="partner-logo" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="15" cy="15" r="3" fill="currentColor"/>
-                                <path stroke="currentColor" stroke-width="1.5" fill="none" d="M8 8l4 4m6-4l-4 4"/>
-                                <text x="32" y="18" font-family="sans-serif" font-size="10" fill="currentColor">TuneIn</text>
-                            </svg>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Products Section -->
         <section id="products" class="py-8 sm:py-12 lg:py-16">
             <div class="container mx-auto px-4 sm:px-6">
@@ -626,8 +846,8 @@
                         <!-- Audiobook Product -->
                         <div class="product-card floating-element">
                             <div class="product-image">
-                                <img src="TWBE 2.png" 
-                                     alt="The Worst Boyfriends Ever - 3D Audiobook Mockup" 
+                                <img src="public/audiobookshop.png" 
+                                     alt="The Worst Boyfriends Ever - Premium Audiobook" 
                                      loading="lazy">
                                 <div class="feature-badge">Instant Access</div>
                             </div>
@@ -672,9 +892,16 @@
                         <!-- Signed Book Product -->
                         <div class="product-card floating-element" style="animation-delay: 0.2s;">
                             <div class="product-image">
-                                <img src="The Worst Boyfriends Ever KINDLE.jpg" 
-                                     alt="The Worst Boyfriends Ever Signed Paperback Book Cover" 
-                                     loading="lazy">
+                                <div class="image-carousel">
+                                    <img src="public/signed1.png" 
+                                         alt="The Worst Boyfriends Ever Signed Paperback Book Cover" 
+                                         class="carousel-image active"
+                                         loading="lazy">
+                                    <img src="public/signed2.png" 
+                                         alt="The Worst Boyfriends Ever Signed Book Interior" 
+                                         class="carousel-image"
+                                         loading="lazy">
+                                </div>
                                 <div class="feature-badge">Signed by Author</div>
                             </div>
                             <div class="p-4 sm:p-6">
@@ -726,57 +953,54 @@
         </section>
 
         <!-- Bundle Offer Section -->
-        <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-bone/5 to-glitch-lime/5">
+        <section class="bundle-section py-8 sm:py-12 lg:py-16">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto">
                     
                     <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-6 sm:mb-8 text-center">
-                        Bundle & Save
+                        <span class="bundle-title">Bundle & Save</span>
                     </h2>
                     
                     <div class="product-card bundle-highlight">
-                        <div class="p-4 sm:p-6 lg:p-8 text-center">
-                            
-                            <h3 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">Complete Bundle</h3>
-                            <p class="text-bone/80 mb-6 text-sm sm:text-base lg:text-lg">
-                                Get both the audiobook and signed paperback together
-                            </p>
-                            
-                            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6">
-                                <span class="text-lg sm:text-xl lg:text-2xl text-bone/60 line-through">€25.98</span>
-                                <div class="price-tag text-xl sm:text-2xl lg:text-3xl">€22.99</div>
-                                <span class="bg-glitch-lime text-charcoal px-2 sm:px-3 py-1 rounded-full font-semibold text-sm sm:text-base">
-                                    Save €2.99
-                                </span>
-                            </div>
-
-                            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 text-left">
-                                <div>
-                                    <h4 class="font-semibold mb-2 text-sm sm:text-base">You Get:</h4>
-                                    <ul class="text-xs sm:text-sm space-y-1">
-                                        <li>✓ Signed paperback with note</li>
-                                        <li>✓ Audiobook with bonus epilogue</li>
-                                        <li>✓ Instant audiobook access</li>
-                                        <li>✓ Worldwide shipping included</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2 text-sm sm:text-base">Perfect For:</h4>
-                                    <ul class="text-xs sm:text-sm space-y-1">
-                                        <li>✓ Ultimate fans</li>
-                                        <li>✓ Gift giving</li>
-                                        <li>✓ Collection building</li>
-                                        <li>✓ Supporting authors directly</li>
-                                    </ul>
+                        
+                        <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center p-4 sm:p-6 min-h-[400px] lg:min-h-[350px]">
+                            <!-- Bundle Image - Left Side -->
+                            <div class="flex-shrink-0 w-full lg:w-auto flex justify-center">
+                                <div class="bundle-image-container relative w-full max-w-[280px] lg:max-w-[320px]">
+                                    <img src="public/bundle.png" 
+                                         alt="Complete Bundle - Audiobook + Signed Book" 
+                                         class="w-full h-auto rounded-lg relative z-10"
+                                         loading="lazy">
                                 </div>
                             </div>
+                            
+                            <!-- Bundle Details - Right Side -->
+                            <div class="flex-1 text-center lg:text-left flex flex-col justify-center space-y-6">
+                                <div>
+                                    <p class="text-bone/90 text-lg sm:text-xl lg:text-2xl font-medium leading-relaxed">
+                                        Get both the audiobook and signed paperback together
+                                    </p>
+                                </div>
 
-                            <button 
-                                class="btn-primary text-sm sm:text-base lg:text-lg max-w-md mx-auto" 
-                                onclick="addToCart('bundle', 'Complete Bundle (Audiobook + Signed Paperback)', 22.99, 'bundle')"
-                            >
-                                Add Bundle to Cart - €22.99
-                            </button>
+                                <div class="bundle-features w-full max-w-md mx-auto lg:mx-0">
+                                    <h4>Perfect For:</h4>
+                                    <ul class="space-y-2">
+                                        <li>Ultimate fans</li>
+                                        <li>Gift giving</li>
+                                        <li>Collection building</li>
+                                        <li>Supporting authors directly</li>
+                                    </ul>
+                                </div>
+
+                                <button 
+                                    class="btn-primary text-base sm:text-lg lg:text-xl w-full max-w-md mx-auto lg:mx-0 relative overflow-hidden group py-4" 
+                                    onclick="addToCart('bundle', 'Complete Bundle (Audiobook + Signed Paperback)', 22.99, 'bundle')"
+                                    style="background: linear-gradient(135deg, #ff3b3b 0%, #cc2e2e 100%); box-shadow: 0 8px 32px rgba(255, 59, 59, 0.3); border: none; position: relative; z-index: 1;"
+                                >
+                                    <span class="relative z-10 font-bold">🎁 Add Bundle to Cart - €22.99</span>
+                                    <div class="absolute inset-0 bg-gradient-to-r from-red-flag via-red-flag/90 to-red-flag opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1136,6 +1360,32 @@
 
         // Initialize cart on page load
         loadCart();
+
+        // Image Carousel for Signed Books
+        function initImageCarousel() {
+            const carousel = document.querySelector('.image-carousel');
+            if (!carousel) return;
+
+            const images = carousel.querySelectorAll('.carousel-image');
+            let currentImageIndex = 0;
+
+            function showNextImage() {
+                // Remove active class from current image
+                images[currentImageIndex].classList.remove('active');
+                
+                // Move to next image (loop back to 0 if at end)
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                
+                // Add active class to new current image
+                images[currentImageIndex].classList.add('active');
+            }
+
+            // Change image every 3 seconds
+            setInterval(showNextImage, 3000);
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initImageCarousel);
     </script>
 
     <!-- Cookie Notice JavaScript -->

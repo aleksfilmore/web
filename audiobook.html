@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://aleksfilmore.com/audiobook.html">
     <meta property="og:title" content="The Worst Boyfriends Ever Audiobook | Narrated by Deacon Deane">
     <meta property="og:description" content="Hear the red flags in HD. Get the audiobook with exclusive bonus epilogue, narrated by Deacon Deane. Stream now €7.99.">
-    <meta property="og:image" content="https://aleksfilmore.com/THE WORST BOYFRIENDS EVER AUDIOBOOK.png">
+    <meta property="og:image" content="https://aleksfilmore.com/public/audiobookshop.png">
     <meta property="og:site_name" content="Aleks Filmore">
     <meta property="product:price:amount" content="7.99">
     <meta property="product:price:currency" content="EUR">
@@ -25,11 +25,21 @@
     <meta property="twitter:url" content="https://aleksfilmore.com/audiobook.html">
     <meta property="twitter:title" content="The Worst Boyfriends Ever Audiobook | Narrated by Deacon Deane">
     <meta property="twitter:description" content="Hear the red flags in HD. Get the audiobook with exclusive bonus epilogue, narrated by Deacon Deane. Stream now €7.99.">
-    <meta property="twitter:image" content="https://aleksfilmore.com/THE WORST BOYFRIENDS EVER AUDIOBOOK.png">
+    <meta property="twitter:image" content="https://aleksfilmore.com/public/audiobookshop.png">
     <meta property="twitter:creator" content="@aleksfilmore">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/audiobook.html">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W9B5W1241H');
+    </script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -450,15 +460,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 1rem;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            background: rgba(247, 243, 237, 0.02);
+            background: rgba(247, 243, 237, 0.05);
+            min-height: 4rem;
+            min-width: 80px;
         }
 
         .partner-link:hover {
-            background: rgba(247, 243, 237, 0.08);
-            transform: translateY(-2px);
+            background: rgba(247, 243, 237, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(247, 243, 237, 0.15);
         }
 
         @media (min-width: 640px) {
@@ -537,9 +550,23 @@
                             </div>
                         </div>
 
-                        <!-- Audiobook Player Preview -->
+                        <!-- Audiobook Cover & Player Preview -->
                         <div class="flex justify-center lg:justify-end" id="preview">
                             <div class="relative w-full max-w-md">
+                                
+                                <!-- Audiobook Cover Image -->
+                                <div class="mb-8 text-center">
+                                    <div class="relative inline-block">
+                                        <img src="public/audiobookshop.png" 
+                                             alt="The Worst Boyfriends Ever Audiobook Cover" 
+                                             class="w-64 h-64 object-cover rounded-2xl shadow-2xl mx-auto floating-element"
+                                             loading="lazy">
+                                        <div class="absolute -top-3 -right-3 bg-red-flag text-bone px-3 py-1 rounded-full font-bold text-sm transform rotate-12">
+                                            🎧 Audiobook
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <!-- Main Player Card -->
                                 <div class="audiobook-player">
                                     <div class="text-charcoal">
@@ -603,7 +630,7 @@
                         Also Available On
                     </h3>
                     
-                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center">
+                    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8">
                         
                         <!-- Amazon -->
                         <a href="https://a.co/d/1eaTrOP" 

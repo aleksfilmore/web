@@ -127,7 +127,7 @@ async function sendAudiobookAccess(email, token, session, productName) {
     const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
     
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <noreply@aleksfilmore.com>', // Use your verified domain
+      from: 'Aleks Filmore <aleksfilmore@gmail.com>', // Use your verified domain
       to: [email],
       subject: '🎧 Your Audiobook Access - The Worst Boyfriends Ever',
       html: `
@@ -230,7 +230,7 @@ async function sendSignedBookConfirmation(email, session, productName) {
     const shippingAddress = session.shipping_details?.address;
     
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <noreply@aleksfilmore.com>',
+      from: 'Aleks Filmore <aleksfilmore@gmail.com>',
       to: [email],
       subject: '📚 Order Confirmed - Signed Copy of The Worst Boyfriends Ever',
       html: `
@@ -335,7 +335,7 @@ async function sendBundleConfirmation(email, token, session, productName) {
     const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
     
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <noreply@aleksfilmore.com>',
+      from: 'Aleks Filmore <aleksfilmore@gmail.com>',
       to: [email],
       subject: '🎁 Bundle Order Complete - Audiobook + Signed Copy!',
       html: `

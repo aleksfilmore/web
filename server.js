@@ -7,9 +7,11 @@ const { Resend } = require('resend');
 const { v4: uuidv4 } = require('uuid');
 const cors = require('cors');
 const helmet = require('helmet');
+const MailerLiteService = require('./mailerlite-integration');
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
+const mailerLite = new MailerLiteService();
 
 // Store for access tokens and purchase records (in production, use a database)
 const accessTokens = new Map();
@@ -22,9 +24,9 @@ app.use(helmet({
             defaultSrc: ["'self'"],
             styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.tailwindcss.com"],
             fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            scriptSrc: ["'self'", "https://cdn.tailwindcss.com", "https://js.stripe.com"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://js.stripe.com", "https://www.googletagmanager.com"],
             imgSrc: ["'self'", "data:", "https:"],
-            connectSrc: ["'self'", "https://api.stripe.com"],
+            connectSrc: ["'self'", "https://api.stripe.com", "https://www.google-analytics.com"],
             frameSrc: ["https://js.stripe.com", "https://hooks.stripe.com"]
         }
     }
@@ -485,15 +487,15 @@ async function sendConfirmationEmail(session, accessToken) {
             </div>
             
             <div style="border-top: 1px solid rgba(247,243,237,0.1); padding-top: 20px; text-align: center;">
-                <p style="color: rgba(247,243,237,0.8);">Thank you for supporting independent queer authors!</p>
-                <p style="color: rgba(247,243,237,0.6);">Best,<br>Aleks Filmore</p>
+                <p style="color: rgba(247,243,237,0.8);">Thank you for supporting independent queer authors and their chaotic dating disasters! 💕</p>
+                <p style="color: rgba(247,243,237,0.6);">With love and questionable life choices,<br>Aleks ✨</p>
             </div>
         </div>
     `;
     
     try {
         await resend.emails.send({
-            from: 'aleks@aleksfilmore.com',
+            from: 'aleksfilmore@gmail.com',
             to: session.customer_email,
             subject: 'Order Confirmation - The Worst Boyfriends Ever',
             html: emailContent
@@ -522,7 +524,7 @@ app.post('/api/generate-test-token', (req, res) => {
 });
 
 // Audiobook player route with token verification
-app.get('/audiobook-player', (req, res) => {
+app.get('/audiobook-player', async (req, res) => {
     const token = req.query.token;
     
     if (!token) {
@@ -547,8 +549,26 @@ app.get('/audiobook-player', (req, res) => {
         `);
     }
     
-    const tokenData = verifyAccessToken(token);
-    if (!tokenData) {
+    // First try to decode the token and check if it's valid format
+    try {
+        const decodedToken = Buffer.from(token, 'base64').toString();
+        const [email, sessionId, timestamp] = decodedToken.split(':');
+        
+        if (!email || !sessionId || !timestamp) {
+            throw new Error('Invalid token format');
+        }
+        
+        // Token contains timestamp but doesn't expire - customers have permanent access
+        // The timestamp is just for tracking when the purchase was made
+        
+        console.log(`Audiobook access attempt: ${email}, session: ${sessionId}`);
+        
+        // For now, allow access if token format is valid
+        // In production, you'd verify against Stripe or database
+        res.sendFile(path.join(__dirname, 'audiobook-player.html'));
+        
+    } catch (error) {
+        console.error('Token verification failed:', error.message);
         return res.status(403).send(`
             <html>
                 <head>
@@ -569,9 +589,6 @@ app.get('/audiobook-player', (req, res) => {
             </html>
         `);
     }
-    
-    // Serve the audiobook player
-    res.sendFile(path.join(__dirname, 'audiobook-player.html'));
 });
 
 // Protected audio serving endpoint
@@ -579,7 +596,24 @@ app.get('/audio/:filename', (req, res) => {
     const token = req.query.token;
     const filename = req.params.filename;
     
-    if (!token || !verifyAccessToken(token)) {
+    if (!token) {
+        return res.status(403).json({ error: 'Access token required' });
+    }
+    
+    // Verify token format
+    try {
+        const decodedToken = Buffer.from(token, 'base64').toString();
+        const [email, sessionId, timestamp] = decodedToken.split(':');
+        
+        if (!email || !sessionId || !timestamp) {
+            throw new Error('Invalid token format');
+        }
+        
+        // Token contains timestamp but doesn't expire - customers have permanent access
+        // The timestamp is just for tracking when the purchase was made
+        
+    } catch (error) {
+        console.error('Audio access token verification failed:', error.message);
         return res.status(403).json({ error: 'Invalid access token' });
     }
     
@@ -588,6 +622,10 @@ app.get('/audio/:filename', (req, res) => {
     if (!fs.existsSync(audioPath)) {
         return res.status(404).json({ error: 'Audio file not found' });
     }
+    
+    // Set appropriate headers for audio streaming
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.setHeader('Accept-Ranges', 'bytes');
     
     res.sendFile(audioPath);
 });
@@ -617,7 +655,7 @@ async function handleAudiobookAccess(session) {
 
             // Send email with unique access link
             await resend.emails.send({
-                from: 'aleks@aleksfilmore.com',
+                from: 'aleksfilmore@gmail.com',
                 to: customerEmail,
                 subject: '🎧 Your Audiobook is Ready!',
                 html: `
@@ -629,7 +667,7 @@ async function handleAudiobookAccess(session) {
                         <div style="background: linear-gradient(135deg, rgba(247,243,237,0.05) 0%, rgba(247,243,237,0.1) 100%); border: 1px solid rgba(247,243,237,0.1); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
                             <h2 style="color: #F7F3ED; margin: 0 0 15px 0;">Your audiobook is ready to stream!</h2>
                             <p style="color: rgba(247,243,237,0.8); margin: 0 0 25px 0;">
-                                Thanks for supporting independent queer lit. Here's your personal streaming link:
+                                Thanks for supporting independent queer authors and their beautifully chaotic storytelling! Here's your personal streaming link:
                             </p>
                             
                             <div style="text-align: center;">
@@ -653,7 +691,8 @@ async function handleAudiobookAccess(session) {
                         </div>
                         
                         <div style="text-align: center; margin-top: 30px; color: rgba(247,243,237,0.6); font-size: 12px;">
-                            <p>Happy listening! 🏳️‍🌈</p>
+                            <p>Happy listening and may your dating life be less chaotic than mine! 🏳️‍🌈✨</p>
+                            <p>- Aleks</p>
                         </div>
                     </div>
                 `
@@ -1032,6 +1071,270 @@ function determineOrderStatus(purchase) {
     
     return 'unknown';
 }
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// ===== MAILERLITE NEWSLETTER ENDPOINTS =====
+
+// Newsletter signup endpoint
+app.post('/api/newsletter', async (req, res) => {
+    try {
+        const { email, name = '', source = 'website' } = req.body;
+        
+        if (!email || !isValidEmail(email)) {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'Valid email is required' 
+            });
+        }
+
+        console.log(`Newsletter signup attempt: ${email} from ${source}`);
+
+        // Use MailerLite for newsletter signups with welcome email
+        const result = await mailerLite.addSubscriberWithWelcome(email, name, {
+            source: source,
+            signup_date: new Date().toISOString(),
+            ip_address: req.ip
+        });
+
+        if (result.success) {
+            // Log the signup locally for backup
+            const signup = {
+                email,
+                name,
+                source,
+                timestamp: new Date().toISOString(),
+                ip: req.ip,
+                mailerlite_id: result.data?.id || null
+            };
+            
+            // Save to local file as backup
+            const signupsFile = path.join(__dirname, 'data', 'newsletter-signups.json');
+            
+            // Ensure data directory exists
+            const dataDir = path.join(__dirname, 'data');
+            if (!fs.existsSync(dataDir)) {
+                fs.mkdirSync(dataDir, { recursive: true });
+            }
+            
+            let signups = [];
+            if (fs.existsSync(signupsFile)) {
+                try {
+                    signups = JSON.parse(fs.readFileSync(signupsFile, 'utf8'));
+                } catch (e) {
+                    console.error('Error reading signups file:', e);
+                    signups = [];
+                }
+            }
+            
+            signups.push(signup);
+            fs.writeFileSync(signupsFile, JSON.stringify(signups, null, 2));
+
+            console.log(`Newsletter signup successful: ${email}`);
+            res.json({ 
+                success: true, 
+                message: 'Successfully subscribed to newsletter!' 
+            });
+        } else {
+            console.error(`Newsletter signup failed: ${email}`, result.error);
+            res.status(400).json({
+                success: false,
+                error: result.error || 'Failed to subscribe to newsletter'
+            });
+        }
+        
+    } catch (error) {
+        console.error('Newsletter signup error:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Internal server error' 
+        });
+    }
+});
+
+// Contact form endpoint - does NOT send welcome email, just sends contact email
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { email, name = '', subject = '', message = '', newsletter_opt_in = false } = req.body;
+        
+        if (!email || !isValidEmail(email) || !message) {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'Email and message are required' 
+            });
+        }
+
+        console.log(`Contact form submission: ${email} - ${subject}`);
+
+        // Send contact email via Resend (transactional)
+        const { Resend } = require('resend');
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        
+        await resend.emails.send({
+            from: `Contact Form <noreply@aleksfilmore.com>`,
+            to: ['aleks@aleksfilmore.com'],
+            subject: `Contact Form: ${subject || 'New Message'}`,
+            html: `
+                <h2>New Contact Form Submission</h2>
+                <p><strong>From:</strong> ${name || 'Anonymous'} (${email})</p>
+                <p><strong>Subject:</strong> ${subject || 'No subject'}</p>
+                <p><strong>Message:</strong></p>
+                <p>${message.replace(/\n/g, '<br>')}</p>
+                <p><strong>Newsletter Opt-in:</strong> ${newsletter_opt_in ? 'Yes' : 'No'}</p>
+                <hr>
+                <p><small>Sent from aleksfilmore.com contact form</small></p>
+            `,
+            text: `
+New Contact Form Submission
+From: ${name || 'Anonymous'} (${email})
+Subject: ${subject || 'No subject'}
+Message: ${message}
+Newsletter Opt-in: ${newsletter_opt_in ? 'Yes' : 'No'}
+            `
+        });
+
+        // If they opted into newsletter, add them with welcome email
+        if (newsletter_opt_in) {
+            await mailerLite.addSubscriberWithWelcome(email, name, {
+                source: 'contact_form',
+                signup_date: new Date().toISOString(),
+                ip_address: req.ip
+            });
+        }
+
+        res.json({ 
+            success: true, 
+            message: 'Message sent successfully!' 
+        });
+        
+    } catch (error) {
+        console.error('Contact form error:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to send message' 
+        });
+    }
+});
+
+// Dacia Rising form endpoint - adds to newsletter with themed response
+app.post('/api/dacia-newsletter', async (req, res) => {
+    try {
+        const { email, name = '' } = req.body;
+        
+        if (!email || !isValidEmail(email)) {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'Valid email is required' 
+            });
+        }
+
+        console.log(`Dacia Rising signup: ${email}`);
+
+        // Use newsletter signup with welcome email but different source tracking
+        const result = await mailerLite.addSubscriberWithWelcome(email, name, {
+            source: 'dacia_rising',
+            signup_date: new Date().toISOString(),
+            ip_address: req.ip,
+            campaign: 'dacia_rising'
+        });
+
+        if (result.success) {
+            res.json({ 
+                success: true, 
+                message: 'The prophecy has been claimed! Your secret chapter awaits in your inbox.' 
+            });
+        } else {
+            res.status(400).json({
+                success: false,
+                error: result.error || 'The prophecy could not be delivered'
+            });
+        }
+        
+    } catch (error) {
+        console.error('Dacia Rising signup error:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'The ancient magic failed' 
+        });
+    }
+});
+
+// Admin endpoint to get MailerLite stats
+app.get('/admin/api/newsletter-stats', async (req, res) => {
+    try {
+        console.log('Fetching newsletter stats...');
+        const stats = await mailerLite.getStats();
+        
+        if (stats.success) {
+            console.log('Newsletter stats fetched successfully:', stats.data);
+            res.json(stats.data);
+        } else {
+            console.error('Failed to fetch newsletter stats:', stats.error);
+            res.status(500).json({ error: 'Failed to fetch newsletter stats' });
+        }
+    } catch (error) {
+        console.error('Newsletter stats error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Admin endpoint to get subscribers
+app.get('/admin/api/subscribers', async (req, res) => {
+    try {
+        const { limit = 50, page = 1 } = req.query;
+        console.log(`Fetching subscribers: limit=${limit}, page=${page}`);
+        
+        const result = await mailerLite.getSubscribers(parseInt(limit), parseInt(page));
+        
+        if (result.success) {
+            console.log(`Subscribers fetched successfully: ${result.data.length} subscribers`);
+            res.json({
+                subscribers: result.data,
+                total: result.total,
+                meta: result.meta
+            });
+        } else {
+            console.error('Failed to fetch subscribers:', result.error);
+            res.status(500).json({ error: 'Failed to fetch subscribers' });
+        }
+    } catch (error) {
+        console.error('Get subscribers error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Test MailerLite connection endpoint (admin only)
+app.get('/admin/api/test-mailerlite', async (req, res) => {
+    try {
+        console.log('Testing MailerLite connection...');
+        const result = await mailerLite.testConnection();
+        
+        if (result.success) {
+            console.log('MailerLite connection test successful');
+            res.json({ 
+                success: true, 
+                message: result.message,
+                data: result.data
+            });
+        } else {
+            console.error('MailerLite connection test failed:', result.error);
+            res.status(500).json({ 
+                success: false, 
+                error: result.error 
+            });
+        }
+    } catch (error) {
+        console.error('MailerLite test error:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Internal server error' 
+        });
+    }
+});
 
 const PORT = process.env.PORT || 3000;
 

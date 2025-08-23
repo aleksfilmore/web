@@ -6,6 +6,16 @@
     <title>The Red-Flag Field Guide: 25 Warning Signs I Wish I'd Spotted Sooner | Aleks Filmore</title>
     <meta name="description" content="A survival guide to modern dating red flags, from love-bombing to weaponized therapy speak. Real examples and recovery tips from someone who learned the hard way.">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W9B5W1241H');
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,6 +106,69 @@
         .icon {
             width: 1.25rem;
             height: 1.25rem;
+        }
+
+        /* Share buttons */
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-family: var(--font-display);
+            min-width: 100px;
+            justify-content: center;
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-btn.twitter:hover {
+            background: #1a91da;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.3);
+        }
+
+        .share-btn.facebook {
+            background: #4267B2;
+            color: white;
+        }
+
+        .share-btn.facebook:hover {
+            background: #365899;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 103, 178, 0.3);
+        }
+
+        .share-btn.copy {
+            background: var(--color-charcoal);
+            color: var(--color-bone);
+            border: 2px solid var(--color-bone);
+        }
+
+        .share-btn.copy:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .share-btn.copy.copied {
+            background: var(--color-glitch-lime);
+            color: var(--color-charcoal);
+            border-color: var(--color-glitch-lime);
+        }
+
+        .share-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -296,11 +369,26 @@
                                 </a>
                             </div>
                             <div class="text-center sm:text-right">
-                                <p class="text-bone/60 text-sm mb-2">Share this guide:</p>
-                                <div class="flex gap-3 justify-center sm:justify-end">
-                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Share on Twitter">🐦 Twitter</a>
-                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Share on Facebook">📘 Facebook</a>
-                                    <a href="#" class="share-btn text-bone/60 hover:text-primary" title="Copy link">🔗 Copy Link</a>
+                                <p class="text-bone/60 text-sm mb-3">Share this guide:</p>
+                                <div class="flex gap-2 justify-center sm:justify-end flex-wrap">
+                                    <a href="#" class="share-btn twitter" title="Share on Twitter">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                        </svg>
+                                        Tweet
+                                    </a>
+                                    <a href="#" class="share-btn facebook" title="Share on Facebook">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                        </svg>
+                                        Share
+                                    </a>
+                                    <a href="#" class="share-btn copy" title="Copy link">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                        </svg>
+                                        <span class="share-text">Copy</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -327,16 +415,21 @@
                 const title = document.title;
                 const url = window.location.href;
                 
-                if (this.title.includes('Twitter')) {
+                if (this.classList.contains('twitter')) {
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
-                } else if (this.title.includes('Facebook')) {
+                } else if (this.classList.contains('facebook')) {
                     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-                } else if (this.title.includes('Copy')) {
+                } else if (this.classList.contains('copy')) {
                     navigator.clipboard.writeText(url);
-                    this.innerHTML = '✅ Copied!';
-                    setTimeout(() => {
-                        this.innerHTML = '🔗 Copy Link';
-                    }, 2000);
+                    this.classList.add('copied');
+                    const shareText = this.querySelector('.share-text');
+                    if (shareText) {
+                        shareText.textContent = 'Copied!';
+                        setTimeout(() => {
+                            this.classList.remove('copied');
+                            shareText.textContent = 'Copy';
+                        }, 2000);
+                    }
                 }
             });
         });
