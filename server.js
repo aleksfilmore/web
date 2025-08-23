@@ -201,7 +201,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
                 {
                     shipping_rate_data: {
                         type: 'fixed_amount',
-                        fixed_amount: { amount: 500, currency: 'eur' }, // €5 shipping
+                        fixed_amount: { amount: 500, currency: 'usd' }, // $5 shipping
                         display_name: 'Standard Shipping',
                         delivery_estimate: {
                             minimum: { unit: 'business_day', value: 5 },
@@ -212,7 +212,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
                 {
                     shipping_rate_data: {
                         type: 'fixed_amount',
-                        fixed_amount: { amount: 1500, currency: 'eur' }, // €15 express
+                        fixed_amount: { amount: 1500, currency: 'usd' }, // $15 express
                         display_name: 'Express Shipping',
                         delivery_estimate: {
                             minimum: { unit: 'business_day', value: 2 },
@@ -447,7 +447,7 @@ async function sendConfirmationEmail(session, accessToken) {
     
     items.forEach(item => {
         const product = PRODUCTS[item.id];
-        emailContent += `<li>${product.name} x ${item.quantity} - €${(product.price * item.quantity).toFixed(2)}</li>`;
+        emailContent += `<li>${product.name} x ${item.quantity} - $${(product.price * item.quantity).toFixed(2)}</li>`;
     });
     
     emailContent += `</ul>`;

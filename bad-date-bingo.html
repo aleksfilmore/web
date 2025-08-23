@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Bad Date Bingo | Free Game by Aleks Filmore | The Worst Boyfriends Ever</title>
+    <meta name="description" content="Play Bad Date Bingo! Click the cringe-worthy dating situations you've experienced. Get BINGO for a 20% discount on 'The Worst Boyfriends Ever' audiobook and book.">
+    <meta name="keywords" content="Bad Date Bingo, dating game, Aleks Filmore, The Worst Boyfriends Ever, dating disasters, free game, LGBTQ dating">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Bad Date Bingo | Free Game by Aleks Filmore">
+    <meta property="og:description" content="Play Bad Date Bingo! Click the cringe-worthy situations you've experienced. Get BINGO for a 20% discount!">
+    <meta property="og:image" content="https://aleksfilmore.com/TWBE 1.png">
+    <meta property="og:url" content="https://aleksfilmore.com/bad-date-bingo.html">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Bad Date Bingo | Free Game by Aleks Filmore">
+    <meta property="twitter:description" content="Play Bad Date Bingo! Click the cringe-worthy situations you've experienced. Get BINGO for a 20% discount!">
+    <meta property="twitter:image" content="https://aleksfilmore.com/TWBE 1.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/premium-icons.js" defer></script>
+    
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C8FF00;
+            --color-dusty-blush: #F1B7C4;
+        }
+
+        body {
+            background: var(--color-charcoal);
+            color: var(--color-bone);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            max-width: min(90vw, 500px);
+            margin: 0 auto;
+            background: rgba(247, 243, 237, 0.1);
+            padding: 16px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 59, 59, 0.3);
+        }
+
+        .bingo-cell {
+            aspect-ratio: 1;
+            background: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: clamp(8px, 2.5vw, 12px);
+            line-height: 1.1;
+            padding: clamp(2px, 1vw, 6px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            text-overflow: ellipsis;
+            min-height: 0;
+        }
+
+        .bingo-cell:hover {
+            background: rgba(255, 59, 59, 0.1);
+            border-color: var(--color-red-flag);
+            transform: scale(1.05);
+        }
+
+        .bingo-cell.selected {
+            background: linear-gradient(135deg, var(--color-red-flag), #e53935);
+            border-color: var(--color-red-flag);
+            color: white;
+            font-weight: 600;
+        }
+
+        .bingo-cell.free {
+            background: linear-gradient(135deg, var(--color-glitch-lime), #9333ea);
+            color: var(--color-charcoal);
+            font-weight: 700;
+            cursor: default;
+        }
+
+        .bingo-cell.free:hover {
+            transform: none;
+        }
+
+        .bingo-winner {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 640px) {
+            .bingo-cell {
+                font-size: clamp(7px, 2.2vw, 10px);
+                padding: clamp(1px, 0.8vw, 4px);
+                border-radius: 6px;
+            }
+            
+            .bingo-card {
+                gap: 1px;
+                padding: 8px;
+                max-width: 95vw;
+                margin: 0 auto;
+            }
+
+            .container {
+                padding: 0 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bingo-cell {
+                font-size: clamp(6px, 2vw, 9px);
+                padding: clamp(1px, 0.5vw, 3px);
+            }
+            
+            .bingo-card {
+                gap: 1px;
+                padding: 6px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .bingo-cell {
+                font-size: clamp(5px, 1.8vw, 8px);
+                line-height: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-sm hover:text-red-flag transition-colors">← Back to Site</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20 pb-16">
+        <!-- Hero Section -->
+        <section class="py-12 text-center">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <svg class="premium-icon xl colored-red floating inline-block mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Bad Date Bingo
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-80 max-w-2xl mx-auto">
+                    Click the dating disasters you've survived. Get <span class="text-glitch-lime font-semibold">BINGO</span> for a special surprise!
+                </p>
+                <p class="text-lg mb-12 opacity-60">
+                    Inspired by "The Worst Boyfriends Ever" - because we've all been there.
+                </p>
+            </div>
+        </section>
+
+        <!-- Bingo Game -->
+        <section class="py-8">
+            <div class="container mx-auto px-4 max-w-2xl">
+                
+                <!-- Instructions -->
+                <div class="bg-white/5 rounded-lg p-6 mb-8 text-center">
+                    <h3 class="text-xl font-semibold mb-4">How to Play</h3>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                            <span>Click situations you've experienced</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                            <span>Get 5 in a row (any direction)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                            <span>Win 20% off the book!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Display -->
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center gap-4 bg-white/5 rounded-lg px-6 py-3">
+                        <div>
+                            <span class="text-sm opacity-60">Selected:</span>
+                            <span id="score" class="font-bold text-red-flag text-lg ml-2">0</span>
+                        </div>
+                        <div class="w-px h-6 bg-white/20"></div>
+                        <button id="new-card" class="text-sm text-glitch-lime hover:underline">New Card</button>
+                    </div>
+                </div>
+
+                <!-- Bingo Card -->
+                <div id="bingo-card" class="bingo-card mb-8">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <a href="/shop.html" class="inline-flex items-center bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                        <svg class="premium-icon hero mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        Get the Full Story - $7.99
+                    </a>
+                    <p class="text-sm opacity-60 mt-3">25 chapters of dating disasters that'll make you feel better about your choices</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BINGO Success Modal -->
+    <div id="bingo-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-charcoal border border-red-flag/50 rounded-2xl p-8 max-w-md w-full text-center relative">
+                <button id="close-modal" class="absolute top-4 right-4 text-bone/60 hover:text-red-flag text-2xl">&times;</button>
+                
+                <div class="mb-6">
+                    <svg class="premium-icon xl colored-lime mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 2v4l-3 2v4h18V8l-3-2V2"/>
+                        <path d="M16 4V2"/>
+                        <path d="M12 4V2"/>
+                        <path d="M8 4V2"/>
+                        <path d="M8 22l8-10H8l8-10"/>
+                    </svg>
+                    <h2 class="text-3xl font-bold text-glitch-lime mb-2">BINGO!</h2>
+                    <p class="text-xl mb-4">You've survived enough dating disasters to earn this...</p>
+                </div>
+
+                <div class="bg-red-500/20 border border-red-flag/50 rounded-lg p-6 mb-6">
+                    <h3 class="text-2xl font-bold text-red-flag mb-2">20% OFF AUDIOBOOK</h3>
+                    <p class="text-lg mb-4">Your battle scars have earned you a discount on the audiobook!</p>
+                    <div class="bg-charcoal/80 rounded-lg p-3 font-mono text-glitch-lime text-lg font-bold">
+                        Code: <span id="discount-code">BINGO20</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <a href="/audiobook.html?discount=BINGO20" class="block bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
+                        Get Audiobook - $6.39
+                    </a>
+                    <button id="share-bingo" class="block w-full bg-transparent border border-glitch-lime text-glitch-lime hover:bg-glitch-lime hover:text-charcoal py-3 px-6 rounded-lg font-semibold transition-colors">
+                        Share Your BINGO
+                    </button>
+                </div>
+                
+                <p class="text-xs opacity-60 mt-4">Valid for 24 hours. You've earned this.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bad date scenarios - 50+ different options
+        const badDateScenarios = [
+            "3+ hours late",
+            "Brought their ex as 'friend'",
+            "On phone entire date",
+            "Asked you to pay for everything",
+            "Only talked about themselves",
+            "Revealed they're married",
+            "Split appetizer cost",
+            "Called you wrong name",
+            "Brought their mother",
+            "Showed up drunk/high",
+            "Wore pajamas to dinner",
+            "Argued with waiter",
+            "Asked for friend's number",
+            "Critiqued your appearance",
+            "Mansplained your job",
+            "Demanded you change clothes",
+            "Left you to pay & vanished",
+            "Brought pet uninvited",
+            "Only talked crypto",
+            "Asked to borrow money",
+            "Wore workout clothes",
+            "Checked dating apps",
+            "Brought homework",
+            "Insisted salad only",
+            "Asked about 'body count'",
+            "Compared you to ex",
+            "Took photos without asking",
+            "Wanted bank account info",
+            "Asked you to drive everywhere",
+            "Visible hygiene issues",
+            "Bragged about tax evasion",
+            "Asked if you 'put out'",
+            "Brought child unannounced",
+            "Ordered most expensive item",
+            "Dutch after ordering lobster",
+            "Asked you to pay parking",
+            "Planned wedding to you",
+            "Criticized friend group",
+            "Wanted social passwords",
+            "Wrong restaurant",
+            "Brought shopping list",
+            "Asked you to lie to parents",
+            "Delete photos of exes",
+            "Convert religions",
+            "Asked about inheritance",
+            "Brought laptop to 'work'",
+            "Cosign a loan",
+            "Demanded Netflix access",
+            "Babysit their pet",
+            "Criticized your family",
+            "Asked for apartment key",
+            "Block all male friends",
+            "Asked credit score",
+            "Brought diary to read",
+            "Fake being therapist"
+        ];
+
+        class BadDateBingo {
+            constructor() {
+                this.selectedCells = new Set();
+                this.currentCard = [];
+                this.hasWon = false;
+                this.init();
+            }
+
+            init() {
+                this.generateCard();
+                this.setupEventListeners();
+                this.updateScore();
+            }
+
+            generateCard() {
+                this.currentCard = [];
+                this.selectedCells.clear();
+                this.hasWon = false;
+                
+                // Get 24 random scenarios (25th is FREE space)
+                const scenarios = [...badDateScenarios].sort(() => Math.random() - 0.5).slice(0, 24);
+                
+                // Insert FREE space in center (position 12)
+                scenarios.splice(12, 0, "FREE SPACE");
+                this.selectedCells.add(12); // FREE space is always selected
+                
+                this.currentCard = scenarios;
+                this.renderCard();
+            }
+
+            renderCard() {
+                const cardElement = document.getElementById('bingo-card');
+                cardElement.innerHTML = '';
+                
+                this.currentCard.forEach((scenario, index) => {
+                    const cell = document.createElement('div');
+                    cell.className = 'bingo-cell';
+                    cell.textContent = scenario;
+                    cell.dataset.index = index;
+                    
+                    if (index === 12) { // FREE space
+                        cell.classList.add('free', 'selected');
+                    }
+                    
+                    if (this.selectedCells.has(index)) {
+                        cell.classList.add('selected');
+                    }
+                    
+                    cardElement.appendChild(cell);
+                });
+            }
+
+            setupEventListeners() {
+                document.getElementById('bingo-card').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('bingo-cell') && !e.target.classList.contains('free')) {
+                        this.toggleCell(parseInt(e.target.dataset.index));
+                    }
+                });
+
+                document.getElementById('new-card').addEventListener('click', () => {
+                    this.generateCard();
+                    this.updateScore();
+                });
+
+                document.getElementById('close-modal').addEventListener('click', () => {
+                    document.getElementById('bingo-modal').classList.add('hidden');
+                });
+
+                document.getElementById('share-bingo').addEventListener('click', () => {
+                    this.shareBingo();
+                });
+            }
+
+            toggleCell(index) {
+                if (this.hasWon) return;
+                
+                const cell = document.querySelector(`[data-index="${index}"]`);
+                
+                if (this.selectedCells.has(index)) {
+                    this.selectedCells.delete(index);
+                    cell.classList.remove('selected');
+                } else {
+                    this.selectedCells.add(index);
+                    cell.classList.add('selected');
+                }
+                
+                this.updateScore();
+                this.checkForBingo();
+            }
+
+            updateScore() {
+                const score = this.selectedCells.size - 1; // -1 for FREE space
+                document.getElementById('score').textContent = score;
+            }
+
+            checkForBingo() {
+                const lines = [
+                    // Rows
+                    [0, 1, 2, 3, 4],
+                    [5, 6, 7, 8, 9],
+                    [10, 11, 12, 13, 14],
+                    [15, 16, 17, 18, 19],
+                    [20, 21, 22, 23, 24],
+                    // Columns
+                    [0, 5, 10, 15, 20],
+                    [1, 6, 11, 16, 21],
+                    [2, 7, 12, 17, 22],
+                    [3, 8, 13, 18, 23],
+                    [4, 9, 14, 19, 24],
+                    // Diagonals
+                    [0, 6, 12, 18, 24],
+                    [4, 8, 12, 16, 20]
+                ];
+
+                for (const line of lines) {
+                    if (line.every(index => this.selectedCells.has(index))) {
+                        this.triggerBingo(line);
+                        return;
+                    }
+                }
+            }
+
+            triggerBingo(winningLine) {
+                this.hasWon = true;
+                
+                // Highlight winning line
+                winningLine.forEach(index => {
+                    const cell = document.querySelector(`[data-index="${index}"]`);
+                    cell.classList.add('bingo-winner');
+                });
+
+                // Show modal after brief delay
+                setTimeout(() => {
+                    document.getElementById('bingo-modal').classList.remove('hidden');
+                }, 1000);
+
+                // Track analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'bingo_win', {
+                        'event_category': 'game',
+                        'event_label': 'bad_date_bingo',
+                        'value': this.selectedCells.size - 1
+                    });
+                }
+            }
+
+            shareBingo() {
+                const text = `I just got BINGO on Bad Date Bingo! 😅 Turns out I've survived ${this.selectedCells.size - 1} dating disasters. Play the game and get 20% off "The Worst Boyfriends Ever" by @aleksfilmore`;
+                const url = `${window.location.origin}/bad-date-bingo.html`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Bad Date Bingo - I Won!',
+                        text: text,
+                        url: url
+                    });
+                } else {
+                    // Fallback: copy to clipboard
+                    navigator.clipboard.writeText(`${text} ${url}`).then(() => {
+                        alert('Shared text copied to clipboard!');
+                    });
+                }
+            }
+        }
+
+        // Initialize game when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new BadDateBingo();
+        });
+    </script>
+</body>
+</html>

@@ -4,10 +4,12 @@
   "description": "Author website with e-commerce for audiobooks and signed copies",
   "main": "index.html",
   "scripts": {
-    "start": "netlify dev",
+    "start": "node server.js",
     "dev": "netlify dev",
-    "build": "echo 'Static site - no build process needed'",
-    "deploy": "netlify deploy --prod",
+    "build": "node build-css.js",
+    "build-css": "node build-css.js",
+    "watch-css": "node build-css.js --watch",
+    "deploy": "npm run build && netlify deploy --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -33,10 +35,24 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
     "netlify-cli": "^17.0.0",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12"
   },
   "engines": {
     "node": ">=16.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksfilmore/web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aleksfilmore/web/issues"
+  },
+  "homepage": "https://github.com/aleksfilmore/web#readme"
 }

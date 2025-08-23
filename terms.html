@@ -15,14 +15,8 @@
     <link rel="canonical" href="https://aleksfilmore.com/terms.html">
     
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" href="/AF.png" type="image/png">
@@ -192,26 +186,43 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body class="antialiased">
 
-    <!-- Mobile-First Navigation -->
+                    <!-- Standardized Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
                 <div class="font-display font-bold text-lg sm:text-xl">
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
                 </div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                     <a href="books.html" class="nav-link hover-underline-slide">Books</a>
                     <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
                     <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
-                    <a href="blog.html" class="nav-link hover-underline-slide">Blog</a>
                     <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
                     <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
                 </div>
+                
+                <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -226,12 +237,52 @@
                 <a href="books.html" class="block text-lg nav-link">Books</a>
                 <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
                 <a href="shop.html" class="block text-lg nav-link">Shop</a>
-                <a href="blog.html" class="block text-lg nav-link">Blog</a>
                 <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
                 <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
             </div>
         </div>
     </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
@@ -277,7 +328,7 @@
                         <li><strong>Instant digital delivery</strong> via secure streaming link</li>
                         <li><strong>Lifetime access</strong> to your purchased content</li>
                         <li><strong>Multiple device compatibility</strong> (phone, tablet, computer)</li>
-                        <li><strong>Offline listening capability</strong> once downloaded</li>
+                        <li><strong>Streaming access</strong> with your personal link</li>
                         <li><strong>DRM-free content</strong> for your personal use</li>
                     </ul>
 
@@ -351,7 +402,7 @@
 
                     <ul>
                         <li><strong>Personal use license</strong> for the purchased content</li>
-                        <li><strong>Right to download and store</strong> for personal listening/reading</li>
+                        <li><strong>Right to stream and access</strong> for personal listening/reading</li>
                         <li><strong>Permission to share reasonable excerpts</strong> for review purposes</li>
                     </ul>
 
@@ -483,7 +534,11 @@
                     <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
                     <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
-                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+    </svg> TikTok</a></li>
                         <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
                     </ul>
                 </div>

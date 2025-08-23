@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Abandonment Popup Test - Aleks Filmore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/cart-abandonment.js" defer></script>
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C8FF00;
+            --color-dusty-blush: #F1B7C4;
+        }
+        
+        body {
+            background: var(--color-charcoal);
+            color: var(--color-bone);
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-8">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mb-8">Cart Abandonment Popup Test</h1>
+        <p class="text-xl mb-8 opacity-80">Test the premium cart abandonment popup with new icon system</p>
+        
+        <div class="grid gap-6 max-w-md mx-auto">
+            <button id="test-popup-no-email" class="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                <svg class="premium-icon hero inline-block mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                </svg>
+                Test Popup (No Email)
+            </button>
+            
+            <button id="test-popup-with-email" class="bg-purple-500 hover:bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                <svg class="premium-icon hero inline-block mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Test Popup (With Email)
+            </button>
+        </div>
+        
+        <div class="mt-8 p-6 bg-white/5 rounded-lg max-w-md mx-auto">
+            <h3 class="font-semibold mb-3">Premium Features to Test:</h3>
+            <ul class="text-sm space-y-2 text-left opacity-80">
+                <li>• Dark, premium aesthetic matching site</li>
+                <li>• Premium SVG icons instead of emojis</li>
+                <li>• Responsive button layout</li>
+                <li>• Premium color scheme (red-flag, glitch-lime, dusty-blush)</li>
+                <li>• Professional typography and spacing</li>
+            </ul>
+        </div>
+        
+        <a href="/test-popup.html" class="inline-block mt-6 text-glitch-lime hover:underline">
+            ← Back to Exit Intent Test
+        </a>
+    </div>
+    
+    <script>
+        // Wait for cart abandonment to be available
+        document.addEventListener('DOMContentLoaded', () => {
+            // Test without email
+            document.getElementById('test-popup-no-email').addEventListener('click', () => {
+                if (window.CartAbandonment) {
+                    const cart = new CartAbandonment();
+                    cart.showAbandonmentPopup(null);
+                } else {
+                    alert('Cart abandonment script not loaded yet. Please wait a moment and try again.');
+                }
+            });
+            
+            // Test with email
+            document.getElementById('test-popup-with-email').addEventListener('click', () => {
+                if (window.CartAbandonment) {
+                    const cart = new CartAbandonment();
+                    cart.showAbandonmentPopup('test@example.com');
+                } else {
+                    alert('Cart abandonment script not loaded yet. Please wait a moment and try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

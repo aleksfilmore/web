@@ -4,8 +4,11 @@ const path = require('path');
 
 class GoogleAnalyticsService {
     constructor() {
-        this.propertyId = process.env.GA_PROPERTY_ID || '11441857629';
-        this.measurementId = process.env.GA_MEASUREMENT_ID || 'G-W9B5W1241H';
+        this.propertyId = process.env.GA_PROPERTY_ID; // must be provided via env var
+        this.measurementId = process.env.GA_MEASUREMENT_ID; // must be provided via env var
+        if(!this.propertyId || !this.measurementId){
+            console.warn('[GA Service] GA env vars missing; analytics disabled');
+        }
         this.keyFile = process.env.GA_KEY_FILE || './google-analytics-key.json';
         this.analytics = null;
         this.initialized = false;

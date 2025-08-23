@@ -6,7 +6,7 @@
     
     <!-- Enhanced SEO Meta Tags -->
     <title>Aleks Filmore | Author of The Worst Boyfriends Ever | Queer Dating Memoir</title>
-    <meta name="description" content="Every bad date left a receipt. I kept them. Get the audiobook (€7.99), signed copies (€17.99), and bundles of Aleks Filmore's queer dating memoir directly from the author. Ships from Brussels.">
+    <meta name="description" content="Every bad date left a receipt. I kept them. Get the audiobook ($7.99), signed copies ($17.99), and bundles of Aleks Filmore's queer dating memoir directly from the author. Ships from Brussels.">
     <meta name="keywords" content="Aleks Filmore, The Worst Boyfriends Ever, queer memoir, LGBTQ author, dating memoir, audiobook, signed books, direct sales, Brussels author, queer literature">
     <meta name="author" content="Aleks Filmore">
 
@@ -29,15 +29,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" href="/AF.png" type="image/png">
@@ -857,27 +851,53 @@
             }
         }
     </style>
+
+    <!-- Optimization Scripts -->
+    <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/image-optimizer.js" defer></script>
+    <script src="/js/social-proof.js" defer></script>
+    <script src="/js/exit-intent.js" defer></script>
+    <script src="/js/trust-badges.js" defer></script>
+    <script src="/js/analytics-enhanced.js" defer></script>
+    <script src="/js/structured-data.js" defer></script>
+    <script src="/js/cart-abandonment.js" defer></script>
+    <script src="/js/mobile-cta.js" defer></script>
 </head>
 <body class="antialiased">
 
-    <!-- Mobile-First Navigation -->
+        <!-- Standardized Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
                 <div class="font-display font-bold text-lg sm:text-xl">
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
                 </div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                     <a href="books.html" class="nav-link hover-underline-slide">Books</a>
                     <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
                     <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
                     <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
                     <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
                     <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
-                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
                 </div>
+                
+                <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -893,12 +913,51 @@
                 <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
                 <a href="shop.html" class="block text-lg nav-link">Shop</a>
                 <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
                 <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
                 <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
-                <a href="midway.html" class="block text-sm nav-link opacity-50">🎪 Hall of Red Flags</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
             </div>
         </div>
     </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <!-- Sticky CTA Bar -->
     <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 bg-primary text-charcoal px-4 py-3 z-40 transform translate-y-full transition-transform duration-300 ease-in-out">
@@ -929,12 +988,19 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center max-w-2xl mx-auto">
                         <a href="shop.html" class="btn-primary group text-lg font-semibold">
-                            <span class="hero-btn-icon">📚</span>
+                            <svg class="hero-btn-icon premium-icon hero" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
                             Get the Book
                             <span class="hero-btn-arrow">→</span>
                         </a>
                         <a href="audiobook.html" class="btn-secondary group text-lg">
-                            <span class="hero-btn-icon">🎧</span>
+                            <svg class="hero-btn-icon premium-icon hero" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18V5l12-2v13"/>
+                                <circle cx="6" cy="18" r="3"/>
+                                <circle cx="18" cy="16" r="3"/>
+                            </svg>
                             Hear a 60-sec Sample
                             <span class="hero-btn-arrow">→</span>
                         </a>
@@ -1093,10 +1159,11 @@
                             
                             <!-- Book Image -->
                             <div class="lg:w-1/2 text-center lg:text-left relative z-10">
-                                <img src="TWBE 1.png" 
+                                <img src="/TWBE 1.png" 
                                      alt="The Worst Boyfriends Ever - 3D Book Mockup" 
                                      class="max-w-full h-auto mx-auto lg:mx-0 floating-element max-h-96 lg:max-h-none lg:transform lg:-rotate-2"
-                                     loading="eager">
+                                     loading="eager"
+                                     onerror="this.src='/public/TWBE 1.png'; this.onerror=null;">
                             </div>
                             
                             <!-- Book Info - Positioned as emerging page -->
@@ -1180,7 +1247,7 @@
                         
                         <!-- Audiobook Card -->
                         <div class="shop-card floating-element">
-                            <div class="price-badge">€7.99</div>
+                            <div class="price-badge">$7.99</div>
                             <div>
                                 <div class="shop-card-icon">
                                     <svg class="icon-xl text-glitch-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1204,7 +1271,7 @@
 
                         <!-- Signed Book Card -->
                         <div class="shop-card floating-element" style="animation-delay: 0.2s;">
-                            <div class="price-badge">€17.99</div>
+                            <div class="price-badge">$17.99</div>
                             <div>
                                 <div class="shop-card-icon">
                                     <svg class="icon-xl text-dusty-blush" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1228,7 +1295,7 @@
 
                         <!-- Bundle Card -->
                         <div class="shop-card floating-element sm:col-span-2 lg:col-span-1" style="animation-delay: 0.4s;">
-                            <div class="price-badge">€22.99</div>
+                            <div class="price-badge">$22.99</div>
                             <div>
                                 <div class="shop-card-icon">
                                     <svg class="icon-xl text-red-flag" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1240,7 +1307,7 @@
                                     Both formats. Maximum chaos. Best value.
                                 </p>
                                 <div class="space-y-1 mb-4">
-                                    <div class="feature-tag">Save €2.99</div>
+                                    <div class="feature-tag">Save $2.99</div>
                                     <div class="feature-tag">Everything Included</div>
                                     <div class="feature-tag">Ultimate Fan</div>
                                 </div>
@@ -1674,6 +1741,12 @@
         window.addEventListener('scroll', handleStickyCTA);
         window.addEventListener('resize', handleStickyCTA);
     </script>
+
+    <!-- Enhanced Features Scripts -->
+    <script src="/js/social-proof.js"></script>
+    <script src="/js/exit-intent.js"></script>
+    <script src="/js/trust-badges.js"></script>
+    <script src="/js/analytics-enhanced.js"></script>
 
     <style>
         .nav-hidden {

@@ -11,7 +11,10 @@ exports.handler = async (event, context) => {
     
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
-        console.log('❌ Method not allowed:', event.httpMethod);
+        console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Method not allowed:', event.httpMethod);
         return {
             statusCode: 405,
             body: JSON.stringify({ error: 'Method not allowed' })
@@ -42,7 +45,10 @@ exports.handler = async (event, context) => {
             body = JSON.stringify(body);
             console.log('Converted object body to string');
         } else {
-            console.log('❌ Invalid body type:', typeof body);
+            console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Invalid body type:', typeof body);
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: 'Invalid request body' })
@@ -85,30 +91,45 @@ exports.handler = async (event, context) => {
         try {
             // Primary attempt with current body
             stripeEvent = stripe.webhooks.constructEvent(body, sig, webhookSecret);
-            console.log('✅ Webhook signature verified with current body');
+            console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Webhook signature verified with current body');
         } catch (primaryErr) {
-            console.log('❌ Primary verification failed:', primaryErr.message);
+            console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Primary verification failed:', primaryErr.message);
             
             // Try with raw event body if different
             if (event.body !== body) {
                 try {
                     console.log('Trying with original event body...');
                     stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret);
-                    console.log('✅ Webhook signature verified with original body');
+                    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Webhook signature verified with original body');
                 } catch (secondaryErr) {
-                    console.log('❌ Secondary verification failed:', secondaryErr.message);
+                    console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Secondary verification failed:', secondaryErr.message);
                     throw primaryErr; // Throw the original error
                 }
             } else {
                 throw primaryErr;
             }
         }
-        console.log('✅ Webhook signature verified');
+        console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Webhook signature verified');
         console.log('Event type:', stripeEvent.type);
         console.log('Event ID:', stripeEvent.id);
         
     } catch (err) {
-        console.error('❌ Webhook verification failed:', err.message);
+        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Webhook verification failed:', err.message);
         console.error('Full error:', err);
         
         // Enhanced debugging for signature issues
@@ -149,7 +170,10 @@ exports.handler = async (event, context) => {
     
     // Process the webhook event
     try {
-        console.log('📧 Processing webhook event...');
+        console.log('<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </svg> Processing webhook event...');
         
         switch (stripeEvent.type) {
             case 'checkout.session.completed':
@@ -159,7 +183,9 @@ exports.handler = async (event, context) => {
                 console.log(`ℹ️ Unhandled event type: ${stripeEvent.type}`);
         }
         
-        console.log('✅ Webhook processed successfully');
+        console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Webhook processed successfully');
         
         return {
             statusCode: 200,
@@ -175,7 +201,10 @@ exports.handler = async (event, context) => {
         };
         
     } catch (error) {
-        console.error('❌ Error processing webhook:', error);
+        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Error processing webhook:', error);
         
         // Still return 200 to prevent Stripe retries, but log the error
         return {
@@ -199,15 +228,25 @@ async function handleCheckoutSessionCompleted(session) {
     
     const customerEmail = session.customer_details?.email || session.customer_email;
     console.log('👤 Customer email:', customerEmail);
-    console.log('💰 Amount:', session.amount_total / 100, session.currency);
-    console.log('✅ Payment status:', session.payment_status);
+    console.log('<svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+        <path d="M12 18V6"/>
+    </svg> Amount:', session.amount_total / 100, session.currency);
+    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Payment status:', session.payment_status);
     
     if (!customerEmail) {
         throw new Error('No customer email found in session');
     }
     
     if (session.payment_status !== 'paid') {
-        console.log('⚠️ Payment not completed, skipping email');
+        console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> Payment not completed, skipping email');
         return;
     }
     
@@ -227,7 +266,9 @@ async function handleCheckoutSessionCompleted(session) {
     // Send audiobook access email
     await sendAudiobookAccessEmail(customerEmail, accessToken, session);
     
-    console.log('✅ Checkout session processing completed');
+    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Checkout session processing completed');
 }
 
 function generateAccessToken(email, sessionId) {
@@ -260,7 +301,11 @@ async function checkForAudiobookAccess(session) {
         return hasAudiobook;
         
     } catch (error) {
-        console.error('⚠️ Error checking line items:', error);
+        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> Error checking line items:', error);
         // Default to true to ensure customers get access
         return true;
     }
@@ -306,7 +351,10 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
             </div>
             
             <div style="text-align: center; margin-top: 30px; color: rgba(247,243,237,0.6); font-size: 12px;">
-                <p>Happy listening! 🏳️‍🌈</p>
+                <p>Happy listening! <svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+        <line x1="4" y1="22" x2="4" y2="15"/>
+    </svg></p>
                 <p style="margin: 0;">- Aleks</p>
             </div>
         </div>
@@ -322,10 +370,15 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
             html: emailContent
         });
         
-        console.log(`✅ Audiobook access email sent to ${customerEmail}`);
+        console.log(`<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Audiobook access email sent to ${customerEmail}`);
         
     } catch (error) {
-        console.error('❌ Failed to send email:', error);
+        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Failed to send email:', error);
         throw new Error(`Email delivery failed: ${error.message}`);
     }
 }

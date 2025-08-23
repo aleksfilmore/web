@@ -1,0 +1,94 @@
+<!-- Standardized Navigation Component -->
+<nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+    <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <div class="flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="font-display font-bold text-lg sm:text-xl">
+                <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="md:hidden">
+                <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+        <div class="px-4 py-6 space-y-4">
+            <a href="books.html" class="block text-lg nav-link">Books</a>
+            <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+            <a href="shop.html" class="block text-lg nav-link">Shop</a>
+            <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+            <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+            <a href="about.html" class="block text-lg nav-link">About</a>
+            <a href="contact.html" class="block text-lg nav-link">Contact</a>
+            <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+            <a href="midway.html" class="block text-sm nav-link opacity-50">
+                <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                    <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                    <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                    <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                    <circle cx="12" cy="12" r="2"/>
+                </svg>
+                Hall of Red Flags
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    }
+});
+</script>

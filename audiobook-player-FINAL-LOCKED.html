@@ -49,14 +49,9 @@ This is the production-ready, final version.
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -775,7 +770,7 @@ This is the production-ready, final version.
                 <p class="author-credit">Written by <span class="author-name">Aleks Filmore</span></p>
                 <p class="narrator-credit">Narrated by <span class="narrator-name">Deacon Deane</span></p>
             </div>
-            <p class="subtitle">🔥 Premium Audiobook Experience 🔥</p>
+            <p class="subtitle">🔥Premium Audiobook Experience🔥</p>
             <div class="spice-warning">
                 <span class="warning-emoji">🌶️</span>
                 <span class="warning-text">Contains brutally honest dating advice</span>

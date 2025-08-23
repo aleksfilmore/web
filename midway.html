@@ -27,15 +27,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/midway.html">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" href="/AF.png" type="image/png">
@@ -333,6 +327,7 @@
             to { opacity: 1; }
         }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body class="antialiased circus-bg">
 
@@ -344,10 +339,22 @@
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">← Back to Sanity</a>
                 </div>
                 <div class="hidden sm:block text-sm text-bone/60">
-                    🎪 Easter Egg Activated
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> Easter Egg Activated
                 </div>
                 <div class="sm:hidden text-xs text-bone/60">
-                    🎪
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg>
                 </div>
             </div>
         </div>
@@ -542,7 +549,10 @@
                         
                         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
                             <a href="shop.html" class="btn-primary">
-                                📚 Read the Full Wreckage
+                                <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg> Read the Full Wreckage
                             </a>
                         </div>
                         
@@ -562,7 +572,13 @@
         <div class="container mx-auto px-4 sm:px-6 text-center">
             <div class="max-w-2xl mx-auto">
                 <p class="text-bone/60 text-sm sm:text-base mb-2">
-                    🎪 You found the Easter egg. Now find your way out of bad dating patterns.
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> You found the Easter egg. Now find your way out of bad dating patterns.
                 </p>
                 <p class="text-bone/60 text-xs sm:text-sm">
                     &copy; 2025 Aleks Filmore. Museum curated with questionable life choices.

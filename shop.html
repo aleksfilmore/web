@@ -6,7 +6,7 @@
     
     <!-- Enhanced SEO Meta Tags -->
     <title>Shop The Worst Boyfriends Ever | Audiobook & Signed Copies | Aleks Filmore</title>
-    <meta name="description" content="Buy The Worst Boyfriends Ever audiobook (€7.99) and signed copies (€17.99) directly from author Aleks Filmore. Instant access, worldwide shipping from Brussels, exclusive bonus content.">
+    <meta name="description" content="Buy The Worst Boyfriends Ever audiobook ($7.99) and signed copies ($17.99) directly from author Aleks Filmore. Instant access, worldwide shipping from Brussels, exclusive bonus content.">
     <meta name="keywords" content="The Worst Boyfriends Ever audiobook, signed book, Aleks Filmore shop, queer memoir audiobook, dating memoir book, buy directly from author, Brussels shipping">
     <meta name="author" content="Aleks Filmore">
     
@@ -28,14 +28,8 @@
     <link rel="canonical" href="https://aleksfilmore.com/shop.html">
     
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" href="/AF.png" type="image/png">
@@ -487,7 +481,13 @@
         }
 
         .bundle-features h4::before {
-            content: '🎁';
+            content: '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20,12 20,22 4,22 4,12"/>
+        <rect width="20" height="5" x="2" y="7"/>
+        <line x1="12" y1="22" x2="12" y2="7"/>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg>';
             font-size: 1.2em;
         }
 
@@ -500,7 +500,11 @@
         }
 
         .bundle-features ul li::before {
-            content: '✨';
+            content: '<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3z"/>
+        <path d="M8 3h4l-2 5z"/>
+        <path d="M16 21h4l-2-5z"/>
+    </svg>';
             position: absolute;
             left: 0;
             color: var(--color-glitch-lime);
@@ -760,31 +764,43 @@
             50% { transform: translateY(-8px); }
         }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body class="antialiased">
 
-    <!-- Mobile-First Navigation -->
+                    <!-- Standardized Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
                 <div class="font-display font-bold text-lg sm:text-xl">
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
                 </div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                     <a href="books.html" class="nav-link hover-underline-slide">Books</a>
                     <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
                     <a href="shop.html" class="nav-link hover-underline-slide text-red-flag">Shop</a>
                     <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
                     <a href="about.html" class="nav-link hover-underline-slide">About</a>
-                    <button id="cart-btn" class="nav-link hover-underline-slide">Cart (<span id="cart-count">0</span>)</button>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
                     <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
-                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">🎪</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class="md:hidden flex items-center space-x-4">
-                    <button id="cart-btn-mobile" class="text-bone hover:text-red-flag text-sm">
-                        🛒 <span id="cart-count-mobile">0</span>
-                    </button>
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag">
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -800,12 +816,51 @@
                 <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
                 <a href="shop.html" class="block text-lg nav-link text-red-flag">Shop</a>
                 <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
                 <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
                 <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
-                <a href="midway.html" class="block text-sm nav-link opacity-50">🎪 Hall of Red Flags</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
             </div>
         </div>
     </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
@@ -860,15 +915,15 @@
                                 </p>
                                 
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
-                                    <div class="price-tag text-lg sm:text-xl">€7.99</div>
-                                    <span class="text-xs sm:text-sm text-bone/60">Instant download</span>
+                                    <div class="price-tag text-lg sm:text-xl">$7.99</div>
+                                    <span class="text-xs sm:text-sm text-bone/60">Instant access</span>
                                 </div>
 
                                 <ul class="text-xs sm:text-sm text-bone/80 mb-6 space-y-1">
                                     <li>✓ Full unabridged audiobook (7+ hours)</li>
                                     <li>✓ Exclusive bonus epilogue</li>
                                     <li>✓ Stream on your private player</li>
-                                    <li>✓ Download for offline listening</li>
+                                    <li>✓ Stream on any device</li>
                                     <li>✓ Works on all devices</li>
                                 </ul>
 
@@ -876,7 +931,7 @@
                                     class="btn-primary" 
                                     onclick="addToCart('audiobook', 'The Worst Boyfriends Ever (Audiobook)', 7.99, 'digital')"
                                 >
-                                    Add to Cart - €7.99
+                                    Add to Cart - $7.99
                                 </button>
 
                                 <!-- Trust Elements -->
@@ -912,7 +967,7 @@
                                 </p>
                                 
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
-                                    <div class="price-tag text-lg sm:text-xl">€17.99</div>
+                                    <div class="price-tag text-lg sm:text-xl">$17.99</div>
                                     <span class="text-xs sm:text-sm text-bone/60">+ shipping</span>
                                 </div>
 
@@ -928,7 +983,7 @@
                                     class="btn-primary" 
                                     onclick="addToCart('signed-book', 'The Worst Boyfriends Ever (Signed Paperback)', 17.99, 'physical')"
                                 >
-                                    Add to Cart - €17.99
+                                    Add to Cart - $17.99
                                 </button>
 
                                 <!-- Trust Elements -->
@@ -997,7 +1052,13 @@
                                     onclick="addToCart('bundle', 'Complete Bundle (Audiobook + Signed Paperback)', 22.99, 'bundle')"
                                     style="background: linear-gradient(135deg, #ff3b3b 0%, #cc2e2e 100%); box-shadow: 0 8px 32px rgba(255, 59, 59, 0.3); border: none; position: relative; z-index: 1;"
                                 >
-                                    <span class="relative z-10 font-bold">🎁 Add Bundle to Cart - €22.99</span>
+                                    <span class="relative z-10 font-bold"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20,12 20,22 4,22 4,12"/>
+        <rect width="20" height="5" x="2" y="7"/>
+        <line x1="12" y1="22" x2="12" y2="7"/>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg> Add Bundle to Cart - $22.99</span>
                                     <div class="absolute inset-0 bg-gradient-to-r from-red-flag via-red-flag/90 to-red-flag opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </button>
                             </div>
@@ -1021,7 +1082,13 @@
                         
                         <div class="product-card text-center">
                             <div class="p-4 sm:p-6">
-                                <div class="text-3xl sm:text-4xl mb-3">🎁</div>
+                                <div class="text-3xl sm:text-4xl mb-3"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20,12 20,22 4,22 4,12"/>
+        <rect width="20" height="5" x="2" y="7"/>
+        <line x1="12" y1="22" x2="12" y2="7"/>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg></div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Exclusive Content</h3>
                                 <p class="text-bone/80 text-xs sm:text-sm">
                                     Get bonus epilogue and content not available anywhere else
@@ -1041,7 +1108,11 @@
                         
                         <div class="product-card text-center sm:col-span-2 lg:col-span-1">
                             <div class="p-4 sm:p-6">
-                                <div class="text-3xl sm:text-4xl mb-3">💪</div>
+                                <div class="text-3xl sm:text-4xl mb-3"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="6"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg></div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Support Authors</h3>
                                 <p class="text-bone/80 text-xs sm:text-sm">
                                     More of your money goes directly to the author, not platforms
@@ -1055,7 +1126,11 @@
                     <div class="mt-8 sm:mt-12 max-w-2xl mx-auto">
                         <div class="product-card p-4 sm:p-6 bg-red-flag/5 border-red-flag/20">
                             <div class="text-center">
-                                <div class="text-2xl mb-2">⚠️</div>
+                                <div class="text-2xl mb-2"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg></div>
                                 <h3 class="font-display font-bold text-lg mb-2">Important: All Sales Are Final</h3>
                                 <p class="text-bone/80 text-sm mb-3">
                                     Due to the digital nature of audiobooks and personalized signing of physical books, we do not offer refunds. 
@@ -1093,7 +1168,7 @@
             <div class="border-t pt-4 mt-4">
                 <div class="flex items-center justify-between mb-4">
                     <span class="font-semibold text-lg">Total:</span>
-                    <span id="cart-total" class="font-bold text-xl text-red-flag">€0.00</span>
+                    <span id="cart-total" class="font-bold text-xl text-red-flag">$0.00</span>
                 </div>
                 
                 <div id="checkout-section">
@@ -1140,7 +1215,11 @@
                     <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
                     <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
-                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">🎵 TikTok</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+    </svg> TikTok</a></li>
                         <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
                     </ul>
                 </div>
@@ -1210,7 +1289,7 @@
             
             if (cart.length === 0) {
                 cartItems.innerHTML = '';
-                cartTotal.textContent = '€0.00';
+                cartTotal.textContent = '$0.00';
                 checkoutSection.style.display = 'none';
                 emptyCart.style.display = 'block';
                 return;
@@ -1232,14 +1311,14 @@
                                 ${[1,2,3,4,5].map(n => `<option value="${n}" ${item.quantity === n ? 'selected' : ''}>${n}</option>`).join('')}
                             </select>
                         </div>
-                        <span class="font-semibold text-sm sm:text-base">€${(item.price * item.quantity).toFixed(2)}</span>
+                        <span class="font-semibold text-sm sm:text-base">$${(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                     ${item.type === 'physical' || item.type === 'bundle' ? '<p class="text-xs text-charcoal/60 mt-1">+ shipping calculated at checkout</p>' : ''}
                 </div>
             `).join('');
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            cartTotal.textContent = `€${total.toFixed(2)}`;
+            cartTotal.textContent = `$${total.toFixed(2)}`;
         }
 
         function showCartNotification(message = 'Added to cart!') {
@@ -1390,6 +1469,12 @@
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>
+
+    <!-- Enhanced Features Scripts -->
+    <script src="/js/social-proof.js"></script>
+    <script src="/js/exit-intent.js"></script>
+    <script src="/js/trust-badges.js"></script>
+    <script src="/js/analytics-enhanced.js"></script>
 
 </body>
 </html>

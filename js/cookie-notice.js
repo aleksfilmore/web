@@ -245,14 +245,20 @@ class CookieNotice {
         if (typeof gtag === 'undefined') {
             const script = document.createElement('script');
             script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H';
+            // GA ID provided dynamically via window.GA_MEASUREMENT_ID
+            var gaId = window.GA_MEASUREMENT_ID || (script.dataset && script.dataset.gaId);
+            if(!gaId){
+                console.warn('[CookieNotice] GA ID not set; skipping analytics load');
+                return;
+            }
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
             document.head.appendChild(script);
             
             script.onload = () => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-W9B5W1241H');
+                gtag('config', gaId);
                 window.gtag = gtag;
             };
         }

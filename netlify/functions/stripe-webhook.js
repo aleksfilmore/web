@@ -178,7 +178,7 @@ async function sendAudiobookAccess(email, token, session, productName) {
                 <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8;">
                   <li>Complete audiobook narrated by me</li>
                   <li><strong>Exclusive bonus epilogue</strong> (not available anywhere else)</li>
-                  <li>High-quality audio download</li>
+                  <li>High-quality streaming audio</li>
                   <li>Lifetime access - listen anytime</li>
                 </ul>
               </div>
@@ -264,7 +264,7 @@ async function sendSignedBookConfirmation(email, session, productName) {
                 <h3 style="margin: 0 0 1rem 0; color: #C7FF41; font-size: 1.2rem;">📦 Order Details</h3>
                 <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Order #:</strong> ${orderNumber}</p>
                 <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Product:</strong> Signed Copy - The Worst Boyfriends Ever</p>
-                <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Price:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
+                <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Price:</strong> $${(session.amount_total / 100).toFixed(2)}</p>
                 ${shippingAddress ? `
                 <p style="margin: 1rem 0 0.5rem 0; line-height: 1.6;"><strong>Shipping to:</strong></p>
                 <p style="margin: 0; line-height: 1.6; color: #C7CDD4;">
@@ -382,9 +382,9 @@ async function sendBundleConfirmation(email, token, session, productName) {
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem; line-height: 1.6;">
                   <li>🎧 Complete audiobook with bonus epilogue</li>
                   <li>📚 Personally signed physical copy</li>
-                  <li>💰 €5 savings vs buying separately!</li>
+                  <li>💰 $5 savings vs buying separately!</li>
                 </ul>
-                <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Total:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
+                <p style="margin: 0.5rem 0; line-height: 1.6;"><strong>Total:</strong> $${(session.amount_total / 100).toFixed(2)}</p>
                 ${shippingAddress ? `
                 <p style="margin: 1rem 0 0.5rem 0; line-height: 1.6;"><strong>Shipping to:</strong></p>
                 <p style="margin: 0; line-height: 1.6; color: #C7CDD4;">

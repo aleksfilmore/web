@@ -5,7 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Enhanced SEO Meta Tags -->
-    <title>Secure Checkout | Aleks Filmore | Complete Your Purchase</title>
+    <title>Secure Checkout | Aleks Film                        </div>
+                    </div>
+
+                    <!-- Discount Code Section -->
+                    <div id="discount-section" class="mb-8" style="display: none;">
+               'signed-book': {
+                name: 'The Worst Boyfriends Ever (Signed Paperback)',
+                price: 17.99,
+                type: 'physical',
+                stripeUrl: 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01',
+                description: 'Personally signed paperback with handwritten note'
+            },
+            'bundle': {
+                name: 'Complete Bundle (Audiobook + Signed Paperback)',
+                price: 22.99,
+                type: 'bundle',
+                stripeUrl: 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02',
+                description: 'Both audiobook and signed paperback together'
+            }   <h3 class="font-display font-semibold text-xl mb-4"><svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+        <path d="M12 18V6"/>
+    </svg> Discount Code</h3>
+                        <div class="discount-code-container p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-semibold text-green-400"><svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 2v4l-3 2v4h18V8l-3-2V2"/>
+        <path d="M16 4V2"/>
+        <path d="M12 4V2"/>
+        <path d="M8 4V2"/>
+        <path d="M8 22l8-10H8l8-10"/>
+    </svg> 20% OFF Applied!</span>
+                                <span id="discount-amount" class="font-bold text-green-400">-$1.60</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span>Code: <code id="applied-discount-code" class="bg-charcoal/50 px-2 py-1 rounded"></code></span>
+                                <button onclick="removeDiscount()" class="text-red-500 hover:text-red-400 text-xs">Remove</button>
+                            </div>
+                            <div class="text-xs text-bone/60 mt-2">
+                                Discount will be refunded after payment processing
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="mb-8 p-4 bg-glitch-lime/10 border border-glitch-lime/30 rounded-lg">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" id="newsletter-signup" class="form-checkbox text-red-flag">
+                            <div>
+                                <div class="font-medium">🚩 Join the Red Flag Report (Optional)</div>
+                                <div class="text-sm text-bone/70">Get updates on new books, exclusive content, and dating disaster stories. Unsubscribe anytime.</div>
+                            </div>
+                        </label>
+                    }e Your Purchase</title>
     <meta name="description" content="Complete your purchase securely with Stripe. Add custom notes and dedication requests for signed copies of The Worst Boyfriends Ever.">
     <meta name="keywords" content="checkout, secure payment, Stripe payment, custom dedication, signed book purchase, Aleks Filmore">
     <meta name="author" content="Aleks Filmore">
@@ -14,16 +67,11 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/checkout.html">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
+    <!-- Tailwind CSS -->
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -154,20 +202,113 @@
             100% { transform: rotate(360deg); }
         }
     </style>
+
+    <!-- Optimization Scripts -->
+    <script src="/js/image-optimizer.js" defer></script>
+    <script src="/js/social-proof.js" defer></script>
+    <script src="/js/exit-intent.js" defer></script>
+    <script src="/js/trust-badges.js" defer></script>
+    <script src="/js/analytics-enhanced.js" defer></script>
+    <script src="/js/structured-data.js" defer></script>
+    <script src="/js/cart-abandonment.js" defer></script>
+    <script src="/js/mobile-cta.js" defer></script>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
+                    <!-- Standardized Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
                 <div class="font-display font-bold text-lg sm:text-xl">
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
                 </div>
-                <a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">← Back to Shop</a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
             </div>
         </div>
     </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <!-- Main Content -->
     <main class="pt-20 pb-12 min-h-screen">
@@ -242,7 +383,11 @@
                         <!-- Refunds Policy Notice -->
                         <div class="p-4 bg-red-flag/10 border border-red-flag/30 rounded-lg mb-4">
                             <div class="flex items-start space-x-3">
-                                <div class="text-red-flag text-lg">⚠️</div>
+                                <div class="text-red-flag text-lg"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg></div>
                                 <div>
                                     <div class="font-medium text-sm">Important: All Sales Are Final</div>
                                     <div class="text-xs text-bone/70 mt-1">
@@ -291,22 +436,28 @@
             'audiobook': {
                 name: 'The Worst Boyfriends Ever (Audiobook)',
                 price: 7.99,
+                discountedPrice: 6.39,
                 type: 'digital',
                 stripeUrl: 'https://buy.stripe.com/6oUfZa3ZW00q66g0x79fW00',
+                discountUrl: 'https://buy.stripe.com/5kQ5kw3ZWfZoeCMfs19fW03',
                 description: 'Digital audiobook with exclusive bonus epilogue'
             },
             'signed-book': {
                 name: 'The Worst Boyfriends Ever (Signed Paperback)',
                 price: 17.99,
+                discountedPrice: 14.39,
                 type: 'physical',
                 stripeUrl: 'https://buy.stripe.com/28E3codAw4gG0LW6Vv9fW01',
+                discountUrl: 'https://buy.stripe.com/cNibIU8gcaF47ak7Zz9fW05',
                 description: 'Personally signed paperback with handwritten note'
             },
             'bundle': {
                 name: 'Complete Bundle (Audiobook + Signed Paperback)',
                 price: 22.99,
+                discountedPrice: 18.39,
                 type: 'bundle',
                 stripeUrl: 'https://buy.stripe.com/9B66oA0NKdRgamw4Nn9fW02',
+                discountUrl: 'https://buy.stripe.com/3cI7sE9kg8wW8eo6Vv9fW04',
                 description: 'Both audiobook and signed paperback together'
             }
         };
@@ -348,7 +499,7 @@
                         <h3 class="font-display font-semibold text-xl">${currentProduct.name}</h3>
                         <p class="text-bone/70 text-sm">${currentProduct.description}</p>
                     </div>
-                    <div class="price-tag text-lg">€${currentProduct.price.toFixed(2)}</div>
+                    <div class="price-tag text-lg">$${currentProduct.price.toFixed(2)}</div>
                 </div>
                 ${currentProduct.type === 'physical' || currentProduct.type === 'bundle' ? 
                     '<p class="text-xs text-bone/60">+ shipping calculated by Stripe</p>' : 
@@ -432,8 +583,63 @@
                     await submitToFormspree(emailInput.value);
                 }
 
-                // Add custom note to Stripe URL if it exists and it's a physical product
-                let stripeUrl = currentProduct.stripeUrl;
+                // Determine which Stripe URL to use (regular or discounted)
+                let stripeUrl;
+                const discountCode = localStorage.getItem('discount_code');
+                const discountExpiry = localStorage.getItem('discount_expiry');
+                
+                // Check if discount code is valid and not expired
+                const hasValidDiscount = discountCode && 
+                                       discountExpiry && 
+                                       Date.now() < parseInt(discountExpiry) &&
+                                       currentProduct.discountUrl &&
+                                       !currentProduct.discountUrl.includes('PLACEHOLDER');
+                
+                if (hasValidDiscount) {
+                    stripeUrl = currentProduct.discountUrl;
+                    console.log(`<svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 2v4l-3 2v4h18V8l-3-2V2"/>
+        <path d="M16 4V2"/>
+        <path d="M12 4V2"/>
+        <path d="M8 4V2"/>
+        <path d="M8 22l8-10H8l8-10"/>
+    </svg> Using discounted link for ${discountCode}`);
+                    
+                    // Track discount usage
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'discount_code_used', {
+                            event_category: 'Conversion',
+                            event_label: discountCode,
+                            value: currentProduct.price - currentProduct.discountedPrice
+                        });
+                    }
+                    
+                    // Clear discount after use (single-use)
+                    localStorage.removeItem('discount_code');
+                    localStorage.removeItem('discount_expiry');
+                } else {
+                    stripeUrl = currentProduct.stripeUrl;
+                    console.log('Using regular price link');
+                }
+                
+                // Legacy discount handling (fallback for manual refunds)
+                if (discountCode && !hasValidDiscount) {
+                    // Store discount info for manual processing if no discounted link available
+                    localStorage.setItem('pending_discount', JSON.stringify({
+                        email: emailInput.value,
+                        code: discountCode,
+                        amount: getDiscountAmount(currentProduct.price),
+                        timestamp: Date.now()
+                    }));
+                    
+                    // Add discount note to custom note for manual processing
+                    const discountNote = `DISCOUNT CODE: ${discountCode} - 20% refund requested`;
+                    if (customNote && customNote.value) {
+                        customNote.value += '\n\n' + discountNote;
+                    } else if (customNote) {
+                        customNote.value = discountNote;
+                    }
+                }
                 
                 if (customNote && customNote.value && (currentProduct.type === 'physical' || currentProduct.type === 'bundle')) {
                     // For now, we'll store the custom note in localStorage and redirect
@@ -459,6 +665,86 @@
             }
         }
 
+        // Discount handling functions
+        function checkForDiscount() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const discountParam = urlParams.get('discount');
+            
+            if (discountParam) {
+                localStorage.setItem('discount_code', discountParam);
+                localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString());
+            }
+            
+            const discountCode = localStorage.getItem('discount_code');
+            const discountExpiry = localStorage.getItem('discount_expiry');
+            
+            if (discountCode && discountExpiry && Date.now() < parseInt(discountExpiry)) {
+                showDiscountSection(discountCode);
+            }
+        }
+        
+        function showDiscountSection(code) {
+            const discountSection = document.getElementById('discount-section');
+            const appliedCodeElement = document.getElementById('applied-discount-code');
+            const discountAmountElement = document.getElementById('discount-amount');
+            
+            if (discountSection && appliedCodeElement && discountAmountElement) {
+                const currentProduct = getCurrentProduct();
+                
+                // Only show discount for audiobook
+                if (!currentProduct || getCurrentProductId() !== 'audiobook') {
+                    discountSection.style.display = 'none';
+                    return;
+                }
+                
+                appliedCodeElement.textContent = code;
+                
+                // Calculate discount amount for audiobook only
+                if (currentProduct && currentProduct.discountedPrice) {
+                    const discountAmount = currentProduct.price - currentProduct.discountedPrice;
+                    discountAmountElement.textContent = `-$${discountAmount.toFixed(2)}`;
+                    
+                    // Update main price display to show discounted price
+                    updatePriceDisplay(currentProduct);
+                } else {
+                    // Fallback to 20% calculation for audiobook only
+                    const discountAmount = getDiscountAmount(7.99); // Fixed audiobook price
+                    discountAmountElement.textContent = `-$${discountAmount.toFixed(2)}`;
+                }
+                
+                discountSection.style.display = 'block';
+            }
+        }
+        
+        function updatePriceDisplay(product) {
+            const priceElement = document.querySelector('#product-price');
+            if (priceElement && product.discountedPrice) {
+                priceElement.innerHTML = `
+                    <span class="line-through text-bone/50">$${product.price.toFixed(2)}</span>
+                    <span class="text-green-400 font-bold">$${product.discountedPrice.toFixed(2)}</span>
+                `;
+            }
+        }
+        
+        function getDiscountAmount(price) {
+            return price * 0.20; // 20% discount
+        }
+        
+        function removeDiscount() {
+            localStorage.removeItem('discount_code');
+            localStorage.removeItem('discount_expiry');
+            document.getElementById('discount-section').style.display = 'none';
+        }
+        
+        function getCurrentProduct() {
+            return window.currentProduct || products.audiobook; // fallback
+        }
+        
+        function getCurrentProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('product') || 'audiobook';
+        }
+
         // Submit email to Formspree for newsletter
         async function submitToFormspree(email) {
             try {
@@ -481,8 +767,15 @@
         }
 
         // Initialize page when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializePage);
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            checkForDiscount(); // Check for discount codes
+        });
     </script>
+
+    <!-- Enhanced Features Scripts -->
+    <script src="/js/trust-badges.js"></script>
+    <script src="/js/analytics-enhanced.js"></script>
 
 </body>
 </html>

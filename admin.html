@@ -23,6 +23,19 @@
     <!-- Chart.js for analytics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
+    <!-- Date range picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- jQuery (required for daterangepicker) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Moment.js (required for daterangepicker) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    
     <!-- Custom CSS -->
     <style>
         :root {
@@ -85,6 +98,83 @@
             font-weight: 600;
         }
 
+        .btn-secondary:hover {
+            background-color: rgba(199, 255, 65, 0.8);
+            transform: translateY(-1px);
+        }
+
+        /* Loading States */
+        .loading-skeleton {
+            background: linear-gradient(90deg, rgba(247, 243, 237, 0.1) 0%, rgba(247, 243, 237, 0.2) 50%, rgba(247, 243, 237, 0.1) 100%);
+            background-size: 200% 100%;
+            animation: loading-shimmer 1.5s infinite;
+            border-radius: 4px;
+            height: 20px;
+        }
+
+        @keyframes loading-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(247, 243, 237, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--color-glitch-lime);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .section-loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(14, 15, 16, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* Date Range Picker Styling */
+        .daterangepicker {
+            background-color: var(--color-charcoal) !important;
+            border: 1px solid rgba(247, 243, 237, 0.2) !important;
+            color: var(--color-bone) !important;
+        }
+
+        .daterangepicker .calendar-table {
+            background-color: var(--color-charcoal) !important;
+            color: var(--color-bone) !important;
+        }
+
+        .daterangepicker td.active {
+            background-color: var(--color-red-flag) !important;
+            color: var(--color-bone) !important;
+        }
+
+        /* Cache Status Indicator */
+        .cache-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+
+        .cache-fresh { background-color: var(--color-glitch-lime); }
+        .cache-stale { background-color: #fbbf24; }
+        .cache-expired { background-color: var(--color-red-flag); }
+
         .form-input {
             background: rgba(247, 243, 237, 0.1);
             border: 1px solid rgba(247, 243, 237, 0.2);
@@ -140,6 +230,7 @@
             color: var(--color-red-flag);
         }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 
 <body>
@@ -148,7 +239,16 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
-                    <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                    <h1 class="text-xl font-bold">Heartbreak Empire Dashboard</h1>
+                    
+                    <!-- Date Range Picker -->
+                    <div class="date-range-container">
+                        <div id="dateRangePicker" class="bg-charcoal/50 border border-bone/20 rounded-lg px-3 py-1 text-sm text-bone cursor-pointer hover:bg-charcoal/70 transition-colors">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span id="dateRangeDisplay">Last 30 Days</span>
+                            <i class="fas fa-chevron-down ml-2"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <span id="user-info" class="text-sm opacity-70"></span>
@@ -171,7 +271,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <!-- Total Revenue -->
                     <div class="dashboard-card">
-                        <h3 class="text-lg font-semibold mb-2">Total Revenue</h3>
+                        <h3 class="text-lg font-semibold mb-2 flex items-center">
+                            Total Revenue
+                            <span class="cache-indicator" data-cache-key="revenue"></span>
+                        </h3>
                         <p id="total-revenue" class="text-3xl font-bold text-glitch-lime">Loading...</p>
                         <p class="text-sm opacity-70 mt-2">All-time earnings</p>
                     </div>
@@ -225,7 +328,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <!-- Page Views -->
                     <div class="dashboard-card">
-                        <h3 class="text-lg font-semibold mb-2">Page Views</h3>
+                        <h3 class="text-lg font-semibold mb-2 flex items-center">
+                            Page Views
+                            <span class="cache-indicator" data-cache-key="analytics"></span>
+                        </h3>
                         <p id="ga-page-views" class="text-3xl font-bold text-glitch-lime">Loading...</p>
                         <p class="text-sm opacity-70 mt-2">Last 30 days</p>
                     </div>
@@ -300,23 +406,41 @@
                     <h2 class="text-2xl font-bold">Order Management</h2>
                     <div class="flex gap-4">
                         <button onclick="showAddOrderModal()" class="btn-primary">
-                            Add Missing Order
+                            <i class="fas fa-plus mr-1"></i> Add Missing Order
                         </button>
                         <button onclick="refreshOrders()" class="btn-secondary">
-                            Refresh Orders
+                            <i class="fas fa-sync-alt mr-1"></i> Refresh Orders
+                        </button>
+                        <button onclick="exportOrders()" class="btn-primary">
+                            <i class="fas fa-download mr-1"></i> Export CSV
                         </button>
                     </div>
                 </div>
 
                 <div class="dashboard-card">
-                    <div class="mb-4 flex gap-4">
+                    <div class="mb-4 flex gap-4 flex-wrap">
                         <select id="order-status-filter" class="form-input w-auto" onchange="filterOrders()">
                             <option value="all">All Orders</option>
                             <option value="pending">Pending Fulfillment</option>
                             <option value="shipped">Shipped</option>
                             <option value="digital">Digital Only</option>
+                            <option value="completed">Completed</option>
                         </select>
-                        <input type="text" id="order-search" class="form-input w-auto" placeholder="Search orders..." onkeyup="searchOrders()">
+                        <input type="text" 
+                               id="order-search" 
+                               class="form-input flex-1 min-w-64" 
+                               placeholder="🔍 Search orders by email, name, or order ID..." 
+                               onkeyup="searchOrders()"
+                               autocomplete="off">
+                        <button onclick="clearOrderFilters()" class="btn-secondary text-sm whitespace-nowrap">
+                            <i class="fas fa-times mr-1"></i> Clear
+                        </button>
+                    </div>
+                    
+                    <!-- Order Statistics -->
+                    <div id="order-stats" class="mb-4 text-sm opacity-70 flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Loading order statistics...
                     </div>
                     
                     <div class="overflow-x-auto">
@@ -373,10 +497,10 @@
                         </div>
                         <div class="flex gap-2 mt-4">
                             <button onclick="refreshMailerLiteStats()" class="btn-secondary flex-1">
-                                Refresh Stats
+                                <i class="fas fa-sync-alt mr-1"></i> Refresh Stats
                             </button>
-                            <button onclick="exportSubscribers()" class="btn-secondary flex-1">
-                                Export List
+                            <button onclick="exportSubscribers()" class="btn-primary flex-1">
+                                <i class="fas fa-download mr-1"></i> Export CSV
                             </button>
                         </div>
                     </div>
@@ -538,70 +662,197 @@
 
         // Check authentication on page load
         // ========================
-        // ADMIN AUTHENTICATION
+        // ENHANCED ADMIN AUTHENTICATION
         // ========================
         
+        // Enhanced Authentication Manager
+        class AuthManager {
+            constructor() {
+                this.token = localStorage.getItem('admin_auth_token');
+                this.csrfToken = localStorage.getItem('admin_csrf_token');
+                this.sessionExpiry = localStorage.getItem('admin_session_expiry');
+                this.refreshTimer = null;
+                
+                if (this.token && this.sessionExpiry) {
+                    this.setupSessionMonitoring();
+                }
+            }
+
+            async login(password) {
+                try {
+                    const response = await fetch('/.netlify/functions/admin-auth-login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ password })
+                    });
+
+                    const data = await response.json();
+                    
+                    if (!response.ok) {
+                        if (response.status === 429) {
+                            throw new Error(`Too many attempts. Try again in ${data.retryAfter} seconds.`);
+                        }
+                        throw new Error(data.error || 'Login failed');
+                    }
+
+                    this.token = data.token;
+                    this.csrfToken = data.csrfToken;
+                    this.sessionExpiry = Date.now() + (data.expiresIn * 1000);
+                    
+                    localStorage.setItem('admin_auth_token', data.token);
+                    localStorage.setItem('admin_csrf_token', data.csrfToken);
+                    localStorage.setItem('admin_session_expiry', this.sessionExpiry.toString());
+                    
+                    this.setupSessionMonitoring();
+                    return true;
+                } catch (error) {
+                    this.showLoginError(error.message);
+                    return false;
+                }
+            }
+
+            setupSessionMonitoring() {
+                if (this.refreshTimer) clearInterval(this.refreshTimer);
+                
+                this.refreshTimer = setInterval(() => {
+                    this.checkSession();
+                }, 60000);
+                
+                const warningTime = this.sessionExpiry - (5 * 60 * 1000);
+                const timeToWarning = warningTime - Date.now();
+                
+                if (timeToWarning > 0) {
+                    setTimeout(() => this.showExpiryWarning(), timeToWarning);
+                }
+            }
+
+            async checkSession() {
+                if (!this.token) return false;
+                
+                try {
+                    const response = await fetch('/.netlify/functions/admin-auth-verify', {
+                        headers: this.getAuthHeaders(),
+                        credentials: 'include'
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (!data.valid) {
+                        this.logout();
+                        return false;
+                    }
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Session check failed:', error);
+                    return false;
+                }
+            }
+
+            getAuthHeaders() {
+                return {
+                    'Authorization': `Bearer ${this.token}`,
+                    'X-CSRF-Token': this.csrfToken || '',
+                    'Content-Type': 'application/json'
+                };
+            }
+
+            logout() {
+                this.token = null;
+                this.csrfToken = null;
+                this.sessionExpiry = null;
+                
+                if (this.refreshTimer) {
+                    clearInterval(this.refreshTimer);
+                    this.refreshTimer = null;
+                }
+                
+                localStorage.removeItem('admin_auth_token');
+                localStorage.removeItem('admin_csrf_token');
+                localStorage.removeItem('admin_session_expiry');
+                sessionStorage.removeItem('admin_session');
+                
+                document.cookie = 'admin_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                window.location.reload();
+            }
+
+            showLoginError(message) {
+                const errorDiv = document.getElementById('login-error');
+                if (errorDiv) {
+                    errorDiv.textContent = message;
+                    errorDiv.style.display = 'block';
+                    setTimeout(() => errorDiv.style.display = 'none', 5000);
+                }
+            }
+
+            showExpiryWarning() {
+                const banner = document.createElement('div');
+                banner.className = 'fixed top-0 left-0 right-0 bg-yellow-500 text-yellow-900 p-3 text-center z-50';
+                banner.innerHTML = `
+                    <strong>Session Expiring:</strong> Your session will expire in 5 minutes. 
+                    <button onclick="authManager.checkSession()" class="ml-2 underline">Refresh</button>
+                    <button onclick="this.parentElement.remove()" class="ml-2 text-lg">&times;</button>
+                `;
+                document.body.prepend(banner);
+            }
+        }
+
+        const authManager = new AuthManager();
+        
         function checkAdminAuthentication() {
-            // Check if already authenticated
             const adminSession = sessionStorage.getItem('admin_session');
-            const token = localStorage.getItem('admin_auth_token');
-            if (adminSession === 'authenticated' && token) {
-                verifyAdminToken(token); // async, optimistic
+            if (adminSession === 'authenticated' && authManager.token) {
+                authManager.checkSession(); // async verification
                 return true;
             }
             
-            // If not authenticated, show login modal
             promptAdminLogin();
             return false;
         }
         
         function promptAdminLogin() {
-            // Show login modal
             document.getElementById('login-modal').style.display = 'flex';
-            
-            // Focus on password field
             setTimeout(() => {
                 const passwordField = document.getElementById('admin-password');
-                if (passwordField) {
-                    passwordField.focus();
-                }
+                if (passwordField) passwordField.focus();
             }, 100);
         }
         
-        function handleLogin(event) {
+        async function handleLogin(event) {
             event.preventDefault();
             const passwordInput = document.getElementById('admin-password');
             const password = passwordInput.value.trim();
             const errorDiv = document.getElementById('login-error');
+            
             errorDiv.style.display = 'none';
+            
             if (!password) {
                 errorDiv.textContent = 'Password required';
                 errorDiv.style.display = 'block';
                 return false;
             }
+            
             const submitBtn = document.getElementById('login-submit-btn');
-            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Authenticating...'; }
-            fetch('/.netlify/functions/admin-auth-login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password })
-            }).then(r => r.json().then(j => ({ ok: r.ok, data: j }))).then(res => {
-                if (!res.ok) throw new Error(res.data.error || 'Login failed');
-                const { token, expiresIn } = res.data;
-                localStorage.setItem('admin_auth_token', token);
+            if (submitBtn) { 
+                submitBtn.disabled = true; 
+                submitBtn.textContent = 'Authenticating...'; 
+            }
+            
+            const success = await authManager.login(password);
+            
+            if (success) {
                 sessionStorage.setItem('admin_session', 'authenticated');
                 sessionStorage.setItem('admin_login_time', new Date().toISOString());
-                sessionStorage.setItem('admin_token_expires_in', expiresIn);
                 document.getElementById('login-modal').style.display = 'none';
-                console.log('Admin authenticated');
                 initializeAdminDashboard();
-            }).catch(err => {
-                errorDiv.textContent = err.message;
-                errorDiv.style.display = 'block';
-            }).finally(() => {
-                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enter Dashboard'; }
-                passwordInput.value = '';
-            });
+            }
+            
+            if (submitBtn) { 
+                submitBtn.disabled = false; 
+                submitBtn.textContent = 'Enter Dashboard'; 
+            }
+            passwordInput.value = '';
             return false;
         }
         
@@ -617,7 +868,7 @@
                     // Session expired
                     sessionStorage.removeItem('admin_session');
                     sessionStorage.removeItem('admin_login_time');
-                    alert('Admin session expired. Please log in again.');
+                    showToast('Admin session expired. Please log in again.', 'warning');
                     window.location.reload();
                 }
             }
@@ -626,8 +877,30 @@
         // Check session timeout every 5 minutes
         setInterval(checkSessionTimeout, 5 * 60 * 1000);
         
+        // Utility functions for UI feedback
+        function markElementError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.classList.add('error-badge');
+                element.title = message;
+                element.style.border = '2px solid var(--color-red-flag)';
+                element.style.backgroundColor = 'rgba(255, 59, 48, 0.1)';
+            }
+        }
+
+        function showGaDisabled() {
+            const statusDiv = document.getElementById('ga-status');
+            if (statusDiv) {
+                statusDiv.innerHTML = '<span style="color: var(--color-red-flag);"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> GA Disabled (No Measurement ID)</span>';
+            }
+        }
+
         function initializeAdminDashboard() {
-            console.log('Initializing enhanced admin dashboard...');
+            isAuthenticated = true;
             // Enhanced admin dashboard initialization
             setupDashboard();
             // Don't call loadOrders and loadBlogPosts separately - loadDashboard handles everything
@@ -645,12 +918,10 @@
             }
             
             // Load enhanced dashboard immediately
-            console.log('Starting enhanced dashboard load...');
             loadDashboard();
         }
 
         function setupCharts() {
-            console.log('Setting up charts...');
             // Initialize charts after DOM is ready
             setTimeout(() => {
                 initCharts();
@@ -681,8 +952,6 @@
 
         // Quick analytics refresh function
         async function quickRefresh() {
-            console.log('Quick refreshing all analytics...');
-            
             const button = event.target;
             const originalText = button.textContent;
             button.textContent = 'Refreshing...';
@@ -694,7 +963,9 @@
                 hideLoadingSpinner();
                 
                 // Show success message
-                alert('✅ Analytics data refreshed successfully!');
+                showToast('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Analytics data refreshed successfully!', 'success');
                 
             } catch (error) {
                 console.error('Error during quick refresh:', error);
@@ -702,7 +973,11 @@
                 
                 // Fall back to mock data and show warning
                 loadMockData();
-                alert('⚠️ Could not connect to real data sources. Using demo data.\n\nMake sure the server is running and API keys are configured.');
+                showToast('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> Could not connect to real data sources. Using demo data.\n\nMake sure the server is running and API keys are configured.', 'warning');
                 
             } finally {
                 button.textContent = originalText;
@@ -711,14 +986,7 @@
         }
 
         function logout() {
-            localStorage.removeItem('admin_auth_token');
-            sessionStorage.removeItem('admin_session');
-            sessionStorage.removeItem('admin_login_time');
-            sessionStorage.removeItem('admin_token_expires_in');
-            localStorage.removeItem('blog_posts');
-            localStorage.removeItem('newsletter_history');
-            alert('Logged out successfully');
-            location.reload();
+            authManager.logout();
         }
 
         // ===== ENHANCED ANALYTICS FUNCTIONS =====
@@ -729,14 +997,12 @@
                 promptAdminLogin();
                 return;
             }
-            console.log('Loading enhanced dashboard data...');
             showLoadingSpinner();
             
             try {
                 // Try to load real data from server endpoints
                 await loadRealData();
                 
-                console.log('All enhanced dashboard data loaded, initializing charts...');
                 initCharts();
                 hideLoadingSpinner();
                 
@@ -745,7 +1011,6 @@
                 hideLoadingSpinner();
                 
                 // Fall back to mock data if server is not available
-                console.log('Server not available, loading mock data...');
                 loadMockData();
                 initCharts();
                 showErrorMessage('Using demo data - server may not be running. Start the server to see real analytics.');
@@ -754,11 +1019,14 @@
         // Verify token helper
         async function verifyAdminToken(token) {
             try {
-                const res = await fetch('/.netlify/functions/admin-auth-verify', { headers: { 'Authorization': 'Bearer ' + token } });
+                const res = await fetch('/.netlify/functions/admin-auth-verify', { 
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
                 const data = await res.json();
                 if (!data.valid) {
                     console.warn('Token invalid/expired');
-                    logout();
+                    authManager.logout();
                 }
             } catch (e) {
                 console.error('Token verify failed', e);
@@ -771,7 +1039,10 @@
                 console.log('Fetching real analytics data from Netlify Functions...');
                 
                 // Load dashboard summary from Netlify Function
-                const dashboardResponse = await fetch('/.netlify/functions/admin-dashboard-summary?days=30');
+                const dashboardResponse = await fetch('/.netlify/functions/admin-dashboard-summary?days=30', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
                 if (dashboardResponse.ok) {
                     const dashboardData = await dashboardResponse.json();
                     updateDashboardWithRealData(dashboardData);
@@ -800,7 +1071,10 @@
         async function loadRealOrders() {
             try {
                 console.log('Loading real orders from Stripe via Netlify Function...');
-                const response = await fetch('/.netlify/functions/admin-orders?limit=50');
+                const response = await fetch('/.netlify/functions/admin-orders?limit=50', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
                 
                 if (response.ok) {
                     const orders = await response.json();
@@ -823,7 +1097,10 @@
         async function loadRealNewsletterData() {
             try {
                 console.log('Loading real newsletter data from MailerLite via Netlify Function...');
-                const response = await fetch('/.netlify/functions/admin-newsletter-stats');
+                const response = await fetch('/.netlify/functions/admin-newsletter-stats', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
                 
                 if (response.ok) {
                     const stats = await response.json();
@@ -887,80 +1164,53 @@
                 
             } catch (error) {
                 console.error('Error updating dashboard with real data:', error);
-                loadMockData(); // Fallback to mock data
+                // Leave existing values; no mock overwrite to avoid confusion
             }
         }
 
-        // Load mock data as fallback
-        function loadMockData() {
-            if (window.dataMode === 'real') {
-                console.log('Real data already loaded; skipping mock data');
-                return;
-            }
-            console.log('Loading mock data for demo purposes...');
-            
-            // Mock revenue data
-            updateElement('total-revenue', '$2,847');
-            updateElement('audiobook-revenue', '$1,247');
-            updateElement('book-revenue', '$1,079');
-            updateElement('bundle-revenue', '$521');
-            updateElement('total-orders', '127');
-            
-            // Mock website analytics
-            updateElement('ga-page-views', '15,234');
-            updateElement('ga-unique-visitors', '8,567');
-            updateElement('ga-bounce-rate', '42.1%');
-            updateElement('ga-session-duration', '3.2m');
-            
-            // Mock newsletter stats
-            updateElement('mailerlite-total-subscribers', '1,247');
-            updateElement('mailerlite-active-subscribers', '1,189');
-            updateElement('mailerlite-monthly-subscribers', '+78');
-            updateElement('mailerlite-open-rate', '34.2%');
-            
-            // Mock traffic sources
-            updateElement('organic-traffic', '5,234');
-            updateElement('direct-traffic', '2,567');
-            updateElement('social-traffic', '1,123');
-            
-            // Mock top pages
-            const topPages = [
-                { page: '/audiobook-player', views: 2543 },
-                { page: '/shop', views: 1876 },
-                { page: '/books', views: 1234 },
-                { page: '/blog/anatomy-of-a-ghost', views: 987 },
-                { page: '/about', views: 756 }
-            ];
-            
-            const topPagesContainer = document.getElementById('top-pages-list');
-            if (topPagesContainer) {
-                topPagesContainer.innerHTML = topPages.map(page => `
-                    <div class="flex justify-between items-center p-2 bg-bone/5 rounded">
-                        <span class="text-bone">${page.page}</span>
-                        <span class="text-red-flag font-bold">${page.views.toLocaleString()}</span>
-                    </div>
-                `).join('');
-            }
-            
-            // Also load mock orders and blog posts
-            loadOrders();
-            loadBlogPosts();
-            loadNewsletterHistory();
-            
-            console.log('Mock data loaded successfully');
+        // Helper: mark element error visually
+        function markElementError(id, text='Error') {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.textContent = text;
+            el.classList.add('bg-red-500/20','text-red-400','px-2','rounded');
         }
-
+        function showGaDisabled(reason) {
+            const container = document.getElementById('ga-section') || document.querySelector('[data-section="ga"]');
+            markElementError('ga-page-views', 'Disabled');
+            markElementError('ga-unique-visitors', 'Disabled');
+            markElementError('ga-bounce-rate', '—');
+            markElementError('ga-session-duration', '—');
+            const badge = document.createElement('div');
+            badge.className = 'mt-2 inline-block text-xs font-semibold bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded';
+            badge.textContent = 'GA disabled: ' + (reason || 'env vars missing');
+            if (container && !container.querySelector('.ga-disabled-badge')) {
+                badge.classList.add('ga-disabled-badge');
+                container.appendChild(badge);
+            }
+        }
         // Google Analytics Integration
         async function loadGoogleAnalytics() {
             try {
                 console.log('Loading Google Analytics data...');
-                const auth = localStorage.getItem('admin_auth_token');
-                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
+                const headers = authManager.getAuthHeaders();
                 const [statsResponse, topPagesResponse, trafficResponse, realtimeResponse] = await Promise.all([
-                    fetch('/.netlify/functions/admin-dashboard-summary?ga=stats&days=30', { headers }),
-                    fetch('/.netlify/functions/admin-dashboard-summary?ga=top-pages&days=30', { headers }),
-                    fetch('/.netlify/functions/admin-dashboard-summary?ga=traffic&days=30', { headers }),
-                    fetch('/.netlify/functions/admin-dashboard-summary?ga=realtime', { headers })
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=stats&days=30', { 
+                        headers, 
+                        credentials: 'include' 
+                    }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=top-pages&days=30', { 
+                        headers, 
+                        credentials: 'include' 
+                    }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=traffic&days=30', { 
+                        headers, 
+                        credentials: 'include' 
+                    }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?ga=realtime', { 
+                        headers, 
+                        credentials: 'include' 
+                    })
                 ]);
 
                 const stats = await statsResponse.json();
@@ -968,11 +1218,15 @@
                 const trafficSources = await trafficResponse.json();
                 const realtime = await realtimeResponse.json();
 
+                if (stats.disabled) {
+                    showGaDisabled(stats.reason);
+                    return;
+                }
                 // Update Google Analytics displays
-                updateElement('ga-page-views', stats.pageViews?.toLocaleString() || 'N/A');
-                updateElement('ga-unique-visitors', stats.users?.toLocaleString() || 'N/A');
-                updateElement('ga-bounce-rate', stats.bounceRate ? stats.bounceRate.toFixed(1) + '%' : 'N/A');
-                updateElement('ga-session-duration', stats.averageSessionDuration ? formatDuration(stats.averageSessionDuration) : 'N/A');
+                updateElement('ga-page-views', stats.pageViews?.toLocaleString() || '0');
+                updateElement('ga-unique-visitors', stats.users?.toLocaleString() || '0');
+                updateElement('ga-bounce-rate', stats.bounceRate ? stats.bounceRate.toFixed(1) + '%' : '—');
+                updateElement('ga-session-duration', stats.averageSessionDuration ? formatDuration(stats.averageSessionDuration) : '—');
                 updateElement('ga-realtime-users', realtime.activeUsers?.toString() || '0');
 
                 // Update traffic sources
@@ -986,22 +1240,26 @@
 
             } catch (error) {
                 console.error('Error loading Google Analytics:', error);
-                // Set fallback values
-                updateElement('ga-page-views', 'Error');
-                updateElement('ga-unique-visitors', 'Error');
-                updateElement('ga-bounce-rate', 'Error');
-                updateElement('ga-session-duration', 'Error');
+                markElementError('ga-page-views');
+                markElementError('ga-unique-visitors');
+                markElementError('ga-bounce-rate');
+                markElementError('ga-session-duration');
             }
         }
 
-        // Stripe Analytics Integration (enhanced)
-        async function loadStripeAnalytics() {
+    // Stripe Analytics Integration (enhanced real)
+    async function loadStripeAnalytics() {
             console.log('Loading enhanced Stripe analytics (Netlify functions)...');
             try {
-                const auth = localStorage.getItem('admin_auth_token');
-                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
-                const summaryResp = await fetch('/.netlify/functions/admin-dashboard-summary?section=stripe&days=30', { headers });
-                const ordersResp = await fetch('/.netlify/functions/admin-orders?limit=10', { headers });
+                const headers = authManager.getAuthHeaders();
+                const summaryResp = await fetch('/.netlify/functions/admin-dashboard-summary?section=stripe&days=30', { 
+                    headers, 
+                    credentials: 'include' 
+                });
+                const ordersResp = await fetch('/.netlify/functions/admin-orders?limit=10', { 
+                    headers, 
+                    credentials: 'include' 
+                });
                 if (!summaryResp.ok) throw new Error('Stripe summary failed ' + summaryResp.status);
                 if (!ordersResp.ok) throw new Error('Orders failed ' + ordersResp.status);
                 const summary = await summaryResp.json();
@@ -1025,12 +1283,11 @@
 
             } catch (error) {
                 console.error('Error loading Stripe analytics:', error);
-                // Set fallback values
-                updateElement('total-revenue', 'Error');
-                updateElement('audiobook-revenue', 'Error');
-                updateElement('book-revenue', 'Error');
-                updateElement('bundle-revenue', 'Error');
-                updateElement('total-orders', 'Error');
+                markElementError('total-revenue');
+                markElementError('audiobook-revenue');
+                markElementError('book-revenue');
+                markElementError('bundle-revenue');
+                markElementError('total-orders');
             }
         }
 
@@ -1038,11 +1295,16 @@
         async function loadAudiobookAnalytics() {
             try {
                 console.log('Loading audiobook analytics...');
-                const auth = localStorage.getItem('admin_auth_token');
-                const headers = auth ? { Authorization: 'Bearer ' + auth } : {};
+                const headers = authManager.getAuthHeaders();
                 const [analyticsResponse, listenersResponse] = await Promise.all([
-                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook&days=30', { headers }),
-                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook-listeners&limit=10', { headers })
+                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook&days=30', { 
+                        headers, 
+                        credentials: 'include' 
+                    }),
+                    fetch('/.netlify/functions/admin-dashboard-summary?section=audiobook-listeners&limit=10', { 
+                        headers, 
+                        credentials: 'include' 
+                    })
                 ]);
 
                 const analytics = await analyticsResponse.json();
@@ -1167,7 +1429,10 @@
         async function testAllIntegrations() {
             try {
                 console.log('Testing integrations via Netlify Functions...');
-                const response = await fetch('/.netlify/functions/admin-test-integrations');
+                const response = await fetch('/.netlify/functions/admin-test-integrations', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
                 
                 // Check if response is OK
                 if (!response.ok) {
@@ -1185,12 +1450,50 @@
                 const results = await response.json();
                 
                 let message = '🔧 Integration Test Results:\\n\\n';
-                message += `📊 Google Analytics: ${results.googleAnalytics?.success ? '✅ Connected' : '❌ ' + (results.googleAnalytics?.error || 'Unknown error')}\\n`;
-                message += `💳 Stripe: ${results.stripe?.success ? '✅ Connected' : '❌ ' + (results.stripe?.error || 'Unknown error')}\\n`;
-                message += `📧 MailerLite: ${results.mailerLite?.success ? '✅ Connected' : '❌ ' + (results.mailerLite?.error || 'Unknown error')}\\n`;
-                message += `📬 Resend: ${results.resend?.success ? '✅ Connected' : '❌ ' + (results.resend?.error || 'Unknown error')}\\n`;
-                message += `🎧 Audiobook Analytics: ${results.audiobook?.success ? '✅ Working' : '❌ ' + (results.audiobook?.error || 'Unknown error')}\\n`;
-                message += `\\n🎯 Overall Status: ${results.overall?.success ? '✅ All systems operational!' : '⚠️ Some issues detected'}`;
+                message += `📊 Google Analytics: ${results.googleAnalytics?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + (results.googleAnalytics?.error || 'Unknown error')}\\n`;
+                message += `💳 Stripe: ${results.stripe?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + (results.stripe?.error || 'Unknown error')}\\n`;
+                message += `<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </svg> MailerLite: ${results.mailerLite?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + (results.mailerLite?.error || 'Unknown error')}\\n`;
+                message += `📬 Resend: ${results.resend?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + (results.resend?.error || 'Unknown error')}\\n`;
+                message += `🎧 Audiobook Analytics: ${results.audiobook?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Working' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + (results.audiobook?.error || 'Unknown error')}\\n`;
+                message += `\\n<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="6"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> Overall Status: ${results.overall?.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> All systems operational!' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> Some issues detected'}`;
                 
                 alert(message);
                 
@@ -1255,87 +1558,16 @@
             }
         }
 
-        // Stripe Analytics Integration
-        async function loadStripeAnalytics() {
-            console.log('Loading Stripe analytics...');
-            try {
-                // Mock data for demonstration - in production, connect to real Stripe API
-                const mockStripeData = {
-                    totalRevenue: 12547.89,
-                    audiobookRevenue: 8234.50,
-                    bookRevenue: 3456.78,
-                    bundleRevenue: 856.61,
-                    chartData: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                        values: [1200, 1450, 1800, 1600, 2100, 1900, 2400, 2097]
-                    }
-                };
-
-                console.log('Updating revenue displays...');
-                document.getElementById('total-revenue').textContent = '$' + mockStripeData.totalRevenue.toLocaleString();
-                document.getElementById('audiobook-revenue').textContent = '$' + mockStripeData.audiobookRevenue.toLocaleString();
-                document.getElementById('book-revenue').textContent = '$' + mockStripeData.bookRevenue.toLocaleString();
-                document.getElementById('bundle-revenue').textContent = '$' + mockStripeData.bundleRevenue.toLocaleString();
-
-                stripeData = mockStripeData;
-                console.log('Stripe analytics loaded successfully');
-
-            } catch (error) {
-                console.error('Error loading Stripe analytics:', error);
-                document.getElementById('total-revenue').textContent = 'Error';
-                document.getElementById('audiobook-revenue').textContent = 'Error';
-                document.getElementById('book-revenue').textContent = 'Error';
-                document.getElementById('bundle-revenue').textContent = 'Error';
-            }
-        let newsletterData = null;
-
-        // MailerLite Newsletter Integration
-    async function loadNewsletterData() {
-            try {
-                console.log('Loading newsletter stats from MailerLite...');
-        const auth = localStorage.getItem('admin_auth_token');
-        const response = await fetch('/.netlify/functions/admin-newsletter-stats', { headers: auth? { Authorization: 'Bearer ' + auth } : {} });
-                
-                if (response.ok) {
-                    const stats = await response.json();
-                    console.log('Newsletter stats loaded:', stats);
-                    
-                    // Update MailerLite stats
-                    document.getElementById('mailerlite-total-subscribers').textContent = stats.totalSubscribers?.toLocaleString() || '0';
-                    document.getElementById('mailerlite-active-subscribers').textContent = stats.activeSubscribers?.toLocaleString() || '0';
-                    document.getElementById('mailerlite-monthly-subscribers').textContent = '+' + (stats.monthlyNew || 0).toLocaleString();
-                    document.getElementById('mailerlite-open-rate').textContent = stats.openRate ? stats.openRate.toFixed(1) + '%' : 'N/A';
-                    
-                    newsletterData = stats;
-                } else {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-            } catch (error) {
-                console.error('Error loading newsletter data:', error);
-                console.log('Loading fallback newsletter data...');
-                
-                // Fallback to mock data
-                document.getElementById('mailerlite-total-subscribers').textContent = '1,247';
-                document.getElementById('mailerlite-active-subscribers').textContent = '1,189';
-                document.getElementById('mailerlite-monthly-subscribers').textContent = '+78';
-                document.getElementById('mailerlite-open-rate').textContent = '34.2%';
-                
-                newsletterData = {
-                    totalSubscribers: 1247,
-                    activeSubscribers: 1189,
-                    monthlyNew: 78,
-                    openRate: 34.2
-                };
-            }
-        }
+    <!-- Duplicate legacy loadNewsletterData removed; using loadRealNewsletterData earlier -->
 
         // Load subscribers list for admin display
     async function loadSubscribersList() {
             try {
                 console.log('Loading subscribers list...');
-        const auth = localStorage.getItem('admin_auth_token');
-        const response = await fetch('/.netlify/functions/admin-newsletter-stats?detail=subscribers&limit=100', { headers: auth? { Authorization: 'Bearer ' + auth } : {} });
+        const response = await fetch('/.netlify/functions/admin-newsletter-stats?detail=subscribers&limit=100', { 
+            headers: authManager.getAuthHeaders(),
+            credentials: 'include'
+        });
                 
                 if (response.ok) {
                     const data = await response.json();
@@ -1814,24 +2046,40 @@
                     <p>I'm thrilled to announce...</p>
                     <p>Available now:</p>
                     <ul>
-                        <li>📖 Signed paperback</li>
+                        <li><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg> Signed paperback</li>
                         <li>🎧 Audiobook (narrated by yours truly)</li>
                         <li>📦 Complete bundle</li>
                     </ul>
                     <p>Get yours at: <a href="https://aleksfilmore.com">aleksfilmore.com</a></p>
-                    <p>Love and literary chaos,<br>Aleks 🏳️‍🌈</p>
+                    <p>Love and literary chaos,<br>Aleks <svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+        <line x1="4" y1="22" x2="4" y2="15"/>
+    </svg></p>
                 `,
                 'monthly-update': `
                     <h1>Monthly Update from the Chaos</h1>
                     <p>Hello my favorite humans,</p>
                     <p>Here's what's been happening in my world:</p>
-                    <h2>📚 Writing Updates</h2>
+                    <h2><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg> Writing Updates</h2>
                     <p>[Your writing progress here]</p>
                     <h2>🎬 Life Behind the Scenes</h2>
                     <p>[Personal updates here]</p>
-                    <h2>📖 What I'm Reading</h2>
+                    <h2><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg> What I'm Reading</h2>
                     <p>[Book recommendations here]</p>
-                    <p>Stay chaotic,<br>Aleks ✨</p>
+                    <p>Stay chaotic,<br>Aleks <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3z"/>
+        <path d="M8 3h4l-2 5z"/>
+        <path d="M16 21h4l-2-5z"/>
+    </svg></p>
                 `,
                 'behind-scenes': `
                     <h1>Behind the Scenes: The Real Tea</h1>
@@ -2239,15 +2487,51 @@
                 const results = await response.json();
                 
                 let message = '🔧 Enhanced Admin Panel Test Results:\\n\\n';
-                message += `📊 Google Analytics: ${results.googleAnalytics.success ? '✅ Connected' : '❌ ' + results.googleAnalytics.error}\\n`;
-                message += `💳 Stripe Analytics: ${results.stripe.success ? '✅ Connected' : '❌ ' + results.stripe.error}\\n`;
-                message += `📧 MailerLite: ${results.mailerLite.success ? '✅ Connected' : '❌ ' + results.mailerLite.error}\\n`;
-                message += `🎧 Audiobook Analytics: ${results.audiobook.success ? '✅ Working' : '❌ ' + results.audiobook.error}\\n\\n`;
-                message += `🎯 Overall Status: ${results.overall.success ? '✅ All systems operational!' : '⚠️ Some issues detected'}\\n\\n`;
+                message += `📊 Google Analytics: ${results.googleAnalytics.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + results.googleAnalytics.error}\\n`;
+                message += `💳 Stripe Analytics: ${results.stripe.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + results.stripe.error}\\n`;
+                message += `<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </svg> MailerLite: ${results.mailerLite.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Connected' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + results.mailerLite.error}\\n`;
+                message += `🎧 Audiobook Analytics: ${results.audiobook.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Working' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ' + results.audiobook.error}\\n\\n`;
+                message += `<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="6"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> Overall Status: ${results.overall.success ? '<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> All systems operational!' : '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg> Some issues detected'}\\n\\n`;
                 
                 if (!results.overall.success) {
                     message += '💡 Note: The system will use mock data for any disconnected services.\\n';
-                    message += '📖 See ADMIN_SETUP.md for configuration instructions.';
+                    message += '<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg> See ADMIN_SETUP.md for configuration instructions.';
                 }
                 
                 alert(message);
@@ -2256,13 +2540,18 @@
                 // Also test basic functionality
                 console.log('Testing data loading...');
                 await loadDashboard();
-                console.log('✅ Dashboard data loading test complete');
+                console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Dashboard data loading test complete');
                 
                 return results;
                 
             } catch (error) {
                 console.error('Admin panel test failed:', error);
-                alert('❌ Admin panel test failed: ' + error.message + '\\n\\nCheck the console for details.');
+                alert('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Admin panel test failed: ' + error.message + '\\n\\nCheck the console for details.');
                 return { success: false, error: error.message };
             }
         }
@@ -2282,12 +2571,473 @@
                 
                 hideLoadingSpinner();
                 alert('📊 All analytics refreshed successfully!');
-                console.log('✅ Quick refresh complete');
+                console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Quick refresh complete');
                 
             } catch (error) {
                 hideLoadingSpinner();
                 console.error('Quick refresh failed:', error);
-                alert('❌ Quick refresh failed: ' + error.message);
+                alert('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Quick refresh failed: ' + error.message);
+            }
+        }
+
+        // =============================================
+        // ENHANCED FEATURES IMPLEMENTATION
+        // =============================================
+
+        // Data Caching System
+        class DataCache {
+            constructor() {
+                this.cache = new Map();
+                this.maxAge = 5 * 60 * 1000; // 5 minutes
+            }
+
+            set(key, data) {
+                this.cache.set(key, {
+                    data: data,
+                    timestamp: Date.now(),
+                    key: key
+                });
+                this.updateCacheIndicator(key, 'fresh');
+            }
+
+            get(key) {
+                const cached = this.cache.get(key);
+                if (!cached) return null;
+                
+                const age = Date.now() - cached.timestamp;
+                if (age > this.maxAge) {
+                    this.updateCacheIndicator(key, 'expired');
+                    return null;
+                }
+                
+                const status = age > this.maxAge * 0.7 ? 'stale' : 'fresh';
+                this.updateCacheIndicator(key, status);
+                return cached.data;
+            }
+
+            updateCacheIndicator(key, status) {
+                const indicator = document.querySelector(`[data-cache-key="${key}"]`);
+                if (indicator) {
+                    indicator.className = `cache-indicator cache-${status}`;
+                    indicator.title = `Cache: ${status} (${key})`;
+                }
+            }
+
+            clear() {
+                this.cache.clear();
+                document.querySelectorAll('.cache-indicator').forEach(el => el.remove());
+            }
+        }
+
+        const dataCache = new DataCache();
+
+        // Date Range Management
+        let currentDateRange = {
+            startDate: moment().subtract(30, 'days'),
+            endDate: moment(),
+            label: 'Last 30 Days'
+        };
+
+        // Initialize Date Range Picker
+        $(document).ready(function() {
+            $('#dateRangePicker').daterangepicker({
+                startDate: currentDateRange.startDate,
+                endDate: currentDateRange.endDate,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    'Last 3 Months': [moment().subtract(3, 'months'), moment()],
+                    'Last 6 Months': [moment().subtract(6, 'months'), moment()],
+                    'This Year': [moment().startOf('year'), moment()]
+                },
+                locale: {
+                    format: 'MMM DD, YYYY'
+                }
+            }, function(start, end, label) {
+                currentDateRange = { startDate: start, endDate: end, label: label };
+                $('#dateRangeDisplay').text(label || `${start.format('MMM DD')} - ${end.format('MMM DD, YYYY')}`);
+                
+                // Clear cache and refresh data
+                dataCache.clear();
+                showLoadingIndicators();
+                loadDashboardWithDateRange(start, end);
+            });
+        });
+
+        // Loading States Management
+        function showLoadingIndicators() {
+            // Add loading spinners to key metrics
+            const indicators = [
+                'total-revenue', 'audiobook-revenue', 'book-revenue', 'bundle-revenue',
+                'ga-page-views', 'ga-unique-visitors', 'ga-bounce-rate', 'ga-session-duration',
+                'mailerlite-total-subscribers', 'mailerlite-active-subscribers'
+            ];
+
+            indicators.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = '<div class="loading-spinner"></div>';
+                }
+            });
+
+            // Add loading skeleton to tables
+            const tables = ['orders-table', 'subscribers-table-body'];
+            tables.forEach(id => {
+                const table = document.getElementById(id);
+                if (table) {
+                    table.innerHTML = `
+                        <tr>
+                            <td colspan="100%" class="py-8">
+                                <div class="loading-skeleton h-4 mb-2"></div>
+                                <div class="loading-skeleton h-4 mb-2"></div>
+                                <div class="loading-skeleton h-4"></div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+        }
+
+        function hideLoadingIndicators() {
+            document.querySelectorAll('.loading-spinner').forEach(el => el.remove());
+            document.querySelectorAll('.loading-skeleton').forEach(el => el.remove());
+        }
+
+        // Enhanced Data Loading with Caching
+        async function loadDashboardWithDateRange(startDate, endDate) {
+            const dateKey = `${startDate.format('YYYY-MM-DD')}_${endDate.format('YYYY-MM-DD')}`;
+            
+            // Check cache first
+            const cached = dataCache.get(`dashboard_${dateKey}`);
+            if (cached) {
+                console.log('📦 Using cached dashboard data');
+                updateDashboardWithRealData(cached);
+                hideLoadingIndicators();
+                return;
+            }
+
+            try {
+                console.log(`📅 Loading dashboard data for ${startDate.format('MMM DD')} - ${endDate.format('MMM DD, YYYY')}`);
+                
+                const params = new URLSearchParams({
+                    startDate: startDate.format('YYYY-MM-DD'),
+                    endDate: endDate.format('YYYY-MM-DD'),
+                    days: endDate.diff(startDate, 'days')
+                });
+
+                const response = await fetch(`/.netlify/functions/admin-dashboard-summary?${params}`, {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    dataCache.set(`dashboard_${dateKey}`, data);
+                    updateDashboardWithRealData(data);
+                    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Dashboard data loaded and cached');
+                } else {
+                    throw new Error(`Dashboard API failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('📅 Date range loading failed:', error);
+                showErrorMessage(`Failed to load data for selected date range: ${error.message}`);
+            } finally {
+                hideLoadingIndicators();
+            }
+        }
+
+        // Export Functionality
+        async function exportOrders() {
+            try {
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Exporting...';
+                button.disabled = true;
+
+                const response = await fetch('/.netlify/functions/admin-orders?format=csv&limit=1000', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const csvData = await response.text();
+                    downloadCSV(csvData, `orders_${moment().format('YYYY-MM-DD')}.csv`);
+                    showSuccessMessage('Orders exported successfully!');
+                } else {
+                    throw new Error(`Export failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Export failed:', error);
+                showErrorMessage('Failed to export orders: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        async function exportSubscribers() {
+            try {
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Exporting...';
+                button.disabled = true;
+
+                const response = await fetch('/.netlify/functions/admin-newsletter-stats?detail=subscribers&format=csv&limit=10000', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const csvData = await response.text();
+                    downloadCSV(csvData, `subscribers_${moment().format('YYYY-MM-DD')}.csv`);
+                    showSuccessMessage('Subscribers exported successfully!');
+                } else {
+                    throw new Error(`Export failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Export failed:', error);
+                showErrorMessage('Failed to export subscribers: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        function downloadCSV(csvData, filename) {
+            const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Enhanced Error Handling with Retry
+        class ErrorHandler {
+            constructor() {
+                this.retryCount = new Map();
+                this.maxRetries = 3;
+                this.retryDelay = 1000; // 1 second
+            }
+
+            async withRetry(fn, context = 'operation') {
+                const key = context;
+                const attempts = this.retryCount.get(key) || 0;
+
+                try {
+                    const result = await fn();
+                    this.retryCount.delete(key); // Reset on success
+                    return result;
+                } catch (error) {
+                    console.error(`<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> ${context} failed (attempt ${attempts + 1}):`, error);
+
+                    if (attempts < this.maxRetries) {
+                        this.retryCount.set(key, attempts + 1);
+                        const delay = this.retryDelay * Math.pow(2, attempts); // Exponential backoff
+                        
+                        showRetryMessage(context, attempts + 1, this.maxRetries, delay);
+                        
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return this.withRetry(fn, context);
+                    } else {
+                        this.retryCount.delete(key);
+                        showErrorMessage(`${context} failed after ${this.maxRetries} attempts: ${error.message}`);
+                        throw error;
+                    }
+                }
+            }
+        }
+
+        const errorHandler = new ErrorHandler();
+
+        // Enhanced UI Notifications
+        function showSuccessMessage(message) {
+            showNotification(message, 'success');
+        }
+
+        function showErrorMessage(message) {
+            showNotification(message, 'error');
+        }
+
+        function showRetryMessage(operation, attempt, maxAttempts, delay) {
+            showNotification(`${operation} failed, retrying... (${attempt}/${maxAttempts}) in ${delay/1000}s`, 'warning', delay);
+        }
+
+        function showNotification(message, type = 'info', duration = 5000) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transition-all duration-300 transform translate-x-full`;
+            
+            const colors = {
+                success: 'bg-green-600 text-white',
+                error: 'bg-red-600 text-white',
+                warning: 'bg-yellow-600 text-black',
+                info: 'bg-blue-600 text-white'
+            };
+
+            notification.className += ` ${colors[type] || colors.info}`;
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-lg">&times;</button>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+            
+            // Slide in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+
+            // Auto remove
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => notification.remove(), 300);
+            }, duration);
+        }
+
+        // Enhanced Quick Refresh with Better Error Handling
+        async function quickRefresh() {
+            console.log('🔄 Starting enhanced quick refresh...');
+            
+            const button = document.getElementById('quick-refresh-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Refreshing...';
+            button.disabled = true;
+            
+            showLoadingIndicators();
+            
+            try {
+                // Use error handler with retry for each operation
+                await Promise.all([
+                    errorHandler.withRetry(() => loadGoogleAnalytics(), 'Google Analytics'),
+                    errorHandler.withRetry(() => loadStripeAnalytics(), 'Stripe Analytics'),
+                    errorHandler.withRetry(() => loadAudiobookAnalytics(), 'Audiobook Analytics'),
+                    errorHandler.withRetry(() => loadRealNewsletterData(), 'Newsletter Data')
+                ]);
+                
+                hideLoadingIndicators();
+                showSuccessMessage('📊 All analytics refreshed successfully!');
+                console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Enhanced quick refresh complete');
+                
+            } catch (error) {
+                hideLoadingIndicators();
+                console.error('Enhanced quick refresh failed:', error);
+                showErrorMessage('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Quick refresh failed: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Enhanced Order Search and Filtering
+        // let allOrders = []; // Already declared - Store all orders for filtering
+        let filteredOrders = []; // Store current filtered results
+
+        function searchOrders() {
+            const searchTerm = document.getElementById('order-search').value.toLowerCase();
+            const statusFilter = document.getElementById('order-status-filter').value;
+            
+            filteredOrders = allOrders.filter(order => {
+                const matchesSearch = searchTerm === '' || 
+                    order.customer_email.toLowerCase().includes(searchTerm) ||
+                    order.customer_name.toLowerCase().includes(searchTerm) ||
+                    order.id.toLowerCase().includes(searchTerm) ||
+                    (order.product && order.product.toLowerCase().includes(searchTerm));
+                
+                const matchesStatus = statusFilter === 'all' || order.status === statusFilter;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            displayFilteredOrders();
+            updateOrderStats();
+        }
+
+        function filterOrders() {
+            searchOrders(); // Use the same logic
+        }
+
+        function clearOrderFilters() {
+            document.getElementById('order-search').value = '';
+            document.getElementById('order-status-filter').value = 'all';
+            filteredOrders = allOrders;
+            displayFilteredOrders();
+            updateOrderStats();
+        }
+
+        function displayFilteredOrders() {
+            const tbody = document.getElementById('orders-table');
+            if (!tbody) return;
+
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-8 opacity-70">
+                            <i class="fas fa-search text-2xl mb-2 block"></i>
+                            No orders match your criteria
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filteredOrders.map(order => `
+                <tr class="border-b border-bone/10 hover:bg-bone/5 transition-colors">
+                    <td class="py-3">${order.id || 'N/A'}</td>
+                    <td class="py-3">
+                        <div>
+                            <div class="font-medium">${order.customer_name || 'Unknown'}</div>
+                            <div class="text-sm opacity-70">${order.customer_email || 'No email'}</div>
+                        </div>
+                    </td>
+                    <td class="py-3">${order.product || 'Unknown Product'}</td>
+                    <td class="py-3 font-bold">$${(order.amount || 0).toFixed(2)}</td>
+                    <td class="py-3">
+                        <span class="status-badge status-${order.status || 'unknown'}">${order.status || 'Unknown'}</span>
+                    </td>
+                    <td class="py-3">${order.created ? new Date(order.created * 1000).toLocaleDateString() : 'Unknown'}</td>
+                    <td class="py-3">
+                        <button onclick="showOrderDetails('${order.id}')" class="btn-secondary text-sm">
+                            <i class="fas fa-eye mr-1"></i> View
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateOrderStats() {
+            const totalOrders = filteredOrders.length;
+            const totalRevenue = filteredOrders.reduce((sum, order) => sum + (order.amount || 0), 0);
+            
+            // Update display somewhere visible
+            const statsElement = document.getElementById('order-stats');
+            if (statsElement) {
+                statsElement.innerHTML = `
+                    Showing ${totalOrders} orders | Total: $${totalRevenue.toFixed(2)}
+                `;
             }
         }
     </script>

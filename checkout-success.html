@@ -7,15 +7,9 @@
     <meta name="description" content="Thank you for your purchase! Check your email for audiobook access.">
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -74,11 +68,18 @@
 
         .font-display { font-family: var(--font-display); }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body>
     <div class="success-card">
         <div class="mb-8">
-            <div class="text-6xl mb-4">🎉</div>
+            <div class="text-6xl mb-4"><svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 2v4l-3 2v4h18V8l-3-2V2"/>
+        <path d="M16 4V2"/>
+        <path d="M12 4V2"/>
+        <path d="M8 4V2"/>
+        <path d="M8 22l8-10H8l8-10"/>
+    </svg></div>
             <h1 class="font-display text-3xl font-bold mb-4 text-green-400">
                 Purchase Successful!
             </h1>
@@ -92,21 +93,31 @@
                 Check your email in the next few minutes for your exclusive audiobook access link with the bonus epilogue.
             </p>
             <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4 mb-6">
-                <p class="text-green-400 font-semibold">✅ Payment confirmed</p>
-                <p class="text-green-400">📧 Access link being sent to your email</p>
+                <p class="text-green-400 font-semibold"><svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Payment confirmed</p>
+                <p class="text-green-400"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </svg> Access link being sent to your email</p>
                 <p class="text-green-400">🎧 Includes exclusive bonus content</p>
             </div>
         </div>
 
         <div id="book-success" style="display: none;">
             <h2 class="font-display text-2xl font-semibold mb-4">
-                Your Signed Copy is On Its Way! 📚
+                Your Signed Copy is On Its Way! <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
             </h2>
             <p class="text-lg mb-6 text-gray-300">
                 Thank you for your order! Your personalized signed copy will be shipped within 2-3 business days.
             </p>
             <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 mb-6">
-                <p class="text-blue-400 font-semibold">✅ Order confirmed</p>
+                <p class="text-blue-400 font-semibold"><svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Order confirmed</p>
                 <p class="text-blue-400">📦 Ships within 2-3 business days</p>
                 <p class="text-blue-400">✍️ Personally signed by Aleks</p>
             </div>
@@ -114,15 +125,26 @@
 
         <div id="bundle-success" style="display: none;">
             <h2 class="font-display text-2xl font-semibold mb-4">
-                Your Complete Bundle is Ready! 🎁
+                Your Complete Bundle is Ready! <svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20,12 20,22 4,22 4,12"/>
+        <rect width="20" height="5" x="2" y="7"/>
+        <line x1="12" y1="22" x2="12" y2="7"/>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg>
             </h2>
             <p class="text-lg mb-6 text-gray-300">
                 You'll receive your audiobook access immediately via email, and your signed copy will ship within 2-3 business days.
             </p>
             <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
-                <p class="text-purple-400 font-semibold">✅ Bundle confirmed</p>
+                <p class="text-purple-400 font-semibold"><svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <polyline points="20,6 9,17 4,12"/>
+    </svg> Bundle confirmed</p>
                 <p class="text-purple-400">🎧 Audiobook access via email</p>
-                <p class="text-purple-400">📚 Signed book shipping soon</p>
+                <p class="text-purple-400"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg> Signed book shipping soon</p>
             </div>
         </div>
 

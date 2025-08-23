@@ -32,15 +32,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/dacia-rising.html">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-W9B5W1241H');
-    </script>
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -839,17 +833,102 @@
             }
         }
     </style>
+    <script src="/js/premium-icons.js" defer></script>
 </head>
 <body>
-    <header id="main-header">
-        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Aleks Filmore</a></div>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="audiobook.html">Audiobook</a>
-            <a href="dacia-rising.html">Dacia Rising</a>
-        </nav>
-    </header>
+            <!-- Standardized Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">Aleks Filmore</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-100 text-red-flag">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link text-red-flag">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <section class="layer gate" id="layer0">
         <div class="gate-content">
@@ -970,7 +1049,9 @@
             <form id="dacia-newsletter-form" class="email-capture-form" style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem; max-width: 400px;">
                 <input type="email" name="email" placeholder="Your email to be etched among the remembered" required style="padding: 1rem; font-size: 1rem; background: linear-gradient(135deg, var(--color-stone-dark) 0%, var(--color-forest-deep) 100%) !important; border: 2px solid rgba(199, 255, 65, 0.3); border-radius: 12px; color: var(--color-text-white) !important; transition: all 0.3s ease;">
                 <input type="text" name="name" placeholder="Your name (optional)" style="padding: 1rem; font-size: 1rem; background: linear-gradient(135deg, var(--color-stone-dark) 0%, var(--color-forest-deep) 100%); border: 2px solid rgba(199, 255, 65, 0.3); border-radius: 12px; color: var(--color-text-white); transition: all 0.3s ease;">
-                <button type="submit" class="cta-button" style="margin: 0; font-size: 1.1rem;">🔥 Claim Your Prophecy</button>
+                <button type="submit" class="cta-button" style="margin: 0; font-size: 1.1rem;"><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+    </svg> Claim Your Prophecy</button>
             </form>
         </div>
     </section>
@@ -1023,7 +1104,11 @@
                             // Show success message
                             daciaForm.innerHTML = `
                                 <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(199, 255, 65, 0.05) 100%); border: 2px solid rgba(199, 255, 65, 0.3); border-radius: 12px;">
-                                    <div style="font-size: 2rem; margin-bottom: 1rem;">🔮</div>
+                                    <div style="font-size: 2rem; margin-bottom: 1rem;"><svg class="premium-icon colored-blush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 3h12l4 6-10 12L2 9l4-6z"/>
+        <path d="M11 3 8 9l4 12 4-12-3-6"/>
+        <path d="M2 9h20"/>
+    </svg></div>
                                     <div style="color: var(--color-text-white); font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">The Prophecy is Yours!</div>
                                     <div style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Your secret chapter awaits in your inbox.</div>
                                     <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">Check your email (including spam) for your exclusive content!</div>
