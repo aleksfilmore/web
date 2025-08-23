@@ -216,6 +216,82 @@
                 </div>
             </section>
 
+            <!-- Website Analytics (Google Analytics) -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-8">Website Analytics</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Page Views -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Page Views</h3>
+                        <p id="ga-page-views" class="text-3xl font-bold text-glitch-lime">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Last 30 days</p>
+                    </div>
+
+                    <!-- Unique Visitors -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Unique Visitors</h3>
+                        <p id="ga-unique-visitors" class="text-3xl font-bold text-red-flag">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Last 30 days</p>
+                    </div>
+
+                    <!-- Bounce Rate -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Bounce Rate</h3>
+                        <p id="ga-bounce-rate" class="text-3xl font-bold text-dusty-blush">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Last 30 days</p>
+                    </div>
+
+                    <!-- Session Duration -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-2">Avg Session</h3>
+                        <p id="ga-session-duration" class="text-3xl font-bold text-bone">Loading...</p>
+                        <p class="text-sm opacity-70 mt-2">Duration in minutes</p>
+                    </div>
+                </div>
+
+                <!-- Website Analytics Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Traffic Chart -->
+                    <div class="dashboard-card">
+                        <h3 class="text-xl font-semibold mb-4">Website Traffic (Last 30 Days)</h3>
+                        <div style="height: 300px;">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Top Pages -->
+                    <div class="dashboard-card">
+                        <h3 class="text-xl font-semibold mb-4">Top Pages</h3>
+                        <div id="top-pages-list" class="space-y-3">
+                            <!-- Top pages will be populated here -->
+                        </div>
+                        <button onclick="refreshGoogleAnalytics()" class="btn-secondary mt-4 w-full">
+                            Refresh Analytics Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Traffic Sources -->
+                <div class="dashboard-card">
+                    <h3 class="text-xl font-semibold mb-4">Traffic Sources</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-glitch-lime" id="organic-traffic">Loading...</div>
+                            <div class="text-sm opacity-70">Organic Search</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-flag" id="direct-traffic">Loading...</div>
+                            <div class="text-sm opacity-70">Direct</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-dusty-blush" id="social-traffic">Loading...</div>
+                            <div class="text-sm opacity-70">Social Media</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Order Management -->
             <section class="mb-12">
                 <div class="flex justify-between items-center mb-8">
@@ -274,24 +350,33 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Subscriber Stats -->
                     <div class="dashboard-card">
-                        <h3 class="text-xl font-semibold mb-4">Subscriber Statistics</h3>
+                        <h3 class="text-xl font-semibold mb-4">MailerLite Statistics</h3>
                         <div class="space-y-4">
                             <div class="flex justify-between">
                                 <span>Total Subscribers:</span>
-                                <span id="total-subscribers" class="font-bold">Loading...</span>
+                                <span id="mailerlite-total-subscribers" class="font-bold">Loading...</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Active Subscribers:</span>
+                                <span id="mailerlite-active-subscribers" class="font-bold text-glitch-lime">Loading...</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>This Month:</span>
-                                <span id="monthly-subscribers" class="font-bold text-glitch-lime">Loading...</span>
+                                <span id="mailerlite-monthly-subscribers" class="font-bold text-red-flag">Loading...</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Open Rate:</span>
-                                <span class="font-bold text-red-flag">~25%</span>
+                                <span id="mailerlite-open-rate" class="font-bold text-dusty-blush">Loading...</span>
                             </div>
                         </div>
-                        <button onclick="refreshSubscribers()" class="btn-secondary mt-4 w-full">
-                            Refresh from Formspree
-                        </button>
+                        <div class="flex gap-2 mt-4">
+                            <button onclick="refreshMailerLiteStats()" class="btn-secondary flex-1">
+                                Refresh Stats
+                            </button>
+                            <button onclick="exportSubscribers()" class="btn-secondary flex-1">
+                                Export List
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Recent Newsletters -->

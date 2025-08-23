@@ -245,14 +245,14 @@ class CookieNotice {
         if (typeof gtag === 'undefined') {
             const script = document.createElement('script');
             script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-W9B5W1241H';
             document.head.appendChild(script);
             
             script.onload = () => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'GA_MEASUREMENT_ID');
+                gtag('config', 'G-W9B5W1241H');
                 window.gtag = gtag;
             };
         }
