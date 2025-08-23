@@ -33,6 +33,13 @@ fix-*.js
 *-debug.js
 create-*
 
+# Documentation with sensitive information
+TECH_STACK.md
+*-STACK.md
+DEVELOPMENT.md
+INTERNAL*.md
+SECRET*.md
+
 # Logs
 logs/
 *.log
