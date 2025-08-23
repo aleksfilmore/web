@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -74,151 +74,193 @@
     }
     </script>
     
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "Dacia Rising: The Bear's Awakening",
+        "author": {
+            "@type": "Person",
+            "name": "Aleks Filmore",
+            "url": "https://aleksfilmore.com"
+        },
+        "genre": ["Dark Fantasy", "Epic Fantasy", "Historical Fantasy", "Mythology"],
+        "bookFormat": "EBook",
+        "inLanguage": "en",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Amazon Kindle Direct Publishing"
+        },
+        "datePublished": "2024",
+        "description": "Set in the shadow of Rome's brutal expansion, Dacia Rising: The Bear's Awakening is the first novel in a sweeping fantasy trilogy that merges ancient history, tribal myth, and a rising tide of war and destiny.",
+        "url": "https://aleksfilmore.com/dacia-rising.html",
+        "image": "https://aleksfilmore.com/DACIA RISING.png",
+        "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "url": "https://a.co/d/49Un93W"
+        },
+        "workExample": {
+            "@type": "Book",
+            "bookFormat": "EBook",
+            "potentialAction": {
+                "@type": "ReadAction",
+                "target": "https://a.co/d/49Un93W"
+            }
+        }
+    }
+    </script>
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'display': ['Cinzel', 'serif'],
+                        'body': ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'charcoal': '#1A1A1A',
+                        'bone': '#F8F6F0',
+                        'red-flag': '#FF3B3B',
+                        'glitch-lime': '#C7FF41',
+                        'dusty-blush': '#E8B4CB',
+                        'obsidian': '#0B0E11',
+                        'forest-deep': '#12181D',
+                        'stone-dark': '#2C343D',
+                        'gold-ancient': '#D4AF37',
+                        'gold-shine': '#FFD700',
+                        'emerald-deep': '#2ECC71',
+                        'blood-red': '#A52A2A'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'parallax': 'parallax 20s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(255, 59, 59, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(255, 59, 59, 0.8), 0 0 60px rgba(199, 255, 65, 0.3)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        parallax: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        /* Enhanced CSS Variables - Blending Dacia Rising with Aleks Filmore Brand */
+        /* Enhanced CSS Variables - Dacia Rising Brand */
         :root {
-            /* Backgrounds & Text */
+            /* Core Dacia Rising Colors */
             --color-obsidian-black: #0B0E11;
             --color-forest-deep: #12181D;
             --color-stone-dark: #2C343D;
             --color-text-white: #F8F9FA;
             --color-text-light-grey: #C7CDD4;
-
-            /* Brand Integration - Aleks Filmore Colors */
-            --color-red-flag: #FF3B3B; /* Your signature red flag color */
-            --color-electric-green: #C7FF41; /* Your signature electric green */
-            --color-red-flag-dark: #e63946; /* Darker red for hover states */
-            
-            /* Dacia Rising Specific */
+            --color-red-flag: #FF3B3B;
+            --color-electric-green: #C7FF41;
             --color-gold-ancient: #D4AF37;
             --color-gold-shine: #FFD700;
             --color-emerald-green: #2ECC71;
-            --color-emerald-dark: #27AE60;
             --color-blood-red: #A52A2A;
             
-            /* Enhanced gradients */
+            /* Gradients */
             --gradient-hero: linear-gradient(135deg, var(--color-obsidian-black) 0%, var(--color-forest-deep) 50%, var(--color-stone-dark) 100%);
-            --gradient-accent: linear-gradient(135deg, var(--color-red-flag) 0%, var(--color-red-flag-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
             --gradient-electric: linear-gradient(135deg, var(--color-electric-green) 0%, var(--color-emerald-green) 100%);
+            --gradient-ancient: linear-gradient(135deg, var(--color-gold-ancient) 0%, var(--color-gold-shine) 50%, var(--color-red-flag) 100%);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
+        
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-obsidian-black);
+            background: var(--gradient-hero);
             color: var(--color-text-white);
             line-height: 1.7;
-            overflow-x: hidden; /* Prevent horizontal scroll from any overflow */
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-        header {
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--gradient-hero);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        .logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .logo:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        .nav-links a {
-            color: var(--color-text-white);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 8px 16px;
-            border-radius: 25px;
-        }
-        .nav-links a:hover {
-            color: var(--color-electric-green);
-            background: rgba(199, 255, 65, 0.1);
-            transform: translateY(-2px);
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--color-electric-green);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .nav-links a:hover::after {
-            width: 80%;
+            overflow-x: hidden;
         }
 
-        /* === Layer Styling === */
+        /* Mystical Cursor */
+        .mystical-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-gold-ancient);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+        }
+
+        /* Layer System */
         .layer {
-            min-height: 100vh; /* Each layer takes full viewport height */
-            display: flex; /* Always flex so content is centered */
+            min-height: 100vh;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
-            /* Initial state for all layers except Layer 0 */
-            opacity: 0; 
-            visibility: hidden; /* Hide fully */
-            pointer-events: none; /* Prevents interaction when hidden */
-            transform: translateY(100vh); /* Push off-screen initially */
-            transition: opacity 1s ease-out, transform 1s ease-out, visibility 1s; 
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(100vh);
+            transition: opacity 1s ease-out, transform 1s ease-out, visibility 1s;
         }
-        /* Specific for Layer 0 to be fixed and initially visible */
+
+        /* Layer 0: The Gate */
         #layer0 {
             background-color: var(--color-obsidian-black);
-            position: fixed; 
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1001; /* Above all initially */
-            opacity: 1; /* Starts visible */
+            z-index: 1001;
+            opacity: 1;
             visibility: visible;
-            pointer-events: auto; /* Allow clicks on gate */
-            transform: translateY(0); /* Start on screen */
+            pointer-events: auto;
+            transform: translateY(0);
             transition: opacity 1.5s ease-out, visibility 1.5s, transform 1.5s;
         }
 
-        /* Layer 0: The Gate Specifics */
         .gate-content {
             position: relative;
             z-index: 2;
@@ -229,6 +271,7 @@
             max-width: 800px;
             padding: 2rem;
         }
+
         .spiral-glyph {
             width: 150px;
             height: 150px;
@@ -238,6 +281,7 @@
             animation: glyph-form 3s ease-out forwards, glyph-pulse 2s infinite alternate 3s;
             box-shadow: 0 0 30px rgba(255, 59, 59, 0.6);
         }
+
         .spiral-glyph::before, .spiral-glyph::after {
             content: '';
             position: absolute;
@@ -247,6 +291,7 @@
             border-radius: 50%;
             border-style: solid;
         }
+
         .spiral-glyph::before {
             width: 80px;
             height: 80px;
@@ -254,6 +299,7 @@
             border-color: var(--color-electric-green);
             animation: spiral-in 2s ease-out forwards 0.5s;
         }
+
         .spiral-glyph::after {
             width: 40px;
             height: 40px;
@@ -266,10 +312,12 @@
             0% { opacity: 0; transform: scale(0); border-width: 0; }
             100% { opacity: 1; transform: scale(1); border-width: 5px; }
         }
+
         @keyframes glyph-pulse {
             0% { box-shadow: 0 0 30px rgba(255, 59, 59, 0.6); }
             100% { box-shadow: 0 0 50px rgba(255, 59, 59, 0.9), 0 0 70px rgba(199, 255, 65, 0.3); }
         }
+
         @keyframes spiral-in {
             0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
@@ -281,9 +329,11 @@
             margin-top: 2rem;
             max-width: 600px;
             font-style: italic;
+            font-family: 'Cinzel', serif;
             opacity: 0;
             animation: text-fade-in 1.5s ease-out forwards 3.5s;
         }
+
         @keyframes text-fade-in {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -307,6 +357,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .gate-cta-button::before {
             content: '';
             position: absolute;
@@ -317,16 +368,85 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s;
         }
+
         .gate-cta-button:hover::before {
             left: 100%;
         }
+
         .gate-cta-button:hover {
             background: var(--gradient-electric);
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(255, 59, 59, 0.6);
         }
 
-        /* Regular CTA Buttons */
+        @keyframes button-fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Layer Content Styling */
+        .layer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-family: 'Cinzel', serif;
+            background: var(--gradient-ancient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--color-electric-green);
+            padding-bottom: 0.8rem;
+            display: inline-block;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--color-red-flag);
+            transition: width 0.8s ease;
+        }
+
+        .layer-animate .section-title::after {
+            width: 100%;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: var(--color-text-light-grey);
+            margin-bottom: 3.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1.1rem;
+            color: var(--color-text-white);
+        }
+
+        .text-block strong {
+            color: var(--color-gold-shine);
+            font-weight: 700;
+        }
+
+        /* CTA Buttons */
         .cta-button {
             display: inline-block;
             background: var(--gradient-accent);
@@ -346,6 +466,7 @@
             overflow: hidden;
             margin: 1rem 0;
         }
+
         .cta-button::before {
             content: '';
             position: absolute;
@@ -356,9 +477,11 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s;
         }
+
         .cta-button:hover::before {
             left: 100%;
         }
+
         .cta-button:hover {
             background: var(--gradient-electric);
             transform: translateY(-3px);
@@ -367,165 +490,14 @@
             color: var(--color-obsidian-black);
         }
 
-        /* Form Enhancement */
-        .email-capture-form input {
-            padding: 1rem;
-            font-size: 1rem;
-            background: linear-gradient(135deg, var(--color-stone-dark) 0%, var(--color-forest-deep) 100%) !important;
-            border: 2px solid rgba(199, 255, 65, 0.3);
-            border-radius: 12px;
-            color: var(--color-text-white) !important;
-            transition: all 0.3s ease;
-        }
-        .email-capture-form input:focus {
-            outline: none;
-            border-color: var(--color-electric-green);
-            box-shadow: 0 0 20px rgba(199, 255, 65, 0.3);
-            background: linear-gradient(135deg, var(--color-forest-deep) 0%, var(--color-stone-dark) 100%) !important;
-            color: var(--color-text-white) !important;
-        }
-        .email-capture-form input::placeholder {
-            color: rgba(199, 205, 212, 0.7) !important;
-            font-style: italic;
-        }
-        @keyframes button-fade-in {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Layer 1: The Prophecy Awakes Specific Styling */
-        #layer1 {
-            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png'); /* Misty mountains with light */
-            background-size: cover;
-            background-position: center;
-            position: relative; /* For overlays */
-            background-attachment: fixed; /* Parallax effect */
-        }
-        #layer1::before { /* Overlay to darken and transition */
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--color-forest-deep) 70%);
-            z-index: 1;
-        }
-        #layer1 .layer-content {
-            z-index: 2; /* Content above overlay */
-            padding-top: 5rem; /* Adjust padding for visual balance */
-            padding-bottom: 5rem;
-            background-color: transparent; /* No background on content block here */
-            box-shadow: none; /* No box-shadow on content block here */
-        }
-        /* Animations for layer1 content (triggered by JS adding 'animate' class) */
-        .layer-animate .section-title, 
-        .layer-animate .section-subtitle, 
-        .layer-animate .text-block, 
-        .layer-animate .cta-button {
-            opacity: 0; /* Hidden initially */
-            transform: translateY(20px);
-            animation-fill-mode: forwards;
-        }
-
-        .layer-animate .section-title {
-            animation: fadeInSlideUp 1s ease-out forwards 0.5s;
-        }
-        .layer-animate .section-subtitle {
-            animation: fadeInSlideUp 1s ease-out forwards 1s;
-        }
-        .layer-animate .text-block {
-            animation: fadeInSlideUp 1s ease-out forwards 1.5s;
-        }
-        .layer-animate .cta-button {
-            animation: fadeInSlideUp 1s ease-out forwards 2s;
-        }
-
-        @keyframes fadeInSlideUp {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Subsequent Layers General Styling */
-        .layer-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 2rem;
-        }
-        .section-title {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--color-gold-ancient) 0%, var(--color-gold-shine) 50%, var(--color-red-flag) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 3px solid var(--color-electric-green);
-            padding-bottom: 0.8rem;
-            display: inline-block;
-            font-weight: 700;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--color-red-flag);
-            transition: width 0.8s ease;
-        }
-        .layer-animate .section-title::after {
-            width: 100%;
-        }
-        .section-subtitle {
-            font-size: 1.4rem;
-            color: var(--color-text-light-grey);
-            margin-bottom: 3.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .text-block {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            font-size: 1.1rem;
-            color: var(--color-text-white);
-        }
-        .text-block strong {
-            color: var(--color-gold-shine);
-            font-weight: 700;
-        }
-        .text-block ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 2rem;
-        }
-        .text-block ul li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 1rem;
-            font-size: 1.15rem;
-            line-height: 1.5;
-        }
-        .text-block ul li::before {
-            content: '🌿';
-            color: var(--color-emerald-green);
-            position: absolute;
-            left: 0;
-            font-size: 1.4em;
-            line-height: 1;
-            top: -2px;
-        }
-        
-        /* Character & Location Showcase Grids */
+        /* Character & Location Cards */
         .character-grid, .location-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
+
         .character-card, .location-card {
             background: linear-gradient(135deg, var(--color-forest-deep) 0%, var(--color-stone-dark) 100%);
             border-radius: 16px;
@@ -537,6 +509,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .character-card::before, .location-card::before {
             content: '';
             position: absolute;
@@ -549,18 +522,22 @@
             transition: opacity 0.3s ease;
             z-index: 1;
         }
+
         .character-card:hover::before, .location-card:hover::before {
             opacity: 1;
         }
+
         .character-card:hover, .location-card:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0,0,0,0.7);
             border-color: rgba(199, 255, 65, 0.3);
         }
+
         .character-card > *, .location-card > * {
             position: relative;
             z-index: 2;
         }
+
         .character-card img, .location-card img {
             width: 100%;
             max-width: 200px;
@@ -572,9 +549,11 @@
             transition: all 0.4s ease;
             filter: brightness(0.9);
         }
+
         .location-card img {
             border-radius: 12px;
         }
+
         .character-card img:hover, .location-card img:hover {
             border-color: var(--color-red-flag);
             filter: brightness(1.1);
@@ -584,7 +563,8 @@
 
         .character-card h3, .location-card h3 {
             font-size: 1.6rem;
-            background: linear-gradient(135deg, var(--color-gold-shine) 0%, var(--color-red-flag) 100%);
+            font-family: 'Cinzel', serif;
+            background: var(--gradient-ancient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -593,58 +573,82 @@
             letter-spacing: 0.5px;
             font-weight: 700;
         }
+
         .character-card p, .location-card p {
             font-size: 0.98rem;
             color: var(--color-text-light-grey);
             line-height: 1.6;
         }
 
-        /* Reviews Section */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-            text-align: left;
-        }
-        .review-card {
-            background-color: var(--color-forest-deep);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
-        .review-card .stars {
-            color: gold;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-        }
-        .review-card p {
-            font-size: 1.05rem;
-            color: var(--color-text-white);
-            margin-bottom: 1.2rem;
-            font-style: italic;
-        }
-        .review-card strong {
-            color: var(--color-gold-ancient);
-            font-weight: 700;
-        }
-        .review-card .reviewer {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--color-emerald-green);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Layer specific backgrounds */
+        #layer1 {
+            background-image: url('https://raw.githubusercontent.com/aleksfilmore/web/main/DaciaRising/Dacia%202.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* Final CTA Section */
-        .final-cta-section .section-title {
-            color: var(--color-gold-ancient);
-            border-bottom-color: var(--color-emerald-green);
+        #layer1::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--color-forest-deep) 70%);
+            z-index: 1;
+        }
+
+        /* Form Enhancement */
+        .email-capture-form input {
+            padding: 1rem;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--color-stone-dark) 0%, var(--color-forest-deep) 100%) !important;
+            border: 2px solid rgba(199, 255, 65, 0.3);
+            border-radius: 12px;
+            color: var(--color-text-white) !important;
+            transition: all 0.3s ease;
+        }
+
+        .email-capture-form input:focus {
+            outline: none;
+            border-color: var(--color-electric-green);
+            box-shadow: 0 0 20px rgba(199, 255, 65, 0.3);
+            background: linear-gradient(135deg, var(--color-forest-deep) 0%, var(--color-stone-dark) 100%) !important;
+            color: var(--color-text-white) !important;
+        }
+
+        .email-capture-form input::placeholder {
+            color: rgba(199, 205, 212, 0.7) !important;
+            font-style: italic;
+        }
+
+        /* Animation Triggers */
+        .layer-animate .section-title, 
+        .layer-animate .section-subtitle, 
+        .layer-animate .text-block, 
+        .layer-animate .cta-button {
+            opacity: 0;
+            transform: translateY(20px);
+            animation-fill-mode: forwards;
+        }
+
+        .layer-animate .section-title {
+            animation: fadeInSlideUp 1s ease-out forwards 0.5s;
+        }
+
+        .layer-animate .section-subtitle {
+            animation: fadeInSlideUp 1s ease-out forwards 1s;
+        }
+
+        .layer-animate .text-block {
+            animation: fadeInSlideUp 1s ease-out forwards 1.5s;
+        }
+
+        .layer-animate .cta-button {
+            animation: fadeInSlideUp 1s ease-out forwards 2s;
+        }
+
+        @keyframes fadeInSlideUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
@@ -657,6 +661,7 @@
             position: relative;
             z-index: 10;
         }
+
         footer a {
             color: var(--color-electric-green);
             text-decoration: none;
@@ -664,179 +669,78 @@
             transition: all 0.3s ease;
             font-weight: 600;
         }
+
         footer a:hover {
             color: var(--color-red-flag);
             text-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
         }
+
         .footer-social-links {
             margin-bottom: 20px;
         }
+
         .footer-social-links a {
             font-size: 28px;
             margin: 0 15px;
             display: inline-block;
             transition: all 0.3s ease;
         }
+
         .footer-social-links a:hover {
             transform: translateY(-3px) scale(1.1);
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 900px) {
-            .hero h1 {
-                font-size: 3.8rem;
-            }
-            .hero h2 {
-                font-size: 1.8rem;
-            }
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .section-title {
                 font-size: 2.5rem;
             }
-            .gate-text { /* Specific to Layer 0 intro */
+            
+            .gate-text {
                 font-size: 1.5rem;
             }
-            .gate-cta-button { /* Specific to Layer 0 intro */
+            
+            .gate-cta-button {
                 font-size: 1.1rem;
                 padding: 1rem 2.5rem;
             }
-        }
-        @media (max-width: 768px) {
-            .hero {
-                padding: 6rem 1rem;
-                min-height: 75vh;
-            }
-            .hero h1 {
-                font-size: 3rem;
-                letter-spacing: 2px;
-            }
-            .hero h2 {
-                font-size: 1.6rem;
-            }
-            .hero .book-cover {
-                width: 240px;
-            }
-            .hero .cta-button {
-                font-size: 1.1rem;
-                padding: 1rem 2.5rem;
-            }
-            .section {
-                padding: 4rem 1rem;
-            }
-            .section-title {
-                font-size: 2.2rem;
-            }
-            .section-subtitle {
-                font-size: 1.1rem;
-            }
-            .character-grid, .location-grid, .reviews-grid {
+            
+            .character-grid, .location-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 1.5rem;
-            }
-            .character-card img, .location-card img {
-                max-width: 160px;
-            }
-            .character-card h3, .location-card h3 {
-                font-size: 1.4rem;
-            }
-            .text-block ul li {
-                font-size: 1.1rem;
-                padding-left: 30px;
             }
         }
 
         @media (max-width: 480px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px 15px;
-                text-align: center;
-            }
-            .nav-links {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-                margin-left: 0;
-            }
-            .nav-links a {
-                margin: 0;
-                font-size: 0.9rem;
-                padding: 6px 12px;
-            }
-
-            .hero {
-                padding: 5rem 0.5rem;
-                min-height: 80vh;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-                letter-spacing: 1px;
-            }
-            .hero h2 {
-                font-size: 1.3rem;
-            }
-            .hero .book-cover {
-                width: 180px;
-            }
-            .hero .short-hook {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            .hero .cta-button {
-                font-size: 1rem;
-                padding: 0.9rem 2rem;
-            }
-            .gate-text {
-                font-size: 1.2rem;
-            }
-            .gate-cta-button {
-                font-size: 1rem;
-                padding: 0.9rem 2rem;
-            }
-
-            .section {
-                padding: 3rem 0.5rem;
-            }
             .section-title {
                 font-size: 1.8rem;
                 letter-spacing: 0.5px;
             }
-            .section-subtitle {
-                font-size: 0.9rem;
+            
+            .gate-text {
+                font-size: 1.2rem;
             }
-            .character-grid, .location-grid, .reviews-grid {
+            
+            .gate-cta-button {
+                font-size: 1rem;
+                padding: 0.9rem 2rem;
+            }
+            
+            .character-grid, .location-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            .character-card, .location-card, .review-card {
-                padding: 1.2rem;
-            }
-            .character-card img, .location-card img {
-                max-width: 120px;
-                margin-bottom: 1rem;
-            }
-            .character-card h3, .location-card h3 {
-                font-size: 1.3rem;
-            }
-            .review-card p {
-                font-size: 0.95rem;
-            }
-            .text-block {
-                font-size: 1rem;
-            }
-            .text-block ul li {
-                font-size: 1rem;
-                padding-left: 25px;
-            }
-            .text-block ul li::before {
-                font-size: 1.3em;
-            }
         }
     </style>
+    
     <script src="/js/premium-icons.js" defer></script>
 </head>
-<body>
-            <!-- Standardized Navigation -->
+<body class="bg-obsidian text-bone font-body">
+    <!-- Mystical Cursor -->
+    <div class="mystical-cursor"></div>
+    
+    <!-- Standardized Navigation -->
+                    <!-- Standardized Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
@@ -1071,6 +975,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mystical Cursor Movement
+            const cursor = document.querySelector('.mystical-cursor');
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            
+            if (cursor) {
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+                
+                function animateCursor() {
+                    cursorX += (mouseX - cursorX) * 0.1;
+                    cursorY += (mouseY - cursorY) * 0.1;
+                    cursor.style.left = cursorX + 'px';
+                    cursor.style.top = cursorY + 'px';
+                    requestAnimationFrame(animateCursor);
+                }
+                animateCursor();
+            }
+
             // Newsletter form submission for Dacia Rising
             const daciaForm = document.getElementById('dacia-newsletter-form');
             if (daciaForm) {
@@ -1129,10 +1054,11 @@
                 });
             }
 
-            const header = document.getElementById('main-header');
+            // Get necessary elements
+            const header = document.querySelector('nav');
             const layer0 = document.getElementById('layer0');
             const enterBtn = document.getElementById('enter-dacia-btn');
-            const contentLayers = document.querySelectorAll('.layer:not(#layer0)'); // All layers after Layer 0
+            const contentLayers = document.querySelectorAll('.layer:not(#layer0)');
 
             // Set initial state for Layer 0
             layer0.style.opacity = '1';
@@ -1141,75 +1067,69 @@
             layer0.style.transform = 'translateY(0)';
 
             // Hide header initially
-            header.style.opacity = '0';
+            if (header) {
+                header.style.opacity = '0';
+            }
             
             // Set initial state for all content layers: fully invisible and off-screen
             contentLayers.forEach(layer => {
                 layer.style.opacity = '0';
                 layer.style.visibility = 'hidden';
                 layer.style.pointerEvents = 'none';
-                layer.style.transform = 'translateY(100vh)'; /* Push off-screen */
-                layer.style.transition = 'opacity 1s ease-out, transform 1s ease-out, visibility 1s'; /* Added visibility */
+                layer.style.transform = 'translateY(100vh)';
+                layer.style.transition = 'opacity 1s ease-out, transform 1s ease-out, visibility 1s';
             });
 
             // Prevent scrolling initially
             document.body.style.overflowY = 'hidden';
 
             // Handle Layer 0 entry
-            enterBtn.addEventListener('click', () => {
-                // Animate Layer 0 away
-                layer0.style.opacity = '0';
-                layer0.style.visibility = 'hidden';
-                layer0.style.pointerEvents = 'none';
-                layer0.style.transform = 'translateY(-100vh)';
-                
-                // Show header
-                header.style.opacity = '1';
-                document.body.style.overflowY = 'scroll'; // Enable scrolling after gate closes
-
-                // Reveal Layer 1 immediately after Layer 0 starts exiting
-                // This is the crucial part to ensure the first content section appears
-                setTimeout(() => {
-                    layer0.style.display = 'none'; // Completely remove Layer 0 after transition
+            if (enterBtn) {
+                enterBtn.addEventListener('click', () => {
+                    // Animate Layer 0 away
+                    layer0.style.opacity = '0';
+                    layer0.style.visibility = 'hidden';
+                    layer0.style.pointerEvents = 'none';
+                    layer0.style.transform = 'translateY(-100vh)';
                     
-                    if (contentLayers[0]) {
-                        contentLayers[0].style.visibility = 'visible';
-                        contentLayers[0].style.pointerEvents = 'auto';
-                        contentLayers[0].style.transform = 'translateY(0)'; // Slide into view
-                        contentLayers[0].style.opacity = '1'; // Fade in
-                        contentLayers[0].classList.add('layer-animate'); // Trigger inner animations if any
+                    // Show header
+                    if (header) {
+                        header.style.opacity = '1';
                     }
-                }, 1000); // This delay should match or be slightly less than Layer 0's opacity transition
-            });
+                    document.body.style.overflowY = 'scroll'; // Enable scrolling after gate closes
+
+                    // Reveal Layer 1 immediately after Layer 0 starts exiting
+                    setTimeout(() => {
+                        layer0.style.display = 'none'; // Completely remove Layer 0 after transition
+                        
+                        if (contentLayers[0]) {
+                            contentLayers[0].style.visibility = 'visible';
+                            contentLayers[0].style.pointerEvents = 'auto';
+                            contentLayers[0].style.transform = 'translateY(0)';
+                            contentLayers[0].style.opacity = '1';
+                            contentLayers[0].classList.add('layer-animate');
+                        }
+                    }, 1000);
+                });
+            }
 
             // Intersection Observer for revealing subsequent layers on scroll
             const observerOptions = {
-                root: null, // relative to the viewport
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Percentage of element visible to trigger
+                threshold: 0.1
             };
 
             const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // Only apply to content layers that are currently hidden
                     if (entry.target.id !== 'layer0' && entry.target.style.visibility === 'hidden') {
                         if (entry.isIntersecting) {
                             entry.target.style.visibility = 'visible';
                             entry.target.style.pointerEvents = 'auto';
-                            entry.target.style.transform = 'translateY(0)'; // Slide into view
-                            entry.target.style.opacity = '1'; // Fade in
-                            entry.target.classList.add('layer-animate'); // Trigger inner animations
-                            // Optional: If you want sections to reveal only once:
-                            // observer.unobserve(entry.target); 
-                        } 
-                        // We don't explicitly hide here when it exits, as scroll-triggered fade-in is preferred.
-                        // If you need layers to disappear when scrolled *past*, you'd add:
-                        // else if (!entry.isIntersecting && entry.target.style.visibility === 'visible') {
-                        //    entry.target.style.opacity = '0';
-                        //    entry.target.style.visibility = 'hidden';
-                        //    entry.target.style.pointerEvents = 'none';
-                        //    entry.target.style.transform = 'translateY(100vh)';
-                        // }
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                            entry.target.classList.add('layer-animate');
+                        }
                     }
                 });
             }, observerOptions);
@@ -1219,16 +1139,15 @@
                 sectionObserver.observe(layer);
             });
             
-            // Subtle Parallax Effect for background sections on scroll
+            // Parallax Effect for background sections on scroll
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
                 
                 // Header backdrop blur effect on scroll
-                const header = document.getElementById('main-header');
-                if (scrollY > 100) {
+                if (header && scrollY > 100) {
                     header.style.backdropFilter = 'blur(15px)';
                     header.style.background = 'rgba(11, 14, 17, 0.9)';
-                } else {
+                } else if (header) {
                     header.style.backdropFilter = 'blur(10px)';
                     header.style.background = 'var(--gradient-hero)';
                 }

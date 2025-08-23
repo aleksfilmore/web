@@ -18,7 +18,8 @@ const mainPages = [
     'newsletter.html',
     'privacy.html',
     'terms.html',
-    'cookies.html'
+    'cookies.html',
+    'bad-date-bingo.html'
 ];
 
 // Standard navigation component
