@@ -247,16 +247,26 @@ function parseSessionProducts(session) {
     }
 }
 
-// Google Analytics via service account env vars
+// Google Analytics via local service account file
 async function getGoogleAnalyticsData(kind, days) {
     const propertyId = process.env.GA_PROPERTY_ID;
-    const clientEmail = process.env.GA_CLIENT_EMAIL;
-    const privateKey = (process.env.GA_PRIVATE_KEY || '').replace(/\\n/g, '\n');
-    if (!propertyId || !clientEmail || !privateKey) {
-        return { disabled: true, reason: 'GA env vars missing' };
+    
+    // Use local credentials file instead of environment variables
+    let credentials;
+    try {
+        const path = require('path');
+        const keyPath = path.join(__dirname, '../../google-analytics-key.json');
+        credentials = require(keyPath);
+    } catch (error) {
+        return { disabled: true, reason: 'GA credentials file not found' };
     }
+    
+    if (!propertyId || !credentials.client_email || !credentials.private_key) {
+        return { disabled: true, reason: 'GA configuration incomplete' };
+    }
+    
     const scopes = ['https://www.googleapis.com/auth/analytics.readonly'];
-    const jwt = new google.auth.JWT(clientEmail, null, privateKey, scopes);
+    const jwt = new google.auth.JWT(credentials.client_email, null, credentials.private_key, scopes);
     await jwt.authorize();
     const analyticsData = google.analyticsdata('v1beta');
     const endDate = 'today';

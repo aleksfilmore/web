@@ -1,10 +1,27 @@
 const jwt = require('jsonwebtoken');
 const { GoogleAuth } = require('google-auth-library');
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
+const path = require('path');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const GA_PROPERTY_ID = process.env.GA_PROPERTY_ID || 'YOUR_GA_PROPERTY_ID';
-const GA_CREDENTIALS = JSON.parse(process.env.GA_CREDENTIALS || '{}');
+
+// Use local service account file instead of environment variable
+const getGACredentials = () => {
+    try {
+        // Try environment variable first (for flexibility)
+        if (process.env.GA_CREDENTIALS) {
+            return JSON.parse(process.env.GA_CREDENTIALS);
+        }
+        
+        // Fall back to local file
+        const keyPath = path.join(__dirname, '../../google-analytics-key.json');
+        return require(keyPath);
+    } catch (error) {
+        console.warn('No Google Analytics credentials found, using mock data');
+        return null;
+    }
+};
 
 exports.handler = async (event, context) => {
     console.log('📊 Google Analytics data request received');
@@ -57,8 +74,14 @@ exports.handler = async (event, context) => {
         let analyticsDataClient;
         
         try {
+            const gaCredentials = getGACredentials();
+            
+            if (!gaCredentials) {
+                throw new Error('No GA credentials available');
+            }
+            
             const auth = new GoogleAuth({
-                credentials: GA_CREDENTIALS,
+                credentials: gaCredentials,
                 scopes: ['https://www.googleapis.com/auth/analytics.readonly']
             });
             
