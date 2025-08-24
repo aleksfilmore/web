@@ -588,31 +588,18 @@ class CartAbandonment {
         localStorage.setItem('customer_email', email);
         this.recordCartActivity('abandonment_email_captured', email);
         
-        // Generate and store discount code
-        const discountCode = this.generateDiscountCode();
-        localStorage.setItem('discount_code', discountCode);
-        localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString()); // 24 hours
-        
         // Subscribe to newsletter with abandonment tag
-        this.subscribeToNewsletter(email, 'cart_abandonment', discountCode);
+        this.subscribeToNewsletter(email, 'cart_abandonment');
         
         // Schedule email reminder
         this.scheduleEmailReminder(email);
         
-        // Show discount code immediately
-        this.showDiscountCode(discountCode);
+        // Show discount offer immediately
+        this.showDiscountOffer();
     }
     
-    generateDiscountCode() {
-        // Generate a unique discount code
-        const prefix = 'SAVE20';
-        const timestamp = Date.now().toString().slice(-4);
-        const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-        return `${prefix}-${timestamp}${random}`;
-    }
-    
-    showDiscountCode(code) {
-        // Create discount code display
+    showDiscountOffer() {
+        // Create discount offer display
         const discountDisplay = document.createElement('div');
         discountDisplay.className = 'discount-code-display';
         discountDisplay.innerHTML = `
@@ -625,33 +612,31 @@ class CartAbandonment {
         <path d="M12 4V2"/>
         <path d="M8 4V2"/>
         <path d="M8 22l8-10H8l8-10"/>
-    </svg> Your 20% Discount Code!</h3>
+    </svg> Special 20% Discount!</h3>
                     </div>
                     <div class="discount-body">
-                        <div class="discount-code-box">
-                            <code id="discount-code-text">${code}</code>
-                            <button class="copy-code-btn" onclick="this.copyDiscountCode('${code}')">Copy</button>
+                        <div class="discount-message">
+                            <p><strong>Exclusive 20% off for audiobook lovers!</strong></p>
+                            <p>Get "The Worst Boyfriends Ever" audiobook for just <strong>$6.39</strong> (normally $7.99)</p>
                         </div>
-                        <p><strong>Valid for 24 hours</strong></p>
-                        <p><strong>How it works:</strong> Click "Use Code Now" to automatically apply the 20% discount at checkout. No manual entry needed!</p>
                         <div class="discount-steps">
                             <div class="step">
                                 <span class="step-number">1</span>
-                                Copy your discount code (optional backup)
+                                Click "Add to Cart (20% OFF)" below
                             </div>
                             <div class="step">
                                 <span class="step-number">2</span>
-                                Click "Use Code Now" for instant discount
+                                Complete secure checkout with Stripe
                             </div>
                             <div class="step">
                                 <span class="step-number">3</span>
-                                Complete checkout at 20% off price
+                                Enjoy your discounted audiobook!
                             </div>
                         </div>
                     </div>
                     <div class="discount-footer">
-                        <button class="btn-primary" onclick="this.redirectToCheckout()">Use Code Now</button>
-                        <button class="discount-close" onclick="this.closeDiscountDisplay()">Save for Later</button>
+                        <button class="btn-primary" onclick="window.open('https://buy.stripe.com/5kQ5kw3ZWfZoeCMfs19fW03', '_blank')">Add to Cart (20% OFF)</button>
+                        <button class="discount-close" onclick="this.closeDiscountDisplay()">Maybe Later</button>
                     </div>
                 </div>
             </div>
@@ -813,29 +798,12 @@ class CartAbandonment {
         document.body.appendChild(discountDisplay);
         
         // Add methods to window for onclick handlers
-        window.copyDiscountCode = (code) => {
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('.copy-code-btn');
-                const originalText = btn.textContent;
-                btn.textContent = 'Copied!';
-                btn.style.background = '#10b981';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '#9333ea';
-                }, 2000);
-            });
-        };
-        
-        window.redirectToCheckout = () => {
-            window.location.href = '/audiobook.html?discount=' + code;
-        };
-        
         window.closeDiscountDisplay = () => {
             discountDisplay.remove();
         };
     }
     
-    async subscribeToNewsletter(email, source = 'cart_abandonment', discountCode = null) {
+    async subscribeToNewsletter(email, source = 'cart_abandonment') {
         try {
             const response = await fetch('/.netlify/functions/newsletter-subscribe', {
                 method: 'POST',
@@ -845,9 +813,7 @@ class CartAbandonment {
                 body: JSON.stringify({
                     email,
                     source,
-                    tags: ['cart_abandonment', 'discount_eligible'],
-                    discountCode: discountCode,
-                    discountExpiry: discountCode ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() : null
+                    tags: ['cart_abandonment', 'discount_eligible']
                 })
             });
             

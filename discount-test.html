@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Test</title>
+</head>
+<body>
+    <h1>Discount Test Page</h1>
+    
+    <button onclick="setBingoDiscount()">Set BINGO20 Discount</button>
+    <button onclick="clearDiscount()">Clear Discount</button>
+    <button onclick="checkDiscount()">Check Discount Status</button>
+    <button onclick="goToCheckout()">Go to Checkout</button>
+    
+    <div id="status"></div>
+    
+    <script>
+        function setBingoDiscount() {
+            localStorage.setItem('discount_code', 'BINGO20');
+            localStorage.setItem('discount_type', 'bingo');
+            localStorage.setItem('discount_amount', '20');
+            localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString());
+            
+            updateStatus('BINGO20 discount set!');
+        }
+        
+        function clearDiscount() {
+            localStorage.removeItem('discount_code');
+            localStorage.removeItem('discount_type');
+            localStorage.removeItem('discount_amount');
+            localStorage.removeItem('discount_expiry');
+            
+            updateStatus('Discount cleared!');
+        }
+        
+        function checkDiscount() {
+            const discountCode = localStorage.getItem('discount_code');
+            const discountExpiry = localStorage.getItem('discount_expiry');
+            const now = Date.now();
+            const expiry = parseInt(discountExpiry);
+            
+            const status = {
+                discountCode,
+                discountExpiry,
+                currentTime: now,
+                expiryTime: expiry,
+                isValid: discountCode && discountExpiry && now < expiry,
+                timeLeft: expiry ? Math.round((expiry - now) / 1000 / 60) + ' minutes' : 'N/A'
+            };
+            
+            updateStatus(JSON.stringify(status, null, 2));
+        }
+        
+        function goToCheckout() {
+            window.location.href = 'checkout.html?product=audiobook';
+        }
+        
+        function updateStatus(message) {
+            document.getElementById('status').innerHTML = '<pre>' + message + '</pre>';
+        }
+    </script>
+</body>
+</html>

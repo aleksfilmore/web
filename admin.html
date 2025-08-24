@@ -120,6 +120,42 @@
             color: #ef4444;
             border: 1px solid rgba(239, 68, 68, 0.2);
         }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
     </style>
 </head>
 <body class="text-white min-h-screen">
@@ -579,18 +615,31 @@
         
         const authManager = new AuthManager();
         
+        // Authenticated fetch helper
+        async function authenticatedFetch(url, options = {}) {
+            const token = authManager.token;
+            if (!token) {
+                throw new Error('No authentication token available');
+            }
+            
+            const authHeaders = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+            
+            return fetch(url, {
+                ...options,
+                headers: authHeaders
+            });
+        }
+        
         // Authentication check
         function checkAuthentication() {
             console.log('🔐 Checking authentication...');
             console.log('🌐 Hostname:', window.location.hostname);
             
-            // Localhost bypass for development
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.log('🛠️ Localhost detected - bypassing authentication');
-                return true;
-            }
-            
-            // Production authentication
+            // Always require proper authentication
             if (authManager.isValid()) {
                 console.log('✅ Valid session found');
                 return true;
@@ -656,112 +705,17 @@
             console.log('📊 Loading dashboard data...');
             
             try {
-                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                    console.log('🛠️ Loading mock data for localhost');
-                    loadMockData();
-                } else {
-                    console.log('🌐 Loading real data from APIs');
-                    await loadRealData();
-                }
+                console.log('🌐 Loading real data from APIs');
+                await loadRealData();
             } catch (error) {
                 console.error('❌ Error loading data:', error);
-                showToast('Failed to load data. Using demo data instead.', 'warning');
-                loadMockData();
+                showToast('Failed to load data from APIs. Check your connection and API configuration.', 'error');
             }
         }
         
-        // Load mock data for development
-        function loadMockData() {
-            console.log('🎭 Loading comprehensive mock data...');
-            
-            // Revenue metrics
-            updateElement('total-revenue', '$8,450');
-            updateElement('revenue-change', '+18%');
-            updateElement('audiobook-sales', '$3,200');
-            updateElement('signed-sales', '$2,800');
-            updateElement('bundle-sales', '$2,450');
-            
-            // Order metrics
-            updateElement('total-orders', '127');
-            updateElement('orders-change', '+23');
-            
-            // Newsletter metrics
-            updateElement('total-subscribers', '3,247');
-            updateElement('subscribers-change', '24.7%');
-            
-            // Audiobook metrics
-            updateElement('audiobook-streams', '1,847');
-            updateElement('completion-rate', '78%');
-            
-            // Email delivery status
-            updateElement('emails-sent', '89');
-            updateElement('emails-pending', '3');
-            updateElement('emails-failed', '1');
-            
-            // Load mock orders
-            loadMockOrders();
-            
-            // Update system status
-            updateSystemStatus('mock');
-            
-            console.log('✅ Mock data loaded successfully');
-        }
+        // Load real data from APIs
         
-        // Load mock orders
-        function loadMockOrders() {
-            console.log('📋 Loading mock orders...');
-            
-            const mockOrders = [
-                {
-                    id: 'ORD-2025-001',
-                    customer: 'sarah.johnson@example.com',
-                    product: 'Audiobook',
-                    amount: 7.99,
-                    status: 'completed',
-                    date: '2 hours ago',
-                    hasAudiobook: true
-                },
-                {
-                    id: 'ORD-2025-002',
-                    customer: 'mike.chen@example.com',
-                    product: 'Bundle (Audiobook + Signed Copy)',
-                    amount: 24.99,
-                    status: 'completed',
-                    date: '5 hours ago',
-                    hasAudiobook: true
-                },
-                {
-                    id: 'ORD-2025-003',
-                    customer: 'emma.davis@example.com',
-                    product: 'Signed Copy',
-                    amount: 19.99,
-                    status: 'pending',
-                    date: '1 day ago',
-                    hasAudiobook: false
-                },
-                {
-                    id: 'ORD-2025-004',
-                    customer: 'james.wilson@example.com',
-                    product: 'Audiobook (20% Off)',
-                    amount: 6.39,
-                    status: 'completed',
-                    date: '2 days ago',
-                    hasAudiobook: true
-                },
-                {
-                    id: 'ORD-2025-005',
-                    customer: 'lisa.garcia@example.com',
-                    product: 'Bundle (Audiobook + Signed Copy)',
-                    amount: 24.99,
-                    status: 'failed',
-                    date: '3 days ago',
-                    hasAudiobook: false
-                }
-            ];
-            
-            allOrders = mockOrders;
-            displayOrders(mockOrders);
-        }
+        // Load real data from APIs
         
         // Display orders in table
         function displayOrders(orders) {
@@ -1345,26 +1299,310 @@
             console.log('🌐 Loading real data from APIs...');
             
             try {
-                // Load Stripe data
-                const stripeResponse = await fetch('/.netlify/functions/get-stripe-data', {
-                    headers: {
-                        'Authorization': `Bearer ${authManager.token}`
-                    }
-                });
+                // Load orders data
+                await loadOrdersData();
                 
-                if (stripeResponse.ok) {
-                    const stripeData = await stripeResponse.json();
-                    // Update with real Stripe data
-                    updateElement('total-revenue', `$${stripeData.totalRevenue}`);
-                    updateElement('total-orders', stripeData.totalOrders);
-                }
+                // Load analytics data
+                await loadAnalyticsData();
                 
-                // Load more real data APIs here...
+                // Load newsletter data
+                await loadNewsletterData();
+                
+                // Update system status
+                updateSystemStatus('operational');
+                
+                console.log('✅ Real data loaded successfully');
                 
             } catch (error) {
                 console.error('❌ Error loading real data:', error);
                 throw error;
             }
+        }
+
+        async function loadOrdersData() {
+            try {
+                console.log('📦 Loading orders data...');
+                const response = await authenticatedFetch('/.netlify/functions/admin-orders');
+                
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log('🛠️ Netlify functions not available, using mock orders data');
+                        loadMockOrdersData();
+                        return;
+                    } else if (response.status === 401) {
+                        console.log('🔐 Authentication failed, redirecting to login');
+                        authManager.logout();
+                        return;
+                    }
+                    throw new Error(`Orders API error: ${response.status}`);
+                }
+                
+                const orders = await response.json();
+                console.log('📦 Orders data:', orders);
+                
+                // Calculate metrics from orders
+                const totalRevenue = orders.reduce((sum, order) => sum + order.amount, 0);
+                const audioBookOrders = orders.filter(order => 
+                    order.products.some(p => p.id === 'audiobook' || p.id === 'bundle')
+                );
+                const signedBookOrders = orders.filter(order => 
+                    order.products.some(p => p.id === 'signed-book' || p.id === 'bundle')
+                );
+                const bundleOrders = orders.filter(order => 
+                    order.products.some(p => p.id === 'bundle')
+                );
+                
+                // Update UI
+                updateElement('total-revenue', `$${totalRevenue.toLocaleString()}`);
+                updateElement('total-orders', orders.length.toString());
+                updateElement('audiobook-sales', `$${audioBookOrders.reduce((sum, o) => sum + o.amount, 0).toLocaleString()}`);
+                updateElement('signed-sales', `$${signedBookOrders.reduce((sum, o) => sum + o.amount, 0).toLocaleString()}`);
+                updateElement('bundle-sales', `$${bundleOrders.reduce((sum, o) => sum + o.amount, 0).toLocaleString()}`);
+                
+                // Load orders table
+                loadOrdersTable(orders);
+                
+            } catch (error) {
+                console.error('❌ Orders data error:', error);
+                console.log('🛠️ Falling back to mock orders data');
+                loadMockOrdersData();
+            }
+        }
+
+        function loadMockOrdersData() {
+            // Mock orders data for local development
+            const mockOrders = [
+                {
+                    id: 'cs_test_123456',
+                    customer: { name: 'Gabriela Santos', email: 'gabi3000_6@yahoo.com' },
+                    products: [{ id: 'audiobook', name: 'The Worst Boyfriends Ever - Audiobook' }],
+                    amount: 7.99,
+                    status: 'digital_delivered',
+                    date: '2024-08-23T14:50:32.442Z'
+                },
+                {
+                    id: 'cs_test_789012',
+                    customer: { name: 'Sarah Johnson', email: 'sarah.j@example.com' },
+                    products: [{ id: 'bundle', name: 'Audiobook + Signed Book Bundle' }],
+                    amount: 19.99,
+                    status: 'shipped',
+                    date: '2024-08-22T10:30:00.000Z'
+                },
+                {
+                    id: 'cs_test_345678',
+                    customer: { name: 'Emma Davis', email: 'emma.davis@example.com' },
+                    products: [{ id: 'signed-book', name: 'Signed Physical Book' }],
+                    amount: 14.99,
+                    status: 'processing',
+                    date: '2024-08-21T16:20:00.000Z'
+                }
+            ];
+            
+            // Calculate metrics
+            const totalRevenue = mockOrders.reduce((sum, order) => sum + order.amount, 0);
+            
+            // Update UI with mock data
+            updateElement('total-revenue', `$${totalRevenue.toLocaleString()}`);
+            updateElement('total-orders', mockOrders.length.toString());
+            updateElement('audiobook-sales', '$27.98');
+            updateElement('signed-sales', '$34.98');
+            updateElement('bundle-sales', '$19.99');
+            
+            // Load mock orders table
+            loadOrdersTable(mockOrders);
+            
+            console.log('📦 Mock orders data loaded successfully');
+        }
+
+        async function loadAnalyticsData() {
+            try {
+                console.log('📊 Loading analytics data...');
+                const response = await fetch('/.netlify/functions/google-analytics-data', {
+                    headers: {
+                        'Authorization': `Bearer ${authManager.token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Analytics API error: ${response.status}`);
+                }
+                
+                const analytics = await response.json();
+                console.log('📊 Analytics data:', analytics);
+                
+                // Update analytics metrics
+                updateElement('audiobook-streams', analytics.pageViews || '0');
+                updateElement('completion-rate', analytics.bounceRate ? `${(100 - analytics.bounceRate).toFixed(1)}%` : 'N/A');
+                
+            } catch (error) {
+                console.error('❌ Analytics data error:', error);
+                updateElement('audiobook-streams', 'Error');
+                updateElement('completion-rate', 'Error');
+            }
+        }
+
+        async function loadNewsletterData() {
+            try {
+                console.log('📧 Loading newsletter data...');
+                const response = await fetch('/.netlify/functions/mailerlite-data', {
+                    headers: {
+                        'Authorization': `Bearer ${authManager.token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Newsletter API error: ${response.status}`);
+                }
+                
+                const newsletter = await response.json();
+                console.log('📧 Newsletter data:', newsletter);
+                
+                // Update newsletter metrics
+                updateElement('total-subscribers', newsletter.totalSubscribers?.toLocaleString() || '0');
+                updateElement('subscribers-change', newsletter.growthRate ? `${newsletter.growthRate}%` : 'N/A');
+                
+                // Update email delivery status
+                updateElement('emails-sent', newsletter.emailsSent || '0');
+                updateElement('emails-pending', newsletter.emailsPending || '0');
+                updateElement('emails-failed', newsletter.emailsFailed || '0');
+                
+            } catch (error) {
+                console.error('❌ Newsletter data error:', error);
+                updateElement('total-subscribers', 'Error');
+                updateElement('subscribers-change', 'Error');
+            }
+        }
+
+        function loadOrdersTable(orders) {
+            const tbody = document.querySelector('#recent-orders tbody');
+            if (!tbody) return;
+            
+            tbody.innerHTML = '';
+            
+            // Show latest 10 orders
+            const recentOrders = orders.slice(0, 10);
+            
+            recentOrders.forEach(order => {
+                const row = document.createElement('tr');
+                row.className = 'table-row text-gray-300';
+                row.innerHTML = `
+                    <td class="px-4 py-3 text-sm">${order.id}</td>
+                    <td class="px-4 py-3 text-sm">${order.customer.name || order.customer.email}</td>
+                    <td class="px-4 py-3 text-sm">${order.products.map(p => p.name).join(', ')}</td>
+                    <td class="px-4 py-3 text-sm">$${order.amount}</td>
+                    <td class="px-4 py-3 text-sm">
+                        <span class="status-badge bg-green-600 text-white">${order.status}</span>
+                    </td>
+                    <td class="px-4 py-3 text-sm">${new Date(order.date).toLocaleDateString()}</td>
+                    <td class="px-4 py-3 text-sm">
+                        <button class="text-blue-400 hover:text-blue-300" onclick="viewOrder('${order.id}')">
+                            View
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        // Modal management functions
+        function openGoogleAnalytics() {
+            console.log('📊 Opening Google Analytics dashboard...');
+            const modal = document.getElementById('analytics-modal');
+            if (modal) {
+                modal.classList.add('show');
+                loadGoogleAnalyticsData();
+            } else {
+                console.error('Analytics modal not found');
+                showToast('Analytics dashboard not available', 'error');
+            }
+        }
+        
+        function closeAnalyticsDashboard() {
+            const modal = document.getElementById('analytics-modal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+        
+        function openNewsletterManager() {
+            console.log('📧 Opening Newsletter Manager...');
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.add('show');
+                loadNewsletterStats();
+            } else {
+                console.error('Newsletter modal not found');
+                showToast('Newsletter manager not available', 'error');
+            }
+        }
+        
+        function closeNewsletterManager() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+        
+        async function loadGoogleAnalyticsData() {
+            try {
+                console.log('📊 Loading detailed Google Analytics data...');
+                const response = await fetch('/.netlify/functions/google-analytics-data', {
+                    headers: {
+                        'Authorization': `Bearer ${authManager.token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Analytics API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('📊 Detailed analytics:', data);
+                
+                // Update analytics modal content
+                updateElement('analytics-pageviews', data.pageViews?.toLocaleString() || '0');
+                updateElement('analytics-sessions', data.sessions?.toLocaleString() || '0');
+                updateElement('analytics-bounce-rate', data.bounceRate ? `${data.bounceRate.toFixed(1)}%` : 'N/A');
+                updateElement('analytics-avg-duration', data.avgSessionDuration || 'N/A');
+                
+            } catch (error) {
+                console.error('❌ Analytics loading error:', error);
+                showToast('Failed to load analytics data', 'error');
+            }
+        }
+        
+        async function loadNewsletterStats() {
+            try {
+                console.log('📧 Loading detailed newsletter stats...');
+                const response = await fetch('/.netlify/functions/mailerlite-data', {
+                    headers: {
+                        'Authorization': `Bearer ${authManager.token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Newsletter API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('📧 Newsletter stats:', data);
+                
+                // Update newsletter modal content
+                updateElement('newsletter-total-subscribers', data.totalSubscribers?.toLocaleString() || '0');
+                updateElement('newsletter-active-subscribers', data.activeSubscribers?.toLocaleString() || '0');
+                updateElement('newsletter-unsubscribed', data.unsubscribed?.toLocaleString() || '0');
+                updateElement('newsletter-growth-rate', data.growthRate ? `${data.growthRate}%` : 'N/A');
+                
+            } catch (error) {
+                console.error('❌ Newsletter stats loading error:', error);
+                showToast('Failed to load newsletter stats', 'error');
+            }
+        }
+        
+        function viewOrder(orderId) {
+            console.log('👁️ Viewing order:', orderId);
+            showToast(`Viewing order ${orderId}`, 'info');
+            // Add order detail view functionality here
         }
         
         // Initialize on page load
@@ -1381,6 +1619,41 @@
             }
         });
         
+    <!-- Analytics Modal -->
+    <div id="analytics-modal" class="modal-overlay">
+        <div class="modal-content bg-slate-800 border border-purple-500/20 rounded-2xl p-6 max-w-4xl w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-purple-400">📊 Google Analytics Dashboard</h2>
+                <button onclick="closeAnalyticsDashboard()" class="text-red-400 hover:text-red-300 text-2xl">&times;</button>
+            </div>
+            
+            <div id="analytics-content" class="space-y-6">
+                <div class="text-center py-8">
+                    <div class="animate-spin w-8 h-8 border-2 border-purple-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-gray-400">Loading Analytics Data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletter-modal" class="modal-overlay">
+        <div class="modal-content bg-slate-800 border border-green-500/20 rounded-2xl p-6 max-w-4xl w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-green-400">📧 Newsletter Manager</h2>
+                <button onclick="closeNewsletterManager()" class="text-red-400 hover:text-red-300 text-2xl">&times;</button>
+            </div>
+            
+            <div id="newsletter-content" class="space-y-6">
+                <div class="text-center py-8">
+                    <div class="animate-spin w-8 h-8 border-2 border-green-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-gray-400">Loading Newsletter Data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
         console.log('🎯 Advanced Admin Dashboard JavaScript loaded successfully');
     </script>
 </body>

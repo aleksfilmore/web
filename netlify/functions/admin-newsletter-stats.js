@@ -1,4 +1,6 @@
 // Newsletter Stats - MailerLite Integration
+const { requireAuth } = require('./utils/auth');
+
 exports.handler = async (event, context) => {
     // Set CORS headers
     const headers = {
@@ -19,6 +21,10 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
+
+    // Verify authentication
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
     try {
         console.log('Fetching newsletter stats from MailerLite...');

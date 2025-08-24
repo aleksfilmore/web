@@ -349,19 +349,23 @@
                 </div>
 
                 <div class="bg-red-500/20 border border-red-flag/50 rounded-lg p-6 mb-6">
-                    <h3 class="text-2xl font-bold text-red-flag mb-2">20% OFF AUDIOBOOK</h3>
-                    <p class="text-lg mb-4">Your battle scars have earned you a discount on the audiobook!</p>
-                    <div class="bg-charcoal/80 rounded-lg p-3 font-mono text-glitch-lime text-lg font-bold">
-                        Code: <span id="discount-code">BINGO20</span>
+                    <h3 class="text-2xl font-bold text-red-flag mb-2">🎉 20% OFF AUDIOBOOK</h3>
+                    <p class="text-lg mb-4">Your battle scars have earned you a discount!</p>
+                    <div class="bg-charcoal/80 rounded-lg p-3 mb-4">
+                        <div class="text-sm text-bone/70 line-through">Regular Price: $7.99</div>
+                        <div class="text-2xl font-bold text-glitch-lime">Your Price: $6.39</div>
+                        <div class="text-xs text-bone/60 mt-1">BINGO Winner Discount Applied!</div>
                     </div>
                 </div>
 
                 <div class="space-y-3">
-                    <a href="/audiobook.html?discount=BINGO20" class="block bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
-                        Get Audiobook - $6.39
+                    <a href="https://buy.stripe.com/5kQ5kw3ZWfZoeCMfs19fW03" 
+                       target="_blank"
+                       class="block bg-red-500 hover:bg-red-600 text-white py-4 px-6 rounded-lg font-bold text-lg transition-colors transform hover:scale-105">
+                        🎧 Get Audiobook - $6.39 (20% OFF)
                     </a>
                     <button id="share-bingo" class="block w-full bg-transparent border border-glitch-lime text-glitch-lime hover:bg-glitch-lime hover:text-charcoal py-3 px-6 rounded-lg font-semibold transition-colors">
-                        Share Your BINGO
+                        Share Your BINGO Win
                     </button>
                 </div>
                 
@@ -551,12 +555,6 @@
 
             triggerBingo(winningLine) {
                 this.hasWon = true;
-                
-                // Store discount in localStorage for checkout
-                localStorage.setItem('discount_code', 'BINGO20');
-                localStorage.setItem('discount_type', 'bingo');
-                localStorage.setItem('discount_amount', '20');
-                localStorage.setItem('discount_expiry', (Date.now() + 24 * 60 * 60 * 1000).toString());
                 
                 // Highlight winning line
                 winningLine.forEach(index => {

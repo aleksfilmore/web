@@ -1,5 +1,6 @@
 // Test Integrations - Verify all API connections
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { requireAuth } = require('./utils/auth');
 
 exports.handler = async (event, context) => {
     // Set CORS headers
@@ -21,6 +22,10 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
+
+    // Verify authentication
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
     console.log('Testing all integrations...');
 

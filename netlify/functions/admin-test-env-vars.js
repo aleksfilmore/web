@@ -1,5 +1,6 @@
 // Comprehensive Netlify Environment Variables Test
 // Tests all required environment variables for the admin dashboard
+const { requireAuth } = require('./utils/auth');
 
 exports.handler = async (event, context) => {
     // Set CORS headers
@@ -21,6 +22,10 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
+
+    // Verify authentication
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
     const testResults = {
         timestamp: new Date().toISOString(),

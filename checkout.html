@@ -598,15 +598,24 @@
                                        currentProduct.discountUrl &&
                                        !currentProduct.discountUrl.includes('PLACEHOLDER');
                 
+                // Debug logging
+                console.log('💳 Checkout Debug:', {
+                    discountCode,
+                    discountExpiry,
+                    discountValid: discountCode && discountExpiry && Date.now() < parseInt(discountExpiry),
+                    hasDiscountUrl: !!currentProduct.discountUrl,
+                    discountUrl: currentProduct.discountUrl,
+                    regularUrl: currentProduct.stripeUrl,
+                    hasValidDiscount,
+                    currentProduct: currentProduct.name,
+                    timeUntilExpiry: discountExpiry ? Math.round((parseInt(discountExpiry) - Date.now()) / 1000 / 60) + ' minutes' : 'N/A'
+                });
+                
                 if (hasValidDiscount) {
                     stripeUrl = currentProduct.discountUrl;
-                    console.log(`<svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M8 2v4l-3 2v4h18V8l-3-2V2"/>
-        <path d="M16 4V2"/>
-        <path d="M12 4V2"/>
-        <path d="M8 4V2"/>
-        <path d="M8 22l8-10H8l8-10"/>
-    </svg> Using discounted link for ${discountCode}`);
+                    console.log(`🎉 DISCOUNT APPLIED! Using discounted link for ${discountCode}`);
+                    console.log(`🔗 Discount URL: ${stripeUrl}`);
+                    console.log(`💰 Price: $${currentProduct.price} → $${currentProduct.discountedPrice}`);
                     
                     // Track discount usage
                     if (typeof gtag !== 'undefined') {
@@ -622,7 +631,18 @@
                     localStorage.removeItem('discount_expiry');
                 } else {
                     stripeUrl = currentProduct.stripeUrl;
-                    console.log('Using regular price link');
+                    console.log('❌ NO DISCOUNT - Using regular price link');
+                    console.log(`🔗 Regular URL: ${stripeUrl}`);
+                    console.log(`💰 Full Price: $${currentProduct.price}`);
+                    
+                    if (discountCode && !hasValidDiscount) {
+                        console.log('⚠️ Discount code found but not valid:', {
+                            code: discountCode,
+                            expired: discountExpiry && Date.now() >= parseInt(discountExpiry),
+                            noDiscountUrl: !currentProduct.discountUrl,
+                            isPlaceholder: currentProduct.discountUrl && currentProduct.discountUrl.includes('PLACEHOLDER')
+                        });
+                    }
                 }
                 
                 // Legacy discount handling (fallback for manual refunds)
@@ -652,6 +672,19 @@
                         note: customNote.value,
                         product: currentProduct.id
                     }));
+                }
+
+                // Final debug before redirect
+                console.log('🚀 REDIRECTING TO:', stripeUrl);
+                console.log('🎯 Final URL check:', {
+                    url: stripeUrl,
+                    isDiscounted: stripeUrl === currentProduct.discountUrl,
+                    isRegular: stripeUrl === currentProduct.stripeUrl
+                });
+                
+                // Temporary alert for debugging (remove this after testing)
+                if (discountCode) {
+                    alert(`Debug: About to redirect to ${stripeUrl.includes('fZoeCMfs1') ? 'DISCOUNTED' : 'REGULAR'} Stripe link\n\nURL: ${stripeUrl}\nDiscount: ${discountCode || 'None'}`);
                 }
 
                 // Redirect to Stripe

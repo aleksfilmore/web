@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;

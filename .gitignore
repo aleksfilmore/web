@@ -53,3 +53,9 @@ logs/
 pids
 *.pid
 *.seed
+
+# Large binaries and executables
+tailwindcss.exe
+*.exe
+*.bin
+*.dmg
