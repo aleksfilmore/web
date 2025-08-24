@@ -266,7 +266,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-20 pb-12">
+    <main class="pt-20 pb-12" style="display: none;">
         <div class="container mx-auto px-6">
             
             <!-- Analytics Dashboard -->
@@ -806,33 +806,42 @@
         const authManager = new AuthManager();
         
         async function checkAdminAuthentication() {
-            // LOCAL DEVELOPMENT MODE - Auto-authenticate for localhost
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.log('🛠️ Local development mode - bypassing authentication');
+            try {
+                // LOCAL DEVELOPMENT MODE - Auto-authenticate for localhost
+                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    console.log('🛠️ Local development mode - bypassing authentication');
+                    return true;
+                }
+                
+                // Check if user has valid token and session
+                if (!authManager.token || !authManager.sessionExpiry) {
+                    console.log('No token or session expiry found');
+                    return false;
+                }
+                
+                // Check if session is expired
+                if (Date.now() >= authManager.sessionExpiry) {
+                    console.log('Session expired');
+                    authManager.logout();
+                    return false;
+                }
+                
+                // Verify token with server
+                console.log('Verifying token with server...');
+                const isValid = await authManager.checkSession();
+                if (!isValid) {
+                    console.log('Token verification failed');
+                    return false;
+                }
+                
+                console.log('Authentication successful');
                 return true;
-            }
-            
-            // Check if user has valid token and session
-            if (!authManager.token || !authManager.sessionExpiry) {
-                promptAdminLogin();
+                
+            } catch (error) {
+                console.error('Error during authentication check:', error);
                 return false;
             }
-            
-            // Check if session is expired
-            if (Date.now() >= authManager.sessionExpiry) {
-                authManager.logout();
-                promptAdminLogin();
-                return false;
-            }
-            
-            // Verify token with server
-            const isValid = await authManager.checkSession();
-            if (!isValid) {
-                promptAdminLogin();
-                return false;
-            }
-            
-            return true;
+        }
         }
         
         function promptAdminLogin() {
@@ -963,22 +972,41 @@
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-            // Force authentication check - no dashboard loading until authenticated
-            const isAuthenticated = await checkAdminAuthentication();
-            
-            if (!isAuthenticated) {
-                // Ensure modal is visible and no dashboard content loads
+            try {
+                console.log('Admin page loaded, checking authentication...');
+                
+                // Force authentication check - no dashboard loading until authenticated
+                const isAuthenticated = await checkAdminAuthentication();
+                
+                if (!isAuthenticated) {
+                    console.log('Not authenticated, showing login modal');
+                    // Ensure modal is visible and no dashboard content loads
+                    const modal = document.getElementById('login-modal');
+                    if (modal) {
+                        modal.style.display = 'flex';
+                    } else {
+                        console.error('Login modal not found!');
+                    }
+                    
+                    // Hide all dashboard content until authenticated
+                    const main = document.querySelector('main');
+                    if (main) main.style.display = 'none';
+                    return;
+                }
+                
+                console.log('Authenticated, initializing dashboard');
+                // Only initialize dashboard if authenticated
+                initializeAdminDashboard();
+                
+            } catch (error) {
+                console.error('Error during authentication check:', error);
+                // Default to showing login modal if there's any error
                 const modal = document.getElementById('login-modal');
                 if (modal) modal.style.display = 'flex';
                 
-                // Hide all dashboard content until authenticated
                 const main = document.querySelector('main');
                 if (main) main.style.display = 'none';
-                return;
             }
-            
-            // Only initialize dashboard if authenticated
-            initializeAdminDashboard();
         });
 
         function setupDashboard() {
