@@ -79,9 +79,9 @@ async function handleCheckoutCompleted(session) {
   let productType = 'unknown';
   if (productPrice === 7.99 || productName.toLowerCase().includes('audiobook')) {
     productType = 'audiobook';
-  } else if (productPrice === 17.99 || productName.toLowerCase().includes('signed')) {
+  } else if (productPrice === 19.99 || productName.toLowerCase().includes('signed')) {
     productType = 'signed-book';
-  } else if (productPrice === 22.99 || productName.toLowerCase().includes('bundle')) {
+  } else if (productPrice === 24.99 || productName.toLowerCase().includes('bundle')) {
     productType = 'bundle';
   }
   

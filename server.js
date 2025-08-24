@@ -99,7 +99,7 @@ const PRODUCTS = {
         name: 'The Worst Boyfriends Ever (Signed Paperbook)',
         stripe_product_id: process.env.STRIPE_SIGNED_BOOK_PRODUCT_ID,
         stripe_price_id: process.env.STRIPE_SIGNED_BOOK_PRICE_ID,
-        price: 17.99,
+        price: 19.99,
         currency: 'usd',
         type: 'physical',
         description: 'Personally signed paperback with handwritten note + shipping'
@@ -108,7 +108,7 @@ const PRODUCTS = {
         name: 'The Worst Boyfriends Ever (Bundle)',
         stripe_product_id: process.env.STRIPE_BUNDLE_PRODUCT_ID,
         stripe_price_id: process.env.STRIPE_BUNDLE_PRICE_ID,
-        price: 22.99,
+        price: 24.99,
         currency: 'usd',
         type: 'mixed',
         description: 'Audiobook + Signed paperback bundle'

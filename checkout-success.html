@@ -180,7 +180,7 @@
         if (typeof gtag !== 'undefined') {
             gtag('event', 'purchase', {
                 transaction_id: urlParams.get('session_id'),
-                value: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 17.99 : 22.99,
+                value: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 19.99 : 24.99,
                 currency: 'EUR',
                 items: [{
                     item_id: product,
@@ -189,7 +189,7 @@
                               'The Worst Boyfriends Ever Bundle',
                     category: 'Books',
                     quantity: 1,
-                    price: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 17.99 : 22.99
+                    price: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 19.99 : 24.99
                 }]
             });
         }

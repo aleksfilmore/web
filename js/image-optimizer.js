@@ -108,6 +108,9 @@ class ImageOptimizer {
     }
 
     addWebPSource(img) {
+        // Temporarily disable WebP optimization until WebP versions are available
+        return;
+        
         // Only apply to actual image files
         if (!img.src.match(/\.(jpg|jpeg|png)$/i)) return;
 

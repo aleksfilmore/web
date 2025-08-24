@@ -302,8 +302,8 @@ class StripeAnalyticsService {
     getProductPrice(productId) {
         const prices = {
             'audiobook': 7.99,
-            'signed-book': 17.99,
-            'bundle': 22.99
+            'signed-book': 19.99,
+            'bundle': 24.99
         };
         return prices[productId] || 0;
     }
