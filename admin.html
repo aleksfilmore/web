@@ -326,6 +326,39 @@
                 </div>
             </section>
 
+            <!-- System Status & Environment Variables -->
+            <section class="mb-12">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold">System Status</h2>
+                    <div class="space-x-4">
+                        <button onclick="testEnvironmentVariables()" class="btn-secondary">
+                            🔧 Test Environment Variables
+                        </button>
+                        <button onclick="testAllIntegrations()" class="btn-primary">
+                            🧪 Test All Integrations
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Environment Variables Status -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-4">Environment Variables</h3>
+                        <div id="env-vars-status" class="space-y-2">
+                            <div class="text-sm opacity-70">Click "Test Environment Variables" to check your Netlify configuration</div>
+                        </div>
+                    </div>
+
+                    <!-- Integration Status -->
+                    <div class="dashboard-card">
+                        <h3 class="text-lg font-semibold mb-4">Integration Status</h3>
+                        <div id="integrations-status" class="space-y-2">
+                            <div class="text-sm opacity-70">Click "Test All Integrations" to verify API connections</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Website Analytics (Google Analytics) -->
             <section class="mb-12">
                 <h2 class="text-2xl font-bold mb-8">Website Analytics</h2>
@@ -1566,6 +1599,107 @@
             // You can implement a toast notification or alert here
             console.error(message);
             alert(message);
+        }
+
+        // Test environment variables
+        async function testEnvironmentVariables() {
+            try {
+                console.log('Testing Netlify environment variables...');
+                
+                // Update UI to show testing state
+                const statusDiv = document.getElementById('env-vars-status');
+                if (statusDiv) {
+                    statusDiv.innerHTML = '<div class="loading-spinner"></div> Testing environment variables...';
+                }
+                
+                const response = await fetch('/.netlify/functions/admin-test-env-vars', {
+                    headers: authManager.getAuthHeaders(),
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const results = await response.json();
+                
+                // Update UI with results
+                if (statusDiv) {
+                    let html = `
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium">Overall Status:</span>
+                                <span class="status-badge ${results.summary.status === 'pass' ? 'status-published' : 
+                                    results.summary.status === 'warning' ? 'bg-yellow-500/20 text-yellow-400' : 'status-draft'}">
+                                    ${results.summary.message}
+                                </span>
+                            </div>
+                            <div class="text-xs opacity-70">Last tested: ${new Date(results.timestamp).toLocaleString()}</div>
+                        </div>
+                        <div class="space-y-2 max-h-64 overflow-y-auto">
+                    `;
+                    
+                    // Show individual test results
+                    Object.entries(results.tests).forEach(([varName, test]) => {
+                        const statusIcon = test.status === 'pass' ? '✅' : 
+                                         test.status === 'warning' ? '⚠️' : '❌';
+                        const statusColor = test.status === 'pass' ? 'text-green-400' : 
+                                          test.status === 'warning' ? 'text-yellow-400' : 'text-red-400';
+                        
+                        html += `
+                            <div class="flex items-center justify-between p-2 bg-bone/5 rounded">
+                                <div class="flex-1">
+                                    <div class="font-medium text-sm">${varName}</div>
+                                    <div class="text-xs opacity-70">${test.description}</div>
+                                    ${test.message ? `<div class="text-xs ${statusColor} mt-1">${test.message}</div>` : ''}
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-lg">${statusIcon}</span>
+                                    ${test.required ? '<div class="text-xs text-red-400">Required</div>' : '<div class="text-xs opacity-50">Optional</div>'}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+                    
+                    // Add recommendations if any
+                    if (results.recommendations && results.recommendations.length > 0) {
+                        html += `
+                            <div class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded">
+                                <div class="font-medium text-yellow-400 mb-2">📋 Recommendations:</div>
+                                <ul class="text-sm space-y-1">
+                                    ${results.recommendations.map(rec => `<li>• ${rec}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
+                    }
+                    
+                    statusDiv.innerHTML = html;
+                }
+                
+                // Show success message
+                const statusText = results.summary.status === 'pass' ? 'All environment variables configured correctly!' :
+                                 results.summary.status === 'warning' ? 'Some optional variables missing, but core functionality should work.' :
+                                 'Critical environment variables missing. Some features may not work.';
+                
+                alert(`🔧 Environment Variables Test Complete\n\n${statusText}\n\nPassed: ${results.summary.passed}\nFailed: ${results.summary.failed}\nWarnings: ${results.summary.warnings}`);
+                
+            } catch (error) {
+                console.error('Environment variables test failed:', error);
+                const statusDiv = document.getElementById('env-vars-status');
+                if (statusDiv) {
+                    statusDiv.innerHTML = `
+                        <div class="text-red-400">
+                            ❌ Test failed: ${error.message}
+                        </div>
+                        <div class="text-xs opacity-70 mt-1">
+                            Make sure the admin-test-env-vars Netlify Function is deployed
+                        </div>
+                    `;
+                }
+                alert(`❌ Environment Variables Test Failed\n\nError: ${error.message}\n\nMake sure the Netlify Functions are deployed and working.`);
+            }
         }
 
         // Test all integrations
