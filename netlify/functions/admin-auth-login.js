@@ -1,19 +1,14 @@
 // Admin Auth Login - Issues a stateless HMAC signed token with rate limiting and CSRF
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
 // Rate limiting storage (in production, use Redis or database)
 const loginAttempts = new Map();
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const MAX_ATTEMPTS = 5;
 
-const RAW_PASSWORDS = process.env.ADMIN_PASSWORDS;
-let PASSWORDS = [];
-if (!RAW_PASSWORDS) {
-  console.warn('ADMIN_PASSWORDS env var not set – admin login disabled');
-} else {
-  PASSWORDS = RAW_PASSWORDS.split(',').map(p => p.trim()).filter(Boolean);
-}
-const SECRET = process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'CHANGE_ME_DEV_SECRET';
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH;
+const SECRET = process.env.JWT_SECRET || process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'CHANGE_ME_DEV_SECRET';
 
 function base64url(input) {
   return Buffer.from(JSON.stringify(input))
@@ -111,11 +106,12 @@ exports.handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Password required' }) };
     }
 
-    if (!PASSWORDS.length) {
-      return { statusCode: 503, headers, body: JSON.stringify({ error: 'Admin login disabled: ADMIN_PASSWORDS not configured' }) };
+    if (!ADMIN_PASSWORD_HASH) {
+      return { statusCode: 503, headers, body: JSON.stringify({ error: 'Admin login disabled: ADMIN_PASSWORD_HASH not configured' }) };
     }
     
-    const valid = PASSWORDS.includes(password);
+    // Use bcrypt to verify password against hash
+    const valid = await bcrypt.compare(password, ADMIN_PASSWORD_HASH);
     if (!valid) {
       // Record failed attempt for rate limiting
       recordFailedAttempt(clientIP);

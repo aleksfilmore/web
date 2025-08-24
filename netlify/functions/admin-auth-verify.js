@@ -1,6 +1,6 @@
 // Admin Auth Verify - Validates stateless HMAC token with enhanced security
 const crypto = require('crypto');
-const SECRET = process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'CHANGE_ME_DEV_SECRET';
+const SECRET = process.env.JWT_SECRET || process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'CHANGE_ME_DEV_SECRET';
 
 function verify(token) {
   const parts = token.split('.');
