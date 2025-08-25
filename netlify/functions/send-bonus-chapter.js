@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
 const { Resend } = require('resend');
-
-const JWT_SECRET = process.env.JWT_SECRET;
+const fs = require('fs');
+const path = require('path');
+const { requireAuth } = require('./utils/auth');
 const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
@@ -33,28 +33,8 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Verify JWT token
-        const authHeader = event.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Missing or invalid authorization header' })
-            };
-        }
-
-        const token = authHeader.substring(7);
-        
-        try {
-            jwt.verify(token, JWT_SECRET);
-        } catch (jwtError) {
-            console.error('JWT verification failed:', jwtError);
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Invalid token' })
-            };
-        }
+        const authError = requireAuth(event);
+        if (authError) return authError;
 
         // Bonus chapter email template
         const bonusChapterHtml = `
@@ -161,8 +141,20 @@ exports.handler = async (event, context) => {
 
         let sent = 0;
         let failed = 0;
+        // Load prior recipients to avoid duplicates
+        let priorRecipients = new Set();
+        let recipientsPath = path.join(__dirname, '../../data/bonus-chapter-recipients.json');
+        try {
+            if (fs.existsSync(recipientsPath)) {
+                const arr = JSON.parse(fs.readFileSync(recipientsPath, 'utf8'));
+                if (Array.isArray(arr)) priorRecipients = new Set(arr.map(e => e.email.toLowerCase()));
+            }
+        } catch (e) {
+            console.warn('Could not read bonus-chapter-recipients.json', e.message);
+        }
+        const newRecipients = [];
 
-        if (!MAILERLITE_API_KEY || !RESEND_API_KEY) {
+    if (!MAILERLITE_API_KEY || !RESEND_API_KEY) {
             // Simulate sending for demo
             return {
                 statusCode: 200,
@@ -192,7 +184,7 @@ exports.handler = async (event, context) => {
             throw new Error('Failed to fetch subscribers from MailerLite');
         }
 
-        const subscribers = await subscribersResponse.json();
+    const subscribers = await subscribersResponse.json();
         console.log(`Found ${subscribers.length} subscribers for bonus chapter`);
 
         // Send bonus chapter to all subscribers in batches
@@ -202,14 +194,18 @@ exports.handler = async (event, context) => {
             
             const batchPromises = batch.map(async (subscriber) => {
                 try {
-                    if (subscriber.type === 'active') {
+                    const email = (subscriber.email || '').toLowerCase();
+                    if (subscriber.type === 'active' && email && !priorRecipients.has(email)) {
                         await resend.emails.send({
                             from: 'alexandra@alexandrarodica.com',
-                            to: subscriber.email,
+                            to: email,
                             subject: '🎁 EXCLUSIVE: Bonus Chapter "The One That Got Away (Thank God)"',
                             html: bonusChapterHtml
                         });
                         sent++;
+                        newRecipients.push({ email, sentAt: new Date().toISOString() });
+                    } else if (priorRecipients.has(email)) {
+                        // Skip duplicate silently
                     }
                 } catch (error) {
                     console.error(`Failed to send bonus chapter to ${subscriber.email}:`, error);
@@ -223,6 +219,27 @@ exports.handler = async (event, context) => {
             if (i + batchSize < subscribers.length) {
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
+        }
+
+        // Persist stats & recipients
+        try {
+            const statsPath = path.join(__dirname, '../../data/bonus-chapter-stats.json');
+            let fileData = { bonusChaptersSent: 0, bonusChaptersFailed: 0 };
+            if (fs.existsSync(statsPath)) {
+                try { fileData = JSON.parse(fs.readFileSync(statsPath, 'utf8')); } catch {}
+            }
+            fileData.bonusChaptersSent += sent;
+            fileData.bonusChaptersFailed += failed;
+            fileData.lastUpdated = new Date().toISOString();
+            fs.writeFileSync(statsPath, JSON.stringify(fileData, null, 2));
+
+            if (newRecipients.length) {
+                const existing = Array.from(priorRecipients).map(e => ({ email: e }));
+                const merged = existing.concat(newRecipients).slice(-5000); // cap growth
+                fs.writeFileSync(recipientsPath, JSON.stringify(merged, null, 2));
+            }
+        } catch (persistErr) {
+            console.warn('Failed to persist bonus chapter stats:', persistErr.message);
         }
 
         return {

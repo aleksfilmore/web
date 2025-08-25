@@ -7,6 +7,15 @@ module.exports = {
     "./DaciaRising/**/*.html",
     "./templates/**/*.html"
   ],
+  safelist: [
+    // Dynamic utility classes toggled via JS that might not appear in source during build
+    'hidden', 'show', 'translate-y-full', 'translate-x-full', 'opacity-0', 'opacity-100',
+    'loading-pulse', 'active', 'error', 'selected', 'bingo-winner', 'free', 'layer-animate',
+    // Status badges
+    'status-completed', 'status-pending', 'status-failed',
+    // Toast variants (if dynamically added)
+    'text-green-400', 'text-red-400', 'text-yellow-400', 'text-blue-400'
+  ],
   theme: {
     extend: {
       colors: {

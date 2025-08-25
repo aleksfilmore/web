@@ -127,6 +127,40 @@ class MailerLiteService {
                 return total + (campaign.delivered_count || 0);
             }, 0);
 
+            // Derive engagement metrics (average open / click across recent campaigns)
+            let openRatePct = 0;
+            let clickRatePct = 0;
+            if (campaigns.length) {
+                let openAccumulator = 0;
+                let clickAccumulator = 0;
+                let counted = 0;
+                campaigns.forEach(c => {
+                    // MailerLite v2 may expose either rate or counts. Try both.
+                    const delivered = c.delivered_count || c.sent_count || 0;
+                    let campaignOpenRate = 0;
+                    let campaignClickRate = 0;
+                    if (typeof c.open_rate === 'number') campaignOpenRate = c.open_rate * 100; // already fraction
+                    else if (typeof c.opens_count === 'number' && delivered > 0) campaignOpenRate = (c.opens_count / delivered) * 100;
+                    if (typeof c.click_rate === 'number') campaignClickRate = c.click_rate * 100;
+                    else if (typeof c.clicks_count === 'number' && delivered > 0) campaignClickRate = (c.clicks_count / delivered) * 100;
+                    if (campaignOpenRate || campaignClickRate) {
+                        openAccumulator += campaignOpenRate;
+                        clickAccumulator += campaignClickRate;
+                        counted += 1;
+                    }
+                });
+                if (counted) {
+                    openRatePct = openAccumulator / counted;
+                    clickRatePct = clickAccumulator / counted;
+                }
+            }
+
+            // Recent activity (up to 5 most recent campaigns)
+            const recentActivity = campaigns.slice(0, 5).map(c => ({
+                action: c.name || c.subject || 'Campaign',
+                time: c.created_at ? new Date(c.created_at).toLocaleDateString() : '—'
+            }));
+
             return {
                 success: true,
                 data: {
@@ -135,7 +169,10 @@ class MailerLiteService {
                     groups: groups,
                     monthlyEmailsUsed: monthlyEmailsEstimate,
                     monthlyLimit: 12000,
-                    campaigns: campaigns.length
+                    campaigns: campaigns.length,
+                    openRate: openRatePct,
+                    clickRate: clickRatePct,
+                    recentActivity
                 }
             };
         } catch (error) {
@@ -149,7 +186,10 @@ class MailerLiteService {
                     groups: [],
                     monthlyEmailsUsed: 0,
                     monthlyLimit: 12000,
-                    campaigns: 0
+                    campaigns: 0,
+                    openRate: 0,
+                    clickRate: 0,
+                    recentActivity: []
                 }
             };
         }

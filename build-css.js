@@ -49,43 +49,19 @@ async function buildCSS() {
         // Write input file
         fs.writeFileSync('./temp-input.css', inputCSS);
         
-        // Use Tailwind standalone CLI
+        // Build using project tailwind dependency (no binary download)
+        if (!fs.existsSync('./css')) fs.mkdirSync('./css', { recursive: true });
         try {
-            // Try to download standalone CLI if it doesn't exist
-            if (!fs.existsSync('./tailwindcss.exe') && !fs.existsSync('./tailwindcss')) {
-                console.log('📥 Downloading Tailwind standalone CLI...');
-                const { execSync } = require('child_process');
-                
-                // Download for Windows
-                if (process.platform === 'win32') {
-                    execSync('curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe');
-                    execSync('move tailwindcss-windows-x64.exe tailwindcss.exe');
-                } else {
-                    execSync('curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64');
-                    execSync('chmod +x tailwindcss-linux-x64');
-                    execSync('mv tailwindcss-linux-x64 tailwindcss');
-                }
-            }
-            
-            // Ensure css directory exists
-            if (!fs.existsSync('./css')) {
-                fs.mkdirSync('./css', { recursive: true });
-            }
-            
-            // Build with standalone CLI
-            const cliPath = process.platform === 'win32' ? './tailwindcss.exe' : './tailwindcss';
-            if (fs.existsSync(cliPath)) {
-                execSync(`${cliPath} -i ./temp-input.css -o ./css/tailwind.min.css --config ./tailwind.config.js --minify`);
-            } else {
-                throw new Error('Tailwind CLI not found');
-            }
-            
+            // Force v3 CLI to avoid experimental v4 output differences
+            execSync(`npx tailwindcss@3.4.10 -i ./temp-input.css -c ./tailwind.config.js -o ./css/tailwind.min.css --minify`, { stdio: 'inherit' });
         } catch (cliError) {
-            console.log('⚠️ Standalone CLI failed, using fallback...');
-            
-            // Fallback: create a minimal CSS with essential Tailwind classes
-            const fallbackCSS = generateFallbackCSS();
-            fs.writeFileSync('./css/tailwind.min.css', fallbackCSS);
+            if (cliError.message && cliError.message.includes('EEXIST')) {
+                console.log('ℹ️ Directory exists, ignoring.');
+            } else {
+                console.log('⚠️ tailwind build failed, creating fallback minimal CSS');
+                const fallbackCSS = generateFallbackCSS();
+                fs.writeFileSync('./css/tailwind.min.css', fallbackCSS);
+            }
         }
         
         // Clean up temp file

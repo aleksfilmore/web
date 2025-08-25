@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
 const { Resend } = require('resend');
-
-const JWT_SECRET = process.env.JWT_SECRET;
+const fs = require('fs');
+const path = require('path');
+const { requireAuth } = require('./utils/auth');
 const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
@@ -33,28 +33,8 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Verify JWT token
-        const authHeader = event.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Missing or invalid authorization header' })
-            };
-        }
-
-        const token = authHeader.substring(7);
-        
-        try {
-            jwt.verify(token, JWT_SECRET);
-        } catch (jwtError) {
-            console.error('JWT verification failed:', jwtError);
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Invalid token' })
-            };
-        }
+        const authError = requireAuth(event);
+        if (authError) return authError;
 
         // Newsletter template
         const newsletterHtml = `
@@ -210,6 +190,27 @@ exports.handler = async (event, context) => {
             if (i + batchSize < subscribers.length) {
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
+        }
+
+        // Persist campaign stats (append to a log file for history)
+        try {
+            const logPath = path.join(__dirname, '../../data/newsletter-campaigns.json');
+            let campaigns = [];
+            if (fs.existsSync(logPath)) {
+                try { campaigns = JSON.parse(fs.readFileSync(logPath, 'utf8')); } catch {}
+            }
+            campaigns.unshift({
+                id: Date.now(),
+                sent,
+                failed,
+                total: subscribers.length,
+                subject: '📚 Latest Updates & Exclusive Content Inside!',
+                timestamp: new Date().toISOString()
+            });
+            campaigns = campaigns.slice(0, 50); // keep last 50
+            fs.writeFileSync(logPath, JSON.stringify(campaigns, null, 2));
+        } catch (persistErr) {
+            console.warn('Failed to persist newsletter campaign stats:', persistErr.message);
         }
 
         return {
