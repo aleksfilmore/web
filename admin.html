@@ -925,30 +925,7 @@
             }
         }
         
-        // Dashboard navigation functions
-        function showAnalyticsDashboard() {
-            document.getElementById('main-dashboard').style.display = 'none';
-            document.getElementById('analytics-dashboard').style.display = 'block';
-            document.getElementById('newsletter-manager').style.display = 'none';
-            loadGoogleAnalyticsData();
-        }
-
-        function showNewsletterManager() {
-            document.getElementById('main-dashboard').style.display = 'none';
-            document.getElementById('analytics-dashboard').style.display = 'none';
-            document.getElementById('newsletter-manager').style.display = 'block';
-            loadMailerLiteData();
-        }
-
-        function closeAnalyticsDashboard() {
-            document.getElementById('analytics-dashboard').style.display = 'none';
-            document.getElementById('main-dashboard').style.display = 'block';
-        }
-
-        function closeNewsletterManager() {
-            document.getElementById('newsletter-manager').style.display = 'none';
-            document.getElementById('main-dashboard').style.display = 'block';
-        }
+    // (Deprecated multi-page dashboard navigation functions removed - using modal approach instead)
 
         // Google Analytics integration
     async function loadGoogleAnalyticsData() {
@@ -1583,7 +1560,24 @@
                 <h2 class="text-2xl font-bold text-purple-400">📊 Google Analytics Dashboard</h2>
                 <button onclick="closeAnalyticsDashboard()" class="text-red-400 hover:text-red-300 text-2xl">&times;</button>
             </div>
-            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Page Views</p>
+                    <p id="analytics-pageviews" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Sessions</p>
+                    <p id="analytics-sessions" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Bounce Rate</p>
+                    <p id="analytics-bounce-rate" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Avg. Duration</p>
+                    <p id="analytics-avg-duration" class="text-xl font-bold">--</p>
+                </div>
+            </div>
             <div id="analytics-content" class="space-y-6">
                 <div class="text-center py-8">
                     <div class="animate-spin w-8 h-8 border-2 border-purple-400 border-t-transparent rounded-full mx-auto mb-4"></div>
@@ -1600,7 +1594,24 @@
                 <h2 class="text-2xl font-bold text-green-400">📧 Newsletter Manager</h2>
                 <button onclick="closeNewsletterManager()" class="text-red-400 hover:text-red-300 text-2xl">&times;</button>
             </div>
-            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Total Subscribers</p>
+                    <p id="newsletter-total-subscribers" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Active Subscribers</p>
+                    <p id="newsletter-active-subscribers" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Unsubscribed</p>
+                    <p id="newsletter-unsubscribed" class="text-xl font-bold">--</p>
+                </div>
+                <div class="stat-card p-4 rounded">
+                    <p class="text-xs text-slate-400">Growth Rate</p>
+                    <p id="newsletter-growth-rate" class="text-xl font-bold">--</p>
+                </div>
+            </div>
             <div id="newsletter-content" class="space-y-6">
                 <div class="text-center py-8">
                     <div class="animate-spin w-8 h-8 border-2 border-green-400 border-t-transparent rounded-full mx-auto mb-4"></div>

@@ -27,6 +27,16 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aleksfilmore.com/shop.html">
     
+        <!-- Google Ads Conversion Tag -->
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17470098065"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'AW-17470098065');
+        </script>
+    
     <!-- Google tag (gtag.js) -->
     <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
     <script src="/js/ga-loader.js" defer></script>
@@ -481,14 +491,10 @@
         }
 
         .bundle-features h4::before {
-            content: '<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="20,12 20,22 4,22 4,12"/>
-        <rect width="20" height="5" x="2" y="7"/>
-        <line x1="12" y1="22" x2="12" y2="7"/>
-        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-    </svg>';
-            font-size: 1.2em;
+            /* Replaced invalid inline SVG with unicode badge */
+            content: '\272A'; /* small star */
+            font-size: 1.1em;
+            color: var(--color-red-flag);
         }
 
         .bundle-features ul li {
@@ -500,14 +506,12 @@
         }
 
         .bundle-features ul li::before {
-            content: '<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3z"/>
-        <path d="M8 3h4l-2 5z"/>
-        <path d="M16 21h4l-2-5z"/>
-    </svg>';
+            content: '✔';
             position: absolute;
             left: 0;
             color: var(--color-glitch-lime);
+            font-size: 0.85rem;
+            top: 0.35rem;
         }
 
         /* Bundle Section Background Enhancement */
@@ -779,7 +783,6 @@
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
                     <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
                     <a href="shop.html" class="nav-link hover-underline-slide text-red-flag">Shop</a>
                     <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
@@ -812,7 +815,6 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
             <div class="px-4 py-6 space-y-4">
-                <a href="books.html" class="block text-lg nav-link">Books</a>
                 <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
                 <a href="shop.html" class="block text-lg nav-link text-red-flag">Shop</a>
                 <a href="reviews.html" class="block text-lg nav-link">Reviews</a>

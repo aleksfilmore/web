@@ -6,11 +6,11 @@ class SocialProofManager {
             'Michelle', 'Kimberly', 'Lisa', 'Angela', 'Heather', 'Amy', 'Rachel',
             'Melissa', 'Rebecca', 'Laura', 'Jennifer', 'Maria', 'Karen'
         ];
+        // Only list currently available/active products
         this.products = [
             'The Worst Boyfriends Ever Audiobook',
-            'Midway Signed Book',
-            'Audiobook + Book Bundle',
-            'Dacia Rising Audiobook'
+            'Signed Copy (Paperback)'
+            // 'Audiobook + Book Bundle' // (Temporarily unavailable – re-add when live)
         ];
         this.locations = [
             'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia',

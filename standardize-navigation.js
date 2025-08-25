@@ -6,7 +6,6 @@ const path = require('path');
 // List of main pages to update
 const mainPages = [
     'index.html',
-    'books.html',
     'audiobook.html', 
     'shop.html',
     'reviews.html',
@@ -34,7 +33,7 @@ const standardNav = `    <!-- Standardized Navigation -->
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    
                     <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
                     <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
                     <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
@@ -67,7 +66,7 @@ const standardNav = `    <!-- Standardized Navigation -->
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
             <div class="px-4 py-6 space-y-4">
-                <a href="books.html" class="block text-lg nav-link">Books</a>
+                
                 <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
                 <a href="shop.html" class="block text-lg nav-link">Shop</a>
                 <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
@@ -146,7 +145,7 @@ const standardFooter = `    <!-- Standardized Footer -->
                         Books
                     </h4>
                     <ul class="space-y-2 sm:space-y-3">
-                        <li><a href="books.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">The Worst Boyfriends Ever</a></li>
+                        <li><a href="audiobook.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Audiobook</a></li>
                         <li><a href="audiobook.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Audiobook</a></li>
                         <li><a href="dacia-rising.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Dacia Rising</a></li>
                     </ul>
@@ -238,10 +237,7 @@ function updateNavigationInFile(filePath) {
         let customNav = standardNav;
         
         // Highlight current page in navigation
-        if (currentPage === 'books.html') {
-            customNav = customNav.replace('href="books.html" class="nav-link hover-underline-slide"', 'href="books.html" class="nav-link hover-underline-slide text-red-flag"');
-            customNav = customNav.replace('href="books.html" class="block text-lg nav-link"', 'href="books.html" class="block text-lg nav-link text-red-flag"');
-        } else if (currentPage === 'audiobook.html') {
+    if (currentPage === 'audiobook.html') {
             customNav = customNav.replace('href="audiobook.html" class="nav-link hover-underline-slide"', 'href="audiobook.html" class="nav-link hover-underline-slide text-red-flag"');
             customNav = customNav.replace('href="audiobook.html" class="block text-lg nav-link"', 'href="audiobook.html" class="block text-lg nav-link text-red-flag"');
         } else if (currentPage === 'shop.html') {
