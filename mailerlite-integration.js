@@ -8,7 +8,7 @@ class MailerLiteService {
     constructor() {
         this.apiKey = process.env.MAILERLITE_API_KEY;
         this.baseURL = 'https://connect.mailerlite.com/api';
-        this.senderEmail = 'aleks@aleksfilmore.com';
+    this.senderEmail = 'aleksfilmore@gmail.com';
         this.senderName = 'Aleks Filmore';
         this.headers = {
             'Authorization': `Bearer ${this.apiKey}`,

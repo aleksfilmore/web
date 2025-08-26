@@ -408,39 +408,63 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-charcoal border-t border-bone/10 mt-20">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
-                    <h3 class="font-display text-xl font-bold text-bone mb-4">Aleks Filmore</h3>
-                    <p class="text-bone/70 mb-4">Author of dating disasters and life lessons from Brussels. Refuses to text first, but will answer emails.</p>
+<!-- Standardized Footer Component -->
+<footer class="relative bg-gradient-to-b from-charcoal/80 to-charcoal border-t border-bone/20 py-12 sm:py-16 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-flag/30 to-transparent"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-glitch-lime/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 left-0 w-24 h-24 bg-dusty-blush/5 rounded-full blur-2xl"></div>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
+            <div class="col-span-2 md:col-span-2">
+                <div class="mb-6">
+                    <h4 class="font-display font-bold text-xl sm:text-2xl mb-4 text-bone">Aleks Filmore</h4>
+                    <p class="text-bone/70 text-sm sm:text-base leading-relaxed mb-6">Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.</p>
                 </div>
-                
-                <div>
-                    <h4 class="font-display font-semibold text-bone mb-4">Legal</h4>
-                    <div class="space-y-2">
-                        <a href="privacy.html" class="block text-bone/70 hover:text-bone transition-colors">Privacy Policy</a>
-                        <a href="terms.html" class="block text-bone/70 hover:text-bone transition-colors">Terms & Conditions</a>
-                        <a href="#" onclick="showCookieSettings()" class="block text-bone/70 hover:text-bone transition-colors cursor-pointer">Cookie Settings</a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-display font-semibold text-bone mb-4">Connect</h4>
-                    <div class="space-y-2">
-                        <a href="contact.html" class="block text-bone/70 hover:text-bone transition-colors">Contact</a>
-                        <a href="newsletter.html" class="block text-bone/70 hover:text-bone transition-colors">Newsletter</a>
-                        <a href="blog.html" class="block text-bone/70 hover:text-bone transition-colors">Blog</a>
-                    </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://instagram.com/aleksfilmore" target="_blank" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
+                    <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
+                    <a href="mailto:aleksfilmore@gmail.com" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
                 </div>
             </div>
-            
-            <div class="border-t border-bone/10 mt-8 pt-8 text-center">
-                <p class="text-bone/60 text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Ships from Brussels, refuses to text first.</p>
+            <div class="col-span-1">
+                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Books</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li><a href="books.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">The Worst Boyfriends Ever</a></li>
+                    <li><a href="audiobook.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Audiobook</a></li>
+                    <li><a href="dacia-rising.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Dacia Rising</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1">
+                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Shop</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li><a href="shop.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Signed Paperbacks</a></li>
+                    <li><a href="checkout.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Order Books</a></li>
+                    <li><a href="reviews.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1">
+                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Connect</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li><a href="about.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">About</a></li>
+                    <li><a href="contact.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Contact</a></li>
+                    <li><a href="newsletter.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Newsletter</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="border-t border-bone/10 pt-8 sm:pt-12">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                <p class="text-bone/60 text-xs sm:text-sm text-center sm:text-left">© 2024 Aleks Filmore. All rights reserved. Bad decisions documented since 2023.</p>
+                <div class="flex items-center space-x-4 sm:space-x-6">
+                    <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Privacy</a>
+                    <a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Terms</a>
+                    <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>

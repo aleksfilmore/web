@@ -1469,7 +1469,7 @@ app.post('/api/contact', async (req, res) => {
         
         await resend.emails.send({
             from: `Contact Form <noreply@aleksfilmore.com>`,
-            to: ['aleks@aleksfilmore.com'],
+            to: ['aleksfilmore@gmail.com'],
             subject: `Contact Form: ${subject || 'New Message'}`,
             html: `
                 <h2>New Contact Form Submission</h2>
