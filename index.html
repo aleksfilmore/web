@@ -99,31 +99,79 @@
                         "@type": "Offer",
                         "name": "Audiobook",
                         "price": "7.99",
-                        "priceCurrency": "EUR"
+                        "priceCurrency": "EUR",
+                        "availability": "https://schema.org/InStock"
                     },
                     {
                         "@type": "Offer",
                         "name": "Signed Paperback",
                         "price": "19.99",
-                        "priceCurrency": "EUR"
+                        "priceCurrency": "EUR",
+                        "availability": "https://schema.org/InStock"
                     }
                 ]
             }
         ]
     }
     </script>
-        <style>
+
+    <!-- Custom Styles -->
+    <style>
         :root {
-            /* Color Palette */
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
             --color-red-flag: #FF3B3B;
-            --color-bone: #F5F5DC;
-            --color-charcoal: #2B2B2B;
-            --color-glitch-lime: #B8E000;
-            --color-dusty-blush: #D4A574;
-            
-            /* Typography */
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+
+        /* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
         }
         
         .hover-underline-slide:hover::after {
@@ -1704,4 +1752,3 @@
 
 </body>
 </html>
-

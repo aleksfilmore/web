@@ -49,23 +49,47 @@
         "@type": "Blog",
         "name": "Aleks Filmore Blog",
         "description": "Dating disasters, relationship lessons, and life updates from author Aleks Filmore",
-        "url": "https://aleksfilmore.com/blog.html"
+        "url": "https://aleksfilmore.com/blog.html",
+        "author": {
+            "@type": "Person",
+            "name": "Aleks Filmore",
+            "url": "https://aleksfilmore.com"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Aleks Filmore"
+        }
     }
     </script>
+
+    <!-- Custom Styles -->
     <style>
         :root {
-            /* Color Palette */
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
             --color-red-flag: #FF3B3B;
-            --color-bone: #F5F5DC;
-            --color-charcoal: #2B2B2B;
-            --color-glitch-lime: #B8E000;
-            --color-dusty-blush: #D4A574;
-            
-            /* Typography */
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
-        
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
         .text-glitch-lime { color: var(--color-glitch-lime); }
         .text-dusty-blush { color: var(--color-dusty-blush); }
 
@@ -390,34 +414,7 @@
                         
                         <!-- Featured Post -->
                         <article class="blog-card relative">
-                            <div class="featured-badge">New</div>
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-27">August 27, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">
-                                    <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="text-bone hover:text-red-flag transition-colors">
-                                        How I Got Into Writing The Worst Boyfriends Ever
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    When I wrote The Worst Boyfriends Ever, I was heartbroken. And not in a cute, poetic way. But in a "what the hell just happened to my life" kind of way. The raw, honest story behind turning dating disasters into chapters.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Writing Journey</span>
-                                    <span class="blog-tag">Heartbreak</span>
-                                    <span class="blog-tag">Healing</span>
-                                </div>
-                                <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
-
-                        <!-- Previous Featured Post -->
-                        <article class="blog-card">
+                            <div class="featured-badge">Featured</div>
                             <div class="p-6 sm:p-8">
                                 <div class="blog-meta mb-3">
                                     <time datetime="2025-08-20">August 20, 2025</time>
@@ -438,60 +435,6 @@
                                     <span class="blog-tag">Brussels Life</span>
                                 </div>
                                 <a href="blog/why-i-stopped-dating-apps.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
-
-                        <!-- Red Flag Field Guide -->
-                        <article class="blog-card">
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-15">August 15, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>8 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">
-                                    <a href="blog/red-flag-field-guide.html" class="text-bone hover:text-red-flag transition-colors">
-                                        The Red-Flag Field Guide: 25 Warning Signs I Wish I'd Spotted Sooner
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    A survival guide to modern dating red flags, from love-bombing to weaponized therapy speak. Real examples and recovery tips from someone who learned the hard way.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Red Flags</span>
-                                    <span class="blog-tag">Dating Guide</span>
-                                    <span class="blog-tag">Warning Signs</span>
-                                </div>
-                                <a href="blog/red-flag-field-guide.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
-
-                        <!-- Anatomy of a Ghost -->
-                        <article class="blog-card">
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-10">August 10, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>6 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">
-                                    <a href="blog/anatomy-of-a-ghost.html" class="text-bone hover:text-red-flag transition-colors">
-                                        Anatomy of a Ghost: Why They Vanish and How to Recover
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Ghosting</span>
-                                    <span class="blog-tag">Recovery</span>
-                                    <span class="blog-tag">Psychology</span>
-                                </div>
-                                <a href="blog/anatomy-of-a-ghost.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
                                     Read more →
                                 </a>
                             </div>
@@ -548,64 +491,48 @@
 
     </main>
 
-<!-- Standardized Footer Component -->
-<footer class="relative bg-gradient-to-b from-charcoal/80 to-charcoal border-t border-bone/20 py-12 sm:py-16 overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-flag/30 to-transparent"></div>
-        <div class="absolute bottom-0 right-0 w-32 h-32 bg-glitch-lime/5 rounded-full blur-3xl"></div>
-        <div class="absolute top-0 left-0 w-24 h-24 bg-dusty-blush/5 rounded-full blur-2xl"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 sm:px-6 relative z-10">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
-            <div class="col-span-2 md:col-span-2">
-                <div class="mb-6">
-                    <h4 class="font-display font-bold text-xl sm:text-2xl mb-4 text-bone">Aleks Filmore</h4>
-                    <p class="text-bone/70 text-sm sm:text-base leading-relaxed mb-6">Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.</p>
+    <!-- Mobile-First Footer -->
+    <footer class="bg-charcoal/50 border-t border-bone/10 py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-bold text-base sm:text-lg mb-3 sm:mb-4">Aleks Filmore</h4>
+                    <p class="text-bone/60 text-xs sm:text-sm">Weekly chaos delivered from Brussels. Dating disasters transformed into life lessons and questionable wisdom.</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="https://instagram.com/aleksfilmore" target="_blank" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
-                    <a href="https://tiktok.com/@aleksfilmore" target="_blank" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
-                    <a href="mailto:aleksfilmore@gmail.com" class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">...</a>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Blog</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="blog.html" class="text-bone/60 hover:text-red-flag transition-colors">All Posts</a></li>
+                        <li><a href="blog/category/dating.html" class="text-bone/60 hover:text-red-flag transition-colors">Dating Disasters</a></li>
+                        <li><a href="blog/category/writing.html" class="text-bone/60 hover:text-red-flag transition-colors">Writing Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Books</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-colors">Audiobook</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-colors">Signed Copies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Connect</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                        <li><a href="https://instagram.com/aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors">📷 Instagram</a></li>
+                        <li><a href="https://tiktok.com/@aleksfilmore" target="_blank" class="text-bone/60 hover:text-red-flag transition-colors"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+    </svg> TikTok</a></li>
+                        <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-colors">About</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-span-1">
-                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Books</h4>
-                <ul class="space-y-2 sm:space-y-3">
-                    <li><a href="books.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">The Worst Boyfriends Ever</a></li>
-                    <li><a href="audiobook.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Audiobook</a></li>
-                    <li><a href="dacia-rising.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Dacia Rising</a></li>
-                </ul>
-            </div>
-            <div class="col-span-1">
-                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Shop</h4>
-                <ul class="space-y-2 sm:space-y-3">
-                    <li><a href="shop.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Signed Paperbacks</a></li>
-                    <li><a href="checkout.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Order Books</a></li>
-                    <li><a href="reviews.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Reviews</a></li>
-                </ul>
-            </div>
-            <div class="col-span-1">
-                <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Connect</h4>
-                <ul class="space-y-2 sm:space-y-3">
-                    <li><a href="about.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">About</a></li>
-                    <li><a href="contact.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Contact</a></li>
-                    <li><a href="newsletter.html" class="text-bone/70 hover:text-red-flag transition-colors text-sm sm:text-base">Newsletter</a></li>
-                </ul>
+            
+            <div class="border-t border-bone/10 pt-6 sm:pt-8 text-center">
+                <p class="text-bone/60 text-xs sm:text-sm">&copy; 2025 Aleks Filmore. All rights reserved. Blog posts may contain traces of emotional baggage.</p>
             </div>
         </div>
-        <div class="border-t border-bone/10 pt-8 sm:pt-12">
-            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-                <p class="text-bone/60 text-xs sm:text-sm text-center sm:text-left">© 2024 Aleks Filmore. All rights reserved. Bad decisions documented since 2023.</p>
-                <div class="flex items-center space-x-4 sm:space-x-6">
-                    <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Privacy</a>
-                    <a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Terms</a>
-                    <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Cookies</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- JavaScript -->
     <script>
@@ -716,4 +643,3 @@
 
 </body>
 </html>
-
