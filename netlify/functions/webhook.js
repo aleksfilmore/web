@@ -292,7 +292,7 @@ async function checkForAudiobookAccess(session) {
             
             return (
                 priceId === process.env.STRIPE_AUDIOBOOK_PRICE_ID ||
-                priceId === process.env.STRIPE_BUNDLE_PRICE_ID ||
+                priceId === 'price_1Ryq905SMnEa5xV13FwO1Dau' || // Bundle price ID (hardcoded to reduce env vars)
                 productName.includes('audiobook') ||
                 productName.includes('bundle')
             );

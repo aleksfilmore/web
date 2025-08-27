@@ -1,6 +1,7 @@
 // Admin Orders - Real Stripe Data
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { requireAuth } = require('./utils/auth');
+const { getProductId } = require('./utils/stripe-config');
 
 exports.handler = async (event, context) => {
     // Set CORS headers
@@ -98,9 +99,9 @@ exports.handler = async (event, context) => {
 function mapProductToId(product) {
     // Map Stripe product IDs to internal product IDs
     const productMap = {
-        [process.env.STRIPE_AUDIOBOOK_PRODUCT_ID]: 'audiobook',
-        [process.env.STRIPE_SIGNED_BOOK_PRODUCT_ID]: 'signed-book',
-        [process.env.STRIPE_BUNDLE_PRODUCT_ID]: 'bundle'
+        [getProductId('audiobook') || process.env.STRIPE_AUDIOBOOK_PRODUCT_ID]: 'audiobook',
+        [getProductId('signedBook') || process.env.STRIPE_SIGNED_BOOK_PRODUCT_ID]: 'signed-book',
+        [getProductId('bundle') || process.env.STRIPE_BUNDLE_PRODUCT_ID]: 'bundle'
     };
     
     return productMap[product.id] || 'unknown';
