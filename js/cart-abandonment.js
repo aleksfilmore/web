@@ -37,19 +37,22 @@ class CartAbandonment {
     }
     
     trackCartEvents() {
-        // Listen for cart-related events - AUDIOBOOK ONLY
+        // Listen for cart-related events - AUDIOBOOK, SIGNED COPY, BUNDLE ONLY
         document.addEventListener('click', (e) => {
             const target = e.target;
             
-            // Buy now buttons - only for audiobook
+            // Buy now buttons - only for the 3 existing products
             if ((target.classList.contains('buy-button') || 
                 target.closest('.buy-button') ||
                 target.textContent.includes('Buy Now') ||
                 target.textContent.includes('Get Audiobook') ||
+                target.textContent.includes('Order Copy') ||
+                target.textContent.includes('Get Bundle') ||
                 target.textContent.includes('Listen -')) && 
-                this.isAudiobookRelated(target)) {
+                this.isValidProduct(target)) {
                 
-                this.recordCartActivity('audiobook_item_added');
+                const productType = this.getProductType(target);
+                this.recordCartActivity(`${productType}_item_added`);
                 this.startAbandonmentTimer();
             }
         });
@@ -63,16 +66,38 @@ class CartAbandonment {
         });
     }
     
-    isAudiobookRelated(element) {
+    isValidProduct(element) {
         const text = element.textContent.toLowerCase();
         const href = element.href || '';
         
         return text.includes('audiobook') || 
                text.includes('listen') || 
+               text.includes('signed') ||
+               text.includes('copy') ||
+               text.includes('bundle') ||
                href.includes('audiobook') ||
+               href.includes('shop') ||
                text.includes('$7.99') ||
+               text.includes('$19.99') ||
+               text.includes('$24.99') ||
                element.closest('.audiobook-section') ||
-               window.location.pathname.includes('/audiobook');
+               element.closest('.shop-card') ||
+               window.location.pathname.includes('/audiobook') ||
+               window.location.pathname.includes('/shop');
+    }
+    
+    getProductType(element) {
+        const text = element.textContent.toLowerCase();
+        const href = element.href || '';
+        
+        if (text.includes('audiobook') || text.includes('listen') || text.includes('$7.99') || href.includes('audiobook')) {
+            return 'audiobook';
+        } else if (text.includes('signed') || text.includes('copy') || text.includes('$19.99')) {
+            return 'signed_copy';
+        } else if (text.includes('bundle') || text.includes('$24.99')) {
+            return 'bundle';
+        }
+        return 'unknown_product';
     }
     
     trackCheckoutAbandonment() {
@@ -232,11 +257,11 @@ class CartAbandonment {
                         <h3>Still thinking it over?</h3>
                     </div>
                     <div class="abandonment-popup-body">
-                        <p>You were about to get <strong>"The Worst Boyfriends Ever"</strong> audiobook.</p>
+                        <p>You were looking at <strong>"The Worst Boyfriends Ever"</strong> - available as audiobook, signed copy, or bundle.</p>
                         ${email ? 
                             `<p>We'll send you a reminder with a special discount code.</p>
                              <p class="email-display">${email}</p>` :
-                            `<p>Enter your email to get a <strong>20% discount on the audiobook</strong>:</p>
+                            `<p>Enter your email to get a <strong>15% discount on any format</strong>:</p>
                              <div class="email-capture">
                                  <input type="email" id="abandonment-email" placeholder="your@email.com" />
                                  <button id="abandonment-submit" class="btn-primary">Get My Discount</button>
@@ -249,7 +274,7 @@ class CartAbandonment {
                                     <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
                                     <path d="M12 18V6"/>
                                 </svg>
-                                <span><strong>20% OFF</strong> the audiobook</span>
+                                <span><strong>15% OFF</strong> any format</span>
                             </div>
                             <div class="benefit-item">
                                 <svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -257,7 +282,7 @@ class CartAbandonment {
                                     <circle cx="6" cy="18" r="3"/>
                                     <circle cx="18" cy="16" r="3"/>
                                 </svg>
-                                <span>Instant access to the audiobook</span>
+                                <span>Audiobook ($7.99) • Signed Copy ($19.99) • Bundle ($24.99)</span>
                             </div>
                             <div class="benefit-item">
                                 <svg class="premium-icon colored-blush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -269,7 +294,7 @@ class CartAbandonment {
                         </div>
                     </div>
                     <div class="abandonment-popup-footer">
-                        <button class="btn-primary abandonment-continue">Get the Audiobook</button>
+                        <button class="btn-primary abandonment-continue">Browse All Formats</button>
                         <button class="abandonment-maybe-later">Maybe Later</button>
                     </div>
                 </div>
@@ -521,7 +546,7 @@ class CartAbandonment {
         // Continue purchase
         continueBtn?.addEventListener('click', () => {
             this.recordCartActivity('popup_continue_clicked');
-            window.location.href = '/audiobook.html';
+            window.location.href = '/shop.html';
         });
         
         // Email submission

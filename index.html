@@ -957,19 +957,6 @@
     });
     </script>
 
-    <!-- Sticky CTA Bar -->
-    <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 bg-primary text-charcoal px-4 py-3 z-40 transform translate-y-full transition-transform duration-300 ease-in-out">
-        <div class="container mx-auto flex items-center justify-between max-w-4xl">
-            <div class="flex items-center">
-                <span class="font-semibold text-sm sm:text-base">Get your copy now!</span>
-                <span class="ml-2 text-xs sm:text-sm opacity-80 hidden sm:inline">Don't miss these hard-earned lessons</span>
-            </div>
-            <a href="shop.html" class="bg-charcoal text-primary px-4 py-2 rounded-md font-semibold text-sm hover:bg-charcoal/90 transition-colors">
-                Get the Book
-            </a>
-        </div>
-    </div>
-
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
 
@@ -1382,6 +1369,33 @@
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
                         
                         <!-- Featured Post -->
+                        <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="block">
+                            <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
+                                <div class="p-4 sm:p-6">
+                                    <div class="text-xs sm:text-sm text-bone/60 mb-2">
+                                        <time datetime="2025-08-27">August 27, 2025</time>
+                                        <span class="mx-2">•</span>
+                                        <span>6 min read</span>
+                                        <span class="mx-2 text-red-flag font-semibold">NEW</span>
+                                    </div>
+                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
+                                        How I Got Into Writing The Worst Boyfriends Ever
+                                    </h3>
+                                    <p class="text-bone/80 mb-4 text-sm sm:text-base">
+                                        The messy origin story behind the book that nobody asked for but everyone secretly needed...
+                                    </p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="feature-tag">Writing Journey</span>
+                                        <span class="feature-tag">Behind the Scenes</span>
+                                    </div>
+                                    <span class="text-red-flag hover:text-red-flag/80 font-semibold text-sm">
+                                        Read more →
+                                    </span>
+                                </div>
+                            </article>
+                        </a>
+
+                        <!-- Recent Post 1 -->
                         <a href="blog/why-i-stopped-dating-apps.html" class="block">
                             <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
                                 <div class="p-4 sm:p-6">
@@ -1390,7 +1404,7 @@
                                         <span class="mx-2">•</span>
                                         <span>5 min read</span>
                                     </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors">
+                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
                                         Why I Deleted All My Dating Apps
                                     </h3>
                                     <p class="text-bone/80 mb-4 text-sm sm:text-base">
@@ -1407,7 +1421,7 @@
                             </article>
                         </a>
 
-                        <!-- Recent Post 1 -->
+                        <!-- Recent Post 2 -->
                         <a href="blog/anatomy-of-a-ghost.html" class="block">
                             <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
                                 <div class="p-4 sm:p-6">
@@ -1416,7 +1430,7 @@
                                         <span class="mx-2">•</span>
                                         <span>3 min read</span>
                                     </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors">
+                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
                                         Anatomy of a Ghost
                                     </h3>
                                     <p class="text-bone/80 mb-4 text-sm sm:text-base">
@@ -1433,37 +1447,17 @@
                             </article>
                         </a>
 
-                        <!-- Recent Post 2 -->
-                        <a href="blog/red-flag-field-guide.html" class="block">
-                            <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
-                                <div class="p-4 sm:p-6">
-                                    <div class="text-xs sm:text-sm text-bone/60 mb-2">
-                                        <time datetime="2025-08-10">August 10, 2025</time>
-                                        <span class="mx-2">•</span>
-                                        <span>4 min read</span>
-                                    </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors">
-                                        The Red Flag Field Guide
-                                    </h3>
-                                    <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                        A comprehensive guide to spotting dating red flags before they turn into relationship disasters...
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="feature-tag">Red Flags</span>
-                                        <span class="feature-tag">Dating Tips</span>
-                                    </div>
-                                    <span class="text-red-flag hover:text-red-flag/80 font-semibold text-sm">
-                                        Read more →
-                                    </span>
-                                </div>
-                            </article>
-                        </a>
-
                     </div>
 
                     <div class="text-center">
                         <a href="blog.html" class="btn-secondary">
-                            <span class="hero-btn-icon">📝</span>
+                            <svg class="hero-btn-icon premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
                             Read All Posts
                             <span class="hero-btn-arrow">→</span>
                         </a>
@@ -1640,7 +1634,7 @@
                         <span class="text-bone/30">•</span>
                         <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy</a>
                         <span class="text-bone/30">•</span>
-                        <button onclick="openCookieSettings()" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</button>
+                        <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</a>
                     </div>
                 </div>
             </div>
@@ -1710,29 +1704,6 @@
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>
-
-    <!-- Sticky CTA Bar JavaScript -->
-    <script>
-        // Show/hide sticky CTA bar based on scroll position
-        let lastScrollY = 0;
-        let stickyCTA = document.getElementById('sticky-cta');
-        let heroSection = document.querySelector('.hero-gradient');
-        
-        function handleStickyCTA() {
-            const scrollY = window.scrollY;
-            const heroHeight = heroSection ? heroSection.offsetHeight : 0;
-            
-            // Show sticky bar when user scrolls past hero section
-            if (scrollY > heroHeight * 0.8) {
-                stickyCTA.classList.remove('translate-y-full');
-            } else {
-                stickyCTA.classList.add('translate-y-full');
-            }
-        }
-        
-        window.addEventListener('scroll', handleStickyCTA);
-        window.addEventListener('resize', handleStickyCTA);
-    </script>
 
     <!-- Enhanced Features Scripts -->
     <script src="/js/social-proof.js"></script>

@@ -36,6 +36,9 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="css/cookie-notice.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -133,6 +136,26 @@
 
         .nav-link:hover {
             color: var(--color-red-flag);
+        }
+
+        /* Hover underline animation */
+        .hover-underline-slide {
+            position: relative;
+        }
+
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline-slide:hover::after {
+            width: 100%;
         }
 
         /* Mobile-First Buttons */
@@ -338,6 +361,18 @@
                 <div class="font-display font-bold text-lg sm:text-xl">
                     <a href="index.html" class="text-bone hover:text-red-flag transition-colors">← Back to Sanity</a>
                 </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                </div>
+                
                 <div class="hidden sm:block text-sm text-bone/60">
                     <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
@@ -347,6 +382,16 @@
         <circle cx="12" cy="12" r="2"/>
     </svg> Easter Egg Activated
                 </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
                 <div class="sm:hidden text-xs text-bone/60">
                     <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
@@ -358,7 +403,49 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="index.html" class="block text-sm nav-link opacity-50">← Back to Main Site</a>
+            </div>
+        </div>
     </nav>
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
 
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
@@ -666,6 +753,9 @@
             });
         }
     </script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
 
 </body>
 </html>

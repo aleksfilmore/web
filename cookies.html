@@ -4,8 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cookie Policy | Aleks Filmore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https:/        <ul class="space-y-2 mb-6 text-bone/80">
+            <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-glitch-lime">Chrome: Settings → Privacy & Security → Cookies</li>
+            <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-glitch-lime">Safari: Preferences → Privacy</li>
+            <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-glitch-lime">Firefox: Options → Privacy & Security</li>
+        </ul>
+        <p class="text-bone/90 mb-6">Blocking essential cookies may break site functions such as the email-signup form.</p>
+    </section>
+
+    <section>
+        <h2 class="font-display font-semibold text-2xl mb-4 text-glitch-lime">4. Consent banner</h2>
+        <p class="text-bone/90 mb-4">On your first visit we show a small banner:</p>
+        <p class="text-bone/80 mb-4 italic">"We use cookies to improve your experience. Accept / Cookie Settings"</p>
+        <ul class="space-y-2 mb-6 text-bone/80">
+            <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-glitch-lime">Essential cookies load immediately</li>
+            <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-glitch-lime">Analytics cookies load only after you click Accept</li>
+        </ul>
+        <p class="text-bone/90 mb-6">You can revisit "Cookie Settings" at any time in the footer.</p>
+    </section>
+
+    <section>
+        <h2 class="font-display font-semibold text-2xl mb-4 text-glitch-lime">5. Updates</h2>
+        <p class="text-bone/90">We review this cookie list annually or whenever a new service is added. Changes will appear on this page.
+        Questions? Email <a href="mailto:aleksfilmore@gmail.com" class="text-glitch-lime hover:text-red-flag underline transition-colors">aleksfilmore@gmail.com</a> and we'll be happy to help.</p> crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="css/cookie-notice.css">
     
     <!-- Google Analytics dynamic loader (no hardcoded ID) -->
     <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
@@ -58,71 +85,110 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
             color: var(--color-bone);
             line-height: 1.6;
             padding-top: 80px;
         }
+        
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
         .container {
             max-width: 800px;
             margin: 2rem auto;
             padding: 1.5rem;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         h1 {
-            color: #f35b4e;
+            color: var(--color-red-flag);
+            font-family: var(--font-display);
+            font-weight: 700;
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
             text-align: center;
         }
         .last-updated {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--color-bone);
+            opacity: 0.6;
             margin-bottom: 2rem;
             text-align: center;
         }
         h2 {
-            color: #208e92;
+            color: var(--color-glitch-lime);
+            font-family: var(--font-display);
+            font-weight: 600;
             font-size: 1.5rem;
             margin-top: 2rem;
             margin-bottom: 0.8rem;
-            border-bottom: 2px solid #ffc19c;
+            border-bottom: 2px solid var(--color-red-flag);
             padding-bottom: 0.5rem;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile responsive table */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.75rem;
+            }
+            th, td {
+                padding: 0.5rem;
+            }
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
         }
         table, th, td {
-            border: 1px solid #ddd;
+            border: 1px solid rgba(247, 243, 237, 0.15);
         }
         th, td {
             padding: 0.8rem;
             text-align: left;
-            vertical-align: top; /* Align content to top for longer descriptions */
+            vertical-align: top;
+            color: var(--color-bone);
         }
         th {
-            background-color: #ffc19c;
-            color: #333;
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
             font-weight: bold;
+            font-family: var(--font-display);
         }
         ul {
             list-style-type: disc;
             margin-left: 20px;
             padding-left: 0;
+            color: var(--color-bone);
         }
         li {
             margin-bottom: 0.5rem;
+            color: var(--color-bone);
         }
         p {
             margin-bottom: 1rem;
+            color: var(--color-bone);
         }
         .contact-info {
             font-weight: bold;
+            color: var(--color-glitch-lime);
         }
         .back-link {
             display: block;
@@ -131,16 +197,18 @@
             font-size: 1rem;
         }
         .back-link a {
-            color: #f35b4e;
+            color: var(--color-red-flag);
             text-decoration: none;
             font-weight: bold;
+            font-family: var(--font-display);
             padding: 0.5rem 1rem;
-            border: 2px solid #f35b4e;
+            border: 2px solid var(--color-red-flag);
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .back-link a:hover {
-            background-color: #f35b4e;
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
             color: #fff;
         }
     </style>
@@ -240,49 +308,60 @@
     </script>
 
     <!-- Main Content -->
-    <div class="container">
-        <h1>Cookie Policy</h1>
-        <p class="last-updated">Last updated: 5 July 2025</p>
+    <main class="container mx-auto px-6 py-16 mt-16">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="font-display font-bold text-4xl text-center mb-4 text-red-flag">Cookie Policy</h1>
+            <p class="text-center text-bone/70 mb-12 text-sm">Last updated: 5 July 2025</p>
 
-        <h2>1. What are cookies?</h2>
-        <p>Cookies are small text files stored on your device. They help the site remember preferences, keep you logged in, and gather anonymous usage statistics.</p>
+            <div class="space-y-8">
+                <section>
+                    <h2 class="font-display font-semibold text-2xl mb-4 text-glitch-lime">1. What are cookies?</h2>
+                    <p class="text-bone/90 mb-4">Cookies are small text files stored on your device. They help the site remember preferences, keep you logged in, and gather anonymous usage statistics.</p>
+                </section>
 
-        <h2>2. Cookies we use</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Name / example</th>
-                    <th>Purpose</th>
-                    <th>Expiry</th>
+                <section>
+                    <h2 class="font-display font-semibold text-2xl mb-4 text-glitch-lime">2. Cookies we use</h2>
+                    <div class="overflow-x-auto bg-bone/5 rounded-lg border border-bone/10">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-red-flag/20 border-b border-bone/10">
+                                    <th class="p-4 text-left font-semibold text-bone">Type</th>
+                                    <th class="p-4 text-left font-semibold text-bone">Name / example</th>
+                                    <th class="p-4 text-left font-semibold text-bone">Purpose</th>
+                                    <th class="p-4 text-left font-semibold text-bone">Expiry</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-bone/10">
+                                    <td class="p-4 text-bone/80">Essential</td>
+                                    <td class="p-4 text-bone/80">__cf_bm, PHPSESSID</td>
+                                    <td class="p-4 text-bone/80">Basic security, page loading</td>
+                                    <td class="p-4 text-bone/80">Session</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Essential</td>
-                    <td>__cf_bm, PHPSESSID</td>
-                    <td>Basic security, page loading</td>
-                    <td>Session</td>
+                <tr class="border-b border-bone/10">
+                    <td class="p-4 text-bone/80">Preference</td>
+                    <td class="p-4 text-bone/80">newsletter_popup_seen</td>
+                    <td class="p-4 text-bone/80">Hide sign-up pop-up after you dismiss it</td>
+                    <td class="p-4 text-bone/80">30 days</td>
                 </tr>
-                <tr>
-                    <td>Preference</td>
-                    <td>newsletter_popup_seen</td>
-                    <td>Hide sign-up pop-up after you dismiss it</td>
-                    <td>30 days</td>
-                </tr>
-                <tr>
-                    <td>Analytics</td>
-                    <td>*_ga, _gid, _pk_id</td>
-                    <td>Count visits and page views (aggregated)</td>
-                    <td>1 day – 2 years</td>
+                <tr class="border-b border-bone/10">
+                    <td class="p-4 text-bone/80">Analytics</td>
+                    <td class="p-4 text-bone/80">*_ga, _gid, _pk_id</td>
+                    <td class="p-4 text-bone/80">Count visits and page views (aggregated)</td>
+                    <td class="p-4 text-bone/80">1 day – 2 years</td>
                 </tr>
             </tbody>
         </table>
-        <p>Analytics cookies load only after consent (see §4).</p>
-        <p>We do not use advertising or cross-site-tracking cookies.</p>
+        </div>
+        <div class="mt-4 space-y-2">
+            <p class="text-bone/90">Analytics cookies load only after consent (see §4).</p>
+            <p class="text-bone/90">We do not use advertising or cross-site-tracking cookies.</p>
+        </div>
+    </section>
 
-        <h2>3. Managing cookies</h2>
-        <p>You can delete or block cookies in your browser settings:</p>
+    <section>
+        <h2 class="font-display font-semibold text-2xl mb-4 text-glitch-lime">3. Managing cookies</h2>
+        <p class="text-bone/90 mb-4">You can delete or block cookies in your browser settings:</p>
         <ul>
             <li>Chrome: Settings → Privacy & Security → Cookies.</li>
             <li>Safari: Preferences → Privacy.</li>
@@ -336,5 +415,8 @@
         }
     });
     </script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
 </body>
 </html>

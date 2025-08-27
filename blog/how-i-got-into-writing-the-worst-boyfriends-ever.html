@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Red-Flag Field Guide: 25 Warning Signs I Wish I'd Spotted Sooner | Aleks Filmore</title>
-    <meta name="description" content="A survival guide to modern dating red flags, from love-bombing to weaponized therapy speak. Real examples and recovery tips from someone who learned the hard way.">
+    <title>How I Got Into Writing The Worst Boyfriends Ever - Aleks Filmore</title>
+    <meta name="description" content="The raw, honest story behind writing The Worst Boyfriends Ever - from heartbreak to healing through humor and turning dating disasters into chapters.">
+    <meta name="keywords" content="The Worst Boyfriends Ever, writing journey, heartbreak, dating disasters, healing through writing, author story">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="How I Got Into Writing The Worst Boyfriends Ever">
+    <meta property="og:description" content="The raw, honest story behind writing The Worst Boyfriends Ever - from heartbreak to healing through humor.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aleksfilmore.com/blog/how-i-got-into-writing-the-worst-boyfriends-ever.html">
+    <meta property="og:image" content="https://aleksfilmore.com/twbe-cover.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How I Got Into Writing The Worst Boyfriends Ever">
+    <meta name="twitter:description" content="The raw, honest story behind writing The Worst Boyfriends Ever - from heartbreak to healing through humor.">
+    <meta name="twitter:image" content="https://aleksfilmore.com/twbe-cover.png">
     
     <!-- Google tag (gtag.js) -->
     <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
@@ -70,36 +84,62 @@
             color: var(--color-red-flag);
         }
 
-        .red-flag-item {
-            background: linear-gradient(135deg, rgba(255, 59, 59, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
-            border: 1px solid rgba(255, 59, 59, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
+        /* Force light text colors for prose content */
+        .prose h1,
+        .prose h2,
+        .prose h3,
+        .prose h4,
+        .prose h5,
+        .prose h6 {
+            color: var(--color-bone) !important;
         }
 
-        .red-flag-item:hover {
-            border-color: rgba(255, 59, 59, 0.4);
-            transform: translateY(-2px);
+        .prose p,
+        .prose li,
+        .prose strong,
+        .prose em,
+        .prose blockquote {
+            color: var(--color-bone) !important;
         }
 
-        .red-flag-number {
-            background: var(--color-red-flag);
-            color: var(--color-bone);
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.875rem;
+        .prose blockquote {
+            border-left-color: var(--color-red-flag) !important;
+            background: rgba(255, 59, 59, 0.1) !important;
+            padding: 1rem !important;
+            border-radius: 0.5rem !important;
         }
 
-        .icon {
-            width: 1.25rem;
-            height: 1.25rem;
+        .prose a {
+            color: var(--color-red-flag) !important;
+        }
+
+        .prose a:hover {
+            color: var(--color-glitch-lime) !important;
+        }
+
+        .prose code {
+            color: var(--color-glitch-lime) !important;
+            background: rgba(199, 255, 65, 0.1) !important;
+            padding: 0.25rem 0.5rem !important;
+            border-radius: 0.25rem !important;
+        }
+
+        .prose ul li::marker,
+        .prose ol li::marker {
+            color: var(--color-red-flag) !important;
+        }
+
+        /* Additional text color overrides */
+        .prose * {
+            color: var(--color-bone) !important;
+        }
+
+        /* Article container background */
+        .article-content {
+            background: rgba(14, 15, 16, 0.8) !important;
+            padding: 2rem !important;
+            border-radius: 1rem !important;
+            border: 1px solid rgba(247, 243, 237, 0.1) !important;
         }
 
         /* Share buttons */
@@ -164,31 +204,6 @@
             height: 16px;
             display: inline-block;
         }
-
-        /* Override Tailwind prose styles for dark theme */
-        .prose {
-            color: var(--color-bone) !important;
-        }
-
-        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-            color: var(--color-bone) !important;
-        }
-
-        .prose p, .prose li, .prose blockquote, .prose code {
-            color: rgba(247, 243, 237, 0.9) !important;
-        }
-
-        .prose strong {
-            color: var(--color-bone) !important;
-        }
-
-        .prose a {
-            color: var(--color-red-flag) !important;
-        }
-
-        .prose a:hover {
-            color: rgba(255, 59, 59, 0.8) !important;
-        }
     </style>
 </head>
 
@@ -224,192 +239,100 @@
                     <!-- Article Meta -->
                     <div class="mb-8">
                         <div class="flex items-center mb-4">
-                            <span class="bg-red-flag/20 text-red-flag px-3 py-1 rounded-full text-sm font-medium">Dating Guide</span>
+                            <span class="bg-glitch-lime/20 text-glitch-lime px-3 py-1 rounded-full text-sm font-medium">Writing</span>
                             <span class="text-bone/50 text-sm ml-4">5 min read</span>
-                            <span class="text-bone/50 text-sm ml-4">Published Aug 23, 2025</span>
+                            <span class="text-bone/50 text-sm ml-4">Published Aug 27, 2025</span>
                         </div>
                         <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
-                            The Red-Flag <span class="text-primary">Field Guide</span>
+                            How I Got Into Writing <span class="text-primary">The Worst Boyfriends Ever</span>
                         </h1>
                         <p class="text-xl text-bone/80 mb-8 leading-relaxed">
-                            25 warning signs I wish I'd spotted sooner, complete with real examples and recovery tips from someone who learned the hard way.
+                            The raw, honest story behind turning dating disasters into chapters and heartbreak into healing through humor.
                         </p>
                     </div>
-
                     <!-- Article Content -->
-                    <div class="prose prose-lg max-w-none">
+                    <div class="prose prose-lg max-w-none article-content">
                         <p class="text-bone/90 mb-8 text-lg">
-                            After surviving enough dating disasters to fill a small library (and one actual book), I've become something of a red-flag connoisseur. Think of this as your field guide to the dating apocalypse – because recognizing the warning signs is the first step to not becoming another casualty.
+                            When I wrote <em>The Worst Boyfriends Ever</em>, I was heartbroken. And not in a cute, poetic way. But in a "what the hell just happened to my life" kind of way. So, I did what any emotionally deranged writer with a laptop and a pile of red flags would do: turned my dating disasters into chapters.
                         </p>
-
-                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Early Warning System</h2>
-
-                        <!-- Red Flag 1 -->
-                        <div class="red-flag-item">
-                            <div class="flex items-start gap-4">
-                                <div class="red-flag-number">1</div>
-                                <div>
-                                    <h3 class="font-display font-bold text-xl mb-2">Love-Bombing</h3>
-                                    <p class="text-bone/80 mb-3"><strong>The Red Flag:</strong> Overwhelming you with excessive affection, gifts, and attention in the early stages.</p>
-                                    <p class="text-bone/70 mb-3"><strong>What It Looks Like:</strong> "You're my soulmate" after three dates, sending flowers to your workplace after one week, planning your future together before you've had the DTR talk.</p>
-                                    <p class="text-glitch-lime text-sm"><strong>Recovery Tip:</strong> Real love builds gradually. If someone is trying to fast-track intimacy, ask yourself what they're rushing away from.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Red Flag 2 -->
-                        <div class="red-flag-item">
-                            <div class="flex items-start gap-4">
-                                <div class="red-flag-number">2</div>
-                                <div>
-                                    <h3 class="font-display font-bold text-xl mb-2">Weaponized Therapy Speak</h3>
-                                    <p class="text-bone/80 mb-3"><strong>The Red Flag:</strong> Using therapeutic language to manipulate or avoid accountability.</p>
-                                    <p class="text-bone/70 mb-3"><strong>What It Looks Like:</strong> "You're being triggered by your attachment style" when you ask for basic respect, or "I'm just setting boundaries" when they're actually being selfish.</p>
-                                    <p class="text-glitch-lime text-sm"><strong>Recovery Tip:</strong> Therapy speak should heal, not harm. If someone is using psychological terms as weapons, they're not ready for a healthy relationship.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Red Flag 3 -->
-                        <div class="red-flag-item">
-                            <div class="flex items-start gap-4">
-                                <div class="red-flag-number">3</div>
-                                <div>
-                                    <h3 class="font-display font-bold text-xl mb-2">The Victim Complex</h3>
-                                    <p class="text-bone/80 mb-3"><strong>The Red Flag:</strong> Everyone in their life has wronged them, and they're always the innocent party.</p>
-                                    <p class="text-bone/70 mb-3"><strong>What It Looks Like:</strong> Every ex was "crazy," every boss was "toxic," every friend "betrayed" them. They take zero responsibility for patterns.</p>
-                                    <p class="text-glitch-lime text-sm"><strong>Recovery Tip:</strong> If someone can't see their role in repeated conflicts, they'll eventually make you the villain too.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Red Flag 4 -->
-                        <div class="red-flag-item">
-                            <div class="flex items-start gap-4">
-                                <div class="red-flag-number">4</div>
-                                <div>
-                                    <h3 class="font-display font-bold text-xl mb-2">Future Faking</h3>
-                                    <p class="text-bone/80 mb-3"><strong>The Red Flag:</strong> Making elaborate plans for a future they have no intention of creating.</p>
-                                    <p class="text-bone/70 mb-3"><strong>What It Looks Like:</strong> Planning vacations they never book, talking about moving in together while keeping their options open, promising to meet your friends but always having excuses.</p>
-                                    <p class="text-glitch-lime text-sm"><strong>Recovery Tip:</strong> Watch actions, not words. Consistent follow-through is what separates genuine intentions from manipulation.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Red Flag 5 -->
-                        <div class="red-flag-item">
-                            <div class="flex items-start gap-4">
-                                <div class="red-flag-number">5</div>
-                                <div>
-                                    <h3 class="font-display font-bold text-xl mb-2">The Phone Phantom</h3>
-                                    <p class="text-bone/80 mb-3"><strong>The Red Flag:</strong> Their phone is more guarded than state secrets.</p>
-                                    <p class="text-bone/70 mb-3"><strong>What It Looks Like:</strong> Always face-down, never letting you see the screen, stepping away for "important calls," mysterious late-night texting sessions.</p>
-                                    <p class="text-glitch-lime text-sm"><strong>Recovery Tip:</strong> Transparency doesn't mean invasion of privacy, but consistent secretiveness is a red flag worth investigating.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-bone/5 border-l-4 border-primary p-6 my-8">
-                            <h3 class="font-display font-bold text-lg mb-3">Remember:</h3>
-                            <p class="text-bone/80">
-                                Red flags aren't always dealbreakers, but they are conversation starters. The key is recognizing patterns and trusting your gut when something feels off. You're not being "too picky" – you're being protective of your peace.
-                            </p>
-                        </div>
-
-                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Nuclear Options (Run Immediately)</h2>
-
-                        <p class="text-bone/80 mb-6">
-                            Some red flags are more like air raid sirens. Here are the behaviors that should send you running, not walking, to the nearest exit:
-                        </p>
-
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3">
-                                <span class="text-red-flag mt-1">🚩</span>
-                                <span class="text-bone/80"><strong>Isolating you</strong> from friends and family</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-red-flag mt-1">🚩</span>
-                                <span class="text-bone/80"><strong>Financial control</strong> or monitoring your spending</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-red-flag mt-1">🚩</span>
-                                <span class="text-bone/80"><strong>Threatening self-harm</strong> when you try to leave</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-red-flag mt-1">🚩</span>
-                                <span class="text-bone/80"><strong>Any form of physical aggression</strong>, even "playful"</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-red-flag mt-1">🚩</span>
-                                <span class="text-bone/80"><strong>Ignoring your "no"</strong> in any context</span>
-                            </li>
-                        </ul>
-
-                        <h2 class="font-display font-bold text-2xl text-primary mb-6">Your Red Flag Recovery Kit</h2>
-
-                        <p class="text-bone/80 mb-6">
-                            Spotted a red flag? Here's your action plan:
-                        </p>
-
-                        <ol class="space-y-4 mb-8 text-bone/80">
-                            <li><strong>1. Trust your gut.</strong> If something feels off, it probably is.</li>
-                            <li><strong>2. Talk to trusted friends.</strong> Outside perspective is invaluable.</li>
-                            <li><strong>3. Set boundaries.</strong> Test how they respond to reasonable limits.</li>
-                            <li><strong>4. Document patterns.</strong> One incident might be a mistake; repeated behavior is a choice.</li>
-                            <li><strong>5. Have an exit strategy.</strong> Know how to leave safely if needed.</li>
-                        </ol>
-
-                        <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 my-8">
-                            <h3 class="font-display font-bold text-lg mb-3 text-primary">The Bottom Line</h3>
-                            <p class="text-bone/80">
-                                You deserve someone who enhances your life, not someone you need to manage, fix, or constantly make excuses for. Red flags aren't challenges to overcome – they're information to act on.
-                            </p>
-                        </div>
 
                         <p class="text-bone/80 mb-8">
-                            Remember: recognizing red flags isn't about being cynical; it's about being selective. Your energy is precious, your time is limited, and your peace of mind is non-negotiable.
+                            I didn't write this to get even. I wrote it to get free.
                         </p>
 
-                        <p class="text-bone/80">
-                            Stay safe out there, and trust yourself. You know more than you think you do.
+                        <p class="text-bone/80 mb-8">
+                            And maybe to make you laugh while you're ugly crying on the bathroom floor. If it helps, hurts, or haunts you a little: good. That means it's real.
                         </p>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Spark That Started It All</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            I was all alone in a new city, heartbroken and wondering what to do with my life when, speaking to a dear friend of mine, I joked about writing a book about my terrible dating life. My friend said, "Well, I would read that for sure!"
+                        </p>
+
+                        <p class="text-bone/80 mb-6">
+                            And this is how I got into writing it and could not stop until it was done. It was my way of healing through making fun of the situation and laughing at my cringe. They say when life gives you lemons, you make lemonade. Well, I made 25 self-contained jars with different flavors of the lemonade, so there is one for each type of terrible boyfriend I encountered.
+                        </p>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">What I Didn't Expect</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            What I did not expect when writing this book: that so many others would relate to my story, and suddenly it would all make sense. I had to write this book, mostly for myself, but when I see readers relating and engaging with the book so much, well that is pure karma.
+                        </p>
+
+                        <p class="text-bone/80 mb-6">
+                            Imagine writing a book about bad boyfriends and the book getting so popular that even some of your exes feel the need to intervene and leave a 2-star anonymous review just out of spite.
+                        </p>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Plot Twist</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            What they don't know, these bad ex-boyfriends, is that this is just the beginning. Life has a funny way of taking us where we need to be. As for them, they are now just ghostly memories of a past I put behind me.
+                        </p>
+
+                        <p class="text-bone/80 mb-8">
+                            I choose myself and my power of writing unhinged stories, and we will see where this will take me—except far, far away from all those insignificant ghosts of the past.
+                        </p>
+
+                        <div class="bg-primary/10 border-l-4 border-primary p-6 rounded-lg mb-8">
+                            <p class="text-lg leading-relaxed italic text-bone/90">
+                                Sometimes the best revenge is not revenge at all—it's becoming so authentically yourself that your past becomes irrelevant. Writing this book wasn't about them. It was about me finding my voice, my humor, and my power in the midst of chaos.
+                            </p>
+                        </div>
+
+                        <!-- Share Section -->
+                        <div class="border-t border-bone/20 pt-8 mt-12">
+                            <h3 class="font-display font-bold text-xl mb-4">Share This Story</h3>
+                            <div class="flex gap-4 mb-8">
+                                <button class="share-btn twitter" data-platform="twitter">
+                                    <span class="share-icon">🐦</span>
+                                    <span class="share-text">Twitter</span>
+                                </button>
+                                <button class="share-btn facebook" data-platform="facebook">
+                                    <span class="share-icon">📘</span>
+                                    <span class="share-text">Facebook</span>
+                                </button>
+                                <button class="share-btn copy" data-platform="copy">
+                                    <span class="share-icon">🔗</span>
+                                    <span class="share-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Article Footer -->
-                    <div class="border-t border-bone/10 pt-8 mt-12">
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                            <div>
-                                <p class="text-bone/60 text-sm mb-2">Enjoyed this guide?</p>
-                                <a href="../shop.html" class="bg-red-flag text-bone font-semibold py-3 px-6 rounded-lg hover:bg-red-flag/90 transition-all duration-300 inline-flex items-center">
-                                    Get the Full Book
-                                    <svg class="icon ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="text-center sm:text-right">
-                                <p class="text-bone/60 text-sm mb-3">Share this guide:</p>
-                                <div class="flex gap-2 justify-center sm:justify-end flex-wrap">
-                                    <a href="#" class="share-btn twitter" title="Share on Twitter">
-                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                        </svg>
-                                        Tweet
-                                    </a>
-                                    <a href="#" class="share-btn facebook" title="Share on Facebook">
-                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                        </svg>
-                                        Share
-                                    </a>
-                                    <a href="#" class="share-btn copy" title="Copy link">
-                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                                        </svg>
-                                        <span class="share-text">Copy</span>
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- Related Content -->
+                    <div class="mt-16 p-8 bg-primary/5 rounded-xl border border-primary/20">
+                        <h3 class="font-display font-bold text-2xl mb-6 text-center">Ready to Laugh at Dating Disasters?</h3>
+                        <p class="text-bone/80 text-center mb-6 text-lg">
+                            If my story resonates with you, you'll love the full collection of dating disasters in <em>The Worst Boyfriends Ever</em>.
+                        </p>
+                        <div class="text-center">
+                            <a href="../books.html" class="bg-red-flag text-bone font-semibold py-3 px-6 rounded-lg hover:bg-red-flag/90 transition-all duration-300 inline-flex items-center gap-2">
+                                Get Your Copy
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -546,3 +469,4 @@
     <script src="../js/cookie-notice.js"></script>
 </body>
 </html>
+

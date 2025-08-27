@@ -21,6 +21,12 @@
     <meta property="twitter:image" content="https://aleksfilmore.com/TWBE%201.png">
 
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <script src="/js/premium-icons.js" defer></script>
     
     <style>
@@ -30,13 +36,20 @@
             --color-red-flag: #FF3B3B;
             --color-glitch-lime: #C8FF00;
             --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
         body {
             background: var(--color-charcoal);
             color: var(--color-bone);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
         }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
 
         .bingo-card {
             display: grid;
@@ -690,7 +703,7 @@
                         <span class="text-bone/30">•</span>
                         <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy</a>
                         <span class="text-bone/30">•</span>
-                        <button onclick="openCookieSettings()" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</button>
+                        <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</a>
                     </div>
                 </div>
             </div>
