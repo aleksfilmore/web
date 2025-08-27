@@ -77,7 +77,11 @@
                                 <button onclick="openCookieSettings()" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</button>
                             </div>
                         </div>
-    <style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = { theme: { extend: { colors: { 'red-flag':'#FF3B3B', bone:'#F5F5DC', charcoal:'#2B2B2B', 'glitch-lime':'#B8E000', 'dusty-blush':'#D4A574' }, fontFamily:{ display:['Space Grotesk','sans-serif'], body:['Inter','sans-serif'] } } } };
+        </script>
+        <style>
         :root {
             /* Color Palette */
             --color-red-flag: #FF3B3B;
