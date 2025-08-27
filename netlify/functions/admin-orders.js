@@ -30,12 +30,31 @@ exports.handler = async (event, context) => {
     try {
         console.log('Fetching orders from Stripe...');
         
-        const limit = parseInt(event.queryStringParameters?.limit) || 50;
-        
+        const qs = event.queryStringParameters || {};
+        const limit = parseInt(qs.limit) || 50;
+
+        // Support date ranges: startDate & endDate (ISO) or preset range (today,yesterday,last7,last30,last90)
+        let createdFilter = {};
+        if (qs.startDate && qs.endDate) {
+            const startTs = Math.floor(new Date(qs.startDate).getTime() / 1000);
+            const endTs = Math.floor(new Date(qs.endDate).getTime() / 1000);
+            createdFilter = { created: { gte: startTs, lte: endTs } };
+        } else if (qs.range) {
+            const now = new Date();
+            let days = 30;
+            if (qs.range === 'today') days = 1;
+            if (qs.range === 'yesterday') days = 2;
+            if (qs.range === 'last7') days = 7;
+            if (qs.range === 'last30') days = 30;
+            if (qs.range === 'last90') days = 90;
+            createdFilter = { created: { gte: Math.floor(Date.now() / 1000) - (days * 86400) } };
+        }
+
         // Fetch recent checkout sessions
         const sessions = await stripe.checkout.sessions.list({
             limit: limit,
-            expand: ['data.line_items']
+            expand: ['data.line_items'],
+            ...(Object.keys(createdFilter).length ? { created: createdFilter.created } : {})
         });
         
         const orders = [];

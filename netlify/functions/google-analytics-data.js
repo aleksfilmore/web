@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const { requireAuth } = require('./utils/auth');
 const { GoogleAuth } = require('google-auth-library');
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
 const path = require('path');
@@ -47,28 +47,9 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Verify JWT token
-        const authHeader = event.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Missing or invalid authorization header' })
-            };
-        }
-
-        const token = authHeader.substring(7);
-        
-        try {
-            jwt.verify(token, JWT_SECRET);
-        } catch (jwtError) {
-            console.error('JWT verification failed:', jwtError);
-            return {
-                statusCode: 401,
-                headers,
-                body: JSON.stringify({ error: 'Invalid token' })
-            };
-        }
+    // Standardized auth helper
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
         // Initialize Google Analytics Data client
         let analyticsDataClient;

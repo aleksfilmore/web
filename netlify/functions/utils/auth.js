@@ -44,7 +44,8 @@ function requireAuth(event) {
             statusCode: 401,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
+                'Access-Control-Allow-Credentials': 'true',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ error: 'Authentication required' })
@@ -57,10 +58,47 @@ function requireAuth(event) {
             statusCode: 401,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
+                'Access-Control-Allow-Credentials': 'true',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ error: 'Invalid token', details: authResult.error })
+        };
+    }
+
+    // Attach parsed payload to event for downstream handlers
+    try { event.__auth = authResult.payload; } catch (e) { /* ignore */ }
+
+    // For state-changing requests, validate CSRF token
+    try {
+        const method = (event.httpMethod || event.method || 'GET').toUpperCase();
+        if (method !== 'GET' && method !== 'OPTIONS') {
+            const csrfHeader = event.headers['x-csrf-token'] || event.headers['X-CSRF-Token'];
+            const expected = authResult.payload?.csrf;
+            if (!csrfHeader || !expected || csrfHeader !== expected) {
+                return {
+                    statusCode: 403,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
+                        'Access-Control-Allow-Credentials': 'true',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ error: 'CSRF validation failed' })
+                };
+            }
+        }
+    } catch (e) {
+        // If any error, deny
+        return {
+            statusCode: 403,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
+                'Access-Control-Allow-Credentials': 'true',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ error: 'CSRF validation error' })
         };
     }
 

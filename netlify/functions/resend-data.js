@@ -1,8 +1,6 @@
-const jwt = require('jsonwebtoken');
 const { Resend } = require('resend');
-
-const JWT_SECRET = process.env.JWT_SECRET;
-const resend = new Resend(process.env.RESEND_API_KEY);
+const { requireAuth } = require('./utils/auth');
+let resend; // lazy init inside handler
 
 exports.handler = async (event, context) => {
     console.log('📧 Resend data request received');
@@ -19,29 +17,13 @@ exports.handler = async (event, context) => {
         return { statusCode: 200, headers, body: '' };
     }
 
-    // JWT Authentication
-    const authHeader = event.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return {
-            statusCode: 401,
-            headers,
-            body: JSON.stringify({ error: 'Missing or invalid authorization header' })
-        };
-    }
-
-    const token = authHeader.substring(7);
-    try {
-        jwt.verify(token, JWT_SECRET);
-    } catch (error) {
-        console.log('JWT verification failed:', error.message);
-        return {
-            statusCode: 401,
-            headers,
-            body: JSON.stringify({ error: 'Invalid token' })
-        };
-    }
+    // Standardized auth helper
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
     try {
+        // Lazy initialize Resend client (avoids crash when RESEND_API_KEY missing at require-time)
+        if (!resend) resend = new Resend(process.env.RESEND_API_KEY || '');
         if (event.httpMethod === 'GET') {
             // Get email statistics and recent emails
             console.log('Fetching Resend email data...');

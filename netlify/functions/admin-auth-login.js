@@ -25,10 +25,10 @@ function sign(data) {
     .replace(/\//g, '_');
 }
 
-function generateToken(ttlSec = 1800) { // 30 minutes
+function generateToken(ttlSec = 1800, csrf = '', adminEmail = '') { // 30 minutes
   const header = { alg: 'HS256', typ: 'JWT' };
   const now = Math.floor(Date.now() / 1000);
-  const payload = { iat: now, exp: now + ttlSec, scope: 'admin' };
+  const payload = { iat: now, exp: now + ttlSec, scope: 'admin', csrf, user: adminEmail };
   const h = base64url(header);
   const p = base64url(payload);
   const sig = sign(`${h}.${p}`);
@@ -120,19 +120,24 @@ exports.handler = async (event) => {
 
     // Generate tokens
     const ttlSec = 30 * 60; // 30 minutes
-    const token = generateToken(ttlSec);
-    const csrfToken = generateCSRFToken();
-    
-    // Set secure cookie (in production, this would be HttpOnly)
-    const cookieOptions = [
+  const csrfToken = generateCSRFToken();
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin';
+  const token = generateToken(ttlSec, csrfToken, adminEmail);
+
+    // Build cookie options. In production, set Secure and HttpOnly.
+    const cookieParts = [
       `admin_session=${token}`,
       'Path=/',
       'SameSite=Strict',
-      // 'Secure', // Enable in production with HTTPS
-      // 'HttpOnly', // Enable for production
       `Max-Age=${ttlSec}`
-    ].join('; ');
-    
+    ];
+
+    if (process.env.NODE_ENV === 'production' || process.env.NETLIFY_ENV === 'production') {
+      cookieParts.push('Secure', 'HttpOnly');
+    }
+
+    const cookieOptions = cookieParts.join('; ');
+
     const responseHeaders = {
       ...headers,
       'Set-Cookie': cookieOptions

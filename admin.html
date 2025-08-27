@@ -597,6 +597,7 @@
             constructor() {
                 this.token = localStorage.getItem('admin_token');
                 this.sessionExpiry = localStorage.getItem('admin_session_expiry');
+                this.csrfToken = localStorage.getItem('admin_csrf_token');
             }
             
             async login(password) {
@@ -618,6 +619,9 @@
                         this.sessionExpiry = Date.now() + (result.expiresIn * 1000);
                         localStorage.setItem('admin_token', this.token);
                         localStorage.setItem('admin_session_expiry', this.sessionExpiry);
+                            // Store CSRF token returned by login so we can include it on state-changing requests
+                            this.csrfToken = result.csrfToken || null;
+                            if (this.csrfToken) localStorage.setItem('admin_csrf_token', this.csrfToken);
                         console.log('✅ Login successful');
                         return true;
                     } else {
@@ -633,8 +637,10 @@
             logout() {
                 this.token = null;
                 this.sessionExpiry = null;
+                this.csrfToken = null;
                 localStorage.removeItem('admin_token');
                 localStorage.removeItem('admin_session_expiry');
+                localStorage.removeItem('admin_csrf_token');
                 location.reload();
             }
             
@@ -651,13 +657,20 @@
             if (!token) {
                 throw new Error('No authentication token available');
             }
-            
+
+            const method = (options.method || 'GET').toUpperCase();
             const authHeaders = {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 ...options.headers
             };
-            
+
+            // Include CSRF token on state-changing requests (non-GET/OPTIONS)
+            if (method !== 'GET' && method !== 'OPTIONS') {
+                const csrf = authManager.csrfToken || localStorage.getItem('admin_csrf_token');
+                if (csrf) authHeaders['X-CSRF-Token'] = csrf;
+            }
+
             return fetch(url, {
                 ...options,
                 headers: authHeaders
@@ -854,21 +867,18 @@
                     showToast('Audiobook email resent successfully!', 'success');
                 } else {
                     // Real API call for production
-                    const response = await fetch('/.netlify/functions/resend-audiobook-email', {
+                    const response = await authenticatedFetch('/.netlify/functions/resend-audiobook-email', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${authManager.token}`
-                        },
                         body: JSON.stringify({ orderId: currentResendOrderId })
                     });
-                    
-                    const result = await response.json();
-                    
+
+                    let result = {};
+                    try { result = await response.json(); } catch (e) { /* ignore parse errors */ }
+
                     if (response.ok) {
                         showToast('Audiobook email resent successfully!', 'success');
                     } else {
-                        showToast(`Failed to resend email: ${result.error}`, 'error');
+                        showToast(`Failed to resend email: ${result.error || response.statusText}`, 'error');
                     }
                 }
             } catch (error) {

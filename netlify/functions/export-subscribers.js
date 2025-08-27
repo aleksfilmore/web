@@ -1,7 +1,6 @@
-const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
+const { requireAuth } = require('./utils/auth');
 
-const JWT_SECRET = process.env.JWT_SECRET;
 const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
 const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
 
@@ -30,28 +29,9 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Verify JWT token
-        const authHeader = event.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return {
-                statusCode: 401,
-                headers: { ...headers, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ error: 'Missing or invalid authorization header' })
-            };
-        }
-
-        const token = authHeader.substring(7);
-        
-        try {
-            jwt.verify(token, JWT_SECRET);
-        } catch (jwtError) {
-            console.error('JWT verification failed:', jwtError);
-            return {
-                statusCode: 401,
-                headers: { ...headers, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ error: 'Invalid token' })
-            };
-        }
+    // Standardized auth helper
+    const authError = requireAuth(event);
+    if (authError) return authError;
 
         let csvData = 'Email,Name,Status,Date Subscribed,Groups\n';
 
