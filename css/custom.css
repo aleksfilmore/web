@@ -22,6 +22,14 @@
     color: var(--color-bone);
 }
 
+.bg-primary {
+    background-color: var(--color-red-flag);
+}
+
+.text-primary {
+    color: var(--color-red-flag);
+}
+
 .text-bone\/60 {
     color: rgba(245, 245, 220, 0.6);
 }
@@ -98,6 +106,34 @@
 .hero-title {
     font-family: var(--font-display);
     font-weight: 700;
+}
+
+.hero-content {
+    color: var(--color-bone);
+}
+
+.hero-accent {
+    color: var(--color-red-flag);
+}
+
+.hero-subtitle {
+    color: var(--color-bone);
+}
+
+.hero-btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.hero-btn-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .hero-btn-arrow {
+    transform: translateX(4px);
 }
 
 /* Custom gradients for specific elements */
