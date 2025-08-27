@@ -17,25 +17,56 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="css/tailwind.min.css">
     
-    <!-- Custom CSS with variables -->
-    <link rel="stylesheet" href="css/custom.css">
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="css/tailwind.min.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-        <div class="border-t border-bone/10 pt-8 sm:pt-12">
-            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-                <p class="text-bone/60 text-xs sm:text-sm text-center sm:text-left">© 2024 Aleks Filmore. All rights reserved. Bad decisions documented since 2023.</p>
-                <div class="flex items-center space-x-4 sm:space-x-6">
-                    <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Privacy</a>
-                    <a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Terms</a>
-                    <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors text-xs sm:text-sm">Cookies</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-bone { color: var(--color-bone); }
+        .text-bone\/60 { color: rgba(247, 243, 237, 0.6); }
+        .text-bone\/70 { color: rgba(247, 243, 237, 0.7); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .bg-red-flag { background-color: var(--color-red-flag); }
+        .bg-red-flag\/20 { background-color: rgba(255, 59, 59, 0.2); }
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-charcoal\/90 { background-color: rgba(14, 15, 16, 0.9); }
+        .border-bone\/10 { border-color: rgba(247, 243, 237, 0.1); }
+        .border-bone\/20 { border-color: rgba(247, 243, 237, 0.2); }
+        .bg-bone\/5 { background-color: rgba(247, 243, 237, 0.05); }
+        .bg-glitch-lime\/5 { background-color: rgba(199, 255, 65, 0.05); }
+        .bg-dusty-blush\/5 { background-color: rgba(241, 183, 196, 0.05); }
+        .via-red-flag\/30 { --tw-gradient-to: rgba(255, 59, 59, 0.3); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
             text-decoration: none;
             display: inline-block;
             transition: all 0.2s ease;
@@ -68,6 +99,40 @@
             color: #FFD700;
             font-size: 1.2rem;
             margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
         }
 
         .nav-link {

@@ -13,21 +13,41 @@
     --font-body: 'Inter', sans-serif;
 }
 
-/* Custom Utility Classes */
-.font-display {
-    font-family: var(--font-display);
+/* Force custom utility classes with higher specificity */
+html .text-bone {
+    color: var(--color-bone) !important;
 }
 
-.text-bone {
-    color: var(--color-bone);
+html .font-display {
+    font-family: var(--font-display) !important;
 }
 
-.bg-primary {
-    background-color: var(--color-red-flag);
+html .text-red-flag {
+    color: var(--color-red-flag) !important;
 }
 
-.text-primary {
-    color: var(--color-red-flag);
+html .bg-red-flag {
+    background-color: var(--color-red-flag) !important;
+}
+
+html .text-charcoal {
+    color: var(--color-charcoal) !important;
+}
+
+html .bg-charcoal {
+    background-color: var(--color-charcoal) !important;
+}
+
+html .text-glitch-lime {
+    color: var(--color-glitch-lime) !important;
+}
+
+html .bg-primary {
+    background-color: var(--color-red-flag) !important;
+}
+
+html .text-primary {
+    color: var(--color-red-flag) !important;
 }
 
 .text-bone\/60 {
