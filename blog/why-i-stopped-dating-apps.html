@@ -34,8 +34,11 @@
     <!-- Favicon -->
     <link rel="icon" href="/public/ico.png" type="image/png">
 
-    <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="../css/tailwind.min.css">
+        <!-- Tailwind CSS (CDN) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = { theme: { extend: { colors: { 'red-flag':'#FF3B3B', bone:'#F7F3ED', charcoal:'#0E0F10', 'glitch-lime':'#C7FF41', 'dusty-blush':'#F1B7C4' }, fontFamily:{ display:['Space Grotesk','sans-serif'], body:['Inter','sans-serif'] } } } };
+        </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
