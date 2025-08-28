@@ -446,11 +446,28 @@
                                 return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
                             }
 
-                            async function renderBlogListing() {
+                            async function fetchBlogList() {
                                 try {
                                     const res = await fetch('/.netlify/functions/blog-list');
-                                    if (!res.ok) throw new Error('Failed to load posts');
-                                    const data = await res.json();
+                                    if (res.ok) return await res.json();
+                                    console.warn('/.netlify/functions/blog-list returned', res.status);
+                                } catch (err) {
+                                    console.warn('/.netlify/functions/blog-list fetch failed, falling back to /data/blog-index.json', err);
+                                }
+
+                                try {
+                                    const staticRes = await fetch('/data/blog-index.json');
+                                    if (staticRes.ok) return await staticRes.json();
+                                } catch (err) {
+                                    console.warn('Static /data/blog-index.json fetch failed', err);
+                                }
+
+                                throw new Error('Failed to load posts');
+                            }
+
+                            async function renderBlogListing() {
+                                try {
+                                    const data = await fetchBlogList();
                                     let posts = (data.posts || []).slice();
                                     // Sort by publishedAt/date desc when available
                                     posts.sort((a,b) => {
