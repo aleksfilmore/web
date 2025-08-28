@@ -18,7 +18,7 @@ const getGACredentials = () => {
         const keyPath = path.join(__dirname, '../../google-analytics-key.json');
         return require(keyPath);
     } catch (error) {
-        console.warn('No Google Analytics credentials found, using mock data');
+        console.warn('No Google Analytics credentials found in environment or key file');
         return null;
     }
 };
@@ -69,29 +69,11 @@ exports.handler = async (event, context) => {
             analyticsDataClient = new BetaAnalyticsDataClient({ auth });
         } catch (authError) {
             console.error('Google Analytics auth error:', authError);
-            // Return mock data if GA not configured
+            // Fail explicitly when Google Analytics credentials are missing or invalid
             return {
-                statusCode: 200,
+                statusCode: 503,
                 headers,
-                body: JSON.stringify({
-                    pageViews: { value: 12847, change: '+15.3%' },
-                    uniqueVisitors: { value: 8934, change: '+8.7%' },
-                    bounceRate: { value: '42.5%', change: '-2.1%' },
-                    sessionDuration: { value: '2m 34s', change: '+12.5%' },
-                    topPages: [
-                        { page: '/', views: 2847 },
-                        { page: '/audiobook.html', views: 1234 },
-                        { page: '/shop.html', views: 892 },
-                        { page: '/about.html', views: 567 },
-                        { page: '/contact.html', views: 234 }
-                    ],
-                    trafficSources: [
-                        { source: 'Organic Search', percentage: 45 },
-                        { source: 'Direct', percentage: 30 },
-                        { source: 'Social Media', percentage: 25 }
-                    ],
-                    mock: true
-                })
+                body: JSON.stringify({ error: 'Google Analytics not configured on server. Set GA_CREDENTIALS or provide service account key.' })
             };
         }
 
@@ -159,31 +141,10 @@ exports.handler = async (event, context) => {
 
     } catch (error) {
         console.error('Error fetching Google Analytics data:', error);
-        
-        // Return mock data on error
         return {
-            statusCode: 200,
+            statusCode: 500,
             headers,
-            body: JSON.stringify({
-                pageViews: { value: 12847, change: '+15.3%' },
-                uniqueVisitors: { value: 8934, change: '+8.7%' },
-                bounceRate: { value: '42.5%', change: '-2.1%' },
-                sessionDuration: { value: '2m 34s', change: '+12.5%' },
-                topPages: [
-                    { page: '/', views: 2847 },
-                    { page: '/audiobook.html', views: 1234 },
-                    { page: '/shop.html', views: 892 },
-                    { page: '/about.html', views: 567 },
-                    { page: '/contact.html', views: 234 }
-                ],
-                trafficSources: [
-                    { source: 'Organic Search', percentage: 45 },
-                    { source: 'Direct', percentage: 30 },
-                    { source: 'Social Media', percentage: 25 }
-                ],
-                mock: true,
-                error: error.message
-            })
+            body: JSON.stringify({ error: 'Error fetching Google Analytics data', details: error.message })
         };
     }
 };

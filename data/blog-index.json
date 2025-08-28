@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": "how-i-got-into-writing-the-worst-boyfriends-ever",
+      "slug": "how-i-got-into-writing-the-worst-boyfriends-ever",
+      "title": "how i got into writing the worst boyfriends ever",
+      "summary": "The raw, honest story behind turning dating disasters into chapters and heartbreak into healing through humor.",
+      "publishedAt": "2025-08-26T22:00:00.000Z",
+      "tags": [],
+      "readTime": "3 min read"
+    },
+    {
+      "id": "anatomy-of-a-ghost",
+      "slug": "anatomy-of-a-ghost",
+      "title": "anatomy of a ghost",
+      "summary": "The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.",
+      "publishedAt": "2025-08-22T22:00:00.000Z",
+      "tags": [],
+      "readTime": "6 min read"
+    },
+    {
+      "id": "red-flag-field-guide",
+      "slug": "red-flag-field-guide",
+      "title": "red flag field guide",
+      "summary": "25 warning signs I wish I'd spotted sooner, complete with real examples and recovery tips from someone who learned the hard way.",
+      "publishedAt": "2025-08-22T22:00:00.000Z",
+      "tags": [],
+      "readTime": "3 min read"
+    },
+    {
+      "id": "why-i-stopped-dating-apps",
+      "slug": "why-i-stopped-dating-apps",
+      "title": "why i stopped dating apps",
+      "summary": "After documenting 25 dating disasters, I finally realized the apps weren't the problem—they were the symptom. Here's what happened when I went offline for three months and actually started meeting people in Brussels coffee shops.",
+      "publishedAt": "2025-08-20T00:00:00.000Z",
+      "tags": [],
+      "readTime": "7 min read"
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const { Resend } = require('resend');
 const fs = require('fs');
 const path = require('path');
 const { requireAuth } = require('./utils/auth');
@@ -7,7 +6,30 @@ const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
 
-const resend = new Resend(RESEND_API_KEY);
+// Lazy Resend init to avoid module-time crashes when API key missing in dev
+let ResendCtor = null;
+let resendClient = null;
+function getResend() {
+    if (resendClient) return resendClient;
+    try {
+        if (!ResendCtor) ResendCtor = require('resend').Resend;
+        if (RESEND_API_KEY) {
+            resendClient = new ResendCtor(RESEND_API_KEY);
+            console.log('Resend client initialized');
+        } else {
+            console.log('RESEND_API_KEY not configured; will run in simulation mode');
+            resendClient = null;
+        }
+    } catch (e) {
+        console.warn('Failed to initialize Resend client:', e?.message || e);
+        resendClient = null;
+    }
+    return resendClient;
+}
+
+// Simple in-memory rate limiter to avoid accidental repeated runs from UI
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+let lastRunAt = 0;
 
 exports.handler = async (event, context) => {
     console.log('📖 Sending bonus chapter to all subscribers');
@@ -35,6 +57,23 @@ exports.handler = async (event, context) => {
     try {
         const authError = requireAuth(event);
         if (authError) return authError;
+
+        // Support explicit simulation flag from request body (admin can request a dry-run)
+        let simulate = false;
+        try {
+            const body = event.body ? JSON.parse(event.body) : {};
+            simulate = !!body.simulate;
+        } catch (e) {
+            simulate = false;
+        }
+
+        // Basic rate limit: prevent repeated triggers in short window
+        const now = Date.now();
+        if (now - lastRunAt < RATE_LIMIT_WINDOW_MS) {
+            const retryAfter = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - lastRunAt)) / 1000);
+            return { statusCode: 429, headers: { ...headers, 'Retry-After': String(retryAfter) }, body: JSON.stringify({ error: 'Rate limit: try again later', retryAfter }) };
+        }
+        lastRunAt = now;
 
         // Bonus chapter email template
         const bonusChapterHtml = `
@@ -139,8 +178,9 @@ exports.handler = async (event, context) => {
         </html>
         `;
 
-        let sent = 0;
-        let failed = 0;
+    let sent = 0;
+    let failed = 0;
+    const batches = [];
         // Load prior recipients to avoid duplicates
         let priorRecipients = new Set();
         let recipientsPath = path.join(__dirname, '../../data/bonus-chapter-recipients.json');
@@ -154,19 +194,67 @@ exports.handler = async (event, context) => {
         }
         const newRecipients = [];
 
-    if (!MAILERLITE_API_KEY || !RESEND_API_KEY) {
-            // Simulate sending for demo
+        // If the admin explicitly asked for a simulation, return sample and counts without sending
+    // recipientsPath already declared above
+        if (simulate) {
+            // Try to obtain subscriber list from MailerLite if available, else from persisted recipients
+            let emails = [];
+            if (MAILERLITE_API_KEY) {
+                try {
+                    const subscribersResponse = await fetch(`${MAILERLITE_API_URL}/subscribers?limit=1000`, {
+                        headers: { 'X-MailerLite-ApiKey': MAILERLITE_API_KEY, 'Content-Type': 'application/json' }
+                    });
+                    if (subscribersResponse.ok) {
+                        const subs = await subscribersResponse.json();
+                        emails = Array.isArray(subs) ? subs.map(s => (s.email || '').toLowerCase()) : [];
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch subscribers for simulation preview:', e.message || e);
+                }
+            }
+            if (!emails.length) {
+                try {
+                    if (fs.existsSync(recipientsPath)) {
+                        const arr = JSON.parse(fs.readFileSync(recipientsPath, 'utf8'));
+                        emails = Array.isArray(arr) ? arr.map(r => (r && r.email) ? r.email.toLowerCase() : (typeof r === 'string' ? r : '')).filter(Boolean) : [];
+                    }
+                } catch (e) { /* ignore */ }
+            }
+
+            const sample = emails.slice(0, 20);
             return {
                 statusCode: 200,
                 headers,
                 body: JSON.stringify({
                     success: true,
                     message: 'Bonus chapter sending simulation completed',
-                    stats: {
-                        sent: 2847,
-                        failed: 0,
-                        timestamp: new Date().toISOString()
-                    },
+                    simulation: true,
+                    stats: { sent: 0, failed: 0, total: emails.length, timestamp: new Date().toISOString(), batches: [] },
+                    recipientsSample: sample,
+                    note: 'This was a dry-run; no emails were sent.'
+                })
+            };
+        }
+
+        // If keys are missing, return a simulation-style response but attempt to include persisted recipients if available
+        if (!MAILERLITE_API_KEY || !RESEND_API_KEY) {
+            console.log('MAILERLITE_API_KEY or RESEND_API_KEY missing; running simulation response');
+            let emails = [];
+            try {
+                if (fs.existsSync(recipientsPath)) {
+                    const arr = JSON.parse(fs.readFileSync(recipientsPath, 'utf8'));
+                    emails = Array.isArray(arr) ? arr.map(r => (r && r.email) ? r.email.toLowerCase() : (typeof r === 'string' ? r : '')).filter(Boolean) : [];
+                }
+            } catch (e) { /* ignore */ }
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({
+                    success: true,
+                    message: 'Bonus chapter sending simulation completed',
+                    simulation: true,
+                    stats: { sent: 0, failed: 0, total: emails.length, timestamp: new Date().toISOString(), batches: [] },
+                    recipientsSample: emails.slice(0, 20),
                     note: 'This is a simulation. Configure MailerLite and Resend APIs for actual sending.'
                 })
             };
@@ -191,30 +279,49 @@ exports.handler = async (event, context) => {
         const batchSize = 10;
         for (let i = 0; i < subscribers.length; i += batchSize) {
             const batch = subscribers.slice(i, i + batchSize);
-            
+            let batchSent = 0;
+            let batchFailed = 0;
+
             const batchPromises = batch.map(async (subscriber) => {
                 try {
                     const email = (subscriber.email || '').toLowerCase();
                     if (subscriber.type === 'active' && email && !priorRecipients.has(email)) {
-                        await resend.emails.send({
-                            from: 'alexandra@alexandrarodica.com',
-                            to: email,
-                            subject: '🎁 EXCLUSIVE: Bonus Chapter "The One That Got Away (Thank God)"',
-                            html: bonusChapterHtml
-                        });
+                        const rc = getResend();
+                        if (!rc) {
+                            console.warn('Resend client unavailable; skipping real send for', email);
+                            batchFailed++;
+                            failed++;
+                            return;
+                        }
+                        try {
+                            await rc.emails.send({
+                                from: 'alexandra@alexandrarodica.com',
+                                to: email,
+                                subject: '🎁 EXCLUSIVE: Bonus Chapter "The One That Got Away (Thank God)"',
+                                html: bonusChapterHtml
+                            });
+                        } catch (sendErr) {
+                            console.error('Resend send failed for', email, sendErr?.message || sendErr);
+                            batchFailed++;
+                            failed++;
+                            return;
+                        }
+                        batchSent++;
                         sent++;
                         newRecipients.push({ email, sentAt: new Date().toISOString() });
                     } else if (priorRecipients.has(email)) {
                         // Skip duplicate silently
                     }
                 } catch (error) {
-                    console.error(`Failed to send bonus chapter to ${subscriber.email}:`, error);
+                    console.error(`Failed to process subscriber ${subscriber.email}:`, error);
+                    batchFailed++;
                     failed++;
                 }
             });
 
             await Promise.all(batchPromises);
-            
+            batches.push({ start: i, end: i + batch.length - 1, sent: batchSent, failed: batchFailed });
+
             // Small delay between batches to avoid rate limiting
             if (i + batchSize < subscribers.length) {
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -233,11 +340,19 @@ exports.handler = async (event, context) => {
             fileData.lastUpdated = new Date().toISOString();
             fs.writeFileSync(statsPath, JSON.stringify(fileData, null, 2));
 
-            if (newRecipients.length) {
-                const existing = Array.from(priorRecipients).map(e => ({ email: e }));
-                const merged = existing.concat(newRecipients).slice(-5000); // cap growth
+            // Merge and persist recipients (cap to recent 5000)
+            let finalRecipients = [];
+            try {
+                const existing = fs.existsSync(recipientsPath) ? (JSON.parse(fs.readFileSync(recipientsPath, 'utf8')) || []) : [];
+                finalRecipients = existing.concat(newRecipients || []);
+                const merged = finalRecipients.slice(-5000);
                 fs.writeFileSync(recipientsPath, JSON.stringify(merged, null, 2));
+                finalRecipients = merged;
+            } catch (e) {
+                console.warn('Failed to persist recipients list:', e.message || e);
+                finalRecipients = newRecipients || [];
             }
+            const sample = (Array.isArray(finalRecipients) ? finalRecipients.slice(0,20).map(r => (r && r.email) ? r.email : (typeof r === 'string' ? r : '')).filter(Boolean) : []);
         } catch (persistErr) {
             console.warn('Failed to persist bonus chapter stats:', persistErr.message);
         }
@@ -247,13 +362,16 @@ exports.handler = async (event, context) => {
             headers,
             body: JSON.stringify({
                 success: true,
-                message: 'Bonus chapter sent successfully',
+                message: 'Bonus chapter send completed',
+                simulation: false,
                 stats: {
                     sent,
                     failed,
                     total: subscribers.length,
-                    timestamp: new Date().toISOString()
-                }
+                    timestamp: new Date().toISOString(),
+                    batches
+                },
+                recipientsSample: (typeof sample !== 'undefined') ? sample : []
             })
         };
 

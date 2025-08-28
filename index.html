@@ -896,7 +896,7 @@
                 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                    <button id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" class="text-bone hover:text-red-flag transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -934,18 +934,21 @@
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+            if (mobileMenuToggle && mobileMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        const expanded = this.getAttribute('aria-expanded') === 'true';
+                        this.setAttribute('aria-expanded', (!expanded).toString());
+                        mobileMenu.classList.toggle('hidden');
+                    });
             
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+                    mobileLinks.forEach(link => {
+                        link.addEventListener('click', function() {
+                            mobileMenu.classList.add('hidden');
+                            if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        });
+                    });
             
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
@@ -1366,88 +1369,138 @@
                         </p>
                     </div>
 
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
-                        
-                        <!-- Featured Post -->
-                        <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="block">
-                            <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
-                                <div class="p-4 sm:p-6">
-                                    <div class="text-xs sm:text-sm text-bone/60 mb-2">
-                                        <time datetime="2025-08-27">August 27, 2025</time>
-                                        <span class="mx-2">•</span>
-                                        <span>6 min read</span>
-                                        <span class="mx-2 text-red-flag font-semibold">NEW</span>
-                                    </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
-                                        How I Got Into Writing The Worst Boyfriends Ever
-                                    </h3>
-                                    <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                        The messy origin story behind the book that nobody asked for but everyone secretly needed...
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="feature-tag">Writing Journey</span>
-                                        <span class="feature-tag">Behind the Scenes</span>
-                                    </div>
-                                    <span class="text-red-flag hover:text-red-flag/80 font-semibold text-sm">
-                                        Read more →
-                                    </span>
-                                </div>
-                            </article>
-                        </a>
-
-                        <!-- Recent Post 1 -->
-                        <a href="blog/why-i-stopped-dating-apps.html" class="block">
-                            <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
-                                <div class="p-4 sm:p-6">
-                                    <div class="text-xs sm:text-sm text-bone/60 mb-2">
-                                        <time datetime="2025-08-20">August 20, 2025</time>
-                                        <span class="mx-2">•</span>
-                                        <span>5 min read</span>
-                                    </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
-                                        Why I Deleted All My Dating Apps
-                                    </h3>
-                                    <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                        After documenting 25 dating disasters, I finally realized the apps weren't the problem...
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="feature-tag">Dating Apps</span>
-                                        <span class="feature-tag">Mental Health</span>
-                                    </div>
-                                    <span class="text-red-flag hover:text-red-flag/80 font-semibold text-sm">
-                                        Read more →
-                                    </span>
-                                </div>
-                            </article>
-                        </a>
-
-                        <!-- Recent Post 2 -->
-                        <a href="blog/anatomy-of-a-ghost.html" class="block">
-                            <article class="product-card hover:transform hover:scale-105 transition-all duration-300 h-full">
-                                <div class="p-4 sm:p-6">
-                                    <div class="text-xs sm:text-sm text-bone/60 mb-2">
-                                        <time datetime="2025-08-15">August 15, 2025</time>
-                                        <span class="mx-2">•</span>
-                                        <span>3 min read</span>
-                                    </div>
-                                    <h3 class="font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug">
-                                        Anatomy of a Ghost
-                                    </h3>
-                                    <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                        A detailed breakdown of the disappearing act that modern daters have perfected to an art form...
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="feature-tag">Dating Psychology</span>
-                                        <span class="feature-tag">Ghosting</span>
-                                    </div>
-                                    <span class="text-red-flag hover:text-red-flag/80 font-semibold text-sm">
-                                        Read more →
-                                    </span>
-                                </div>
-                            </article>
-                        </a>
-
+                    <div id="homepage-blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
+                        <!-- Placeholder cards will be replaced by client-side fetched latest 3 posts -->
+                        <div class="blog-card p-6">Loading latest posts…</div>
                     </div>
+
+                    <script>
+                    // Safe renderer: prefer prebuilt cleaned `summary`, fallback to extracting first paragraph from `html`.
+                    (function(){
+                        function truncateText(text, max) {
+                            if (!text) return '';
+                            if (text.length <= max) return text;
+                            return text.slice(0, max - 1).trimEnd() + '…';
+                        }
+
+                        function extractFirstParagraphFromHtml(html) {
+                            if (!html) return '';
+                            try {
+                                const tmp = document.createElement('div');
+                                tmp.innerHTML = html;
+                                const p = tmp.querySelector('p');
+                                if (p && p.textContent.trim()) return p.textContent.trim();
+                                // fallback: first block-level text
+                                const article = tmp.querySelector('article, .prose, main') || tmp;
+                                const text = article.textContent || tmp.textContent || '';
+                                return text.trim().split('\n').map(s => s.trim()).filter(Boolean)[0] || '';
+                            } catch (e) {
+                                return '';
+                            }
+                        }
+
+                        async function renderHomepageBlog() {
+                            try {
+                                const res = await fetch('/.netlify/functions/blog-list');
+                                if (!res.ok) throw new Error('Failed to load posts');
+                                const data = await res.json();
+                                let posts = (data.posts || []).slice();
+                                // sort by publishedAt/date desc (newest first)
+                                posts.sort((a,b) => {
+                                    const da = Date.parse(a.publishedAt || a.date || '') || 0;
+                                    const db = Date.parse(b.publishedAt || b.date || '') || 0;
+                                    return db - da;
+                                });
+                                posts = posts.slice(0,3);
+                                const grid = document.getElementById('homepage-blog-grid');
+                                if (!grid) return;
+
+                                // Clear existing content
+                                grid.innerHTML = '';
+
+                                posts.forEach(p => {
+                                    const link = document.createElement('a');
+                                    link.href = `/blog/${encodeURIComponent(p.slug || p.id || '')}.html`;
+                                    link.className = 'block';
+
+                                    const article = document.createElement('article');
+                                    article.className = 'product-card hover:transform hover:scale-105 transition-all duration-300 h-full';
+
+                                    const inner = document.createElement('div');
+                                    inner.className = 'p-4 sm:p-6';
+
+                                    const meta = document.createElement('div');
+                                    meta.className = 'text-xs sm:text-sm text-bone/60 mb-2';
+                                    const date = p.publishedAt || p.date || '';
+                                    const timeEl = document.createElement('time');
+                                    if (date) {
+                                        timeEl.setAttribute('datetime', date);
+                                        const d = new Date(date);
+                                        timeEl.textContent = isNaN(d) ? date : d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+                                    } else {
+                                        timeEl.textContent = '';
+                                    }
+                                    meta.appendChild(timeEl);
+
+                                    const dot = document.createElement('span');
+                                    dot.className = 'mx-2';
+                                    dot.textContent = '•';
+                                    meta.appendChild(dot);
+
+                                    const rt = document.createElement('span');
+                                    rt.textContent = p.readTime || '5 min read';
+                                    meta.appendChild(rt);
+
+                                    const h3 = document.createElement('h3');
+                                    h3.className = 'font-display font-bold text-lg sm:text-xl mb-3 text-bone hover:text-red-flag transition-colors leading-snug';
+                                    h3.textContent = p.title || p.heading || '';
+
+                                    const pSummary = document.createElement('p');
+                                    pSummary.className = 'text-bone/80 mb-4 text-sm sm:text-base';
+                                    // prefer cleaned summary, otherwise extract from html
+                                    const rawSummary = (p.summary && String(p.summary).trim()) || '';
+                                    let finalSummary = rawSummary;
+                                    if (!finalSummary) {
+                                        finalSummary = extractFirstParagraphFromHtml(p.html || p.htmlFragment || p.body || '');
+                                    }
+                                    finalSummary = truncateText(finalSummary, 160);
+                                    pSummary.textContent = finalSummary;
+
+                                    const tagsWrap = document.createElement('div');
+                                    tagsWrap.className = 'flex flex-wrap gap-2 mb-4';
+                                    (p.tags || []).forEach(t => {
+                                        const s = document.createElement('span');
+                                        s.className = 'feature-tag';
+                                        s.textContent = t;
+                                        tagsWrap.appendChild(s);
+                                    });
+
+                                    const readMore = document.createElement('span');
+                                    readMore.className = 'text-red-flag hover:text-red-flag/80 font-semibold text-sm';
+                                    readMore.textContent = 'Read more →';
+
+                                    inner.appendChild(meta);
+                                    inner.appendChild(h3);
+                                    inner.appendChild(pSummary);
+                                    inner.appendChild(tagsWrap);
+                                    inner.appendChild(readMore);
+
+                                    article.appendChild(inner);
+                                    link.appendChild(article);
+                                    grid.appendChild(link);
+                                });
+                            } catch (err) {
+                                console.error('Error loading blog posts', err);
+                                const grid = document.getElementById('homepage-blog-grid');
+                                if (grid) grid.innerHTML = '<div class="blog-card p-6">Unable to load posts.</div>';
+                            }
+                        }
+
+                        document.addEventListener('DOMContentLoaded', renderHomepageBlog);
+                        // expose for manual reloads
+                        window.renderHomepageBlog = renderHomepageBlog;
+                    })();
+                    </script>
 
                     <div class="text-center">
                         <a href="blog.html" class="btn-secondary">
@@ -1643,63 +1696,69 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile menu functionality (defensive)
+        (function() {
+            try {
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const nav = document.querySelector('nav');
 
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+                if (mobileMenuToggle && mobileMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        mobileMenu.classList.toggle('hidden');
+                    });
 
-        // Close mobile menu when clicking on links
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+                    // Close mobile menu when clicking on links
+                    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                    mobileMenuLinks.forEach(link => {
+                        link.addEventListener('click', function() {
+                            mobileMenu.classList.add('hidden');
+                        });
+                    });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Close mobile menu when clicking outside
+                    document.addEventListener('click', function(event) {
+                        if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                            mobileMenu.classList.add('hidden');
+                            if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        }
                     });
                 }
-            });
-        });
 
-        // Add scroll effect to navigation
-        let lastScroll = 0;
-        const nav = document.querySelector('nav');
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        const href = this.getAttribute('href');
+                        if (!href || href === '#') return;
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                nav.classList.remove('nav-scrolled');
-                return;
+                // Add scroll effect to navigation
+                if (nav) {
+                    let lastScroll = 0;
+                    window.addEventListener('scroll', () => {
+                        const currentScroll = window.pageYOffset;
+                        if (currentScroll <= 0) {
+                            nav.classList.remove('nav-scrolled');
+                            return;
+                        }
+                        if (currentScroll > lastScroll && !nav.classList.contains('nav-hidden')) {
+                            nav.classList.add('nav-hidden');
+                        } else if (currentScroll < lastScroll && nav.classList.contains('nav-hidden')) {
+                            nav.classList.remove('nav-hidden');
+                        }
+                        lastScroll = currentScroll;
+                    });
+                }
+            } catch (e) {
+                console.warn('Index page init warning', e);
             }
-            
-            if (currentScroll > lastScroll && !nav.classList.contains('nav-hidden')) {
-                nav.classList.add('nav-hidden');
-            } else if (currentScroll < lastScroll && nav.classList.contains('nav-hidden')) {
-                nav.classList.remove('nav-hidden');
-            }
-            
-            lastScroll = currentScroll;
-        });
+        })();
     </script>
 
     <!-- Cookie Notice JavaScript -->

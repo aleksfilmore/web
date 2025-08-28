@@ -666,8 +666,7 @@
                 }
                 
                 if (customNote && customNote.value && (currentProduct.type === 'physical' || currentProduct.type === 'bundle')) {
-                    // For now, we'll store the custom note in localStorage and redirect
-                    // In a real implementation, you'd pass this to your backend to include in Stripe metadata
+                    // Keep local fallback copy for manual reconciliation
                     localStorage.setItem('custom_note_' + Date.now(), JSON.stringify({
                         email: emailInput.value,
                         note: customNote.value,
@@ -675,21 +674,47 @@
                     }));
                 }
 
-                // Final debug before redirect
-                console.log('🚀 REDIRECTING TO:', stripeUrl);
-                console.log('🎯 Final URL check:', {
-                    url: stripeUrl,
-                    isDiscounted: stripeUrl === currentProduct.discountUrl,
-                    isRegular: stripeUrl === currentProduct.stripeUrl
-                });
-                
-                // Temporary alert for debugging (remove this after testing)
-                if (discountCode) {
-                    alert(`Debug: About to redirect to ${stripeUrl.includes('fZoeCMfs1') ? 'DISCOUNTED' : 'REGULAR'} Stripe link\n\nURL: ${stripeUrl}\nDiscount: ${discountCode || 'None'}`);
-                }
+                // Preferred flow: create Checkout Session server-side so metadata is preserved and available to webhooks
+                try {
+                    const payload = {
+                        product: currentProduct.id,
+                        email: emailInput.value,
+                        customNote: customNote ? customNote.value : null,
+                        newsletterSignup: newsletterSignup.checked,
+                        discountCode: discountCode || null
+                    };
 
-                // Redirect to Stripe
-                window.location.href = stripeUrl;
+                    console.log('Posting to /.netlify/functions/create-checkout-session', payload);
+
+                    const resp = await fetch('/.netlify/functions/create-checkout-session', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!resp.ok) {
+                        const err = await resp.json().catch(() => ({}));
+                        throw new Error(err.error || 'Failed to create checkout session');
+                    }
+
+                    const data = await resp.json();
+                    if (data && data.url) {
+                        console.log('Redirecting to Stripe session URL:', data.url);
+                        window.location.href = data.url;
+                        return;
+                    } else if (data && data.id) {
+                        // Fallback: redirect to success url if session url missing
+                        window.location.href = `${window.location.origin}/checkout-success.html?session_id=${encodeURIComponent(data.id)}`;
+                        return;
+                    } else {
+                        throw new Error('No session URL returned');
+                    }
+                } catch (err) {
+                    console.error('Failed to create checkout session, falling back to direct Stripe link:', err);
+                    // Final fallback: redirect to raw Stripe link
+                    window.location.href = stripeUrl;
+                    return;
+                }
 
             } catch (error) {
                 console.error('Checkout error:', error);

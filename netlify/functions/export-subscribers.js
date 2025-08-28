@@ -6,9 +6,9 @@ const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
 
 exports.handler = async (event, context) => {
     console.log('📊 Exporting subscribers data');
-    
-    // CORS headers
-    const headers = {
+
+    // Default CSV download headers
+    const csvHeaders = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -17,46 +17,32 @@ exports.handler = async (event, context) => {
     };
 
     if (event.httpMethod === 'OPTIONS') {
-        return { statusCode: 200, headers: { ...headers, 'Content-Type': 'application/json' }, body: '' };
+        return { statusCode: 200, headers: { ...csvHeaders, 'Content-Type': 'application/json' }, body: '' };
     }
 
     if (event.httpMethod !== 'GET') {
         return {
             statusCode: 405,
-            headers: { ...headers, 'Content-Type': 'application/json' },
+            headers: { ...csvHeaders, 'Content-Type': 'application/json' },
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
 
     try {
-    // Standardized auth helper
-    const authError = requireAuth(event);
-    if (authError) return authError;
-
-        let csvData = 'Email,Name,Status,Date Subscribed,Groups\n';
+        // Auth check
+        const authError = requireAuth(event);
+        if (authError) return authError;
 
         if (!MAILERLITE_API_KEY) {
-            // Generate mock CSV data
-            const mockSubscribers = [
-                ['reader1@example.com', 'Sarah Johnson', 'active', '2024-01-15', 'Newsletter'],
-                ['reader2@example.com', 'Mike Chen', 'active', '2024-01-20', 'Newsletter'],
-                ['reader3@example.com', 'Emma Wilson', 'active', '2024-02-01', 'Newsletter'],
-                ['reader4@example.com', 'David Martinez', 'active', '2024-02-10', 'Newsletter'],
-                ['reader5@example.com', 'Lisa Anderson', 'unsubscribed', '2024-01-05', 'Newsletter']
-            ];
-
-            mockSubscribers.forEach(subscriber => {
-                csvData += `${subscriber[0]},${subscriber[1]},${subscriber[2]},${subscriber[3]},${subscriber[4]}\n`;
-            });
-
+            console.error('MAILERLITE_API_KEY not configured for export-subscribers function');
             return {
-                statusCode: 200,
-                headers,
-                body: csvData
+                statusCode: 503,
+                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                body: JSON.stringify({ error: 'MailerLite API key not configured on server. Set MAILERLITE_API_KEY to enable subscriber export.' })
             };
         }
 
-        // Fetch all subscribers from MailerLite
+        // Fetch all subscribers from MailerLite (paged)
         let allSubscribers = [];
         let page = 1;
         let hasMore = true;
@@ -74,30 +60,30 @@ exports.handler = async (event, context) => {
             }
 
             const data = await response.json();
+            if (!Array.isArray(data)) break;
             allSubscribers = allSubscribers.concat(data);
-            
-            // Check if there are more pages
             hasMore = data.length === 1000;
             page++;
         }
 
         // Convert to CSV
+        let csvData = '"Email","Name","Status","Date Subscribed","Groups"\n';
         allSubscribers.forEach(subscriber => {
             const email = subscriber.email || '';
-            const name = subscriber.name || '';
-            const status = subscriber.type || 'unknown';
-            const dateSubscribed = subscriber.date_subscribe || '';
+            const name = (subscriber.name || '').replace(/"/g, '""');
+            const status = subscriber.type || '';
+            const dateSubscribed = subscriber.date_subscribe || subscriber.date || '';
             const groups = subscriber.groups ? subscriber.groups.map(g => g.name).join(';') : '';
-            
-            // Escape commas in fields
-            csvData += `"${email}","${name}","${status}","${dateSubscribed}","${groups}"\n`;
+            const safeGroups = (groups || '').replace(/"/g, '""');
+
+            csvData += `"${email}","${name}","${status}","${dateSubscribed}","${safeGroups}"\n`;
         });
 
         console.log(`Exported ${allSubscribers.length} subscribers`);
 
         return {
             statusCode: 200,
-            headers,
+            headers: csvHeaders,
             body: csvData
         };
 
@@ -105,11 +91,8 @@ exports.handler = async (event, context) => {
         console.error('Error exporting subscribers:', error);
         return {
             statusCode: 500,
-            headers: { ...headers, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                success: false,
-                error: error.message
-            })
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify({ error: 'Failed to fetch subscribers from MailerLite', details: error.message })
         };
     }
 };

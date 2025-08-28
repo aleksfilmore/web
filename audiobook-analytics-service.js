@@ -183,7 +183,7 @@ class AudiobookAnalyticsService {
             return {
                 success: false,
                 error: error.message,
-                data: this.getMockAnalytics()
+                data: null
             };
         }
     }

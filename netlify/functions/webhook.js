@@ -1,20 +1,25 @@
 // Netlify function to handle Stripe webhooks
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { Resend } = require('resend');
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend = null;
+try {
+    const { Resend } = require('resend');
+    if (process.env.RESEND_API_KEY) {
+        resend = new Resend(process.env.RESEND_API_KEY);
+    } else {
+        console.log('RESEND_API_KEY not configured; outbound emails will be disabled');
+    }
+} catch (e) {
+    // If the resend library is not available locally (dev), keep resend null and continue
+    console.log('Resend library not available or failed to initialize:', e?.message || e);
+    resend = null;
+}
 
 exports.handler = async (event, context) => {
-    console.log('=== STRIPE WEBHOOK RECEIVED ===');
-    console.log('Method:', event.httpMethod);
-    console.log('Headers:', JSON.stringify(event.headers, null, 2));
+    console.debug && console.debug('Stripe webhook received');
     
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
-        console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Method not allowed:', event.httpMethod);
+        console.log('Method not allowed:', event.httpMethod);
         return {
             statusCode: 405,
             body: JSON.stringify({ error: 'Method not allowed' })
@@ -24,35 +29,19 @@ exports.handler = async (event, context) => {
     const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
     let body = event.body;
     
-    console.log('Raw event data:', {
-        isBase64Encoded: event.isBase64Encoded,
-        bodyType: typeof body,
-        bodyLength: body?.length,
-        hasSignature: !!sig,
-        signaturePreview: sig?.substring(0, 50)
-    });
+    console.debug && console.debug('Webhook raw event info', { isBase64Encoded: event.isBase64Encoded, hasSignature: !!sig });
     
     // Handle different body encodings in Netlify
     if (event.isBase64Encoded && body) {
-        console.log('📦 Converting from base64...');
         body = Buffer.from(body, 'base64').toString('utf8');
-        console.log('After base64 decode - length:', body.length);
     }
     
     // Additional body handling for different scenarios
     if (typeof body !== 'string') {
         if (body && typeof body === 'object') {
             body = JSON.stringify(body);
-            console.log('Converted object body to string');
         } else {
-            console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Invalid body type:', typeof body);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Invalid request body' })
-            };
+            return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body' }) };
         }
     }
     
@@ -65,115 +54,27 @@ exports.handler = async (event, context) => {
     
     let stripeEvent;
     
-    try {
-        // Get and thoroughly clean webhook secret - remove all whitespace
-        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.replace(/\s/g, '');
-        console.log('Webhook secret configured:', !!webhookSecret);
-        console.log('Webhook secret length:', webhookSecret?.length);
-        console.log('Webhook secret first 10 chars:', webhookSecret?.substring(0, 10));
-        
-        if (!webhookSecret) {
-            throw new Error('STRIPE_WEBHOOK_SECRET not configured');
-        }
-        
-        // Log environment info for debugging
-        console.log('Environment variables check:');
-        console.log('- STRIPE_SECRET_KEY configured:', !!process.env.STRIPE_SECRET_KEY);
-        console.log('- RESEND_API_KEY configured:', !!process.env.RESEND_API_KEY);
-        
-        console.log('🔐 Verifying webhook signature...');
-        console.log('Signature:', sig?.substring(0, 20) + '...');
-        console.log('Signature length:', sig?.length);
-        
-        // Try signature verification
-        console.log('Attempting signature verification...');
-        
         try {
-            // Primary attempt with current body
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.replace(/\s/g, '');
+        if (!webhookSecret) throw new Error('STRIPE_WEBHOOK_SECRET not configured');
+
+        try {
             stripeEvent = stripe.webhooks.constructEvent(body, sig, webhookSecret);
-            console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Webhook signature verified with current body');
         } catch (primaryErr) {
-            console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Primary verification failed:', primaryErr.message);
-            
-            // Try with raw event body if different
             if (event.body !== body) {
-                try {
-                    console.log('Trying with original event body...');
-                    stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret);
-                    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Webhook signature verified with original body');
-                } catch (secondaryErr) {
-                    console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Secondary verification failed:', secondaryErr.message);
-                    throw primaryErr; // Throw the original error
-                }
+                try { stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret); } catch (secondaryErr) { throw primaryErr; }
             } else {
                 throw primaryErr;
             }
         }
-        console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Webhook signature verified');
-        console.log('Event type:', stripeEvent.type);
-        console.log('Event ID:', stripeEvent.id);
-        
     } catch (err) {
-        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Webhook verification failed:', err.message);
-        console.error('Full error:', err);
-        
-        // Enhanced debugging for signature issues
-        if (err.message.includes('No signatures found')) {
-            console.log('🔍 DEBUGGING SIGNATURE ISSUE:');
-            console.log('Raw signature header:', event.headers['stripe-signature']);
-            console.log('All headers:', JSON.stringify(event.headers, null, 2));
-            console.log('Body encoding info:', {
-                isBase64Encoded: event.isBase64Encoded,
-                originalBodyLength: event.body?.length,
-                processedBodyLength: body?.length,
-                bodyType: typeof body
-            });
-            
-            // Try to manually parse signature
-            try {
-                const sigHeader = event.headers['stripe-signature'];
-                if (sigHeader) {
-                    const sigParts = sigHeader.split(',');
-                    console.log('Signature parts:', sigParts);
-                }
-            } catch (parseErr) {
-                console.log('Could not parse signature header:', parseErr.message);
-            }
-        }
-        
-        return {
-            statusCode: 400,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                error: `Webhook Error: ${err.message}`,
-                timestamp: new Date().toISOString()
-            })
-        };
+        console.error('Webhook verification failed:', err.message);
+        return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: `Webhook Error: ${err.message}`, timestamp: new Date().toISOString() }) };
     }
     
     // Process the webhook event
     try {
-        console.log('<svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-    </svg> Processing webhook event...');
+    console.log('Processing webhook event...');
         
         switch (stripeEvent.type) {
             case 'checkout.session.completed':
@@ -183,9 +84,7 @@ exports.handler = async (event, context) => {
                 console.log(`ℹ️ Unhandled event type: ${stripeEvent.type}`);
         }
         
-        console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Webhook processed successfully');
+    console.log('Webhook processed successfully');
         
         return {
             statusCode: 200,
@@ -201,10 +100,7 @@ exports.handler = async (event, context) => {
         };
         
     } catch (error) {
-        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Error processing webhook:', error);
+        console.error('Error processing webhook:', error);
         
         // Still return 200 to prevent Stripe retries, but log the error
         return {
@@ -228,25 +124,15 @@ async function handleCheckoutSessionCompleted(session) {
     
     const customerEmail = session.customer_details?.email || session.customer_email;
     console.log('👤 Customer email:', customerEmail);
-    console.log('<svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
-        <path d="M12 18V6"/>
-    </svg> Amount:', session.amount_total / 100, session.currency);
-    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Payment status:', session.payment_status);
+    console.log('Amount:', session.amount_total / 100, session.currency);
+    console.log('Payment status:', session.payment_status);
     
     if (!customerEmail) {
         throw new Error('No customer email found in session');
     }
     
     if (session.payment_status !== 'paid') {
-        console.log('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-        <line x1="12" y1="9" x2="12" y2="13"/>
-        <line x1="12" y1="17" x2="12.01" y2="17"/>
-    </svg> Payment not completed, skipping email');
+    console.log('Payment not completed, skipping email');
         return;
     }
     
@@ -266,11 +152,120 @@ async function handleCheckoutSessionCompleted(session) {
     // Send audiobook access email
     await sendAudiobookAccessEmail(customerEmail, accessToken, session);
     
-    console.log('<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Checkout session processing completed');
-}
+    console.log('Checkout session processing completed');
 
+    // Persist metadata and basic order row (best-effort)
+    try {
+        const { neon } = require('@netlify/neon');
+        const { drizzle } = require('drizzle-orm/neon-http');
+        const { runQuery } = require('./utils/db-utils');
+
+        const client = neon();
+        const db = drizzle({ client });
+
+        const metadata = session.metadata || {};
+        const productType = metadata.product || 'unknown';
+        const customNote = metadata.custom_note || '';
+        const amountCents = session.amount_total || 0;
+
+        // Idempotent upsert: if row exists, update metadata/status only when changed
+        const selectSql = `SELECT status, metadata FROM orders WHERE id = $1`;
+        const insertSql = `INSERT INTO orders (id, stripe_id, product_type, amount_cents, currency, status, customer_email, personalization, metadata, created_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,now())`;
+        const updateSql = `UPDATE orders SET status = $1, metadata = $2 WHERE id = $3`;
+
+        const paramsInsert = [
+            session.id,
+            session.id,
+            productType,
+            amountCents,
+            session.currency || 'USD',
+            session.payment_status || 'paid',
+            customerEmail,
+            customNote,
+            JSON.stringify(Object.assign({}, metadata))
+        ];
+
+        const paramsSelect = [session.id];
+
+        try {
+            console.log('DB: attempting idempotent persist for order', session.id);
+
+            // Check if order exists
+            let existing = null;
+            try {
+                const selRes = await runQuery(client, db, selectSql, paramsSelect);
+                if (selRes && Array.isArray(selRes.rows)) existing = selRes.rows[0] || null;
+                else if (Array.isArray(selRes)) existing = selRes[0] || null;
+                else if (selRes && selRes.length) existing = selRes[0];
+            } catch (e) {
+                console.warn('DB select failed (will try upsert insert regardless):', e.message || e);
+            }
+
+            if (existing) {
+                // Compare status and metadata; update if necessary
+                const existingStatus = existing.status || null;
+                let existingMetadata = existing.metadata || null;
+                try { existingMetadata = typeof existingMetadata === 'string' ? JSON.parse(existingMetadata) : existingMetadata; } catch(e) {}
+
+                const incomingMetaStr = JSON.stringify(metadata || {});
+                const existingMetaStr = JSON.stringify(existingMetadata || {});
+
+                if (existingStatus === (session.payment_status || 'paid') && incomingMetaStr === existingMetaStr) {
+                    console.log('DB: existing order matches incoming status & metadata — skipping update');
+                } else {
+                    console.log('DB: existing order differs; performing update');
+                    const paramsUpdate = [session.payment_status || 'paid', JSON.stringify(Object.assign({}, metadata)), session.id];
+                    await runQuery(client, db, updateSql, paramsUpdate);
+                }
+            } else {
+                // Insert new row
+                try {
+                    await runQuery(client, db, insertSql, paramsInsert);
+                } catch (insErr) {
+                    // Try upsert via UPDATE after insert failure (race conditions)
+                    console.warn('Insert failed, attempting update as fallback:', insErr.message || insErr);
+                    try {
+                        const paramsUpdate2 = [session.payment_status || 'paid', JSON.stringify(Object.assign({}, metadata)), session.id];
+                        await runQuery(client, db, updateSql, paramsUpdate2);
+                        console.log('Fallback update succeeded');
+                    } catch (upErr) {
+                        console.warn('Fallback update also failed:', upErr.message || upErr);
+                        throw upErr;
+                    }
+                }
+            }
+
+        } catch (finalErr) {
+            console.warn('⚠️ Failed to persist order to DB after attempts (continuing):', finalErr?.message || finalErr);
+        }
+
+    } catch (err) {
+        console.warn('⚠️ DB persistence block encountered an error; skipping DB persist:', err?.message || err);
+    }
+
+    // Append audit log for ingestion (always local append for traceability)
+    try {
+        const fs = require('fs');
+        const path = require('path');
+        const logsDir = path.join(__dirname, '..', '..', 'logs');
+        if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
+        const auditFile = path.join(logsDir, 'order-ingest-audit.log');
+        const entry = {
+            ts: new Date().toISOString(),
+            sessionId: session.id,
+            email: customerEmail,
+            product: session.metadata?.product || null,
+            customNote: session.metadata?.custom_note || null,
+            amount: session.amount_total || 0,
+            currency: session.currency || 'USD'
+        };
+        fs.appendFileSync(auditFile, JSON.stringify(entry) + '\n', { encoding: 'utf8' });
+        console.log('📝 Audit entry appended to', auditFile);
+    } catch (e) {
+        console.warn('Failed to append order ingest audit log:', e?.message || e);
+    }
+
+}
 function generateAccessToken(email, sessionId) {
     return Buffer.from(`${email}:${sessionId}:${Date.now()}`).toString('base64');
 }
@@ -301,11 +296,7 @@ async function checkForAudiobookAccess(session) {
         return hasAudiobook;
         
     } catch (error) {
-        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-        <line x1="12" y1="9" x2="12" y2="13"/>
-        <line x1="12" y1="17" x2="12.01" y2="17"/>
-    </svg> Error checking line items:', error);
+        console.error('Error checking line items:', error);
         // Default to true to ensure customers get access
         return true;
     }
@@ -351,10 +342,7 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
             </div>
             
             <div style="text-align: center; margin-top: 30px; color: rgba(247,243,237,0.6); font-size: 12px;">
-                <p>Happy listening! <svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
-        <line x1="4" y1="22" x2="4" y2="15"/>
-    </svg></p>
+                <p>Happy listening! 🎵</p>
                 <p style="margin: 0;">- Aleks</p>
             </div>
         </div>
@@ -370,15 +358,13 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
             html: emailContent
         });
         
-        console.log(`<svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg> Audiobook access email sent to ${customerEmail}`);
+    console.log('Audiobook access email sent to', customerEmail);
         
     } catch (error) {
-        console.error('<svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg> Failed to send email:', error);
+        console.error('Failed to send email:', error);
         throw new Error(`Email delivery failed: ${error.message}`);
     }
 }
+
+// Export helper for local testing
+exports.handleCheckoutSessionCompleted = handleCheckoutSessionCompleted;

@@ -9,10 +9,23 @@ function isValidEmail(email) {
 }
 
 exports.handler = async (event, context) => {
+    // CORS headers
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json'
+    };
+
+    if (event.httpMethod === 'OPTIONS') {
+        return { statusCode: 200, headers };
+    }
+
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
+            headers,
             body: JSON.stringify({ success: false, error: 'Method not allowed' })
         };
     }
@@ -23,6 +36,7 @@ exports.handler = async (event, context) => {
         if (!email || !isValidEmail(email) || !message) {
             return {
                 statusCode: 400,
+                headers,
                 body: JSON.stringify({ 
                     success: false, 
                     error: 'Email and message are required' 
@@ -56,7 +70,7 @@ Newsletter Opt-in: ${newsletter_opt_in ? 'Yes' : 'No'}
             `
         });
 
-        // If they opted into newsletter, add them to MailerLite
+        // If they opted into newsletter, add them to MailerLite (best-effort)
         if (newsletter_opt_in) {
             try {
                 // Use MailerLite API to add subscriber
@@ -88,6 +102,7 @@ Newsletter Opt-in: ${newsletter_opt_in ? 'Yes' : 'No'}
 
         return {
             statusCode: 200,
+            headers,
             body: JSON.stringify({ 
                 success: true, 
                 message: 'Message sent successfully!' 
@@ -98,6 +113,7 @@ Newsletter Opt-in: ${newsletter_opt_in ? 'Yes' : 'No'}
         console.error('Contact form error:', error);
         return {
             statusCode: 500,
+            headers,
             body: JSON.stringify({ 
                 success: false, 
                 error: 'Failed to send message' 

@@ -1077,9 +1077,25 @@ app.get('/api/admin/orders', async (req, res) => {
         
         const purchases = JSON.parse(fs.readFileSync(purchasesFile, 'utf8'));
         console.log('Loaded purchases:', purchases.length);
-        
+
+        // Filter out obvious test/mock purchases
+        const isTestPurchase = (p) => {
+            try {
+                if (!p) return false;
+                const id = String(p.sessionId || '');
+                if (id.startsWith('cs_test_') || id.includes('simulated') || id.includes('_sim_')) return true;
+                const email = String(p.customerEmail || '').toLowerCase();
+                if (!email) return false;
+                if (email.includes('sim-test@') || (email.includes('example.com') && email.startsWith('sim-'))) return true;
+                if (p.metadata && (p.metadata.simulated === true || p.metadata.simulated === 'true' || p._test === true)) return true;
+            } catch (e) { /* ignore */ }
+            return false;
+        };
+
+        const visiblePurchases = purchases.filter(p => !isTestPurchase(p));
+
         // Transform purchases into admin-friendly format
-        const orders = purchases.map(purchase => ({
+        const orders = visiblePurchases.map(purchase => ({
             id: purchase.sessionId,
             customer: {
                 name: purchase.customerEmail ? purchase.customerEmail.split('@')[0] : 'Unknown',
@@ -1574,30 +1590,15 @@ app.get('/admin/api/newsletter-stats', async (req, res) => {
             res.json(stats.data);
         } else {
             console.error('Failed to fetch newsletter stats:', stats?.error || 'Unknown error');
-            // Return mock data as fallback
-            res.json({
-                totalSubscribers: 0,
-                activeSubscribers: 0,
-                monthlyEmailsUsed: 0,
-                monthlyLimit: 12000,
-                groups: [],
-                campaigns: []
-            });
+            // Fail explicitly instead of returning mock data
+            res.status(503).json({ error: 'MailerLite stats unavailable - service not configured or failed' });
         }
     } catch (error) {
         console.error('Newsletter stats error:', error.message);
         console.error('Stack trace:', error.stack);
         
-        // Return mock data as fallback
-        res.json({
-            totalSubscribers: 0,
-            activeSubscribers: 0,
-            monthlyEmailsUsed: 0,
-            monthlyLimit: 12000,
-            groups: [],
-            campaigns: [],
-            error: 'Fallback data due to service error'
-        });
+    // Fail explicitly instead of returning mock data
+    res.status(500).json({ error: 'MailerLite service error', details: error.message });
     }
 });
 

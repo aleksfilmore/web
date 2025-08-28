@@ -106,7 +106,7 @@ Measurement ID: ${this.measurementId}
         }
 
         if (!this.initialized) {
-            return this.getMockData();
+            throw new Error('Google Analytics not configured');
         }
 
         try {
@@ -131,7 +131,7 @@ Measurement ID: ${this.measurementId}
 
         } catch (error) {
             console.error('Error fetching Google Analytics stats:', error.message);
-            return this.getMockData();
+            throw error;
         }
     }
 
@@ -141,7 +141,7 @@ Measurement ID: ${this.measurementId}
         }
 
         if (!this.initialized) {
-            return this.getMockTopPages();
+            throw new Error('Google Analytics not configured');
         }
 
         try {
@@ -171,7 +171,7 @@ Measurement ID: ${this.measurementId}
 
         } catch (error) {
             console.error('Error fetching top pages:', error.message);
-            return this.getMockTopPages();
+            throw error;
         }
     }
 
@@ -181,7 +181,7 @@ Measurement ID: ${this.measurementId}
         }
 
         if (!this.initialized) {
-            return this.getMockTrafficSources();
+            throw new Error('Google Analytics not configured');
         }
 
         try {
@@ -209,7 +209,7 @@ Measurement ID: ${this.measurementId}
 
         } catch (error) {
             console.error('Error fetching traffic sources:', error.message);
-            return this.getMockTrafficSources();
+            throw error;
         }
     }
 
@@ -219,7 +219,7 @@ Measurement ID: ${this.measurementId}
         }
 
         if (!this.initialized) {
-            return { activeUsers: Math.floor(Math.random() * 50) + 10 };
+            throw new Error('Google Analytics not configured');
         }
 
         try {
@@ -237,7 +237,7 @@ Measurement ID: ${this.measurementId}
 
         } catch (error) {
             console.error('Error fetching realtime stats:', error.message);
-            return { activeUsers: Math.floor(Math.random() * 50) + 10 };
+            throw error;
         }
     }
 

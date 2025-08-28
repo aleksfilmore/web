@@ -3,6 +3,18 @@ const crypto = require('crypto');
 
 const SECRET = process.env.JWT_SECRET || process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || 'CHANGE_ME_DEV_SECRET';
 
+function getCorsHeaders(event) {
+    // Prefer the explicit Origin header to support credentials; fall back to Referer or default to '*'
+    const headers = (event && event.headers) || {};
+    const origin = headers.origin || headers.Origin || headers.referer || headers.Referer || '*';
+    return {
+        'Access-Control-Allow-Origin': origin,
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
+        'Access-Control-Allow-Credentials': 'true',
+        'Content-Type': 'application/json'
+    };
+}
+
 function verifyToken(token) {
     const parts = token.split('.');
     if (parts.length !== 3) return { valid: false, error: 'Malformed token' };
@@ -42,12 +54,7 @@ function requireAuth(event) {
     if (!token) {
         return {
             statusCode: 401,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
-                'Access-Control-Allow-Credentials': 'true',
-                'Content-Type': 'application/json'
-            },
+            headers: getCorsHeaders(event),
             body: JSON.stringify({ error: 'Authentication required' })
         };
     }
@@ -56,12 +63,7 @@ function requireAuth(event) {
     if (!authResult.valid) {
         return {
             statusCode: 401,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
-                'Access-Control-Allow-Credentials': 'true',
-                'Content-Type': 'application/json'
-            },
+            headers: getCorsHeaders(event),
             body: JSON.stringify({ error: 'Invalid token', details: authResult.error })
         };
     }
@@ -78,12 +80,7 @@ function requireAuth(event) {
             if (!csrfHeader || !expected || csrfHeader !== expected) {
                 return {
                     statusCode: 403,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
-                        'Access-Control-Allow-Credentials': 'true',
-                        'Content-Type': 'application/json'
-                    },
+                    headers: getCorsHeaders(event),
                     body: JSON.stringify({ error: 'CSRF validation failed' })
                 };
             }
@@ -92,12 +89,7 @@ function requireAuth(event) {
         // If any error, deny
         return {
             statusCode: 403,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-CSRF-Token',
-                'Access-Control-Allow-Credentials': 'true',
-                'Content-Type': 'application/json'
-            },
+            headers: getCorsHeaders(event),
             body: JSON.stringify({ error: 'CSRF validation error' })
         };
     }

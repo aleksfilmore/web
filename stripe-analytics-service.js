@@ -4,13 +4,13 @@ class StripeAnalyticsService {
     constructor() {
         this.initialized = !!process.env.STRIPE_SECRET_KEY;
         if (!this.initialized) {
-            console.warn('Stripe secret key not found. Stripe analytics will use mock data.');
+            console.warn('Stripe secret key not found. Stripe analytics is not configured.');
         }
     }
 
     async getRevenueAnalytics(daysBack = 30) {
         if (!this.initialized) {
-            return this.getMockRevenueData();
+            throw new Error('Stripe secret key not configured');
         }
 
         try {
@@ -40,13 +40,13 @@ class StripeAnalyticsService {
 
         } catch (error) {
             console.error('Error fetching Stripe revenue analytics:', error.message);
-            return this.getMockRevenueData();
+            throw error;
         }
     }
 
     async getProductAnalytics(daysBack = 30) {
         if (!this.initialized) {
-            return this.getMockProductData();
+            throw new Error('Stripe secret key not configured');
         }
 
         try {
@@ -67,13 +67,13 @@ class StripeAnalyticsService {
 
         } catch (error) {
             console.error('Error fetching Stripe product analytics:', error.message);
-            return this.getMockProductData();
+            throw error;
         }
     }
 
     async getRecentOrders(limit = 10) {
         if (!this.initialized) {
-            return this.getMockRecentOrders();
+            throw new Error('Stripe secret key not configured');
         }
 
         try {
@@ -132,13 +132,13 @@ class StripeAnalyticsService {
 
         } catch (error) {
             console.error('Error fetching recent orders:', error.message);
-            return this.getMockRecentOrders();
+            throw error;
         }
     }
 
     async getCustomerAnalytics(daysBack = 30) {
         if (!this.initialized) {
-            return this.getMockCustomerData();
+            throw new Error('Stripe secret key not configured');
         }
 
         try {
@@ -163,7 +163,7 @@ class StripeAnalyticsService {
 
         } catch (error) {
             console.error('Error fetching customer analytics:', error.message);
-            return this.getMockCustomerData();
+            throw error;
         }
     }
 

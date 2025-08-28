@@ -194,6 +194,8 @@
             gap: 2rem;
             grid-template-columns: 1fr;
         }
+    /* Make featured post larger on wider screens */
+            .featured-large { grid-column: 1 / -1; min-height: 320px; }
 
         .blog-meta {
             color: var(--color-bone);
@@ -260,6 +262,11 @@
             .blog-card {
                 margin-bottom: 0;
             }
+            /* Responsive columns for blog listing */
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .featured-large { grid-column: span 2; min-height: 420px; }
         }
         
         /* Large tablet/Small desktop (1024px+) */
@@ -268,6 +275,15 @@
                 padding: 1.25rem 2.5rem;
                 font-size: 1.125rem;
             }
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            /* On wide screens the featured card should dominate the row */
+            .featured-large { grid-column: 1 / -1; min-height: 480px; }
+            .featured-large h2 { font-size: 3rem; line-height: 1.02; letter-spacing: -0.02em; }
+            .featured-large .p-6, .featured-large .p-8 { padding: 3rem; }
+            .featured-large p { font-size: 1.125rem; opacity: 0.95; }
+            .featured-large .featured-badge { top: 1.5rem; right: 1.5rem; padding: 0.75rem 1.25rem; font-size: 0.875rem; }
         }
 
         /* Loading animation */
@@ -410,88 +426,156 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto">
                     
-                    <div class="blog-grid">
-                        
-                        <!-- Featured Post - Latest Article -->
-                        <article class="blog-card relative">
-                            <div class="featured-badge">Latest</div>
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-27">August 27, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4">
-                                    <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="text-bone hover:text-red-flag transition-colors">
-                                        How I Got Into Writing The Worst Boyfriends Ever
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    The raw, honest story behind turning dating disasters into chapters and heartbreak into healing through humor. From heartbreak to bestseller—this is how it all began.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Writing</span>
-                                    <span class="blog-tag">Behind the Scenes</span>
-                                    <span class="blog-tag">Healing</span>
-                                </div>
-                                <a href="blog/how-i-got-into-writing-the-worst-boyfriends-ever.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
+                    <div id="blog-listing" class="blog-grid">
+                        <!-- Client-rendered blog cards will appear here -->
+                        <div class="blog-card p-6">Loading posts…</div>
+                    </div>
 
-                        <!-- Additional Blog Posts -->
-                        <article class="blog-card">
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-23">August 23, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>8 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl mb-4">
-                                    <a href="blog/anatomy-of-a-ghost.html" class="text-bone hover:text-red-flag transition-colors">
-                                        Anatomy of a Ghost
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Psychology</span>
-                                    <span class="blog-tag">Dating</span>
-                                    <span class="blog-tag">Recovery</span>
-                                </div>
-                                <a href="blog/anatomy-of-a-ghost.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
+                        <script>
+                        (function(){
+                            function truncateText(text, max) {
+                                if (!text) return '';
+                                if (text.length <= max) return text;
+                                return text.slice(0, max - 1).trimEnd() + '…';
+                            }
 
-                        <article class="blog-card">
-                            <div class="p-6 sm:p-8">
-                                <div class="blog-meta mb-3">
-                                    <time datetime="2025-08-23">August 23, 2025</time>
-                                    <span class="mx-2">•</span>
-                                    <span>5 min read</span>
-                                </div>
-                                <h2 class="font-display font-bold text-xl sm:text-2xl mb-4">
-                                    <a href="blog/red-flag-field-guide.html" class="text-bone hover:text-red-flag transition-colors">
-                                        The Red-Flag Field Guide
-                                    </a>
-                                </h2>
-                                <p class="text-bone/80 mb-4 text-sm sm:text-base">
-                                    25 warning signs I wish I'd spotted sooner, complete with real examples and recovery tips from someone who learned the hard way.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="blog-tag">Dating Guide</span>
-                                    <span class="blog-tag">Red Flags</span>
-                                    <span class="blog-tag">Prevention</span>
-                                </div>
-                                <a href="blog/red-flag-field-guide.html" class="text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base">
-                                    Read more →
-                                </a>
-                            </div>
-                        </article>
+                            function formatDate(iso) {
+                                if (!iso) return '';
+                                const d = new Date(iso);
+                                if (isNaN(d)) return iso;
+                                return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+                            }
+
+                            async function renderBlogListing() {
+                                try {
+                                    const res = await fetch('/.netlify/functions/blog-list');
+                                    if (!res.ok) throw new Error('Failed to load posts');
+                                    const data = await res.json();
+                                    let posts = (data.posts || []).slice();
+                                    // Sort by publishedAt/date desc when available
+                                    posts.sort((a,b) => {
+                                        const da = a.publishedAt || a.date || '';
+                                        const db = b.publishedAt || b.date || '';
+                                        const na = Date.parse(da) || 0;
+                                        const nb = Date.parse(db) || 0;
+                                        return nb - na;
+                                    });
+                                    // User-specified latest article preference: make sure this slug appears first if present
+                                    const preferredLatestSlug = 'how-i-got-into-writing-the-worst-boyfriends-ever';
+                                    const prefIndex = posts.findIndex(p => (p.slug||p.id||'') === preferredLatestSlug);
+                                    if (prefIndex > 0) {
+                                        const [pref] = posts.splice(prefIndex, 1);
+                                        posts.unshift(pref);
+                                    }
+                                    const container = document.getElementById('blog-listing');
+                                    if (!container) return;
+                                    container.innerHTML = '';
+
+                                    posts.forEach((p, i) => {
+                                        const card = document.createElement('article');
+                                        card.className = 'blog-card relative';
+                                        const inner = document.createElement('div');
+                                        inner.className = 'p-6 sm:p-8';
+
+                                            if (i === 0) {
+                                                const badge = document.createElement('div');
+                                                badge.className = 'featured-badge';
+                                                badge.textContent = 'Latest';
+                                                card.appendChild(badge);
+                                                card.classList.add('featured-large');
+                                            }
+
+                                        const meta = document.createElement('div');
+                                        meta.className = 'blog-meta mb-3';
+                                        const timeEl = document.createElement('time');
+                                        timeEl.setAttribute('datetime', p.publishedAt || p.date || '');
+                                        timeEl.textContent = formatDate(p.publishedAt || p.date || '');
+                                        meta.appendChild(timeEl);
+                                        const sep = document.createElement('span'); sep.className = 'mx-2'; sep.textContent = '•'; meta.appendChild(sep);
+                                        const rt = document.createElement('span'); rt.textContent = p.readTime || '5 min read'; meta.appendChild(rt);
+
+                                        const h2 = document.createElement('h2');
+                                        h2.className = 'font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4';
+                                        const a = document.createElement('a');
+                                        a.className = 'text-bone hover:text-red-flag transition-colors';
+                                        const slug = encodeURIComponent(p.slug || p.id || '');
+                                        a.href = `/blog/${slug}.html`;
+                                        // read date from metadata; fallback to parsing 'Published' text inside per-post html
+                                        if (!p.publishedAt && p.html) {
+                                            try {
+                                                const tmp = document.createElement('div'); tmp.innerHTML = p.html;
+                                                const txt = tmp.textContent || '';
+                                                const m = txt.match(/Published\s*[:]?\s*([A-Za-z]{3,}\s+\d{1,2},\s+\d{4})/i);
+                                                if (m) p.publishedAt = new Date(m[1]).toISOString().split('T')[0];
+                                            } catch (e) { /* ignore */ }
+                                        }
+                                        // Humanize title if source is lowercased
+                                        function humanizeTitle(t) {
+                                            if (!t) return '';
+                                            // if already has uppercase letters, assume it's fine
+                                            if (/[A-Z]/.test(t)) return t;
+                                            // Basic title case
+                                            return t.split(/\s+/).map(w => {
+                                                if (!w) return w;
+                                                if (w.toLowerCase() === 'i') return 'I';
+                                                return w[0].toUpperCase() + w.slice(1);
+                                            }).join(' ');
+                                        }
+
+                                        a.textContent = humanizeTitle(p.title || p.heading || '');
+                                        h2.appendChild(a);
+
+                                        const pEl = document.createElement('p');
+                                        pEl.className = 'text-bone/80 mb-4 text-sm sm:text-base';
+                                        const rawSummary = (p.summary && String(p.summary).trim()) || '';
+                                        let finalSummary = rawSummary;
+                                        if (!finalSummary) {
+                                            // fallback: prefer first two paragraphs of html/text when available
+                                            const tmp = document.createElement('div'); tmp.innerHTML = p.html || p.htmlFragment || p.body || '';
+                                            const paras = Array.from(tmp.querySelectorAll('p')).map(n => n.textContent && n.textContent.trim()).filter(Boolean);
+                                            if (paras.length >= 2) {
+                                                finalSummary = (paras[0] + '\n\n' + paras[1]);
+                                            } else {
+                                                finalSummary = tmp.textContent.trim().split('\n').map(s=>s.trim()).filter(Boolean)[0] || '';
+                                            }
+                                        }
+                                        // Show more text for featured post
+                                        const maxChars = (i === 0) ? 420 : 160;
+                                        pEl.textContent = truncateText(finalSummary, maxChars);
+
+                                        const tagsWrap = document.createElement('div'); tagsWrap.className = 'flex flex-wrap gap-2 mb-4';
+                                        (p.tags || []).forEach(t => { const s = document.createElement('span'); s.className = 'blog-tag'; s.textContent = t; tagsWrap.appendChild(s); });
+
+                                        const readMore = document.createElement('a');
+                                        readMore.className = 'text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base';
+                                        readMore.href = `/blog/${slug}.html`;
+                                        readMore.textContent = 'Read more →';
+
+                                            inner.appendChild(meta);
+                                        // If this is the featured post, increase typographic scale
+                                        if (i === 0) {
+                                            h2.className = 'font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl mb-6';
+                                            pEl.className = 'text-bone/90 mb-6 text-base sm:text-lg lg:text-xl';
+                                        }
+                                        inner.appendChild(h2);
+                                        inner.appendChild(pEl);
+                                        inner.appendChild(tagsWrap);
+                                        inner.appendChild(readMore);
+
+                                        card.appendChild(inner);
+                                        container.appendChild(card);
+                                    });
+                                } catch (e) {
+                                    console.error('Failed to render blog listing', e);
+                                    const container = document.getElementById('blog-listing');
+                                    if (container) container.innerHTML = '<div class="blog-card p-6">Unable to load posts.</div>';
+                                }
+                            }
+
+                            document.addEventListener('DOMContentLoaded', renderBlogListing);
+                            window.renderBlogListing = renderBlogListing;
+                        })();
+                        </script>
 
                     </div>
                     
@@ -666,7 +750,7 @@
             }
         });
 
-        // Newsletter form submission
+        // Newsletter form submission (try local /api endpoint, then fallback to Netlify function)
         document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -679,20 +763,25 @@
             submitButton.disabled = true;
             
             try {
-                const response = await fetch('/api/newsletter', {
+                // Prefer local server route (Express) for developer convenience
+                let response = await fetch('/api/newsletter', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        email: email,
-                        source: 'blog'
-                    })
-                });
-                
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'blog' })
+                }).catch(() => null);
+
+                // If local endpoint not available, fall back to Netlify function
+                if (!response || !response.ok) {
+                    response = await fetch('/.netlify/functions/newsletter-subscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, source: 'blog' })
+                    });
+                }
+
                 const result = await response.json();
-                
-                if (result.success) {
+
+                if (response.ok && result.success) {
                     // Show success
                     submitButton.textContent = 'Subscribed!';
                     submitButton.style.background = 'linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%)';

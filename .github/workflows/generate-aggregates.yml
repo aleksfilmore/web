@@ -1,0 +1,42 @@
+name: Generate Aggregates
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # daily at 03:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install
+        run: npm ci
+
+      - name: Generate blog index
+        run: npm run generate-blog-json
+
+      - name: Generate aggregates
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        run: npm run generate-aggregates
+
+      - name: Commit aggregates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/aggregates.json data/blog-index.json || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update generated aggregates"
+            git push
+          else
+            echo "No changes"
+          fi

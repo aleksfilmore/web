@@ -9,8 +9,9 @@
     "build": "node build-css.js",
     "build-css": "node build-css.js",
     "watch-css": "node build-css.js --watch",
+    "generate-blog-json": "node ./scripts/generate_blog_index.js",
     "deploy": "npm run build && netlify deploy --prod",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./tests/test_db_utils.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "netlify dev:exec drizzle-kit migrate",
     "db:studio": "netlify dev:exec drizzle-kit studio"
@@ -49,6 +50,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
     "drizzle-kit": "^0.31.4",
+    "js-yaml": "^4.1.0",
     "netlify-cli": "^23.3.1",
     "nodemon": "^3.0.2",
     "postcss": "^8.5.6",
