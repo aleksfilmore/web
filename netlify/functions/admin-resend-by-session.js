@@ -72,12 +72,40 @@ exports.handler = async (event) => {
             </div>
         `;
 
-        const sendRes = await resend.emails.send({
-            from: 'Aleks Filmore <aleksfilmore@gmail.com>',
-            to: [customerEmail],
-            subject: '🎧 Your Audiobook is Ready!',
-            html
-        });
+        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+        let sendRes = null;
+        let preSendPayload = null;
+        // Persist the send payload and effective FROM_EMAIL for debugging on the host
+        try {
+            const dataDir = path.join(__dirname, '..', '..', 'data');
+            if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+            const diagFile = path.join(dataDir, 'tmp_admin_resend_response.json');
+            const payload = {
+                timestamp: new Date().toISOString(),
+                from: FROM_EMAIL,
+                to: String(customerEmail),
+                subject: '🎧 Your Audiobook is Ready!',
+                htmlPreview: html && String(html).substring(0, 200)
+            };
+            preSendPayload = payload;
+            try { fs.writeFileSync(diagFile, JSON.stringify({ preSend: payload }, null, 2)); } catch (e) { /* ignore */ }
+
+            sendRes = await resend.emails.send({
+                from: FROM_EMAIL,
+                to: String(customerEmail),
+                subject: '🎧 Your Audiobook is Ready!',
+                html
+            });
+        } catch (sendErr) {
+            // Persist diagnostic for troubleshooting
+            try {
+                const dataDir = path.join(__dirname, '..', '..', 'data');
+                if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+                const diagFile = path.join(dataDir, 'tmp_admin_resend_response.json');
+                fs.writeFileSync(diagFile, JSON.stringify({ error: sendErr?.response?.data || sendErr?.message || String(sendErr) }, null, 2));
+            } catch (e) { /* ignore */ }
+            throw sendErr;
+        }
 
         // Persist to data/purchases.json for admin tracing
         try {
@@ -103,7 +131,9 @@ exports.handler = async (event) => {
             console.warn('Failed to persist purchase record:', e?.message || e);
         }
 
-        return { statusCode: 200, headers, body: JSON.stringify({ success: true, message: 'Audiobook access resent', emailResult: sendRes }) };
+    // Return the send result and pre-send payload for admin debugging
+    const safeResult = { data: sendRes?.data || null, error: sendRes?.error || null };
+    return { statusCode: 200, headers, body: JSON.stringify({ success: true, message: 'Audiobook access resent', preSend: preSendPayload, emailResult: safeResult }) };
 
     } catch (error) {
         console.error('admin-resend-by-session error:', error);

@@ -2,6 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
@@ -89,7 +90,7 @@ async function handleCheckoutCompleted(session) {
   
   // Handle different product types
   if (productType === 'audiobook') {
-    const accessToken = generateAudiobookToken();
+    const accessToken = generateAccessToken(customerEmail, session.id);
     await sendAudiobookAccess(customerEmail, accessToken, session, productName);
     console.log('🎧 Audiobook access sent to:', customerEmail);
   } 
@@ -98,7 +99,7 @@ async function handleCheckoutCompleted(session) {
     console.log('📚 Signed book order confirmation sent to:', customerEmail);
   }
   else if (productType === 'bundle') {
-    const accessToken = generateAudiobookToken();
+    const accessToken = generateAccessToken(customerEmail, session.id);
     await sendBundleConfirmation(customerEmail, accessToken, session, productName);
     console.log('🎁 Bundle confirmation sent to:', customerEmail);
   }
@@ -117,18 +118,27 @@ async function handleCheckoutCompleted(session) {
 }
 
 function generateAudiobookToken() {
+  // Preserve backward-compatibility for any systems that relied on the old format.
   const timestamp = Date.now();
   const randomString = Math.random().toString(36).substring(2, 15);
   return `ab_${timestamp}_${randomString}`;
+}
+
+function generateAccessToken(email, sessionId) {
+  // New standardized token format used across the app: base64(email:sessionId:timestamp)
+  const timestamp = Date.now();
+  const raw = `${email}:${sessionId}:${timestamp}`;
+  return Buffer.from(raw, 'utf8').toString('base64');
 }
 
 async function sendAudiobookAccess(email, token, session, productName) {
   try {
     const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
     
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <aleksfilmore@gmail.com>', // Use your verified domain
-      to: [email],
+      from: FROM_EMAIL,
+    to: String(email),
       subject: '🎧 Your Audiobook Access - The Worst Boyfriends Ever',
       html: `
         <!DOCTYPE html>
@@ -230,8 +240,8 @@ async function sendSignedBookConfirmation(email, session, productName) {
     const shippingAddress = session.shipping_details?.address;
     
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <aleksfilmore@gmail.com>',
-      to: [email],
+      from: FROM_EMAIL,
+      to: String(email),
       subject: '📚 Order Confirmed - Signed Copy of The Worst Boyfriends Ever',
       html: `
         <!DOCTYPE html>
@@ -335,8 +345,8 @@ async function sendBundleConfirmation(email, token, session, productName) {
     const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
     
     const { data, error } = await resend.emails.send({
-      from: 'Aleks Filmore <aleksfilmore@gmail.com>',
-      to: [email],
+      from: FROM_EMAIL,
+      to: String(email),
       subject: '🎁 Bundle Order Complete - Audiobook + Signed Copy!',
       html: `
         <!DOCTYPE html>

@@ -294,8 +294,9 @@ exports.handler = async (event, context) => {
                             return;
                         }
                         try {
+                            const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
                             await rc.emails.send({
-                                from: 'alexandra@alexandrarodica.com',
+                                from: FROM_EMAIL,
                                 to: email,
                                 subject: '🎁 EXCLUSIVE: Bonus Chapter "The One That Got Away (Thank God)"',
                                 html: bonusChapterHtml

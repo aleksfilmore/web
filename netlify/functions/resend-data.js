@@ -1,4 +1,5 @@
 const { Resend } = require('resend');
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
 const { requireAuth } = require('./utils/auth');
 let resend; // lazy init inside handler
 
@@ -61,9 +62,9 @@ exports.handler = async (event, context) => {
             if (action === 'test') {
                 console.log('Sending test email via Resend...');
                 
-                const { data, error } = await resend.emails.send({
-                    from: 'Aleks Filmore <aleksfilmore@gmail.com>',
-                    to: [recipient || 'aleksfilmore@gmail.com'],
+                    const { data, error } = await resend.emails.send({
+                        from: FROM_EMAIL,
+                        to: String(recipient),
                     subject: subject || 'Test Email from Admin Panel',
                     html: content || `
                         <h2>🎉 Admin Panel Test Email</h2>
@@ -111,9 +112,9 @@ exports.handler = async (event, context) => {
                 
                 const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
                 
-                const { data, error } = await resend.emails.send({
-                    from: 'Aleks Filmore <aleksfilmore@gmail.com>',
-                    to: [email],
+                    const { data, error } = await resend.emails.send({
+                        from: FROM_EMAIL,
+                        to: String(email),
                     subject: '🎧 Your Audiobook Access - The Worst Boyfriends Ever',
                     html: `
                         <!DOCTYPE html>

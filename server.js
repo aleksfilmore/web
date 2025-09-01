@@ -14,6 +14,8 @@ const AudiobookAnalyticsService = require('./audiobook-analytics-service');
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
+// Centralized from address for transactional emails. Set via env in production.
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
 const mailerLite = new MailerLiteService();
 const googleAnalytics = new GoogleAnalyticsService();
 const stripeAnalytics = new StripeAnalyticsService();
@@ -501,8 +503,8 @@ async function sendConfirmationEmail(session, accessToken) {
     
     try {
         await resend.emails.send({
-            from: 'aleksfilmore@gmail.com',
-            to: session.customer_email,
+            from: FROM_EMAIL,
+            to: String(session.customer_email),
             subject: 'Order Confirmation - The Worst Boyfriends Ever',
             html: emailContent
         });
@@ -661,8 +663,8 @@ async function handleAudiobookAccess(session) {
 
             // Send email with unique access link
             await resend.emails.send({
-                from: 'aleksfilmore@gmail.com',
-                to: customerEmail,
+                from: FROM_EMAIL,
+                to: String(customerEmail),
                 subject: '🎧 Your Audiobook is Ready!',
                 html: `
                     <div style="max-width: 600px; margin: 0 auto; font-family: 'Inter', sans-serif; background-color: #0E0F10; color: #F7F3ED; padding: 40px 20px;">
@@ -1483,9 +1485,10 @@ app.post('/api/contact', async (req, res) => {
         const { Resend } = require('resend');
         const resend = new Resend(process.env.RESEND_API_KEY);
         
+        const CONTACT_TO = String(process.env.CONTACT_TO_EMAIL || 'aleks@aleksfilmore.com');
         await resend.emails.send({
             from: `Contact Form <noreply@aleksfilmore.com>`,
-            to: ['aleks@aleksfilmore.com'],
+            to: CONTACT_TO,
             subject: `Contact Form: ${subject || 'New Message'}`,
             html: `
                 <h2>New Contact Form Submission</h2>

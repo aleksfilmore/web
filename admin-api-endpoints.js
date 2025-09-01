@@ -130,19 +130,20 @@ app.post('/api/send-newsletter', requireAuth, async (req, res) => {
         const { subject, content, recipients } = req.body;
         
         // Get subscriber list (implement based on your system)
-        let subscriberList = [];
+    let subscriberList = [];
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
         if (recipients === 'all') {
             // Get all subscribers from your database
             subscriberList = ['test@example.com']; // Placeholder
         } else if (recipients === 'test') {
-            subscriberList = ['aleksfilmore@gmail.com'];
+            subscriberList = [process.env.CONTACT_TO_EMAIL || 'aleksfilmore@gmail.com'];
         }
 
         // Send via Resend
         const emailPromises = subscriberList.map(email => 
             resend.emails.send({
-                from: 'aleksfilmore@gmail.com',
-                to: email,
+                from: FROM_EMAIL,
+            to: String(email),
                 subject: subject,
                 html: content
             })

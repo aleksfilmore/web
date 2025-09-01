@@ -150,7 +150,7 @@ async function handleCheckoutSessionCompleted(session) {
     console.log('🔑 Generated access token');
     
     // Send audiobook access email
-    await sendAudiobookAccessEmail(customerEmail, accessToken, session);
+        await sendAudiobookAccessEmail(String(customerEmail), accessToken, session);
     
     console.log('Checkout session processing completed');
 
@@ -350,10 +350,11 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
     
     try {
         console.log('📬 Sending audiobook access email...');
-        
+        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+
         await resend.emails.send({
-            from: 'aleksfilmore@gmail.com',
-            to: customerEmail,
+            from: FROM_EMAIL,
+            to: String(customerEmail),
             subject: '🎧 Your Audiobook is Ready!',
             html: emailContent
         });
