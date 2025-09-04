@@ -1,7 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { Resend } = require('resend');
-const fs = require('fs');
-const path = require('path');
 
 // Simple admin auth: provide header 'x-admin-token' equal to ADMIN_API_TOKEN env var
 function ensureAdmin(event) {
