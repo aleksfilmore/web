@@ -75,15 +75,17 @@ exports.handler = async (event) => {
         const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
         let sendRes = null;
         let preSendPayload = null;
-        // Prepare send payload for debugging (skip file write in serverless)
-        const payload = {
-            timestamp: new Date().toISOString(),
-            from: FROM_EMAIL,
-            to: String(customerEmail),
-            subject: '🎧 Your Audiobook is Ready!',
-            htmlPreview: html && String(html).substring(0, 200)
-        };
-        preSendPayload = payload;
+        
+        try {
+            // Prepare send payload for debugging (skip file write in serverless)
+            const payload = {
+                timestamp: new Date().toISOString(),
+                from: FROM_EMAIL,
+                to: String(customerEmail),
+                subject: '🎧 Your Audiobook is Ready!',
+                htmlPreview: html && String(html).substring(0, 200)
+            };
+            preSendPayload = payload;
 
             sendRes = await resend.emails.send({
                 from: FROM_EMAIL,
