@@ -55,7 +55,7 @@
                 <a href="/admin/" class="text-slate-300 hover:text-white transition-colors">
                     Content Manager
                 </a>
-                <a href="#" id="retool-link" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="#" id="retool-link" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="viewAnalytics()">
                     Business Analytics
                 </a>
                 <button id="logout-btn" class="text-slate-300 hover:text-white">
@@ -92,7 +92,7 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <!-- Recent Orders -->
             <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
                 <h2 class="text-lg font-semibold mb-4">Recent Orders</h2>
@@ -133,6 +133,36 @@
                     </a>
                 </div>
             </div>
+        </div>
+
+        <!-- Retool Analytics Dashboard -->
+        <div class="mb-8 bg-slate-800 border border-slate-700 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold">Business Analytics Dashboard</h2>
+                <div class="flex space-x-2">
+                    <button onclick="refreshAnalytics()" class="bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded text-sm transition-colors">
+                        Refresh
+                    </button>
+                    <a href="https://aleksfilmore.retool.com/apps/eafe9482-8a3c-11f0-a297-6fd519ce557e/Aleks%20Filmore%20Admin%20Dashboard/page1" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm transition-colors">
+                        Edit Dashboard
+                    </a>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-lg overflow-hidden">
+                <iframe 
+                    id="retool-dashboard"
+                    src="https://aleksfilmore.retool.com/apps/eafe9482-8a3c-11f0-a297-6fd519ce557e/Aleks%20Filmore%20Admin%20Dashboard/page1" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0"
+                    class="w-full"
+                    title="Business Analytics Dashboard">
+                </iframe>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">
+                📈 Live data from Stripe • Updates automatically • 
+                <a href="https://dashboard.stripe.com" target="_blank" class="text-blue-400 hover:text-blue-300">Manage payments in Stripe →</a>
+            </p>
         </div>
 
         <!-- Integration Status -->
@@ -318,8 +348,16 @@
         }
 
         function viewAnalytics() {
-            // You'll update this with your Retool app URL
-            window.open('YOUR_RETOOL_APP_URL', '_blank');
+            // Open Retool dashboard in new tab
+            window.open('https://aleksfilmore.retool.com/apps/eafe9482-8a3c-11f0-a297-6fd519ce557e/Aleks%20Filmore%20Admin%20Dashboard/page1', '_blank');
+        }
+
+        function refreshAnalytics() {
+            const iframe = document.getElementById('retool-dashboard');
+            if (iframe) {
+                iframe.src = iframe.src; // Reload the iframe
+                showToast('Analytics dashboard refreshed');
+            }
         }
 
         async function exportData() {
