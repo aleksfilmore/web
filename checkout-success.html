@@ -11,6 +11,15 @@
     <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
     <script src="/js/ga-loader.js" defer></script>
     
+    <!-- Google Ads Conversion Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17470098065"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17470098065');
+    </script>
+    
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
     
@@ -192,6 +201,16 @@
                     price: product === 'audiobook' ? 7.99 : product === 'signed-book' ? 19.99 : 24.99
                 }]
             });
+
+            // Google Ads conversion tracking for audiobook purchases
+            if (product === 'audiobook') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-17470098065/D9JeCLjpv4UbEJGVsopB',
+                    'value': 7.99,
+                    'currency': 'EUR',
+                    'transaction_id': urlParams.get('session_id') || ''
+                });
+            }
         }
     </script>
 </body>
