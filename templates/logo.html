@@ -1,0 +1,102 @@
+<!-- Dynamic SVG Logo Component -->
+<div class="aleksfilmore-logo-container">
+    <a href="index.html" class="aleksfilmore-logo-link">
+        <!-- Light version for dark backgrounds -->
+        <svg viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" class="aleksfilmore-logo aleksfilmore-logo-light">
+            <title>Aleks Filmore — Author</title>
+            <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#F7F3ED">ALEKS FILMORE</text>
+            <rect x="40" y="140" width="120" height="8" fill="#FF3B3B" rx="4"/>
+            <text x="170" y="147" font-family="Inter, Arial, sans-serif" font-size="20" letter-spacing="9" fill="#F7F3ED">AUTHOR</text>
+        </svg>
+        
+        <!-- Dark version for light backgrounds -->
+        <svg viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" class="aleksfilmore-logo aleksfilmore-logo-dark">
+            <title>Aleks Filmore — Author</title>
+            <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#0E0F10">ALEKS FILMORE</text>
+            <rect x="40" y="140" width="120" height="8" fill="#FF3B3B" rx="4"/>
+            <text x="170" y="147" font-family="Inter, Arial, sans-serif" font-size="20" letter-spacing="9" fill="#0E0F10">AUTHOR</text>
+        </svg>
+    </a>
+</div>
+
+<style>
+.aleksfilmore-logo-container {
+    display: inline-block;
+}
+
+.aleksfilmore-logo-link {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.aleksfilmore-logo-link:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.aleksfilmore-logo {
+    width: 100%;
+    height: auto;
+    max-width: 180px;
+    display: block;
+}
+
+/* Show light logo by default (for dark backgrounds) */
+.aleksfilmore-logo-light {
+    display: block;
+}
+
+.aleksfilmore-logo-dark {
+    display: none;
+}
+
+/* Switch to dark logo for light backgrounds */
+.light-bg .aleksfilmore-logo-light,
+.bg-bone .aleksfilmore-logo-light,
+.bg-white .aleksfilmore-logo-light {
+    display: none;
+}
+
+.light-bg .aleksfilmore-logo-dark,
+.bg-bone .aleksfilmore-logo-dark,
+.bg-white .aleksfilmore-logo-dark {
+    display: block;
+}
+
+/* Responsive sizing */
+@media (min-width: 640px) {
+    .aleksfilmore-logo {
+        max-width: 220px;
+    }
+}
+
+@media (min-width: 768px) {
+    .aleksfilmore-logo {
+        max-width: 250px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .aleksfilmore-logo {
+        max-width: 280px;
+    }
+}
+
+/* Compact version for navigation */
+.aleksfilmore-logo.compact {
+    max-width: 120px;
+}
+
+@media (min-width: 640px) {
+    .aleksfilmore-logo.compact {
+        max-width: 140px;
+    }
+}
+
+@media (min-width: 768px) {
+    .aleksfilmore-logo.compact {
+        max-width: 160px;
+    }
+}
+</style>
