@@ -3,6 +3,11 @@
   command = "echo 'Static site ready'"
   functions = "netlify/functions"
 
+# Enable Netlify Identity for CMS authentication
+[context.production]
+  [context.production.environment]
+    NETLIFY_IDENTITY = "true"
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
