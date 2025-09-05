@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, init                    <a href="/admin/" class="block w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-md font-medium text-center transition-colors">
+                        📝 Manage Blog Posts
+                    </a>-scale=1.0">
     <title>Admin Dashboard - Aleks Filmore</title>
     <meta name="description" content="Business operations dashboard for Aleks Filmore">
     <link rel="stylesheet" href="/css/tailwind.min.css">
@@ -53,7 +55,7 @@
             <h1 class="text-xl font-bold">Admin Dashboard</h1>
             <div class="flex items-center space-x-4">
                 <a href="/admin/" class="text-slate-300 hover:text-white transition-colors">
-                    Content Manager
+                    📝 Blog Manager
                 </a>
                 <a href="#" id="retool-link" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors" onclick="viewAnalytics()">
                     Business Analytics
@@ -66,7 +68,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8">
+    <main class="container mx-auto px-6 py-8" style="display: none;" id="admin-app-wrapper">
         <!-- Quick Stats -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="stat-card p-6 rounded-lg">
@@ -129,7 +131,7 @@
                         Export Subscribers
                     </button>
                     <a href="/admin/" class="block w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-md font-medium text-center transition-colors">
-                        Manage Content
+                        Manage Blog Content
                     </a>
                 </div>
             </div>
@@ -165,6 +167,27 @@
             </p>
         </div>
 
+        <!-- Blog Management Section -->
+        <div class="mb-8 bg-slate-800 border border-slate-700 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold">Blog Posts Management</h2>
+                <div class="flex space-x-2">
+                    <a href="/admin/" target="_blank" class="bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded text-sm transition-colors">
+                        📝 Open Blog CMS
+                    </a>
+                    <a href="/blog.html" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm transition-colors">
+                        👁️ View Blog
+                    </a>
+                </div>
+            </div>
+            <div class="text-sm text-slate-400 mb-4">
+                Manage your existing blog posts and create new ones using the Decap CMS
+            </div>
+            <div id="blog-posts-list" class="space-y-3">
+                <div class="text-slate-500">Loading blog posts...</div>
+            </div>
+        </div>
+
         <!-- Integration Status -->
         <div class="mt-8 bg-slate-800 border border-slate-700 rounded-lg p-6">
             <h2 class="text-lg font-semibold mb-4">Integration Status</h2>
@@ -177,45 +200,197 @@
         </div>
     </main>
 
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" style="display: none;">
+        <div class="bg-slate-800 border border-slate-700 rounded-lg p-8 max-w-md w-full mx-4">
+            <h2 class="text-2xl font-bold mb-6 text-center text-white">Admin Login</h2>
+            <form onsubmit="return handleLoginForm(event)">
+                <div class="mb-4">
+                    <label for="admin-password" class="block text-sm font-medium mb-2 text-slate-300">Password</label>
+                    <input type="password" id="admin-password" class="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md focus:ring-2 focus:ring-blue-500 text-white" required>
+                </div>
+                <div id="login-error" class="hidden text-red-400 text-sm mb-4"></div>
+                <button type="submit" id="login-submit-btn" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-medium transition-colors">
+                    Enter Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
     <script>
+        // Admin Authentication System (same as admin.html)
+        class AuthManager {
+            constructor() {
+                this.token = localStorage.getItem('admin_token');
+                this.sessionExpiry = localStorage.getItem('admin_session_expiry');
+                this.csrfToken = localStorage.getItem('admin_csrf_token');
+            }
+            
+            async login(password) {
+                console.log('🔐 Attempting login...');
+                
+                try {
+                    const response = await fetch('/.netlify/functions/admin-auth-login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ password })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.token) {
+                        this.token = result.token;
+                        this.sessionExpiry = Date.now() + (result.expiresIn * 1000);
+                        localStorage.setItem('admin_token', this.token);
+                        localStorage.setItem('admin_session_expiry', this.sessionExpiry);
+                        this.csrfToken = result.csrfToken || null;
+                        if (this.csrfToken) localStorage.setItem('admin_csrf_token', this.csrfToken);
+                        console.log('✅ Login successful');
+                        return true;
+                    } else {
+                        console.log('❌ Login failed:', result.error);
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('❌ Login error:', error);
+                    return false;
+                }
+            }
+            
+            logout() {
+                this.token = null;
+                this.sessionExpiry = null;
+                this.csrfToken = null;
+                localStorage.removeItem('admin_token');
+                localStorage.removeItem('admin_session_expiry');
+                localStorage.removeItem('admin_csrf_token');
+                location.reload();
+            }
+            
+            isValid() {
+                return this.token && this.sessionExpiry && Date.now() < this.sessionExpiry;
+            }
+        }
+        
+        const authManager = new AuthManager();
+        
+        // Authenticated fetch helper
+        async function authenticatedFetch(url, options = {}) {
+            const token = authManager.token;
+            if (!token) {
+                throw new Error('No authentication token available');
+            }
+
+            const method = (options.method || 'GET').toUpperCase();
+            const authHeaders = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+
+            // Include CSRF token on state-changing requests
+            if (method !== 'GET' && method !== 'OPTIONS') {
+                const csrf = authManager.csrfToken || localStorage.getItem('admin_csrf_token');
+                if (csrf) authHeaders['X-CSRF-Token'] = csrf;
+            }
+
+            return fetch(url, {
+                ...options,
+                headers: authHeaders
+            });
+        }
+
         // Admin token management
         let adminToken = localStorage.getItem('admin_token');
         
         // Check authentication on load
         document.addEventListener('DOMContentLoaded', function() {
-            if (!adminToken) {
-                showLogin();
+            if (!authManager.isValid()) {
+                showLoginModal();
             } else {
-                loadDashboard();
-                testIntegrations();
+                initializeDashboard();
             }
         });
 
-        // Simple login handling
-        function showLogin() {
-            const token = prompt('Enter admin token:');
-            if (token) {
-                localStorage.setItem('admin_token', token);
-                adminToken = token;
-                loadDashboard();
+        // Initialize dashboard after authentication
+        function initializeDashboard() {
+            // Hide login modal and show dashboard
+            hideLoginModal();
+            document.getElementById('admin-app-wrapper').style.display = 'block';
+            loadDashboard();
+            testIntegrations();
+        }
+
+        // Show login modal
+        function showLoginModal() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        // Hide login modal
+        function hideLoginModal() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // Handle login form submission
+        async function handleLoginForm(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('admin-password').value;
+            const submitBtn = document.getElementById('login-submit-btn');
+            const errorDiv = document.getElementById('login-error');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Authenticating...';
+            errorDiv.classList.add('hidden');
+            
+            const success = await authManager.login(password);
+            
+            if (success) {
+                initializeDashboard();
             } else {
-                document.body.innerHTML = '<div class="flex items-center justify-center min-h-screen"><p class="text-slate-400">Access denied</p></div>';
+                errorDiv.textContent = 'Invalid password. Please try again.';
+                errorDiv.classList.remove('hidden');
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enter Dashboard';
+            document.getElementById('admin-password').value = '';
+            
+            return false;
+        }
+
+        // Simple login handling (legacy fallback)
+        function showLogin() {
+            showLoginModal();
+        }
+
+        // Login handler (legacy)
+        async function handleLogin(password) {
+            const success = await authManager.login(password);
+            
+            if (success) {
+                initializeDashboard();
+            } else {
+                alert('Invalid password. Please try again.');
+                showLoginModal();
             }
         }
 
         // Load dashboard data
         async function loadDashboard() {
             try {
-                const response = await fetch('/.netlify/functions/admin-dashboard-summary', {
-                    headers: {
-                        'Authorization': `Bearer ${adminToken}`
-                    }
-                });
+                const response = await authenticatedFetch('/.netlify/functions/admin-dashboard-summary');
                 
                 if (!response.ok) {
+                    if (response.status === 401) {
+                        authManager.logout();
+                        return;
+                    }
                     throw new Error('Failed to load dashboard data');
                 }
                 
@@ -267,11 +442,7 @@
         // Test integrations
         async function testIntegrations() {
             try {
-                const response = await fetch('/.netlify/functions/admin-test-integrations', {
-                    headers: {
-                        'Authorization': `Bearer ${adminToken}`
-                    }
-                });
+                const response = await authenticatedFetch('/.netlify/functions/admin-test-integrations');
                 
                 const data = await response.json();
                 updateIntegrationStatus(data);
@@ -328,12 +499,8 @@
         // Action handlers
         async function resendEmail(orderId) {
             try {
-                const response = await fetch('/.netlify/functions/admin-resend-by-session', {
+                const response = await authenticatedFetch('/.netlify/functions/admin-resend-by-session', {
                     method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${adminToken}`,
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({ sessionId: orderId })
                 });
                 
@@ -362,11 +529,7 @@
 
         async function exportData() {
             try {
-                const response = await fetch('/.netlify/functions/export-subscribers', {
-                    headers: {
-                        'Authorization': `Bearer ${adminToken}`
-                    }
-                });
+                const response = await authenticatedFetch('/.netlify/functions/export-subscribers');
                 
                 if (response.ok) {
                     const blob = await response.blob();
@@ -386,12 +549,14 @@
 
         // Logout
         document.getElementById('logout-btn').addEventListener('click', function() {
-            localStorage.removeItem('admin_token');
-            location.reload();
+            authManager.logout();
         });
 
         // Auto-refresh dashboard every 5 minutes
         setInterval(loadDashboard, 5 * 60 * 1000);
     </script>
+
+    <!-- Blog Manager -->
+    <script src="/js/blog-manager.js"></script>
 </body>
 </html>
