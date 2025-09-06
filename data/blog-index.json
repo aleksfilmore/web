@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "id": "dating-disaster-survival-guide",
+      "slug": "dating-disaster-survival-guide",
+      "title": "The Ultimate Dating Disaster Survival Guide: What Not to Do (According to Someone Who Did It All)",
+      "summary": "Learn from my dating disasters! A survival guide for modern dating with real stories, red flags to avoid, and lessons I learned the hard way. From the 'I can fix him' fallacy to text message spirals.",
+      "publishedAt": "2025-01-06T00:00:00.000Z",
+      "tags": ["dating advice", "red flags", "survival guide"],
+      "readTime": "8 min read"
+    },
+    {
       "id": "how-i-got-into-writing-the-worst-boyfriends-ever",
       "slug": "how-i-got-into-writing-the-worst-boyfriends-ever",
       "title": "how i got into writing the worst boyfriends ever",
