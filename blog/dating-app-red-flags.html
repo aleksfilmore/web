@@ -47,8 +47,8 @@
         "headline": "Dating App Red Flags: The Profile Warning Signs I Wish I'd Noticed Sooner",
         "description": "Spot dating app red flags before you swipe right! Real examples of warning signs in profiles, photos, and conversations that could save you from disaster dates.",
         "image": "https://aleksfilmore.com/AF.png",
-        "datePublished": "2025-01-10",
-        "dateModified": "2025-01-10",
+        "datePublished": "2025-09-10",
+        "dateModified": "2025-09-10",
         "author": {
             "@type": "Person",
             "name": "Aleks Filmore",
@@ -68,6 +68,67 @@
     </script>
 
     <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-red-flag { color: var(--color-red-flag); }
+        .text-glitch-lime { color: var(--color-glitch-lime); }
+        .text-dusty-blush { color: var(--color-dusty-blush); }
+
+        /* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
         .reading-progress {
             position: fixed;
             top: 0;
@@ -93,6 +154,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 59, 59, 0.2);
+            color: var(--color-bone);
         }
 
         .pro-tip {
@@ -103,6 +165,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(199, 255, 65, 0.2);
+            color: var(--color-bone);
         }
 
         .conversation-example {
@@ -112,6 +175,7 @@
             margin: 2rem 0;
             border-radius: 8px;
             backdrop-filter: blur(10px);
+            color: var(--color-bone);
         }
 
         .message-thread {
@@ -130,6 +194,7 @@
 
         .message.him {
             background: rgba(247, 243, 237, 0.2);
+            color: var(--color-bone);
             text-align: left;
         }
 
@@ -148,6 +213,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(241, 183, 196, 0.2);
+            color: var(--color-bone);
         }
 
         .success-story {
@@ -158,6 +224,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(199, 255, 65, 0.2);
+            color: var(--color-bone);
         }
 
         .cta-section {
@@ -199,6 +266,36 @@
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
             font-weight: 600;
+        }
+
+        /* Override Tailwind prose default colors */
+        .prose p {
+            color: var(--color-bone) !important;
+        }
+        
+        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+            color: var(--color-bone) !important;
+        }
+        
+        .prose li {
+            color: var(--color-bone) !important;
+        }
+        
+        .prose strong {
+            color: var(--color-bone) !important;
+        }
+        
+        .prose em {
+            color: var(--color-bone) !important;
+        }
+
+        /* Ensure all content boxes and their children have proper text color */
+        .red-flag-alert *, .pro-tip *, .conversation-example *, .reality-check *, .success-story * {
+            color: var(--color-bone) !important;
+        }
+        
+        .red-flag-alert h4, .pro-tip h4, .reality-check h4, .success-story h4 {
+            color: var(--color-bone) !important;
         }
 
         @media (max-width: 768px) {
@@ -283,7 +380,7 @@
                     </h1>
                     <div class="flex flex-wrap items-center justify-center gap-4 text-bone/70 text-sm sm:text-base">
                         <span class="reading-time">7 min read</span>
-                        <span class="publish-date">January 10, 2025</span>
+                        <span class="publish-date">September 10, 2025</span>
                         <span class="author">By Aleks Filmore</span>
                     </div>
                 </header>
@@ -475,32 +572,58 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile menu functionality
+        // Mobile menu functionality (iOS-optimized)
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             
             if (mobileMenuToggle && mobileMenu) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    const expanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', (!expanded).toString());
-                    mobileMenu.classList.toggle('hidden');
-                });
+                // Add proper touch handling for iOS
+                const handleToggle = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                };
+
+                // Use both click and touchstart for better iOS support
+                mobileMenuToggle.addEventListener('click', handleToggle);
+                mobileMenuToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    handleToggle(e);
+                }, { passive: false });
                 
                 // Close mobile menu when clicking on a link
                 const mobileLinks = mobileMenu.querySelectorAll('a');
                 mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
+                    const closeMenu = function() {
                         mobileMenu.classList.add('hidden');
-                        if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    });
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    };
+                    
+                    link.addEventListener('click', closeMenu);
+                    link.addEventListener('touchstart', closeMenu);
                 });
                 
                 // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                         mobileMenu.classList.add('hidden');
-                        if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                document.addEventListener('touchstart', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
             }

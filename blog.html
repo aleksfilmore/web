@@ -480,6 +480,15 @@
                                 try {
                                     const data = await fetchBlogList();
                                     let posts = (data.posts || []).slice();
+                                    
+                                    // Filter out future articles (only show published or today's articles)
+                                    const now = new Date();
+                                    now.setHours(23, 59, 59, 999); // End of today
+                                    posts = posts.filter(post => {
+                                        const publishDate = new Date(post.publishedAt || post.date || '');
+                                        return publishDate <= now;
+                                    });
+                                    
                                     // Sort by publishedAt/date desc when available
                                     posts.sort((a,b) => {
                                         const da = a.publishedAt || a.date || '';
@@ -488,13 +497,7 @@
                                         const nb = Date.parse(db) || 0;
                                         return nb - na;
                                     });
-                                    // User-specified latest article preference: make sure this slug appears first if present
-                                    const preferredLatestSlug = 'how-i-got-into-writing-the-worst-boyfriends-ever';
-                                    const prefIndex = posts.findIndex(p => (p.slug||p.id||'') === preferredLatestSlug);
-                                    if (prefIndex > 0) {
-                                        const [pref] = posts.splice(prefIndex, 1);
-                                        posts.unshift(pref);
-                                    }
+                                    // Most recent article will be first after sorting
                                     const container = document.getElementById('blog-listing');
                                     if (!container) return;
                                     container.innerHTML = '';
@@ -755,26 +758,60 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile menu functionality (iOS-optimized)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+            if (mobileMenuToggle && mobileMenu) {
+                // Add proper touch handling for iOS
+                const handleToggle = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                };
 
-        // Close mobile menu when clicking on links
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+                // Use both click and touchstart for better iOS support
+                mobileMenuToggle.addEventListener('click', handleToggle);
+                mobileMenuToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    handleToggle(e);
+                }, { passive: false });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.add('hidden');
+                // Close mobile menu when clicking on links
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    const closeMenu = function() {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    };
+                    
+                    link.addEventListener('click', closeMenu);
+                    link.addEventListener('touchstart', closeMenu);
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                document.addEventListener('touchstart', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
             }
         });
 

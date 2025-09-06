@@ -5,44 +5,53 @@
       "slug": "dating-disaster-survival-guide",
       "title": "The Ultimate Dating Disaster Survival Guide: What Not to Do (According to Someone Who Did It All)",
       "summary": "Learn from my dating disasters! A survival guide for modern dating with real stories, red flags to avoid, and lessons I learned the hard way. From the 'I can fix him' fallacy to text message spirals.",
-      "publishedAt": "2025-01-06T00:00:00.000Z",
+      "publishedAt": "2025-09-06T12:00:00.000Z",
       "tags": ["dating advice", "red flags", "survival guide"],
       "readTime": "8 min read"
     },
     {
+      "id": "dating-app-red-flags",
+      "slug": "dating-app-red-flags",
+      "title": "Dating App Red Flags: The Profile Warning Signs I Wish I'd Noticed Sooner",
+      "summary": "Spot dating app red flags before you swipe right! Real examples of warning signs in profiles, photos, and conversations that could save you from disaster dates.",
+      "publishedAt": "2025-09-10T12:00:00.000Z",
+      "tags": ["dating apps", "red flags", "online dating"],
+      "readTime": "7 min read"
+    },
+    {
       "id": "how-i-got-into-writing-the-worst-boyfriends-ever",
       "slug": "how-i-got-into-writing-the-worst-boyfriends-ever",
-      "title": "how i got into writing the worst boyfriends ever",
+      "title": "How I Got Into Writing The Worst Boyfriends Ever",
       "summary": "The raw, honest story behind turning dating disasters into chapters and heartbreak into healing through humor.",
       "publishedAt": "2025-08-26T22:00:00.000Z",
-      "tags": [],
+      "tags": ["writing", "memoir", "personal story"],
       "readTime": "3 min read"
     },
     {
       "id": "anatomy-of-a-ghost",
       "slug": "anatomy-of-a-ghost",
-      "title": "anatomy of a ghost",
+      "title": "Anatomy of a Ghost",
       "summary": "The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.",
       "publishedAt": "2025-08-22T22:00:00.000Z",
-      "tags": [],
+      "tags": ["ghosting", "dating psychology", "recovery"],
       "readTime": "6 min read"
     },
     {
       "id": "red-flag-field-guide",
       "slug": "red-flag-field-guide",
-      "title": "red flag field guide",
+      "title": "Red Flag Field Guide",
       "summary": "25 warning signs I wish I'd spotted sooner, complete with real examples and recovery tips from someone who learned the hard way.",
       "publishedAt": "2025-08-22T22:00:00.000Z",
-      "tags": [],
+      "tags": ["red flags", "dating advice", "warning signs"],
       "readTime": "3 min read"
     },
     {
       "id": "why-i-stopped-dating-apps",
       "slug": "why-i-stopped-dating-apps",
-      "title": "why i stopped dating apps",
+      "title": "Why I Stopped Using Dating Apps",
       "summary": "After documenting 25 dating disasters, I finally realized the apps weren't the problem—they were the symptom. Here's what happened when I went offline for three months and actually started meeting people in Brussels coffee shops.",
       "publishedAt": "2025-08-20T00:00:00.000Z",
-      "tags": [],
+      "tags": ["dating apps", "offline dating", "personal experience"],
       "readTime": "7 min read"
     }
   ]

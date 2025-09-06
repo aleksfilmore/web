@@ -7,7 +7,7 @@
     <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://aleksfilmore.com/</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,36 +15,115 @@
     <!-- Main Pages - High Priority -->
     <url>
         <loc>https://aleksfilmore.com/audiobook.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://aleksfilmore.com/shop.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
-        <loc>https://aleksfilmore.com/dacia-rising.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <loc>https://aleksfilmore.com/books.html</loc>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Content Pages - Medium Priority -->
     <url>
-        <loc>https://aleksfilmore.com/blog.html</loc>
-        <lastmod>2025-01-22</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://aleksfilmore.com/reviews.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/about.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/contact.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
+        <loc>https://aleksfilmore.com/dacia-rising.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/bad-date-bingo.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Blog - High Priority -->
+    <url>
+        <loc>https://aleksfilmore.com/blog.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Blog Articles - High Priority (Recent Content) -->
+    <url>
+        <loc>https://aleksfilmore.com/blog/dating-disaster-survival-guide.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/blog/dating-app-red-flags.html</loc>
+        <lastmod>2025-09-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/blog/how-i-got-into-writing-the-worst-boyfriends-ever.html</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/blog/anatomy-of-a-ghost.html</loc>
+        <lastmod>2025-08-22</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/blog/red-flag-field-guide.html</loc>
+        <lastmod>2025-08-22</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/blog/why-i-stopped-dating-apps.html</loc>
+        <lastmod>2025-08-20</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Content Pages - Medium Priority -->
+    <url>
         <loc>https://aleksfilmore.com/newsletter.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -52,29 +131,43 @@
     <!-- Functional Pages - Lower Priority -->
     <url>
         <loc>https://aleksfilmore.com/checkout.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/checkout-success.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://aleksfilmore.com/order-confirmation.html</loc>
+        <lastmod>2025-09-06</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
     </url>
 
     <!-- Legal Pages - Lowest Priority -->
     <url>
         <loc>https://aleksfilmore.com/terms.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <url>
         <loc>https://aleksfilmore.com/privacy.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <url>
         <loc>https://aleksfilmore.com/cookies.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2025-09-06</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>

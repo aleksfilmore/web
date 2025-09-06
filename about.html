@@ -677,28 +677,58 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile menu functionality
+        // Mobile menu functionality (iOS-optimized)
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
 
             if (mobileMenuToggle && mobileMenu) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
+                // Add proper touch handling for iOS
+                const handleToggle = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                };
+
+                // Use both click and touchstart for better iOS support
+                mobileMenuToggle.addEventListener('click', handleToggle);
+                mobileMenuToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    handleToggle(e);
+                }, { passive: false });
 
                 // Close mobile menu when clicking on a link
                 const mobileLinks = mobileMenu.querySelectorAll('a');
                 mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
+                    const closeMenu = function() {
                         mobileMenu.classList.add('hidden');
-                    });
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    };
+                    
+                    link.addEventListener('click', closeMenu);
+                    link.addEventListener('touchstart', closeMenu);
                 });
 
                 // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                         mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                document.addEventListener('touchstart', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
             }
