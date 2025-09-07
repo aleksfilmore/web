@@ -169,22 +169,7 @@
             transform: translateY(-1px);
         }
 
-        /* Mobile-First Author Photo */
-        .author-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            border: 4px solid var(--color-red-flag);
-            transition: all 0.3s ease;
-            margin: 0 auto;
-        }
-
-        .author-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 59, 59, 0.2);
-        }
+        /* Mobile-First Author Photo - REMOVED */
 
         /* Mobile-First Cards */
         .bio-card {
@@ -223,11 +208,6 @@
 
         /* Large mobile (375px+) */
         @media (min-width: 375px) {
-            .author-photo {
-                width: 220px;
-                height: 220px;
-            }
-
             .bio-card {
                 padding: 1.75rem;
             }
@@ -249,11 +229,6 @@
                 font-size: 1rem;
             }
 
-            .author-photo {
-                width: 260px;
-                height: 260px;
-            }
-
             .bio-card {
                 padding: 2rem;
             }
@@ -261,10 +236,7 @@
 
         /* Medium tablet (768px+) */
         @media (min-width: 768px) {
-            .author-photo {
-                width: 300px;
-                height: 300px;
-            }
+            /* Enhanced spacing for tablets */
         }
 
         /* Large tablet/Small desktop (1024px+) */
@@ -328,7 +300,7 @@
 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                    <button id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" class="text-bone hover:text-red-flag transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -367,22 +339,52 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+            // Add proper touch handling for iOS
+            const handleToggle = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            };
+
+            // Use both click and touchstart for better iOS support
+            mobileMenuToggle.addEventListener('click', handleToggle);
+            mobileMenuToggle.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                handleToggle(e);
+            }, { passive: false });
 
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                const closeMenu = function() {
                     mobileMenu.classList.add('hidden');
-                });
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                };
+                
+                link.addEventListener('click', closeMenu);
+                link.addEventListener('touchstart', closeMenu);
             });
 
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            document.addEventListener('touchstart', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -393,37 +395,44 @@
     <main class="pt-16 sm:pt-20">
 
         <!-- Hero Section -->
-        <section class="py-8 sm:py-12 lg:py-16">
+        <section class="py-12 sm:py-16 lg:py-20">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center">
 
-                    <!-- Author Photo -->
-                    <div class="mb-6 sm:mb-8">
-                        <img src="AF.png" alt="Aleks Filmore - Author Photo" class="author-photo floating-element" loading="eager">
-                    </div>
-
-                    <!-- Intro -->
-                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6">
+                    <!-- Clean Title -->
+                    <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 leading-tight">
                         Hi, I'm <span class="text-red-flag">Aleks Filmore</span>
                     </h1>
-
-                    <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed">
-                        Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.
+                    
+                    <!-- Simple Tagline -->
+                    <p class="text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-12 text-bone/90 leading-relaxed">
+                        Honest to a fault, funny on purpose.<br>
+                        <span class="text-glitch-lime/80">Red flags processed in Brussels, delivered worldwide.</span>
                     </p>
 
-                    <!-- Quick Actions -->
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                    <!-- Brief Description -->
+                    <div class="max-w-2xl mx-auto mb-10 sm:mb-12">
+                        <p class="text-lg sm:text-xl text-bone/70 leading-relaxed">
+                            I'm a queer author turning dating disasters into literature that hopefully saves you 
+                            from repeating my mistakes.
+                        </p>
+                    </div>
+
+                    <!-- Simple CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
                         <a href="shop.html" class="btn-primary">
                             <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-    </svg> Get My Book
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg> 
+                            Get My Book
                         </a>
                         <a href="contact.html" class="btn-secondary">
                             <svg class="premium-icon colored-blush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-    </svg> Say Hello
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg> 
+                            Say Hello
                         </a>
                     </div>
 
@@ -464,7 +473,7 @@
                             <ul class="space-y-3 text-sm sm:text-base">
                                 <li class="flex items-start gap-3">
                                     <span class="text-red-flag mt-1">🚩</span>
-                                    <span>Collected 27 red flags before writing them into a book</span>
+                                    <span>Collected 25 red flags before writing them into a book</span>
                                 </li>
                                 <li class="flex items-start gap-3">
                                     <span class="text-red-flag mt-1">☕</span>
@@ -540,18 +549,6 @@
                     <p class="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-bone/80">
                         I love hearing from readers, especially if you have your own red flag stories to share.
                     </p>
-
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto mb-8">
-                        <a href="mailto:aleksfilmore@gmail.com" class="btn-primary">
-                            <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-    </svg> Email Me
-                        </a>
-                        <a href="contact.html" class="btn-secondary">
-                            📝 Contact Form
-                        </a>
-                    </div>
 
                     <!-- Social Links -->
                     <div class="flex justify-center gap-6 sm:gap-8">

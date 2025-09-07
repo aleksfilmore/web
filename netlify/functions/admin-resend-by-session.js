@@ -70,7 +70,7 @@ exports.handler = async (event) => {
             </div>
         `;
 
-        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
         let sendRes = null;
         let preSendPayload = null;
         

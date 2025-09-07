@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
@@ -135,7 +135,7 @@ async function sendAudiobookAccess(email, token, session, productName) {
   try {
     const accessUrl = `https://aleksfilmore.com/audiobook-player.html?token=${token}&email=${encodeURIComponent(email)}`;
     
-    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
     to: String(email),

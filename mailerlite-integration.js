@@ -8,7 +8,7 @@ class MailerLiteService {
     constructor() {
         this.apiKey = process.env.MAILERLITE_API_KEY;
         this.baseURL = 'https://connect.mailerlite.com/api';
-    this.senderEmail = process.env.FROM_EMAIL ? process.env.FROM_EMAIL.replace(/.*<|>.*/g, '').trim() : 'aleks@aleksfilmore.com';
+    this.senderEmail = process.env.FROM_EMAIL ? process.env.FROM_EMAIL.replace(/.*<|>.*/g, '').trim() : 'aleksfilmore@gmail.com';
         this.senderName = 'Aleks Filmore';
         this.headers = {
             'Authorization': `Bearer ${this.apiKey}`,
@@ -337,7 +337,7 @@ class MailerLiteService {
             const pdfPath = path.join(__dirname, 'public', 'Bonus Chapter - The Worst Boyfriends Ever.pdf');
             const pdfBuffer = fs.readFileSync(pdfPath);
             
-            const FROM_EMAIL = process.env.FROM_EMAIL || `Aleks Filmore <aleks@aleksfilmore.com>`;
+            const FROM_EMAIL = process.env.FROM_EMAIL || `Aleks Filmore <aleksfilmore@gmail.com>`;
                 const response = await resend.emails.send({
                     from: FROM_EMAIL,
                     to: String(subscriber.email),

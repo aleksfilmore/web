@@ -1,5 +1,5 @@
 const { Resend } = require('resend');
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
 const { requireAuth } = require('./utils/auth');
 let resend; // lazy init inside handler
 

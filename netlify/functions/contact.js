@@ -47,8 +47,8 @@ exports.handler = async (event, context) => {
         console.log(`Contact form submission: ${email} - ${subject}`);
 
         // Send contact email via Resend (transactional)
-        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
-            const CONTACT_TO = String(process.env.CONTACT_TO_EMAIL || 'aleks@aleksfilmore.com');
+        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
+            const CONTACT_TO = String(process.env.CONTACT_TO_EMAIL || 'aleksfilmore@gmail.com');
             await resend.emails.send({
                 from: FROM_EMAIL,
                 to: CONTACT_TO,

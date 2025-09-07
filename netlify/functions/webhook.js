@@ -350,7 +350,7 @@ async function sendAudiobookAccessEmail(customerEmail, accessToken, session) {
     
     try {
         console.log('📬 Sending audiobook access email...');
-        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+        const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
 
         await resend.emails.send({
             from: FROM_EMAIL,

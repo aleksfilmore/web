@@ -131,7 +131,7 @@ app.post('/api/send-newsletter', requireAuth, async (req, res) => {
         
         // Get subscriber list (implement based on your system)
     let subscriberList = [];
-    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
         if (recipients === 'all') {
             // Get all subscribers from your database
             subscriberList = ['test@example.com']; // Placeholder

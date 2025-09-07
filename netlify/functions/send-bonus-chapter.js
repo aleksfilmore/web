@@ -294,7 +294,7 @@ exports.handler = async (event, context) => {
                             return;
                         }
                         try {
-                            const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+                            const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
                             await rc.emails.send({
                                 from: FROM_EMAIL,
                                 to: email,

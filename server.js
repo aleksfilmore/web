@@ -15,7 +15,7 @@ const AudiobookAnalyticsService = require('./audiobook-analytics-service');
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 // Centralized from address for transactional emails. Set via env in production.
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
 const mailerLite = new MailerLiteService();
 const googleAnalytics = new GoogleAnalyticsService();
 const stripeAnalytics = new StripeAnalyticsService();
@@ -1485,7 +1485,7 @@ app.post('/api/contact', async (req, res) => {
         const { Resend } = require('resend');
         const resend = new Resend(process.env.RESEND_API_KEY);
         
-        const CONTACT_TO = String(process.env.CONTACT_TO_EMAIL || 'aleks@aleksfilmore.com');
+        const CONTACT_TO = String(process.env.CONTACT_TO_EMAIL || 'aleksfilmore@gmail.com');
         await resend.emails.send({
             from: `Contact Form <noreply@aleksfilmore.com>`,
             to: CONTACT_TO,

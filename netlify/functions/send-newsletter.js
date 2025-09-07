@@ -8,7 +8,7 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAILERLITE_API_URL = 'https://api.mailerlite.com/api/v2';
 
 const resend = new Resend(RESEND_API_KEY);
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleks@aleksfilmore.com>';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Aleks Filmore <aleksfilmore@gmail.com>';
 
 exports.handler = async (event, context) => {
     console.log('📧 Sending newsletter to all subscribers');

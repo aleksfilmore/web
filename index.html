@@ -955,26 +955,53 @@
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         
-            if (mobileMenuToggle && mobileMenu) {
-                    mobileMenuToggle.addEventListener('click', function() {
-                        const expanded = this.getAttribute('aria-expanded') === 'true';
-                        this.setAttribute('aria-expanded', (!expanded).toString());
-                        mobileMenu.classList.toggle('hidden');
-                    });
+        if (mobileMenuToggle && mobileMenu) {
+            // Add proper touch handling for iOS
+            const handleToggle = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            };
+
+            // Use both click and touchstart for better iOS support
+            mobileMenuToggle.addEventListener('click', handleToggle);
+            mobileMenuToggle.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                handleToggle(e);
+            }, { passive: false });
             
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
-                    mobileLinks.forEach(link => {
-                        link.addEventListener('click', function() {
-                            mobileMenu.classList.add('hidden');
-                            if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                        });
-                    });
+            mobileLinks.forEach(link => {
+                const closeMenu = function() {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                };
+                
+                link.addEventListener('click', closeMenu);
+                link.addEventListener('touchstart', closeMenu);
+            });
             
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            document.addEventListener('touchstart', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -1073,20 +1100,23 @@
                 <div class="max-w-6xl mx-auto">
                     
                     <div class="text-center mb-8 sm:mb-12">
-                        <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-4">
+                        <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl mb-6">
                             The Worst Boyfriends Ever
                         </h2>
-                        <p class="text-base sm:text-lg lg:text-xl text-bone/80 max-w-2xl mx-auto">
-                            The Worst Boyfriends Ever isn't just a memoir, it's a breakup battle cry in bold font and eyeliner. You won't just relate. You'll feel seen. Then vindicated. Then a little dangerous.
+                        <p class="text-lg sm:text-xl lg:text-2xl text-bone/90 max-w-3xl mx-auto leading-relaxed mb-4">
+                            <span class="text-red-flag font-semibold">The Worst Boyfriends Ever</span> isn't just a memoir—it's a breakup battle cry in bold font and eyeliner.
+                        </p>
+                        <p class="text-base sm:text-lg lg:text-xl text-glitch-lime/80 max-w-2xl mx-auto">
+                            You won't just relate. You'll feel seen. Then vindicated. Then a little dangerous.
                         </p>
                     </div>
 
                     <div class="relative">
                         <!-- Container for the book + page effect -->
-                        <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-0">
+                        <div class="flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-0">
                             
                             <!-- Book Image -->
-                            <div class="lg:w-1/2 text-center lg:text-left relative z-10">
+                            <div class="lg:w-1/2 text-center lg:text-left relative z-10 lg:-mt-8">
                                 <img src="TWBE 1.png" 
                                      alt="The Worst Boyfriends Ever - 3D Book Mockup" 
                                      class="max-w-full h-auto mx-auto lg:mx-0 floating-element max-h-96 lg:max-h-none lg:transform lg:-rotate-2"
@@ -1095,12 +1125,12 @@
                             </div>
                             
                             <!-- Book Info - Positioned as emerging page -->
-                            <div class="lg:w-1/2 lg:-ml-12 lg:mt-8 relative z-20">
+                            <div class="lg:w-1/2 lg:-ml-12 lg:mt-4 relative z-20">
                                 <div class="receipt-card lg:transform lg:rotate-1 lg:shadow-2xl">
                                     <h3 class="font-display font-bold text-xl sm:text-2xl mb-6">
                                         What You Get:
                                     </h3>
-                                    <div class="space-y-1">
+                                    <div class="space-y-4">
                                         <div class="benefit-item">
                                             <div class="benefit-icon primary">
                                                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1108,42 +1138,42 @@
                                                 </svg>
                                             </div>
                                             <div>
-                                                <strong>25 dating disasters</strong> documented with surgical precision
-                                            </div>
-                                        </div>
-                                        <div class="benefit-item">
-                                            <div class="benefit-icon primary">
-                                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <strong>Red flags catalog</strong> that could save your emotional budget
+                                                <strong class="text-red-flag">25 dating disasters</strong> documented with surgical precision
                                             </div>
                                         </div>
                                         <div class="benefit-item">
                                             <div class="benefit-icon secondary">
                                                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
                                                 </svg>
                                             </div>
                                             <div>
-                                                <strong>Boundary blueprints</strong> learned the hard way
+                                                <strong class="text-red-flag">Red flags catalog</strong> that could save your emotional budget
                                             </div>
                                         </div>
                                         <div class="benefit-item">
                                             <div class="benefit-icon tertiary">
                                                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <strong class="text-red-flag">Boundary blueprints</strong> learned the hard way
+                                            </div>
+                                        </div>
+                                        <div class="benefit-item">
+                                            <div class="benefit-icon primary">
+                                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2.5 2.5 0 100-5H9v5zm0 0v6a2 2 0 104 0v-6m3-2a2.5 2.5 0 100-5m0 5H9"/>
                                                 </svg>
                                             </div>
                                             <div>
-                                                <strong>Therapeutic laughter</strong> at my expense
+                                                <strong class="text-red-flag">Therapeutic laughter</strong> at my expense
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="text-center mt-6">
+                                    <div class="text-center mt-8">
                                         <div class="red-flag-tag">
                                             Direct from author • No platform drama
                                         </div>
