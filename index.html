@@ -956,10 +956,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
         
         if (mobileMenuToggle && mobileMenu) {
-            // Add proper touch handling for iOS
-            const handleToggle = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+            // Simplified iOS-compatible toggle function
+            const toggleMenu = function(e) {
                 const isHidden = mobileMenu.classList.contains('hidden');
                 
                 if (isHidden) {
@@ -971,25 +969,28 @@
                 }
             };
 
-            // Use both click and touchstart for better iOS support
-            mobileMenuToggle.addEventListener('click', handleToggle);
-            mobileMenuToggle.addEventListener('touchstart', function(e) {
+            // Use click event only for better iOS compatibility
+            mobileMenuToggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                handleToggle(e);
-            }, { passive: false });
+                e.stopPropagation();
+                toggleMenu(e);
+            });
+            
+            // Also add touch event without preventDefault for iOS
+            mobileMenuToggle.addEventListener('touchend', function(e) {
+                e.stopPropagation();
+                toggleMenu(e);
+            });
             
             // Close mobile menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
-                const closeMenu = function() {
+                link.addEventListener('click', function() {
                     mobileMenu.classList.add('hidden');
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                };
-                
-                link.addEventListener('click', closeMenu);
-                link.addEventListener('touchstart', closeMenu);
+                });
             });
-            
+
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
@@ -997,18 +998,9 @@
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
-            
-            document.addEventListener('touchstart', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
         }
     });
-    </script>
-
-    <!-- Main Content -->
+    </script>    <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
 
         <!-- Hero Section -->
