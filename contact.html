@@ -150,6 +150,7 @@
     <!-- Cookie Notice CSS -->
     <link rel="stylesheet" href="css/cookie-notice.css">
     <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -224,39 +225,7 @@
             </div>
         </div>
     </nav>
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuToggle && mobileMenu) {
-            // Simple toggle without preventing default on touch
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = !mobileMenu.classList.contains('hidden');
-                mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
-            });
-
-            // Close menu when clicking links
-            mobileMenu.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-    </script>    <!-- Main Content -->
+    <!-- Main Content -->
     <main class="pt-24">
         <!-- Hero Section -->
         <section class="py-16">

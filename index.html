@@ -305,88 +305,6 @@
             opacity: 1;
         }
 
-        /* Mobile-First Shop Cards */
-        .shop-card {
-            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
-            border: 1px solid rgba(247, 243, 237, 0.15);
-            border-radius: 20px;
-            padding: 1.5rem;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            min-height: 280px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .shop-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 59, 59, 0.4);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .shop-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-        }
-
-        .price-badge {
-            position: absolute;
-            top: -8px;
-            right: 12px;
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
-            color: var(--color-bone);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
-            z-index: 10;
-        }
-
-        .feature-tag {
-            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
-            color: var(--color-charcoal);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: var(--font-display);
-            display: inline-block;
-            margin: 0.125rem;
-            box-shadow: 0 2px 6px rgba(199, 255, 65, 0.2);
-        }
-
-        .receipt-card {
-            background: linear-gradient(135deg, rgba(247, 243, 237, 0.95) 0%, rgba(247, 243, 237, 0.9) 100%);
-            color: var(--color-charcoal);
-            padding: 1.25rem;
-            border-radius: 16px;
-            position: relative;
-            border: 2px dashed rgba(14, 15, 16, 0.2);
-            margin: 1rem 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .red-flag-tag {
-            background-color: var(--color-red-flag);
-            color: var(--color-bone);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            transform: rotate(-2deg);
-            display: inline-block;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
         .counter-number {
             background: linear-gradient(135deg, var(--color-red-flag), var(--color-dusty-blush));
             -webkit-background-clip: text;
@@ -868,6 +786,7 @@
 
     <!-- Optimization Scripts -->
     <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
     <script src="/js/image-optimizer.js" defer></script>
     <script src="/js/social-proof.js" defer></script>
     <script src="/js/exit-intent.js" defer></script>
@@ -950,39 +869,7 @@
             </div>
         </div>
     </nav>
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuToggle && mobileMenu) {
-            // Simple toggle without preventing default on touch
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = !mobileMenu.classList.contains('hidden');
-                mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
-            });
-
-            // Close menu when clicking links
-            mobileMenu.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-    </script><!-- Main Content -->
+    <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
 
         <!-- Hero Section -->
@@ -1747,63 +1634,10 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile menu functionality (iOS-optimized)
+        // Non-menu page enhancements (mobile menu handled by /js/mobile-menu.js)
         (function() {
             try {
-                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-                const mobileMenu = document.getElementById('mobile-menu');
                 const nav = document.querySelector('nav');
-
-                if (mobileMenuToggle && mobileMenu) {
-                    // Add proper touch handling for iOS
-                    const handleToggle = function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const isHidden = mobileMenu.classList.contains('hidden');
-                        
-                        if (isHidden) {
-                            mobileMenu.classList.remove('hidden');
-                            mobileMenuToggle.setAttribute('aria-expanded', 'true');
-                        } else {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    };
-
-                    // Use both click and touchstart for better iOS support
-                    mobileMenuToggle.addEventListener('click', handleToggle);
-                    mobileMenuToggle.addEventListener('touchstart', function(e) {
-                        e.preventDefault();
-                        handleToggle(e);
-                    }, { passive: false });
-
-                    // Close mobile menu when clicking on links
-                    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-                    mobileMenuLinks.forEach(link => {
-                        const closeMenu = function() {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                        };
-                        
-                        link.addEventListener('click', closeMenu);
-                        link.addEventListener('touchstart', closeMenu);
-                    });
-
-                    // Close mobile menu when clicking outside
-                    document.addEventListener('click', function(event) {
-                        if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                    
-                    document.addEventListener('touchstart', function(event) {
-                        if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
 
                 // Smooth scroll for anchor links
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

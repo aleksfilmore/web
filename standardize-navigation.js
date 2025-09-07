@@ -54,7 +54,7 @@ const standardNav = `    <!-- Standardized Navigation -->
                 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -192,36 +192,8 @@ const standardFooter = `    <!-- Standardized Footer -->
         </div>
     </footer>`;
 
-// Mobile menu script
-const mobileMenuScript = `
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Close mobile menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        }
-    });
-    </script>`;
+// Mobile menu behavior is centralized in /js/mobile-menu.js; do not inject inline scripts here.
+const mobileMenuScript = '';
 
 function updateNavigationInFile(filePath) {
     try {

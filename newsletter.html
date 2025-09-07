@@ -191,6 +191,7 @@
     <!-- Cookie Notice CSS -->
     <link rel="stylesheet" href="css/cookie-notice.css">
     <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
 </head>
 <body>
                             <!-- Standardized Navigation -->
@@ -232,7 +233,7 @@
                 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -264,34 +265,7 @@
             </div>
         </div>
     </nav>
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Close mobile menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        }
-    });
-    </script>
+    
 
     <!-- Main Content -->
     <main class="pt-24">
@@ -560,7 +534,7 @@
             e.preventDefault();
             
             const email = document.getElementById('email').value;
-            const name = document.getElementById('name').value;
+            const name = document.getElementById('firstName').value;
             const submitButton = document.getElementById('newsletter-submit-btn');
             const originalText = submitButton.textContent;
             

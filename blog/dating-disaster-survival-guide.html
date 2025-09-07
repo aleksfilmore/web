@@ -39,6 +39,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Centralized Mobile Menu Script -->
+    <script src="/js/mobile-menu.js" defer></script>
+    
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
     {
@@ -311,7 +314,7 @@
                 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors" aria-controls="mobile-menu" aria-expanded="false">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -499,63 +502,6 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile menu functionality (iOS-optimized)
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuToggle && mobileMenu) {
-                // Add proper touch handling for iOS
-                const handleToggle = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    
-                    if (isHidden) {
-                        mobileMenu.classList.remove('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'true');
-                    } else {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                };
-
-                // Use both click and touchstart for better iOS support
-                mobileMenuToggle.addEventListener('click', handleToggle);
-                mobileMenuToggle.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    handleToggle(e);
-                }, { passive: false });
-                
-                // Close mobile menu when clicking on a link
-                const mobileLinks = mobileMenu.querySelectorAll('a');
-                mobileLinks.forEach(link => {
-                    const closeMenu = function() {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    };
-                    
-                    link.addEventListener('click', closeMenu);
-                    link.addEventListener('touchstart', closeMenu);
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                
-                document.addEventListener('touchstart', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        });
-
         // Reading progress functionality
         window.addEventListener('scroll', () => {
             const article = document.querySelector('article');

@@ -313,6 +313,7 @@
         }
     </style>
     <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
 </head>
 <body class="antialiased">
 
@@ -387,39 +388,7 @@
             </div>
         </div>
     </nav>
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuToggle && mobileMenu) {
-            // Simple toggle without preventing default on touch
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = !mobileMenu.classList.contains('hidden');
-                mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
-            });
-
-            // Close menu when clicking links
-            mobileMenu.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-    </script>
+    <!-- Mobile Menu handled by /js/mobile-menu.js -->
 
     <!-- Main Content -->
     <main class="pt-16 sm:pt-20">
@@ -755,81 +724,6 @@
 </button>
 
     <!-- JavaScript -->
-    <script>
-        // Mobile menu functionality (iOS-optimized)
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuToggle && mobileMenu) {
-                // Add proper touch handling for iOS
-                const handleToggle = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    
-                    if (isHidden) {
-                        mobileMenu.classList.remove('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'true');
-                    } else {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                };
-
-                // Use both click and touchstart for better iOS support
-                mobileMenuToggle.addEventListener('click', handleToggle);
-                mobileMenuToggle.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    handleToggle(e);
-                }, { passive: false });
-
-                // Close mobile menu when clicking on a link
-                const mobileLinks = mobileMenu.querySelectorAll('a');
-                mobileLinks.forEach(link => {
-                    const closeMenu = function() {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    };
-                    
-                    link.addEventListener('click', closeMenu);
-                    link.addEventListener('touchstart', closeMenu);
-                });
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                
-                document.addEventListener('touchstart', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            // Back to top functionality
-            const backToTop = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
-                    backToTop.classList.add('opacity-100');
-                } else {
-                    backToTop.classList.add('opacity-0', 'pointer-events-none');
-                    backToTop.classList.remove('opacity-100');
-                }
-            });
-            
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-    </script>
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js" defer></script>
