@@ -823,25 +823,69 @@
     document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
+            let isToggling = false;
+            
+            // Simplified iOS-compatible toggle function
+            const toggleMenu = function(e) {
+                if (isToggling) return;
+                isToggling = true;
+                
+                const isHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+                
+                // Reset toggle flag after a short delay
+                setTimeout(() => { isToggling = false; }, 100);
+            };
+
+            // Use click event for desktop and touch event for mobile
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu(e);
             });
             
-            // Close mobile menu when clicking on a link
+            mobileMenuToggle.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu(e);
+            });
+
+            // Close mobile menu when clicking on a link - but allow navigation
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default - allow navigation
+                    // Just close the menu
                     mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 });
             });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
+
+            // Close mobile menu when clicking/touching outside - with delay to prevent immediate closure
+            const closeMenuOutside = function(event) {
+                if (isToggling) return;
                 if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
+            };
+            
+            // Add delay to prevent immediate closure after opening
+            document.addEventListener('click', function(event) {
+                setTimeout(() => closeMenuOutside(event), 50);
+            });
+            
+            document.addEventListener('touchstart', function(event) {
+                setTimeout(() => closeMenuOutside(event), 50);
             });
         }
     });

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0F10">
 
     <!-- Enhanced SEO Meta Tags -->
     <title>About Aleks Filmore | Queer Dating Memoir Author | The Worst Boyfriends Ever</title>
@@ -35,6 +36,10 @@
 
     <!-- Favicon -->
     <link rel="icon" href="/public/ico.png" type="image/png">
+
+    <!-- Preload critical fonts and CSS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+    <link rel="preload" href="/css/tailwind.min.css" as="style">
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
@@ -81,6 +86,25 @@
     }
     </script>
 
+    <!-- Add BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://aleksfilmore.com"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://aleksfilmore.com/about.html"
+        }]
+    }
+    </script>
+
     <!-- Custom Styles -->
     <style>
         :root {
@@ -99,6 +123,10 @@
             width: 100%;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
             font-family: var(--font-body);
@@ -111,6 +139,12 @@
         .text-red-flag { color: var(--color-red-flag); }
         .text-glitch-lime { color: var(--color-glitch-lime); }
         .text-dusty-blush { color: var(--color-dusty-blush); }
+
+        /* Add focus styles for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--color-red-flag);
+            outline-offset: 2px;
+        }
 
         /* Mobile-First Navigation */
         .nav-link {
@@ -145,6 +179,27 @@
         }
 
     /* Buttons defer to css/custom.css .btn-primary for site-wide consistency */
+
+        /* Improve button hover states */
+        .btn-primary, .btn-secondary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before, .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+        }
+
+        .btn-primary:hover::before, .btn-secondary:hover::before {
+            left: 0;
+        }
 
         .btn-secondary {
             background: transparent;
@@ -339,42 +394,23 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         if (mobileMenuToggle && mobileMenu) {
-            // Simplified iOS-compatible toggle function
-            const toggleMenu = function(e) {
-                const isHidden = mobileMenu.classList.contains('hidden');
-                
-                if (isHidden) {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'true');
-                } else {
+            // Simple toggle without preventing default on touch
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+                const isExpanded = !mobileMenu.classList.contains('hidden');
+                mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
+            });
+
+            // Close menu when clicking links
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
                     mobileMenu.classList.add('hidden');
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
-            };
-
-            // Use click event only for better iOS compatibility
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleMenu(e);
-            });
-            
-            // Also add touch event without preventDefault for iOS
-            mobileMenuToggle.addEventListener('touchend', function(e) {
-                e.stopPropagation();
-                toggleMenu(e);
             });
 
-            // Close mobile menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-
-            // Close mobile menu when clicking outside
+            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
@@ -398,16 +434,17 @@
                         Hi, I'm <span class="text-red-flag">Aleks Filmore</span>
                     </h1>
                     
-                    <!-- Simple Tagline -->
+                    <!-- Enhanced Tagline with animation -->
                     <p class="text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-12 text-bone/90 leading-relaxed">
                         Honest to a fault, funny on purpose.<br>
-                        <span class="text-glitch-lime/80">Red flags processed in Brussels, delivered worldwide.</span>
+                        <span class="text-glitch-lime/80 inline-block animate-pulse">Red flags processed in Brussels, delivered worldwide.</span>
                     </p>
 
-                    <!-- Brief Description -->
+                    <!-- Brief Description with better emphasis -->
                     <div class="max-w-2xl mx-auto mb-10 sm:mb-12">
                         <p class="text-lg sm:text-xl text-bone/70 leading-relaxed">
-                            I'm a queer author turning dating disasters into literature that hopefully saves you 
+                            I'm a queer author turning dating disasters into literature that 
+                            <span class="text-red-flag font-semibold">hopefully saves you</span> 
                             from repeating my mistakes.
                         </p>
                     </div>
@@ -430,6 +467,32 @@
                         </a>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Stats Section -->
+        <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-transparent via-red-flag/5 to-transparent">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+                        <div class="bio-card">
+                            <p class="text-3xl sm:text-4xl font-display font-bold text-red-flag mb-2">25+</p>
+                            <p class="text-sm text-bone/70">Dating Disasters</p>
+                        </div>
+                        <div class="bio-card">
+                            <p class="text-3xl sm:text-4xl font-display font-bold text-glitch-lime mb-2">1K+</p>
+                            <p class="text-sm text-bone/70">Happy Readers</p>
+                        </div>
+                        <div class="bio-card">
+                            <p class="text-3xl sm:text-4xl font-display font-bold text-dusty-blush mb-2">5★</p>
+                            <p class="text-sm text-bone/70">Average Rating</p>
+                        </div>
+                        <div class="bio-card">
+                            <p class="text-3xl sm:text-4xl font-display font-bold text-bone mb-2">∞</p>
+                            <p class="text-sm text-bone/70">Bad Jokes</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -527,6 +590,24 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Testimonials -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-8">
+                        What Readers Say
+                    </h2>
+                    <div class="bio-card">
+                        <p class="text-lg italic mb-4 text-bone/80">
+                            "Finally, someone who writes about dating the way we actually talk about it with our friends. 
+                            Brutally honest, wickedly funny, and surprisingly helpful."
+                        </p>
+                        <p class="text-sm text-red-flag font-semibold">— Reader from Brussels</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -666,6 +747,13 @@
     </div>
 </footer>
 
+<!-- Add Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-red-flag text-bone rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 hover:bg-red-flag/80 z-50" aria-label="Back to top">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>
+
     <!-- JavaScript -->
     <script>
         // Mobile menu functionality (iOS-optimized)
@@ -723,10 +811,27 @@
                     }
                 });
             }
+
+            // Back to top functionality
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTop.classList.add('opacity-100');
+                } else {
+                    backToTop.classList.add('opacity-0', 'pointer-events-none');
+                    backToTop.classList.remove('opacity-100');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 
     <!-- Cookie Notice JavaScript -->
-    <script src="js/cookie-notice.js"></script>
+    <script src="js/cookie-notice.js" defer></script>
 </body>
 </html>
