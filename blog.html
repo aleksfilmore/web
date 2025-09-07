@@ -221,6 +221,45 @@
             box-shadow: 0 2px 6px rgba(199, 255, 65, 0.2);
         }
 
+        /* Mobile-friendly themes/categories bar */
+        .theme-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--color-charcoal);
+            background: linear-gradient(135deg, var(--color-bone) 0%, #f0ebe4 100%);
+            border: 1px solid rgba(247, 243, 237, 0.6);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .theme-chip .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-dating { background: var(--color-red-flag); }
+        .dot-writing { background: var(--color-glitch-lime); }
+        .dot-life { background: var(--color-dusty-blush); }
+        .dot-all { background: #9ca3af; }
+
+        .theme-chip.active {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            border-color: rgba(199, 255, 65, 0.8);
+        }
+
+        .themes-bar {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .themes-label { color: var(--color-bone); opacity: 0.75; font-weight: 600; }
+
         .featured-badge {
             background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
             color: var(--color-bone);
@@ -411,6 +450,20 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto">
                     
+                    <!-- Themes/Categories Bar -->
+                    <div class="mb-6 sm:mb-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="themes-label text-sm sm:text-base">Browse by theme</span>
+                            <a href="#blog-listing" class="text-xs text-bone/60 hover:text-red-flag">View All</a>
+                        </div>
+                        <div class="themes-bar" id="themes-bar" aria-label="Blog themes">
+                            <button class="theme-chip active" data-theme="all"><span class="dot dot-all"></span> All</button>
+                            <button class="theme-chip" data-theme="dating"><span class="dot dot-dating"></span> Dating Disasters</button>
+                            <button class="theme-chip" data-theme="writing"><span class="dot dot-writing"></span> Writing Life</button>
+                            <button class="theme-chip" data-theme="life"><span class="dot dot-life"></span> Life & Mindset</button>
+                        </div>
+                    </div>
+
                     <div id="blog-listing" class="blog-grid">
                         <!-- Client-rendered blog cards will appear here -->
                         <div class="blog-card p-6">Loading posts…</div>
@@ -450,7 +503,7 @@
                                 throw new Error('Failed to load posts');
                             }
 
-                            async function renderBlogListing() {
+                            async function renderBlogListing(selectedTheme = 'all') {
                                 try {
                                     const data = await fetchBlogList();
                                     let posts = (data.posts || []).slice();
@@ -471,6 +524,15 @@
                                         const nb = Date.parse(db) || 0;
                                         return nb - na;
                                     });
+                                    // Filter by selected theme (by tag match) if not 'all'
+                                    if (selectedTheme && selectedTheme !== 'all') {
+                                        posts = posts.filter(p => Array.isArray(p.tags) && p.tags.some(t =>
+                                            (selectedTheme === 'dating' && /dating|red\s*flags|relationships/i.test(t)) ||
+                                            (selectedTheme === 'writing' && /writing|author|process/i.test(t)) ||
+                                            (selectedTheme === 'life' && /life|mindset|health|personal/i.test(t))
+                                        ));
+                                    }
+
                                     // Most recent article will be first after sorting
                                     const container = document.getElementById('blog-listing');
                                     if (!container) return;
@@ -576,9 +638,28 @@
                                     if (container) container.innerHTML = '<div class="blog-card p-6">Unable to load posts.</div>';
                                 }
                             }
-
-                            document.addEventListener('DOMContentLoaded', renderBlogListing);
-                            window.renderBlogListing = renderBlogListing;
+                            document.addEventListener('DOMContentLoaded', () => {
+                                // Initial render
+                                renderBlogListing('all');
+                                // Theme chip interactions
+                                const bar = document.getElementById('themes-bar');
+                                if (bar) {
+                                    bar.addEventListener('click', (e) => {
+                                        const chip = e.target.closest('.theme-chip');
+                                        if (!chip) return;
+                                        const theme = chip.getAttribute('data-theme') || 'all';
+                                        // Toggle active state
+                                        bar.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('active'));
+                                        chip.classList.add('active');
+                                        // Re-render
+                                        renderBlogListing(theme);
+                                        // Scroll into view on mobile
+                                        const listing = document.getElementById('blog-listing');
+                                        if (listing) listing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    });
+                                }
+                                window.renderBlogListing = renderBlogListing;
+                            });
                         })();
                         </script>
 
