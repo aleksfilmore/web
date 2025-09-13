@@ -1,4 +1,5 @@
 // Exit Intent Email Capture
+if (typeof ExitIntentManager === 'undefined') {
 class ExitIntentManager {
     constructor() {
         this.hasShown = sessionStorage.getItem('exit_intent_shown') === 'true';
@@ -462,3 +463,5 @@ class ExitIntentManager {
 document.addEventListener('DOMContentLoaded', () => {
     window.exitIntent = new ExitIntentManager();
 });
+
+}

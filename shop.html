@@ -29,6 +29,10 @@
     <link rel="canonical" href="https://aleksfilmore.com/shop.html">
     
     <!-- Google Analytics GA4 + Google Ads -->
+    <script>
+        // Set your actual GA4 measurement ID here, or comment out for testing
+        // window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+    </script>
     <script src="/js/ga-loader.js" defer></script>
     
     <!-- Google Ads Conversion Tracking -->
@@ -1443,9 +1447,16 @@
 
     // Mobile menu handled by /js/mobile-menu.js
 
-        // Event listeners
-        document.getElementById('cart-btn').addEventListener('click', showCart);
-        document.getElementById('cart-btn-mobile').addEventListener('click', showCart);
+        // Event listeners - with null checks
+        const cartBtn = document.getElementById('cart-btn');
+        const cartBtnMobile = document.getElementById('cart-btn-mobile');
+        
+        if (cartBtn) {
+            cartBtn.addEventListener('click', showCart);
+        }
+        if (cartBtnMobile) {
+            cartBtnMobile.addEventListener('click', showCart);
+        }
 
         // Close modal when clicking outside
         document.getElementById('cart-modal').addEventListener('click', function(e) {

@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#0E0F10">
     
     <!-- Google Analytics GA4 + Google Ads -->
+    <script>
+        // Set your actual GA4 measurement ID here, or comment out for testing
+        // window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+    </script>
     <script src="/js/ga-loader.js" defer></script>
     
     <!-- Google Ads Conversion Tracking -->
@@ -1137,69 +1141,54 @@
 
     <!-- JavaScript -->
     <script>
-        // Simplified direct purchase with tracking
-        function addToCart(productType) {
-            // Track interaction
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'add_to_cart', {
-                    currency: 'USD',
-                    value: 7.99,
-                    items: [{
-                        item_id: 'audiobook',
-                        item_name: 'The Worst Boyfriends Ever Audiobook',
-                        category: 'Digital Products',
-                        quantity: 1,
-                        price: 7.99
-                    }]
-                });
-            }
-            
-            // Direct to checkout for audiobook
-            if (productType === 'audiobook') {
-                createStripeCheckout();
-                return;
-            }
-            
-            createStripeCheckout();
-        }
-        }
-
+        // Show cart notification function
         function showCartNotification(message) {
             // Remove any existing notifications
             const existingNotification = document.querySelector('.cart-notification');
             if (existingNotification) {
                 existingNotification.remove();
             }
-            
+
             // Create new notification
             const notification = document.createElement('div');
             notification.className = 'cart-notification';
             notification.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <span><svg class="premium-icon filled colored-lime" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-        <polyline points="20,6 9,17 4,12"/>
-    </svg></span>
-                    <span>${message}</span>
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #FF3B3B;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    font-family: Inter, sans-serif;
+                    font-size: 14px;
+                    max-width: 300px;
+                    animation: slideIn 0.3s ease-out;
+                ">
+                    ${message}
                 </div>
+                <style>
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                </style>
             `;
-            
+
             document.body.appendChild(notification);
-            
-            // Show notification
+
+            // Auto-remove after 3 seconds
             setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-            
-            // Hide notification after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
+                if (notification.parentNode) {
                     notification.remove();
-                }, 300);
+                }
             }, 3000);
         }
 
-        // Stripe Checkout functionality
+        // Stripe Checkout functionality - defined first so buttons can use it
         async function createStripeCheckout() {
             try {
                 // Track the purchase attempt
@@ -1310,6 +1299,32 @@
                     document.body.appendChild(modal);
                 }, 1000);
             }
+        }
+
+        // Simplified direct purchase with tracking
+        function addToCart(productType) {
+            // Track interaction
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'add_to_cart', {
+                    currency: 'USD',
+                    value: 7.99,
+                    items: [{
+                        item_id: 'audiobook',
+                        item_name: 'The Worst Boyfriends Ever Audiobook',
+                        category: 'Digital Products',
+                        quantity: 1,
+                        price: 7.99
+                    }]
+                });
+            }
+            
+            // Direct to checkout for audiobook
+            if (productType === 'audiobook') {
+                createStripeCheckout();
+                return;
+            }
+            
+            createStripeCheckout();
         }
 
         // Audio player functionality

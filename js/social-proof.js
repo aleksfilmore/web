@@ -1,4 +1,5 @@
 // Social Proof Purchase Notifications
+if (typeof SocialProofManager === 'undefined') {
 class SocialProofManager {
     constructor() {
         this.names = [
@@ -223,3 +224,5 @@ document.addEventListener('focus', (e) => {
         setTimeout(() => window.socialProof?.resume(), 30000); // Resume after 30s
     }
 }, true);
+
+}

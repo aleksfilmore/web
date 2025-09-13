@@ -1,4 +1,5 @@
 // Trust Badges Component
+if (typeof TrustBadges === 'undefined') {
 class TrustBadges {
     constructor() {
         this.badges = [
@@ -342,3 +343,5 @@ class TrustBadges {
 document.addEventListener('DOMContentLoaded', () => {
     new TrustBadges();
 });
+
+}

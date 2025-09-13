@@ -4,7 +4,7 @@ class CartAbandonment {
         this.abandonmentDelay = 5 * 60 * 1000; // 5 minutes
         this.reminderDelay = 15 * 60 * 1000; // 15 minutes  
         this.maxReminders = 2;
-                             <p>Enter your email to get a <strong>20% discount on the audiobook</strong>:</p>       this.abandonmentTimer = null;
+        this.abandonmentTimer = null;
         this.reminderTimer = null;
         this.hasShownPopup = false;
         

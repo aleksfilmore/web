@@ -1,4 +1,5 @@
 // Enhanced Analytics Tracking
+if (typeof AnalyticsEnhancer === 'undefined') {
 class AnalyticsEnhancer {
     constructor() {
         this.startTime = Date.now();
@@ -235,8 +236,8 @@ class AnalyticsEnhancer {
         // Console log for debugging (remove in production)
         console.log(`📊 Analytics Event: ${eventName}`, parameters);
         
-        // Send to custom analytics endpoint if needed
-        if (window.location.hostname !== 'localhost') {
+        // Send to custom analytics endpoint if needed (only in production)
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             this.sendToCustomEndpoint(eventName, parameters);
         }
     }
@@ -283,3 +284,5 @@ window.trackEvent = function(eventName, parameters = {}) {
         window.analytics.track(eventName, parameters);
     }
 };
+
+}
