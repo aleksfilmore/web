@@ -57,9 +57,9 @@ class TrustBadges {
             container.appendChild(miniTrust);
         });
 
-        // Add to footer of all pages
+        // Add to footer of all pages (guard against duplicates)
         const footer = document.querySelector('footer');
-        if (footer) {
+        if (footer && !footer.querySelector('.footer-trust-badges')) {
             const footerTrust = this.createFooterTrustBadges();
             footer.insertBefore(footerTrust, footer.firstChild);
         }
