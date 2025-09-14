@@ -652,10 +652,10 @@
         .bingo-preview-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
-            width: 280px;
+            gap: 8px;
+            width: 300px;
             background: rgba(247, 243, 237, 0.1);
-            padding: 16px;
+            padding: 20px;
             border-radius: 16px;
             border: 2px solid rgba(255, 59, 59, 0.4);
             box-shadow: 0 4px 20px rgba(255, 59, 59, 0.1);
@@ -671,12 +671,13 @@
             justify-content: center;
             text-align: center;
             font-size: 10px;
-            line-height: 1.2;
-            padding: 4px;
-            font-weight: 500;
+            line-height: 1.1;
+            padding: 6px;
+            font-weight: 600;
             word-break: break-word;
             hyphens: auto;
             transition: all 0.2s ease;
+            overflow: hidden;
         }
         
         .bingo-preview-cell:hover {
@@ -687,7 +688,7 @@
         .bingo-preview-cell.selected {
             background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
             color: var(--color-bone);
-            font-weight: 600;
+            font-weight: 700;
             box-shadow: 0 2px 8px rgba(255, 59, 59, 0.3);
         }
         
@@ -696,16 +697,22 @@
             color: var(--color-charcoal);
             font-weight: 700;
             box-shadow: 0 2px 8px rgba(199, 255, 65, 0.3);
+            font-size: 9px;
         }
         
         @media (min-width: 640px) {
             .bingo-preview-grid {
-                width: 320px;
-                padding: 20px;
-                gap: 8px;
+                width: 350px;
+                padding: 24px;
+                gap: 10px;
             }
             
             .bingo-preview-cell {
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            .bingo-preview-cell.free {
                 font-size: 11px;
                 padding: 3px;
                 border-radius: 8px;
@@ -1427,10 +1434,10 @@
                             <!-- Game Visual -->
                             <div class="flex-shrink-0">
                                 <div class="bingo-preview-grid">
-                                    <div class="bingo-preview-cell">Asked you to lie to parents</div>
-                                    <div class="bingo-preview-cell">Ordered most expensive item</div>
-                                    <div class="bingo-preview-cell selected">Block all male friends</div>
-                                    <div class="bingo-preview-cell">Criticized friend group</div>
+                                    <div class="bingo-preview-cell">Lie to Parents</div>
+                                    <div class="bingo-preview-cell">Expensive Order</div>
+                                    <div class="bingo-preview-cell selected">Block Friends</div>
+                                    <div class="bingo-preview-cell">Critic Mode</div>
                                     <div class="bingo-preview-cell free">FREE SPACE</div>
                                 </div>
                             </div>
