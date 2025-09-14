@@ -1,0 +1,123 @@
+{
+  "contentCalendar": {
+    "currentWeek": 1,
+    "startDate": "2025-09-15",
+    "articles": [
+      {
+        "week": 1,
+        "publishDate": "2025-09-15",
+        "slug": "i-survived-25-toxic-boyfriends-red-flag-survival-guide",
+        "title": "I Survived 25 Toxic Boyfriends So You Don't Have To: The Red Flag Survival Guide",
+        "seoKeyword": "toxic boyfriend signs",
+        "status": "published",
+        "wordCount": 3500,
+        "tags": ["Dating Disasters", "Red Flags", "Toxic Relationships", "Survival Guide"]
+      },
+      {
+        "week": 2,
+        "publishDate": "2025-09-22",
+        "slug": "why-smart-women-date-terrible-men-break-the-cycle",
+        "title": "Why Smart Women Date Terrible Men (And How to Break the Cycle)",
+        "seoKeyword": "why do I attract toxic men",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Psychology", "Dating Patterns", "Self-Worth", "Recovery"]
+      },
+      {
+        "week": 3,
+        "publishDate": "2025-09-29",
+        "slug": "narcissist-playbook-manipulation-tactics-recognize-sooner",
+        "title": "The Narcissist's Playbook: 15 Manipulation Tactics I Wish I'd Recognized Sooner",
+        "seoKeyword": "narcissist manipulation tactics",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Narcissistic Abuse", "Manipulation", "Red Flags", "Psychology"]
+      },
+      {
+        "week": 4,
+        "publishDate": "2025-10-06",
+        "slug": "dating-after-trauma-trust-gut-again",
+        "title": "Dating After Trauma: How I Learned to Trust My Gut Again",
+        "seoKeyword": "dating after abusive relationship",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Trauma Recovery", "Healing", "Dating Advice", "Self-Trust"]
+      },
+      {
+        "week": 5,
+        "publishDate": "2025-10-13",
+        "slug": "friends-who-saved-me-circle-dating-life",
+        "title": "The Friends Who Saved Me: Why Your Circle Can Make or Break Your Dating Life",
+        "seoKeyword": "friends don't like my boyfriend",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Friendship", "Support System", "Dating Advice", "Relationships"]
+      },
+      {
+        "week": 6,
+        "publishDate": "2025-10-20",
+        "slug": "financial-red-flags-cost-me-10000-sanity",
+        "title": "Financial Red Flags That Cost Me $10,000 (And My Sanity)",
+        "seoKeyword": "boyfriend financial red flags",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Financial Abuse", "Red Flags", "Money", "Dating Disasters"]
+      },
+      {
+        "week": 7,
+        "publishDate": "2025-10-27",
+        "slug": "halloween-scariest-boyfriend-behaviors-horror-movies",
+        "title": "Halloween Special: The Scariest Boyfriend Behaviors That Aren't Even in Horror Movies",
+        "seoKeyword": "scary boyfriend behaviors",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Halloween", "Horror Stories", "Dating Disasters", "Seasonal"]
+      },
+      {
+        "week": 8,
+        "publishDate": "2025-11-03",
+        "slug": "stopped-believing-the-one-found-peace",
+        "title": "Why I Stopped Believing in 'The One' (And Found Peace Instead)",
+        "seoKeyword": "is there only one soulmate",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Soulmate Myth", "Single Life", "Self-Discovery", "Philosophy"]
+      },
+      {
+        "week": 9,
+        "publishDate": "2025-11-10",
+        "slug": "mothers-boy-mansplainer-ghost-ranking-worst-boyfriend-archetypes",
+        "title": "The Mother's Boy, The Mansplainer, and The Ghost: Ranking My Worst Boyfriend Archetypes",
+        "seoKeyword": "worst types of boyfriends",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Boyfriend Types", "Ranking", "Humor", "Dating Disasters"]
+      },
+      {
+        "week": 10,
+        "publishDate": "2025-11-17",
+        "slug": "disaster-to-dating-coach-25-bad-relationships-taught-love",
+        "title": "From Disaster to Dating Coach: What 25 Bad Relationships Taught Me About Love",
+        "seoKeyword": "learning from bad relationships",
+        "status": "scheduled",
+        "wordCount": 0,
+        "tags": ["Lessons Learned", "Dating Wisdom", "Personal Growth", "Transformation"]
+      }
+    ]
+  },
+  "automationRules": {
+    "publishingTime": "12:00",
+    "timezone": "Europe/Brussels",
+    "autoUpdateHomepage": true,
+    "autoUpdateBlogPage": true,
+    "socialMediaScheduling": true,
+    "newsletterIntegration": true,
+    "seoOptimization": {
+      "enableAutoMetadata": true,
+      "enableStructuredData": true,
+      "enableSocialSharing": true
+    }
+  },
+  "lastUpdated": "2025-09-14T23:59:59Z",
+  "nextPublishDate": "2025-09-15T12:00:00Z"
+}

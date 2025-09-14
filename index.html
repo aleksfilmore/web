@@ -648,6 +648,61 @@
             height: 2rem;
         }
         
+        /* Bingo preview styles */
+        .bingo-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            width: 200px;
+            background: rgba(247, 243, 237, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 59, 59, 0.3);
+        }
+        
+        .bingo-preview-cell {
+            aspect-ratio: 1;
+            background: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 8px;
+            line-height: 1;
+            padding: 2px;
+            font-weight: 500;
+            word-break: break-word;
+            hyphens: auto;
+        }
+        
+        .bingo-preview-cell.selected {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-weight: 600;
+        }
+        
+        .bingo-preview-cell.free {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            color: var(--color-charcoal);
+            font-weight: 700;
+        }
+        
+        @media (min-width: 640px) {
+            .bingo-preview-grid {
+                width: 250px;
+                padding: 16px;
+                gap: 6px;
+            }
+            
+            .bingo-preview-cell {
+                font-size: 9px;
+                padding: 3px;
+                border-radius: 8px;
+            }
+        }
+        
         .icon-xl {
             width: 3rem;
             height: 3rem;
@@ -1351,6 +1406,57 @@
             </div>
         </section>
 
+        <!-- Bad Date Bingo Game CTA Section -->
+        <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-red-flag/10 to-glitch-lime/5">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    
+                    <!-- Game Preview Card -->
+                    <div class="bg-gradient-to-br from-bone/8 to-bone/3 border border-bone/20 rounded-2xl p-6 sm:p-8 lg:p-10 mb-8 backdrop-blur-sm">
+                        <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
+                            
+                            <!-- Game Visual -->
+                            <div class="flex-shrink-0">
+                                <div class="bingo-preview-grid">
+                                    <div class="bingo-preview-cell">Asked you to lie to parents</div>
+                                    <div class="bingo-preview-cell">Ordered most expensive item</div>
+                                    <div class="bingo-preview-cell selected">Block all male friends</div>
+                                    <div class="bingo-preview-cell">Criticized friend group</div>
+                                    <div class="bingo-preview-cell free">FREE SPACE</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Game Content -->
+                            <div class="text-left lg:text-left flex-1">
+                                <h3 class="font-display font-bold text-2xl sm:text-3xl mb-4 text-red-flag">
+                                    Bad Date Bingo
+                                </h3>
+                                <p class="text-bone/90 text-lg mb-6 leading-relaxed">
+                                    Play our free interactive bingo game! Click the dating disasters you've experienced. 
+                                    <strong class="text-glitch-lime">Get BINGO = 20% off the audiobook!</strong>
+                                </p>
+                                
+                                <!-- Game Features -->
+                                <div class="flex flex-wrap gap-3 mb-6">
+                                    <span class="bg-red-flag/20 text-red-flag px-3 py-1 rounded-full text-sm font-semibold">🎯 Free to Play</span>
+                                    <span class="bg-glitch-lime/20 text-glitch-lime px-3 py-1 rounded-full text-sm font-semibold">💰 Win 20% Off</span>
+                                    <span class="bg-dusty-blush/20 text-dusty-blush px-3 py-1 rounded-full text-sm font-semibold">😂 Hilarious Stories</span>
+                                </div>
+                                
+                                <a href="bad-date-bingo.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-flag to-red-flag/80 hover:from-red-flag/90 hover:to-red-flag text-bone font-display font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    Play Bad Date Bingo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
         <!-- Blog Section -->
         <section class="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-charcoal/50 to-charcoal/30">
             <div class="container mx-auto px-4 sm:px-6">
@@ -1761,6 +1867,9 @@
 
     <!-- Cookie Notice JavaScript -->
     <script src="js/cookie-notice.js"></script>
+
+    <!-- Blog Automation System -->
+    <script src="/js/blog-automation.js"></script>
 
     <!-- Enhanced Features Scripts -->
     <script src="/js/social-proof.js"></script>

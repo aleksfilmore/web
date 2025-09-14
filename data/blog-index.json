@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "i-survived-25-toxic-boyfriends",
+      "slug": "i-survived-25-toxic-boyfriends-red-flag-survival-guide",
+      "title": "I Survived 25 Toxic Boyfriends So You Don't Have To: The Red Flag Survival Guide",
+      "summary": "After surviving 25 catastrophic relationships and documenting every disaster, I've learned to spot red flags from a mile away. Here's your complete survival guide to recognizing toxic partners before they destroy your life, self-worth, and bank account.",
+      "publishedAt": "2025-09-15T12:00:00.000Z",
+      "date": "2025-09-15",
+      "readTime": "12 min read",
+      "tags": ["Dating Disasters", "Red Flags", "Toxic Relationships", "Survival Guide"],
+      "featured": true,
+      "seoKeywords": ["toxic boyfriend signs", "red flags in relationships", "dating red flags", "toxic relationship warning signs"],
+      "status": "published"
+    },
+    {
       "id": "dating-disaster-survival-guide",
       "slug": "dating-disaster-survival-guide",
       "title": "The Ultimate Dating Disaster Survival Guide: What Not to Do (According to Someone Who Did It All)",

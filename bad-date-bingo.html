@@ -59,61 +59,180 @@
         .bingo-card {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-            max-width: min(90vw, 500px);
+            gap: clamp(6px, 1.5vw, 12px);
+            max-width: min(95vw, 600px);
             margin: 0 auto;
-            background: rgba(247, 243, 237, 0.1);
-            padding: 16px;
-            border-radius: 16px;
-            border: 2px solid rgba(255, 59, 59, 0.3);
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.12) 0%, rgba(247, 243, 237, 0.06) 100%);
+            padding: clamp(16px, 4vw, 24px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 59, 59, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(247, 243, 237, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .bingo-cell {
             aspect-ratio: 1;
-            background: rgba(247, 243, 237, 0.05);
-            border: 1px solid rgba(247, 243, 237, 0.2);
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.03) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.25);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: clamp(8px, 2.5vw, 12px);
-            line-height: 1.1;
-            padding: clamp(2px, 1vw, 6px);
+            font-size: clamp(9px, 2.2vw, 14px);
+            font-weight: 500;
+            line-height: 1.2;
+            padding: clamp(4px, 1.2vw, 8px);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
             position: relative;
             overflow: hidden;
             word-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
-            text-overflow: ellipsis;
             min-height: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .bingo-cell:hover {
-            background: rgba(255, 59, 59, 0.1);
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.15) 0%, rgba(255, 59, 59, 0.08) 100%);
             border-color: var(--color-red-flag);
-            transform: scale(1.05);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.3);
         }
 
         .bingo-cell.selected {
-            background: linear-gradient(135deg, var(--color-red-flag), #e53935);
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
             border-color: var(--color-red-flag);
-            color: white;
             font-weight: 600;
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .bingo-cell.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: clamp(8px, 2vw, 12px);
+            font-weight: bold;
+            color: var(--color-bone);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .free-space {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%) !important;
+            color: var(--color-charcoal) !important;
+            font-weight: 700;
+            border-color: var(--color-glitch-lime) !important;
+            cursor: default;
+            box-shadow: 0 4px 16px rgba(199, 255, 65, 0.3);
+        }
+
+        .free-space:hover {
+            transform: none !important;
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%) !important;
+        }
+
+        /* Improved responsive design */
+        @media (min-width: 768px) {
+            .bingo-card {
+                max-width: 600px;
+                padding: 24px;
+                gap: 12px;
+            }
+            
+            .bingo-cell {
+                font-size: 13px;
+                padding: 8px;
+                border-radius: 14px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .bingo-card {
+                max-width: 700px;
+                padding: 32px;
+                gap: 16px;
+            }
+            
+            .bingo-cell {
+                font-size: 14px;
+                padding: 10px;
+                border-radius: 16px;
+            }
+        }
+
+        /* Enhanced status section */
+        .status-section {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.03) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px auto;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        .bingo-cell.selected {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            border-color: var(--color-red-flag);
+            font-weight: 600;
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .bingo-cell.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: clamp(8px, 2vw, 12px);
+            font-weight: bold;
+            color: var(--color-bone);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .bingo-cell.free {
-            background: linear-gradient(135deg, var(--color-glitch-lime), #9333ea);
-            color: var(--color-charcoal);
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%) !important;
+            color: var(--color-charcoal) !important;
             font-weight: 700;
+            border-color: var(--color-glitch-lime) !important;
             cursor: default;
+            box-shadow: 0 4px 16px rgba(199, 255, 65, 0.3);
         }
 
         .bingo-cell.free:hover {
-            transform: none;
+            transform: none !important;
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%) !important;
         }
 
         .bingo-winner {
