@@ -84,6 +84,23 @@
             margin-bottom: 1rem;
         }
 
+        .colored-gold {
+            color: #FFD700 !important;
+        }
+
+        /* Star rating display for hero section */
+        .star-rating-display {
+            display: inline-flex;
+            gap: 4px;
+            font-size: 3rem;
+        }
+
+        .star-rating-display .premium-icon {
+            width: 3rem;
+            height: 3rem;
+            color: #FFD700;
+        }
+
         .nav-link {
             color: var(--color-bone);
             text-decoration: none;
@@ -226,17 +243,31 @@
                     <p class="text-xl text-bone/80 mb-8">
                         What readers are saying about The Worst Boyfriends Ever
                     </p>
-                    <div class="text-6xl mb-4"><svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-    </svg><svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-    </svg><svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-    </svg><svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-    </svg><svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-    </svg></div>
+                    <div class="star-rating-display mb-4">
+                        <!-- 4 full stars -->
+                        <svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        <svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        <svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        <svg class="premium-icon filled colored-gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        <!-- 1 partial star (70% filled for 4.7/5) -->
+                        <svg class="premium-icon colored-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <defs>
+                                <linearGradient id="partial-star" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="70%" style="stop-color:#FFD700;stop-opacity:1" />
+                                    <stop offset="70%" style="stop-color:rgba(247,243,237,0.3);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="url(#partial-star)"/>
+                        </svg>
+                    </div>
                     <p class="text-2xl font-display font-semibold text-red-flag">4.7/5 stars from hundreds of readers</p>
                 </div>
             </div>
