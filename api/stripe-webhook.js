@@ -1,9 +1,9 @@
-import getRawBody from 'raw-body';
-import Stripe from 'stripe';
-import { Resend } from 'resend';
-import { runQuery, normalizeRows } from './utils/db-utils.js';
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+const getRawBody = require('raw-body');
+const Stripe = require('stripe');
+const { Resend } = require('resend');
+const { runQuery, normalizeRows } = require('./utils/db-utils.js');
+const { neon } = require('@neondatabase/serverless');
+const { drizzle } = require('drizzle-orm/neon-http');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' });
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -15,7 +15,7 @@ export const config = {
   },
 };
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });

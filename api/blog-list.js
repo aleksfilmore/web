@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
 	try {
 		const idxPath = path.join(process.cwd(), 'data', 'blog-index.json');
 		if (!fs.existsSync(idxPath)) {
@@ -13,4 +13,4 @@ export default async function handler(req, res) {
 		console.error('blog-list error', err);
 		return res.status(500).json({ error: 'Unable to list posts' });
 	}
-}
+};
