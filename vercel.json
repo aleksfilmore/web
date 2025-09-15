@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": "data/**"
+      }
     },
     {
       "src": "**/*.html",
@@ -34,11 +37,6 @@
       "use": "@vercel/static"
     }
   ],
-  "functions": {
-    "api/**/*.js": {
-      "includeFiles": "data/**"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
