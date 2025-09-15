@@ -27,6 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-analytics/data": "^4.12.1",
+    "@neondatabase/serverless": "^1.0.1",
     "@netlify/neon": "^0.1.0",
     "axios": "^1.11.0",
     "bcryptjs": "^3.0.2",
@@ -40,6 +41,7 @@
     "jsonwebtoken": "^9.0.2",
     "node-fetch": "^2.6.7",
     "nodemailer": "^6.9.7",
+    "raw-body": "^3.0.1",
     "resend": "^6.0.1",
     "stripe": "^14.0.0",
     "uuid": "^11.1.0"

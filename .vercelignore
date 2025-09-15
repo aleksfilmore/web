@@ -1,0 +1,49 @@
+# Exclude large audio files from function bundles
+audio/**/*.mp3
+
+# Exclude development/build files 
+node_modules
+.env
+.env.*
+.netlify
+logs/**
+netlify/**
+
+# Exclude database and TypeScript files (these shouldn't be functions)
+db/**
+**/*.ts
+drizzle.config.ts
+
+# Exclude test files
+test-*.js
+**/test-*.js
+
+# Exclude large images and assets from functions
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+**/*.ico
+**/*.webp
+
+# Exclude documentation
+*.md
+docs/**
+
+# Exclude git files
+.git
+.gitignore
+
+# Exclude editor files
+.vscode
+*.swp
+*.swo
+
+# Exclude OS files
+.DS_Store
+Thumbs.db
+
+# Exclude build artifacts
+css/**
+archive/**

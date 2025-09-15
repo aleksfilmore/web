@@ -61,3 +61,5 @@ tailwindcss.exe
 *.bin
 *.dmg
 *.md
+
+.vercel

@@ -28,8 +28,6 @@ Allow: /*.svg
 Allow: /*.ico
 
 # Disallow admin and sensitive areas
-Disallow: /dashboard-af2025.html
-Disallow: /admin/
 Disallow: /audiobook-player.html
 Disallow: /audiobook-player/
 Disallow: /private/
