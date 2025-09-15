@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/*.js": {
-      "includeFiles": "data/**"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -19,50 +14,27 @@
       "destination": "/api/stripe-webhook"
     }
   ],
-  "cleanUrls": true,
-  "trailingSlash": false,
   "headers": [
     {
-      "source": "/css/(.*\\.css)",
+      "source": "**/*.css",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/css; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
+          "value": "text/css"
         }
       ]
     },
     {
-      "source": "/(.*\\.css)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.js)",
+      "source": "**/*.js",
       "headers": [
         {
           "key": "Content-Type",
           "value": "application/javascript"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
         }
       ]
     },
     {
-      "source": "/(.*\\.mp3)",
+      "source": "**/*.mp3",
       "headers": [
         {
           "key": "Cache-Control",
@@ -75,7 +47,7 @@
       ]
     },
     {
-      "source": "/(.*\\.html)",
+      "source": "**/*.html",
       "headers": [
         {
           "key": "Cache-Control",
@@ -84,7 +56,7 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "**",
       "headers": [
         {
           "key": "X-Frame-Options",
@@ -105,7 +77,7 @@
       ]
     },
     {
-      "source": "/audiobook-player(.*)",
+      "source": "/audiobook-player**",
       "headers": [
         {
           "key": "X-Robots-Tag",
