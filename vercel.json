@@ -6,7 +6,8 @@
       "use": "@vercel/static-build",
       "config": {
         "buildCommand": "npm run build",
-        "outputDirectory": "."
+        "outputDirectory": ".",
+        "distDir": "."
       }
     },
     {
@@ -28,6 +29,24 @@
       "destination": "/api/stripe-webhook"
     }
   ],
+  "routes": [
+    {
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/audio/(.*)",
+      "dest": "/audio/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/css/(.*)\\.css$",
@@ -35,6 +54,10 @@
         {
           "key": "Content-Type",
           "value": "text/css"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -44,6 +67,23 @@
         {
           "key": "Content-Type",
           "value": "text/css"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.svg$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/svg+xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -53,6 +93,41 @@
         {
           "key": "Content-Type",
           "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.png$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.jpg$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.ico$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/x-icon"
         }
       ]
     },
