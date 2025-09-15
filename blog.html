@@ -33,7 +33,7 @@
     <script src="/js/ga-loader.js" defer></script>
     
     <!-- Favicon -->
-    <link rel="icon" href="/public/ico.png" type="image/png">
+    <link rel="icon" href="/ico.png" type="image/png">
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
@@ -481,11 +481,11 @@
 
                             async function fetchBlogList() {
                                 try {
-                                    const res = await fetch('/.netlify/functions/blog-list');
+                                    const res = await fetch('/api/blog-list');
                                     if (res.ok) return await res.json();
-                                    console.warn('/.netlify/functions/blog-list returned', res.status);
+                                    console.warn('/api/blog-list returned', res.status);
                                 } catch (err) {
-                                    console.warn('/.netlify/functions/blog-list fetch failed, falling back to /data/blog-index.json', err);
+                                    console.warn('/api/blog-list fetch failed, falling back to /data/blog-index.json', err);
                                 }
 
                                 try {
@@ -830,7 +830,7 @@
 
                 // If local endpoint not available, fall back to Netlify function
                 if (!response || !response.ok) {
-                    response = await fetch('/.netlify/functions/newsletter-subscribe', {
+                    response = await fetch('/api/newsletter-subscribe', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: email, source: 'blog' })

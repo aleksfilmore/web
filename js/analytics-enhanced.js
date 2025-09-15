@@ -244,7 +244,7 @@ class AnalyticsEnhancer {
 
     async sendToCustomEndpoint(eventName, parameters) {
         try {
-            await fetch('/.netlify/functions/analytics-track', {
+            await fetch('/api/analytics-track', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

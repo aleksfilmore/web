@@ -572,7 +572,7 @@
 
                 // Fallback to Netlify function if local API not available
                 if (!response || !response.ok) {
-                    response = await fetch('/.netlify/functions/contact', {
+                    response = await fetch('/api/contact', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email, name, subject, message, newsletter_opt_in })

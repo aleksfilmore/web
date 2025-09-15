@@ -47,9 +47,9 @@
     </script>
     
     <!-- Favicon -->
-    <link rel="icon" href="/public/ico.png" type="image/png">
-    <link rel="apple-touch-icon" href="/public/ico.png">
-    <link rel="shortcut icon" href="/public/ico.png">
+    <link rel="icon" href="/ico.png" type="image/png">
+    <link rel="apple-touch-icon" href="/ico.png">
+    <link rel="shortcut icon" href="/ico.png">
     
     <!-- Theme color for mobile browsers -->
     <meta name="theme-color" content="#FF3B3B">
@@ -1130,11 +1130,11 @@
                             
                             <!-- Book Image -->
                             <div class="lg:w-1/2 text-center lg:text-left relative z-10 lg:-mt-8">
-                                <img src="TWBE 1.png" 
+                                <img src="/TWBE 1.png" 
                                      alt="The Worst Boyfriends Ever - 3D Book Mockup" 
                                      class="max-w-full h-auto mx-auto lg:mx-0 floating-element max-h-96 lg:max-h-none lg:transform lg:-rotate-2"
                                      loading="eager"
-                                     onerror="this.src='public/TWBE 1.png'; this.onerror=null;">
+                                     onerror="this.src='/public/TWBE 1.png'; this.onerror=null;">
                             </div>
                             
                             <!-- Book Info - Positioned as emerging page -->
@@ -1516,11 +1516,11 @@
 
                         async function fetchBlogList() {
                             try {
-                                const res = await fetch('/.netlify/functions/blog-list');
+                                const res = await fetch('/api/blog-list');
                                 if (res.ok) return await res.json();
-                                console.warn('/.netlify/functions/blog-list returned', res.status);
+                                console.warn('/api/blog-list returned', res.status);
                             } catch (err) {
-                                console.warn('/.netlify/functions/blog-list fetch failed, falling back to /data/blog-index.json', err);
+                                console.warn('/api/blog-list fetch failed, falling back to /data/blog-index.json', err);
                             }
 
                             try {

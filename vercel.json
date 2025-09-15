@@ -2,24 +2,16 @@
   "version": 2,
   "builds": [
     {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "."
+      }
+    },
+    {
       "src": "api/**/*.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.{png,jpg,jpeg,gif,svg,ico,mp3,mp4,pdf}",
-      "use": "@vercel/static"
     }
   ],
   "rewrites": [
@@ -37,6 +29,15 @@
     }
   ],
   "headers": [
+    {
+      "source": "/css/(.*)\\.css$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        }
+      ]
+    },
     {
       "source": "/(.*)\\.css$",
       "headers": [
