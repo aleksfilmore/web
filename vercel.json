@@ -1,166 +1,62 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "buildCommand": "npm run build",
-        "outputDirectory": "."
-      }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node@18.x"
     }
-  ],
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
-    },
-    {
-      "source": "/webhook",
-      "destination": "/api/webhook"
-    },
-    {
-      "source": "/webhook/stripe",
-      "destination": "/api/stripe-webhook"
     }
   ],
   "headers": [
     {
-      "source": "/css/(.*)\\.css$",
+      "source": "**/*.css",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/css"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
+          "value": "text/css; charset=utf-8"
         }
       ]
     },
     {
-      "source": "/(.*)\\.css$",
+      "source": "**/*.js",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/css"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
+          "value": "application/javascript; charset=utf-8"
         }
       ]
     },
     {
-      "source": "/(.*)\\.svg$",
+      "source": "**/*.svg",
       "headers": [
         {
           "key": "Content-Type",
           "value": "image/svg+xml"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
         }
       ]
     },
     {
-      "source": "/(.*)\\.js$",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.png$",
+      "source": "**/*.png",
       "headers": [
         {
           "key": "Content-Type",
           "value": "image/png"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
         }
       ]
     },
     {
-      "source": "/(.*)\\.jpg$",
+      "source": "**/*.jpg",
       "headers": [
         {
           "key": "Content-Type",
           "value": "image/jpeg"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.ico$",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/x-icon"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.mp3$",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
-        },
-        {
-          "key": "Content-Type",
-          "value": "audio/mpeg"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.html$",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
-      ]
-    },
-    {
-      "source": "/audiobook-player(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
         }
       ]
     }
