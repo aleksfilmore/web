@@ -1,0 +1,171 @@
+/* Custom CSS Variables and Styles for Aleks Filmore Website */
+
+:root {
+    /* Color Palette - matching tailwind.config.js */
+    --color-red-flag: #FF3B3B;
+    --color-bone: #F7F3ED;
+    --color-charcoal: #0E0F10;
+    --color-glitch-lime: #C7FF41;
+    --color-dusty-blush: #F1B7C4;
+    
+    /* Typography */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+/* Override Tailwind's default ring color and form control color tokens */
+:root {
+    --tw-ring-color: rgba(255, 59, 59, 0.5) !important;
+}
+
+/* Form controls styling */
+html input[type="checkbox"], html input[type="radio"] {
+    accent-color: var(--color-red-flag) !important;
+}
+
+/* Focus states */
+html :focus {
+    --tw-ring-color: var(--color-red-flag) !important;
+    outline-color: var(--color-red-flag) !important;
+}
+
+/* Hero Gradient Classes */
+.hero-gradient {
+    background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 50%, var(--color-charcoal) 100%);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.hero-content {
+    color: var(--color-bone);
+}
+
+.hero-accent {
+    color: var(--color-red-flag);
+}
+
+.hero-subtitle {
+    color: var(--color-bone);
+}
+
+.hero-btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.hero-btn-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .hero-btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Custom gradients for specific elements */
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-bone) 0%, var(--color-glitch-lime) 50%, var(--color-bone) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+    color: var(--color-bone);
+    font-family: var(--font-display);
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    box-shadow: 
+        0 4px 16px rgba(255, 59, 59, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    font-size: 1rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 32px rgba(255, 59, 59, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+    color: var(--color-charcoal);
+    border: 2px solid transparent;
+    font-family: var(--font-display);
+}
+
+.btn-secondary:hover {
+    color: var(--color-charcoal);
+}
+
+/* CTA Specific Styles */
+.btn-cta {
+    background-color: var(--color-red-flag);
+    color: var(--color-bone);
+}
+
+.btn-floating {
+    background: linear-gradient(135deg, var(--color-red-flag), var(--color-dusty-blush));
+}
+
+/* Animation Effects */
+.hover-underline-slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--color-red-flag), #e63946);
+    transition: width 0.3s ease;
+}
+
+.hover-underline-slide:hover::after {
+    width: 100%;
+}
+
+/* Responsive button adjustments */
+@media (min-width: 640px) {
+    .btn-primary {
+        width: auto;
+        min-width: 200px;
+    }
+}
+
+/* High-specificity overrides for focus states */
+html input:focus, html select:focus, html textarea:focus {
+    outline-color: var(--color-red-flag) !important;
+    border-color: var(--color-red-flag) !important;
+}
