@@ -1,62 +1,18 @@
 {
-  "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "installCommand": "npm install",
   "functions": {
-    "api/**/*.js": {
+    "api/*.js": {
       "runtime": "@vercel/node@18.x"
     }
   },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ],
   "headers": [
     {
-      "source": "**/*.css",
+      "source": "/(.*\\.css)$",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "text/css; charset=utf-8"
-        }
-      ]
-    },
-    {
-      "source": "**/*.js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript; charset=utf-8"
-        }
-      ]
-    },
-    {
-      "source": "**/*.svg",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/svg+xml"
-        }
-      ]
-    },
-    {
-      "source": "**/*.png",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/png"
-        }
-      ]
-    },
-    {
-      "source": "**/*.jpg",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/jpeg"
+          "key": "content-type",
+          "value": "text/css"
         }
       ]
     }

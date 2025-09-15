@@ -5,16 +5,16 @@
   "main": "index.html",
   "scripts": {
     "start": "node server.js",
-    "dev": "netlify dev",
+    "dev": "vercel dev",
     "build": "node build-css.js",
     "build-css": "node build-css.js",
     "watch-css": "node build-css.js --watch",
     "generate-blog-json": "node ./scripts/generate_blog_index.js",
-    "deploy": "npm run build && netlify deploy --prod",
+    "deploy": "npm run build && vercel --prod",
     "test": "node ./tests/test_db_utils.js",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "netlify dev:exec drizzle-kit migrate",
-    "db:studio": "netlify dev:exec drizzle-kit studio"
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "keywords": [
     "audiobook",

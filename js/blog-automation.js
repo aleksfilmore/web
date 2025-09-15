@@ -210,16 +210,16 @@ class SocialMediaScheduler {
 
     generateInstagramPost(article) {
         const hooks = {
-            'toxic boyfriend signs': '🚩 Red flag alert! After surviving 25 toxic relationships, I can spot the warning signs from a mile away.',
-            'why do I attract toxic men': '💭 Why do smart women keep attracting the wrong people? The psychology behind toxic attraction might surprise you.',
-            'narcissist manipulation tactics': '🎭 The narcissist playbook is real, and it\'s terrifying. Here\'s what I wish I\'d known sooner.',
-            'dating after abusive relationship': '💚 Healing after trauma isn\'t linear. Here\'s how I learned to trust my gut again.',
-            'friends dont like my boyfriend': '👥 Your friends see what you cant. Why your circle is your best dating coach.',
-            'boyfriend financial red flags': '💸 This dating disaster cost me $10,000 and my sanity. Don\'t make my mistakes.',
-            'scary boyfriend behaviors': '🎃 These boyfriend behaviors are scarier than any horror movie. Halloween special!',
-            'is there only one soulmate': '✨ Plot twist: I stopped believing in "The One" and found peace instead.',
-            'worst types of boyfriends': '📊 Ranking my worst boyfriend archetypes by damage level. Which one have you dated?',
-            'learning from bad relationships': '🦋 From dating disaster to relationship wisdom: what 25 bad boyfriends taught me about love.'
+            'toxic boyfriend signs': 'Red flag alert! After surviving 25 toxic relationships, I can spot the warning signs from a mile away.',
+            'why do I attract toxic men': 'Why do smart women keep attracting the wrong people? The psychology behind toxic attraction might surprise you.',
+            'narcissist manipulation tactics': 'The narcissist playbook is real, and it is terrifying. Here is what I wish I had known sooner.',
+            'dating after abusive relationship': 'Healing after trauma is not linear. Here is how I learned to trust my gut again.',
+            'friends dont like my boyfriend': 'Your friends see what you cannot. Why your circle is your best dating coach.',
+            'boyfriend financial red flags': 'This dating disaster cost me $10,000 and my sanity. Do not make my mistakes.',
+            'scary boyfriend behaviors': 'These boyfriend behaviors are scarier than any horror movie. Halloween special!',
+            'is there only one soulmate': 'Plot twist: I stopped believing in "The One" and found peace instead.',
+            'worst types of boyfriends': 'Ranking my worst boyfriend archetypes by damage level. Which one have you dated?',
+            'learning from bad relationships': 'From dating disaster to relationship wisdom: what 25 bad boyfriends taught me about love.'
         };
         
         return hooks[article.seoKeyword] || `New blog post: ${article.title}`;
