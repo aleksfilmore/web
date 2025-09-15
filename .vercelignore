@@ -9,6 +9,9 @@ node_modules
 logs/**
 netlify/**
 
+# Exclude legacy server file (replaced by Vercel functions)
+server.js
+
 # Exclude database and TypeScript files (these shouldn't be functions)
 db/**
 **/*.ts

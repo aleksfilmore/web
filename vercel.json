@@ -18,6 +18,8 @@
       "destination": "/api/stripe-webhook"
     }
   ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*\\.mp3)",
