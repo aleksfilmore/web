@@ -42,7 +42,13 @@ module.exports = {
           700: '#a21caf',
           800: '#86198f',
           900: '#701a75'
-        }
+        },
+        // Custom brand colors matching CSS variables
+        'red-flag': '#FF3B3B',
+        'glitch-lime': '#C7FF41',
+        'dusty-blush': '#F1B7C4',
+        'bone': '#F7F3ED',
+        'charcoal': '#0E0F10',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
