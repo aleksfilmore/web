@@ -1,138 +1,31 @@
 /* Custom CSS Variables and Styles for Aleks Filmore Website */
 
 :root {
-    /* Color Palette */
+    /* Color Palette - matching tailwind.config.js */
     --color-red-flag: #FF3B3B;
-    --color-bone: #F5F5DC;
-    --color-charcoal: #2B2B2B;
-    --color-glitch-lime: #B8E000;
-    --color-dusty-blush: #D4A574;
+    --color-bone: #F7F3ED;
+    --color-charcoal: #0E0F10;
+    --color-glitch-lime: #C7FF41;
+    --color-dusty-blush: #F1B7C4;
     
     /* Typography */
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
-
 /* Override Tailwind's default ring color and form control color tokens */
 :root {
     --tw-ring-color: rgba(255, 59, 59, 0.5) !important;
 }
 
-/* Force form controls and generated utilities that use color to use the red flag */
-html input[type="checkbox"], html input[type="radio"], html .form-checkbox, html .form-radio {
-    color: var(--color-red-flag) !important;
+/* Form controls styling */
+html input[type="checkbox"], html input[type="radio"] {
     accent-color: var(--color-red-flag) !important;
-    border-color: var(--color-red-flag) !important;
 }
 
-/* Ensure .ring utilities that reference --tw-ring-color pick up our red color */
-.ring, .ring-offset, .focus\:ring, :focus {
+/* Focus states */
+html :focus {
     --tw-ring-color: var(--color-red-flag) !important;
-}
-
-/* Force custom utility classes with higher specificity */
-html .text-bone {
-    color: var(--color-bone) !important;
-}
-
-html .font-display {
-    font-family: var(--font-display) !important;
-}
-
-html .text-red-flag {
-    color: var(--color-red-flag) !important;
-}
-
-html .bg-red-flag {
-    background-color: var(--color-red-flag) !important;
-}
-
-html .text-charcoal {
-    color: var(--color-charcoal) !important;
-}
-
-html .bg-charcoal {
-    background-color: var(--color-charcoal) !important;
-}
-
-html .text-glitch-lime {
-    color: var(--color-glitch-lime) !important;
-}
-
-html .bg-primary {
-    background-color: var(--color-red-flag) !important;
-}
-
-html .text-primary {
-    color: var(--color-red-flag) !important;
-}
-
-.text-bone\/60 {
-    color: rgba(245, 245, 220, 0.6);
-}
-
-.text-bone\/70 {
-    color: rgba(245, 245, 220, 0.7);
-}
-
-.bg-bone\/5 {
-    background-color: rgba(245, 245, 220, 0.05);
-}
-
-.text-red-flag {
-    color: var(--color-red-flag);
-}
-
-.bg-red-flag {
-    background-color: var(--color-red-flag);
-}
-
-.bg-red-flag\/20 {
-    background-color: rgba(255, 59, 59, 0.2);
-}
-
-.via-red-flag\/30 {
-    --tw-gradient-to: rgba(255, 59, 59, 0.3);
-}
-
-.text-charcoal {
-    color: var(--color-charcoal);
-}
-
-.bg-charcoal {
-    background-color: var(--color-charcoal);
-}
-
-.bg-charcoal\/80 {
-    background-color: rgba(43, 43, 43, 0.8);
-}
-
-.text-glitch-lime {
-    color: var(--color-glitch-lime);
-}
-
-.bg-glitch-lime {
-    background-color: var(--color-glitch-lime);
-}
-
-.bg-glitch-lime\/5 {
-    background-color: rgba(184, 224, 0, 0.05);
-}
-
-.text-dusty-blush {
-    color: var(--color-dusty-blush);
-}
-
-.bg-dusty-blush {
-    background-color: var(--color-dusty-blush);
-}
-
-.bg-dusty-blush\/5 {
-    background-color: rgba(212, 165, 116, 0.05);
-}
-
-.border-bone\/20 {
-    border-color: rgba(245, 245, 220, 0.2);
+    outline-color: var(--color-red-flag) !important;
 }
 
 /* Hero Gradient Classes */
@@ -271,25 +164,8 @@ html .text-primary {
     }
 }
 
-/* High-specificity overrides to prefer canonical red tokens */
-html :focus, html .focus\:ring-red-flag:focus {
-    --tw-ring-color: var(--color-red-flag) !important;
-}
-
+/* High-specificity overrides for focus states */
 html input:focus, html select:focus, html textarea:focus {
     outline-color: var(--color-red-flag) !important;
     border-color: var(--color-red-flag) !important;
-}
-
-/* Use accent-color where supported for native checkboxes/radios */
-html input[type="checkbox"], html input[type="radio"] {
-    accent-color: var(--color-red-flag) !important;
-}
-
-/* Override any generated blue text-gradient */
-.text-gradient, html .text-gradient {
-    background: linear-gradient(90deg, var(--color-red-flag), #e63946) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    color: transparent !important;
 }
