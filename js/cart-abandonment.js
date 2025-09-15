@@ -830,7 +830,7 @@ class CartAbandonment {
     
     async subscribeToNewsletter(email, source = 'cart_abandonment') {
         try {
-            const response = await fetch('/.netlify/functions/newsletter-subscribe', {
+            const response = await fetch('/api/newsletter-subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

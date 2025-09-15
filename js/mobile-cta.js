@@ -636,7 +636,7 @@ class MobileCTA {
     
     async subscribeToNewsletter(email, source) {
         try {
-            const response = await fetch('/.netlify/functions/newsletter-subscribe', {
+            const response = await fetch('/api/newsletter-subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -275,7 +275,7 @@ class SocialMediaScheduler {
 // Newsletter Integration
 class NewsletterManager {
     constructor() {
-        this.apiEndpoint = '/.netlify/functions/newsletter-update';
+        this.apiEndpoint = '/api/newsletter-update';
     }
 
     async notifySubscribers(article) {
