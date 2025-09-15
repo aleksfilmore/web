@@ -6,8 +6,7 @@
       "use": "@vercel/static-build",
       "config": {
         "buildCommand": "npm run build",
-        "outputDirectory": ".",
-        "distDir": "."
+        "outputDirectory": "."
       }
     },
     {
@@ -27,24 +26,6 @@
     {
       "source": "/webhook/stripe",
       "destination": "/api/stripe-webhook"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/css/(.*)",
-      "dest": "/css/$1"
-    },
-    {
-      "src": "/js/(.*)",
-      "dest": "/js/$1"
-    },
-    {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
-    },
-    {
-      "src": "/audio/(.*)",
-      "dest": "/audio/$1"
     }
   ],
   "headers": [

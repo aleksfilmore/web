@@ -214,7 +214,7 @@ class SocialMediaScheduler {
             'why do I attract toxic men': '💭 Why do smart women keep attracting the wrong people? The psychology behind toxic attraction might surprise you.',
             'narcissist manipulation tactics': '🎭 The narcissist playbook is real, and it\'s terrifying. Here\'s what I wish I\'d known sooner.',
             'dating after abusive relationship': '💚 Healing after trauma isn\'t linear. Here\'s how I learned to trust my gut again.',
-            'friends don\\'t like my boyfriend': '👥 Your friends see what you can\'t. Why your circle is your best dating coach.',
+            'friends don\'t like my boyfriend': '👥 Your friends see what you can\'t. Why your circle is your best dating coach.',
             'boyfriend financial red flags': '💸 This dating disaster cost me $10,000 and my sanity. Don\'t make my mistakes.',
             'scary boyfriend behaviors': '🎃 These boyfriend behaviors are scarier than any horror movie. Halloween special!',
             'is there only one soulmate': '✨ Plot twist: I stopped believing in "The One" and found peace instead.',
