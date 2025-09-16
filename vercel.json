@@ -12,10 +12,7 @@
   "functions": {
     "api/**/*.js": {
       "runtime": "nodejs18.x",
-      "includeFiles": [
-        "data/blog-index.json",
-        "data/blog-posts/**"
-      ]
+      "includeFiles": "data/**"
     }
   },
   "routes": [
