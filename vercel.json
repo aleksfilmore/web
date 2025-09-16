@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
     }
   ],
   "routes": [
@@ -37,6 +40,48 @@
       "dest": "/$1",
       "headers": {
         "Content-Type": "image/png"
+      }
+    },
+    {
+      "src": "/(.*\\.jpg|.*\\.jpeg)",
+      "dest": "/$1",
+      "headers": {
+        "Content-Type": "image/jpeg"
+      }
+    },
+    {
+      "src": "/(.*\\.gif)",
+      "dest": "/$1",
+      "headers": {
+        "Content-Type": "image/gif"
+      }
+    },
+    {
+      "src": "/(.*\\.mp3)",
+      "dest": "/$1",
+      "headers": {
+        "Content-Type": "audio/mpeg"
+      }
+    },
+    {
+      "src": "/(.*\\.pdf)",
+      "dest": "/$1",
+      "headers": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml",
+      "headers": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt",
+      "headers": {
+        "Content-Type": "text/plain"
       }
     },
     {

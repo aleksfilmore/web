@@ -1,11 +1,31 @@
 const fs = require('fs');
 const path = require('path');
 
-// Simple Tailwind CSS builder using standalone CLI
+// Simple Tailwind CSS builder using standalone CLI + static file copying for Vercel
 const { execSync } = require('child_process');
 
+// Copy directory recursively
+function copyDirectory(src, dest) {
+    if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+    }
+    
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    
+    for (let entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+        
+        if (entry.isDirectory()) {
+            copyDirectory(srcPath, destPath);
+        } else {
+            fs.copyFileSync(srcPath, destPath);
+        }
+    }
+}
+
 async function buildCSS() {
-    console.log('🎨 Building Tailwind CSS...');
+    console.log('🎨 Building Tailwind CSS and preparing static files...');
     
     try {
         // Create a simple input CSS file
@@ -76,6 +96,68 @@ async function buildCSS() {
         const stats = fs.statSync('./css/tailwind.min.css');
         const fileSizeInKB = (stats.size / 1024).toFixed(2);
         console.log(`📊 File size: ${fileSizeInKB} KB`);
+        
+        // Now copy all static files for Vercel deployment
+        console.log('📁 Copying static files for Vercel...');
+        
+        // Create public directory for Vercel output
+        const publicDir = './public';
+        if (!fs.existsSync(publicDir)) {
+            fs.mkdirSync(publicDir, { recursive: true });
+        }
+        
+        // Files and directories to copy to public
+        const filesToCopy = [
+            '*.html',
+            'css/**/*',
+            'js/**/*',
+            'api/**/*',
+            'assets/**/*',
+            'audio/**/*',
+            'blog/**/*',
+            'DaciaRising/**/*',
+            '*.png',
+            '*.jpg',
+            '*.jpeg',
+            '*.gif',
+            '*.svg',
+            '*.ico',
+            '*.pdf',
+            '*.mp3',
+            '*.txt',
+            '*.xml',
+            'robots.txt',
+            'sitemap.xml'
+        ];
+        
+        // Copy root HTML files
+        const htmlFiles = fs.readdirSync('.').filter(file => file.endsWith('.html'));
+        htmlFiles.forEach(file => {
+            fs.copyFileSync(file, path.join(publicDir, file));
+            console.log(`  ✓ Copied ${file}`);
+        });
+        
+        // Copy directories and files
+        const dirsToCopy = ['css', 'js', 'api', 'assets', 'audio', 'blog', 'DaciaRising'];
+        dirsToCopy.forEach(dir => {
+            if (fs.existsSync(dir)) {
+                const destDir = path.join(publicDir, dir);
+                copyDirectory(dir, destDir);
+                console.log(`  ✓ Copied ${dir}/`);
+            }
+        });
+        
+        // Copy other static files
+        const staticFiles = fs.readdirSync('.').filter(file => {
+            const ext = path.extname(file).toLowerCase();
+            return ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.pdf', '.mp3', '.txt', '.xml'].includes(ext);
+        });
+        staticFiles.forEach(file => {
+            fs.copyFileSync(file, path.join(publicDir, file));
+            console.log(`  ✓ Copied ${file}`);
+        });
+        
+        console.log('✅ Static files copied to public/ directory');
         
     } catch (error) {
         console.error('❌ Error building CSS:', error.message);

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | Aleks Filmore</title>
+    
+        <!-- Google tag loader (no hardcoded ID) -->
+        <script>
+            (function(){
+                var GAID = window.GA_MEASUREMENT_ID || document.documentElement.getAttribute('data-ga-id') || '';
+                if(!GAID){ console.warn('GA ID not set'); return; }
+                if(window._gaLoaded) return;
+                var s=document.createElement('script');
+                s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GAID; document.head.appendChild(s);
+                window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments);} window.gtag=gtag; gtag('js', new Date()); gtag('config', GAID);
+                window._gaLoaded=true;
+            })();
+        </script>
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: var(--font-display); }.btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-1px);
+        }
+
+        .success-container {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.1) 0%, rgba(247, 243, 237, 0.05) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.2);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color-glitch-lime);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: bounce 0.6s ease-out;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .info-card {
+            background: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+    </style>
+    <script src="/js/premium-icons.js" defer></script>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-2xl w-full">
+            <div class="success-container p-8 text-center">
+                
+                <!-- Success Icon -->
+                <div class="checkmark">
+                    <svg class="w-10 h-10 text-charcoal" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+
+                <!-- Success Message -->
+                <h1 class="font-display font-bold text-4xl mb-4">Order Confirmed!</h1>
+                <p class="text-xl text-bone/80 mb-8">Your heartbreak money has been well spent.</p>
+
+                <!-- Order Details -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="info-card text-left">
+                        <h3 class="font-display font-semibold text-lg mb-3 text-red-flag">What Happens Next?</h3>
+                        <ul class="space-y-2 text-bone/80">
+                            <li>✓ Confirmation email sent</li>
+                            <li>✓ Signed book prepared for shipping</li>
+                            <li>✓ Tracking info within 2-3 business days</li>
+                            <li>✓ Delivery in 5-10 business days</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card text-left">
+                        <h3 class="font-display font-semibold text-lg mb-3 text-red-flag">Need Help?</h3>
+                        <ul class="space-y-2 text-bone/80">
+                            <li><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+    </svg> <a href="mailto:aleksfilmore@gmail.com" class="text-red-flag hover:underline">aleksfilmore@gmail.com</a></li>
+                            <li><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg> Check spam folder for confirmation</li>
+                            <li>🚚 <a href="/shipping" class="text-red-flag hover:underline">Shipping info</a></li>
+                            <li><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg> <a href="/about" class="text-red-flag hover:underline">About the author</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Shipping Info -->
+                <div class="info-card mb-8 text-left">
+                    <h3 class="font-display font-semibold text-lg mb-3 text-red-flag">Shipping Details</h3>
+                    <p class="text-bone/80 mb-3">Your signed copy will be carefully packaged and shipped from Brussels with a handwritten thank you note.</p>
+                    <div class="bg-bone/5 p-4 rounded-lg">
+                        <p class="text-sm text-bone/60">
+                            <strong>Expected delivery:</strong> 5-10 business days<br>
+                            <strong>Shipping from:</strong> Brussels, Belgium<br>
+                            <strong>Includes:</strong> Signed paperback + personal note
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/" class="btn-primary">Back to Home</a>
+                    <a href="/shop" class="btn-primary bg-transparent border-bone text-bone hover:bg-bone hover:text-charcoal">Continue Shopping</a>
+                </div>
+
+                <!-- Social Sharing -->
+                <div class="mt-8 pt-8 border-t border-bone/10">
+                    <p class="text-bone/60 mb-4">Share your support for independent authors:</p>
+                    <div class="flex justify-center gap-4">
+                        <a href="https://twitter.com/intent/tweet?text=Just%20bought%20a%20signed%20copy%20of%20The%20Worst%20Boyfriends%20Ever%20by%20@aleksfilmore%20-%20supporting%20authors%20directly!" 
+                           class="text-bone/60 hover:text-red-flag transition-colors">
+                            Twitter
+                        </a>
+                        <a href="https://www.instagram.com/" 
+                           class="text-bone/60 hover:text-red-flag transition-colors">
+                            Instagram
+                        </a>
+                        <a href="/reviews" 
+                           class="text-bone/60 hover:text-red-flag transition-colors">
+                            Leave a Review
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <footer class="text-center py-8">
+        <p class="text-bone/40 text-sm">
+            Questions? Email <a href="mailto:aleksfilmore@gmail.com" class="text-red-flag hover:underline">aleksfilmore@gmail.com</a>
+        </p>
+    </footer>
+
+</body>
+</html>
+

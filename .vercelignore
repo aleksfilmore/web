@@ -1,5 +1,5 @@
-# Exclude large audio files from function bundles
-audio/**/*.mp3
+# Exclude large audio files from function bundles (but keep them for static serving)
+# audio/**/*.mp3
 
 # Exclude development/build files 
 node_modules
@@ -21,14 +21,14 @@ drizzle.config.ts
 test-*.js
 **/test-*.js
 
-# Exclude large images and assets from functions
-**/*.png
-**/*.jpg
-**/*.jpeg
-**/*.gif
-**/*.svg
-**/*.ico
-**/*.webp
+# Keep images and assets for static serving - these are needed!
+# **/*.png
+# **/*.jpg
+# **/*.jpeg
+# **/*.gif
+# **/*.svg
+# **/*.ico
+# **/*.webp
 
 # Exclude documentation
 *.md
@@ -47,6 +47,6 @@ docs/**
 .DS_Store
 Thumbs.db
 
-# Exclude build artifacts
-css/**
+# Keep CSS for static serving - this is critical!
+# css/**
 archive/**

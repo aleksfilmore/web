@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{newsletter_title}}</title>
+    
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    <script src="/js/ga-loader.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #0E0F10;
+            background-color: #F7F3ED;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0E0F10 0%, #1a1a1a 100%);
+            color: #F7F3ED;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .red-flag {
+            color: #FF3B3B;
+        }
+        
+        .green-highlight {
+            color: #C7FF41;
+        }
+        
+        /* Content */
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #0E0F10;
+            margin: 30px 0 15px 0;
+        }
+        
+        .content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Call-to-action button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF3B3B 0%, #e63946 100%);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 20px 0;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+        
+        /* Special content box */
+        .special-content {
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(199, 255, 65, 0.05) 100%);
+            border: 2px solid rgba(199, 255, 65, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .special-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #0E0F10;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Quote/testimonial style */
+        .quote {
+            background: rgba(255, 59, 59, 0.05);
+            border-left: 4px solid #FF3B3B;
+            padding: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0E0F10;
+            color: #F7F3ED;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #C7FF41;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+        
+        .unsubscribe {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(247, 243, 237, 0.2);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        
+        .unsubscribe a {
+            color: #FF3B3B;
+            text-decoration: none;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header,
+            .content,
+            .footer {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content h2 {
+                font-size: 20px;
+            }
+            
+            .cta-button {
+                display: block;
+                text-align: center;
+                width: 100%;
+            }
+        }
+    </style>
+    <script src="/js/premium-icons.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚩 The Red Flag Report</h1>
+            <div class="subtitle">Weekly chaos from Aleks Filmore</div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="greeting">
+                Hey gorgeous humans,
+            </div>
+            
+            <p>
+                Welcome to this week's edition of organized chaos, dating disasters, and life lessons learned the hard way. 
+                As promised, I've got something <span class="red-flag">exclusive</span> for my newsletter subscribers today.
+            </p>
+            
+            <!-- Special Secret Chapter Section -->
+            <div class="special-content">
+                <h3><svg class="premium-icon colored-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20,12 20,22 4,22 4,12"/>
+        <rect width="20" height="5" x="2" y="7"/>
+        <line x1="12" y1="22" x2="12" y2="7"/>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg> Subscriber Exclusive: Secret Chapter</h3>
+                <p>
+                    Remember that story I couldn't include in "The Worst Boyfriends Ever" because my lawyer said it was "too specific" and "potentially defamatory"? 
+                    Well, here it is in all its chaotic glory.
+                </p>
+                <p>
+                    <strong>Content Warning:</strong> Contains emotional manipulation, gaslighting, and one very expensive restaurant bill that I'm still not over.
+                </p>
+                
+                <div style="text-align: center; margin: 25px 0;">
+                    <a href="{{secret_chapter_link}}" class="cta-button">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg> Read the Secret Chapter
+                    </a>
+                </div>
+                
+                <p style="font-size: 14px; opacity: 0.7; text-align: center;">
+                    This link is exclusive to newsletter subscribers and will expire in 30 days.
+                </p>
+            </div>
+            
+            <h2>This Week's Red Flag Spotlight</h2>
+            <p>
+                Someone asked me this week: "How do you know when someone is love-bombing vs. just being really into you?" 
+                Great question, and honestly, the answer might surprise you.
+            </p>
+            
+            <div class="quote">
+                "Love-bombing isn't about the quantity of attention—it's about the <em>quality</em> of boundaries being ignored."
+            </div>
+            
+            <p>
+                Real enthusiasm respects your pace, your space, and your "no." Love-bombing steamrolls right over them with grand gestures and overwhelming intensity. 
+                If someone can't handle you saying "I prefer to take things slow," that's not romantic—that's a red flag parade with marching band.
+            </p>
+            
+            <h2>What I'm Working On</h2>
+            <p>
+                Currently hiding in Brussels coffee shops, working on the follow-up book tentatively titled "The Worst Friendships Ever" (because apparently, I have a type in all relationships). 
+                Also, the audiobook sequel is in early planning stages, and yes, I'll probably cry in the recording booth again.
+            </p>
+            
+            <p>
+                Speaking of audiobooks—if you haven't grabbed "The Worst Boyfriends Ever" audiobook yet, it's available with an exclusive bonus epilogue that's not available anywhere else. 
+                Perfect for your commute, your workout, or your 3 AM existential crisis.
+            </p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://aleksfilmore.com/audiobook.html" class="cta-button">
+                    🎧 Get the Audiobook
+                </a>
+            </div>
+            
+            <p>
+                That's all for this week's chaos update. Remember: red flags are just the universe's way of saying "plot twist incoming."
+            </p>
+            
+            <p>
+                Stay chaotic (but safely),<br>
+                <strong>Aleks</strong> <svg class="premium-icon colored-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+        <line x1="4" y1="22" x2="4" y2="15"/>
+    </svg>
+            </p>
+            
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 30px;">
+                P.S. If you want to reply to this email, I actually read them! Fair warning: I might use your dating disaster in my next book (with permission and heavy anonymization, obviously).
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Connect & Chaos</h3>
+            <p>Follow the ongoing disasters:</p>
+            
+            <div class="social-links">
+                <a href="https://instagram.com/aleksfilmore">📷 Instagram</a>
+                <a href="https://tiktok.com/@aleksfilmore"><svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+    </svg> TikTok</a>
+                <a href="https://aleksfilmore.com">🌐 Website</a>
+            </div>
+            
+            <p>
+                This newsletter goes out to {{subscriber_count}} fabulous humans who've learned to spot red flags from space.
+            </p>
+            
+            <div class="unsubscribe">
+                <p>
+                    You're receiving this because you subscribed to The Red Flag Report at aleksfilmore.com.<br>
+                    Unlike my dating history, this commitment is actually easy to exit: 
+                    <a href="{{unsubscribe_link}}">Unsubscribe here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
