@@ -623,10 +623,11 @@ class MobileCTA {
             }
         });
         
-        closeBtn.addEventListener('click', () => {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
             popup.remove();
         });
-        
+
         popup.addEventListener('click', (e) => {
             if (e.target === popup.querySelector('.newsletter-popup-overlay')) {
                 popup.remove();
