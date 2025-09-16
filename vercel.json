@@ -10,7 +10,13 @@
     },
     {
       "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "data/blog-index.json",
+          "data/blog-posts/**"
+        ]
+      }
     }
   ],
   "routes": [
