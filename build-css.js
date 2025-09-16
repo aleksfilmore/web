@@ -138,7 +138,7 @@ async function buildCSS() {
         });
         
         // Copy directories and files
-        const dirsToCopy = ['css', 'js', 'api', 'assets', 'audio', 'blog', 'DaciaRising', 'data'];
+    const dirsToCopy = ['css', 'js', 'assets', 'audio', 'blog', 'DaciaRising'];
         dirsToCopy.forEach(dir => {
             if (fs.existsSync(dir)) {
                 const destDir = path.join(publicDir, dir);
@@ -147,7 +147,7 @@ async function buildCSS() {
             }
         });
         
-        // Copy other static files
+        // Copy other static files in root (images, media, etc.)
         const staticFiles = fs.readdirSync('.').filter(file => {
             const ext = path.extname(file).toLowerCase();
             return ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.pdf', '.mp3', '.txt', '.xml'].includes(ext);
@@ -156,6 +156,26 @@ async function buildCSS() {
             fs.copyFileSync(file, path.join(publicDir, file));
             console.log(`  ✓ Copied ${file}`);
         });
+
+        // Copy ONLY blog-related data needed client-side
+        const dataSrcDir = path.join('.', 'data');
+        const dataDestDir = path.join(publicDir, 'data');
+        if (fs.existsSync(dataSrcDir)) {
+            if (!fs.existsSync(dataDestDir)) fs.mkdirSync(dataDestDir, { recursive: true });
+            const allowedFiles = ['blog-index.json', 'content-calendar.json'];
+            allowedFiles.forEach(f => {
+                const srcPath = path.join(dataSrcDir, f);
+                if (fs.existsSync(srcPath)) {
+                    fs.copyFileSync(srcPath, path.join(dataDestDir, f));
+                    console.log(`  ✓ Copied data/${f}`);
+                }
+            });
+            const blogPostsSrc = path.join(dataSrcDir, 'blog-posts');
+            if (fs.existsSync(blogPostsSrc)) {
+                copyDirectory(blogPostsSrc, path.join(dataDestDir, 'blog-posts'));
+                console.log('  ✓ Copied data/blog-posts/');
+            }
+        }
         
         console.log('✅ Static files copied to public/ directory');
         
