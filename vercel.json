@@ -7,14 +7,15 @@
       "config": {
         "distDir": "public"
       }
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": "data/**"
+      }
     }
   ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x",
-      "includeFiles": "data/**"
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
