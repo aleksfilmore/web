@@ -81,7 +81,7 @@ async function handleCheckoutCompleted(session) {
   
   try {
     // Set up Neon database connection
-    const databaseUrl = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+  const databaseUrl = process.env.DATABASE_URL;
     if (databaseUrl) {
       client = neon(databaseUrl);
       db = drizzle(client);

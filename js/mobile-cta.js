@@ -399,7 +399,7 @@ class MobileCTA {
                     <div class="popup-footer">
                         <p>We respect your privacy. Unsubscribe at any time.</p>
                     </div>
-                    <button class="newsletter-close">×</button>
+                    <button class="newsletter-close" type="button" aria-label="Close newsletter popup">×</button>
                 </div>
             </div>
         `;
@@ -608,8 +608,9 @@ class MobileCTA {
         document.body.appendChild(popup);
         
         // Setup popup events
-        const form = popup.querySelector('.newsletter-form');
-        const closeBtn = popup.querySelector('.newsletter-close');
+    const form = popup.querySelector('.newsletter-form');
+    const closeBtn = popup.querySelector('.newsletter-close');
+    const overlayEl = popup.querySelector('.newsletter-popup-overlay');
         
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -624,13 +625,20 @@ class MobileCTA {
         });
         
         closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation(); // Prevent event bubbling
             popup.remove();
+            // Also hide the CTA so user doesn't need to close two things
+            this.hideCTA();
+            sessionStorage.setItem('mobile_cta_dismissed', 'true');
         });
 
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup.querySelector('.newsletter-popup-overlay')) {
+        // Close when clicking on the dark overlay but not when clicking inside content
+        overlayEl.addEventListener('click', (e) => {
+            if (e.target === overlayEl) {
                 popup.remove();
+                this.hideCTA();
+                sessionStorage.setItem('mobile_cta_dismissed', 'true');
             }
         });
     }

@@ -7,18 +7,17 @@
       "config": {
         "distDir": "public"
       }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "data/blog-index.json",
-          "data/blog-posts/**"
-        ]
-      }
     }
   ],
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x",
+      "includeFiles": [
+        "data/blog-index.json",
+        "data/blog-posts/**"
+      ]
+    }
+  },
   "routes": [
     {
       "src": "/api/(.*)",
