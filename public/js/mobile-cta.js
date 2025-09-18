@@ -293,9 +293,9 @@ class MobileCTA {
         const button = cta.querySelector('.mobile-cta-button');
         const closeBtn = cta.querySelector('.mobile-cta-close');
         
-        // Button clicks
-        button?.addEventListener('click', (e) => {
-            const action = e.target.dataset.action;
+        // Button clicks (use element dataset to avoid e.target mismatches)
+        button?.addEventListener('click', () => {
+            const action = button.dataset.action;
             this.handleCTAAction(action);
             this.trackCTAClick(action);
         });
@@ -377,6 +377,10 @@ class MobileCTA {
     }
     
     showNewsletterPopup() {
+        // Prevent multiple popups from stacking (which can feel like "double close")
+        if (document.querySelector('.newsletter-popup-mobile')) {
+            return;
+        }
         // Create inline newsletter signup
         const popup = document.createElement('div');
         popup.className = 'newsletter-popup-mobile';
@@ -624,23 +628,30 @@ class MobileCTA {
             }
         });
         
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation(); // Prevent event bubbling
+        const closeNow = (e) => {
+            if (e) {
+                e.preventDefault?.();
+                e.stopPropagation?.();
+            }
             popup.remove();
             // Also hide the CTA so user doesn't need to close two things
             this.hideCTA();
             sessionStorage.setItem('mobile_cta_dismissed', 'true');
-        });
+        };
 
-        // Close when clicking on the dark overlay but not when clicking inside content
-        overlayEl.addEventListener('click', (e) => {
+        // Close button: handle both click and touch for immediate response on mobile
+        closeBtn.addEventListener('click', closeNow, { passive: false });
+        closeBtn.addEventListener('touchstart', closeNow, { passive: false });
+
+        // Close when clicking/tapping on the dark overlay but not when clicking inside content
+        const overlayMaybeClose = (e) => {
+            // Only close if the direct target is the overlay itself
             if (e.target === overlayEl) {
-                popup.remove();
-                this.hideCTA();
-                sessionStorage.setItem('mobile_cta_dismissed', 'true');
+                closeNow(e);
             }
-        });
+        };
+        overlayEl.addEventListener('click', overlayMaybeClose, { passive: false });
+        overlayEl.addEventListener('touchstart', overlayMaybeClose, { passive: false });
     }
     
     async subscribeToNewsletter(email, source) {

@@ -92,6 +92,14 @@
       }
     },
     {
+      "src": "^/(about|audiobook|bad-date-bingo|blog|books|checkout|checkout-success|contact|cookies|dacia-rising|midway|newsletter|order-confirmation|privacy|reviews|shop|terms)/?$",
+      "dest": "/$1.html"
+    },
+    {
+      "src": "^/blog/([^/]+)/?$",
+      "dest": "/blog/$1.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
