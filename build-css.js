@@ -27,6 +27,16 @@ function copyDirectory(src, dest) {
 async function buildCSS() {
     console.log('🎨 Building Tailwind CSS and preparing static files...');
     
+    // First, regenerate the blog index to ensure it's up to date
+    console.log('📚 Regenerating blog index...');
+    try {
+        const { generate } = require('./scripts/generate_blog_index.js');
+        generate();
+        console.log('✅ Blog index regenerated successfully!');
+    } catch (blogError) {
+        console.warn('⚠️ Failed to regenerate blog index:', blogError.message);
+    }
+    
     try {
         // Create a simple input CSS file
         const inputCSS = `
