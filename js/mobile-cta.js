@@ -394,6 +394,7 @@ class MobileCTA {
             this.hideCTA();
             sessionStorage.setItem('mobile_cta_dismissed', 'true');
             sessionStorage.setItem('newsletter_popup_open', 'true');
+            document.body.classList.add('newsletter-popup-open');
         } catch (e) {}
         
         // Create inline newsletter signup
@@ -665,12 +666,20 @@ class MobileCTA {
 
             // Mark popup closed
             sessionStorage.removeItem('newsletter_popup_open');
+            document.body.classList.remove('newsletter-popup-open');
         };
 
         // Close button: use touchend instead of touchstart to avoid conflicts with click
-        closeBtn.addEventListener('click', closeNow);
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault?.();
+            e.stopPropagation?.();
+            e.stopImmediatePropagation?.();
+            closeNow(e);
+        });
         closeBtn.addEventListener('touchend', (e) => {
             e.preventDefault(); // Prevent click event from also firing
+            e.stopPropagation?.();
+            e.stopImmediatePropagation?.();
             closeNow(e);
         });
 
@@ -681,7 +690,10 @@ class MobileCTA {
                 closeNow(e);
             }
         };
-        overlayEl.addEventListener('click', overlayMaybeClose);
+        overlayEl.addEventListener('click', (e) => {
+            e.stopPropagation?.();
+            if (e.target === overlayEl) overlayMaybeClose(e);
+        });
         overlayEl.addEventListener('touchend', (e) => {
             // Only close if the direct target is the overlay itself
             if (e.target === overlayEl) {
