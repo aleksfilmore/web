@@ -379,8 +379,16 @@ class MobileCTA {
     showNewsletterPopup() {
         // Prevent multiple popups from stacking (which can feel like "double close")
         if (document.querySelector('.newsletter-popup-mobile')) {
+            console.log('Newsletter popup already exists, not creating another');
             return;
         }
+        
+        // Also check if one was dismissed recently to avoid annoying users
+        if (sessionStorage.getItem('newsletter_popup_dismissed_recently')) {
+            console.log('Newsletter popup was dismissed recently, not showing again');
+            return;
+        }
+        
         // Create inline newsletter signup
         const popup = document.createElement('div');
         popup.className = 'newsletter-popup-mobile';
@@ -628,7 +636,12 @@ class MobileCTA {
             }
         });
         
+        let isClosing = false; // Prevent double-close on mobile
+        
         const closeNow = (e) => {
+            if (isClosing) return; // Prevent multiple rapid calls
+            isClosing = true;
+            
             if (e) {
                 e.preventDefault?.();
                 e.stopPropagation?.();
@@ -637,11 +650,19 @@ class MobileCTA {
             // Also hide the CTA so user doesn't need to close two things
             this.hideCTA();
             sessionStorage.setItem('mobile_cta_dismissed', 'true');
+            // Set a temporary flag to prevent immediate re-popup
+            sessionStorage.setItem('newsletter_popup_dismissed_recently', 'true');
+            setTimeout(() => {
+                sessionStorage.removeItem('newsletter_popup_dismissed_recently');
+            }, 5000); // Allow popup again after 5 seconds
         };
 
-        // Close button: handle both click and touch for immediate response on mobile
-        closeBtn.addEventListener('click', closeNow, { passive: false });
-        closeBtn.addEventListener('touchstart', closeNow, { passive: false });
+        // Close button: use touchend instead of touchstart to avoid conflicts with click
+        closeBtn.addEventListener('click', closeNow);
+        closeBtn.addEventListener('touchend', (e) => {
+            e.preventDefault(); // Prevent click event from also firing
+            closeNow(e);
+        });
 
         // Close when clicking/tapping on the dark overlay but not when clicking inside content
         const overlayMaybeClose = (e) => {
@@ -650,8 +671,14 @@ class MobileCTA {
                 closeNow(e);
             }
         };
-        overlayEl.addEventListener('click', overlayMaybeClose, { passive: false });
-        overlayEl.addEventListener('touchstart', overlayMaybeClose, { passive: false });
+        overlayEl.addEventListener('click', overlayMaybeClose);
+        overlayEl.addEventListener('touchend', (e) => {
+            // Only close if the direct target is the overlay itself
+            if (e.target === overlayEl) {
+                e.preventDefault(); // Prevent click event from also firing
+                closeNow(e);
+            }
+        });
     }
     
     async subscribeToNewsletter(email, source) {
