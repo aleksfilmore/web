@@ -221,6 +221,18 @@
     <script src="/js/structured-data.js" defer></script>
     <script src="/js/cart-abandonment.js" defer></script>
     <script src="/js/mobile-cta.js" defer></script>
+    <script src="/js/newsletter-popup-manager.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                if (window.mobileCTA && window.NewsletterPopupManager) {
+                    window.mobileCTA.showNewsletterPopup = function() {
+                        return window.NewsletterPopupManager.create('mobile-cta');
+                    };
+                }
+            }, 100);
+        });
+    </script>
     <script src="/js/premium-icons.js" defer></script>
     <script src="/js/mobile-menu.js" defer></script>
 </head>
