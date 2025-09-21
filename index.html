@@ -946,6 +946,22 @@
     <script src="/js/structured-data.js" defer></script>
     <script src="/js/cart-abandonment.js" defer></script>
     <script src="/js/mobile-cta.js" defer></script>
+    <script src="/js/newsletter-popup-manager.js" defer></script>
+    <script>
+        // Override mobile CTA popup creation after both scripts load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure both scripts are loaded
+            setTimeout(function() {
+                if (window.mobileCTA && window.NewsletterPopupManager) {
+                    // Override the mobile CTA popup method
+                    window.mobileCTA.showNewsletterPopup = function() {
+                        return window.NewsletterPopupManager.create('mobile-cta');
+                    };
+                    console.log('[Index] Newsletter popup integration complete');
+                }
+            }, 100);
+        });
+    </script>
 </head>
 <body class="antialiased">
 

@@ -377,6 +377,14 @@ class MobileCTA {
     }
     
     showNewsletterPopup() {
+        // Use the centralized popup manager to prevent double-close issues
+        if (window.NewsletterPopupManager) {
+            return window.NewsletterPopupManager.create('mobile-cta');
+        }
+        
+        // Fallback to old logic if manager not available
+        console.warn('[MobileCTA] NewsletterPopupManager not found, using fallback');
+        
         // Prevent multiple popups from stacking (which can feel like "double close")
         if (document.querySelector('.newsletter-popup-mobile')) {
             console.log('Newsletter popup already exists, not creating another');
@@ -817,6 +825,10 @@ class MobileCTA {
         }
         // Don't show if a newsletter popup is currently open
         if (sessionStorage.getItem('newsletter_popup_open') === 'true') {
+            return;
+        }
+        // Don't show if CTA is suppressed by popup manager
+        if (sessionStorage.getItem('cta_suppressed_by_popup') === 'true') {
             return;
         }
         
