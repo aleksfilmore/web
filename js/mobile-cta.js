@@ -388,6 +388,13 @@ class MobileCTA {
             console.log('Newsletter popup was dismissed recently, not showing again');
             return;
         }
+
+        // Suppress the mobile CTA bar while popup is open to avoid having to close two things
+        try {
+            this.hideCTA();
+            sessionStorage.setItem('mobile_cta_dismissed', 'true');
+            sessionStorage.setItem('newsletter_popup_open', 'true');
+        } catch (e) {}
         
         // Create inline newsletter signup
         const popup = document.createElement('div');
@@ -655,6 +662,9 @@ class MobileCTA {
             setTimeout(() => {
                 sessionStorage.removeItem('newsletter_popup_dismissed_recently');
             }, 5000); // Allow popup again after 5 seconds
+
+            // Mark popup closed
+            sessionStorage.removeItem('newsletter_popup_open');
         };
 
         // Close button: use touchend instead of touchstart to avoid conflicts with click
@@ -791,6 +801,10 @@ class MobileCTA {
     showCTA(trigger) {
         // Don't show if dismissed this session
         if (sessionStorage.getItem('mobile_cta_dismissed') === 'true') {
+            return;
+        }
+        // Don't show if a newsletter popup is currently open
+        if (sessionStorage.getItem('newsletter_popup_open') === 'true') {
             return;
         }
         
