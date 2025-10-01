@@ -7,9 +7,11 @@
         currentPopup: null,
         isClosing: false,
         isCreating: false,
+        createCount: 0, // Track how many times create has been called
         
         create: function(source = 'unknown') {
-            console.log('[NewsletterPopup] Create called with source:', source, 'current state:', {
+            this.createCount++;
+            console.log(`[NewsletterPopup] Create called #${this.createCount} with source:`, source, 'current state:', {
                 hasCurrentPopup: !!this.currentPopup,
                 isClosing: this.isClosing,
                 isCreating: this.isCreating
@@ -17,7 +19,7 @@
             
             // Prevent duplicates and race conditions
             if (this.currentPopup || this.isClosing || this.isCreating) {
-                console.log('[NewsletterPopup] Blocked duplicate popup creation, source:', source);
+                console.log(`[NewsletterPopup] Blocked duplicate popup creation #${this.createCount}, source:`, source);
                 return null;
             }
             

@@ -6,6 +6,7 @@ class MobileCTA {
         this.ctaVisible = false;
         this.scrollThreshold = 50; // Show after 50% scroll
         this.timeThreshold = 30000; // Show after 30 seconds
+        this.lastClickTime = 0; // Track last button click time
         
         this.init();
     }
@@ -296,12 +297,15 @@ class MobileCTA {
         // Remove any existing event listeners first
         if (button) {
             button.removeEventListener('click', this.handleButtonClick);
+            button.removeEventListener('touchend', this.handleButtonClick);
             button.addEventListener('click', this.handleButtonClick.bind(this));
+            // Prevent double-firing on mobile by not adding touchend
         }
         
         // Close button
         if (closeBtn) {
             closeBtn.removeEventListener('click', this.handleCloseClick);
+            closeBtn.removeEventListener('touchend', this.handleCloseClick);
             closeBtn.addEventListener('click', this.handleCloseClick.bind(this));
         }
         
@@ -318,6 +322,13 @@ class MobileCTA {
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
+        
+        const now = Date.now();
+        if (now - this.lastClickTime < 1000) {
+            console.log('[MobileCTA] Button click debounced - too soon after last click');
+            return;
+        }
+        this.lastClickTime = now;
         
         console.log('[MobileCTA] Button clicked, action:', e.currentTarget.dataset.action);
         
