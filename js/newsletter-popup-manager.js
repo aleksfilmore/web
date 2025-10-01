@@ -9,6 +9,12 @@
         isCreating: false,
         
         create: function(source = 'unknown') {
+            console.log('[NewsletterPopup] Create called with source:', source, 'current state:', {
+                hasCurrentPopup: !!this.currentPopup,
+                isClosing: this.isClosing,
+                isCreating: this.isCreating
+            });
+            
             // Prevent duplicates and race conditions
             if (this.currentPopup || this.isClosing || this.isCreating) {
                 console.log('[NewsletterPopup] Blocked duplicate popup creation, source:', source);
