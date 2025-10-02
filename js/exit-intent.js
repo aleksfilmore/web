@@ -5,6 +5,10 @@ class ExitIntentManager {
         this.hasShown = sessionStorage.getItem('exit_intent_shown') === 'true';
         this.isActive = true;
         this.emailCaptured = localStorage.getItem('email_captured') === 'true';
+        this.modal = null;
+        this.escKeyHandler = null;
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         
         // Don't show if already subscribed or shown this session
         if (this.hasShown || this.emailCaptured) {
@@ -45,16 +49,28 @@ class ExitIntentManager {
     }
 
     showModal() {
-        if (this.hasShown) return;
+        if (!this.shouldShowModal()) return;
         
         this.hasShown = true;
         sessionStorage.setItem('exit_intent_shown', 'true');
 
         const modal = this.createModal();
+        this.modal = modal;
         document.body.appendChild(modal);
 
         // Animate in
-        setTimeout(() => modal.classList.add('show'), 100);
+        if (typeof requestAnimationFrame === 'function') {
+            requestAnimationFrame(() => modal.classList.add('show'));
+        } else {
+            setTimeout(() => modal.classList.add('show'), 100);
+        }
+
+        // Prevent other newsletter prompts while visible
+        sessionStorage.setItem('newsletter_popup_open', 'true');
+        document.body.classList.add('newsletter-popup-active');
+        document.body.style.overflow = 'hidden';
+
+        this.bindModalEvents(modal);
 
         // Track analytics
         if (typeof gtag !== 'undefined') {
@@ -68,16 +84,16 @@ class ExitIntentManager {
         const modal = document.createElement('div');
         modal.className = 'exit-intent-modal';
         modal.innerHTML = `
-            <div class="exit-intent-backdrop" onclick="this.parentElement.remove()"></div>
+            <div class="exit-intent-backdrop" data-exit-backdrop></div>
             <div class="exit-intent-content">
-                <button class="exit-intent-close" onclick="this.closest('.exit-intent-modal').remove()">&times;</button>
+                <button class="exit-intent-close" type="button" data-exit-close>&times;</button>
                 
                 <div class="exit-intent-header">
                     <h2>Before you go...</h2>
                     <p>Join readers who get exclusive access to behind-the-scenes content, early releases, and personal updates that never make it to social media.</p>
                 </div>
 
-                <form class="exit-intent-form" onsubmit="return window.exitIntent.handleSubmit(event)">
+                <form class="exit-intent-form" data-exit-form>
                     <div class="form-group">
                         <input 
                             type="email" 
@@ -144,6 +160,7 @@ class ExitIntentManager {
             if (response.ok) {
                 // Success
                 localStorage.setItem('email_captured', 'true');
+                sessionStorage.setItem('newsletter_subscribed', 'true');
                 
                 // Show success message
                 form.innerHTML = `
@@ -151,7 +168,7 @@ class ExitIntentManager {
                         <div class="success-icon"></div>
                         <h3>Welcome to the inner circle</h3>
                         <p>Check your email for exclusive content that never makes it to social media.</p>
-                        <button onclick="this.closest('.exit-intent-modal').remove()" class="close-btn">
+                        <button type="button" class="close-btn" data-exit-close>
                             Continue Reading
                         </button>
                     </div>
@@ -165,9 +182,11 @@ class ExitIntentManager {
                     });
                 }
 
+                this.bindModalEvents(this.modal);
+
                 // Auto-close after 3 seconds
                 setTimeout(() => {
-                    document.querySelector('.exit-intent-modal')?.remove();
+                    this.closeModal('auto-success');
                 }, 3000);
 
             } else {
@@ -188,6 +207,102 @@ class ExitIntentManager {
         }
 
         return false;
+    }
+
+    shouldShowModal() {
+        if (this.hasShown || !this.isActive) {
+            return false;
+        }
+
+        if (sessionStorage.getItem('newsletter_popup_open') === 'true') {
+            console.log('[ExitIntent] Newsletter popup already open, skipping exit intent');
+            return false;
+        }
+
+        if (sessionStorage.getItem('newsletter_subscribed') === 'true') {
+            console.log('[ExitIntent] User already subscribed via newsletter popup');
+            return false;
+        }
+
+        const dismissedTime = sessionStorage.getItem('newsletter_popup_dismissed');
+        if (dismissedTime && (Date.now() - parseInt(dismissedTime, 10)) < 300000) {
+            console.log('[ExitIntent] Newsletter popup recently dismissed, skipping');
+            return false;
+        }
+
+        return true;
+    }
+
+    bindModalEvents(modal) {
+        if (!modal) return;
+
+        const backdrop = modal.querySelector('[data-exit-backdrop]');
+        if (backdrop && !backdrop.dataset.exitBound) {
+            backdrop.addEventListener('click', (event) => {
+                if (event.target === backdrop) {
+                    event.preventDefault();
+                    this.closeModal('backdrop');
+                }
+            });
+            backdrop.dataset.exitBound = 'true';
+        }
+
+        const closeButtons = modal.querySelectorAll('[data-exit-close]');
+        closeButtons.forEach((button) => {
+            if (!button.dataset.exitBound) {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    this.closeModal('close-button');
+                }, { capture: true });
+                button.dataset.exitBound = 'true';
+            }
+        });
+
+        const form = modal.querySelector('[data-exit-form]');
+        if (form && !form.dataset.exitBound) {
+            form.addEventListener('submit', this.handleSubmit, { once: false });
+            form.dataset.exitBound = 'true';
+        }
+
+        if (!this.escKeyHandler) {
+            this.escKeyHandler = (event) => {
+                if (event.key === 'Escape') {
+                    this.closeModal('escape');
+                }
+            };
+            document.addEventListener('keydown', this.escKeyHandler);
+        }
+    }
+
+    closeModal(trigger = 'manual') {
+        if (!this.modal) return;
+
+        const modal = this.modal;
+        modal.classList.remove('show');
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+            if (modal && modal.parentElement) {
+                modal.parentElement.removeChild(modal);
+            }
+        }, 300);
+
+        this.modal = null;
+        this.isActive = false;
+
+        document.body.classList.remove('newsletter-popup-active');
+        document.body.style.overflow = '';
+        sessionStorage.removeItem('newsletter_popup_open');
+        sessionStorage.setItem('newsletter_popup_dismissed', Date.now());
+
+        if (this.escKeyHandler) {
+            document.removeEventListener('keydown', this.escKeyHandler);
+            this.escKeyHandler = null;
+        }
+
+        console.log('[ExitIntent] Modal closed', trigger);
     }
 
     addStyles() {
