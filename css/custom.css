@@ -1492,7 +1492,7 @@ html input:focus, html select:focus, html textarea:focus {
         }
 
         .bundle-features ul li::before {
-            content: '✔';
+            content: 'âœ”';
             position: absolute;
             left: 0;
             color: var(--color-glitch-lime);
