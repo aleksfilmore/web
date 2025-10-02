@@ -16,7 +16,20 @@
                 isClosing: this.isClosing,
                 isCreating: this.isCreating
             });
-            
+
+            if (this.currentPopup && !this.currentPopup.isConnected) {
+                console.log('[NewsletterPopup] Clearing stale popup reference before creating');
+                this.currentPopup = null;
+            }
+
+            const existingPopup = document.querySelector('.newsletter-popup-mobile');
+            if (existingPopup) {
+                console.log(`[NewsletterPopup] Reusing existing popup instance #${this.createCount}, source:`, source);
+                this.currentPopup = existingPopup;
+                sessionStorage.setItem('newsletter_popup_open', 'true');
+                return existingPopup;
+            }
+
             // Prevent duplicates and race conditions
             if (this.currentPopup || this.isClosing || this.isCreating) {
                 console.log(`[NewsletterPopup] Blocked duplicate popup creation #${this.createCount}, source:`, source);
@@ -36,7 +49,7 @@
             }
             
             this.isCreating = true;
-            
+
             // Hide any existing CTAs immediately
             this.hideAllCTAs();
             
