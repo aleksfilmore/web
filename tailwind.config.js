@@ -52,8 +52,8 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'display': ['Playfair Display', 'serif'],
-        'body': ['Source Sans Pro', 'sans-serif']
+        'display': ['Space Grotesk', 'system-ui', 'sans-serif'],
+        'body': ['Inter', 'system-ui', 'sans-serif']
       },
       spacing: {
         '18': '4.5rem',

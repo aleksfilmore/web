@@ -47,12 +47,16 @@
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/css/custom.css">
     
     <!-- Logo CSS -->
     <link rel="stylesheet" href="/css/logo.css">
     
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
+
+    <script src="/js/mobile-cta.js" defer></script>
 
     <!-- Cookie Notice CSS -->
     <link rel="stylesheet" href="/css/cookie-notice.css">
@@ -116,656 +120,7 @@
     </script>
 
     <!-- Custom Styles -->
-    <style>
-        :root {
-            --color-charcoal: #0E0F10;
-            --color-bone: #F7F3ED;
-            --color-red-flag: #FF3B3B;
-            --color-glitch-lime: #C7FF41;
-            --color-dusty-blush: #F1B7C4;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        /* Mobile-First Base Styles */
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
-            font-family: var(--font-body);
-            color: var(--color-bone);
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-        /* Prevent horizontal overflow on all containers */
-        * {
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        .font-display { font-family: var(--font-display); }/* Logo styles now handled by external /css/logo.css */
-
-        /* Mobile-First Navigation */
-        .nav-link {
-            color: var(--color-bone);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-            font-size: 0.875rem;
-        }
-
-        .nav-link:hover {
-            color: var(--color-red-flag);
-        }
-
-        .hover-underline-slide {
-            position: relative;
-        }
-        
-        .hover-underline-slide::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-red-flag);
-            transition: width 0.3s ease;
-        }
-        
-        .hover-underline-slide:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile-First Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.875rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
-            font-size: 0.9rem;
-            width: 100%;
-            cursor: pointer;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--color-bone);
-            font-family: var(--font-display);
-            font-weight: 600;
-            padding: 0.875rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--color-bone);
-            font-size: 0.9rem;
-            width: 100%;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--color-bone);
-            color: var(--color-charcoal);
-            transform: translateY(-1px);
-        }
-
-        /* Mobile-First Product Cards */
-        .product-card {
-            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
-            border: 1px solid rgba(247, 243, 237, 0.15);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            margin-bottom: 1.5rem;
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 59, 59, 0.4);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-image {
-            aspect-ratio: 1;
-            background: rgba(247, 243, 237, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .price-tag {
-            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
-            color: var(--color-bone);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
-        }
-
-        .feature-badge {
-            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e632 100%);
-            color: var(--color-charcoal);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Image Carousel for Signed Books */
-        .image-carousel {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .carousel-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            border-radius: inherit;
-        }
-
-        .carousel-image.active {
-            opacity: 1;
-        }
-
-        .bundle-highlight {
-            background: linear-gradient(135deg, rgba(199, 255, 65, 0.12) 0%, rgba(255, 59, 59, 0.06) 30%, rgba(199, 255, 65, 0.08) 70%, rgba(199, 255, 65, 0.15) 100%);
-            border: 2px solid rgba(199, 255, 65, 0.3);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 
-                0 8px 32px rgba(199, 255, 65, 0.15),
-                0 4px 16px rgba(255, 59, 59, 0.08),
-                inset 0 1px 0 rgba(199, 255, 65, 0.2);
-            max-width: 100%;
-            width: 100%;
-        }
-
-        .bundle-highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(199, 255, 65, 0.15), rgba(255, 59, 59, 0.05), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .bundle-highlight::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, rgba(199, 255, 65, 0.4), rgba(255, 59, 59, 0.2), rgba(199, 255, 65, 0.4));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .bundle-highlight:hover {
-            border-color: rgba(199, 255, 65, 0.6);
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 
-                0 20px 60px rgba(199, 255, 65, 0.25),
-                0 10px 30px rgba(255, 59, 59, 0.15),
-                inset 0 1px 0 rgba(199, 255, 65, 0.3);
-        }
-
-        .bundle-highlight:hover::before {
-            left: 100%;
-        }
-
-        .bundle-highlight:hover::after {
-            opacity: 1;
-        }
-
-        /* Enhanced bundle-specific elements */
-        .bundle-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: linear-gradient(135deg, #c7ff41 0%, #a8d635 100%);
-            color: var(--color-charcoal);
-            padding: 0.6rem 1.2rem;
-            border-radius: 1.2rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 16px rgba(199, 255, 65, 0.4);
-            z-index: 20;
-            transform: rotate(8deg);
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { 
-                transform: rotate(12deg) scale(1);
-                box-shadow: 0 4px 16px rgba(199, 255, 65, 0.4);
-            }
-            50% { 
-                transform: rotate(12deg) scale(1.05);
-                box-shadow: 0 6px 24px rgba(199, 255, 65, 0.6);
-            }
-        }
-
-        .bundle-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.2),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            aspect-ratio: 1 / 1;
-        }
-
-        .bundle-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .bundle-image-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, transparent 50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .bundle-savings {
-            background: linear-gradient(135deg, #ff3b3b 0%, #cc2e2e 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bundle-savings::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .bundle-highlight:hover .bundle-savings::before {
-            left: 100%;
-        }
-
-        .bundle-features {
-            background: rgba(15, 15, 15, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(247, 243, 237, 0.08);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 0;
-        }
-
-        .bundle-features h4 {
-            color: var(--color-glitch-lime);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .bundle-features h4::before {
-            /* Replaced invalid inline SVG with unicode badge */
-            content: '\272A'; /* small star */
-            font-size: 1.1em;
-            color: var(--color-red-flag);
-        }
-
-        .bundle-features ul li {
-            color: var(--color-bone);
-            opacity: 0.9;
-            padding: 0.25rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .bundle-features ul li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: var(--color-glitch-lime);
-            font-size: 0.85rem;
-            top: 0.35rem;
-        }
-
-        /* Bundle Section Background Enhancement */
-        .bundle-section {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(199, 255, 65, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 59, 59, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(15, 15, 15, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(199, 255, 65, 0.1);
-            border-bottom: 1px solid rgba(199, 255, 65, 0.1);
-        }
-
-        /* Enhanced price display */
-        .bundle-price-container {
-            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 100%);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(247, 243, 237, 0.08);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 0;
-        }
-
-        /* Bundle title enhancement */
-        .bundle-title {
-            position: relative;
-            display: inline-block;
-        }
-
-        .bundle-title::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-glitch-lime) 0%, var(--color-red-flag) 100%);
-            border-radius: 2px;
-            opacity: 0.7;
-        }
-
-        /* Bundle-specific mobile optimizations */
-        @media (max-width: 640px) {
-            .bundle-features {
-                padding: 1rem;
-                margin: 0;
-            }
-            
-            .bundle-savings {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .bundle-highlight {
-                margin: 0 -0.5rem;
-            }
-            
-            .bundle-image-container {
-                max-width: 320px;
-            }
-            
-            /* Ensure no horizontal overflow */
-            .flex {
-                min-width: 0;
-            }
-            
-            .text-lg, .text-xl, .text-2xl {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .bundle-image-container {
-                max-width: 280px;
-            }
-            
-            .bundle-highlight {
-                margin: 0 -1rem;
-            }
-            
-            /* Further reduce text sizes on very small screens */
-            .text-lg {
-                font-size: 1rem;
-            }
-        }
-
-        /* Mobile-First Cart Styles */
-        .cart-notification {
-            position: fixed;
-            top: 5rem;
-            right: 1rem;
-            background: var(--color-red-flag);
-            color: var(--color-bone);
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            z-index: 1000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: none;
-        }
-
-        .cart-notification.show {
-            transform: translateX(0);
-            display: block;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, var(--color-bone) 0%, #f5f1ec 100%);
-            color: var(--color-charcoal);
-            padding: 1.5rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            background: rgba(14, 15, 16, 0.05);
-            border: 1px solid rgba(14, 15, 16, 0.1);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .loading-spinner {
-            display: none;
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--color-bone);
-            border-top: 2px solid var(--color-red-flag);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Additional mobile optimizations */
-        @media (max-width: 768px) {
-            /* Ensure product cards don't overflow */
-            .product-card {
-                margin-left: 0;
-                margin-right: 0;
-                max-width: 100%;
-            }
-            
-            /* Optimize grid layouts for mobile */
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            /* Bundle section mobile fixes */
-            .bundle-highlight .flex {
-                gap: 1rem;
-            }
-            
-            /* Ensure text doesn't overflow */
-            .font-display {
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-        }
-
-        /* Very small mobile devices */
-        @media (max-width: 320px) {
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .bundle-highlight {
-                margin: 0 -0.75rem;
-            }
-            
-            .p-4 {
-                padding: 0.75rem;
-            }
-        }
-        
-        /* Large mobile (375px+) */
-        @media (min-width: 375px) {
-            .modal-content {
-                padding: 2rem;
-            }
-        }
-        
-        /* Small tablet (640px+) */
-        @media (min-width: 640px) {
-            body {
-                font-size: 18px;
-            }
-            
-            .nav-link {
-                font-size: 1rem;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: auto;
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-            
-            .cart-notification {
-                right: 2rem;
-            }
-        }
-        
-        /* Medium tablet (768px+) */
-        @media (min-width: 768px) {
-            .product-card {
-                margin-bottom: 0;
-            }
-        }
-        
-        /* Large tablet/Small desktop (1024px+) */
-        @media (min-width: 1024px) {
-            .btn-primary, .btn-secondary {
-                padding: 1.25rem 2.5rem;
-                font-size: 1.125rem;
-            }
-        }
-
-        /* Floating animation for mobile */
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-    </style>
+    
     <script src="/js/premium-icons.js" defer></script>
     <script src="/js/mobile-menu.js" defer></script>
 </head>
@@ -780,7 +135,7 @@
                     <a href="index.html" class="aleksfilmore-logo-link">
                         <!-- SVG Logo for Navigation -->
                         <svg viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" class="aleksfilmore-logo compact">
-                            <title>Aleks Filmore — Author</title>
+                            <title>Aleks Filmore â€” Author</title>
                             <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#F7F3ED" font-weight="700">ALEKS FILMORE</text>
                             <rect x="40" y="140" width="140" height="10" fill="#FF3B3B" rx="5"/>
                             <text x="190" y="150" font-family="Inter, Arial, sans-serif" font-size="24" letter-spacing="8" fill="#F7F3ED" font-weight="600">AUTHOR</text>
@@ -858,10 +213,10 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
                         <a href="#products" class="btn-primary">
-                            🛒 Browse Products
+                            ðŸ›’ Browse Products
                         </a>
                         <a href="audiobook.html" class="btn-secondary">
-                            🎧 Preview Audio
+                            ðŸŽ§ Preview Audio
                         </a>
                     </div>
                 </div>
@@ -900,11 +255,45 @@
                                     <span class="text-xs sm:text-sm text-bone/60">Instant access</span>
                                 </div>
 
-                                <ul class="text-xs sm:text-sm text-bone/80 mb-6 space-y-1">
-                                    <li>✓ Full unabridged audiobook (7+ hours)</li>
-                                    <li>✓ Exclusive bonus epilogue</li>
-                                    <li>✓ Stream on your private player</li>
-                                    <li>✓ Works on all devices</li>
+                                                                <ul class="product-points text-xs sm:text-sm text-bone/80 mb-6 space-y-2">
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 12a8 8 0 0 1 16 0" />
+                                                <path d="M4 13h2a2 2 0 0 1 2 2v3H4z" />
+                                                <path d="M18 13h2v5h-4v-3a2 2 0 0 1 2-2z" />
+                                            </svg>
+                                        </span>
+                                        <span>Full unabridged audiobook (7+ hours)</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 4h16v16H4z" />
+                                                <path d="M8 8h8M8 12h6" />
+                                            </svg>
+                                        </span>
+                                        <span>Includes exclusive bonus epilogue</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M5 19h14l-1.5-5h-11z" />
+                                                <path d="M9 14V7a3 3 0 0 1 6 0v7" />
+                                            </svg>
+                                        </span>
+                                        <span>Private listening room with lifetime access</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M2 12h20" />
+                                                <path d="M5 12v7h4v-7" />
+                                                <path d="M15 12v5h4v-5" />
+                                            </svg>
+                                        </span>
+                                        <span>Works on desktop, tablet, and mobile</span>
+                                    </li>
                                 </ul>
 
                                 <button 
@@ -915,11 +304,22 @@
                                 </button>
 
                                 <!-- Trust Elements -->
-                                <div class="flex items-center justify-center mt-3 text-xs text-bone/60">
-                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                                    </svg>
-                                    Secure checkout via Stripe
+                                <div class="trust-banner mt-4">
+                                    <div class="trust-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7z" />
+                                            <path d="M9 12l2 2 4-4" />
+                                        </svg>
+                                        <span>Secure Stripe checkout</span>
+                                    </div>
+                                    <div class="trust-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M13 2H6a2 2 0 0 0-2 2v12" />
+                                            <path d="M9 6h13v12a2 2 0 0 1-2 2H4" />
+                                            <path d="M15 10l-3 3-2-2" />
+                                        </svg>
+                                        <span>Instant access link hits your inbox</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -951,11 +351,45 @@
                                     <span class="text-xs sm:text-sm text-bone/60">+ shipping</span>
                                 </div>
 
-                                <ul class="text-xs sm:text-sm text-bone/80 mb-6 space-y-1">
-                                    <li>✓ Personally signed by author</li>
-                                    <li>✓ Handwritten custom note</li>
-                                    <li>✓ Ships Globally</li>
-                                    <li>✓ Perfect for gifts</li>
+                                                                <ul class="product-points text-xs sm:text-sm text-bone/80 mb-6 space-y-2">
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 4h16v16H4z" />
+                                                <path d="M8 8h8M8 12h5" />
+                                            </svg>
+                                        </span>
+                                        <span>Personally signed by Aleks Filmore</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 19l7-7-3-3-7 7v3h3z" />
+                                                <path d="M5 11l7-7 3 3" />
+                                            </svg>
+                                        </span>
+                                        <span>Handwritten note tailored to you</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M3 7h18" />
+                                                <path d="M5 7v12h14V7" />
+                                                <path d="M9 7V5h6v2" />
+                                            </svg>
+                                        </span>
+                                        <span>Carefully packed and ships worldwide</span>
+                                    </li>
+                                    <li>
+                                        <span class="product-point-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 6v12" />
+                                                <path d="M8 10v8" />
+                                                <path d="M16 12v6" />
+                                            </svg>
+                                        </span>
+                                        <span>Gift-ready presentation with bonus sticker</span>
+                                    </li>
                                 </ul>
 
                                 <button 
@@ -966,15 +400,33 @@
                                 </button>
 
                                 <!-- Trust Elements -->
-                                <div class="text-center mt-3">
-                                    <div class="flex items-center justify-center text-xs text-bone/60 mb-1">
-                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                <div class="trust-banner mt-4">
+                                    <div class="trust-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7z" />
+                                            <path d="M9 12l2 2 4-4" />
                                         </svg>
-                                        Secure checkout via Stripe
+                                        <span>Secure Stripe checkout</span>
                                     </div>
+                                    <div class="trust-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M3 7h18l-2 10H5z" />
+                                            <path d="M5 7l1-4h12l1 4" />
+                                            <path d="M9 17h6" />
+                                        </svg>
+                                        <span>Ships in 48 hours from Brussels</span>
+                                    </div>
+                                    <div class="trust-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M4 6h16" />
+                                            <path d="M5 6v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6" />
+                                            <path d="M12 10v4" />
+                                        </svg>
+                                        <span>Protected packaging + tracking</span>
+                                    </div>
+                                </div>
                                     <div class="text-xs text-bone/60">
-                                        Worldwide shipping • Typically arrives in 7-14 days
+                                        Worldwide shipping â€¢ Typically arrives in 7-14 days
                                     </div>
                                 </div>
                             </div>
@@ -1077,7 +529,7 @@
                         
                         <div class="product-card text-center">
                             <div class="p-4 sm:p-6">
-                                <div class="text-3xl sm:text-4xl mb-3">✍️</div>
+                                <div class="text-3xl sm:text-4xl mb-3">âœï¸</div>
                                 <h3 class="font-display font-bold text-lg sm:text-xl mb-2">Personal Touch</h3>
                                 <p class="text-bone/80 text-xs sm:text-sm">
                                     Handwritten notes and personal signatures on physical books
@@ -1253,9 +705,9 @@
                     </p>
                     <div class="flex items-center gap-4 text-xs sm:text-sm">
                         <a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors">Terms</a>
-                        <span class="text-bone/30">•</span>
+                        <span class="text-bone/30">â€¢</span>
                         <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy</a>
-                        <span class="text-bone/30">•</span>
+                        <span class="text-bone/30">â€¢</span>
                         <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</a>
                     </div>
                 </div>
@@ -1334,7 +786,7 @@
                 <div class="cart-item">
                     <div class="flex items-center justify-between mb-2">
                         <h4 class="font-semibold text-sm sm:text-base">${item.name}</h4>
-                        <button onclick="removeFromCart('${item.id}')" class="text-red-flag hover:text-red-flag/80 text-lg">×</button>
+                        <button onclick="removeFromCart('${item.id}')" class="text-red-flag hover:text-red-flag/80 text-lg">Ã—</button>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
@@ -1496,4 +948,6 @@
 
 </body>
 </html>
+
+
 
