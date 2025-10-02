@@ -5,8 +5,8 @@ class MobileCTA {
         this.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
         this.ctaVisible = false;
         this.scrollThreshold = 50; // Show after 50% scroll
-    this.timeThreshold = 30000; // Show after 30 seconds
-    this.lastClickTime = 0; // Track last button click time
+        this.timeThreshold = 30000; // Show after 30 seconds
+        this.lastClickTime = 0; // Track last button click time
         
         this.init();
     }
