@@ -5,7 +5,8 @@ class MobileCTA {
         this.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
         this.ctaVisible = false;
         this.scrollThreshold = 50; // Show after 50% scroll
-        this.timeThreshold = 30000; // Show after 30 seconds
+    this.timeThreshold = 30000; // Show after 30 seconds
+    this.lastClickTime = 0; // Track last button click time
         
         this.init();
     }
@@ -293,21 +294,20 @@ class MobileCTA {
         const button = cta.querySelector('.mobile-cta-button');
         const closeBtn = cta.querySelector('.mobile-cta-close');
         
-        // Button clicks (use element dataset to avoid e.target mismatches)
-        button?.addEventListener('click', () => {
-            const action = button.dataset.action;
-            this.handleCTAAction(action);
-            this.trackCTAClick(action);
-        });
+        // Remove any existing event listeners first
+        if (button) {
+            button.removeEventListener('click', this.handleButtonClick);
+            button.removeEventListener('touchend', this.handleButtonClick);
+            button.addEventListener('click', this.handleButtonClick.bind(this));
+            // Prevent double-firing on mobile by not adding touchend
+        }
         
         // Close button
-        closeBtn?.addEventListener('click', () => {
-            this.hideCTA();
-            this.trackCTAClose();
-            
-            // Don't show again for this session
-            sessionStorage.setItem('mobile_cta_dismissed', 'true');
-        });
+        if (closeBtn) {
+            closeBtn.removeEventListener('click', this.handleCloseClick);
+            closeBtn.removeEventListener('touchend', this.handleCloseClick);
+            closeBtn.addEventListener('click', this.handleCloseClick.bind(this));
+        }
         
         // Prevent accidental touches
         cta.addEventListener('touchstart', (e) => {
@@ -316,6 +316,37 @@ class MobileCTA {
         
         // Swipe to dismiss
         this.setupSwipeGesture(cta);
+    }
+
+    handleButtonClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        const now = Date.now();
+        if (now - this.lastClickTime < 1000) {
+            console.log('[MobileCTA] Button click debounced - too soon after last click');
+            return;
+        }
+        this.lastClickTime = now;
+        
+        console.log('[MobileCTA] Button clicked, action:', e.currentTarget.dataset.action);
+        
+        const button = e.currentTarget;
+        const action = button.dataset.action;
+        this.handleCTAAction(action);
+        this.trackCTAClick(action);
+    }
+    
+    handleCloseClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        this.hideCTA();
+        this.trackCTAClose();
+        
+        // Don't show again for this session
+        sessionStorage.setItem('mobile_cta_dismissed', 'true');
     }
     
     setupSwipeGesture(element) {

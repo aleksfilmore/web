@@ -149,9 +149,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 if (window.mobileCTA && window.NewsletterPopupManager) {
-                    window.mobileCTA.showNewsletterPopup = function() {
-                        return window.NewsletterPopupManager.create('mobile-cta');
-                    };
+                    // MobileCTA already has the correct showNewsletterPopup method
+                    // No override needed
                 }
             }, 100);
         });
