@@ -66,8 +66,6 @@
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="/css/custom.css">
     
     <!-- Logo CSS -->
     <link rel="stylesheet" href="/css/logo.css">
@@ -133,7 +131,810 @@
     </script>
 
     <!-- Custom Styles -->
-    
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        
+        /* Logo styles now handled by external /css/logo.css */
+
+        /* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile-First Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 
+                0 4px 16px rgba(255, 59, 59, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            font-size: 1rem;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 32px rgba(255, 59, 59, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            background: linear-gradient(135deg, #ff4757 0%, #ff3742 100%);
+        }
+
+        .btn-secondary {
+            background: rgba(247, 243, 237, 0.05);
+            backdrop-filter: blur(10px);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(247, 243, 237, 0.3);
+            font-size: 1rem;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(247, 243, 237, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(247, 243, 237, 0.15);
+            border-color: rgba(247, 243, 237, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(247, 243, 237, 0.1);
+        }
+        
+        /* Hero Button Elements */
+        .hero-btn-icon {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-btn-arrow {
+            font-size: 1.1rem;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .btn-primary:hover .hero-btn-icon,
+        .btn-secondary:hover .hero-btn-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .btn-primary:hover .hero-btn-arrow,
+        .btn-secondary:hover .hero-btn-arrow {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        .counter-number {
+            background: linear-gradient(135deg, var(--color-red-flag), var(--color-dusty-blush));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* Mobile-First Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 59, 59, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 59, 59, 0.5); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .wiggle {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Small mobile (320px+) - Default styles above */
+        
+        /* Large mobile (375px+) */
+        @media (min-width: 375px) {
+            .shop-card {
+                padding: 1.75rem;
+                min-height: 300px;
+            }
+            
+            .shop-card-icon {
+                font-size: 3rem;
+            }
+            
+            .price-badge {
+                padding: 0.625rem 1.25rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: auto;
+                min-width: 200px;
+                padding: 1.125rem 2.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .shop-card {
+                margin-bottom: 0;
+                min-height: 320px;
+            }
+            
+            .shop-card-icon {
+                font-size: 3.5rem;
+            }
+        }
+        
+        /* Medium tablet (768px+) */
+        @media (min-width: 768px) {
+            .shop-card {
+                padding: 2rem;
+            }
+        }
+        
+        /* Enhanced Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 50%, var(--color-charcoal) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Background image layer - blurred landscape */
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/bg.png');
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
+            filter: blur(2px);
+            opacity: 0.6;
+            z-index: 1;
+            /* Scale slightly larger to avoid blur edge artifacts */
+            transform: scale(1.08);
+            animation: subtle-float 20s ease-in-out infinite;
+        }
+        
+        /* Subtle floating animation for background */
+        @keyframes subtle-float {
+            0%, 100% { transform: scale(1.08) translateY(0px); }
+            50% { transform: scale(1.08) translateY(-5px); }
+        }
+
+        /* Responsive floating animations */
+        @media (max-width: 767px) {
+            @keyframes subtle-float {
+                0%, 100% { transform: scale(1.15) translateY(0px); }
+                50% { transform: scale(1.15) translateY(-3px); }
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            @keyframes subtle-float {
+                0%, 100% { transform: scale(1.1) translateY(0px); }
+                50% { transform: scale(1.1) translateY(-4px); }
+            }
+        }
+
+        @media (min-width: 1024px) {
+            @keyframes subtle-float {
+                0%, 100% { transform: scale(1.05) translateY(0px); }
+                50% { transform: scale(1.05) translateY(-6px); }
+            }
+        }
+        
+        /* Gradient overlay layer */
+        .hero-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(14, 15, 16, 0.65) 0%, 
+                    rgba(26, 26, 26, 0.55) 50%, 
+                    rgba(14, 15, 16, 0.65) 100%),
+                radial-gradient(circle at 20% 30%, rgba(255, 59, 59, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(199, 255, 65, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(241, 183, 196, 0.06) 0%, transparent 50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-title {
+            background: linear-gradient(135deg, 
+                var(--color-bone) 0%, 
+                var(--color-glitch-lime) 25%, 
+                var(--color-bone) 50%, 
+                var(--color-dusty-blush) 75%, 
+                var(--color-bone) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(247, 243, 237, 0.1);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .hero-subtitle {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, 
+                var(--color-bone) 0%, 
+                rgba(247, 243, 237, 0.9) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-accent {
+            color: var(--color-red-flag);
+            text-shadow: 0 0 20px rgba(255, 59, 59, 0.3);
+        }
+
+        /* Reviews Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 40s linear infinite;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-right: 100px;
+        }
+
+        .marquee-section {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #7dd3fc 100%);
+            color: var(--color-charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(199, 255, 65, 0.1) 25%, 
+                transparent 50%, 
+                rgba(199, 255, 65, 0.1) 75%, 
+                transparent 100%);
+            pointer-events: none;
+        }
+        
+        /* Enhanced Why Buy Direct Box */
+        .why-direct-box {
+            background: linear-gradient(135deg, 
+                rgba(247, 243, 237, 0.12) 0%, 
+                rgba(247, 243, 237, 0.08) 50%, 
+                rgba(247, 243, 237, 0.12) 100%);
+            border: 2px solid rgba(247, 243, 237, 0.2);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(247, 243, 237, 0.1);
+        }
+        
+        .why-direct-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 59, 59, 0.3) 50%, 
+                transparent 100%);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(247, 243, 237, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 59, 59, 0.05);
+            border-radius: 12px;
+            margin: 0 -0.5rem;
+            padding: 1rem 1rem;
+        }
+        
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            margin-top: 0.125rem;
+        }
+        
+        .benefit-icon.primary {
+            background: linear-gradient(135deg, var(--color-red-flag), #e63946);
+            color: var(--color-bone);
+        }
+        
+        .benefit-icon.secondary {
+            background: linear-gradient(135deg, var(--color-glitch-lime), #b8e000);
+            color: var(--color-charcoal);
+        }
+        
+        .benefit-icon.tertiary {
+            background: linear-gradient(135deg, var(--color-dusty-blush), #e8a4b8);
+            color: var(--color-charcoal);
+        }
+
+        /* Icon styles for replacing emojis */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .icon-lg {
+            width: 2rem;
+            height: 2rem;
+        }
+        
+        /* Bingo preview styles */
+        .bingo-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            width: 300px;
+            background: rgba(247, 243, 237, 0.1);
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 59, 59, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.1);
+        }
+        
+        .bingo-preview-cell {
+            aspect-ratio: 1;
+            background: rgba(247, 243, 237, 0.08);
+            border: 1px solid rgba(247, 243, 237, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.1;
+            padding: 6px;
+            font-weight: 600;
+            word-break: break-word;
+            hyphens: auto;
+            transition: all 0.2s ease;
+            overflow: hidden;
+        }
+        
+        .bingo-preview-cell:hover {
+            transform: scale(1.05);
+            background: rgba(247, 243, 237, 0.15);
+        }
+        
+        .bingo-preview-cell.selected {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(255, 59, 59, 0.3);
+        }
+        
+        .bingo-preview-cell.free {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            color: var(--color-charcoal);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(199, 255, 65, 0.3);
+            font-size: 9px;
+        }
+        
+        @media (min-width: 640px) {
+            .bingo-preview-grid {
+                width: 350px;
+                padding: 24px;
+                gap: 10px;
+            }
+            
+            .bingo-preview-cell {
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            .bingo-preview-cell.free {
+                font-size: 11px;
+                padding: 3px;
+                border-radius: 8px;
+            }
+        }
+        
+        .icon-xl {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        /* Partners Section */
+    /* partners-section styles removed (section no longer present) */
+
+        .partner-logo {
+            height: 2.5rem;
+            width: auto;
+            max-width: 120px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            filter: grayscale(1) brightness(0) invert(1);
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: grayscale(0) brightness(1) invert(0);
+        }
+
+        .partner-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(247, 243, 237, 0.05);
+            min-height: 4rem;
+            min-width: 100px;
+        }
+
+        .partner-link:hover {
+            background: rgba(247, 243, 237, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(247, 243, 237, 0.15);
+        }
+
+        @media (min-width: 640px) {
+            .partner-logo {
+                height: 3rem;
+            }
+            .partner-link {
+                padding: 1.25rem;
+                min-height: 4.5rem;
+                min-width: 120px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .partner-logo {
+                height: 3.5rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .btn-primary, .btn-secondary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
+                line-height: 0.9;
+            }
+            
+            .why-direct-box {
+                padding: 3rem;
+            }
+            
+            .benefit-item {
+                padding: 1.5rem 0;
+            }
+            
+            .benefit-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+
+        /* Mobile-specific hero background optimizations */
+        @media (max-width: 767px) {
+            .hero-gradient::before {
+                background-position: center 30% !important;
+                transform: scale(1.15) !important;
+                filter: blur(3px) !important;
+            }
+            
+            .hero-gradient::after {
+                background: 
+                    linear-gradient(135deg, 
+                        rgba(14, 15, 16, 0.75) 0%, 
+                        rgba(26, 26, 26, 0.65) 50%, 
+                        rgba(14, 15, 16, 0.75) 100%),
+                    radial-gradient(circle at 20% 30%, rgba(255, 59, 59, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(199, 255, 65, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 90%, rgba(241, 183, 196, 0.04) 0%, transparent 50%) !important;
+            }
+
+            .hero-content {
+                text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
+            }
+        }
+
+        /* Tablet optimizations */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-gradient::before {
+                background-position: center 35% !important;
+                transform: scale(1.1) !important;
+            }
+        }
+
+        /* Large screen optimizations */
+        @media (min-width: 1024px) {
+            .hero-gradient::before {
+                background-position: center 40% !important;
+                transform: scale(1.05) !important;
+                filter: blur(1.5px) !important;
+            }
+            
+            .hero-gradient::after {
+                background: 
+                    linear-gradient(135deg, 
+                        rgba(14, 15, 16, 0.55) 0%, 
+                        rgba(26, 26, 26, 0.45) 50%, 
+                        rgba(14, 15, 16, 0.55) 100%),
+                    radial-gradient(circle at 20% 30%, rgba(255, 59, 59, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(199, 255, 65, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 90%, rgba(241, 183, 196, 0.06) 0%, transparent 50%) !important;
+            }
+        }
+
+        /* Product and blog card base styles (restore missing styles) */
+        .product-card, .shop-card {
+            background: linear-gradient(135deg,
+                rgba(247, 243, 237, 0.06) 0%,
+                rgba(247, 243, 237, 0.04) 60%,
+                rgba(247, 243, 237, 0.06) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.16);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(247, 243, 237, 0.06);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+
+        .product-card:hover, .shop-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(247, 243, 237, 0.28);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(247, 243, 237, 0.08);
+        }
+
+        .shop-card .btn-primary { margin-top: auto; }
+
+        .shop-card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: .5rem;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            padding: .5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: .875rem;
+            box-shadow: 0 6px 18px rgba(255,59,59,.35);
+            border: 1px solid rgba(247, 243, 237, 0.18);
+        }
+
+        .feature-tag {
+            display: inline-block;
+            padding: .25rem .6rem;
+            border-radius: 9999px;
+            background: rgba(247, 243, 237, 0.06);
+            border: 1px solid rgba(247, 243, 237, 0.18);
+            color: rgba(247, 243, 237, 0.9);
+            font-size: .75rem;
+            line-height: 1rem;
+            white-space: nowrap;
+        }
+
+        .blog-card {
+            background: rgba(247, 243, 237, 0.04);
+            border: 1px dashed rgba(247, 243, 237, 0.2);
+            border-radius: 12px;
+            color: rgba(247, 243, 237, 0.8);
+        }
+
+        .receipt-card {
+            background: linear-gradient(180deg, rgba(247,243,237,0.06) 0%, rgba(247,243,237,0.03) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.18);
+            border-radius: 16px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .red-flag-tag {
+            display: inline-block;
+            padding: .4rem .8rem;
+            border: 1px solid var(--color-red-flag);
+            color: var(--color-red-flag);
+            border-radius: 9999px;
+            font-weight: 600;
+            letter-spacing: .02em;
+            background: rgba(255, 59, 59, 0.06);
+        }
+    </style>
 
     <!-- Optimization Scripts -->
     <script src="/js/premium-icons.js" defer></script>
@@ -171,7 +972,7 @@
                     <a href="index.html" class="aleksfilmore-logo-link">
                         <!-- SVG Logo for Navigation -->
                         <svg viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" class="aleksfilmore-logo compact">
-                            <title>Aleks Filmore ¢â‚¬â€ Author</title>
+                            <title>Aleks Filmore — Author</title>
                             <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#F7F3ED" font-weight="700">ALEKS FILMORE</text>
                             <rect x="40" y="140" width="140" height="10" fill="#FF3B3B" rx="5"/>
                             <text x="190" y="150" font-family="Inter, Arial, sans-serif" font-size="24" letter-spacing="8" fill="#F7F3ED" font-weight="600">AUTHOR</text>
@@ -241,11 +1042,11 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="hero-content max-w-5xl mx-auto text-center">
                     <h1 class="hero-title font-display font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 leading-tight">
-                        Dating is war.
-                        <span class="hero-accent block">Laughter is armor.</span>
+                        DATING IS WAR. <span class="hero-accent">LAUGHTER IS ARMOR.</span><br>
+                        <span class="text-lg sm:text-xl lg:text-2xl font-normal block mt-4" style="background: linear-gradient(135deg, var(--color-bone) 0%, var(--color-glitch-lime) 50%, var(--color-bone) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">I kept mistaking warnings for charm.</span>
                     </h1>
                     <p class="hero-subtitle text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-10 leading-relaxed max-w-3xl mx-auto font-light">
-                        Queer dating memoir by Aleks Filmore. Twenty-five receipts to spot red flags faster.
+                        I'm Aleks Filmore. And these are <span class="text-glitch-lime font-semibold">twenty-five lessons</span> I learned the hard way.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center max-w-2xl mx-auto">
                         <a href="shop.html" class="btn-primary group text-lg font-semibold">
@@ -254,7 +1055,7 @@
                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                             </svg>
                             Get the Book
-                            <span class="hero-btn-arrow">&rarr;</span>
+                            <span class="hero-btn-arrow">→</span>
                         </a>
                         <a href="audiobook.html" class="btn-secondary group text-lg">
                             <svg class="hero-btn-icon premium-icon hero" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -263,59 +1064,9 @@
                                 <circle cx="18" cy="16" r="3"/>
                             </svg>
                             Hear a 60-sec Sample
-                            <span class="hero-btn-arrow">&rarr;</span>
+                            <span class="hero-btn-arrow">→</span>
                         </a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="relative py-12 sm:py-16 bg-charcoal/60 border-y border-bone/10">
-            <div class="container mx-auto px-4 sm:px-6">
-                <div class="max-w-3xl mx-auto text-center">
-                    <p class="font-display tracking-[0.35em] uppercase text-xs text-glitch-lime/80 mb-3">Peek Inside The Receipts</p>
-                    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-bone mb-4">The moments that rewired my red-flag radar</h2>
-                    <p class="text-bone/70 text-base sm:text-lg">Open a receipt to see the lesson you'll steal before your next first date.</p>
-                </div>
-                <div class="mt-8 space-y-4">
-                    <details class="peek-accordion">
-                        <summary>
-                            <span class="peek-accordion-icon">
-                                <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3-5 3V6a2 2 0 0 1 2-2z" />
-                                </svg>
-                            </span>
-                            Receipt #08 · The love bomber with a spreadsheet
-                        </summary>
-                        <div class="peek-accordion-body">
-                            <p>He mapped our future in Notion on date two and kept receipts of every cocktail like they were contracts. I finally listened to the knot in my stomach.</p>
-                            <p class="peek-lesson">Lesson: Charm without curiosity is choreography, not chemistry.</p>
-                        </div>
-                    </details>
-                    <details class="peek-accordion">
-                        <summary>
-                            <span class="peek-accordion-icon">
-                                <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 3h7l2 3h9v4h-3l-2 5h-6l-2 5H3z" />
-                                </svg>
-                            </span>
-                            Receipt #19 · The apology tour on repeat
-                        </summary>
-                        <div class="peek-accordion-body">
-                            <p>He Venmoed â‚¬4.99 "I'm sorry" payments after every blow-up. Sorting the timestamps showed the cycle: vanish, explode, pay, repeat.</p>
-                            <p class="peek-lesson">Lesson: Consistency is a better apology than contrition you can screenshot.</p>
-                        </div>
-                    </details>
-                </div>
-                <div class="mt-8 text-center">
-                    <a href="shop.html" class="btn-secondary inline-flex items-center gap-2">
-                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 12h18" />
-                            <path d="M3 6h18" />
-                            <path d="M3 18h18" />
-                        </svg>
-                        See all twenty-five receipts
-                    </a>
                 </div>
             </div>
         </section>
@@ -325,45 +1076,45 @@
             <div class="marquee-container">
                 <div class="marquee-track">
                     <div class="marquee-content">
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Read this before you download another dating app!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Best memoir I've read in years. Couldn't put it down!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
+                        <span class="text-bone/60 mx-6">•</span>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="marquee-content">
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Hilarious and brutally honest. I laughed so hard I snorted."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Finally, a dating book that gets it. These red flags are REAL."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Read this before you download another dating app!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"The audiobook had me crying laughing on my commute."</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Queer dating chaos at its finest. Essential reading!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
-                        <span class="font-bold text-lg text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-bone/60 mx-6">•</span>
+                        <span class="font-bold text-lg text-yellow-400">★★★★★</span>
                         <span class="mx-6">"Best memoir I've read in years. Couldn't put it down!"</span>
-                        <span class="text-bone/60 mx-6">&middot;</span>
+                        <span class="text-bone/60 mx-6">•</span>
                     </div>
                 </div>
             </div>
@@ -379,7 +1130,7 @@
                             The Worst Boyfriends Ever
                         </h2>
                         <p class="text-lg sm:text-xl lg:text-2xl text-bone/90 max-w-3xl mx-auto leading-relaxed mb-4">
-                            <span class="text-red-flag font-semibold">The Worst Boyfriends Ever</span> isn't just a memoir¢â‚¬â€it's a breakup battle cry in bold font and eyeliner.
+                            <span class="text-red-flag font-semibold">The Worst Boyfriends Ever</span> isn't just a memoir—it's a breakup battle cry in bold font and eyeliner.
                         </p>
                         <p class="text-base sm:text-lg lg:text-xl text-glitch-lime/80 max-w-2xl mx-auto">
                             You won't just relate. You'll feel seen. Then vindicated. Then a little dangerous.
@@ -747,7 +1498,7 @@
 
                     <div id="homepage-blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
                         <!-- Placeholder cards will be replaced by client-side fetched latest 3 posts -->
-                        <div class="blog-card p-6">Loading latest posts¢â‚¬Â¦</div>
+                        <div class="blog-card p-6">Loading latest posts…</div>
                     </div>
 
                     <script>
@@ -756,7 +1507,7 @@
                         function truncateText(text, max) {
                             if (!text) return '';
                             if (text.length <= max) return text;
-                            return text.slice(0, max - 1).trimEnd() + '¢â‚¬Â¦';
+                            return text.slice(0, max - 1).trimEnd() + '…';
                         }
 
                         function extractFirstParagraphFromHtml(html) {
@@ -879,7 +1630,7 @@
 
                                     const readMore = document.createElement('span');
                                     readMore.className = 'text-red-flag hover:text-red-flag/80 font-semibold text-sm';
-                                    readMore.textContent = 'Read more ¢â€ â€™';
+                                    readMore.textContent = 'Read more →';
 
                                     inner.appendChild(meta);
                                     inner.appendChild(h3);
@@ -914,7 +1665,7 @@
                                 <polyline points="10,9 9,9 8,9"/>
                             </svg>
                             Read All Posts
-                            <span class="hero-btn-arrow">&rarr;</span>
+                            <span class="hero-btn-arrow">→</span>
                         </a>
                     </div>
                     
@@ -1150,12 +1901,16 @@
     <script src="/js/exit-intent.js"></script>
     
 
-    
+    <style>
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+        
+        nav {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 
 </body>
 </html>
-
-
-
-
 
