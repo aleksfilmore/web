@@ -19,12 +19,12 @@ class MobileCTA {
         this.setupTimeTracking();
         this.setupResizeHandler();
         
-        console.log('Mobile CTA system initialized');
+        console.log('📱 Mobile CTA system initialized');
     }
     
     createMobileCTA() {
         // Only create on relevant pages
-        const relevantPages = ['/', '/index', '/books', '/audiobook', '/about', '/blog', '/shop'];
+        const relevantPages = ['/books', '/audiobook', '/about', '/blog', '/shop'];
         const currentPage = window.location.pathname;
         
         if (!relevantPages.some(page => currentPage.includes(page))) return;
@@ -56,7 +56,7 @@ class MobileCTA {
     </svg> Special Price: $7.99</div>
                     </div>
                     <button class="mobile-cta-button" data-action="buy-audiobook">
-                        Get Audiobook
+                        🎧 Get Audiobook
                     </button>
                 </div>
             `;
@@ -79,7 +79,7 @@ class MobileCTA {
             ctaContent = `
                 <div class="mobile-cta-content">
                     <div class="mobile-cta-text">
-                        <div class="mobile-cta-title">Hi! I'm Aleks Filmore</div>
+                        <div class="mobile-cta-title">👋 Hi! I'm A.M. Alexander</div>
                         <div class="mobile-cta-subtitle">Check out my books!</div>
                     </div>
                     <button class="mobile-cta-button" data-action="view-books">
@@ -107,7 +107,7 @@ class MobileCTA {
         return `
             <div id="mobile-cta" class="mobile-cta hidden">
                 ${ctaContent}
-                <button class="mobile-cta-close" aria-label="Close">&times;</button>
+                <button class="mobile-cta-close" aria-label="Close">×</button>
             </div>
         `;
     }
@@ -120,8 +120,8 @@ class MobileCTA {
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background: linear-gradient(135deg, #FF3B3B, #F15E61);
-                color: #F7F3ED;
+                background: linear-gradient(135deg, #9333ea, #2563eb);
+                color: white;
                 padding: 12px 16px;
                 display: flex;
                 align-items: center;
@@ -172,31 +172,31 @@ class MobileCTA {
                 text-overflow: ellipsis;
             }
             
-                                    .mobile-cta-button {
-                background: linear-gradient(135deg, rgba(247, 243, 237, 0.95), rgba(255, 255, 255, 0.85));
-                border: 1px solid rgba(247, 243, 237, 0.6);
-                color: #0E0F10;
-                padding: 10px 22px;
-                border-radius: 9999px;
+            .mobile-cta-button {
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 25px;
                 font-size: 14px;
                 font-weight: 600;
                 cursor: pointer;
-                box-shadow: 0 10px 24px rgba(14, 15, 16, 0.25);
                 transition: all 0.3s ease;
+                white-space: nowrap;
+                touch-action: manipulation;
             }
             
-                                    .mobile-cta-button:hover,
+            .mobile-cta-button:hover,
             .mobile-cta-button:active {
-                transform: translateY(-2px);
-                box-shadow: 0 14px 28px rgba(14, 15, 16, 0.3);
-                background: linear-gradient(135deg, rgba(247, 243, 237, 1), rgba(255, 255, 255, 0.92));
-                color: #0E0F10;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
             }
             
             .mobile-cta-close {
                 background: none;
                 border: none;
-                color: #F7F3ED;
+                color: white;
                 font-size: 20px;
                 font-weight: bold;
                 cursor: pointer;
@@ -231,18 +231,10 @@ class MobileCTA {
                     font-size: 14px;
                 }
                 
-                                        .mobile-cta-button {
-                background: linear-gradient(135deg, rgba(247, 243, 237, 0.95), rgba(255, 255, 255, 0.85));
-                border: 1px solid rgba(247, 243, 237, 0.6);
-                color: #0E0F10;
-                padding: 10px 22px;
-                border-radius: 9999px;
-                font-size: 14px;
-                font-weight: 600;
-                cursor: pointer;
-                box-shadow: 0 10px 24px rgba(14, 15, 16, 0.25);
-                transition: all 0.3s ease;
-            }
+                .mobile-cta-button {
+                    padding: 12px 24px;
+                    font-size: 16px;
+                }
             }
             
             /* Very small screens */
@@ -259,18 +251,10 @@ class MobileCTA {
                     font-size: 11px;
                 }
                 
-                                        .mobile-cta-button {
-                background: linear-gradient(135deg, rgba(247, 243, 237, 0.95), rgba(255, 255, 255, 0.85));
-                border: 1px solid rgba(247, 243, 237, 0.6);
-                color: #0E0F10;
-                padding: 10px 22px;
-                border-radius: 9999px;
-                font-size: 14px;
-                font-weight: 600;
-                cursor: pointer;
-                box-shadow: 0 10px 24px rgba(14, 15, 16, 0.25);
-                transition: all 0.3s ease;
-            }
+                .mobile-cta-button {
+                    padding: 8px 16px;
+                    font-size: 13px;
+                }
             }
             
             /* Ensure content doesn't get hidden behind CTA */
@@ -295,7 +279,7 @@ class MobileCTA {
             
             @keyframes ctaPulse {
                 0%, 100% { box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3); }
-                50% { box-shadow: 0 -4px 25px rgba(255, 59, 59, 0.45); }
+                50% { box-shadow: 0 -4px 25px rgba(147, 51, 234, 0.5); }
             }
             </style>
         `;
@@ -333,7 +317,7 @@ class MobileCTA {
         // Swipe to dismiss
         this.setupSwipeGesture(cta);
     }
-
+    
     handleButtonClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -449,11 +433,11 @@ class MobileCTA {
             });
             
             if (response.ok) {
-                console.log('[MobileCTA] Newsletter subscription successful');
+                console.log('✅ Newsletter subscription successful');
                 return true;
             }
         } catch (error) {
-            console.error('[MobileCTA] Newsletter subscription failed:', error);
+            console.error('❌ Newsletter subscription failed:', error);
         }
         return false;
     }
@@ -461,7 +445,7 @@ class MobileCTA {
     showSuccessMessage() {
         const message = document.createElement('div');
         message.className = 'success-toast';
-        message.innerHTML = 'Successfully subscribed! Check your email.';
+        message.innerHTML = '✅ Successfully subscribed! Check your email.';
         
         const toastStyles = `
             <style>
@@ -471,7 +455,7 @@ class MobileCTA {
                 left: 50%;
                 transform: translateX(-50%);
                 background: #10b981;
-                color: #F7F3ED;
+                color: white;
                 padding: 16px 24px;
                 border-radius: 12px;
                 font-weight: 600;
