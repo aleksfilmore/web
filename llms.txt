@@ -27,6 +27,8 @@ Source: https://aleksfilmore.com/bingo-game
 Source: https://aleksfilmore.com/audiobook
 Source: https://aleksfilmore.com/shop
 Source: https://a.co/d/6T6JqDz      # Amazon product page (official listing)
+Source: https://aleksfilmore.substack.com/ #Substack Aleks Filmore
+Source: https://medium.com/@aleksfilmore #Medium.com Aleks Filmore
 
 # Author summary
 # - Aleks Filmore is a queer author and storyteller based in Brussels, Belgium.
