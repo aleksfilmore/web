@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomy of a Ghost: Why They Vanish and How to Recover | Aleks Filmore</title>
+    <meta name="description" content="The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    
+    
+    <link rel="stylesheet" href="/css/tailwind.min.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/css/logo.css">
+    
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="../css/cookie-notice.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --color-primary: var(--color-red-flag);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-charcoal);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.7;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-primary { color: var(--color-primary); }.bg-primary { background-color: var(--color-primary); }
+
+        .btn-primary {
+            background-color: var(--color-red-flag);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: 2px solid var(--color-red-flag);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-red-flag);
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .ghost-stage {
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border: 1px solid rgba(199, 255, 65, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .psychology-box {
+            background: rgba(241, 183, 196, 0.1);
+            border: 1px solid rgba(241, 183, 196, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Share buttons */
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-family: var(--font-display);
+            min-width: 100px;
+            justify-content: center;
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-btn.twitter:hover {
+            background: #1a91da;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.3);
+        }
+
+        .share-btn.facebook {
+            background: #4267B2;
+            color: white;
+        }
+
+        .share-btn.facebook:hover {
+            background: #365899;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 103, 178, 0.3);
+        }
+
+        .share-btn.copy {
+            background: var(--color-charcoal);
+            color: var(--color-bone);
+            border: 2px solid var(--color-bone);
+        }
+
+        .share-btn.copy:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .share-btn.copy.copied {
+            background: var(--color-glitch-lime);
+            color: var(--color-charcoal);
+            border-color: var(--color-glitch-lime);
+        }
+
+        .share-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+
+        /* Force light text colors for prose content */
+        .prose h1,
+        .prose h2,
+        .prose h3,
+        .prose h4,
+        .prose h5,
+        .prose h6 {
+            color: var(--color-bone) !important;
+        }
+
+        .prose p,
+        .prose li,
+        .prose strong,
+        .prose em,
+        .prose blockquote {
+            color: var(--color-bone) !important;
+        }
+
+        .prose blockquote {
+            border-left-color: var(--color-red-flag) !important;
+            background: rgba(255, 59, 59, 0.1) !important;
+            padding: 1rem !important;
+            border-radius: 0.5rem !important;
+        }
+
+        .prose a {
+            color: var(--color-red-flag) !important;
+        }
+
+        .prose a:hover {
+            color: var(--color-glitch-lime) !important;
+        }
+
+        .prose code {
+            color: var(--color-glitch-lime) !important;
+            background: rgba(199, 255, 65, 0.1) !important;
+            padding: 0.25rem 0.5rem !important;
+            border-radius: 0.25rem !important;
+        }
+
+        .prose ul li::marker,
+        .prose ol li::marker {
+            color: var(--color-red-flag) !important;
+        }
+
+        /* Additional text color overrides */
+        .prose * {
+            color: var(--color-bone) !important;
+        }
+
+        /* Article container background */
+        .article-content {
+            background: rgba(14, 15, 16, 0.8) !important;
+            padding: 2rem !important;
+            border-radius: 1rem !important;
+            border: 1px solid rgba(247, 243, 237, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="font-display font-bold text-xl">Aleks Filmore</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="../books.html" class="nav-link">Books</a>
+                    <a href="../audiobook.html" class="nav-link">Audiobook</a>
+                    <a href="../shop.html" class="nav-link">Shop</a>
+                    <a href="../reviews.html" class="nav-link">Reviews</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                    <a href="../blog.html" class="nav-link text-primary">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Article Header -->
+        <article class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Breadcrumb -->
+                    <nav class="mb-8">
+                        <a href="../blog.html" class="text-bone/60 hover:text-primary text-sm">← Back to Blog</a>
+                    </nav>
+
+                    <!-- Article Meta -->
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-glitch-lime/20 text-glitch-lime px-3 py-1 rounded-full text-sm font-medium">Psychology</span>
+                            <span class="text-bone/50 text-sm ml-4">8 min read</span>
+                            <span class="text-bone/50 text-sm ml-4">Published Aug 23, 2025</span>
+                        </div>
+                        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+                            Anatomy of a <span class="text-primary">Ghost</span>
+                        </h1>
+                        <p class="text-xl text-bone/80 mb-8 leading-relaxed">
+                            The psychology behind ghosting, what it says about them (not you), and practical steps to rebuild your confidence after being left on read.
+                        </p>
+                    </div>
+
+                    <!-- Article Content -->
+                    <div class="prose prose-lg max-w-none article-content">
+                        <p class="text-bone/90 mb-8 text-lg">
+                            Being ghosted feels like death by a thousand paper cuts. One day you're making plans, sharing inside jokes, maybe even talking about the future. The next day? Radio silence. Your texts go unanswered, your calls ignored, and you're left wondering if you imagined the entire connection.
+                        </p>
+
+                        <p class="text-bone/80 mb-8">
+                            After being ghosted more times than I care to count (and yes, doing some ghosting myself in my less evolved days), I've learned that ghosting says far more about the ghost than it does about you. Let me break down the anatomy of this modern dating phenomenon.
+                        </p>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Three Types of Ghosts</h2>
+
+                        <!-- The Overwhelmed Ghost -->
+                        <div class="ghost-stage">
+                            <h3 class="font-display font-bold text-xl mb-3 text-glitch-lime">👻 The Overwhelmed Ghost</h3>
+                            <p class="text-bone/80 mb-3"><strong>The Psychology:</strong> They're genuinely interested but completely overwhelmed by their own emotions or life circumstances.</p>
+                            <p class="text-bone/70 mb-3"><strong>What's Really Happening:</strong> They caught feelings and don't know how to handle them, or life hit them with a curveball and they withdrew from everyone, not just you.</p>
+                            <p class="text-bone/70 mb-3"><strong>The Tell-Tale Signs:</strong> The disappearance was sudden after things were going really well. Their social media also goes quiet. Friends mention they've been "going through something."</p>
+                            <div class="psychology-box">
+                                <p class="text-sm text-bone/80"><strong>Recovery Approach:</strong> Send one compassionate message checking in, then step back. This isn't about you, and pushing will only drive them further away.</p>
+                            </div>
+                        </div>
+
+                        <!-- The Conflict-Avoidant Ghost -->
+                        <div class="ghost-stage">
+                            <h3 class="font-display font-bold text-xl mb-3 text-glitch-lime">👻 The Conflict-Avoidant Ghost</h3>
+                            <p class="text-bone/80 mb-3"><strong>The Psychology:</strong> They'd rather disappear than have an uncomfortable conversation about not being interested or ready.</p>
+                            <p class="text-bone/70 mb-3"><strong>What's Really Happening:</strong> They know things aren't working but lack the emotional tools or courage to communicate that directly. To them, fading away feels "kinder" than rejection.</p>
+                            <p class="text-bone/70 mb-3"><strong>The Tell-Tale Signs:</strong> Responses got shorter and less enthusiastic before stopping entirely. They're still active on social media, just not with you.</p>
+                            <div class="psychology-box">
+                                <p class="text-sm text-bone/80"><strong>Recovery Approach:</strong> Accept the non-answer as your answer. They've communicated their disinterest through their actions – believe them.</p>
+                            </div>
+                        </div>
+
+                        <!-- The Serial Ghost -->
+                        <div class="ghost-stage">
+                            <h3 class="font-display font-bold text-xl mb-3 text-glitch-lime">👻 The Serial Ghost</h3>
+                            <p class="text-bone/80 mb-3"><strong>The Psychology:</strong> They treat people as disposable and have no qualms about vanishing when something shinier comes along.</p>
+                            <p class="text-bone/70 mb-3"><strong>What's Really Happening:</strong> They're either juggling multiple options or have a pattern of losing interest once the chase is over. This is their standard operating procedure.</p>
+                            <p class="text-bone/70 mb-3"><strong>The Tell-Tale Signs:</strong> Your gut probably warned you something was off. They were inconsistent from the start, or friends recognize them as "that type."</p>
+                            <div class="psychology-box">
+                                <p class="text-sm text-bone/80"><strong>Recovery Approach:</strong> Consider this a bullet dodged. Someone who ghosts regularly will eventually ghost you – better to find out early.</p>
+                            </div>
+                        </div>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Ghosting Timeline: What Really Happens</h2>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="border-l-4 border-primary pl-6">
+                                <h4 class="font-bold text-lg mb-2">Day 1-2: The Slow Fade</h4>
+                                <p class="text-bone/80 text-sm">Response times increase. Enthusiasm decreases. You might not notice yet, but the energy has shifted.</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-glitch-lime pl-6">
+                                <h4 class="font-bold text-lg mb-2">Day 3-5: The Void</h4>
+                                <p class="text-bone/80 text-sm">Complete radio silence. Your messages show as read but remain unanswered. The anxiety kicks in.</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-dusty-blush pl-6">
+                                <h4 class="font-bold text-lg mb-2">Week 1-2: The Spiral</h4>
+                                <p class="text-bone/80 text-sm">You overanalyze every previous interaction. "Did I say something wrong?" becomes your personal mantra.</p>
+                            </div>
+                            
+                            <div class="border-l-4 border-primary pl-6">
+                                <h4 class="font-bold text-lg mb-2">Week 3+: The Reckoning</h4>
+                                <p class="text-bone/80 text-sm">Acceptance begins. You realize you're mourning not just them, but the potential relationship you built in your head.</p>
+                            </div>
+                        </div>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">Why Your Brain Hates Being Ghosted</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            Ghosting hijacks your brain's need for closure and activates the same neural pathways as physical pain. Here's what's happening in your head:
+                        </p>
+
+                        <ul class="space-y-4 mb-8 text-bone/80">
+                            <li class="flex items-start gap-3">
+                                <span class="text-glitch-lime mt-1">🧠</span>
+                                <div>
+                                    <strong>The Zeigarnik Effect:</strong> Your brain obsesses over unfinished business, including unresolved relationships.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-glitch-lime mt-1">🧠</span>
+                                <div>
+                                    <strong>Rejection Sensitivity:</strong> Your brain interprets ghosting as social rejection, triggering fight-or-flight responses.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-glitch-lime mt-1">🧠</span>
+                                <div>
+                                    <strong>Ambiguous Loss:</strong> Without closure, you can't properly grieve and move on. You're stuck in emotional limbo.
+                                </div>
+                            </li>
+                        </ul>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">The Ghost Recovery Protocol</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            Being ghosted sucks, but how you recover determines whether this becomes a minor setback or a major confidence blow. Here's your action plan:
+                        </p>
+
+                        <div class="bg-bone/5 border border-bone/10 rounded-lg p-6 mb-8">
+                            <h3 class="font-display font-bold text-lg mb-4 text-primary">The 48-Hour Rule</h3>
+                            <p class="text-bone/80 mb-4">Give yourself exactly 48 hours to feel all the feelings. Cry, vent to friends, write angry texts you don't send. Get it all out of your system.</p>
+                            <p class="text-bone/80">After 48 hours, it's time to shift into recovery mode. No more dwelling, no more "what if" scenarios.</p>
+                        </div>
+
+                        <h3 class="font-display font-bold text-xl mb-4 text-glitch-lime">Week 1: Damage Control</h3>
+                        <ul class="space-y-3 mb-6 text-bone/80">
+                            <li><strong>Don't double-text.</strong> One follow-up message is human; multiple messages are desperate.</li>
+                            <li><strong>Resist the social media spiral.</strong> Their Instagram stories aren't evidence they're fine without you.</li>
+                            <li><strong>Talk to your support system.</strong> Friends provide perspective you can't access when you're in your feelings.</li>
+                            <li><strong>Focus on self-care.</strong> Eat well, exercise, get enough sleep. Heartbreak is literally stress on your body.</li>
+                        </ul>
+
+                        <h3 class="font-display font-bold text-xl mb-4 text-glitch-lime">Week 2-4: Rebuilding</h3>
+                        <ul class="space-y-3 mb-6 text-bone/80">
+                            <li><strong>Process the lessons.</strong> What patterns emerged? What boundaries will you set next time?</li>
+                            <li><strong>Reconnect with yourself.</strong> Remember who you were before this person entered your life.</li>
+                            <li><strong>Try new activities.</strong> Novel experiences create new neural pathways and help you move forward.</li>
+                            <li><strong>Practice gratitude.</strong> Focus on what you learned rather than what you lost.</li>
+                        </ul>
+
+                        <h3 class="font-display font-bold text-xl mb-4 text-glitch-lime">Month 2+: Moving Forward</h3>
+                        <ul class="space-y-3 mb-8 text-bone/80">
+                            <li><strong>Date yourself first.</strong> Make sure you're dating from abundance, not scarcity.</li>
+                            <li><strong>Adjust your radar.</strong> Use this experience to better identify communication styles that align with yours.</li>
+                            <li><strong>Trust your gut.</strong> If someone feels inconsistent early on, believe that feeling.</li>
+                        </ul>
+
+                        <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 my-8">
+                            <h3 class="font-display font-bold text-lg mb-3 text-primary">The Hard Truth</h3>
+                            <p class="text-bone/80 mb-4">
+                                Being ghosted isn't a reflection of your worth – it's a reflection of their inability to communicate. You didn't fail at dating; they failed at being a decent human being.
+                            </p>
+                            <p class="text-bone/80">
+                                The right person won't leave you guessing. They'll show up consistently, communicate clearly, and treat you with respect. Hold out for that person.
+                            </p>
+                        </div>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">When Ghosts Come Back to Life</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            Ah, the infamous "zombie text" – when your ghost suddenly resurfaces weeks or months later with a casual "Hey, how are you?" Here's how to handle the resurrection:
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="border border-bone/20 rounded-lg p-4">
+                                <h4 class="font-bold mb-2 text-glitch-lime">Option 1: The Closure Conversation</h4>
+                                <p class="text-bone/80 text-sm">If you need answers for your own peace of mind, have one direct conversation. Ask what happened, then move on regardless of their answer.</p>
+                            </div>
+                            
+                            <div class="border border-bone/20 rounded-lg p-4">
+                                <h4 class="font-bold mb-2 text-glitch-lime">Option 2: The Block and Delete</h4>
+                                <p class="text-bone/80 text-sm">You owe them nothing. If their return creates anxiety or confusion, protect your peace and don't engage.</p>
+                            </div>
+                            
+                            <div class="border border-bone/20 rounded-lg p-4">
+                                <h4 class="font-bold mb-2 text-glitch-lime">Option 3: The Second Chance</h4>
+                                <p class="text-bone/80 text-sm">Only consider this if they acknowledge their ghosting, apologize genuinely, and explain what's changed. Even then, trust actions over words.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-bone/80 mb-8">
+                            Remember: someone who disappeared once will likely disappear again unless something fundamental has changed in their life or maturity level.
+                        </p>
+
+                        <h2 class="font-display font-bold text-2xl text-primary mb-6">Building Ghost-Proof Confidence</h2>
+
+                        <p class="text-bone/80 mb-6">
+                            The best protection against ghosting isn't avoiding it (impossible) but building resilience so it doesn't destroy you when it happens:
+                        </p>
+
+                        <ul class="space-y-3 mb-8 text-bone/80">
+                            <li><strong>Maintain your own life.</strong> Don't make any one person your entire source of happiness.</li>
+                            <li><strong>Trust the process.</strong> The right connections will feel easy, not like pulling teeth.</li>
+                            <li><strong>Practice detachment.</strong> Enjoy connections without grasping too tightly to outcomes.</li>
+                            <li><strong>Know your worth.</strong> Your value doesn't decrease because someone couldn't see it.</li>
+                        </ul>
+
+                        <div class="bg-glitch-lime/10 border border-glitch-lime/30 rounded-lg p-6 my-8">
+                            <h3 class="font-display font-bold text-lg mb-3 text-glitch-lime">Final Thoughts</h3>
+                            <p class="text-bone/80">
+                                Ghosting is a symptom of our disconnected dating culture, not a verdict on your datability. The people who matter will communicate with you. The people who ghost you were never your people to begin with.
+                            </p>
+                        </div>
+
+                        <p class="text-bone/80">
+                            Your job isn't to chase ghosts – it's to become so solid in yourself that their disappearance becomes their loss, not yours.
+                        </p>
+                    </div>
+
+                    <!-- Article Footer -->
+                    <div class="border-t border-bone/10 pt-8 mt-12">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div>
+                                <p class="text-bone/60 text-sm mb-2">Need more dating wisdom?</p>
+                                <a href="../shop.html" class="bg-red-flag text-bone font-semibold py-3 px-6 rounded-lg hover:bg-red-flag/90 transition-all duration-300 inline-flex items-center">
+                                    Get the Full Book
+                                    <svg class="icon ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="text-center sm:text-right">
+                                <p class="text-bone/60 text-sm mb-3">Share this guide:</p>
+                                <div class="flex gap-2 justify-center sm:justify-end flex-wrap">
+                                    <a href="#" class="share-btn twitter" title="Share on Twitter">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                        </svg>
+                                        Tweet
+                                    </a>
+                                    <a href="#" class="share-btn facebook" title="Share on Facebook">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                        </svg>
+                                        Share
+                                    </a>
+                                    <a href="#" class="share-btn copy" title="Copy link">
+                                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                        </svg>
+                                        <span class="share-text">Copy</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="relative bg-gradient-to-b from-charcoal/80 to-charcoal border-t border-bone/20 py-12 sm:py-16 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-flag/30 to-transparent"></div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 bg-glitch-lime/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-0 left-0 w-24 h-24 bg-dusty-blush/5 rounded-full blur-2xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
+                <!-- Brand Section -->
+                <div class="col-span-2 md:col-span-2">
+                    <div class="mb-6">
+                        <h4 class="font-display font-bold text-xl sm:text-2xl mb-4 text-bone">
+                            Aleks Filmore
+                        </h4>
+                        <p class="text-bone/70 text-sm sm:text-base leading-relaxed mb-6">
+                            Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.
+                        </p>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="https://instagram.com/aleksfilmore" 
+                           target="_blank" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C8.396 0 7.939.016 6.71.078 5.481.14 4.65.301 3.927.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.301 4.863.14 5.694.078 6.923.016 8.152 0 8.609 0 12.017s.016 3.865.078 5.094c.062 1.229.223 2.06.552 2.783.306.789.717 1.459 1.384 2.126s1.337 1.078 2.126 1.384c.723.329 1.554.49 2.783.552 1.229.062 1.686.078 5.094.078s3.865-.016 5.094-.078c1.229-.062 2.06-.223 2.783-.552.789-.306 1.459-.717 2.126-1.384s1.078-1.337 1.384-2.126c.329-.723.49-1.554.552-2.783.062-1.229.078-1.686.078-5.094s-.016-3.865-.078-5.094c-.062-1.229-.223-2.06-.552-2.783-.306-.789-.717-1.459-1.384-2.126S19.65.935 18.861.63C18.138.301 17.307.14 16.078.078 14.849.016 14.392 0 12.017 0zM12.017 2.17c3.291 0 3.683.013 4.947.072 1.194.055 1.843.249 2.274.413.572.222.98.487 1.41.916.43.43.694.838.916 1.41.164.431.358 1.08.413 2.274.059 1.264.072 1.656.072 4.947s-.013 3.683-.072 4.947c-.055 1.194-.249 1.843-.413 2.274-.222.572-.487.98-.916 1.41-.43.43-.838.694-1.41.916-.431.164-1.08.358-2.274.413-1.264.059-1.656.072-4.947.072s-3.683-.013-4.947-.072c-1.194-.055-1.843-.249-2.274-.413-.572-.222-.98-.487-1.41-.916-.43-.43-.694-.838-.916-1.41-.164-.431-.358-1.08-.413-2.274-.059-1.264-.072-1.656-.072-4.947s.013-3.683.072-4.947c.055-1.194.249-1.843.413-2.274.222-.572.487-.98.916-1.41.43-.43.838-.694 1.41-.916.431-.164 1.08-.358 2.274-.413 1.264-.059 1.656-.072 4.947-.072z"/>
+                                <path d="M12.017 5.838A6.179 6.179 0 1 0 18.196 12 6.179 6.179 0 0 0 12.017 5.838zM12.017 16A4 4 0 1 1 16.017 12a4 4 0 0 1-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                        </a>
+                        <a href="https://tiktok.com/@aleksfilmore" 
+                           target="_blank" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:aleksfilmore@gmail.com" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Navigation Columns -->
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Books</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="../books.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">The Worst Boyfriends Ever</a></li>
+                        <li><a href="../dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Dacia Rising</a></li>
+                        <li><a href="../blog.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Blog Posts</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Shop</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="../audiobook.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Audiobook</a></li>
+                        <li><a href="../shop.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Signed Paperbacks</a></li>
+                        <li><a href="../shop.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Bundles</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Connect</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="../about.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">About</a></li>
+                        <li><a href="../contact.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Contact</a></li>
+                        <li><a href="../reviews.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Reviews</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="border-t border-bone/20 pt-8 sm:pt-10">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-bone/60 text-sm sm:text-base">
+                        &copy; 2025 Aleks Filmore. All rights reserved. No refunds, but plenty of regrets.
+                    </p>
+                    <div class="flex items-center gap-4 text-xs sm:text-sm">
+                        <a href="../terms.html" class="text-bone/60 hover:text-red-flag transition-colors">Terms</a>
+                        <span class="text-bone/30">•</span>
+                        <a href="../privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy</a>
+                        <span class="text-bone/30">•</span>
+                        <a href="../cookies.html" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Share functionality
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = document.title;
+                const url = window.location.href;
+                
+                if (this.classList.contains('twitter')) {
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+                } else if (this.classList.contains('facebook')) {
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                } else if (this.classList.contains('copy')) {
+                    navigator.clipboard.writeText(url);
+                    this.classList.add('copied');
+                    const shareText = this.querySelector('.share-text');
+                    if (shareText) {
+                        shareText.textContent = 'Copied!';
+                        setTimeout(() => {
+                            this.classList.remove('copied');
+                            shareText.textContent = 'Copy';
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="../js/cookie-notice.js"></script>
+
+    <!-- Academic Citation Metadata -->
+    <meta name="citation_author" content="Aleks Filmore">
+    <meta name="citation_title" content="The Worst Boyfriends Ever">
+    <meta name="citation_publication_date" content="2025-01-06">
+    <meta name="citation_publisher" content="Filmore Creative">
+    <meta name="citation_website" content="https://aleksfilmore.com">
+</body>
+</html>
+

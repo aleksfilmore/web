@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0F10">
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Blog | Dating Disasters & Life Lessons | Aleks Filmore</title>
+    <meta name="description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos. New posts weekly from Brussels.">
+    <meta name="keywords" content="Aleks Filmore blog, dating advice, relationship blog, queer dating, LGBTQ experiences, writing life, Brussels author, relationship lessons">
+    <meta name="author" content="Aleks Filmore">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aleksfilmore.com/blog.html">
+    <meta property="og:title" content="Blog | Dating Disasters & Life Lessons | Aleks Filmore">
+    <meta property="og:description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos.">
+    <meta property="og:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aleksfilmore.com/blog.html">
+    <meta property="twitter:title" content="Blog | Dating Disasters & Life Lessons">
+    <meta property="twitter:description" content="Read Aleks Filmore's blog about dating disasters, relationship lessons, writing life, and recovering from romantic chaos.">
+    <meta property="twitter:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aleksfilmore.com/blog.html">
+    
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/ico.png" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.min.css">
+    
+    <!-- Logo Styles -->
+    <link rel="stylesheet" href="/css/logo.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Aleks Filmore Blog",
+        "description": "Dating disasters, relationship lessons, and life updates from author Aleks Filmore",
+        "url": "https://aleksfilmore.com/blog.html",
+        "author": {
+            "@type": "Person",
+            "name": "Aleks Filmore",
+            "url": "https://aleksfilmore.com"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Aleks Filmore"
+        }
+    }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, #1a1a1a 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .font-display { font-family: var(--font-display); }/* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        .hover-underline-slide {
+            position: relative;
+        }
+        
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+        
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile-First Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--color-bone);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-bone);
+            color: var(--color-charcoal);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile-First Blog Cards */
+        .blog-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 59, 59, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+    /* Make featured post larger on wider screens */
+            .featured-large { grid-column: 1 / -1; min-height: 320px; }
+
+        .blog-meta {
+            color: var(--color-bone);
+            opacity: 0.7;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .blog-tag {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            color: var(--color-charcoal);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+            display: inline-block;
+            margin: 0.125rem;
+            box-shadow: 0 2px 6px rgba(199, 255, 65, 0.2);
+        }
+
+        /* Mobile-friendly themes/categories bar */
+        .theme-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--color-charcoal);
+            background: linear-gradient(135deg, var(--color-bone) 0%, #f0ebe4 100%);
+            border: 1px solid rgba(247, 243, 237, 0.6);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .theme-chip .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-dating { background: var(--color-red-flag); }
+        .dot-writing { background: var(--color-glitch-lime); }
+        .dot-life { background: var(--color-dusty-blush); }
+        .dot-all { background: #9ca3af; }
+
+        .theme-chip.active {
+            background: linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%);
+            border-color: rgba(199, 255, 65, 0.8);
+        }
+
+        .themes-bar {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .themes-label { color: var(--color-bone); opacity: 0.75; font-weight: 600; }
+
+        .featured-badge {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
+        }
+
+        .newsletter-signup {
+            background: linear-gradient(135deg, rgba(199, 255, 65, 0.1) 0%, rgba(199, 255, 65, 0.05) 100%);
+            border: 2px solid rgba(199, 255, 65, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: auto;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .blog-card {
+                margin-bottom: 0;
+            }
+            /* Responsive columns for blog listing */
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .featured-large { grid-column: span 2; min-height: 420px; }
+        }
+        
+        /* Large tablet/Small desktop (1024px+) */
+        @media (min-width: 1024px) {
+            .btn-primary, .btn-secondary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            /* On wide screens the featured card should dominate the row */
+            .featured-large { grid-column: 1 / -1; min-height: 480px; }
+            .featured-large h2 { font-size: 3rem; line-height: 1.02; letter-spacing: -0.02em; }
+            .featured-large .p-6, .featured-large .p-8 { padding: 3rem; }
+            .featured-large p { font-size: 1.125rem; opacity: 0.95; }
+            .featured-large .featured-badge { top: 1.5rem; right: 1.5rem; padding: 0.75rem 1.25rem; font-size: 0.875rem; }
+        }
+
+        /* Loading animation */
+        .blog-grid {
+            opacity: 0;
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="/css/cookie-notice.css">
+    <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
+</head>
+<body class="antialiased">
+
+                            <!-- Standardized Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Brand Logo -->
+                <div class="aleksfilmore-logo-container">
+                    <a href="index.html" class="aleksfilmore-logo-link">
+                        <!-- SVG Logo for Navigation -->
+                        <svg viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" class="aleksfilmore-logo compact">
+                            <title>Aleks Filmore — Author</title>
+                            <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#F7F3ED" font-weight="700">ALEKS FILMORE</text>
+                            <rect x="40" y="140" width="140" height="10" fill="#FF3B3B" rx="5"/>
+                            <text x="190" y="150" font-family="Inter, Arial, sans-serif" font-size="24" letter-spacing="8" font-weight="600" fill="#F7F3ED">AUTHOR</text>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
+                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" class="text-bone hover:text-red-flag transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="midway.html" class="block text-sm nav-link opacity-50">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+                        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Hall of Red Flags
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile menu behavior handled by /js/mobile-menu.js -->
+    <!-- Main Content -->
+    <main class="pt-16 sm:pt-20">
+        
+        <!-- Hero Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6">
+                        Dating Disasters & <span class="text-red-flag">Life Lessons</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-bone/80 leading-relaxed">
+                        Weekly posts about recovering from romantic chaos, writing life, and other spectacular failures.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                        <a href="#newsletter" class="text-sm font-semibold text-bone hover:text-red-flag transition-colors px-4 py-2 border border-bone/20 hover:border-red-flag rounded-lg">
+                            Newsletter
+                        </a>
+                        <a href="shop.html" class="text-sm font-semibold text-bone hover:text-red-flag transition-colors px-4 py-2 border border-bone/20 hover:border-red-flag rounded-lg">
+                            Books
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    
+                    <!-- Themes/Categories Bar -->
+                    <div class="mb-6 sm:mb-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="themes-label text-sm sm:text-base">Browse by theme</span>
+                            <a href="#blog-listing" class="text-xs text-bone/60 hover:text-red-flag">View All</a>
+                        </div>
+                        <div class="themes-bar" id="themes-bar" aria-label="Blog themes">
+                            <button class="theme-chip active" data-theme="all"><span class="dot dot-all"></span> All</button>
+                            <button class="theme-chip" data-theme="dating"><span class="dot dot-dating"></span> Dating Disasters</button>
+                            <button class="theme-chip" data-theme="writing"><span class="dot dot-writing"></span> Writing Life</button>
+                            <button class="theme-chip" data-theme="life"><span class="dot dot-life"></span> Life & Mindset</button>
+                        </div>
+                    </div>
+
+                    <div id="blog-listing" class="blog-grid">
+                        <!-- Client-rendered blog cards will appear here -->
+                        <div class="blog-card p-6">Loading posts…</div>
+                    </div>
+
+                        <script>
+                        (function(){
+                            function truncateText(text, max) {
+                                if (!text) return '';
+                                if (text.length <= max) return text;
+                                return text.slice(0, max - 1).trimEnd() + '…';
+                            }
+
+                            function formatDate(iso) {
+                                if (!iso) return '';
+                                const d = new Date(iso);
+                                if (isNaN(d)) return iso;
+                                return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+                            }
+
+                            async function fetchBlogList() {
+                                try {
+                                    const res = await fetch('/api/blog-list');
+                                    if (res.ok) return await res.json();
+                                    console.warn('/api/blog-list returned', res.status);
+                                } catch (err) {
+                                    console.warn('/api/blog-list fetch failed, falling back to /data/blog-index.json', err);
+                                }
+
+                                try {
+                                    const staticRes = await fetch('/data/blog-index.json');
+                                    if (staticRes.ok) return await staticRes.json();
+                                } catch (err) {
+                                    console.warn('Static /data/blog-index.json fetch failed', err);
+                                }
+
+                                throw new Error('Failed to load posts');
+                            }
+
+                            async function renderBlogListing(selectedTheme = 'all') {
+                                try {
+                                    const data = await fetchBlogList();
+                                    let posts = (data.posts || []).slice();
+                                    
+                                    // Filter out future articles (only show published or today's articles)
+                                    const now = new Date();
+                                    now.setHours(23, 59, 59, 999); // End of today
+                                    posts = posts.filter(post => {
+                                        const publishDate = new Date(post.publishedAt || post.date || '');
+                                        return publishDate <= now;
+                                    });
+                                    
+                                    // Sort by publishedAt/date desc when available
+                                    posts.sort((a,b) => {
+                                        const da = a.publishedAt || a.date || '';
+                                        const db = b.publishedAt || b.date || '';
+                                        const na = Date.parse(da) || 0;
+                                        const nb = Date.parse(db) || 0;
+                                        return nb - na;
+                                    });
+                                    // Filter by selected theme (by tag match) if not 'all'
+                                    if (selectedTheme && selectedTheme !== 'all') {
+                                        posts = posts.filter(p => Array.isArray(p.tags) && p.tags.some(t =>
+                                            (selectedTheme === 'dating' && /dating|red\s*flags|relationships/i.test(t)) ||
+                                            (selectedTheme === 'writing' && /writing|author|process/i.test(t)) ||
+                                            (selectedTheme === 'life' && /life|mindset|health|personal/i.test(t))
+                                        ));
+                                    }
+
+                                    // Most recent article will be first after sorting
+                                    const container = document.getElementById('blog-listing');
+                                    if (!container) return;
+                                    container.innerHTML = '';
+
+                                    posts.forEach((p, i) => {
+                                        const card = document.createElement('article');
+                                        card.className = 'blog-card relative';
+                                        const inner = document.createElement('div');
+                                        inner.className = 'p-6 sm:p-8';
+
+                                            if (i === 0) {
+                                                const badge = document.createElement('div');
+                                                badge.className = 'featured-badge';
+                                                badge.textContent = 'Latest';
+                                                card.appendChild(badge);
+                                                card.classList.add('featured-large');
+                                            }
+
+                                        const meta = document.createElement('div');
+                                        meta.className = 'blog-meta mb-3';
+                                        const timeEl = document.createElement('time');
+                                        timeEl.setAttribute('datetime', p.publishedAt || p.date || '');
+                                        timeEl.textContent = formatDate(p.publishedAt || p.date || '');
+                                        meta.appendChild(timeEl);
+                                        const sep = document.createElement('span'); sep.className = 'mx-2'; sep.textContent = '•'; meta.appendChild(sep);
+                                        const rt = document.createElement('span'); rt.textContent = p.readTime || '5 min read'; meta.appendChild(rt);
+
+                                        const h2 = document.createElement('h2');
+                                        h2.className = 'font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-4';
+                                        const a = document.createElement('a');
+                                        a.className = 'text-bone hover:text-red-flag transition-colors';
+                                        const slug = encodeURIComponent(p.slug || p.id || '');
+                                        a.href = `/blog/${slug}.html`;
+                                        // read date from metadata; fallback to parsing 'Published' text inside per-post html
+                                        if (!p.publishedAt && p.html) {
+                                            try {
+                                                const tmp = document.createElement('div'); tmp.innerHTML = p.html;
+                                                const txt = tmp.textContent || '';
+                                                const m = txt.match(/Published\s*[:]?\s*([A-Za-z]{3,}\s+\d{1,2},\s+\d{4})/i);
+                                                if (m) p.publishedAt = new Date(m[1]).toISOString().split('T')[0];
+                                            } catch (e) { /* ignore */ }
+                                        }
+                                        // Humanize title if source is lowercased
+                                        function humanizeTitle(t) {
+                                            if (!t) return '';
+                                            // if already has uppercase letters, assume it's fine
+                                            if (/[A-Z]/.test(t)) return t;
+                                            // Basic title case
+                                            return t.split(/\s+/).map(w => {
+                                                if (!w) return w;
+                                                if (w.toLowerCase() === 'i') return 'I';
+                                                return w[0].toUpperCase() + w.slice(1);
+                                            }).join(' ');
+                                        }
+
+                                        a.textContent = humanizeTitle(p.title || p.heading || '');
+                                        h2.appendChild(a);
+
+                                        const pEl = document.createElement('p');
+                                        pEl.className = 'text-bone/80 mb-4 text-sm sm:text-base';
+                                        const rawSummary = (p.summary && String(p.summary).trim()) || '';
+                                        let finalSummary = rawSummary;
+                                        if (!finalSummary) {
+                                            // fallback: prefer first two paragraphs of html/text when available
+                                            const tmp = document.createElement('div'); tmp.innerHTML = p.html || p.htmlFragment || p.body || '';
+                                            const paras = Array.from(tmp.querySelectorAll('p')).map(n => n.textContent && n.textContent.trim()).filter(Boolean);
+                                            if (paras.length >= 2) {
+                                                finalSummary = (paras[0] + '\n\n' + paras[1]);
+                                            } else {
+                                                finalSummary = tmp.textContent.trim().split('\n').map(s=>s.trim()).filter(Boolean)[0] || '';
+                                            }
+                                        }
+                                        // Show more text for featured post
+                                        const maxChars = (i === 0) ? 420 : 160;
+                                        pEl.textContent = truncateText(finalSummary, maxChars);
+
+                                        const tagsWrap = document.createElement('div'); tagsWrap.className = 'flex flex-wrap gap-2 mb-4';
+                                        (p.tags || []).forEach(t => { const s = document.createElement('span'); s.className = 'blog-tag'; s.textContent = t; tagsWrap.appendChild(s); });
+
+                                        const readMore = document.createElement('a');
+                                        readMore.className = 'text-red-flag hover:text-red-flag/80 font-semibold text-sm sm:text-base';
+                                        readMore.href = `/blog/${slug}.html`;
+                                        readMore.textContent = 'Read more →';
+
+                                            inner.appendChild(meta);
+                                        // If this is the featured post, increase typographic scale
+                                        if (i === 0) {
+                                            h2.className = 'font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl mb-6';
+                                            pEl.className = 'text-bone/90 mb-6 text-base sm:text-lg lg:text-xl';
+                                        }
+                                        inner.appendChild(h2);
+                                        inner.appendChild(pEl);
+                                        inner.appendChild(tagsWrap);
+                                        inner.appendChild(readMore);
+
+                                        card.appendChild(inner);
+                                        container.appendChild(card);
+                                    });
+                                } catch (e) {
+                                    console.error('Failed to render blog listing', e);
+                                    const container = document.getElementById('blog-listing');
+                                    if (container) container.innerHTML = '<div class="blog-card p-6">Unable to load posts.</div>';
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', () => {
+                                // Initial render
+                                renderBlogListing('all');
+                                // Theme chip interactions
+                                const bar = document.getElementById('themes-bar');
+                                if (bar) {
+                                    bar.addEventListener('click', (e) => {
+                                        const chip = e.target.closest('.theme-chip');
+                                        if (!chip) return;
+                                        const theme = chip.getAttribute('data-theme') || 'all';
+                                        // Toggle active state
+                                        bar.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('active'));
+                                        chip.classList.add('active');
+                                        // Re-render
+                                        renderBlogListing(theme);
+                                        // Scroll into view on mobile
+                                        const listing = document.getElementById('blog-listing');
+                                        if (listing) listing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    });
+                                }
+                                window.renderBlogListing = renderBlogListing;
+                            });
+                        })();
+                        </script>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section id="newsletter" class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-2xl mx-auto">
+                    
+                    <div class="newsletter-signup">
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl mb-4">
+                            Get the <span class="text-glitch-lime">Chaos</span> Delivered
+                        </h2>
+                        <p class="text-bone/80 mb-6 text-sm sm:text-base">
+                            Weekly doses of dating disasters, writing updates, and life lessons learned the hard way. 
+                            No spam, just spectacular failures and questionable life advice.
+                        </p>
+                        
+                        <form id="newsletter-form" class="space-y-4">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="your.email@disaster.com" 
+                                    required
+                                    class="flex-1 px-4 py-3 rounded-lg bg-charcoal/80 border border-bone/30 placeholder-bone/50 focus:outline-none focus:border-glitch-lime focus:bg-charcoal/90 transition-all duration-200"
+                                    style="color: var(--color-bone) !important; background-color: rgba(14, 15, 16, 0.8) !important;"
+                                >
+                                <button 
+                                    type="submit" 
+                                    class="btn-primary sm:w-auto px-6"
+                                >
+                                    Subscribe
+                                </button>
+                            </div>
+                            <p class="text-xs text-bone/60">
+                                Unsubscribe anytime. Unlike my dating history, this commitment is actually easy to exit.
+                            </p>
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="relative bg-gradient-to-b from-charcoal/80 to-charcoal border-t border-bone/20 py-12 sm:py-16 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-flag/30 to-transparent"></div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 bg-glitch-lime/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-0 left-0 w-24 h-24 bg-dusty-blush/5 rounded-full blur-2xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
+                <!-- Brand Section -->
+                <div class="col-span-2 md:col-span-2">
+                    <div class="mb-6">
+                        <h4 class="font-display font-bold text-xl sm:text-2xl mb-4 text-bone">
+                            Aleks Filmore
+                        </h4>
+                        <p class="text-bone/70 text-sm sm:text-base leading-relaxed mb-6">
+                            Honest to a fault, funny on purpose. Red flags processed in Brussels, delivered worldwide.
+                        </p>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="https://instagram.com/aleksfilmore" 
+                           target="_blank" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C8.396 0 7.939.016 6.71.078 5.481.14 4.65.301 3.927.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.301 4.863.14 5.694.078 6.923.016 8.152 0 8.609 0 12.017s.016 3.865.078 5.094c.062 1.229.223 2.06.552 2.783.306.789.717 1.459 1.384 2.126s1.337 1.078 2.126 1.384c.723.329 1.554.49 2.783.552 1.229.062 1.686.078 5.094.078s3.865-.016 5.094-.078c1.229-.062 2.06-.223 2.783-.552.789-.306 1.459-.717 2.126-1.384s1.078-1.337 1.384-2.126c.329-.723.49-1.554.552-2.783.062-1.229.078-1.686.078-5.094s-.016-3.865-.078-5.094c-.062-1.229-.223-2.06-.552-2.783-.306-.789-.717-1.459-1.384-2.126S19.65.935 18.861.63C18.138.301 17.307.14 16.078.078 14.849.016 14.392 0 12.017 0zM12.017 2.17c3.291 0 3.683.013 4.947.072 1.194.055 1.843.249 2.274.413.572.222.98.487 1.41.916.43.43.694.838.916 1.41.164.431.358 1.08.413 2.274.059 1.264.072 1.656.072 4.947s-.013 3.683-.072 4.947c-.055 1.194-.249 1.843-.413 2.274-.222.572-.487.98-.916 1.41-.43.43-.838.694-1.41.916-.431.164-1.08.358-2.274.413-1.264.059-1.656.072-4.947.072s-3.683-.013-4.947-.072c-1.194-.055-1.843-.249-2.274-.413-.572-.222-.98-.487-1.41-.916-.43-.43-.694-.838-.916-1.41-.164-.431-.358-1.08-.413-2.274-.059-1.264-.072-1.656-.072-4.947s.013-3.683.072-4.947c.055-1.194.249-1.843.413-2.274.222-.572.487-.98.916-1.41.43-.43.838-.694 1.41-.916.431-.164 1.08-.358 2.274-.413 1.264-.059 1.656-.072 4.947-.072z"/>
+                                <path d="M12.017 5.838A6.179 6.179 0 1 0 18.196 12 6.179 6.179 0 0 0 12.017 5.838zM12.017 16A4 4 0 1 1 16.017 12a4 4 0 0 1-4 4z"/>
+                                <circle cx="18.406" cy="5.594" r="1.44"/>
+                            </svg>
+                        </a>
+                        <a href="https://tiktok.com/@aleksfilmore" 
+                           target="_blank" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:aleksfilmore@gmail.com" 
+                           class="group p-3 bg-bone/5 hover:bg-red-flag/20 rounded-full transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5 text-bone/60 group-hover:text-red-flag transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Navigation Columns -->
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Books</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="books.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">The Worst Boyfriends Ever</a></li>
+                        <li><a href="dacia-rising.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Dacia Rising</a></li>
+                        <li><a href="blog.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Blog Posts</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Shop</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="audiobook.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Audiobook</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Signed Paperbacks</a></li>
+                        <li><a href="shop.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Bundles</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-semibold text-base sm:text-lg mb-4 sm:mb-6 text-bone">Connect</h4>
+                    <ul class="space-y-3 text-sm sm:text-base">
+                        <li><a href="about.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">About</a></li>
+                        <li><a href="contact.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Contact</a></li>
+                        <li><a href="reviews.html" class="text-bone/60 hover:text-red-flag transition-all duration-300 hover:translate-x-1">Reviews</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="border-t border-bone/20 pt-8 sm:pt-10">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-bone/60 text-sm sm:text-base">
+                        &copy; 2025 Aleks Filmore. All rights reserved. No refunds, but plenty of regrets.
+                    </p>
+                    <div class="flex items-center gap-4 text-xs sm:text-sm">
+                        <a href="terms.html" class="text-bone/60 hover:text-red-flag transition-colors">Terms</a>
+                        <span class="text-bone/30">•</span>
+                        <a href="privacy.html" class="text-bone/60 hover:text-red-flag transition-colors">Privacy</a>
+                        <span class="text-bone/30">•</span>
+                        <a href="cookies.html" class="text-bone/60 hover:text-red-flag transition-colors">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Newsletter form submission (try local /api endpoint, then fallback to Netlify function)
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Subscribing...';
+            submitButton.disabled = true;
+            
+            try {
+                // Prefer local server route (Express) for developer convenience
+                let response = await fetch('/api/newsletter', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'blog' })
+                }).catch(() => null);
+
+                // If local endpoint not available, fall back to Netlify function
+                if (!response || !response.ok) {
+                    response = await fetch('/api/newsletter-subscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, source: 'blog' })
+                    });
+                }
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Show success
+                    submitButton.textContent = 'Subscribed!';
+                    submitButton.style.background = 'linear-gradient(135deg, var(--color-glitch-lime) 0%, #b8e000 100%)';
+                    submitButton.style.color = 'var(--color-charcoal)';
+                    
+                    // Reset form
+                    document.getElementById('email').value = '';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.style.background = '';
+                        submitButton.style.color = '';
+                        submitButton.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(result.error || 'Subscription failed');
+                }
+                
+            } catch (error) {
+                console.error('Newsletter subscription error:', error);
+                
+                // Show error
+                submitButton.textContent = 'Error - Try Again';
+                submitButton.style.background = 'linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%)';
+                submitButton.style.color = 'white';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = '';
+                    submitButton.style.color = '';
+                    submitButton.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Blog Automation System -->
+    <script src="/js/blog-automation.js"></script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
+
+
+    <!-- Academic Citation Metadata -->
+    <meta name="citation_author" content="Aleks Filmore">
+    <meta name="citation_title" content="The Worst Boyfriends Ever">
+    <meta name="citation_publication_date" content="2025-01-06">
+    <meta name="citation_publisher" content="Filmore Creative">
+    <meta name="citation_website" content="https://aleksfilmore.com">
+</body>
+</html>
+

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Hall of Red Flags | Interactive Dating Disaster Museum | Aleks Filmore</title>
+    <meta name="description" content="Welcome to the museum of my dating mistakes. Interactive red flag gallery with relationship lessons learned the hard way. From The Worst Boyfriends Ever author.">
+    <meta name="keywords" content="red flags, dating advice, relationship warning signs, Aleks Filmore, dating disasters, relationship lessons, interactive gallery">
+    <meta name="author" content="Aleks Filmore">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aleksfilmore.com/midway.html">
+    <meta property="og:title" content="Hall of Red Flags | Interactive Dating Disaster Museum">
+    <meta property="og:description" content="Welcome to the museum of my dating mistakes. Interactive red flag gallery with relationship lessons learned the hard way.">
+    <meta property="og:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aleksfilmore.com/midway.html">
+    <meta property="twitter:title" content="Hall of Red Flags | Interactive Dating Disaster Museum">
+    <meta property="twitter:description" content="Welcome to the museum of my dating mistakes. Interactive red flag gallery with relationship lessons learned the hard way.">
+    <meta property="twitter:image" content="https://aleksfilmore.com/AF.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aleksfilmore.com/midway.html">
+    
+    <!-- Google Analytics dynamic loader (no hardcoded ID) -->
+    <script>window.GA_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || undefined;</script>
+    
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/ico.png" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.min.css">
+    
+    <!-- Cookie Notice CSS -->
+    <link rel="stylesheet" href="/css/cookie-notice.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Hall of Red Flags",
+        "description": "Interactive dating disaster museum with relationship lessons",
+        "url": "https://aleksfilmore.com/midway.html",
+        "author": {
+            "@type": "Person",
+            "name": "Aleks Filmore"
+        },
+        "isPartOf": {
+            "@type": "Website",
+            "name": "Aleks Filmore",
+            "url": "https://aleksfilmore.com"
+        }
+    }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-charcoal: #0E0F10;
+            --color-bone: #F7F3ED;
+            --color-red-flag: #FF3B3B;
+            --color-glitch-lime: #C7FF41;
+            --color-dusty-blush: #F1B7C4;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Mobile-First Base Styles */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            /* Fallback background to prevent white flash on mobile */
+            background-color: var(--color-charcoal);
+        }
+
+        body {
+            /* Solid color fallback + gradient */
+            background: var(--color-charcoal);
+            background-image: linear-gradient(135deg, var(--color-charcoal) 0%, #1a0a0a 50%, #0a0a14 100%);
+            font-family: var(--font-body);
+            color: var(--color-bone);
+            line-height: 1.6;
+            font-size: 16px;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .circus-bg {
+            position: relative;
+            overflow: hidden;
+            /* Ensure a dark base even if the animated layer fails */
+            background-color: var(--color-charcoal);
+        }
+
+        .circus-bg::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(255, 59, 59, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 15%, rgba(199, 255, 65, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 45% 85%, rgba(241, 183, 196, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 75% 65%, rgba(255, 59, 59, 0.04) 0%, transparent 30%);
+            animation: circus-float 20s ease-in-out infinite;
+            /* iOS Safari can render negative z-index oddly; keep it behind content without going negative */
+            z-index: 0;
+        }
+
+        @keyframes circus-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        .font-display { font-family: var(--font-display); }/* Mobile-First Navigation */
+        .nav-link {
+            color: var(--color-bone);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red-flag);
+        }
+
+        /* Hover underline animation */
+        .hover-underline-slide {
+            position: relative;
+        }
+
+        .hover-underline-slide::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-red-flag);
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline-slide:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile-First Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            font-family: var(--font-display);
+            font-weight: 600;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 16px rgba(255, 59, 59, 0.25);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 59, 0.4);
+        }
+
+        /* Mobile-First Flag Cards */
+        .flag-card {
+            background: linear-gradient(135deg, rgba(247, 243, 237, 0.08) 0%, rgba(247, 243, 237, 0.04) 100%);
+            border: 1px solid rgba(247, 243, 237, 0.15);
+            border-radius: 20px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .flag-card.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .flag-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 59, 59, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.1) 0%, rgba(247, 243, 237, 0.08) 100%);
+        }
+
+        .flag-emoji {
+            font-size: 2.5rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .flag-card:hover .flag-emoji {
+            animation: flag-wave 0.6s ease-in-out;
+        }
+
+        @keyframes flag-wave {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            25% { transform: rotate(3deg) scale(1.05); }
+            50% { transform: rotate(-2deg) scale(1.02); }
+            75% { transform: rotate(2deg) scale(1.05); }
+        }
+
+        .flag-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .flag-card.expanded .flag-content {
+            max-height: 300px;
+            padding-top: 1rem;
+        }
+
+        .risk-tip {
+            background: linear-gradient(135deg, var(--color-red-flag) 0%, #e63946 100%);
+            color: var(--color-bone);
+            padding: 0.75rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
+        }
+
+        .museum-header {
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.1) 0%, rgba(241, 183, 196, 0.05) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(247, 243, 237, 0.1);
+        }
+
+        .visitor-counter {
+            background: rgba(247, 243, 237, 0.05);
+            border: 1px solid rgba(247, 243, 237, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Mobile-First Responsive Breakpoints */
+        
+        /* Large mobile (375px+) */
+        @media (min-width: 375px) {
+            .flag-card {
+                padding: 1.75rem;
+            }
+            
+            .flag-emoji {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Small tablet (640px+) */
+        @media (min-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .btn-primary {
+                width: auto;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .flag-card {
+                margin-bottom: 0;
+            }
+            
+            .flag-emoji {
+                font-size: 3.5rem;
+            }
+        }
+        
+        /* Medium tablet (768px+) */
+        @media (min-width: 768px) {
+            .flag-card {
+                padding: 2rem;
+            }
+        }
+        
+        /* Large tablet/Small desktop (1024px+) */
+        @media (min-width: 1024px) {
+            .btn-primary {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Interactive elements */
+        .interactive-hint {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(199, 255, 65, 0.2);
+            color: var(--color-glitch-lime);
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: pulse-hint 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Loading animation */
+        .flag-grid {
+            opacity: 0;
+            animation: fade-in 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Footer background helper (Tailwind doesn't know bg-charcoal/50) */
+        .footer-dark {
+            background: rgba(14, 15, 16, 0.5);
+        }
+    </style>
+    <script src="/js/premium-icons.js" defer></script>
+    <script src="/js/mobile-menu.js" defer></script>
+</head>
+<body class="antialiased circus-bg">
+
+    <!-- Mobile-First Navigation -->
+    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-display font-bold text-lg sm:text-xl">
+                    <a href="index.html" class="text-bone hover:text-red-flag transition-colors">← Back to Sanity</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
+                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
+                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
+                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="about.html" class="nav-link hover-underline-slide">About</a>
+                    <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
+                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
+                </div>
+                
+                <div class="hidden sm:block text-sm text-bone/60">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> Easter Egg Activated
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-bone hover:text-red-flag transition-colors" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="sm:hidden text-xs text-bone/60">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
+                <a href="shop.html" class="block text-lg nav-link">Shop</a>
+                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
+                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="about.html" class="block text-lg nav-link">About</a>
+                <a href="contact.html" class="block text-lg nav-link">Contact</a>
+                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
+                <a href="index.html" class="block text-sm nav-link opacity-50">← Back to Main Site</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile menu behavior is centralized in /js/mobile-menu.js -->
+
+    <!-- Main Content -->
+    <main class="pt-16 sm:pt-20">
+        
+        <!-- Hero Section -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto">
+                    
+                    <div class="museum-header">
+                        <h1 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6">
+                            Welcome to the museum of my <span class="text-red-flag">mistakes</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl lg:text-2xl mb-6 text-bone/80">
+                            Tap a flag. Learn a lesson. Laugh, then leave.
+                        </p>
+                        
+                        <div class="visitor-counter">
+                            <p class="text-sm sm:text-base text-bone/60 mb-2">Museum Visitors Today</p>
+                            <div class="font-display font-bold text-xl sm:text-2xl text-red-flag" id="visitor-count">Loading...</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Flag Gallery -->
+        <section class="py-8 sm:py-12">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-6xl mx-auto">
+                    
+                    <div class="text-center mb-8 sm:mb-12">
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-4">
+                            The <span class="text-red-flag">Red Flag</span> Collection
+                        </h2>
+                        <p class="text-base sm:text-lg text-bone/80 max-w-2xl mx-auto">
+                            Each flag represents a lesson learned the hard way. Interactive exhibits for your emotional education.
+                        </p>
+                    </div>
+
+                    <div class="flag-grid grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        
+                        <!-- The Gambler -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="gambler">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🎰</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Gambler</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Risk assessment: Critical</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">He loved risk the way I loved potential: recklessly. His favorite bet? My patience. Every decision was a roll of the dice, except when it came to commitment—that was always snake eyes.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If they "almost" changed last week, they'll "nearly" change forever. Set your own odds.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Party Animal -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="party">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🍻</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Party Animal</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Availability: 3am only</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">He was a 3 a.m. poem and a 3 p.m. ghost. We danced around the truth until closing time, but sobriety was always the unwelcome third wheel.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If the only quiet they offer is the silent treatment, go home early.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Kinkster -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="kink">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🔗</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Kinkster</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Boundaries: Negotiable (apparently)</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">He had a safe word for everything except honesty. Turns out my boundary issues were the real fetish. Power exchange without power balance is just exploitation with props.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> Curiosity is healthy; consent and clarity are sexier than any roleplay.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Human Sloth -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="sloth">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🦥</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Human Sloth</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Speed: Glacial</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">He moved slowly, but his excuses were lightning fast. Evolution takes time; your standards don't have to. I became his project manager instead of his partner.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If you're always "circling back," you're managing a project, not dating a person.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Conspiracist -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="conspiracy">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">👁️</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Conspiracist</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Reality: Optional</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">He saw patterns in clouds; I saw one in my dating history. When everything is a plot, intimacy never is. Trust requires shared reality, not shared delusions.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If they argue with gravity, don't fall. Facts aren't flexible; feelings are.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Polyamorist -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="poly">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">📅</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Polyamorist</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Schedule: Always full</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">Many hearts, minimal scheduling skills. I didn't mind sharing until I realized I was sharing myself thin. Time allocation became emotional taxation.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> Poly works with agreements; without them, it's just emotional crowd control.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Narcissist -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="narcissist">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🪞</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Narcissist</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Perspective: Singular</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">Every conversation was a monologue with audience participation. I was the backup singer to his solo career. Empathy was a foreign language he refused to learn.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If they can't see you, they definitely can't love you. Visibility is a prerequisite for intimacy.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Ghoster -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="ghost">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">👻</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The Ghoster</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">Status: Seen but not heard</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">Present until he wasn't. "Read" until he couldn't. Available until the moment you needed availability. Disappearing acts are impressive in magic shows, not relationships.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> Disappearing acts are magic tricks, not relationship skills. Consistency beats chemistry.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The One Who Got Away -->
+                        <div class="flag-card" onclick="toggleFlag(this)" data-flag="runner">
+                            <div class="interactive-hint">Tap me!</div>
+                            <div class="flag-emoji">🏃‍♂️</div>
+                            <h3 class="font-display font-bold text-lg sm:text-xl mb-2">The One Who Got Away</h3>
+                            <p class="text-bone/60 text-sm sm:text-base">My fault: Entirely</p>
+                            <div class="flag-content">
+                                <p class="text-bone/80 mb-3 text-sm sm:text-base">Perfect, kind, emotionally available—terrified me so much I ghosted myself. Sometimes the red flag is your own panic. Self-sabotage is still sabotage.</p>
+                                <div class="risk-tip">
+                                    <strong>Risk Mitigation:</strong> If healthy feels foreign, that's trauma talking, not intuition. Therapy helps; avoidance doesn't.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-8 sm:py-12 lg:py-16">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    
+                    <div class="museum-header">
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 sm:mb-6">
+                            Ready for the <span class="text-red-flag">full carnage</span>?
+                        </h2>
+                        <p class="text-lg sm:text-xl mb-6 sm:mb-8 text-bone/80">
+                            These are just the appetizers. The main course awaits in the full memoir.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                            <a href="shop.html" class="btn-primary">
+                                <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg> Read the Full Wreckage
+                            </a>
+                        </div>
+                        
+                        <p class="text-sm text-bone/60 mt-4">
+                            Museum admission: free • Therapy: not included
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile-First Footer -->
+    <footer class="footer-dark border-t border-bone/10 py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <div class="max-w-2xl mx-auto">
+                <p class="text-bone/60 text-sm sm:text-base mb-2">
+                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
+        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+        <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
+        <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
+        <circle cx="12" cy="12" r="2"/>
+    </svg> You found the Easter egg. Now find your way out of bad dating patterns.
+                </p>
+                <p class="text-bone/60 text-xs sm:text-sm">
+                    &copy; 2025 Aleks Filmore. Museum curated with questionable life choices.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Visitor counter (simple demo - in real implementation would use analytics API)
+        function updateVisitorCount() {
+            const today = new Date().toDateString();
+            let visitors = localStorage.getItem('museum-visitors-' + today);
+            if (!visitors) {
+                visitors = Math.floor(Math.random() * 50) + 15; // Random seed
+                localStorage.setItem('museum-visitors-' + today, visitors);
+            }
+            document.getElementById('visitor-count').textContent = visitors;
+        }
+
+        // Flag interaction
+        function toggleFlag(card) {
+            // Analytics tracking
+            const flagType = card.getAttribute('data-flag');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'flag_interaction', {
+                    'flag_type': flagType,
+                    'event_category': 'engagement'
+                });
+            }
+
+            // Close all other flags
+            document.querySelectorAll('.flag-card.expanded').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle this flag
+            card.classList.toggle('expanded');
+            
+            // Hide hint after first interaction
+            const hint = card.querySelector('.interactive-hint');
+            if (hint) {
+                hint.style.display = 'none';
+            }
+        }
+
+        // Close flag when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.flag-card')) {
+                document.querySelectorAll('.flag-card.expanded').forEach(card => {
+                    card.classList.remove('expanded');
+                });
+            }
+        });
+
+        // Entrance animation
+        function animateCards() {
+            const cards = document.querySelectorAll('.flag-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('loaded');
+                }, index * 150);
+            });
+        }
+
+        // Initialize page
+        window.addEventListener('load', () => {
+            updateVisitorCount();
+            setTimeout(animateCards, 500);
+        });
+
+        // Mobile-friendly touch events
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.flag-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+    </script>
+
+    <!-- Cookie Notice JavaScript -->
+    <script src="js/cookie-notice.js"></script>
+
+
+    <!-- Academic Citation Metadata -->
+    <meta name="citation_author" content="Aleks Filmore">
+    <meta name="citation_title" content="The Worst Boyfriends Ever">
+    <meta name="citation_publication_date" content="2025-01-06">
+    <meta name="citation_publisher" content="Filmore Creative">
+    <meta name="citation_website" content="https://aleksfilmore.com">
+</body>
+</html>
+
