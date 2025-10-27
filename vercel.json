@@ -47,92 +47,83 @@
       ]
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/about",
+      "destination": "/about.html"
     },
     {
-      "src": "/(.*\\.css)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "text/css; charset=utf-8"
-      }
+      "source": "/audiobook",
+      "destination": "/audiobook.html"
     },
     {
-      "src": "/(.*\\.js)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "application/javascript; charset=utf-8"
-      }
+      "source": "/bad-date-bingo",
+      "destination": "/bad-date-bingo.html"
     },
     {
-      "src": "/(.*\\.svg)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "image/svg+xml"
-      }
+      "source": "/blog",
+      "destination": "/blog.html"
     },
     {
-      "src": "/(.*\\.png)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "image/png"
-      }
+      "source": "/books",
+      "destination": "/books.html"
     },
     {
-      "src": "/(.*\\.jpg|.*\\.jpeg)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "image/jpeg"
-      }
+      "source": "/checkout",
+      "destination": "/checkout.html"
     },
     {
-      "src": "/(.*\\.gif)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "image/gif"
-      }
+      "source": "/checkout-success",
+      "destination": "/checkout-success.html"
     },
     {
-      "src": "/(.*\\.mp3)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "audio/mpeg"
-      }
+      "source": "/contact",
+      "destination": "/contact.html"
     },
     {
-      "src": "/(.*\\.pdf)",
-      "dest": "/$1",
-      "headers": {
-        "Content-Type": "application/pdf"
-      }
+      "source": "/cookies",
+      "destination": "/cookies.html"
     },
     {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml",
-      "headers": {
-        "Content-Type": "application/xml"
-      }
+      "source": "/dacia-rising",
+      "destination": "/dacia-rising.html"
     },
     {
-      "src": "/robots.txt",
-      "dest": "/robots.txt",
-      "headers": {
-        "Content-Type": "text/plain"
-      }
+      "source": "/midway",
+      "destination": "/midway.html"
     },
     {
-      "src": "^/(about|audiobook|bad-date-bingo|blog|books|checkout|checkout-success|contact|cookies|dacia-rising|midway|newsletter|order-confirmation|press|privacy|reviews|shop|terms)/?$",
-      "dest": "/$1.html"
+      "source": "/newsletter",
+      "destination": "/newsletter.html"
     },
     {
-      "src": "^/blog/([^/]+)/?$",
-      "dest": "/blog/$1.html"
+      "source": "/order-confirmation",
+      "destination": "/order-confirmation.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/press",
+      "destination": "/press.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/reviews.html"
+    },
+    {
+      "source": "/shop",
+      "destination": "/shop.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog/:slug.html"
     }
-  ]
+  ],
+  "cleanUrls": true
 }
