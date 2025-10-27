@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Testing | Aleks Filmore</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #010300;
+            color: #f0e8c9;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fd0009;
+        }
+
+        .intro {
+            color: #bfb9a3;
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .test-section {
+            margin-bottom: 4rem;
+        }
+
+        .variant-label {
+            display: inline-block;
+            background: rgba(253, 0, 9, 0.2);
+            color: #fd0009;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .test-card {
+            background: rgba(240, 232, 201, 0.02);
+            border: 1px solid rgba(240, 232, 201, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #5DADE2;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .event-log {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 2rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .event-log h3 {
+            color: #fd0009;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .event-entry {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: rgba(93, 173, 226, 0.1);
+            border-left: 3px solid #5DADE2;
+            font-size: 0.875rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .success {
+            color: #5DADE2;
+        }
+
+        .warning {
+            color: #C7FF41;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #fd0009, transparent);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Component Testing Lab</h1>
+        <p class="intro">
+            Testing BookCard and AuthorityBar Web Components before deployment.
+            Open browser console to see event tracking.
+        </p>
+
+        <!-- BookCard Tests -->
+        <section class="test-section">
+            <h2>📚 BookCard Component</h2>
+
+            <div class="variant-label">Default Variant</div>
+            <div class="code-block">&lt;book-card book-id="twbe"&gt;&lt;/book-card&gt;</div>
+            <div class="grid grid-3">
+                <book-card book-id="twbe"></book-card>
+                <book-card book-id="aftertaste"></book-card>
+                <book-card book-id="red-flag"></book-card>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <div class="variant-label">Featured Variant</div>
+                <div class="code-block">&lt;book-card book-id="twbe" variant="featured"&gt;&lt;/book-card&gt;</div>
+                <div class="grid grid-3">
+                    <book-card book-id="twbe" variant="featured"></book-card>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- AuthorityBar Tests -->
+        <section class="test-section">
+            <h2>⭐ AuthorityBar Component</h2>
+
+            <div class="variant-label">Default Variant (Dark Theme)</div>
+            <div class="code-block">&lt;authority-bar variant="default" theme="dark"&gt;&lt;/authority-bar&gt;</div>
+            <authority-bar variant="default" theme="dark" show-disclaimer></authority-bar>
+
+            <div style="margin-top: 3rem;">
+                <div class="variant-label">Compact Variant</div>
+                <div class="code-block">&lt;authority-bar variant="compact"&gt;&lt;/authority-bar&gt;</div>
+                <div style="max-width: 600px;">
+                    <authority-bar variant="compact" theme="dark"></authority-bar>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <div class="variant-label">Minimal Variant</div>
+                <div class="code-block">&lt;authority-bar variant="minimal"&gt;&lt;/authority-bar&gt;</div>
+                <authority-bar variant="minimal" theme="dark"></authority-bar>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <div class="variant-label">Light Theme</div>
+                <div class="code-block">&lt;authority-bar variant="default" theme="light"&gt;&lt;/authority-bar&gt;</div>
+                <div style="background: #f0e8c9; padding: 2rem; border-radius: 1rem;">
+                    <authority-bar variant="default" theme="light"></authority-bar>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Combined Test -->
+        <section class="test-section">
+            <h2>🎯 Combined Implementation Example</h2>
+            <p class="intro">How components work together on a real page</p>
+
+            <div class="test-card">
+                <authority-bar variant="compact" theme="dark"></authority-bar>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 1.5rem;">Available Books</h3>
+                    <div class="grid grid-3">
+                        <book-card book-id="twbe" variant="featured"></book-card>
+                        <book-card book-id="aftertaste"></book-card>
+                        <book-card book-id="red-flag"></book-card>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Log -->
+        <div class="event-log">
+            <h3>📊 Event Log</h3>
+            <div id="event-log-content">
+                <p class="success">Console ready. Interact with components to see events...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Components -->
+    <script type="module" src="/src/components/book-card.js"></script>
+    <script type="module" src="/src/components/authority-bar.js"></script>
+
+    <!-- Event Tracking Demo -->
+    <script>
+        // Log all component events
+        const logContainer = document.getElementById('event-log-content');
+        
+        function logEvent(message, type = 'success') {
+            const entry = document.createElement('div');
+            entry.className = `event-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.insertBefore(entry, logContainer.firstChild);
+            
+            // Keep only last 10 events
+            while (logContainer.children.length > 10) {
+                logContainer.removeChild(logContainer.lastChild);
+            }
+        }
+
+        // BookCard events
+        document.addEventListener('book-view', (e) => {
+            console.log('📖 Book viewed:', e.detail);
+            logEvent(`Book viewed: ${e.detail.bookId}`);
+        });
+
+        document.addEventListener('book-click', (e) => {
+            console.log('🖱️ Book CTA clicked:', e.detail);
+            logEvent(`Book CTA clicked: ${e.detail.trackId} → ${e.detail.url}`, 'warning');
+        });
+
+        // AuthorityBar events
+        document.addEventListener('retailer-click', (e) => {
+            console.log('🏪 Retailer clicked:', e.detail);
+            logEvent(`Retailer clicked: ${e.detail.retailer}`, 'warning');
+        });
+
+        // Initial log
+        logEvent('✅ Components loaded successfully');
+    </script>
+</body>
+</html>

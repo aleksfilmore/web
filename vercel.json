@@ -16,6 +16,37 @@
       }
     }
   ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://cdn.mailerlite.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.stripe.com https://api.mailerlite.com https://www.google-analytics.com https://analytics.google.com; frame-src https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buy.stripe.com; upgrade-insecure-requests;"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(), payment=()"
+        }
+      ]
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -92,7 +123,7 @@
       }
     },
     {
-      "src": "^/(about|audiobook|bad-date-bingo|blog|books|checkout|checkout-success|contact|cookies|dacia-rising|midway|newsletter|order-confirmation|privacy|reviews|shop|terms)/?$",
+      "src": "^/(about|audiobook|bad-date-bingo|blog|books|checkout|checkout-success|contact|cookies|dacia-rising|midway|newsletter|order-confirmation|press|privacy|reviews|shop|terms)/?$",
       "dest": "/$1.html"
     },
     {

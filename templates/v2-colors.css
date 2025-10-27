@@ -1,0 +1,146 @@
+/* V2 Color Palette - Unified Across All Pages */
+/* Add this to the <style> section in <head> of every page */
+
+:root {
+    /* V2 Brand Colors - Professional Author Platform */
+    --v2-black: #010300;
+    --v2-cream: #f0e8c9;
+    --v2-red: #fd0009;
+    --v2-gray: #bfb9a3;
+    
+    /* Typography */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Base Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--v2-black);
+    color: var(--v2-cream);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--v2-cream);
+}
+
+h1 { 
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    line-height: 1.1; 
+}
+
+h2 { 
+    font-size: clamp(1.875rem, 4vw, 2.5rem); 
+    line-height: 1.2; 
+}
+
+h3 { 
+    font-size: clamp(1.5rem, 3vw, 2rem); 
+    line-height: 1.3; 
+}
+
+p {
+    color: var(--v2-cream);
+    line-height: 1.7;
+}
+
+a {
+    color: var(--v2-cream);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--v2-red);
+}
+
+/* Button Styles */
+.btn-primary {
+    background: var(--v2-red);
+    color: var(--v2-cream);
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #cc0007;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(253, 0, 9, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--v2-cream);
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--v2-cream);
+    font-weight: 600;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: var(--v2-cream);
+    color: var(--v2-black);
+    border-color: var(--v2-cream);
+}
+
+/* Utility Classes */
+.text-muted {
+    color: var(--v2-gray);
+}
+
+.text-accent {
+    color: var(--v2-red);
+}
+
+/* Spacing */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Main content padding for fixed nav */
+main {
+    padding-top: 100px;
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus {
+    outline: 2px solid var(--v2-red);
+    outline-offset: 2px;
+}
+
+/* Remove old TWBE color variables */
+/* DO NOT USE THESE ANYMORE:
+--color-red-flag: #FF3B3B;
+--color-glitch-lime: #C7FF41;
+--color-dusty-blush: #F1B7C4;
+--color-charcoal: #0E0F10;
+--color-bone: #F7F3ED;
+*/

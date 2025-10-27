@@ -145,11 +145,18 @@
     <!-- Custom Styles -->
     <style>
         :root {
-            --color-charcoal: #0E0F10;
-            --color-bone: #F7F3ED;
-            --color-red-flag: #FF3B3B;
-            --color-glitch-lime: #C7FF41;
-            --color-dusty-blush: #F1B7C4;
+            /* V2 Brand Palette - Author Platform */
+            --v2-black: #010300;
+            --v2-cream: #f0e8c9;
+            --v2-red: #fd0009;
+            --v2-gray: #bfb9a3;
+            
+            /* Semantic mapping for V2 */
+            --color-charcoal: var(--v2-black);
+            --color-bone: var(--v2-cream);
+            --color-red-flag: var(--v2-red);
+            --color-glitch-lime: var(--v2-gray);
+            --color-dusty-blush: var(--v2-gray);
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -346,6 +353,7 @@
     </style>
     <script src="/js/premium-icons.js" defer></script>
     <script src="/js/mobile-menu.js" defer></script>
+    <script src="/src/components/authority-bar.js" defer></script>
 
     <!-- JSON-LD Structured Data for Author -->
     <script type="application/ld+json">
@@ -378,7 +386,7 @@
 <body class="antialiased">
 
                 <!-- Standardized Navigation -->
-    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+    <nav class="fixed top-0 w-full bg-[#010300]/95 backdrop-blur-sm border-b border-[#f0e8c9]/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
                 <!-- Brand Logo -->
@@ -396,22 +404,12 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
-                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
-                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
-                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide">Bingo Game</a>
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="press.html" class="nav-link hover-underline-slide">Press</a>
+                    <a href="blog.html" class="nav-link hover-underline-slide">Blog</a>
+                    <a href="newsletter.html" class="nav-link hover-underline-slide">Newsletter</a>
                     <a href="about.html" class="nav-link hover-underline-slide text-red-flag">About</a>
                     <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
-                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
-                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
-                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
-                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
-                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
-                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
-                            <circle cx="12" cy="12" r="2"/>
-                        </svg>
-                    </a>
                 </div>
 
                 <!-- Mobile Menu Toggle -->
@@ -426,19 +424,23 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
+        <div id="mobile-menu" class="hidden md:hidden bg-[#010300]/95 backdrop-blur-sm border-t border-[#f0e8c9]/10">
             <div class="px-4 py-6 space-y-4">
-                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
-                <a href="shop.html" class="block text-lg nav-link">Shop</a>
-                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
-                <a href="bad-date-bingo.html" class="block text-lg nav-link">Bingo Game</a>
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="press.html" class="block text-lg nav-link">Press</a>
+                <a href="blog.html" class="block text-lg nav-link">Blog</a>
+                <a href="newsletter.html" class="block text-lg nav-link">Newsletter</a>
                 <a href="about.html" class="block text-lg nav-link text-red-flag">About</a>
                 <a href="contact.html" class="block text-lg nav-link">Contact</a>
-                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
-                <a href="midway.html" class="block text-sm nav-link opacity-50">
-                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
-                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+                <div class="border-t border-bone/20 pt-4 mt-4">
+                    <p class="text-xs text-bone/60 mb-3 uppercase tracking-wider">Quick Links</p>
+                    <a href="audiobook.html" class="block nav-link opacity-75 mb-2">🎧 Audiobook</a>
+                    <a href="shop.html" class="block nav-link opacity-75 mb-2">📚 Shop</a>
+                    <a href="reviews.html" class="block nav-link opacity-75 mb-2">⭐ Reviews</a>
+                    <a href="bad-date-bingo.html" class="block nav-link opacity-75 mb-2">🎲 Bingo Game</a>
+                    <a href="dacia-rising.html" class="block nav-link opacity-60 text-sm">Dacia Rising</a>
+                </div>
+            </div>
                         <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
                         <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
                         <circle cx="12" cy="12" r="2"/>
@@ -479,7 +481,7 @@
                     </div>
 
                     <!-- Simple CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto mb-8">
                         <a href="shop.html" class="btn-primary">
                             <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -487,13 +489,14 @@
                             </svg> 
                             Get My Book
                         </a>
-                        <a href="contact.html" class="btn-secondary">
-                            <svg class="premium-icon colored-blush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg> 
-                            Say Hello
+                        <a href="press.html" class="btn-secondary">
+                            📋 View Press Kit
                         </a>
+                    </div>
+
+                    <!-- Authority Bar Component -->
+                    <div class="mt-8">
+                        <authority-bar variant="minimal" theme="dark"></authority-bar>
                     </div>
 
                 </div>

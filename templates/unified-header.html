@@ -1,0 +1,90 @@
+<!-- Unified Navigation Template - V2 Style -->
+<!-- Copy this into all pages, replace {PAGE_NAME} with current page (e.g., "press", "blog", etc.) -->
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#010300]/95 backdrop-blur-sm border-b border-[#f0e8c9]/10">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3 group">
+                <div class="logo-container">
+                    <svg viewBox="0 0 800 250" class="logo-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle" style="height: 60px; width: auto;">
+                        <title id="logoTitle">Aleks Filmore - Author</title>
+                        <rect width="800" height="250" fill="transparent"/>
+                        <text x="40" y="110" font-family="Space Grotesk, Arial, sans-serif" font-size="96" letter-spacing="4" fill="#F0E8C9" font-weight="700">ALEKS FILMORE</text>
+                        <line x1="40" y1="130" x2="760" y2="130" stroke="#FD0009" stroke-width="3"/>
+                        <text x="190" y="150" font-family="Inter, Arial, sans-serif" font-size="24" letter-spacing="8" fill="#F0E8C9" font-weight="600">AUTHOR</text>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/books" class="nav-link" data-page="books">Books</a>
+                <a href="/press" class="nav-link" data-page="press">Press</a>
+                <a href="/blog" class="nav-link" data-page="blog">Blog</a>
+                <a href="/newsletter" class="nav-link" data-page="newsletter">Newsletter</a>
+                <a href="/about" class="nav-link" data-page="about">About</a>
+                <a href="/contact" class="nav-link" data-page="contact">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-[#f0e8c9] p-2" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+            <a href="/books" class="block py-2 nav-link" data-page="books">Books</a>
+            <a href="/press" class="block py-2 nav-link" data-page="press">Press</a>
+            <a href="/blog" class="block py-2 nav-link" data-page="blog">Blog</a>
+            <a href="/newsletter" class="block py-2 nav-link" data-page="newsletter">Newsletter</a>
+            <a href="/about" class="block py-2 nav-link" data-page="about">About</a>
+            <a href="/contact" class="block py-2 nav-link" data-page="contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Navigation Styling - Add to <style> section -->
+<style>
+    .nav-link {
+        color: #f0e8c9;
+        transition: color 0.2s ease;
+        font-weight: 500;
+    }
+    
+    .nav-link:hover {
+        color: #fd0009;
+    }
+    
+    .nav-link[data-page="{PAGE_NAME}"] {
+        color: #fd0009;
+        font-weight: 600;
+    }
+    
+    .logo-svg {
+        height: 60px;
+        width: auto;
+    }
+    
+    @media (max-width: 768px) {
+        .logo-svg {
+            height: 50px;
+        }
+    }
+</style>
+
+<!-- Navigation Script - Add before closing </body> tag -->
+<script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+</script>

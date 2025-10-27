@@ -43,12 +43,22 @@ module.exports = {
           800: '#86198f',
           900: '#701a75'
         },
-        // Custom brand colors matching CSS variables
+        // TWBE Brand colors (maintain for backward compatibility)
         'red-flag': '#FF3B3B',
         'glitch-lime': '#C7FF41',
         'dusty-blush': '#F1B7C4',
         'bone': '#F7F3ED',
         'charcoal': '#0E0F10',
+        // V2 Author Brand Colors (blue-noir palette)
+        'midnight-navy': '#0A1128',
+        'slate-blue': '#4A5C7A',
+        'graphite': '#2D3142',
+        'accent-teal': '#5DADE2',
+        // V2 Media Kit Palette (faceless emotional aesthetic)
+        'v2-black': '#010300',    // Silence and depth
+        'v2-cream': '#f0e8c9',    // Clarity and memory
+        'v2-red': '#fd0009',      // Pulse and danger
+        'v2-gray': '#bfb9a3',     // Detachment and reflection
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],

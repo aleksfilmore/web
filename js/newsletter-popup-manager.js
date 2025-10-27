@@ -10,95 +10,9 @@
         createCount: 0, // Track how many times create has been called
         
         create: function(source = 'unknown') {
-            this.createCount++;
-            console.log(`[NewsletterPopup] Create called #${this.createCount} with source:`, source, 'current state:', {
-                hasCurrentPopup: !!this.currentPopup,
-                isClosing: this.isClosing,
-                isCreating: this.isCreating
-            });
-            
-            if (this.currentPopup && !this.currentPopup.isConnected) {
-                console.log('[NewsletterPopup] Clearing stale popup reference before creating');
-                this.currentPopup = null;
-            }
-            
-            const existingPopup = document.querySelector('.newsletter-popup-mobile');
-            if (existingPopup) {
-                console.log(`[NewsletterPopup] Reusing existing popup instance #${this.createCount}, source:`, source);
-                this.currentPopup = existingPopup;
-                sessionStorage.setItem('newsletter_popup_open', 'true');
-                return existingPopup;
-            }
-            
-            // Prevent duplicates and race conditions
-            if (this.currentPopup || this.isClosing || this.isCreating) {
-                console.log(`[NewsletterPopup] Blocked duplicate popup creation #${this.createCount}, source:`, source);
-                return null;
-            }
-            
-            // Check if already subscribed or dismissed recently
-            if (sessionStorage.getItem('newsletter_subscribed') === 'true') {
-                console.log('[NewsletterPopup] User already subscribed');
-                return null;
-            }
-            
-            const dismissedTime = sessionStorage.getItem('newsletter_popup_dismissed');
-            if (dismissedTime && (Date.now() - parseInt(dismissedTime)) < 300000) { // 5 minutes
-                console.log('[NewsletterPopup] Recently dismissed, not showing again');
-                return null;
-            }
-            
-            this.isCreating = true;
-            
-            // Hide any existing CTAs immediately
-            this.hideAllCTAs();
-            
-            const popup = document.createElement('div');
-            popup.className = 'newsletter-popup-mobile';
-            popup.setAttribute('data-source', source);
-            popup.setAttribute('data-created', Date.now());
-            
-            popup.innerHTML = `
-                <div class="newsletter-popup-overlay"></div>
-                <div class="newsletter-popup-content">
-                    <button type="button" class="newsletter-popup-close" aria-label="Close">&times;</button>
-                    <div class="popup-header">
-                        <h3>Don't miss the red flags</h3>
-                        <p>Get behind-the-scenes content and be the first to know about new releases.</p>
-                    </div>
-                    <form class="newsletter-form">
-                        <input type="email" name="email" placeholder="your@email.com" required />
-                        <button type="submit" class="submit-btn">Get Updates</button>
-                    </form>
-                    <div class="popup-benefits">
-                        <div class="benefit">→ Exclusive behind-the-scenes content</div>
-                        <div class="benefit">→ Early access to new releases</div>
-                        <div class="benefit">→ Personal updates from Aleks</div>
-                    </div>
-                    <div class="popup-footer">
-                        <p>We respect your privacy. Unsubscribe at any time.</p>
-                    </div>
-                </div>
-            `;
-            
-            // Add styles if not already present
-            this.addStyles();
-            
-            document.body.appendChild(popup);
-            document.body.style.overflow = 'hidden';
-            document.body.classList.add('newsletter-popup-active');
-            
-            this.currentPopup = popup;
-            this.isCreating = false;
-            
-            // Bind events with proper cleanup
-            this.bindEvents(popup);
-            
-            // Mark popup as open
-            sessionStorage.setItem('newsletter_popup_open', 'true');
-            
-            console.log('[NewsletterPopup] Created successfully, source:', source);
-            return popup;
+            // NEWSLETTER POPUP DISABLED - Too annoying and not efficient
+            console.log('[NewsletterPopup] Popup disabled site-wide');
+            return null;
         },
         
         close: function() {

@@ -148,7 +148,7 @@ async function buildCSS() {
         });
         
         // Copy directories and files
-    const dirsToCopy = ['css', 'js', 'assets', 'audio', 'blog', 'DaciaRising'];
+    const dirsToCopy = ['css', 'js', 'src', 'assets', 'audio', 'blog', 'DaciaRising'];
         dirsToCopy.forEach(dir => {
             if (fs.existsSync(dir)) {
                 const destDir = path.join(publicDir, dir);

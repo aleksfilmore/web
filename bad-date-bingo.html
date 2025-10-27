@@ -40,9 +40,16 @@
     
     <style>
         :root {
-            --color-charcoal: #0E0F10;
-            --color-bone: #F7F3ED;
-            --color-red-flag: #FF3B3B;
+            /* V2 Color Palette */
+            --v2-black: #010300;
+            --v2-cream: #f0e8c9;
+            --v2-red: #fd0009;
+            --v2-gray: #bfb9a3;
+            
+            /* Legacy color mappings for compatibility */
+            --color-charcoal: #010300;
+            --color-bone: #f0e8c9;
+            --color-red-flag: #fd0009;
             --color-glitch-lime: #C8FF00;
             --color-dusty-blush: #F1B7C4;
             --font-display: 'Space Grotesk', sans-serif;
@@ -297,7 +304,7 @@
 
 <body>
         <!-- Standardized Navigation -->
-    <nav class="fixed top-0 w-full bg-charcoal/90 backdrop-blur-sm border-b border-bone/10 z-50">
+    <nav class="fixed top-0 w-full bg-[#010300]/95 backdrop-blur-sm border-b border-[#f0e8c9]/10 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
                 <!-- Brand Logo -->
@@ -315,22 +322,12 @@
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <a href="audiobook.html" class="nav-link hover-underline-slide">Audiobook</a>
-                    <a href="shop.html" class="nav-link hover-underline-slide">Shop</a>
-                    <a href="reviews.html" class="nav-link hover-underline-slide">Reviews</a>
-                    <a href="bad-date-bingo.html" class="nav-link hover-underline-slide text-red-flag">Bingo Game</a>
+                    <a href="books.html" class="nav-link hover-underline-slide">Books</a>
+                    <a href="press.html" class="nav-link hover-underline-slide">Press</a>
+                    <a href="blog.html" class="nav-link hover-underline-slide">Blog</a>
+                    <a href="newsletter.html" class="nav-link hover-underline-slide">Newsletter</a>
                     <a href="about.html" class="nav-link hover-underline-slide">About</a>
                     <a href="contact.html" class="nav-link hover-underline-slide">Contact</a>
-                    <a href="dacia-rising.html" class="nav-link hover-underline-slide text-sm opacity-75 hover:opacity-100">Dacia Rising</a>
-                    <a href="midway.html" class="text-xs opacity-50 hover:opacity-100 transition-opacity">
-                        <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
-                            <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
-                            <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
-                            <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
-                            <circle cx="12" cy="12" r="2"/>
-                        </svg>
-                    </a>
                 </div>
                 
                 <!-- Mobile Menu Toggle -->
@@ -347,17 +344,14 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-charcoal/95 backdrop-blur-sm border-t border-bone/10">
             <div class="px-4 py-6 space-y-4">
-                <a href="audiobook.html" class="block text-lg nav-link">Audiobook</a>
-                <a href="shop.html" class="block text-lg nav-link">Shop</a>
-                <a href="reviews.html" class="block text-lg nav-link">Reviews</a>
-                <a href="bad-date-bingo.html" class="block text-lg nav-link text-red-flag">Bingo Game</a>
+                <a href="books.html" class="block text-lg nav-link">Books</a>
+                <a href="press.html" class="block text-lg nav-link">Press</a>
+                <a href="blog.html" class="block text-lg nav-link">Blog</a>
+                <a href="newsletter.html" class="block text-lg nav-link">Newsletter</a>
                 <a href="about.html" class="block text-lg nav-link">About</a>
                 <a href="contact.html" class="block text-lg nav-link">Contact</a>
-                <a href="dacia-rising.html" class="block nav-link opacity-75">Dacia Rising</a>
-                <a href="midway.html" class="block text-sm nav-link opacity-50">
-                    <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 3C8 3 8 9 12 9s4-6 12-6"/>
-                        <path d="M12 21c4 0 4-6 0-6s-4 6 0 6"/>
+            </div>
+        </div>
                         <path d="M3 12c0-4 6-4 6 0s-6 4-6 0"/>
                         <path d="M21 12c0-4-6-4-6 0s6 4 6 0"/>
                         <circle cx="12" cy="12" r="2"/>
